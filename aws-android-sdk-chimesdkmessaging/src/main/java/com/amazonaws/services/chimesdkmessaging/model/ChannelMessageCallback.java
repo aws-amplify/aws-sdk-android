@@ -58,6 +58,22 @@ public class ChannelMessageCallback implements Serializable {
 
     /**
      * <p>
+     * The push notification configuration of the message.
+     * </p>
+     */
+    private PushNotificationConfiguration pushNotification;
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     */
+    private java.util.Map<String, MessageAttributeValue> messageAttributes;
+
+    /**
+     * <p>
      * The message ID.
      * </p>
      * <p>
@@ -228,6 +244,149 @@ public class ChannelMessageCallback implements Serializable {
     }
 
     /**
+     * <p>
+     * The push notification configuration of the message.
+     * </p>
+     *
+     * @return <p>
+     *         The push notification configuration of the message.
+     *         </p>
+     */
+    public PushNotificationConfiguration getPushNotification() {
+        return pushNotification;
+    }
+
+    /**
+     * <p>
+     * The push notification configuration of the message.
+     * </p>
+     *
+     * @param pushNotification <p>
+     *            The push notification configuration of the message.
+     *            </p>
+     */
+    public void setPushNotification(PushNotificationConfiguration pushNotification) {
+        this.pushNotification = pushNotification;
+    }
+
+    /**
+     * <p>
+     * The push notification configuration of the message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param pushNotification <p>
+     *            The push notification configuration of the message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageCallback withPushNotification(
+            PushNotificationConfiguration pushNotification) {
+        this.pushNotification = pushNotification;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The attributes for the message, used for message filtering along
+     *         with a <code>FilterRule</code> defined in the
+     *         <code>PushNotificationPreferences</code>.
+     *         </p>
+     */
+    public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
+        return messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     *
+     * @param messageAttributes <p>
+     *            The attributes for the message, used for message filtering
+     *            along with a <code>FilterRule</code> defined in the
+     *            <code>PushNotificationPreferences</code>.
+     *            </p>
+     */
+    public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageAttributes <p>
+     *            The attributes for the message, used for message filtering
+     *            along with a <code>FilterRule</code> defined in the
+     *            <code>PushNotificationPreferences</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageCallback withMessageAttributes(
+            java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into MessageAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into MessageAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            MessageAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageCallback addMessageAttributesEntry(String key, MessageAttributeValue value) {
+        if (null == this.messageAttributes) {
+            this.messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
+        }
+        if (this.messageAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.messageAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into MessageAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public ChannelMessageCallback clearMessageAttributesEntries() {
+        this.messageAttributes = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -243,7 +402,11 @@ public class ChannelMessageCallback implements Serializable {
         if (getContent() != null)
             sb.append("Content: " + getContent() + ",");
         if (getMetadata() != null)
-            sb.append("Metadata: " + getMetadata());
+            sb.append("Metadata: " + getMetadata() + ",");
+        if (getPushNotification() != null)
+            sb.append("PushNotification: " + getPushNotification() + ",");
+        if (getMessageAttributes() != null)
+            sb.append("MessageAttributes: " + getMessageAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -256,6 +419,10 @@ public class ChannelMessageCallback implements Serializable {
         hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
         hashCode = prime * hashCode + ((getContent() == null) ? 0 : getContent().hashCode());
         hashCode = prime * hashCode + ((getMetadata() == null) ? 0 : getMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getPushNotification() == null) ? 0 : getPushNotification().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
         return hashCode;
     }
 
@@ -282,6 +449,16 @@ public class ChannelMessageCallback implements Serializable {
         if (other.getMetadata() == null ^ this.getMetadata() == null)
             return false;
         if (other.getMetadata() != null && other.getMetadata().equals(this.getMetadata()) == false)
+            return false;
+        if (other.getPushNotification() == null ^ this.getPushNotification() == null)
+            return false;
+        if (other.getPushNotification() != null
+                && other.getPushNotification().equals(this.getPushNotification()) == false)
+            return false;
+        if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null)
+            return false;
+        if (other.getMessageAttributes() != null
+                && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
             return false;
         return true;
     }

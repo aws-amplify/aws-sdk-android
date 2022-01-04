@@ -42,6 +42,29 @@ class ChannelMessageCallbackJsonMarshaller {
             jsonWriter.name("Metadata");
             jsonWriter.value(metadata);
         }
+        if (channelMessageCallback.getPushNotification() != null) {
+            PushNotificationConfiguration pushNotification = channelMessageCallback
+                    .getPushNotification();
+            jsonWriter.name("PushNotification");
+            PushNotificationConfigurationJsonMarshaller.getInstance().marshall(pushNotification,
+                    jsonWriter);
+        }
+        if (channelMessageCallback.getMessageAttributes() != null) {
+            java.util.Map<String, MessageAttributeValue> messageAttributes = channelMessageCallback
+                    .getMessageAttributes();
+            jsonWriter.name("MessageAttributes");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
+                    .entrySet()) {
+                MessageAttributeValue messageAttributesValue = messageAttributesEntry.getValue();
+                if (messageAttributesValue != null) {
+                    jsonWriter.name(messageAttributesEntry.getKey());
+                    MessageAttributeValueJsonMarshaller.getInstance().marshall(
+                            messageAttributesValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
+        }
         jsonWriter.endObject();
     }
 
