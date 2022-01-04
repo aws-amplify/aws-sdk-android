@@ -101,7 +101,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -872,7 +873,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -885,7 +887,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for the tracker resource.
+     *         Optionally specifies the pricing plan for the tracker resource.
+     *         Defaults to <code>RequestBasedUsage</code>.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -901,7 +904,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -914,7 +918,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the tracker resource.
+     *            Optionally specifies the pricing plan for the tracker
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -930,7 +935,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -946,7 +952,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the tracker resource.
+     *            Optionally specifies the pricing plan for the tracker
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -965,7 +972,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -978,7 +986,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the tracker resource.
+     *            Optionally specifies the pricing plan for the tracker
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -994,7 +1003,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for the tracker resource.
+     * Optionally specifies the pricing plan for the tracker resource. Defaults
+     * to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -1010,7 +1020,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the tracker resource.
+     *            Optionally specifies the pricing plan for the tracker
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan

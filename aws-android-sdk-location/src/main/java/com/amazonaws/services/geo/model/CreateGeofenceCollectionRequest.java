@@ -83,7 +83,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -492,7 +493,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -505,7 +507,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for the geofence collection.
+     *         Optionally specifies the pricing plan for the geofence
+     *         collection. Defaults to <code>RequestBasedUsage</code>.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -521,7 +524,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -534,7 +538,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the geofence collection.
+     *            Optionally specifies the pricing plan for the geofence
+     *            collection. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -550,7 +555,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -566,7 +572,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the geofence collection.
+     *            Optionally specifies the pricing plan for the geofence
+     *            collection. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -585,7 +592,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -598,7 +606,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the geofence collection.
+     *            Optionally specifies the pricing plan for the geofence
+     *            collection. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -614,7 +623,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the pricing plan for the geofence collection.
+     * Optionally specifies the pricing plan for the geofence collection.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -630,7 +640,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for the geofence collection.
+     *            Optionally specifies the pricing plan for the geofence
+     *            collection. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan

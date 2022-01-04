@@ -120,7 +120,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -714,7 +715,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -727,7 +729,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your route calculator resource.
+     *         Optionally specifies the pricing plan for the route calculator
+     *         resource. Defaults to <code>RequestBasedUsage</code>.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -743,7 +746,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -756,7 +760,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your route calculator resource.
+     *            Optionally specifies the pricing plan for the route calculator
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -772,7 +777,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -788,7 +794,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your route calculator resource.
+     *            Optionally specifies the pricing plan for the route calculator
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -807,7 +814,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -820,7 +828,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your route calculator resource.
+     *            Optionally specifies the pricing plan for the route calculator
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -836,7 +845,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Specifies the pricing plan for your route calculator resource.
+     * Optionally specifies the pricing plan for the route calculator resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -852,7 +862,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your route calculator resource.
+     *            Optionally specifies the pricing plan for the route calculator
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
