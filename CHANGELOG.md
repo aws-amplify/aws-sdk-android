@@ -1,3 +1,12 @@
+## [Release 2.38.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.38.0)
+
+### Features
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2749)
+- **aws-android-sdk-location:** update models to latest (#2751)
+- **aws-android-sdk-rekognition:** update models to latest (#2759)
+
+[See all changes between 2.37.1 and 2.38.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.37.1...release_v2.38.0)
+
 ## [Release 2.37.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.1)
 
 ### Miscellaneous
