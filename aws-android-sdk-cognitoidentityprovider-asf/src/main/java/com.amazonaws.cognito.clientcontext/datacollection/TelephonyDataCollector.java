@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -34,6 +35,7 @@ public class TelephonyDataCollector extends DataCollector {
     /**
      * {@inheritDoc}
      */
+    @SuppressLint("MissingPermission")
     @Override
     public Map<String, String> collect(Context context) {
         Map<String, String> contextData = new HashMap<String, String>();
