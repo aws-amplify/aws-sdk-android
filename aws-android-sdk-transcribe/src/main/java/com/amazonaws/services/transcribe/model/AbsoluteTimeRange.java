@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -82,8 +82,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the beginning of the call to the value that you've
-     * specified. For example, if you specify 100000, the time range is set to
-     * the first 100,000 milliseconds of the call.
+     * specified. For example, if you specify <code>100000</code>, the time
+     * range is set to the first 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,8 +94,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the value that you've specified to the end of the call.
-     * For example, if you specify 100000, the time range is set to the last
-     * 100,000 milliseconds of the call.
+     * For example, if you specify <code>100000</code>, the time range is set to
+     * the last 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -435,8 +435,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the beginning of the call to the value that you've
-     * specified. For example, if you specify 100000, the time range is set to
-     * the first 100,000 milliseconds of the call.
+     * specified. For example, if you specify <code>100000</code>, the time
+     * range is set to the first 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -444,8 +444,9 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @return <p>
      *         A time range from the beginning of the call to the value that
-     *         you've specified. For example, if you specify 100000, the time
-     *         range is set to the first 100,000 milliseconds of the call.
+     *         you've specified. For example, if you specify <code>100000</code>
+     *         , the time range is set to the first 100,000 milliseconds of the
+     *         call.
      *         </p>
      */
     public Long getFirst() {
@@ -455,8 +456,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the beginning of the call to the value that you've
-     * specified. For example, if you specify 100000, the time range is set to
-     * the first 100,000 milliseconds of the call.
+     * specified. For example, if you specify <code>100000</code>, the time
+     * range is set to the first 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -464,8 +465,9 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @param first <p>
      *            A time range from the beginning of the call to the value that
-     *            you've specified. For example, if you specify 100000, the time
-     *            range is set to the first 100,000 milliseconds of the call.
+     *            you've specified. For example, if you specify
+     *            <code>100000</code>, the time range is set to the first
+     *            100,000 milliseconds of the call.
      *            </p>
      */
     public void setFirst(Long first) {
@@ -475,8 +477,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the beginning of the call to the value that you've
-     * specified. For example, if you specify 100000, the time range is set to
-     * the first 100,000 milliseconds of the call.
+     * specified. For example, if you specify <code>100000</code>, the time
+     * range is set to the first 100,000 milliseconds of the call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -487,8 +489,9 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @param first <p>
      *            A time range from the beginning of the call to the value that
-     *            you've specified. For example, if you specify 100000, the time
-     *            range is set to the first 100,000 milliseconds of the call.
+     *            you've specified. For example, if you specify
+     *            <code>100000</code>, the time range is set to the first
+     *            100,000 milliseconds of the call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -501,8 +504,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the value that you've specified to the end of the call.
-     * For example, if you specify 100000, the time range is set to the last
-     * 100,000 milliseconds of the call.
+     * For example, if you specify <code>100000</code>, the time range is set to
+     * the last 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -510,8 +513,8 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @return <p>
      *         A time range from the value that you've specified to the end of
-     *         the call. For example, if you specify 100000, the time range is
-     *         set to the last 100,000 milliseconds of the call.
+     *         the call. For example, if you specify <code>100000</code>, the
+     *         time range is set to the last 100,000 milliseconds of the call.
      *         </p>
      */
     public Long getLast() {
@@ -521,8 +524,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the value that you've specified to the end of the call.
-     * For example, if you specify 100000, the time range is set to the last
-     * 100,000 milliseconds of the call.
+     * For example, if you specify <code>100000</code>, the time range is set to
+     * the last 100,000 milliseconds of the call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -530,8 +533,9 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @param last <p>
      *            A time range from the value that you've specified to the end
-     *            of the call. For example, if you specify 100000, the time
-     *            range is set to the last 100,000 milliseconds of the call.
+     *            of the call. For example, if you specify <code>100000</code>,
+     *            the time range is set to the last 100,000 milliseconds of the
+     *            call.
      *            </p>
      */
     public void setLast(Long last) {
@@ -541,8 +545,8 @@ public class AbsoluteTimeRange implements Serializable {
     /**
      * <p>
      * A time range from the value that you've specified to the end of the call.
-     * For example, if you specify 100000, the time range is set to the last
-     * 100,000 milliseconds of the call.
+     * For example, if you specify <code>100000</code>, the time range is set to
+     * the last 100,000 milliseconds of the call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -553,8 +557,9 @@ public class AbsoluteTimeRange implements Serializable {
      *
      * @param last <p>
      *            A time range from the value that you've specified to the end
-     *            of the call. For example, if you specify 100000, the time
-     *            range is set to the last 100,000 milliseconds of the call.
+     *            of the call. For example, if you specify <code>100000</code>,
+     *            the time range is set to the last 100,000 milliseconds of the
+     *            call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

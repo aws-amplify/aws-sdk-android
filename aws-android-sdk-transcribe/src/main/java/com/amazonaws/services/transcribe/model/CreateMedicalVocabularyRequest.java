@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <code>VocabularyFileUri</code> in the following format:
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      * </p>
      * <p>
      * The following is an example URI for a vocabulary file that is stored in
@@ -81,7 +81,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -334,7 +334,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <code>VocabularyFileUri</code> in the following format:
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      * </p>
      * <p>
      * The following is an example URI for a vocabulary file that is stored in
@@ -350,7 +350,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -366,7 +366,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *         following format:
      *         </p>
      *         <p>
-     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      *         </p>
      *         <p>
      *         The following is an example URI for a vocabulary file that is
@@ -382,7 +382,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         <p>
      *         For more information about custom vocabularies, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *         >Medical Custom Vocabularies</a>.
      *         </p>
      */
@@ -398,7 +398,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <code>VocabularyFileUri</code> in the following format:
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      * </p>
      * <p>
      * The following is an example URI for a vocabulary file that is stored in
@@ -414,7 +414,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -430,7 +430,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            following format:
      *            </p>
      *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      *            </p>
      *            <p>
      *            The following is an example URI for a vocabulary file that is
@@ -447,7 +447,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      */
@@ -463,7 +463,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <code>VocabularyFileUri</code> in the following format:
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      * </p>
      * <p>
      * The following is an example URI for a vocabulary file that is stored in
@@ -479,7 +479,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -498,7 +498,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            following format:
      *            </p>
      *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
      *            </p>
      *            <p>
      *            The following is an example URI for a vocabulary file that is
@@ -515,7 +515,7 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

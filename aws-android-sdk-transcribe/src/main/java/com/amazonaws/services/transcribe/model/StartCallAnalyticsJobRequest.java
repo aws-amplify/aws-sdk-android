@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * f you specify a path, Amazon Transcribe saves the output of the analytics
-     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
      * </p>
      * <p>
      * If you specify a folder, you must provide a trailing slash.
@@ -83,12 +83,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      * </p>
      * <p>
      * If you provide a path that has the filename specified, Amazon Transcribe
      * saves the output of the analytics job as
-     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      * </p>
      * </li>
      * </ul>
@@ -143,8 +143,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * ARN of a KMS Key Alias: "arn:aws:kms:region:accountID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -349,7 +348,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * f you specify a path, Amazon Transcribe saves the output of the analytics
-     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
      * </p>
      * <p>
      * If you specify a folder, you must provide a trailing slash.
@@ -357,12 +356,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      * </p>
      * <p>
      * If you provide a path that has the filename specified, Amazon Transcribe
      * saves the output of the analytics job as
-     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      * </p>
      * </li>
      * </ul>
@@ -400,7 +399,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *         <p>
      *         f you specify a path, Amazon Transcribe saves the output of the
      *         analytics job as
-     *         s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+     *         s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
      *         </p>
      *         <p>
      *         If you specify a folder, you must provide a trailing slash.
@@ -408,12 +407,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *         </li>
      *         <li>
      *         <p>
-     *         s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     *         s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      *         </p>
      *         <p>
      *         If you provide a path that has the filename specified, Amazon
      *         Transcribe saves the output of the analytics job as
-     *         s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     *         s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      *         </p>
      *         </li>
      *         </ul>
@@ -452,7 +451,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * f you specify a path, Amazon Transcribe saves the output of the analytics
-     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
      * </p>
      * <p>
      * If you specify a folder, you must provide a trailing slash.
@@ -460,12 +459,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      * </p>
      * <p>
      * If you provide a path that has the filename specified, Amazon Transcribe
      * saves the output of the analytics job as
-     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      * </p>
      * </li>
      * </ul>
@@ -505,7 +504,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            f you specify a path, Amazon Transcribe saves the output of
      *            the analytics job as
      *            s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription
-     *            -job-name.json
+     *            -job-name.json.
      *            </p>
      *            <p>
      *            If you specify a folder, you must provide a trailing slash.
@@ -513,12 +512,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            </li>
      *            <li>
      *            <p>
-     *            s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     *            s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      *            </p>
      *            <p>
      *            If you provide a path that has the filename specified, Amazon
      *            Transcribe saves the output of the analytics job as
-     *            s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     *            s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      *            </p>
      *            </li>
      *            </ul>
@@ -557,7 +556,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * f you specify a path, Amazon Transcribe saves the output of the analytics
-     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+     * job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json.
      * </p>
      * <p>
      * If you specify a folder, you must provide a trailing slash.
@@ -565,12 +564,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      * </p>
      * <p>
      * If you provide a path that has the filename specified, Amazon Transcribe
      * saves the output of the analytics job as
-     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     * s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      * </p>
      * </li>
      * </ul>
@@ -613,7 +612,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            f you specify a path, Amazon Transcribe saves the output of
      *            the analytics job as
      *            s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription
-     *            -job-name.json
+     *            -job-name.json.
      *            </p>
      *            <p>
      *            If you specify a folder, you must provide a trailing slash.
@@ -621,12 +620,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            </li>
      *            <li>
      *            <p>
-     *            s3://DOC-EXAMPLE-BUCKET1/folder/filename.json
+     *            s3://DOC-EXAMPLE-BUCKET1/folder/filename.json.
      *            </p>
      *            <p>
      *            If you provide a path that has the filename specified, Amazon
      *            Transcribe saves the output of the analytics job as
-     *            s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+     *            s3://DOC-EXAMPLEBUCKET1/folder/filename.json.
      *            </p>
      *            </li>
      *            </ul>
@@ -683,8 +682,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * ARN of a KMS Key Alias: "arn:aws:kms:region:accountID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -738,7 +736,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *         <li>
      *         <p>
      *         ARN of a KMS Key Alias:
-     *         "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *         "arn:aws:kms:region:accountID:alias/ExampleAlias"
      *         </p>
      *         </li>
      *         </ul>
@@ -794,8 +792,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * ARN of a KMS Key Alias: "arn:aws:kms:region:accountID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -849,7 +846,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            ARN of a KMS Key Alias:
-     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            "arn:aws:kms:region:accountID:alias/ExampleAlias"
      *            </p>
      *            </li>
      *            </ul>
@@ -905,8 +902,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * </li>
      * <li>
      * <p>
-     * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * ARN of a KMS Key Alias: "arn:aws:kms:region:accountID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -963,7 +959,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            ARN of a KMS Key Alias:
-     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            "arn:aws:kms:region:accountID:alias/ExampleAlias"
      *            </p>
      *            </li>
      *            </ul>

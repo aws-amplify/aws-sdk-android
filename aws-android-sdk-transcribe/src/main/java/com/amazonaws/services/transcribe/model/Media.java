@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
+     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * </p>
+     * <p>
      * For example:
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -63,7 +72,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
+     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * </p>
+     * <p>
      * For example:
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -81,7 +99,16 @@ public class Media implements Serializable {
      *         general form is:
      *         </p>
      *         <p>
+     *         <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *         </p>
+     *         <p>
      *         For example:
+     *         </p>
+     *         <p>
+     *         <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *         </p>
+     *         <p>
+     *         <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -100,7 +127,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
+     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * </p>
+     * <p>
      * For example:
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -118,7 +154,16 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
+     *            <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            </p>
+     *            <p>
      *            For example:
+     *            </p>
+     *            <p>
+     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *            </p>
+     *            <p>
+     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -137,7 +182,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
+     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * </p>
+     * <p>
      * For example:
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * </p>
+     * <p>
+     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -158,7 +212,16 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
+     *            <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            </p>
+     *            <p>
      *            For example:
+     *            </p>
+     *            <p>
+     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *            </p>
+     *            <p>
+     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -70,9 +70,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <p>
      * If you don't specify the sample rate, Amazon Transcribe Medical
      * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical. In most cases, you
-     * should leave the <code>MedicalMediaSampleHertz</code> blank and let
-     * Amazon Transcribe Medical determine the sample rate.
+     * match the rate detected by Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,7 +173,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * audio file is larger than what Amazon Transcribe Medical can process. For
      * more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>
+     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -185,7 +183,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * configured to process. To request additional channels, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>
+     * Services General Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -559,9 +557,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <p>
      * If you don't specify the sample rate, Amazon Transcribe Medical
      * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical. In most cases, you
-     * should leave the <code>MedicalMediaSampleHertz</code> blank and let
-     * Amazon Transcribe Medical determine the sample rate.
+     * match the rate detected by Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -574,10 +570,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *         <p>
      *         If you don't specify the sample rate, Amazon Transcribe Medical
      *         determines it for you. If you choose to specify the sample rate,
-     *         it must match the rate detected by Amazon Transcribe Medical. In
-     *         most cases, you should leave the
-     *         <code>MedicalMediaSampleHertz</code> blank and let Amazon
-     *         Transcribe Medical determine the sample rate.
+     *         it must match the rate detected by Amazon Transcribe Medical.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -592,9 +585,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <p>
      * If you don't specify the sample rate, Amazon Transcribe Medical
      * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical. In most cases, you
-     * should leave the <code>MedicalMediaSampleHertz</code> blank and let
-     * Amazon Transcribe Medical determine the sample rate.
+     * match the rate detected by Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -608,9 +599,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            If you don't specify the sample rate, Amazon Transcribe
      *            Medical determines it for you. If you choose to specify the
      *            sample rate, it must match the rate detected by Amazon
-     *            Transcribe Medical. In most cases, you should leave the
-     *            <code>MedicalMediaSampleHertz</code> blank and let Amazon
-     *            Transcribe Medical determine the sample rate.
+     *            Transcribe Medical.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -625,9 +614,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <p>
      * If you don't specify the sample rate, Amazon Transcribe Medical
      * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical. In most cases, you
-     * should leave the <code>MedicalMediaSampleHertz</code> blank and let
-     * Amazon Transcribe Medical determine the sample rate.
+     * match the rate detected by Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -644,9 +631,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            If you don't specify the sample rate, Amazon Transcribe
      *            Medical determines it for you. If you choose to specify the
      *            sample rate, it must match the rate detected by Amazon
-     *            Transcribe Medical. In most cases, you should leave the
-     *            <code>MedicalMediaSampleHertz</code> blank and let Amazon
-     *            Transcribe Medical determine the sample rate.
+     *            Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1038,7 +1023,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * audio file is larger than what Amazon Transcribe Medical can process. For
      * more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>
+     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -1048,7 +1033,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * configured to process. To request additional channels, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>
+     * Services General Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -1104,7 +1089,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *         process. For more information, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
      *         >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *         Guide</i>
+     *         Guide</i>.
      *         </p>
      *         </li>
      *         <li>
@@ -1115,7 +1100,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *         see <a href=
      *         "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      *         >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *         <i>Amazon Web Services General Reference</i>
+     *         <i>Amazon Web Services General Reference</i>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1172,7 +1157,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * audio file is larger than what Amazon Transcribe Medical can process. For
      * more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>
+     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -1182,7 +1167,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * configured to process. To request additional channels, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>
+     * Services General Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -1238,7 +1223,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            Medical can process. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
      *            >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *            Guide</i>
+     *            Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -1249,7 +1234,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            channels, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      *            >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *            <i>Amazon Web Services General Reference</i>
+     *            <i>Amazon Web Services General Reference</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1306,7 +1291,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * audio file is larger than what Amazon Transcribe Medical can process. For
      * more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>
+     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -1316,7 +1301,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * configured to process. To request additional channels, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>
+     * Services General Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -1375,7 +1360,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            Medical can process. For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
      *            >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *            Guide</i>
+     *            Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -1386,7 +1371,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            channels, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
      *            >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *            <i>Amazon Web Services General Reference</i>
+     *            <i>Amazon Web Services General Reference</i>.
      *            </p>
      *            </li>
      *            </ul>
