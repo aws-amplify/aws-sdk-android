@@ -17,7 +17,7 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-core')
-    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0'
+    api project(':aws-android-sdk-cognitoidentityprovider-asf')
     implementation 'androidx.annotation:annotation:1.1.0'
 
     testImplementation 'junit:junit:4.13.1'

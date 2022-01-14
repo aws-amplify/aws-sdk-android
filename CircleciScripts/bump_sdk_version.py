@@ -19,8 +19,6 @@ def bump_pomxml(filename, newsdkversion):
             parentversion.text = newsdkversion
     for dependency in root.findall("./dependencies/dependency[{0}]".format(groupIdFilter), namespaces):
         newversion = newsdkversion
-        if dependency.find("artifactId",namespaces).text == "aws-android-sdk-cognitoidentityprovider-asf":
-            continue
         dependencyVersion = dependency.find("version", namespaces)
         if dependencyVersion is not None:
             dependencyVersion.text = newversion

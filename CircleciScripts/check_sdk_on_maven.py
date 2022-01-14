@@ -43,7 +43,8 @@ packagelist = {
     'aws-android-sdk-kinesis', 
     'aws-android-sdk-pinpoint', 
     'aws-android-sdk-machinelearning', 
-    'aws-android-sdk-sqs'
+    'aws-android-sdk-sqs',
+    'aws-android-sdk-cognitoidentityprovider-asf'
 }
 
 def IsAllPackageAvailableOnMaven(version):
