@@ -91,7 +91,6 @@ public class ContextDataAggregator {
         availableDataCollectors.add(new ApplicationDataCollector());
         availableDataCollectors.add(new BuildDataCollector());
         availableDataCollectors.add(new DeviceDataCollector());
-        availableDataCollectors.add(new TelephonyDataCollector());
         return availableDataCollectors;
     }
 }
