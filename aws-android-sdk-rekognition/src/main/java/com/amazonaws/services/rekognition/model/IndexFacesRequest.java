@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -160,9 +160,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>detectionAttributes</code> parameter), Amazon Rekognition returns
  * detailed facial attributes, such as facial landmarks (for example, location
  * of eye and mouth) and other facial attributes. If you provide the same image,
- * specify the same collection, and use the same external ID in the
- * <code>IndexFaces</code> operation, Amazon Rekognition doesn't save duplicate
- * face metadata.
+ * specify the same collection, use the same external ID, and use the same model
+ * version in the <code>IndexFaces</code> operation, Amazon Rekognition doesn't
+ * save duplicate face metadata.
  * </p>
  * <p/>
  * <p>

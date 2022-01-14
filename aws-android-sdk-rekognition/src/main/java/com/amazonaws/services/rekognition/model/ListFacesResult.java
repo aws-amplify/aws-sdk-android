@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,8 +35,10 @@ public class ListFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * Latest face model being used with the collection. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>.
      * </p>
      */
     private String faceModelVersion;
@@ -171,13 +173,17 @@ public class ListFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * Latest face model being used with the collection. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>.
      * </p>
      *
      * @return <p>
-     *         Version number of the face detection model associated with the
-     *         input collection (<code>CollectionId</code>).
+     *         Latest face model being used with the collection. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *         >Model versioning</a>.
      *         </p>
      */
     public String getFaceModelVersion() {
@@ -186,13 +192,17 @@ public class ListFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * Latest face model being used with the collection. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>.
      * </p>
      *
      * @param faceModelVersion <p>
-     *            Version number of the face detection model associated with the
-     *            input collection (<code>CollectionId</code>).
+     *            Latest face model being used with the collection. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *            >Model versioning</a>.
      *            </p>
      */
     public void setFaceModelVersion(String faceModelVersion) {
@@ -201,16 +211,20 @@ public class ListFacesResult implements Serializable {
 
     /**
      * <p>
-     * Version number of the face detection model associated with the input
-     * collection (<code>CollectionId</code>).
+     * Latest face model being used with the collection. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceModelVersion <p>
-     *            Version number of the face detection model associated with the
-     *            input collection (<code>CollectionId</code>).
+     *            Latest face model being used with the collection. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *            >Model versioning</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

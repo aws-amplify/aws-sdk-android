@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,6 +74,17 @@ public class Face implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      */
     private Float confidence;
+
+    /**
+     * <p>
+     * The version of the face detect and storage model that was used when
+     * indexing the face vector.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[0-9\.]+<br/>
+     */
+    private String indexFacesModelVersion;
 
     /**
      * <p>
@@ -357,6 +368,66 @@ public class Face implements Serializable {
     }
 
     /**
+     * <p>
+     * The version of the face detect and storage model that was used when
+     * indexing the face vector.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[0-9\.]+<br/>
+     *
+     * @return <p>
+     *         The version of the face detect and storage model that was used
+     *         when indexing the face vector.
+     *         </p>
+     */
+    public String getIndexFacesModelVersion() {
+        return indexFacesModelVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the face detect and storage model that was used when
+     * indexing the face vector.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[0-9\.]+<br/>
+     *
+     * @param indexFacesModelVersion <p>
+     *            The version of the face detect and storage model that was used
+     *            when indexing the face vector.
+     *            </p>
+     */
+    public void setIndexFacesModelVersion(String indexFacesModelVersion) {
+        this.indexFacesModelVersion = indexFacesModelVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the face detect and storage model that was used when
+     * indexing the face vector.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[0-9\.]+<br/>
+     *
+     * @param indexFacesModelVersion <p>
+     *            The version of the face detect and storage model that was used
+     *            when indexing the face vector.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Face withIndexFacesModelVersion(String indexFacesModelVersion) {
+        this.indexFacesModelVersion = indexFacesModelVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -376,7 +447,9 @@ public class Face implements Serializable {
         if (getExternalImageId() != null)
             sb.append("ExternalImageId: " + getExternalImageId() + ",");
         if (getConfidence() != null)
-            sb.append("Confidence: " + getConfidence());
+            sb.append("Confidence: " + getConfidence() + ",");
+        if (getIndexFacesModelVersion() != null)
+            sb.append("IndexFacesModelVersion: " + getIndexFacesModelVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -393,6 +466,10 @@ public class Face implements Serializable {
         hashCode = prime * hashCode
                 + ((getExternalImageId() == null) ? 0 : getExternalImageId().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getIndexFacesModelVersion() == null) ? 0 : getIndexFacesModelVersion()
+                        .hashCode());
         return hashCode;
     }
 
@@ -429,6 +506,11 @@ public class Face implements Serializable {
             return false;
         if (other.getConfidence() != null
                 && other.getConfidence().equals(this.getConfidence()) == false)
+            return false;
+        if (other.getIndexFacesModelVersion() == null ^ this.getIndexFacesModelVersion() == null)
+            return false;
+        if (other.getIndexFacesModelVersion() != null
+                && other.getIndexFacesModelVersion().equals(this.getIndexFacesModelVersion()) == false)
             return false;
         return true;
     }

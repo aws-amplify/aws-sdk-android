@@ -1,3 +1,10 @@
+## [Release 2.37.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.1)
+
+### Miscellaneous
+- Fix social-sign-in in web-ui when default browser does not support custom-tabs (#2721)
+
+[See all changes between 2.37.0 and 2.37.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.37.0...release_v2.37.1)
+
 ## [Release 2.37.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.0)
 
 ### Features

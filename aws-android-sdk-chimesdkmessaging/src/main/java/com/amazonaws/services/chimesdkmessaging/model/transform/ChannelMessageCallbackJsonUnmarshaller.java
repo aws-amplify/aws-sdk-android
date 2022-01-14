@@ -45,6 +45,17 @@ class ChannelMessageCallbackJsonUnmarshaller implements
             } else if (name.equals("Metadata")) {
                 channelMessageCallback.setMetadata(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PushNotification")) {
+                channelMessageCallback
+                        .setPushNotification(PushNotificationConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("MessageAttributes")) {
+                channelMessageCallback
+                        .setMessageAttributes(new MapUnmarshaller<MessageAttributeValue>(
+                                MessageAttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

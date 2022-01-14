@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,11 +39,12 @@ public class ListCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Version numbers of the face detection models associated with the
-     * collections in the array <code>CollectionIds</code>. For example, the
-     * value of <code>FaceModelVersions[2]</code> is the version number for the
-     * face detection model used by the collection in
-     * <code>CollectionId[2]</code>.
+     * Latest face models being used with the corresponding collections in the
+     * array. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>. For example, the value of
+     * <code>FaceModelVersions[2]</code> is the version number for the face
+     * detection model used by the collection in <code>CollectionId[2]</code>.
      * </p>
      */
     private java.util.List<String> faceModelVersions;
@@ -190,18 +191,21 @@ public class ListCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Version numbers of the face detection models associated with the
-     * collections in the array <code>CollectionIds</code>. For example, the
-     * value of <code>FaceModelVersions[2]</code> is the version number for the
-     * face detection model used by the collection in
-     * <code>CollectionId[2]</code>.
+     * Latest face models being used with the corresponding collections in the
+     * array. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>. For example, the value of
+     * <code>FaceModelVersions[2]</code> is the version number for the face
+     * detection model used by the collection in <code>CollectionId[2]</code>.
      * </p>
      *
      * @return <p>
-     *         Version numbers of the face detection models associated with the
-     *         collections in the array <code>CollectionIds</code>. For example,
-     *         the value of <code>FaceModelVersions[2]</code> is the version
-     *         number for the face detection model used by the collection in
+     *         Latest face models being used with the corresponding collections
+     *         in the array. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *         >Model versioning</a>. For example, the value of
+     *         <code>FaceModelVersions[2]</code> is the version number for the
+     *         face detection model used by the collection in
      *         <code>CollectionId[2]</code>.
      *         </p>
      */
@@ -211,19 +215,22 @@ public class ListCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Version numbers of the face detection models associated with the
-     * collections in the array <code>CollectionIds</code>. For example, the
-     * value of <code>FaceModelVersions[2]</code> is the version number for the
-     * face detection model used by the collection in
-     * <code>CollectionId[2]</code>.
+     * Latest face models being used with the corresponding collections in the
+     * array. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>. For example, the value of
+     * <code>FaceModelVersions[2]</code> is the version number for the face
+     * detection model used by the collection in <code>CollectionId[2]</code>.
      * </p>
      *
      * @param faceModelVersions <p>
-     *            Version numbers of the face detection models associated with
-     *            the collections in the array <code>CollectionIds</code>. For
-     *            example, the value of <code>FaceModelVersions[2]</code> is the
-     *            version number for the face detection model used by the
-     *            collection in <code>CollectionId[2]</code>.
+     *            Latest face models being used with the corresponding
+     *            collections in the array. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *            >Model versioning</a>. For example, the value of
+     *            <code>FaceModelVersions[2]</code> is the version number for
+     *            the face detection model used by the collection in
+     *            <code>CollectionId[2]</code>.
      *            </p>
      */
     public void setFaceModelVersions(java.util.Collection<String> faceModelVersions) {
@@ -237,22 +244,25 @@ public class ListCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Version numbers of the face detection models associated with the
-     * collections in the array <code>CollectionIds</code>. For example, the
-     * value of <code>FaceModelVersions[2]</code> is the version number for the
-     * face detection model used by the collection in
-     * <code>CollectionId[2]</code>.
+     * Latest face models being used with the corresponding collections in the
+     * array. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>. For example, the value of
+     * <code>FaceModelVersions[2]</code> is the version number for the face
+     * detection model used by the collection in <code>CollectionId[2]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceModelVersions <p>
-     *            Version numbers of the face detection models associated with
-     *            the collections in the array <code>CollectionIds</code>. For
-     *            example, the value of <code>FaceModelVersions[2]</code> is the
-     *            version number for the face detection model used by the
-     *            collection in <code>CollectionId[2]</code>.
+     *            Latest face models being used with the corresponding
+     *            collections in the array. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *            >Model versioning</a>. For example, the value of
+     *            <code>FaceModelVersions[2]</code> is the version number for
+     *            the face detection model used by the collection in
+     *            <code>CollectionId[2]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -269,22 +279,25 @@ public class ListCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Version numbers of the face detection models associated with the
-     * collections in the array <code>CollectionIds</code>. For example, the
-     * value of <code>FaceModelVersions[2]</code> is the version number for the
-     * face detection model used by the collection in
-     * <code>CollectionId[2]</code>.
+     * Latest face models being used with the corresponding collections in the
+     * array. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     * >Model versioning</a>. For example, the value of
+     * <code>FaceModelVersions[2]</code> is the version number for the face
+     * detection model used by the collection in <code>CollectionId[2]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceModelVersions <p>
-     *            Version numbers of the face detection models associated with
-     *            the collections in the array <code>CollectionIds</code>. For
-     *            example, the value of <code>FaceModelVersions[2]</code> is the
-     *            version number for the face detection model used by the
-     *            collection in <code>CollectionId[2]</code>.
+     *            Latest face models being used with the corresponding
+     *            collections in the array. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/face-detection-model.html"
+     *            >Model versioning</a>. For example, the value of
+     *            <code>FaceModelVersions[2]</code> is the version number for
+     *            the face detection model used by the collection in
+     *            <code>CollectionId[2]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
