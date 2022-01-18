@@ -1,3 +1,10 @@
+## [Release 2.37.3](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.3)
+
+### Miscellaneous
+- Add ASF package (#2756)
+
+[See all changes between 2.37.2 and 2.37.3](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.37.2...release_v2.37.3)
+
 ## [Release 2.37.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.1)
 
 ### Miscellaneous
