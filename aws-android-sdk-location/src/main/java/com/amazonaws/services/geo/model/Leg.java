@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
  * <p>
  * For example, a route with a departure position and destination position
  * returns one leg with the positions <a href=
- * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+ * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
  * >snapped to a nearby road</a>:
  * </p>
  * <ul>
@@ -100,7 +100,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -122,7 +122,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -327,7 +327,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -340,7 +340,7 @@ public class Leg implements Serializable {
      *         <p>
      *         If the <code>EndPosition</code> isn't located on a road, it's <a
      *         href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      *         >snapped to a nearby road</a>.
      *         </p>
      *         </note>
@@ -357,7 +357,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -370,7 +370,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>EndPosition</code> isn't located on a road, it's
      *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>
@@ -392,7 +392,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -408,7 +408,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>EndPosition</code> isn't located on a road, it's
      *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>
@@ -433,7 +433,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>EndPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -449,7 +449,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>EndPosition</code> isn't located on a road, it's
      *            <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/nap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>
@@ -514,7 +514,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -527,7 +527,7 @@ public class Leg implements Serializable {
      *         <p>
      *         If the <code>StartPosition</code> isn't located on a road, it's
      *         <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *         >snapped to a nearby road</a>.
      *         </p>
      *         </note>
@@ -544,7 +544,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -557,7 +557,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>StartPosition</code> isn't located on a road,
      *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>
@@ -579,7 +579,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -595,7 +595,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>StartPosition</code> isn't located on a road,
      *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>
@@ -620,7 +620,7 @@ public class Leg implements Serializable {
      * <note>
      * <p>
      * If the <code>StartPosition</code> isn't located on a road, it's <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >snapped to a nearby road</a>.
      * </p>
      * </note>
@@ -636,7 +636,7 @@ public class Leg implements Serializable {
      *            <p>
      *            If the <code>StartPosition</code> isn't located on a road,
      *            it's <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >snapped to a nearby road</a>.
      *            </p>
      *            </note>

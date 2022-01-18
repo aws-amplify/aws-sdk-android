@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a map resource in your AWS account, which provides map tiles of
  * different styles sourced from global location data providers.
  * </p>
+ * <note>
+ * <p>
+ * If your application is tracking or routing assets you use in your business,
+ * such as delivery vehicles or employees, you may only use HERE as your
+ * geolocation provider. See section 82 of the <a
+ * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
+ * details.
+ * </p>
+ * </note>
  */
 public class CreateMapRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -77,13 +86,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -426,13 +430,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -440,14 +439,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @return <p>
-     *         Optionally specifies the pricing plan for the map resource.
-     *         Defaults to <code>RequestBasedUsage</code>.
-     *         </p>
-     *         <p>
-     *         For additional details and restrictions on each pricing plan
-     *         option, see <a
-     *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing</a>.
+     *         No longer used. If included, the only allowed value is
+     *         <code>RequestBasedUsage</code>.
      *         </p>
      * @see PricingPlan
      */
@@ -457,13 +450,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -471,14 +459,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the map resource.
-     *            Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -488,13 +470,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -505,14 +482,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the map resource.
-     *            Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -525,13 +496,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -539,14 +505,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the map resource.
-     *            Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -556,13 +516,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * No longer used. If included, the only allowed value is
      * <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -573,14 +528,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the map resource.
-     *            Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

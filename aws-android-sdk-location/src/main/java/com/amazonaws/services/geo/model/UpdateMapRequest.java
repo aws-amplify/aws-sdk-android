@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,12 +48,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,12 +171,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,12 +180,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @return <p>
-     *         Updates the pricing plan for the map resource.
-     *         </p>
-     *         <p>
-     *         For more information about each pricing plan option restrictions,
-     *         see <a href="https://aws.amazon.com/location/pricing/">Amazon
-     *         Location Service pricing</a>.
+     *         No longer used. If included, the only allowed value is
+     *         <code>RequestBasedUsage</code>.
      *         </p>
      * @see PricingPlan
      */
@@ -203,12 +191,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,13 +200,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Updates the pricing plan for the map resource.
-     *            </p>
-     *            <p>
-     *            For more information about each pricing plan option
-     *            restrictions, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -232,12 +211,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -248,13 +223,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Updates the pricing plan for the map resource.
-     *            </p>
-     *            <p>
-     *            For more information about each pricing plan option
-     *            restrictions, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -267,12 +237,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -280,13 +246,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Updates the pricing plan for the map resource.
-     *            </p>
-     *            <p>
-     *            For more information about each pricing plan option
-     *            restrictions, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -296,12 +257,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Updates the pricing plan for the map resource.
-     * </p>
-     * <p>
-     * For more information about each pricing plan option restrictions, see <a
-     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
-     * pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -312,13 +269,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Updates the pricing plan for the map resource.
-     *            </p>
-     *            <p>
-     *            For more information about each pricing plan option
-     *            restrictions, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
