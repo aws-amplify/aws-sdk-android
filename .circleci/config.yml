@@ -925,6 +925,8 @@ jobs:
       - run:
           name: install python3-pip
           command: |
+            # Fix NO_PUBKEY error for cloud-sdk-buster
+            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
             ls ./CircleciScripts
             sudo apt-get update
             sudo apt-get -y install python3-pip
@@ -1018,6 +1020,8 @@ jobs:
       - run:
           name: install python3-pip
           command: |
+            # Fix NO_PUBKEY error for cloud-sdk-buster
+            curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && sudo apt-key add apt-key.gpg
             sudo apt-get update
             sudo apt-get -y install python3-pip
       - run:
