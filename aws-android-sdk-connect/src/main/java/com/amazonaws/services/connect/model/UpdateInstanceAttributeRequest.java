@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -134,7 +134,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -149,7 +149,8 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      *         <note>
      *         <p>
      *         Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To
-     *         access this feature, contact AWS Support for allowlisting.
+     *         access this feature, contact Amazon Web Services Support for
+     *         allowlisting.
      *         </p>
      *         </note>
      * @see InstanceAttributeType
@@ -165,7 +166,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -180,7 +181,8 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      *            <note>
      *            <p>
      *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
-     *            To access this feature, contact AWS Support for allowlisting.
+     *            To access this feature, contact Amazon Web Services Support
+     *            for allowlisting.
      *            </p>
      *            </note>
      * @see InstanceAttributeType
@@ -196,7 +198,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -214,7 +216,8 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      *            <note>
      *            <p>
      *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
-     *            To access this feature, contact AWS Support for allowlisting.
+     *            To access this feature, contact Amazon Web Services Support
+     *            for allowlisting.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -233,7 +236,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -248,7 +251,8 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      *            <note>
      *            <p>
      *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
-     *            To access this feature, contact AWS Support for allowlisting.
+     *            To access this feature, contact Amazon Web Services Support
+     *            for allowlisting.
      *            </p>
      *            </note>
      * @see InstanceAttributeType
@@ -264,7 +268,7 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <note>
      * <p>
      * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
-     * this feature, contact AWS Support for allowlisting.
+     * this feature, contact Amazon Web Services Support for allowlisting.
      * </p>
      * </note>
      * <p>
@@ -282,7 +286,8 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      *            <note>
      *            <p>
      *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
-     *            To access this feature, contact AWS Support for allowlisting.
+     *            To access this feature, contact Amazon Web Services Support
+     *            for allowlisting.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

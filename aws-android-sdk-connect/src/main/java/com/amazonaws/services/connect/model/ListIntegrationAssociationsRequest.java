@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides summary information about the AWS resource associations for the
- * specified Amazon Connect instance.
+ * Provides summary information about the Amazon Web Services resource
+ * associations for the specified Amazon Connect instance.
  * </p>
  */
 public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest implements

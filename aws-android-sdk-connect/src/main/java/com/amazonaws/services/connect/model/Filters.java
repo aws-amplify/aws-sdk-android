@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,10 @@ import java.io.Serializable;
 public class Filters implements Serializable {
     /**
      * <p>
-     * The queues to use to filter the metrics. You can specify up to 100 queues
-     * per request.
+     * The queues to use to filter the metrics. You should specify at least one
+     * queue, and can specify up to 100 queues per request. The
+     * <code>GetCurrentMetricsData</code> API in particular requires a queue
+     * when you include a <code>Filter</code> in your request.
      * </p>
      */
     private java.util.List<String> queues;
@@ -40,13 +42,17 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The queues to use to filter the metrics. You can specify up to 100 queues
-     * per request.
+     * The queues to use to filter the metrics. You should specify at least one
+     * queue, and can specify up to 100 queues per request. The
+     * <code>GetCurrentMetricsData</code> API in particular requires a queue
+     * when you include a <code>Filter</code> in your request.
      * </p>
      *
      * @return <p>
-     *         The queues to use to filter the metrics. You can specify up to
-     *         100 queues per request.
+     *         The queues to use to filter the metrics. You should specify at
+     *         least one queue, and can specify up to 100 queues per request.
+     *         The <code>GetCurrentMetricsData</code> API in particular requires
+     *         a queue when you include a <code>Filter</code> in your request.
      *         </p>
      */
     public java.util.List<String> getQueues() {
@@ -55,13 +61,18 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The queues to use to filter the metrics. You can specify up to 100 queues
-     * per request.
+     * The queues to use to filter the metrics. You should specify at least one
+     * queue, and can specify up to 100 queues per request. The
+     * <code>GetCurrentMetricsData</code> API in particular requires a queue
+     * when you include a <code>Filter</code> in your request.
      * </p>
      *
      * @param queues <p>
-     *            The queues to use to filter the metrics. You can specify up to
-     *            100 queues per request.
+     *            The queues to use to filter the metrics. You should specify at
+     *            least one queue, and can specify up to 100 queues per request.
+     *            The <code>GetCurrentMetricsData</code> API in particular
+     *            requires a queue when you include a <code>Filter</code> in
+     *            your request.
      *            </p>
      */
     public void setQueues(java.util.Collection<String> queues) {
@@ -75,16 +86,21 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The queues to use to filter the metrics. You can specify up to 100 queues
-     * per request.
+     * The queues to use to filter the metrics. You should specify at least one
+     * queue, and can specify up to 100 queues per request. The
+     * <code>GetCurrentMetricsData</code> API in particular requires a queue
+     * when you include a <code>Filter</code> in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            The queues to use to filter the metrics. You can specify up to
-     *            100 queues per request.
+     *            The queues to use to filter the metrics. You should specify at
+     *            least one queue, and can specify up to 100 queues per request.
+     *            The <code>GetCurrentMetricsData</code> API in particular
+     *            requires a queue when you include a <code>Filter</code> in
+     *            your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -101,16 +117,21 @@ public class Filters implements Serializable {
 
     /**
      * <p>
-     * The queues to use to filter the metrics. You can specify up to 100 queues
-     * per request.
+     * The queues to use to filter the metrics. You should specify at least one
+     * queue, and can specify up to 100 queues per request. The
+     * <code>GetCurrentMetricsData</code> API in particular requires a queue
+     * when you include a <code>Filter</code> in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            The queues to use to filter the metrics. You can specify up to
-     *            100 queues per request.
+     *            The queues to use to filter the metrics. You should specify at
+     *            least one queue, and can specify up to 100 queues per request.
+     *            The <code>GetCurrentMetricsData</code> API in particular
+     *            requires a queue when you include a <code>Filter</code> in
+     *            your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
