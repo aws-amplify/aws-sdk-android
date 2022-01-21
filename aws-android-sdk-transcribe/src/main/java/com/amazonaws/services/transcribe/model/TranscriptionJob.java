@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -61,7 +61,8 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in the input media file.
+     * The sample rate, in Hertz (Hz), of the audio track in the input media
+     * file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -256,7 +257,7 @@ public class TranscriptionJob implements Serializable {
      * Language-specific settings that can be specified when language
      * identification is enabled for your transcription job. These settings
      * include <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
-     * and <code>LanguageModelName</code>LanguageModelName.
+     * and <code>LanguageModelName</code>.
      * </p>
      */
     private java.util.Map<String, LanguageIdSettings> languageIdSettings;
@@ -534,15 +535,16 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in the input media file.
+     * The sample rate, in Hertz (Hz), of the audio track in the input media
+     * file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the audio track in the input media
-     *         file.
+     *         The sample rate, in Hertz (Hz), of the audio track in the input
+     *         media file.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -551,15 +553,16 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in the input media file.
+     * The sample rate, in Hertz (Hz), of the audio track in the input media
+     * file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in the input
-     *            media file.
+     *            The sample rate, in Hertz (Hz), of the audio track in the
+     *            input media file.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -568,7 +571,8 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in the input media file.
+     * The sample rate, in Hertz (Hz), of the audio track in the input media
+     * file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -578,8 +582,8 @@ public class TranscriptionJob implements Serializable {
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in the input
-     *            media file.
+     *            The sample rate, in Hertz (Hz), of the audio track in the
+     *            input media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1868,7 +1872,7 @@ public class TranscriptionJob implements Serializable {
      * Language-specific settings that can be specified when language
      * identification is enabled for your transcription job. These settings
      * include <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
-     * and <code>LanguageModelName</code>LanguageModelName.
+     * and <code>LanguageModelName</code>.
      * </p>
      *
      * @return <p>
@@ -1876,7 +1880,7 @@ public class TranscriptionJob implements Serializable {
      *         identification is enabled for your transcription job. These
      *         settings include <code>VocabularyName</code>,
      *         <code>VocabularyFilterName</code>, and
-     *         <code>LanguageModelName</code>LanguageModelName.
+     *         <code>LanguageModelName</code>.
      *         </p>
      */
     public java.util.Map<String, LanguageIdSettings> getLanguageIdSettings() {
@@ -1888,7 +1892,7 @@ public class TranscriptionJob implements Serializable {
      * Language-specific settings that can be specified when language
      * identification is enabled for your transcription job. These settings
      * include <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
-     * and <code>LanguageModelName</code>LanguageModelName.
+     * and <code>LanguageModelName</code>.
      * </p>
      *
      * @param languageIdSettings <p>
@@ -1896,7 +1900,7 @@ public class TranscriptionJob implements Serializable {
      *            identification is enabled for your transcription job. These
      *            settings include <code>VocabularyName</code>,
      *            <code>VocabularyFilterName</code>, and
-     *            <code>LanguageModelName</code>LanguageModelName.
+     *            <code>LanguageModelName</code>.
      *            </p>
      */
     public void setLanguageIdSettings(java.util.Map<String, LanguageIdSettings> languageIdSettings) {
@@ -1908,7 +1912,7 @@ public class TranscriptionJob implements Serializable {
      * Language-specific settings that can be specified when language
      * identification is enabled for your transcription job. These settings
      * include <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
-     * and <code>LanguageModelName</code>LanguageModelName.
+     * and <code>LanguageModelName</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1919,7 +1923,7 @@ public class TranscriptionJob implements Serializable {
      *            identification is enabled for your transcription job. These
      *            settings include <code>VocabularyName</code>,
      *            <code>VocabularyFilterName</code>, and
-     *            <code>LanguageModelName</code>LanguageModelName.
+     *            <code>LanguageModelName</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1935,7 +1939,7 @@ public class TranscriptionJob implements Serializable {
      * Language-specific settings that can be specified when language
      * identification is enabled for your transcription job. These settings
      * include <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
-     * and <code>LanguageModelName</code>LanguageModelName.
+     * and <code>LanguageModelName</code>.
      * </p>
      * <p>
      * The method adds a new key-value pair into LanguageIdSettings parameter,

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,8 +44,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,7 +80,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -165,8 +165,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -178,8 +178,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         The language code of the language used for the entries in the
-     *         updated vocabulary. US English (en-US) is the only valid language
-     *         code in Amazon Transcribe Medical.
+     *         updated vocabulary. U.S. English (en-US) is the only valid
+     *         language code in Amazon Transcribe Medical.
      *         </p>
      * @see LanguageCode
      */
@@ -190,8 +190,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +203,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param languageCode <p>
      *            The language code of the language used for the entries in the
-     *            updated vocabulary. US English (en-US) is the only valid
+     *            updated vocabulary. U.S. English (en-US) is the only valid
      *            language code in Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
@@ -215,8 +215,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +231,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param languageCode <p>
      *            The language code of the language used for the entries in the
-     *            updated vocabulary. US English (en-US) is the only valid
+     *            updated vocabulary. U.S. English (en-US) is the only valid
      *            language code in Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -246,8 +246,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -259,7 +259,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param languageCode <p>
      *            The language code of the language used for the entries in the
-     *            updated vocabulary. US English (en-US) is the only valid
+     *            updated vocabulary. U.S. English (en-US) is the only valid
      *            language code in Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
@@ -271,8 +271,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The language code of the language used for the entries in the updated
-     * vocabulary. US English (en-US) is the only valid language code in Amazon
-     * Transcribe Medical.
+     * vocabulary. U.S. English (en-US) is the only valid language code in
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -287,7 +287,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param languageCode <p>
      *            The language code of the language used for the entries in the
-     *            updated vocabulary. US English (en-US) is the only valid
+     *            updated vocabulary. U.S. English (en-US) is the only valid
      *            language code in Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -322,7 +322,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -353,7 +353,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *         <p>
      *         For more information about custom vocabularies in Amazon
      *         Transcribe Medical, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *         >Medical Custom Vocabularies</a>.
      *         </p>
      */
@@ -384,7 +384,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -416,7 +416,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            For more information about custom vocabularies in Amazon
      *            Transcribe Medical, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      */
@@ -447,7 +447,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -482,7 +482,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            For more information about custom vocabularies in Amazon
      *            Transcribe Medical, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-med.html"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

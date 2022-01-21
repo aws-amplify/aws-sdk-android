@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,8 +42,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The words to use in the vocabulary filter. Only use characters from the
      * character set defined for custom vocabularies. For a list of character
-     * sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -57,8 +57,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The Amazon S3 location of a text file used as input to create the
      * vocabulary filter. Only use characters from the character set defined for
-     * custom vocabularies. For a list of character sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * custom vocabularies. For a list of character sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -151,8 +151,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The words to use in the vocabulary filter. Only use characters from the
      * character set defined for custom vocabularies. For a list of character
-     * sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -164,7 +164,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         The words to use in the vocabulary filter. Only use characters
      *         from the character set defined for custom vocabularies. For a
      *         list of character sets, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *         >Character Sets for Custom Vocabularies</a>.
      *         </p>
      *         <p>
@@ -181,8 +181,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The words to use in the vocabulary filter. Only use characters from the
      * character set defined for custom vocabularies. For a list of character
-     * sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -194,7 +194,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            The words to use in the vocabulary filter. Only use characters
      *            from the character set defined for custom vocabularies. For a
      *            list of character sets, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
@@ -216,8 +216,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The words to use in the vocabulary filter. Only use characters from the
      * character set defined for custom vocabularies. For a list of character
-     * sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -232,7 +232,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            The words to use in the vocabulary filter. Only use characters
      *            from the character set defined for custom vocabularies. For a
      *            list of character sets, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
@@ -257,8 +257,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The words to use in the vocabulary filter. Only use characters from the
      * character set defined for custom vocabularies. For a list of character
-     * sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -273,7 +273,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            The words to use in the vocabulary filter. Only use characters
      *            from the character set defined for custom vocabularies. For a
      *            list of character sets, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
@@ -293,8 +293,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The Amazon S3 location of a text file used as input to create the
      * vocabulary filter. Only use characters from the character set defined for
-     * custom vocabularies. For a list of character sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * custom vocabularies. For a list of character sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -315,7 +315,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         vocabulary filter. Only use characters from the character set
      *         defined for custom vocabularies. For a list of character sets,
      *         see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *         >Character Sets for Custom Vocabularies</a>.
      *         </p>
      *         <p>
@@ -335,8 +335,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The Amazon S3 location of a text file used as input to create the
      * vocabulary filter. Only use characters from the character set defined for
-     * custom vocabularies. For a list of character sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * custom vocabularies. For a list of character sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -357,7 +357,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            the vocabulary filter. Only use characters from the character
      *            set defined for custom vocabularies. For a list of character
      *            sets, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
@@ -378,8 +378,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * The Amazon S3 location of a text file used as input to create the
      * vocabulary filter. Only use characters from the character set defined for
-     * custom vocabularies. For a list of character sets, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     * custom vocabularies. For a list of character sets, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -403,7 +403,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            the vocabulary filter. Only use characters from the character
      *            set defined for custom vocabularies. For a list of character
      *            sets, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary.html#charsets"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>

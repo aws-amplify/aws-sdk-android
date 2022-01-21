@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,13 +69,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
+     * <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * </p>
+     * <p>
      * For more information about S3 object names, see <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     * For more information about custom vocabularies, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      * >Custom vocabularies</a>.
      * </p>
      * <p>
@@ -174,7 +183,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -187,7 +196,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         The language code of the vocabulary entries. For a list of
      *         languages and their corresponding language codes, see
-     *         <a>transcribe-whatis</a>.
+     *         <a>table-language-matrix</a>.
      *         </p>
      * @see LanguageCode
      */
@@ -198,7 +207,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -211,7 +220,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>transcribe-whatis</a>.
+     *            <a>table-language-matrix</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -222,7 +231,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,7 +247,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>transcribe-whatis</a>.
+     *            <a>table-language-matrix</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -252,7 +261,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -265,7 +274,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>transcribe-whatis</a>.
+     *            <a>table-language-matrix</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -276,7 +285,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>transcribe-whatis</a>.
+     * their corresponding language codes, see <a>table-language-matrix</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -292,7 +301,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>transcribe-whatis</a>.
+     *            <a>table-language-matrix</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -384,13 +393,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
+     * <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * </p>
+     * <p>
      * For more information about S3 object names, see <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     * For more information about custom vocabularies, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      * >Custom vocabularies</a>.
      * </p>
      * <p>
@@ -404,13 +422,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         API endpoint that you are calling. The general form is:
      *         </p>
      *         <p>
+     *         <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         </p>
+     *         <p>
+     *         For example:
+     *         </p>
+     *         <p>
+     *         <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *         </p>
+     *         <p>
      *         For more information about S3 object names, see <a href=
      *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *         </p>
      *         <p>
      *         For more information about custom vocabularies, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      *         >Custom vocabularies</a>.
      *         </p>
      */
@@ -425,13 +452,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
+     * <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * </p>
+     * <p>
      * For more information about S3 object names, see <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     * For more information about custom vocabularies, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      * >Custom vocabularies</a>.
      * </p>
      * <p>
@@ -445,13 +481,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
+     *            <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *            </p>
+     *            <p>
      *            For more information about S3 object names, see <a href=
      *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      *            >Custom vocabularies</a>.
      *            </p>
      */
@@ -466,13 +511,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
+     * <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * </p>
+     * <p>
      * For more information about S3 object names, see <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     * For more information about custom vocabularies, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      * >Custom vocabularies</a>.
      * </p>
      * <p>
@@ -489,13 +543,22 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
+     *            <code>https://s3.&lt;Amazon Web Services-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *            </p>
+     *            <p>
      *            For more information about S3 object names, see <a href=
      *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
      *            >Custom vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

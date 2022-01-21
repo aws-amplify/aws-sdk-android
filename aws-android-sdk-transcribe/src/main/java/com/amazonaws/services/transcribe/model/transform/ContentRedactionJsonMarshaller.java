@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,17 @@ class ContentRedactionJsonMarshaller {
             String redactionOutput = contentRedaction.getRedactionOutput();
             jsonWriter.name("RedactionOutput");
             jsonWriter.value(redactionOutput);
+        }
+        if (contentRedaction.getPiiEntityTypes() != null) {
+            java.util.List<String> piiEntityTypes = contentRedaction.getPiiEntityTypes();
+            jsonWriter.name("PiiEntityTypes");
+            jsonWriter.beginArray();
+            for (String piiEntityTypesItem : piiEntityTypes) {
+                if (piiEntityTypesItem != null) {
+                    jsonWriter.value(piiEntityTypesItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

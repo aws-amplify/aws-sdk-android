@@ -19,15 +19,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Redaction Type
+ * Pii Entity Type
  */
-public enum RedactionType {
+public enum PiiEntityType {
 
-    PII("PII");
+    BANK_ACCOUNT_NUMBER("BANK_ACCOUNT_NUMBER"),
+    BANK_ROUTING("BANK_ROUTING"),
+    CREDIT_DEBIT_NUMBER("CREDIT_DEBIT_NUMBER"),
+    CREDIT_DEBIT_CVV("CREDIT_DEBIT_CVV"),
+    CREDIT_DEBIT_EXPIRY("CREDIT_DEBIT_EXPIRY"),
+    PIN("PIN"),
+    EMAIL("EMAIL"),
+    ADDRESS("ADDRESS"),
+    NAME("NAME"),
+    PHONE("PHONE"),
+    SSN("SSN"),
+    ALL("ALL");
 
     private String value;
 
-    private RedactionType(String value) {
+    private PiiEntityType(String value) {
         this.value = value;
     }
 
@@ -36,19 +47,30 @@ public enum RedactionType {
         return value;
     }
 
-    private static final Map<String, RedactionType> enumMap;
+    private static final Map<String, PiiEntityType> enumMap;
     static {
-        enumMap = new HashMap<String, RedactionType>();
-        enumMap.put("PII", PII);
+        enumMap = new HashMap<String, PiiEntityType>();
+        enumMap.put("BANK_ACCOUNT_NUMBER", BANK_ACCOUNT_NUMBER);
+        enumMap.put("BANK_ROUTING", BANK_ROUTING);
+        enumMap.put("CREDIT_DEBIT_NUMBER", CREDIT_DEBIT_NUMBER);
+        enumMap.put("CREDIT_DEBIT_CVV", CREDIT_DEBIT_CVV);
+        enumMap.put("CREDIT_DEBIT_EXPIRY", CREDIT_DEBIT_EXPIRY);
+        enumMap.put("PIN", PIN);
+        enumMap.put("EMAIL", EMAIL);
+        enumMap.put("ADDRESS", ADDRESS);
+        enumMap.put("NAME", NAME);
+        enumMap.put("PHONE", PHONE);
+        enumMap.put("SSN", SSN);
+        enumMap.put("ALL", ALL);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return RedactionType corresponding to the value
+     * @return PiiEntityType corresponding to the value
      */
-    public static RedactionType fromValue(String value) {
+    public static PiiEntityType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

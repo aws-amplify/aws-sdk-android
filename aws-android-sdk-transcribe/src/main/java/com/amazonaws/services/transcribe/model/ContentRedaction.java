@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,14 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      */
     private String redactionOutput;
+
+    /**
+     * <p>
+     * The types of personally identifiable information (PII) you want to redact
+     * in your transcript.
+     * </p>
+     */
+    private java.util.List<String> piiEntityTypes;
 
     /**
      * <p>
@@ -352,6 +360,88 @@ public class ContentRedaction implements Serializable {
     }
 
     /**
+     * <p>
+     * The types of personally identifiable information (PII) you want to redact
+     * in your transcript.
+     * </p>
+     *
+     * @return <p>
+     *         The types of personally identifiable information (PII) you want
+     *         to redact in your transcript.
+     *         </p>
+     */
+    public java.util.List<String> getPiiEntityTypes() {
+        return piiEntityTypes;
+    }
+
+    /**
+     * <p>
+     * The types of personally identifiable information (PII) you want to redact
+     * in your transcript.
+     * </p>
+     *
+     * @param piiEntityTypes <p>
+     *            The types of personally identifiable information (PII) you
+     *            want to redact in your transcript.
+     *            </p>
+     */
+    public void setPiiEntityTypes(java.util.Collection<String> piiEntityTypes) {
+        if (piiEntityTypes == null) {
+            this.piiEntityTypes = null;
+            return;
+        }
+
+        this.piiEntityTypes = new java.util.ArrayList<String>(piiEntityTypes);
+    }
+
+    /**
+     * <p>
+     * The types of personally identifiable information (PII) you want to redact
+     * in your transcript.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param piiEntityTypes <p>
+     *            The types of personally identifiable information (PII) you
+     *            want to redact in your transcript.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ContentRedaction withPiiEntityTypes(String... piiEntityTypes) {
+        if (getPiiEntityTypes() == null) {
+            this.piiEntityTypes = new java.util.ArrayList<String>(piiEntityTypes.length);
+        }
+        for (String value : piiEntityTypes) {
+            this.piiEntityTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The types of personally identifiable information (PII) you want to redact
+     * in your transcript.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param piiEntityTypes <p>
+     *            The types of personally identifiable information (PII) you
+     *            want to redact in your transcript.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ContentRedaction withPiiEntityTypes(java.util.Collection<String> piiEntityTypes) {
+        setPiiEntityTypes(piiEntityTypes);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -365,7 +455,9 @@ public class ContentRedaction implements Serializable {
         if (getRedactionType() != null)
             sb.append("RedactionType: " + getRedactionType() + ",");
         if (getRedactionOutput() != null)
-            sb.append("RedactionOutput: " + getRedactionOutput());
+            sb.append("RedactionOutput: " + getRedactionOutput() + ",");
+        if (getPiiEntityTypes() != null)
+            sb.append("PiiEntityTypes: " + getPiiEntityTypes());
         sb.append("}");
         return sb.toString();
     }
@@ -379,6 +471,8 @@ public class ContentRedaction implements Serializable {
                 + ((getRedactionType() == null) ? 0 : getRedactionType().hashCode());
         hashCode = prime * hashCode
                 + ((getRedactionOutput() == null) ? 0 : getRedactionOutput().hashCode());
+        hashCode = prime * hashCode
+                + ((getPiiEntityTypes() == null) ? 0 : getPiiEntityTypes().hashCode());
         return hashCode;
     }
 
@@ -402,6 +496,11 @@ public class ContentRedaction implements Serializable {
             return false;
         if (other.getRedactionOutput() != null
                 && other.getRedactionOutput().equals(this.getRedactionOutput()) == false)
+            return false;
+        if (other.getPiiEntityTypes() == null ^ this.getPiiEntityTypes() == null)
+            return false;
+        if (other.getPiiEntityTypes() != null
+                && other.getPiiEntityTypes().equals(this.getPiiEntityTypes()) == false)
             return false;
         return true;
     }

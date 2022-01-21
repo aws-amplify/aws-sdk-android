@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,9 +56,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -213,7 +212,7 @@ public class CallAnalyticsJob implements Serializable {
      * language that it identified in the source audio. This value appears only
      * when you don't provide a single language code. Larger values indicate
      * that Amazon Transcribe has higher confidence in the language that it
-     * identified
+     * identified.
      * </p>
      */
     private Float identifiedLanguageScore;
@@ -398,9 +397,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -421,9 +419,8 @@ public class CallAnalyticsJob implements Serializable {
      *         identification, you can provide an array containing the possible
      *         language codes for the language spoken in your audio. Refer to <a
      *         href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *         >Supported languages and language-specific features</a> for
-     *         additional information.
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *         >Supported languages</a> for additional information.
      *         </p>
      * @see LanguageCode
      */
@@ -442,9 +439,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -465,9 +461,8 @@ public class CallAnalyticsJob implements Serializable {
      *            of language identification, you can provide an array
      *            containing the possible language codes for the language spoken
      *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @see LanguageCode
      */
@@ -486,9 +481,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -512,9 +506,8 @@ public class CallAnalyticsJob implements Serializable {
      *            of language identification, you can provide an array
      *            containing the possible language codes for the language spoken
      *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -536,9 +529,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -559,9 +551,8 @@ public class CallAnalyticsJob implements Serializable {
      *            of language identification, you can provide an array
      *            containing the possible language codes for the language spoken
      *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @see LanguageCode
      */
@@ -580,9 +571,8 @@ public class CallAnalyticsJob implements Serializable {
      * language. To improve the accuracy of language identification, you can
      * provide an array containing the possible language codes for the language
      * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -606,9 +596,8 @@ public class CallAnalyticsJob implements Serializable {
      *            of language identification, you can provide an array
      *            containing the possible language codes for the language spoken
      *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1500,7 +1489,7 @@ public class CallAnalyticsJob implements Serializable {
      * language that it identified in the source audio. This value appears only
      * when you don't provide a single language code. Larger values indicate
      * that Amazon Transcribe has higher confidence in the language that it
-     * identified
+     * identified.
      * </p>
      *
      * @return <p>
@@ -1508,7 +1497,7 @@ public class CallAnalyticsJob implements Serializable {
      *         the language that it identified in the source audio. This value
      *         appears only when you don't provide a single language code.
      *         Larger values indicate that Amazon Transcribe has higher
-     *         confidence in the language that it identified
+     *         confidence in the language that it identified.
      *         </p>
      */
     public Float getIdentifiedLanguageScore() {
@@ -1521,7 +1510,7 @@ public class CallAnalyticsJob implements Serializable {
      * language that it identified in the source audio. This value appears only
      * when you don't provide a single language code. Larger values indicate
      * that Amazon Transcribe has higher confidence in the language that it
-     * identified
+     * identified.
      * </p>
      *
      * @param identifiedLanguageScore <p>
@@ -1529,7 +1518,7 @@ public class CallAnalyticsJob implements Serializable {
      *            to the language that it identified in the source audio. This
      *            value appears only when you don't provide a single language
      *            code. Larger values indicate that Amazon Transcribe has higher
-     *            confidence in the language that it identified
+     *            confidence in the language that it identified.
      *            </p>
      */
     public void setIdentifiedLanguageScore(Float identifiedLanguageScore) {
@@ -1542,7 +1531,7 @@ public class CallAnalyticsJob implements Serializable {
      * language that it identified in the source audio. This value appears only
      * when you don't provide a single language code. Larger values indicate
      * that Amazon Transcribe has higher confidence in the language that it
-     * identified
+     * identified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1553,7 +1542,7 @@ public class CallAnalyticsJob implements Serializable {
      *            to the language that it identified in the source audio. This
      *            value appears only when you don't provide a single language
      *            code. Larger values indicate that Amazon Transcribe has higher
-     *            confidence in the language that it identified
+     *            confidence in the language that it identified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

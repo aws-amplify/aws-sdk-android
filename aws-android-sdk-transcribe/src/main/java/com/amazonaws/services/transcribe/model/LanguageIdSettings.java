@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The name of the vocabulary you want to use when processing your
      * transcription job. The vocabulary you specify must have the same language
-     * code as the transcription job; if the languages don't match, the
-     * vocabulary won't be applied.
+     * codes as the transcription job; if the languages don't match, the
+     * vocabulary isn't applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,9 +41,9 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the vocabulary filter you want to use when transcribing your
-     * audio. The filter you specify must have the same language code as the
+     * audio. The filter you specify must have the same language codes as the
      * transcription job; if the languages don't match, the vocabulary filter
-     * won't be applied.
+     * isn't be applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,8 +55,8 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the language model you want to use when transcribing your
-     * audio. The model you specify must have the same language code as the
-     * transcription job; if the languages don't match, the language model won't
+     * audio. The model you specify must have the same language codes as the
+     * transcription job; if the languages don't match, the language model isn't
      * be applied.
      * </p>
      * <p>
@@ -70,8 +70,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The name of the vocabulary you want to use when processing your
      * transcription job. The vocabulary you specify must have the same language
-     * code as the transcription job; if the languages don't match, the
-     * vocabulary won't be applied.
+     * codes as the transcription job; if the languages don't match, the
+     * vocabulary isn't applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,8 +81,8 @@ public class LanguageIdSettings implements Serializable {
      * @return <p>
      *         The name of the vocabulary you want to use when processing your
      *         transcription job. The vocabulary you specify must have the same
-     *         language code as the transcription job; if the languages don't
-     *         match, the vocabulary won't be applied.
+     *         language codes as the transcription job; if the languages don't
+     *         match, the vocabulary isn't applied.
      *         </p>
      */
     public String getVocabularyName() {
@@ -93,8 +93,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The name of the vocabulary you want to use when processing your
      * transcription job. The vocabulary you specify must have the same language
-     * code as the transcription job; if the languages don't match, the
-     * vocabulary won't be applied.
+     * codes as the transcription job; if the languages don't match, the
+     * vocabulary isn't applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,8 +104,8 @@ public class LanguageIdSettings implements Serializable {
      * @param vocabularyName <p>
      *            The name of the vocabulary you want to use when processing
      *            your transcription job. The vocabulary you specify must have
-     *            the same language code as the transcription job; if the
-     *            languages don't match, the vocabulary won't be applied.
+     *            the same language codes as the transcription job; if the
+     *            languages don't match, the vocabulary isn't applied.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -116,8 +116,8 @@ public class LanguageIdSettings implements Serializable {
      * <p>
      * The name of the vocabulary you want to use when processing your
      * transcription job. The vocabulary you specify must have the same language
-     * code as the transcription job; if the languages don't match, the
-     * vocabulary won't be applied.
+     * codes as the transcription job; if the languages don't match, the
+     * vocabulary isn't applied.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -130,8 +130,8 @@ public class LanguageIdSettings implements Serializable {
      * @param vocabularyName <p>
      *            The name of the vocabulary you want to use when processing
      *            your transcription job. The vocabulary you specify must have
-     *            the same language code as the transcription job; if the
-     *            languages don't match, the vocabulary won't be applied.
+     *            the same language codes as the transcription job; if the
+     *            languages don't match, the vocabulary isn't applied.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,9 +144,9 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the vocabulary filter you want to use when transcribing your
-     * audio. The filter you specify must have the same language code as the
+     * audio. The filter you specify must have the same language codes as the
      * transcription job; if the languages don't match, the vocabulary filter
-     * won't be applied.
+     * isn't be applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,8 +156,8 @@ public class LanguageIdSettings implements Serializable {
      * @return <p>
      *         The name of the vocabulary filter you want to use when
      *         transcribing your audio. The filter you specify must have the
-     *         same language code as the transcription job; if the languages
-     *         don't match, the vocabulary filter won't be applied.
+     *         same language codes as the transcription job; if the languages
+     *         don't match, the vocabulary filter isn't be applied.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -167,9 +167,9 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the vocabulary filter you want to use when transcribing your
-     * audio. The filter you specify must have the same language code as the
+     * audio. The filter you specify must have the same language codes as the
      * transcription job; if the languages don't match, the vocabulary filter
-     * won't be applied.
+     * isn't be applied.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -179,8 +179,8 @@ public class LanguageIdSettings implements Serializable {
      * @param vocabularyFilterName <p>
      *            The name of the vocabulary filter you want to use when
      *            transcribing your audio. The filter you specify must have the
-     *            same language code as the transcription job; if the languages
-     *            don't match, the vocabulary filter won't be applied.
+     *            same language codes as the transcription job; if the languages
+     *            don't match, the vocabulary filter isn't be applied.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -190,9 +190,9 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the vocabulary filter you want to use when transcribing your
-     * audio. The filter you specify must have the same language code as the
+     * audio. The filter you specify must have the same language codes as the
      * transcription job; if the languages don't match, the vocabulary filter
-     * won't be applied.
+     * isn't be applied.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -205,8 +205,8 @@ public class LanguageIdSettings implements Serializable {
      * @param vocabularyFilterName <p>
      *            The name of the vocabulary filter you want to use when
      *            transcribing your audio. The filter you specify must have the
-     *            same language code as the transcription job; if the languages
-     *            don't match, the vocabulary filter won't be applied.
+     *            same language codes as the transcription job; if the languages
+     *            don't match, the vocabulary filter isn't be applied.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -219,8 +219,8 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the language model you want to use when transcribing your
-     * audio. The model you specify must have the same language code as the
-     * transcription job; if the languages don't match, the language model won't
+     * audio. The model you specify must have the same language codes as the
+     * transcription job; if the languages don't match, the language model isn't
      * be applied.
      * </p>
      * <p>
@@ -231,8 +231,8 @@ public class LanguageIdSettings implements Serializable {
      * @return <p>
      *         The name of the language model you want to use when transcribing
      *         your audio. The model you specify must have the same language
-     *         code as the transcription job; if the languages don't match, the
-     *         language model won't be applied.
+     *         codes as the transcription job; if the languages don't match, the
+     *         language model isn't be applied.
      *         </p>
      */
     public String getLanguageModelName() {
@@ -242,8 +242,8 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the language model you want to use when transcribing your
-     * audio. The model you specify must have the same language code as the
-     * transcription job; if the languages don't match, the language model won't
+     * audio. The model you specify must have the same language codes as the
+     * transcription job; if the languages don't match, the language model isn't
      * be applied.
      * </p>
      * <p>
@@ -254,8 +254,8 @@ public class LanguageIdSettings implements Serializable {
      * @param languageModelName <p>
      *            The name of the language model you want to use when
      *            transcribing your audio. The model you specify must have the
-     *            same language code as the transcription job; if the languages
-     *            don't match, the language model won't be applied.
+     *            same language codes as the transcription job; if the languages
+     *            don't match, the language model isn't be applied.
      *            </p>
      */
     public void setLanguageModelName(String languageModelName) {
@@ -265,8 +265,8 @@ public class LanguageIdSettings implements Serializable {
     /**
      * <p>
      * The name of the language model you want to use when transcribing your
-     * audio. The model you specify must have the same language code as the
-     * transcription job; if the languages don't match, the language model won't
+     * audio. The model you specify must have the same language codes as the
+     * transcription job; if the languages don't match, the language model isn't
      * be applied.
      * </p>
      * <p>
@@ -280,8 +280,8 @@ public class LanguageIdSettings implements Serializable {
      * @param languageModelName <p>
      *            The name of the language model you want to use when
      *            transcribing your audio. The model you specify must have the
-     *            same language code as the transcription job; if the languages
-     *            don't match, the language model won't be applied.
+     *            same language codes as the transcription job; if the languages
+     *            don't match, the language model isn't be applied.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

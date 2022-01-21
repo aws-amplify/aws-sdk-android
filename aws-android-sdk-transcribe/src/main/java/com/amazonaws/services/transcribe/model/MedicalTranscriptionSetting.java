@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <p>
      * You can't set both <code>ShowSpeakerLabels</code> and
      * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      */
     private Boolean channelIdentification;
@@ -346,7 +346,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <p>
      * You can't set both <code>ShowSpeakerLabels</code> and
      * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      *
      * @return <p>
@@ -365,6 +365,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         You can't set both <code>ShowSpeakerLabels</code> and
      *         <code>ChannelIdentification</code> in the same request. If you
      *         set both, your request returns a <code>BadRequestException</code>
+     *         .
      *         </p>
      */
     public Boolean isChannelIdentification() {
@@ -387,7 +388,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <p>
      * You can't set both <code>ShowSpeakerLabels</code> and
      * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      *
      * @return <p>
@@ -406,6 +407,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         You can't set both <code>ShowSpeakerLabels</code> and
      *         <code>ChannelIdentification</code> in the same request. If you
      *         set both, your request returns a <code>BadRequestException</code>
+     *         .
      *         </p>
      */
     public Boolean getChannelIdentification() {
@@ -428,7 +430,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <p>
      * You can't set both <code>ShowSpeakerLabels</code> and
      * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      *
      * @param channelIdentification <p>
@@ -447,7 +449,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            You can't set both <code>ShowSpeakerLabels</code> and
      *            <code>ChannelIdentification</code> in the same request. If you
      *            set both, your request returns a
-     *            <code>BadRequestException</code>
+     *            <code>BadRequestException</code>.
      *            </p>
      */
     public void setChannelIdentification(Boolean channelIdentification) {
@@ -470,7 +472,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <p>
      * You can't set both <code>ShowSpeakerLabels</code> and
      * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>
+     * your request returns a <code>BadRequestException</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -492,7 +494,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            You can't set both <code>ShowSpeakerLabels</code> and
      *            <code>ChannelIdentification</code> in the same request. If you
      *            set both, your request returns a
-     *            <code>BadRequestException</code>
+     *            <code>BadRequestException</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

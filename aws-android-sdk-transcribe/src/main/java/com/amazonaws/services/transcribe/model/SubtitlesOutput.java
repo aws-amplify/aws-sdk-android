@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ public class SubtitlesOutput implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are genereated.
+     * and VTT formats, two output files are generated.
      * </p>
      */
     private java.util.List<String> formats;
@@ -42,12 +42,12 @@ public class SubtitlesOutput implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are genereated.
+     * and VTT formats, two output files are generated.
      * </p>
      *
      * @return <p>
      *         Specify the output format for your subtitle file; if you select
-     *         both SRT and VTT formats, two output files are genereated.
+     *         both SRT and VTT formats, two output files are generated.
      *         </p>
      */
     public java.util.List<String> getFormats() {
@@ -57,13 +57,13 @@ public class SubtitlesOutput implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are genereated.
+     * and VTT formats, two output files are generated.
      * </p>
      *
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
      *            select both SRT and VTT formats, two output files are
-     *            genereated.
+     *            generated.
      *            </p>
      */
     public void setFormats(java.util.Collection<String> formats) {
@@ -78,7 +78,7 @@ public class SubtitlesOutput implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are genereated.
+     * and VTT formats, two output files are generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +87,7 @@ public class SubtitlesOutput implements Serializable {
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
      *            select both SRT and VTT formats, two output files are
-     *            genereated.
+     *            generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,7 +105,7 @@ public class SubtitlesOutput implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are genereated.
+     * and VTT formats, two output files are generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -114,7 +114,7 @@ public class SubtitlesOutput implements Serializable {
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
      *            select both SRT and VTT formats, two output files are
-     *            genereated.
+     *            generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
