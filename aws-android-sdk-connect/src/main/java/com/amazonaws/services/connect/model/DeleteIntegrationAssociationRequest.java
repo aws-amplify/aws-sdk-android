@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an AWS resource association from an Amazon Connect instance. The
- * association must not have any use cases associated with it.
+ * Deletes an Amazon Web Services resource association from an Amazon Connect
+ * instance. The association must not have any use cases associated with it.
  * </p>
  */
 public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest implements

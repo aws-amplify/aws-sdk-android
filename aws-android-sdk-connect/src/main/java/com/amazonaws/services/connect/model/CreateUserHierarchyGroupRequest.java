@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,6 +52,13 @@ public class CreateUserHierarchyGroupRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b>1 - 100<br/>
      */
     private String instanceId;
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -218,6 +225,89 @@ public class CreateUserHierarchyGroupRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * </p>
+     *
+     * @return <p>
+     *         The tags used to organize, track, or control access for this
+     *         resource.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * </p>
+     *
+     * @param tags <p>
+     *            The tags used to organize, track, or control access for this
+     *            resource.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            The tags used to organize, track, or control access for this
+     *            resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserHierarchyGroupRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserHierarchyGroupRequest addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreateUserHierarchyGroupRequest clearTagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -233,7 +323,9 @@ public class CreateUserHierarchyGroupRequest extends AmazonWebServiceRequest imp
         if (getParentGroupId() != null)
             sb.append("ParentGroupId: " + getParentGroupId() + ",");
         if (getInstanceId() != null)
-            sb.append("InstanceId: " + getInstanceId());
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -247,6 +339,7 @@ public class CreateUserHierarchyGroupRequest extends AmazonWebServiceRequest imp
         hashCode = prime * hashCode
                 + ((getParentGroupId() == null) ? 0 : getParentGroupId().hashCode());
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -274,6 +367,10 @@ public class CreateUserHierarchyGroupRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,19 @@ class HierarchyGroupJsonMarshaller {
             HierarchyPath hierarchyPath = hierarchyGroup.getHierarchyPath();
             jsonWriter.name("HierarchyPath");
             HierarchyPathJsonMarshaller.getInstance().marshall(hierarchyPath, jsonWriter);
+        }
+        if (hierarchyGroup.getTags() != null) {
+            java.util.Map<String, String> tags = hierarchyGroup.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         jsonWriter.endObject();
     }
