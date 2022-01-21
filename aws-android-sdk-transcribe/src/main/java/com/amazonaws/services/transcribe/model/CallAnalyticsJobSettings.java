@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -94,9 +94,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
      * in the audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      */
     private java.util.List<String> languageOptions;
@@ -517,9 +516,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
      * in the audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      *
      * @return <p>
@@ -534,9 +532,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      *         language for you. To improve the ability of Amazon Transcribe to
      *         correctly identify the language, you can provide an array of the
      *         languages that can be present in the audio. Refer to <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *         >Supported languages and language-specific features</a> for
-     *         additional information.
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *         >Supported languages</a> for additional information.
      *         </p>
      */
     public java.util.List<String> getLanguageOptions() {
@@ -556,9 +553,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
      * in the audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      *
      * @param languageOptions <p>
@@ -574,9 +570,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
      *            audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      */
     public void setLanguageOptions(java.util.Collection<String> languageOptions) {
@@ -601,9 +596,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
      * in the audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -622,9 +616,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
      *            audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -652,9 +645,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
      * in the audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     * >Supported languages and language-specific features</a> for additional
-     * information.
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> for additional information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -673,9 +665,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
      *            audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
-     *            >Supported languages and language-specific features</a> for
-     *            additional information.
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> for additional information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
