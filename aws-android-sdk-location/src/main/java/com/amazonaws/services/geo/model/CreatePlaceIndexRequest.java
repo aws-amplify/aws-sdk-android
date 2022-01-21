@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * and enable autosuggestions by using the
  * <code>SearchPlaceIndexForSuggestions</code> operation.
  * </p>
+ * <note>
+ * <p>
+ * If your application is tracking or routing assets you use in your business,
+ * such as delivery vehicles or employees, you may only use HERE as your
+ * geolocation provider. See section 82 of the <a
+ * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
+ * details.
+ * </p>
+ * </note>
  */
 public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -132,13 +141,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -798,13 +802,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -812,14 +811,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @return <p>
-     *         Optionally specifies the pricing plan for the place index
-     *         resource. Defaults to <code>RequestBasedUsage</code>.
-     *         </p>
-     *         <p>
-     *         For additional details and restrictions on each pricing plan
-     *         option, see <a
-     *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing</a>.
+     *         No longer used. If included, the only allowed value is
+     *         <code>RequestBasedUsage</code>.
      *         </p>
      * @see PricingPlan
      */
@@ -829,13 +822,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -843,14 +831,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the place index
-     *            resource. Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -860,13 +842,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -877,14 +854,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the place index
-     *            resource. Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -897,13 +868,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -911,14 +877,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the place index
-     *            resource. Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -928,13 +888,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Optionally specifies the pricing plan for the place index resource.
-     * Defaults to <code>RequestBasedUsage</code>.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing</a>.
+     * No longer used. If included, the only allowed value is
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -945,14 +900,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Optionally specifies the pricing plan for the place index
-     *            resource. Defaults to <code>RequestBasedUsage</code>.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing</a>.
+     *            No longer used. If included, the only allowed value is
+     *            <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

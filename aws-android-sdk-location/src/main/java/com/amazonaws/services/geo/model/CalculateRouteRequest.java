@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a href=
  * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html"
  * >Calculates a route</a> given the following required parameters:
- * <code>DeparturePostiton</code> and <code>DestinationPosition</code>. Requires
+ * <code>DeparturePosition</code> and <code>DestinationPosition</code>. Requires
  * that you first <a href=
  * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
  * >create a route calculator resource</a>.
@@ -41,31 +41,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * <a href=
- * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time"
+ * "https://docs.aws.amazon.com/location/latest/developerguide/departure-time.html"
  * >Specifying a departure time</a> using either <code>DepartureTime</code> or
- * <code>DepartureNow</code>. This calculates a route based on predictive
- * traffic data at the given time.
+ * <code>DepartNow</code>. This calculates a route based on predictive traffic
+ * data at the given time.
  * </p>
  * <note>
  * <p>
- * You can't specify both <code>DepartureTime</code> and
- * <code>DepartureNow</code> in a single request. Specifying both parameters
- * returns a validation error.
+ * You can't specify both <code>DepartureTime</code> and <code>DepartNow</code>
+ * in a single request. Specifying both parameters returns a validation error.
  * </p>
  * </note></li>
  * <li>
  * <p>
  * <a href=
- * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
- * >Specifying a travel mode</a> using TravelMode. This lets you specify an
- * additional route preference such as <code>CarModeOptions</code> if traveling
- * by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by
- * <code>Truck</code>.
+ * "https://docs.aws.amazon.com/location/latest/developerguide/travel-mode.html"
+ * >Specifying a travel mode</a> using TravelMode sets the transportation mode
+ * used to calculate the routes. This also lets you specify additional route
+ * preferences in <code>CarModeOptions</code> if traveling by <code>Car</code>,
+ * or <code>TruckModeOptions</code> if traveling by <code>Truck</code>.
  * </p>
  * </li>
  * </ul>
- * <p>
- * </p>
  */
 public class CalculateRouteRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -124,7 +121,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a departure that's not located on a road, Amazon Location
      * <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>. If Esri is the provider for
      * your route calculator, specifying a route that is longer than 400 km
      * returns a <code>400 RoutesValidationException</code> error.
@@ -177,7 +174,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a destination that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * </note>
@@ -220,8 +217,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -278,7 +275,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a waypoint position that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * <p>
@@ -578,7 +575,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a departure that's not located on a road, Amazon Location
      * <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>. If Esri is the provider for
      * your route calculator, specifying a route that is longer than 400 km
      * returns a <code>400 RoutesValidationException</code> error.
@@ -604,7 +601,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *         <p>
      *         If you specify a departure that's not located on a road, Amazon
      *         Location <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *         >moves the position to the nearest road</a>. If Esri is the
      *         provider for your route calculator, specifying a route that is
      *         longer than 400 km returns a
@@ -636,7 +633,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a departure that's not located on a road, Amazon Location
      * <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>. If Esri is the provider for
      * your route calculator, specifying a route that is longer than 400 km
      * returns a <code>400 RoutesValidationException</code> error.
@@ -662,7 +659,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a departure that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>. If Esri is the
      *            provider for your route calculator, specifying a route that is
      *            longer than 400 km returns a
@@ -699,7 +696,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a departure that's not located on a road, Amazon Location
      * <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>. If Esri is the provider for
      * your route calculator, specifying a route that is longer than 400 km
      * returns a <code>400 RoutesValidationException</code> error.
@@ -728,7 +725,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a departure that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>. If Esri is the
      *            provider for your route calculator, specifying a route that is
      *            longer than 400 km returns a
@@ -768,7 +765,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a departure that's not located on a road, Amazon Location
      * <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>. If Esri is the provider for
      * your route calculator, specifying a route that is longer than 400 km
      * returns a <code>400 RoutesValidationException</code> error.
@@ -797,7 +794,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a departure that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>. If Esri is the
      *            provider for your route calculator, specifying a route that is
      *            longer than 400 km returns a
@@ -985,7 +982,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a destination that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * </note>
@@ -1009,7 +1006,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *         <p>
      *         If you specify a destination that's not located on a road, Amazon
      *         Location <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *         >moves the position to the nearest road</a>.
      *         </p>
      *         </note>
@@ -1038,7 +1035,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a destination that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * </note>
@@ -1062,7 +1059,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a destination that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            </note>
@@ -1096,7 +1093,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a destination that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * </note>
@@ -1123,7 +1120,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a destination that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            </note>
@@ -1160,7 +1157,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a destination that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * </note>
@@ -1187,7 +1184,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a destination that's not located on a road,
      *            Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            </note>
@@ -1450,8 +1447,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -1479,7 +1476,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *         estimating the speed of travel and road compatibility.
      *         </p>
      *         <p>
-     *         The <code>TravelMode</code> you specify determines how you
+     *         The <code>TravelMode</code> you specify also determines how you
      *         specify route preferences:
      *         </p>
      *         <ul>
@@ -1511,8 +1508,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -1540,8 +1537,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            in estimating the speed of travel and road compatibility.
      *            </p>
      *            <p>
-     *            The <code>TravelMode</code> you specify determines how you
-     *            specify route preferences:
+     *            The <code>TravelMode</code> you specify also determines how
+     *            you specify route preferences:
      *            </p>
      *            <ul>
      *            <li>
@@ -1572,8 +1569,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -1604,8 +1601,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            in estimating the speed of travel and road compatibility.
      *            </p>
      *            <p>
-     *            The <code>TravelMode</code> you specify determines how you
-     *            specify route preferences:
+     *            The <code>TravelMode</code> you specify also determines how
+     *            you specify route preferences:
      *            </p>
      *            <ul>
      *            <li>
@@ -1639,8 +1636,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -1668,8 +1665,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            in estimating the speed of travel and road compatibility.
      *            </p>
      *            <p>
-     *            The <code>TravelMode</code> you specify determines how you
-     *            specify route preferences:
+     *            The <code>TravelMode</code> you specify also determines how
+     *            you specify route preferences:
      *            </p>
      *            <ul>
      *            <li>
@@ -1700,8 +1697,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * estimating the speed of travel and road compatibility.
      * </p>
      * <p>
-     * The <code>TravelMode</code> you specify determines how you specify route
-     * preferences:
+     * The <code>TravelMode</code> you specify also determines how you specify
+     * route preferences:
      * </p>
      * <ul>
      * <li>
@@ -1732,8 +1729,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            in estimating the speed of travel and road compatibility.
      *            </p>
      *            <p>
-     *            The <code>TravelMode</code> you specify determines how you
-     *            specify route preferences:
+     *            The <code>TravelMode</code> you specify also determines how
+     *            you specify route preferences:
      *            </p>
      *            <ul>
      *            <li>
@@ -1864,7 +1861,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a waypoint position that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * <p>
@@ -1900,7 +1897,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *         <p>
      *         If you specify a waypoint position that's not located on a road,
      *         Amazon Location <a href=
-     *         "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *         >moves the position to the nearest road</a>.
      *         </p>
      *         <p>
@@ -1940,7 +1937,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a waypoint position that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * <p>
@@ -1976,7 +1973,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a waypoint position that's not located on a
      *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>
@@ -2021,7 +2018,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a waypoint position that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * <p>
@@ -2060,7 +2057,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a waypoint position that's not located on a
      *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>
@@ -2109,7 +2106,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * <p>
      * If you specify a waypoint position that's not located on a road, Amazon
      * Location <a href=
-     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     * "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      * >moves the position to the nearest road</a>.
      * </p>
      * <p>
@@ -2148,7 +2145,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            If you specify a waypoint position that's not located on a
      *            road, Amazon Location <a href=
-     *            "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road"
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/snap-to-nearby-road.html"
      *            >moves the position to the nearest road</a>.
      *            </p>
      *            <p>

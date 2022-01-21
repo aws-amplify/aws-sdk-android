@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,12 +55,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +66,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The specified data provider for the geofence collection.
+     * No longer used. Always returns an empty string.
      * </p>
      */
     private String pricingPlanDataSource;
@@ -257,12 +252,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -270,13 +260,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @return <p>
-     *         The pricing plan for the specified geofence collection.
-     *         </p>
-     *         <p>
-     *         For additional details and restrictions on each pricing plan
-     *         option, see the <a
-     *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing page</a>.
+     *         No longer used. Always returns <code>RequestBasedUsage</code>.
      *         </p>
      * @see PricingPlan
      */
@@ -286,12 +270,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -299,13 +278,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified geofence collection.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -315,12 +288,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -331,13 +299,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified geofence collection.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -350,12 +312,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,13 +320,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified geofence collection.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
      * @see PricingPlan
      */
@@ -379,12 +330,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified geofence collection.
-     * </p>
-     * <p>
-     * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -395,13 +341,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified geofence collection.
-     *            </p>
-     *            <p>
-     *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
-     *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -414,11 +354,11 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The specified data provider for the geofence collection.
+     * No longer used. Always returns an empty string.
      * </p>
      *
      * @return <p>
-     *         The specified data provider for the geofence collection.
+     *         No longer used. Always returns an empty string.
      *         </p>
      */
     public String getPricingPlanDataSource() {
@@ -427,11 +367,11 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The specified data provider for the geofence collection.
+     * No longer used. Always returns an empty string.
      * </p>
      *
      * @param pricingPlanDataSource <p>
-     *            The specified data provider for the geofence collection.
+     *            No longer used. Always returns an empty string.
      *            </p>
      */
     public void setPricingPlanDataSource(String pricingPlanDataSource) {
@@ -440,14 +380,14 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The specified data provider for the geofence collection.
+     * No longer used. Always returns an empty string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pricingPlanDataSource <p>
-     *            The specified data provider for the geofence collection.
+     *            No longer used. Always returns an empty string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

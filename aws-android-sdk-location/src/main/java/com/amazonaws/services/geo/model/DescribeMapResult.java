@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -86,12 +86,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
@@ -497,24 +493,16 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
      * MobileAssetManagement
      *
      * @return <p>
-     *         The pricing plan selected for the specified map resource.
+     *         No longer used. Always returns <code>RequestBasedUsage</code>.
      *         </p>
-     * 
-     *         <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * @see PricingPlan
      */
     public String getPricingPlan() {
@@ -523,24 +511,16 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified map resource.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
-     * 
-     *            <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * @see PricingPlan
      */
     public void setPricingPlan(String pricingPlan) {
@@ -549,12 +529,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -564,12 +540,8 @@ public class DescribeMapResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified map resource.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
-     * 
-     *            <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see PricingPlan
@@ -581,24 +553,16 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified map resource.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
-     * 
-     *            <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * @see PricingPlan
      */
     public void setPricingPlan(PricingPlan pricingPlan) {
@@ -607,12 +571,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified map resource.
+     * No longer used. Always returns <code>RequestBasedUsage</code>.
      * </p>
-     * 
-     * <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -622,12 +582,8 @@ public class DescribeMapResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified map resource.
+     *            No longer used. Always returns <code>RequestBasedUsage</code>.
      *            </p>
-     * 
-     *            <pre>
-     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing&lt;/a&gt;.&lt;/p&gt; </code>
-     * </pre>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see PricingPlan
