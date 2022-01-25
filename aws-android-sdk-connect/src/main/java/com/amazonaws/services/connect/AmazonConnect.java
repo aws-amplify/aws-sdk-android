@@ -172,6 +172,34 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Associates an existing vocabulary as the default. Contact Lens for Amazon
+     * Connect uses the vocabulary in post-call and real-time analysis sessions
+     * for the given language.
+     * </p>
+     * 
+     * @param associateDefaultVocabularyRequest
+     * @return associateDefaultVocabularyResult The response from the
+     *         AssociateDefaultVocabulary service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    AssociateDefaultVocabularyResult associateDefaultVocabulary(
+            AssociateDefaultVocabularyRequest associateDefaultVocabularyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -743,6 +771,35 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Creates a custom vocabulary associated with your Amazon Connect instance.
+     * You can set a custom vocabulary to be your default vocabulary for a given
+     * language. Contact Lens for Amazon Connect uses the default vocabulary in
+     * post-call and real-time contact analysis sessions for that language.
+     * </p>
+     * 
+     * @param createVocabularyRequest
+     * @return createVocabularyResult The response from the CreateVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateVocabularyResult createVocabulary(CreateVocabularyRequest createVocabularyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a contact flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -994,6 +1051,31 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void deleteUserHierarchyGroup(DeleteUserHierarchyGroupRequest deleteUserHierarchyGroupRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes the vocabulary that has the given identifier.
+     * </p>
+     * 
+     * @param deleteVocabularyRequest
+     * @return deleteVocabularyResult The response from the DeleteVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteVocabularyResult deleteVocabulary(DeleteVocabularyRequest deleteVocabularyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1432,6 +1514,30 @@ public interface AmazonConnect {
      */
     DescribeUserHierarchyStructureResult describeUserHierarchyStructure(
             DescribeUserHierarchyStructureRequest describeUserHierarchyStructureRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes the specified vocabulary.
+     * </p>
+     * 
+     * @param describeVocabularyRequest
+     * @return describeVocabularyResult The response from the DescribeVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeVocabularyResult describeVocabulary(DescribeVocabularyRequest describeVocabularyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1947,6 +2053,31 @@ public interface AmazonConnect {
      */
     ListContactReferencesResult listContactReferences(
             ListContactReferencesRequest listContactReferencesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the default vocabularies for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listDefaultVocabulariesRequest
+     * @return listDefaultVocabulariesResult The response from the
+     *         ListDefaultVocabularies service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListDefaultVocabulariesResult listDefaultVocabularies(
+            ListDefaultVocabulariesRequest listDefaultVocabulariesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2599,6 +2730,31 @@ public interface AmazonConnect {
      */
     ResumeContactRecordingResult resumeContactRecording(
             ResumeContactRecordingRequest resumeContactRecordingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches for vocabularies within a specific Amazon Connect instance using
+     * <code>State</code>, <code>NameStartsWith</code>, and
+     * <code>LanguageCode</code>.
+     * </p>
+     * 
+     * @param searchVocabulariesRequest
+     * @return searchVocabulariesResult The response from the SearchVocabularies
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchVocabulariesResult searchVocabularies(SearchVocabulariesRequest searchVocabulariesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

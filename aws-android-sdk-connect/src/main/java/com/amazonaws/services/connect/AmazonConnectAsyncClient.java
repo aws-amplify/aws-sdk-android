@@ -455,6 +455,83 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Associates an existing vocabulary as the default. Contact Lens for Amazon
+     * Connect uses the vocabulary in post-call and real-time analysis sessions
+     * for the given language.
+     * </p>
+     * 
+     * @param associateDefaultVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateDefaultVocabulary service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<AssociateDefaultVocabularyResult> associateDefaultVocabularyAsync(
+            final AssociateDefaultVocabularyRequest associateDefaultVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AssociateDefaultVocabularyResult>() {
+            public AssociateDefaultVocabularyResult call() throws Exception {
+                return associateDefaultVocabulary(associateDefaultVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Associates an existing vocabulary as the default. Contact Lens for Amazon
+     * Connect uses the vocabulary in post-call and real-time analysis sessions
+     * for the given language.
+     * </p>
+     * 
+     * @param associateDefaultVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateDefaultVocabulary service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<AssociateDefaultVocabularyResult> associateDefaultVocabularyAsync(
+            final AssociateDefaultVocabularyRequest associateDefaultVocabularyRequest,
+            final AsyncHandler<AssociateDefaultVocabularyRequest, AssociateDefaultVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AssociateDefaultVocabularyResult>() {
+            public AssociateDefaultVocabularyResult call() throws Exception {
+                AssociateDefaultVocabularyResult result = null;
+                try {
+                    result = associateDefaultVocabulary(associateDefaultVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(associateDefaultVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -2034,6 +2111,87 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Creates a custom vocabulary associated with your Amazon Connect instance.
+     * You can set a custom vocabulary to be your default vocabulary for a given
+     * language. Contact Lens for Amazon Connect uses the default vocabulary in
+     * post-call and real-time contact analysis sessions for that language.
+     * </p>
+     * 
+     * @param createVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateVocabularyResult> createVocabularyAsync(
+            final CreateVocabularyRequest createVocabularyRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<CreateVocabularyResult>() {
+            public CreateVocabularyResult call() throws Exception {
+                return createVocabulary(createVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a custom vocabulary associated with your Amazon Connect instance.
+     * You can set a custom vocabulary to be your default vocabulary for a given
+     * language. Contact Lens for Amazon Connect uses the default vocabulary in
+     * post-call and real-time contact analysis sessions for that language.
+     * </p>
+     * 
+     * @param createVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateVocabularyResult> createVocabularyAsync(
+            final CreateVocabularyRequest createVocabularyRequest,
+            final AsyncHandler<CreateVocabularyRequest, CreateVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateVocabularyResult>() {
+            public CreateVocabularyResult call() throws Exception {
+                CreateVocabularyResult result = null;
+                try {
+                    result = createVocabulary(createVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Deletes a contact flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -2810,6 +2968,79 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteUserHierarchyGroupRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes the vocabulary that has the given identifier.
+     * </p>
+     * 
+     * @param deleteVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteVocabularyResult> deleteVocabularyAsync(
+            final DeleteVocabularyRequest deleteVocabularyRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DeleteVocabularyResult>() {
+            public DeleteVocabularyResult call() throws Exception {
+                return deleteVocabulary(deleteVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes the vocabulary that has the given identifier.
+     * </p>
+     * 
+     * @param deleteVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteVocabularyResult> deleteVocabularyAsync(
+            final DeleteVocabularyRequest deleteVocabularyRequest,
+            final AsyncHandler<DeleteVocabularyRequest, DeleteVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteVocabularyResult>() {
+            public DeleteVocabularyResult call() throws Exception {
+                DeleteVocabularyResult result = null;
+                try {
+                    result = deleteVocabulary(deleteVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteVocabularyRequest, result);
                 return result;
             }
         });
@@ -4009,6 +4240,77 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(describeUserHierarchyStructureRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Describes the specified vocabulary.
+     * </p>
+     * 
+     * @param describeVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeVocabularyResult> describeVocabularyAsync(
+            final DescribeVocabularyRequest describeVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVocabularyResult>() {
+            public DescribeVocabularyResult call() throws Exception {
+                return describeVocabulary(describeVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Describes the specified vocabulary.
+     * </p>
+     * 
+     * @param describeVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeVocabulary service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeVocabularyResult> describeVocabularyAsync(
+            final DescribeVocabularyRequest describeVocabularyRequest,
+            final AsyncHandler<DescribeVocabularyRequest, DescribeVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeVocabularyResult>() {
+            public DescribeVocabularyResult call() throws Exception {
+                DescribeVocabularyResult result = null;
+                try {
+                    result = describeVocabulary(describeVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeVocabularyRequest, result);
                 return result;
             }
         });
@@ -5481,6 +5783,77 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(listContactReferencesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists the default vocabularies for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listDefaultVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListDefaultVocabularies service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDefaultVocabulariesResult> listDefaultVocabulariesAsync(
+            final ListDefaultVocabulariesRequest listDefaultVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDefaultVocabulariesResult>() {
+            public ListDefaultVocabulariesResult call() throws Exception {
+                return listDefaultVocabularies(listDefaultVocabulariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists the default vocabularies for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listDefaultVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListDefaultVocabularies service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDefaultVocabulariesResult> listDefaultVocabulariesAsync(
+            final ListDefaultVocabulariesRequest listDefaultVocabulariesRequest,
+            final AsyncHandler<ListDefaultVocabulariesRequest, ListDefaultVocabulariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDefaultVocabulariesResult>() {
+            public ListDefaultVocabulariesResult call() throws Exception {
+                ListDefaultVocabulariesResult result = null;
+                try {
+                    result = listDefaultVocabularies(listDefaultVocabulariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listDefaultVocabulariesRequest, result);
                 return result;
             }
         });
@@ -7257,6 +7630,79 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(resumeContactRecordingRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches for vocabularies within a specific Amazon Connect instance using
+     * <code>State</code>, <code>NameStartsWith</code>, and
+     * <code>LanguageCode</code>.
+     * </p>
+     * 
+     * @param searchVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         SearchVocabularies service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchVocabulariesResult> searchVocabulariesAsync(
+            final SearchVocabulariesRequest searchVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchVocabulariesResult>() {
+            public SearchVocabulariesResult call() throws Exception {
+                return searchVocabularies(searchVocabulariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches for vocabularies within a specific Amazon Connect instance using
+     * <code>State</code>, <code>NameStartsWith</code>, and
+     * <code>LanguageCode</code>.
+     * </p>
+     * 
+     * @param searchVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         SearchVocabularies service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchVocabulariesResult> searchVocabulariesAsync(
+            final SearchVocabulariesRequest searchVocabulariesRequest,
+            final AsyncHandler<SearchVocabulariesRequest, SearchVocabulariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchVocabulariesResult>() {
+            public SearchVocabulariesResult call() throws Exception {
+                SearchVocabulariesResult result = null;
+                try {
+                    result = searchVocabularies(searchVocabulariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(searchVocabulariesRequest, result);
                 return result;
             }
         });

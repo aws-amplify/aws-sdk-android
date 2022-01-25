@@ -493,6 +493,61 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Associates an existing vocabulary as the default. Contact Lens for Amazon
+     * Connect uses the vocabulary in post-call and real-time analysis sessions
+     * for the given language.
+     * </p>
+     * 
+     * @param associateDefaultVocabularyRequest
+     * @return associateDefaultVocabularyResult The response from the
+     *         AssociateDefaultVocabulary service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public AssociateDefaultVocabularyResult associateDefaultVocabulary(
+            AssociateDefaultVocabularyRequest associateDefaultVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateDefaultVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateDefaultVocabularyRequest> request = null;
+        Response<AssociateDefaultVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateDefaultVocabularyRequestMarshaller()
+                        .marshall(associateDefaultVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AssociateDefaultVocabularyResult, JsonUnmarshallerContext> unmarshaller = new AssociateDefaultVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<AssociateDefaultVocabularyResult> responseHandler = new JsonResponseHandler<AssociateDefaultVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1556,6 +1611,61 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Creates a custom vocabulary associated with your Amazon Connect instance.
+     * You can set a custom vocabulary to be your default vocabulary for a given
+     * language. Contact Lens for Amazon Connect uses the default vocabulary in
+     * post-call and real-time contact analysis sessions for that language.
+     * </p>
+     * 
+     * @param createVocabularyRequest
+     * @return createVocabularyResult The response from the CreateVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateVocabularyResult createVocabulary(CreateVocabularyRequest createVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateVocabularyRequest> request = null;
+        Response<CreateVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateVocabularyRequestMarshaller().marshall(createVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateVocabularyResult, JsonUnmarshallerContext> unmarshaller = new CreateVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<CreateVocabularyResult> responseHandler = new JsonResponseHandler<CreateVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a contact flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -2026,6 +2136,57 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the vocabulary that has the given identifier.
+     * </p>
+     * 
+     * @param deleteVocabularyRequest
+     * @return deleteVocabularyResult The response from the DeleteVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteVocabularyResult deleteVocabulary(DeleteVocabularyRequest deleteVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteVocabularyRequest> request = null;
+        Response<DeleteVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteVocabularyRequestMarshaller().marshall(deleteVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteVocabularyResult, JsonUnmarshallerContext> unmarshaller = new DeleteVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteVocabularyResult> responseHandler = new JsonResponseHandler<DeleteVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -2860,6 +3021,58 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DescribeUserHierarchyStructureResult, JsonUnmarshallerContext> unmarshaller = new DescribeUserHierarchyStructureResultJsonUnmarshaller();
             JsonResponseHandler<DescribeUserHierarchyStructureResult> responseHandler = new JsonResponseHandler<DescribeUserHierarchyStructureResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes the specified vocabulary.
+     * </p>
+     * 
+     * @param describeVocabularyRequest
+     * @return describeVocabularyResult The response from the DescribeVocabulary
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeVocabularyResult describeVocabulary(
+            DescribeVocabularyRequest describeVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeVocabularyRequest> request = null;
+        Response<DescribeVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeVocabularyRequestMarshaller()
+                        .marshall(describeVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeVocabularyResult, JsonUnmarshallerContext> unmarshaller = new DescribeVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeVocabularyResult> responseHandler = new JsonResponseHandler<DescribeVocabularyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3820,6 +4033,58 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListContactReferencesResult, JsonUnmarshallerContext> unmarshaller = new ListContactReferencesResultJsonUnmarshaller();
             JsonResponseHandler<ListContactReferencesResult> responseHandler = new JsonResponseHandler<ListContactReferencesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the default vocabularies for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listDefaultVocabulariesRequest
+     * @return listDefaultVocabulariesResult The response from the
+     *         ListDefaultVocabularies service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDefaultVocabulariesResult listDefaultVocabularies(
+            ListDefaultVocabulariesRequest listDefaultVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDefaultVocabulariesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDefaultVocabulariesRequest> request = null;
+        Response<ListDefaultVocabulariesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDefaultVocabulariesRequestMarshaller()
+                        .marshall(listDefaultVocabulariesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDefaultVocabulariesResult, JsonUnmarshallerContext> unmarshaller = new ListDefaultVocabulariesResultJsonUnmarshaller();
+            JsonResponseHandler<ListDefaultVocabulariesResult> responseHandler = new JsonResponseHandler<ListDefaultVocabulariesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -5059,6 +5324,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ResumeContactRecordingResult, JsonUnmarshallerContext> unmarshaller = new ResumeContactRecordingResultJsonUnmarshaller();
             JsonResponseHandler<ResumeContactRecordingResult> responseHandler = new JsonResponseHandler<ResumeContactRecordingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Searches for vocabularies within a specific Amazon Connect instance using
+     * <code>State</code>, <code>NameStartsWith</code>, and
+     * <code>LanguageCode</code>.
+     * </p>
+     * 
+     * @param searchVocabulariesRequest
+     * @return searchVocabulariesResult The response from the SearchVocabularies
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchVocabulariesResult searchVocabularies(
+            SearchVocabulariesRequest searchVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchVocabulariesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchVocabulariesRequest> request = null;
+        Response<SearchVocabulariesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchVocabulariesRequestMarshaller()
+                        .marshall(searchVocabulariesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchVocabulariesResult, JsonUnmarshallerContext> unmarshaller = new SearchVocabulariesResultJsonUnmarshaller();
+            JsonResponseHandler<SearchVocabulariesResult> responseHandler = new JsonResponseHandler<SearchVocabulariesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
