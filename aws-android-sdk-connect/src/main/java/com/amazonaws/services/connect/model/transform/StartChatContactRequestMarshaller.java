@@ -100,6 +100,11 @@ public class StartChatContactRequestMarshaller implements
                 jsonWriter.name("ClientToken");
                 jsonWriter.value(clientToken);
             }
+            if (startChatContactRequest.getChatDurationInMinutes() != null) {
+                Integer chatDurationInMinutes = startChatContactRequest.getChatDurationInMinutes();
+                jsonWriter.name("ChatDurationInMinutes");
+                jsonWriter.value(chatDurationInMinutes);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

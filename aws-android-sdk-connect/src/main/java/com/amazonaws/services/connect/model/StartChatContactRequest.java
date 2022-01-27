@@ -35,7 +35,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >CreateParticipantConnection</a> with WEBSOCKET and CONNECTION_CREDENTIALS.
  * </p>
  * <p>
- * A 429 error occurs in two situations:
+ * A 429 error occurs in the following situations:
  * </p>
  * <ul>
  * <li>
@@ -53,6 +53,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * If you use the <code>ChatDurationInMinutes</code> parameter and receive a 400
+ * error, your account may not support the ability to configure custom chat
+ * durations. For more information, contact Amazon Web Services Support.
+ * </p>
  * <p>
  * For more information about chat, see <a
  * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
@@ -128,6 +133,19 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 500<br/>
      */
     private String clientToken;
+
+    /**
+     * <p>
+     * The total duration of the newly started chat session. If not specified,
+     * the chat session duration defaults to 25 hour. The minumum configurable
+     * time is 60 minutes. The maximum configurable time is 10,080 minutes (7
+     * days).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>60 - 10080<br/>
+     */
+    private Integer chatDurationInMinutes;
 
     /**
      * <p>
@@ -585,6 +603,78 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * The total duration of the newly started chat session. If not specified,
+     * the chat session duration defaults to 25 hour. The minumum configurable
+     * time is 60 minutes. The maximum configurable time is 10,080 minutes (7
+     * days).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>60 - 10080<br/>
+     *
+     * @return <p>
+     *         The total duration of the newly started chat session. If not
+     *         specified, the chat session duration defaults to 25 hour. The
+     *         minumum configurable time is 60 minutes. The maximum configurable
+     *         time is 10,080 minutes (7 days).
+     *         </p>
+     */
+    public Integer getChatDurationInMinutes() {
+        return chatDurationInMinutes;
+    }
+
+    /**
+     * <p>
+     * The total duration of the newly started chat session. If not specified,
+     * the chat session duration defaults to 25 hour. The minumum configurable
+     * time is 60 minutes. The maximum configurable time is 10,080 minutes (7
+     * days).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>60 - 10080<br/>
+     *
+     * @param chatDurationInMinutes <p>
+     *            The total duration of the newly started chat session. If not
+     *            specified, the chat session duration defaults to 25 hour. The
+     *            minumum configurable time is 60 minutes. The maximum
+     *            configurable time is 10,080 minutes (7 days).
+     *            </p>
+     */
+    public void setChatDurationInMinutes(Integer chatDurationInMinutes) {
+        this.chatDurationInMinutes = chatDurationInMinutes;
+    }
+
+    /**
+     * <p>
+     * The total duration of the newly started chat session. If not specified,
+     * the chat session duration defaults to 25 hour. The minumum configurable
+     * time is 60 minutes. The maximum configurable time is 10,080 minutes (7
+     * days).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>60 - 10080<br/>
+     *
+     * @param chatDurationInMinutes <p>
+     *            The total duration of the newly started chat session. If not
+     *            specified, the chat session duration defaults to 25 hour. The
+     *            minumum configurable time is 60 minutes. The maximum
+     *            configurable time is 10,080 minutes (7 days).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactRequest withChatDurationInMinutes(Integer chatDurationInMinutes) {
+        this.chatDurationInMinutes = chatDurationInMinutes;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -606,7 +696,9 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (getInitialMessage() != null)
             sb.append("InitialMessage: " + getInitialMessage() + ",");
         if (getClientToken() != null)
-            sb.append("ClientToken: " + getClientToken());
+            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getChatDurationInMinutes() != null)
+            sb.append("ChatDurationInMinutes: " + getChatDurationInMinutes());
         sb.append("}");
         return sb.toString();
     }
@@ -626,6 +718,9 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
                 + ((getInitialMessage() == null) ? 0 : getInitialMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getChatDurationInMinutes() == null) ? 0 : getChatDurationInMinutes().hashCode());
         return hashCode;
     }
 
@@ -669,6 +764,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getClientToken() != null
                 && other.getClientToken().equals(this.getClientToken()) == false)
+            return false;
+        if (other.getChatDurationInMinutes() == null ^ this.getChatDurationInMinutes() == null)
+            return false;
+        if (other.getChatDurationInMinutes() != null
+                && other.getChatDurationInMinutes().equals(this.getChatDurationInMinutes()) == false)
             return false;
         return true;
     }
