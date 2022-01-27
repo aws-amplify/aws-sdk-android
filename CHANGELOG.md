@@ -1,3 +1,16 @@
+## [Release 2.39.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.39.0)
+
+### Features
+- **aws-android-sdk-location:** update models to latest (#2770)
+- **aws-android-sdk-connect:** update models to latest (#2772)
+- **aws-android-sdk-transcribe:** update models to latest (#2774)
+- **aws-android-sdk-connect:** update models to latest (#2778)
+
+### Miscellaneous
+- Fix pip install error (#2755)
+
+[See all changes between 2.38.0 and 2.39.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.38.0...release_v2.39.0)
+
 ## [Release 2.38.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.38.0)
 
 ### Features
