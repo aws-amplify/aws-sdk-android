@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -73,9 +73,9 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The user context data captured at the time of an event request. It
-     * provides additional information about the client from which event the
-     * request is received.
+     * The user context data captured at the time of an event request. This
+     * value provides additional information about the client from which event
+     * the request is received.
      * </p>
      */
     private EventContextDataType eventContextData;
@@ -495,15 +495,15 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The user context data captured at the time of an event request. It
-     * provides additional information about the client from which event the
-     * request is received.
+     * The user context data captured at the time of an event request. This
+     * value provides additional information about the client from which event
+     * the request is received.
      * </p>
      *
      * @return <p>
      *         The user context data captured at the time of an event request.
-     *         It provides additional information about the client from which
-     *         event the request is received.
+     *         This value provides additional information about the client from
+     *         which event the request is received.
      *         </p>
      */
     public EventContextDataType getEventContextData() {
@@ -512,15 +512,15 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The user context data captured at the time of an event request. It
-     * provides additional information about the client from which event the
-     * request is received.
+     * The user context data captured at the time of an event request. This
+     * value provides additional information about the client from which event
+     * the request is received.
      * </p>
      *
      * @param eventContextData <p>
      *            The user context data captured at the time of an event
-     *            request. It provides additional information about the client
-     *            from which event the request is received.
+     *            request. This value provides additional information about the
+     *            client from which event the request is received.
      *            </p>
      */
     public void setEventContextData(EventContextDataType eventContextData) {
@@ -529,9 +529,9 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The user context data captured at the time of an event request. It
-     * provides additional information about the client from which event the
-     * request is received.
+     * The user context data captured at the time of an event request. This
+     * value provides additional information about the client from which event
+     * the request is received.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -539,8 +539,8 @@ public class AuthEventType implements Serializable {
      *
      * @param eventContextData <p>
      *            The user context data captured at the time of an event
-     *            request. It provides additional information about the client
-     *            from which event the request is received.
+     *            request. This value provides additional information about the
+     *            client from which event the request is received.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

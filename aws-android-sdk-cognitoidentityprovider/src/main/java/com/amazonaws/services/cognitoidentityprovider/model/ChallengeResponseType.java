@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ChallengeResponseType implements Serializable {
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +45,14 @@ public class ChallengeResponseType implements Serializable {
 
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Password, Mfa
      *
      * @return <p>
-     *         The challenge name
+     *         The challenge name.
      *         </p>
      * @see ChallengeName
      */
@@ -62,14 +62,14 @@ public class ChallengeResponseType implements Serializable {
 
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Password, Mfa
      *
      * @param challengeName <p>
-     *            The challenge name
+     *            The challenge name.
      *            </p>
      * @see ChallengeName
      */
@@ -79,7 +79,7 @@ public class ChallengeResponseType implements Serializable {
 
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,7 +89,7 @@ public class ChallengeResponseType implements Serializable {
      * <b>Allowed Values: </b>Password, Mfa
      *
      * @param challengeName <p>
-     *            The challenge name
+     *            The challenge name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,14 +102,14 @@ public class ChallengeResponseType implements Serializable {
 
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Password, Mfa
      *
      * @param challengeName <p>
-     *            The challenge name
+     *            The challenge name.
      *            </p>
      * @see ChallengeName
      */
@@ -119,7 +119,7 @@ public class ChallengeResponseType implements Serializable {
 
     /**
      * <p>
-     * The challenge name
+     * The challenge name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,7 +129,7 @@ public class ChallengeResponseType implements Serializable {
      * <b>Allowed Values: </b>Password, Mfa
      *
      * @param challengeName <p>
-     *            The challenge name
+     *            The challenge name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

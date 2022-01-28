@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contextual data such as the user's device fingerprint, IP address, or
- * location used for evaluating the risk of an unexpected event by Amazon
+ * Contextual data, such as the user's device fingerprint, IP address, or
+ * location, used for evaluating the risk of an unexpected event by Amazon
  * Cognito advanced security.
  * </p>
  */
 public class UserContextDataType implements Serializable {
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
+     * Contextual data, such as the user's device fingerprint, IP address, or
+     * location, used for evaluating the risk of an unexpected event by Amazon
      * Cognito advanced security.
      * </p>
      */
@@ -36,14 +36,14 @@ public class UserContextDataType implements Serializable {
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
+     * Contextual data, such as the user's device fingerprint, IP address, or
+     * location, used for evaluating the risk of an unexpected event by Amazon
      * Cognito advanced security.
      * </p>
      *
      * @return <p>
-     *         Contextual data such as the user's device fingerprint, IP
-     *         address, or location used for evaluating the risk of an
+     *         Contextual data, such as the user's device fingerprint, IP
+     *         address, or location, used for evaluating the risk of an
      *         unexpected event by Amazon Cognito advanced security.
      *         </p>
      */
@@ -53,14 +53,14 @@ public class UserContextDataType implements Serializable {
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
+     * Contextual data, such as the user's device fingerprint, IP address, or
+     * location, used for evaluating the risk of an unexpected event by Amazon
      * Cognito advanced security.
      * </p>
      *
      * @param encodedData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
+     *            Contextual data, such as the user's device fingerprint, IP
+     *            address, or location, used for evaluating the risk of an
      *            unexpected event by Amazon Cognito advanced security.
      *            </p>
      */
@@ -70,8 +70,8 @@ public class UserContextDataType implements Serializable {
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
+     * Contextual data, such as the user's device fingerprint, IP address, or
+     * location, used for evaluating the risk of an unexpected event by Amazon
      * Cognito advanced security.
      * </p>
      * <p>
@@ -79,8 +79,8 @@ public class UserContextDataType implements Serializable {
      * together.
      *
      * @param encodedData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
+     *            Contextual data, such as the user's device fingerprint, IP
+     *            address, or location, used for evaluating the risk of an
      *            unexpected event by Amazon Cognito advanced security.
      *            </p>
      * @return A reference to this updated object so that method calls can be

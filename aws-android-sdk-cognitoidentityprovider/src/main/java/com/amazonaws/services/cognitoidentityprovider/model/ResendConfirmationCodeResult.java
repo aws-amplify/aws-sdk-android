@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The response from the server when the Amazon Cognito Your User Pools service
- * makes the request to resend a confirmation code.
+ * The response from the server when Amazon Cognito makes the request to resend
+ * a confirmation code.
  * </p>
  */
 public class ResendConfirmationCodeResult implements Serializable {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,19 +42,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -134,19 +134,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -165,19 +165,19 @@ public class AccountTakeoverActionType implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has
-     *         configured it, else allow the request.
+     *         <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user
+     *         has configured it, else allow the request.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>MFA_REQUIRED</code> Throw MFA challenge if user has
+     *         <code>MFA_REQUIRED</code> Present an MFA challenge if user has
      *         configured it, else block the request.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>NO_ACTION</code> Allow the user sign-in.
+     *         <code>NO_ACTION</code> Allow the user to sign in.
      *         </p>
      *         </li>
      *         </ul>
@@ -199,19 +199,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -231,19 +231,19 @@ public class AccountTakeoverActionType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has
-     *            configured it, else allow the request.
+     *            <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if
+     *            user has configured it, else allow the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_REQUIRED</code> Throw MFA challenge if user has
+     *            <code>MFA_REQUIRED</code> Present an MFA challenge if user has
      *            configured it, else block the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>NO_ACTION</code> Allow the user sign-in.
+     *            <code>NO_ACTION</code> Allow the user to sign in.
      *            </p>
      *            </li>
      *            </ul>
@@ -265,19 +265,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -300,19 +300,19 @@ public class AccountTakeoverActionType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has
-     *            configured it, else allow the request.
+     *            <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if
+     *            user has configured it, else allow the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_REQUIRED</code> Throw MFA challenge if user has
+     *            <code>MFA_REQUIRED</code> Present an MFA challenge if user has
      *            configured it, else block the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>NO_ACTION</code> Allow the user sign-in.
+     *            <code>NO_ACTION</code> Allow the user to sign in.
      *            </p>
      *            </li>
      *            </ul>
@@ -337,19 +337,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -369,19 +369,19 @@ public class AccountTakeoverActionType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has
-     *            configured it, else allow the request.
+     *            <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if
+     *            user has configured it, else allow the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_REQUIRED</code> Throw MFA challenge if user has
+     *            <code>MFA_REQUIRED</code> Present an MFA challenge if user has
      *            configured it, else block the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>NO_ACTION</code> Allow the user sign-in.
+     *            <code>NO_ACTION</code> Allow the user to sign in.
      *            </p>
      *            </li>
      *            </ul>
@@ -403,19 +403,19 @@ public class AccountTakeoverActionType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has configured
-     * it, else allow the request.
+     * <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if user has
+     * configured it, else allow the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_REQUIRED</code> Throw MFA challenge if user has configured it,
-     * else block the request.
+     * <code>MFA_REQUIRED</code> Present an MFA challenge if user has configured
+     * it, else block the request.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>NO_ACTION</code> Allow the user sign-in.
+     * <code>NO_ACTION</code> Allow the user to sign in.
      * </p>
      * </li>
      * </ul>
@@ -438,19 +438,19 @@ public class AccountTakeoverActionType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_IF_CONFIGURED</code> Throw MFA challenge if user has
-     *            configured it, else allow the request.
+     *            <code>MFA_IF_CONFIGURED</code> Present an MFA challenge if
+     *            user has configured it, else allow the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MFA_REQUIRED</code> Throw MFA challenge if user has
+     *            <code>MFA_REQUIRED</code> Present an MFA challenge if user has
      *            configured it, else block the request.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>NO_ACTION</code> Allow the user sign-in.
+     *            <code>NO_ACTION</code> Allow the user to sign in.
      *            </p>
      *            </li>
      *            </ul>

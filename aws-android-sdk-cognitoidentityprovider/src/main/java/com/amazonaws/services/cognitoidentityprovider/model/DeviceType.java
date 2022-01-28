@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class DeviceType implements Serializable {
 
     /**
      * <p>
-     * The date in which the device was last authenticated.
+     * The date when the device was last authenticated.
      * </p>
      */
     private java.util.Date deviceLastAuthenticatedDate;
@@ -285,11 +285,11 @@ public class DeviceType implements Serializable {
 
     /**
      * <p>
-     * The date in which the device was last authenticated.
+     * The date when the device was last authenticated.
      * </p>
      *
      * @return <p>
-     *         The date in which the device was last authenticated.
+     *         The date when the device was last authenticated.
      *         </p>
      */
     public java.util.Date getDeviceLastAuthenticatedDate() {
@@ -298,11 +298,11 @@ public class DeviceType implements Serializable {
 
     /**
      * <p>
-     * The date in which the device was last authenticated.
+     * The date when the device was last authenticated.
      * </p>
      *
      * @param deviceLastAuthenticatedDate <p>
-     *            The date in which the device was last authenticated.
+     *            The date when the device was last authenticated.
      *            </p>
      */
     public void setDeviceLastAuthenticatedDate(java.util.Date deviceLastAuthenticatedDate) {
@@ -311,14 +311,14 @@ public class DeviceType implements Serializable {
 
     /**
      * <p>
-     * The date in which the device was last authenticated.
+     * The date when the device was last authenticated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deviceLastAuthenticatedDate <p>
-     *            The date in which the device was last authenticated.
+     *            The date when the device was last authenticated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

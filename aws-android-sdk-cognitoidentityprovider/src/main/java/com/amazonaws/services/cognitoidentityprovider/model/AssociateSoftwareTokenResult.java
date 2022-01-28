@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class AssociateSoftwareTokenResult implements Serializable {
     /**
      * <p>
-     * A unique generated shared secret code that is used in the TOTP algorithm
-     * to generate a one time code.
+     * A unique generated shared secret code that is used in the time-based
+     * one-time password (TOTP) algorithm to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +32,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -44,8 +44,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the TOTP algorithm
-     * to generate a one time code.
+     * A unique generated shared secret code that is used in the time-based
+     * one-time password (TOTP) algorithm to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,8 +53,9 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @return <p>
-     *         A unique generated shared secret code that is used in the TOTP
-     *         algorithm to generate a one time code.
+     *         A unique generated shared secret code that is used in the
+     *         time-based one-time password (TOTP) algorithm to generate a
+     *         one-time code.
      *         </p>
      */
     public String getSecretCode() {
@@ -63,8 +64,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the TOTP algorithm
-     * to generate a one time code.
+     * A unique generated shared secret code that is used in the time-based
+     * one-time password (TOTP) algorithm to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,8 +73,9 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @param secretCode <p>
-     *            A unique generated shared secret code that is used in the TOTP
-     *            algorithm to generate a one time code.
+     *            A unique generated shared secret code that is used in the
+     *            time-based one-time password (TOTP) algorithm to generate a
+     *            one-time code.
      *            </p>
      */
     public void setSecretCode(String secretCode) {
@@ -82,8 +84,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the TOTP algorithm
-     * to generate a one time code.
+     * A unique generated shared secret code that is used in the time-based
+     * one-time password (TOTP) algorithm to generate a one-time code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,8 +96,9 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @param secretCode <p>
-     *            A unique generated shared secret code that is used in the TOTP
-     *            algorithm to generate a one time code.
+     *            A unique generated shared secret code that is used in the
+     *            time-based one-time password (TOTP) algorithm to generate a
+     *            one-time code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -107,7 +110,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -116,9 +119,9 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session which should be passed both ways in
-     *         challenge-response calls to the service. This allows
-     *         authentication of the user as part of the MFA setup process.
+     *         The session that should be passed both ways in challenge-response
+     *         calls to the service. This allows authentication of the user as
+     *         part of the MFA setup process.
      *         </p>
      */
     public String getSession() {
@@ -127,7 +130,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -136,7 +139,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. This allows
      *            authentication of the user as part of the MFA setup process.
      *            </p>
@@ -147,7 +150,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -159,7 +162,7 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. This allows
      *            authentication of the user as part of the MFA setup process.
      *            </p>

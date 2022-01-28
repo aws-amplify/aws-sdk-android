@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,26 +37,27 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * This action might generate an SMS text message. Starting June 1, 2021, U.S.
- * telecom carriers require that you register an origination phone number before
+ * This action might generate an SMS text message. Starting June 1, 2021, US
+ * telecom carriers require you to register an origination phone number before
  * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
  * in Amazon Cognito, you must register a phone number with <a
  * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
- * Cognito will use the the registered number automatically. Otherwise, Cognito
- * users that must receive SMS messages might be unable to sign up, activate
- * their accounts, or sign in.
+ * Amazon Cognito will use the registered number automatically. Otherwise,
+ * Amazon Cognito users that must receive SMS messages might be unable to sign
+ * up, activate their accounts, or sign in.
  * </p>
  * <p>
  * If you have never used SMS text messages with Amazon Cognito or any other
- * Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
- * <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
- * sandbox mode</a> </i>, you’ll have limitations, such as sending messages to
- * only verified phone numbers. After testing in the sandbox environment, you
- * can move out of the SMS sandbox and into production. For more information,
- * see <a href=
+ * Amazon Web Service, Amazon Simple Notification Service might place your
+ * account in SMS sandbox. In <i> <a
+ * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+ * mode</a> </i>, you will have limitations, such as sending messages only to
+ * verified phone numbers. After testing in the sandbox environment, you can
+ * move out of the SMS sandbox and into production. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
- * > SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
- * Developer Guide</i>.
+ * > SMS message settings for Amazon Cognito User Pools</a> in the <i>Amazon
+ * Cognito Developer Guide</i>.
  * </p>
  * </note>
  * <p>
@@ -78,7 +79,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you wish to reset.
+     * The user name of the user whose password you want to reset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -112,27 +113,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -205,7 +206,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you wish to reset.
+     * The user name of the user whose password you want to reset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -213,7 +214,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user whose password you wish to reset.
+     *         The user name of the user whose password you want to reset.
      *         </p>
      */
     public String getUsername() {
@@ -222,7 +223,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you wish to reset.
+     * The user name of the user whose password you want to reset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -230,7 +231,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you wish to reset.
+     *            The user name of the user whose password you want to reset.
      *            </p>
      */
     public void setUsername(String username) {
@@ -239,7 +240,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The user name of the user whose password you wish to reset.
+     * The user name of the user whose password you want to reset.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -250,7 +251,7 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you wish to reset.
+     *            The user name of the user whose password you want to reset.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -285,27 +286,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -336,28 +337,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <note>
      *         <p>
-     *         Take the following limitations into consideration when you use
-     *         the ClientMetadata parameter:
+     *         When you use the ClientMetadata parameter, remember that Amazon
+     *         Cognito won't do the following:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not store the ClientMetadata value. This data
-     *         is available only to Lambda triggers that are assigned to a user
-     *         pool to support custom workflows. If your user pool configuration
-     *         does not include triggers, the ClientMetadata parameter serves no
-     *         purpose.
+     *         Store the ClientMetadata value. This data is available only to
+     *         Lambda triggers that are assigned to a user pool to support
+     *         custom workflows. If your user pool configuration doesn't include
+     *         triggers, the ClientMetadata parameter serves no purpose.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not validate the ClientMetadata value.
+     *         Validate the ClientMetadata value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not encrypt the the ClientMetadata value, so
-     *         don't use it to provide sensitive information.
+     *         Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *         provide sensitive information.
      *         </p>
      *         </li>
      *         </ul>
@@ -392,27 +392,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -443,28 +443,28 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <note>
      *            <p>
-     *            Take the following limitations into consideration when you use
-     *            the ClientMetadata parameter:
+     *            When you use the ClientMetadata parameter, remember that
+     *            Amazon Cognito won't do the following:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to Lambda triggers that are assigned to
-     *            a user pool to support custom workflows. If your user pool
-     *            configuration does not include triggers, the ClientMetadata
-     *            parameter serves no purpose.
+     *            Store the ClientMetadata value. This data is available only to
+     *            Lambda triggers that are assigned to a user pool to support
+     *            custom workflows. If your user pool configuration doesn't
+     *            include triggers, the ClientMetadata parameter serves no
+     *            purpose.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            Validate the ClientMetadata value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not encrypt the the ClientMetadata value,
-     *            so don't use it to provide sensitive information.
+     *            Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *            provide sensitive information.
      *            </p>
      *            </li>
      *            </ul>
@@ -499,27 +499,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -553,28 +553,28 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <note>
      *            <p>
-     *            Take the following limitations into consideration when you use
-     *            the ClientMetadata parameter:
+     *            When you use the ClientMetadata parameter, remember that
+     *            Amazon Cognito won't do the following:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to Lambda triggers that are assigned to
-     *            a user pool to support custom workflows. If your user pool
-     *            configuration does not include triggers, the ClientMetadata
-     *            parameter serves no purpose.
+     *            Store the ClientMetadata value. This data is available only to
+     *            Lambda triggers that are assigned to a user pool to support
+     *            custom workflows. If your user pool configuration doesn't
+     *            include triggers, the ClientMetadata parameter serves no
+     *            purpose.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            Validate the ClientMetadata value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not encrypt the the ClientMetadata value,
-     *            so don't use it to provide sensitive information.
+     *            Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *            provide sensitive information.
      *            </p>
      *            </li>
      *            </ul>
@@ -613,27 +613,27 @@ public class AdminResetUserPasswordRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>

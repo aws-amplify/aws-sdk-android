@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -50,7 +50,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -159,7 +159,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -170,7 +170,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -184,7 +184,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>OFF</code> MFA will not be used for any users.
+     *         <code>OFF</code> MFA won't be used for any users.
      *         </p>
      *         </li>
      *         <li>
@@ -195,7 +195,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *         <li>
      *         <p>
      *         <code>OPTIONAL</code> MFA will be required only for individual
-     *         users who have an MFA factor enabled.
+     *         users who have an MFA factor activated.
      *         </p>
      *         </li>
      *         </ul>
@@ -212,7 +212,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -223,7 +223,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -237,7 +237,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>OFF</code> MFA will not be used for any users.
+     *            <code>OFF</code> MFA won't be used for any users.
      *            </p>
      *            </li>
      *            <li>
@@ -248,7 +248,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>OPTIONAL</code> MFA will be required only for individual
-     *            users who have an MFA factor enabled.
+     *            users who have an MFA factor activated.
      *            </p>
      *            </li>
      *            </ul>
@@ -265,7 +265,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -276,7 +276,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -293,7 +293,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>OFF</code> MFA will not be used for any users.
+     *            <code>OFF</code> MFA won't be used for any users.
      *            </p>
      *            </li>
      *            <li>
@@ -304,7 +304,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>OPTIONAL</code> MFA will be required only for individual
-     *            users who have an MFA factor enabled.
+     *            users who have an MFA factor activated.
      *            </p>
      *            </li>
      *            </ul>
@@ -324,7 +324,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -335,7 +335,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -349,7 +349,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>OFF</code> MFA will not be used for any users.
+     *            <code>OFF</code> MFA won't be used for any users.
      *            </p>
      *            </li>
      *            <li>
@@ -360,7 +360,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>OPTIONAL</code> MFA will be required only for individual
-     *            users who have an MFA factor enabled.
+     *            users who have an MFA factor activated.
      *            </p>
      *            </li>
      *            </ul>
@@ -377,7 +377,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>OFF</code> MFA will not be used for any users.
+     * <code>OFF</code> MFA won't be used for any users.
      * </p>
      * </li>
      * <li>
@@ -388,7 +388,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <li>
      * <p>
      * <code>OPTIONAL</code> MFA will be required only for individual users who
-     * have an MFA factor enabled.
+     * have an MFA factor activated.
      * </p>
      * </li>
      * </ul>
@@ -405,7 +405,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>OFF</code> MFA will not be used for any users.
+     *            <code>OFF</code> MFA won't be used for any users.
      *            </p>
      *            </li>
      *            <li>
@@ -416,7 +416,7 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>OPTIONAL</code> MFA will be required only for individual
-     *            users who have an MFA factor enabled.
+     *            users who have an MFA factor activated.
      *            </p>
      *            </li>
      *            </ul>

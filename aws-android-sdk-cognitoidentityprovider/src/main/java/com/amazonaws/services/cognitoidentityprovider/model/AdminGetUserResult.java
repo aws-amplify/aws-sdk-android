@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class AdminGetUserResult implements Serializable {
     /**
      * <p>
-     * The user name of the user about whom you are receiving information.
+     * The user name of the user about whom you're receiving information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +58,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * Indicates that the status is enabled.
+     * Indicates that the status is <code>enabled</code>.
      * </p>
      */
     private Boolean enabled;
@@ -90,20 +90,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -118,9 +118,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
-     * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use
-     * UserMFASettingList instead.
+     * information about time-based one-time password (TOTP) software token MFA
+     * configurations. To look up information about either type of MFA
+     * configuration, use UserMFASettingList instead.
      * </p>
      */
     private java.util.List<MFAOptionType> mFAOptions;
@@ -134,7 +134,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The MFA options that are enabled for the user. The possible values in
+     * The MFA options that are activated for the user. The possible values in
      * this list are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
      * </p>
      */
@@ -142,7 +142,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you are receiving information.
+     * The user name of the user about whom you're receiving information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,7 +150,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user about whom you are receiving
+     *         The user name of the user about whom you're receiving
      *         information.
      *         </p>
      */
@@ -160,7 +160,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you are receiving information.
+     * The user name of the user about whom you're receiving information.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,7 +168,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user about whom you are receiving
+     *            The user name of the user about whom you're receiving
      *            information.
      *            </p>
      */
@@ -178,7 +178,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you are receiving information.
+     * The user name of the user about whom you're receiving information.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,7 +189,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user about whom you are receiving
+     *            The user name of the user about whom you're receiving
      *            information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -366,11 +366,11 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * Indicates that the status is enabled.
+     * Indicates that the status is <code>enabled</code>.
      * </p>
      *
      * @return <p>
-     *         Indicates that the status is enabled.
+     *         Indicates that the status is <code>enabled</code>.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -379,11 +379,11 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * Indicates that the status is enabled.
+     * Indicates that the status is <code>enabled</code>.
      * </p>
      *
      * @return <p>
-     *         Indicates that the status is enabled.
+     *         Indicates that the status is <code>enabled</code>.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -392,11 +392,11 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * Indicates that the status is enabled.
+     * Indicates that the status is <code>enabled</code>.
      * </p>
      *
      * @param enabled <p>
-     *            Indicates that the status is enabled.
+     *            Indicates that the status is <code>enabled</code>.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -405,14 +405,14 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * Indicates that the status is enabled.
+     * Indicates that the status is <code>enabled</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            Indicates that the status is enabled.
+     *            Indicates that the status is <code>enabled</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -449,20 +449,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -498,20 +498,20 @@ public class AdminGetUserResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         UNKNOWN - User status is not known.
+     *         UNKNOWN - User status isn't known.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         RESET_REQUIRED - User is confirmed, but the user must request a
-     *         code and reset his or her password before he or she can sign in.
+     *         code and reset their password before they can sign in.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
      *         sign in using a temporary password, but on first sign-in, the
-     *         user must change his or her password to a new value before doing
+     *         user must change their password to a new value before doing
      *         anything else.
      *         </p>
      *         </li>
@@ -549,20 +549,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -598,22 +598,21 @@ public class AdminGetUserResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            UNKNOWN - User status is not known.
+     *            UNKNOWN - User status isn't known.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            RESET_REQUIRED - User is confirmed, but the user must request
-     *            a code and reset his or her password before he or she can sign
-     *            in.
+     *            a code and reset their password before they can sign in.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
      *            sign in using a temporary password, but on first sign-in, the
-     *            user must change his or her password to a new value before
-     *            doing anything else.
+     *            user must change their password to a new value before doing
+     *            anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -650,20 +649,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -702,22 +701,21 @@ public class AdminGetUserResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            UNKNOWN - User status is not known.
+     *            UNKNOWN - User status isn't known.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            RESET_REQUIRED - User is confirmed, but the user must request
-     *            a code and reset his or her password before he or she can sign
-     *            in.
+     *            a code and reset their password before they can sign in.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
      *            sign in using a temporary password, but on first sign-in, the
-     *            user must change his or her password to a new value before
-     *            doing anything else.
+     *            user must change their password to a new value before doing
+     *            anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -757,20 +755,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -806,22 +804,21 @@ public class AdminGetUserResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            UNKNOWN - User status is not known.
+     *            UNKNOWN - User status isn't known.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            RESET_REQUIRED - User is confirmed, but the user must request
-     *            a code and reset his or her password before he or she can sign
-     *            in.
+     *            a code and reset their password before they can sign in.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
      *            sign in using a temporary password, but on first sign-in, the
-     *            user must change his or her password to a new value before
-     *            doing anything else.
+     *            user must change their password to a new value before doing
+     *            anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -858,20 +855,20 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * UNKNOWN - User status is not known.
+     * UNKNOWN - User status isn't known.
      * </p>
      * </li>
      * <li>
      * <p>
      * RESET_REQUIRED - User is confirmed, but the user must request a code and
-     * reset his or her password before he or she can sign in.
+     * reset their password before they can sign in.
      * </p>
      * </li>
      * <li>
      * <p>
      * FORCE_CHANGE_PASSWORD - The user is confirmed and the user can sign in
      * using a temporary password, but on first sign-in, the user must change
-     * his or her password to a new value before doing anything else.
+     * their password to a new value before doing anything else.
      * </p>
      * </li>
      * </ul>
@@ -910,22 +907,21 @@ public class AdminGetUserResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            UNKNOWN - User status is not known.
+     *            UNKNOWN - User status isn't known.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            RESET_REQUIRED - User is confirmed, but the user must request
-     *            a code and reset his or her password before he or she can sign
-     *            in.
+     *            a code and reset their password before they can sign in.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            FORCE_CHANGE_PASSWORD - The user is confirmed and the user can
      *            sign in using a temporary password, but on first sign-in, the
-     *            user must change his or her password to a new value before
-     *            doing anything else.
+     *            user must change their password to a new value before doing
+     *            anything else.
      *            </p>
      *            </li>
      *            </ul>
@@ -942,17 +938,18 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
-     * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use
-     * UserMFASettingList instead.
+     * information about time-based one-time password (TOTP) software token MFA
+     * configurations. To look up information about either type of MFA
+     * configuration, use UserMFASettingList instead.
      * </p>
      *
      * @return <p>
      *         <i>This response parameter is no longer supported.</i> It
      *         provides information only about SMS MFA configurations. It
-     *         doesn't provide information about TOTP software token MFA
-     *         configurations. To look up information about either type of MFA
-     *         configuration, use UserMFASettingList instead.
+     *         doesn't provide information about time-based one-time password
+     *         (TOTP) software token MFA configurations. To look up information
+     *         about either type of MFA configuration, use UserMFASettingList
+     *         instead.
      *         </p>
      */
     public java.util.List<MFAOptionType> getMFAOptions() {
@@ -963,17 +960,18 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
-     * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use
-     * UserMFASettingList instead.
+     * information about time-based one-time password (TOTP) software token MFA
+     * configurations. To look up information about either type of MFA
+     * configuration, use UserMFASettingList instead.
      * </p>
      *
      * @param mFAOptions <p>
      *            <i>This response parameter is no longer supported.</i> It
      *            provides information only about SMS MFA configurations. It
-     *            doesn't provide information about TOTP software token MFA
-     *            configurations. To look up information about either type of
-     *            MFA configuration, use UserMFASettingList instead.
+     *            doesn't provide information about time-based one-time password
+     *            (TOTP) software token MFA configurations. To look up
+     *            information about either type of MFA configuration, use
+     *            UserMFASettingList instead.
      *            </p>
      */
     public void setMFAOptions(java.util.Collection<MFAOptionType> mFAOptions) {
@@ -989,9 +987,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
-     * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use
-     * UserMFASettingList instead.
+     * information about time-based one-time password (TOTP) software token MFA
+     * configurations. To look up information about either type of MFA
+     * configuration, use UserMFASettingList instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1000,9 +998,10 @@ public class AdminGetUserResult implements Serializable {
      * @param mFAOptions <p>
      *            <i>This response parameter is no longer supported.</i> It
      *            provides information only about SMS MFA configurations. It
-     *            doesn't provide information about TOTP software token MFA
-     *            configurations. To look up information about either type of
-     *            MFA configuration, use UserMFASettingList instead.
+     *            doesn't provide information about time-based one-time password
+     *            (TOTP) software token MFA configurations. To look up
+     *            information about either type of MFA configuration, use
+     *            UserMFASettingList instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1021,9 +1020,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
-     * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use
-     * UserMFASettingList instead.
+     * information about time-based one-time password (TOTP) software token MFA
+     * configurations. To look up information about either type of MFA
+     * configuration, use UserMFASettingList instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1032,9 +1031,10 @@ public class AdminGetUserResult implements Serializable {
      * @param mFAOptions <p>
      *            <i>This response parameter is no longer supported.</i> It
      *            provides information only about SMS MFA configurations. It
-     *            doesn't provide information about TOTP software token MFA
-     *            configurations. To look up information about either type of
-     *            MFA configuration, use UserMFASettingList instead.
+     *            doesn't provide information about time-based one-time password
+     *            (TOTP) software token MFA configurations. To look up
+     *            information about either type of MFA configuration, use
+     *            UserMFASettingList instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1091,12 +1091,12 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The MFA options that are enabled for the user. The possible values in
+     * The MFA options that are activated for the user. The possible values in
      * this list are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
      * </p>
      *
      * @return <p>
-     *         The MFA options that are enabled for the user. The possible
+     *         The MFA options that are activated for the user. The possible
      *         values in this list are <code>SMS_MFA</code> and
      *         <code>SOFTWARE_TOKEN_MFA</code>.
      *         </p>
@@ -1107,12 +1107,12 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The MFA options that are enabled for the user. The possible values in
+     * The MFA options that are activated for the user. The possible values in
      * this list are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
      * </p>
      *
      * @param userMFASettingList <p>
-     *            The MFA options that are enabled for the user. The possible
+     *            The MFA options that are activated for the user. The possible
      *            values in this list are <code>SMS_MFA</code> and
      *            <code>SOFTWARE_TOKEN_MFA</code>.
      *            </p>
@@ -1128,7 +1128,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The MFA options that are enabled for the user. The possible values in
+     * The MFA options that are activated for the user. The possible values in
      * this list are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
      * </p>
      * <p>
@@ -1136,7 +1136,7 @@ public class AdminGetUserResult implements Serializable {
      * together.
      *
      * @param userMFASettingList <p>
-     *            The MFA options that are enabled for the user. The possible
+     *            The MFA options that are activated for the user. The possible
      *            values in this list are <code>SMS_MFA</code> and
      *            <code>SOFTWARE_TOKEN_MFA</code>.
      *            </p>
@@ -1155,7 +1155,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The MFA options that are enabled for the user. The possible values in
+     * The MFA options that are activated for the user. The possible values in
      * this list are <code>SMS_MFA</code> and <code>SOFTWARE_TOKEN_MFA</code>.
      * </p>
      * <p>
@@ -1163,7 +1163,7 @@ public class AdminGetUserResult implements Serializable {
      * together.
      *
      * @param userMFASettingList <p>
-     *            The MFA options that are enabled for the user. The possible
+     *            The MFA options that are activated for the user. The possible
      *            values in this list are <code>SMS_MFA</code> and
      *            <code>SOFTWARE_TOKEN_MFA</code>.
      *            </p>

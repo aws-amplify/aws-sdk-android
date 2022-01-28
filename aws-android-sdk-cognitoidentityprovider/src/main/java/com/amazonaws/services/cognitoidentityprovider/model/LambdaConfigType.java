@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -169,11 +169,10 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name of Key Management Service <a
-     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
-     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
-     * temporary passwords sent to <code>CustomEmailSender</code> and
-     * <code>CustomSMSSender</code>.
+     * The Amazon Resource Name (ARN) of an <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">KMS key</a>.
+     * Amazon Cognito uses the key to encrypt codes and temporary passwords sent
+     * to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -907,11 +906,10 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name of Key Management Service <a
-     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
-     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
-     * temporary passwords sent to <code>CustomEmailSender</code> and
-     * <code>CustomSMSSender</code>.
+     * The Amazon Resource Name (ARN) of an <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">KMS key</a>.
+     * Amazon Cognito uses the key to encrypt codes and temporary passwords sent
+     * to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -921,11 +919,11 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name of Key Management Service <a
-     *         href="/kms/latest/developerguide/concepts.html#master_keys"
-     *         >Customer master keys</a> . Amazon Cognito uses the key to
-     *         encrypt codes and temporary passwords sent to
-     *         <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
+     *         The Amazon Resource Name (ARN) of an <a
+     *         href="/kms/latest/developerguide/concepts.html#master_keys">KMS
+     *         key</a>. Amazon Cognito uses the key to encrypt codes and
+     *         temporary passwords sent to <code>CustomEmailSender</code> and
+     *         <code>CustomSMSSender</code>.
      *         </p>
      */
     public String getKMSKeyID() {
@@ -934,11 +932,10 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name of Key Management Service <a
-     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
-     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
-     * temporary passwords sent to <code>CustomEmailSender</code> and
-     * <code>CustomSMSSender</code>.
+     * The Amazon Resource Name (ARN) of an <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">KMS key</a>.
+     * Amazon Cognito uses the key to encrypt codes and temporary passwords sent
+     * to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -948,11 +945,10 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param kMSKeyID <p>
-     *            The Amazon Resource Name of Key Management Service <a
+     *            The Amazon Resource Name (ARN) of an <a
      *            href="/kms/latest/developerguide/concepts.html#master_keys"
-     *            >Customer master keys</a> . Amazon Cognito uses the key to
-     *            encrypt codes and temporary passwords sent to
-     *            <code>CustomEmailSender</code> and
+     *            >KMS key</a>. Amazon Cognito uses the key to encrypt codes and
+     *            temporary passwords sent to <code>CustomEmailSender</code> and
      *            <code>CustomSMSSender</code>.
      *            </p>
      */
@@ -962,11 +958,10 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name of Key Management Service <a
-     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
-     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
-     * temporary passwords sent to <code>CustomEmailSender</code> and
-     * <code>CustomSMSSender</code>.
+     * The Amazon Resource Name (ARN) of an <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">KMS key</a>.
+     * Amazon Cognito uses the key to encrypt codes and temporary passwords sent
+     * to <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -979,11 +974,10 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param kMSKeyID <p>
-     *            The Amazon Resource Name of Key Management Service <a
+     *            The Amazon Resource Name (ARN) of an <a
      *            href="/kms/latest/developerguide/concepts.html#master_keys"
-     *            >Customer master keys</a> . Amazon Cognito uses the key to
-     *            encrypt codes and temporary passwords sent to
-     *            <code>CustomEmailSender</code> and
+     *            >KMS key</a>. Amazon Cognito uses the key to encrypt codes and
+     *            temporary passwords sent to <code>CustomEmailSender</code> and
      *            <code>CustomSMSSender</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

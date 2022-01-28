@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The role ARN for the Amazon CloudWatch Logging role for the user import
-     * job.
+     * The role ARN for the Amazon CloudWatch Logs Logging role for the user
+     * import job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,8 +184,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The role ARN for the Amazon CloudWatch Logging role for the user import
-     * job.
+     * The role ARN for the Amazon CloudWatch Logs Logging role for the user
+     * import job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,8 +195,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The role ARN for the Amazon CloudWatch Logging role for the user
-     *         import job.
+     *         The role ARN for the Amazon CloudWatch Logs Logging role for the
+     *         user import job.
      *         </p>
      */
     public String getCloudWatchLogsRoleArn() {
@@ -205,8 +205,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The role ARN for the Amazon CloudWatch Logging role for the user import
-     * job.
+     * The role ARN for the Amazon CloudWatch Logs Logging role for the user
+     * import job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,8 +216,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param cloudWatchLogsRoleArn <p>
-     *            The role ARN for the Amazon CloudWatch Logging role for the
-     *            user import job.
+     *            The role ARN for the Amazon CloudWatch Logs Logging role for
+     *            the user import job.
      *            </p>
      */
     public void setCloudWatchLogsRoleArn(String cloudWatchLogsRoleArn) {
@@ -226,8 +226,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The role ARN for the Amazon CloudWatch Logging role for the user import
-     * job.
+     * The role ARN for the Amazon CloudWatch Logs Logging role for the user
+     * import job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,8 +240,8 @@ public class CreateUserImportJobRequest extends AmazonWebServiceRequest implemen
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param cloudWatchLogsRoleArn <p>
-     *            The role ARN for the Amazon CloudWatch Logging role for the
-     *            user import job.
+     *            The role ARN for the Amazon CloudWatch Logs Logging role for
+     *            the user import job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

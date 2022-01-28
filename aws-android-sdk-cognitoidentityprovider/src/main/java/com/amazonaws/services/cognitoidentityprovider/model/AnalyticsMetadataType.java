@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import java.io.Serializable;
  * </p>
  * <note>
  * <p>
- * Cognito User Pools only supports sending events to Amazon Pinpoint projects
- * in the US East (N. Virginia) us-east-1 Region, regardless of the region in
- * which the user pool resides.
+ * Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+ * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
+ * Region in which the user pool resides.
  * </p>
  * </note>
  */

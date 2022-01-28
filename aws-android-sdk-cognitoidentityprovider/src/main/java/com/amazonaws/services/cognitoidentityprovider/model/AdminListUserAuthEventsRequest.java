@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists a history of user activity and any risks detected as part of Amazon
- * Cognito advanced security.
+ * A history of user activity and any risks detected as part of Amazon Cognito
+ * advanced security.
  * </p>
  */
 public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest implements Serializable {

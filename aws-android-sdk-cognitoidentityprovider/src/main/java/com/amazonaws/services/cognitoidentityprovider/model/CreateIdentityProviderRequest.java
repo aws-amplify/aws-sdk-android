@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -147,7 +147,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * For OIDC providers:
+     * For OpenID Connect (OIDC) providers:
      * </p>
      * <ul>
      * <li>
@@ -199,6 +199,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes <i>a read-only property that is set
+     * automatically</i>
+     * </p>
+     * </li>
      * </ul>
      * </li>
      * <li>
@@ -213,7 +219,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignout <i>optional</i>
+     * IDPSignout (optional)
      * </p>
      * </li>
      * </ul>
@@ -542,7 +548,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * For OIDC providers:
+     * For OpenID Connect (OIDC) providers:
      * </p>
      * <ul>
      * <li>
@@ -594,6 +600,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes <i>a read-only property that is set
+     * automatically</i>
+     * </p>
+     * </li>
      * </ul>
      * </li>
      * <li>
@@ -608,7 +620,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignout <i>optional</i>
+     * IDPSignout (optional)
      * </p>
      * </li>
      * </ul>
@@ -703,7 +715,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         </li>
      *         <li>
      *         <p>
-     *         For OIDC providers:
+     *         For OpenID Connect (OIDC) providers:
      *         </p>
      *         <ul>
      *         <li>
@@ -755,6 +767,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         oidc_issuer key</i>
      *         </p>
      *         </li>
+     *         <li>
+     *         <p>
+     *         attributes_url_add_attributes <i>a read-only property that is set
+     *         automatically</i>
+     *         </p>
+     *         </li>
      *         </ul>
      *         </li>
      *         <li>
@@ -769,7 +787,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         </li>
      *         <li>
      *         <p>
-     *         IDPSignout <i>optional</i>
+     *         IDPSignout (optional)
      *         </p>
      *         </li>
      *         </ul>
@@ -869,7 +887,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * For OIDC providers:
+     * For OpenID Connect (OIDC) providers:
      * </p>
      * <ul>
      * <li>
@@ -921,6 +939,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes <i>a read-only property that is set
+     * automatically</i>
+     * </p>
+     * </li>
      * </ul>
      * </li>
      * <li>
@@ -935,7 +959,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignout <i>optional</i>
+     * IDPSignout (optional)
      * </p>
      * </li>
      * </ul>
@@ -1030,7 +1054,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            For OIDC providers:
+     *            For OpenID Connect (OIDC) providers:
      *            </p>
      *            <ul>
      *            <li>
@@ -1082,6 +1106,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            oidc_issuer key</i>
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_url_add_attributes <i>a read-only property that is
+     *            set automatically</i>
+     *            </p>
+     *            </li>
      *            </ul>
      *            </li>
      *            <li>
@@ -1096,7 +1126,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignout <i>optional</i>
+     *            IDPSignout (optional)
      *            </p>
      *            </li>
      *            </ul>
@@ -1196,7 +1226,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * For OIDC providers:
+     * For OpenID Connect (OIDC) providers:
      * </p>
      * <ul>
      * <li>
@@ -1248,6 +1278,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes <i>a read-only property that is set
+     * automatically</i>
+     * </p>
+     * </li>
      * </ul>
      * </li>
      * <li>
@@ -1262,7 +1298,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignout <i>optional</i>
+     * IDPSignout (optional)
      * </p>
      * </li>
      * </ul>
@@ -1360,7 +1396,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            For OIDC providers:
+     *            For OpenID Connect (OIDC) providers:
      *            </p>
      *            <ul>
      *            <li>
@@ -1412,6 +1448,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            oidc_issuer key</i>
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            attributes_url_add_attributes <i>a read-only property that is
+     *            set automatically</i>
+     *            </p>
+     *            </li>
      *            </ul>
      *            </li>
      *            <li>
@@ -1426,7 +1468,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignout <i>optional</i>
+     *            IDPSignout (optional)
      *            </p>
      *            </li>
      *            </ul>
@@ -1530,7 +1572,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * For OIDC providers:
+     * For OpenID Connect (OIDC) providers:
      * </p>
      * <ul>
      * <li>
@@ -1582,6 +1624,12 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes <i>a read-only property that is set
+     * automatically</i>
+     * </p>
+     * </li>
      * </ul>
      * </li>
      * <li>
@@ -1596,7 +1644,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </li>
      * <li>
      * <p>
-     * IDPSignout <i>optional</i>
+     * IDPSignout (optional)
      * </p>
      * </li>
      * </ul>

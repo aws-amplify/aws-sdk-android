@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception is thrown when the trust relationship is invalid for the role
- * provided for SMS configuration. This can happen if you do not trust
+ * This exception is thrown when the trust relationship is not valid for the
+ * role provided for SMS configuration. This can happen if you don't trust
  * <code>cognito-idp.amazonaws.com</code> or the external ID provided in the
  * role does not match what is provided in the SMS configuration for the user
  * pool.

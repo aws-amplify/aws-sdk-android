@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <note>
      * <p>
-     * We recommend that you use <a href=
+     * You should use <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      * >WriteAttributes</a> in the user pool client to control how attributes
      * can be mutated for new use cases instead of using
@@ -56,10 +56,10 @@ public class SchemaAttributeType implements Serializable {
      * </note>
      * <p>
      * Specifies whether the attribute type is developer only. This attribute
-     * can only be modified by an administrator. Users will not be able to
-     * modify this attribute using their access token. For example,
+     * can only be modified by an administrator. Users won't be able to modify
+     * this attribute using their access token. For example,
      * <code>DeveloperOnlyAttribute</code> can be modified using
-     * AdminUpdateUserAttributes but cannot be updated using
+     * AdminUpdateUserAttributes but can't be updated using
      * UpdateUserAttributes.
      * </p>
      */
@@ -70,7 +70,7 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that's mapped to an identity provider
+     * For any user pool attribute that is mapped to an identity provider
      * attribute, you must set this parameter to <code>true</code>. Amazon
      * Cognito updates mapped attributes when users sign in to your application
      * through an identity provider. If an attribute is immutable, Amazon
@@ -85,7 +85,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <p>
      * Specifies whether a user pool attribute is required. If the attribute is
-     * required and the user does not provide a value, registration or sign-in
+     * required and the user doesn't provide a value, registration or sign-in
      * will fail.
      * </p>
      */
@@ -262,7 +262,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <note>
      * <p>
-     * We recommend that you use <a href=
+     * You should use <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      * >WriteAttributes</a> in the user pool client to control how attributes
      * can be mutated for new use cases instead of using
@@ -271,16 +271,16 @@ public class SchemaAttributeType implements Serializable {
      * </note>
      * <p>
      * Specifies whether the attribute type is developer only. This attribute
-     * can only be modified by an administrator. Users will not be able to
-     * modify this attribute using their access token. For example,
+     * can only be modified by an administrator. Users won't be able to modify
+     * this attribute using their access token. For example,
      * <code>DeveloperOnlyAttribute</code> can be modified using
-     * AdminUpdateUserAttributes but cannot be updated using
+     * AdminUpdateUserAttributes but can't be updated using
      * UpdateUserAttributes.
      * </p>
      *
      * @return <note>
      *         <p>
-     *         We recommend that you use <a href=
+     *         You should use <a href=
      *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      *         >WriteAttributes</a> in the user pool client to control how
      *         attributes can be mutated for new use cases instead of using
@@ -289,10 +289,10 @@ public class SchemaAttributeType implements Serializable {
      *         </note>
      *         <p>
      *         Specifies whether the attribute type is developer only. This
-     *         attribute can only be modified by an administrator. Users will
-     *         not be able to modify this attribute using their access token.
-     *         For example, <code>DeveloperOnlyAttribute</code> can be modified
-     *         using AdminUpdateUserAttributes but cannot be updated using
+     *         attribute can only be modified by an administrator. Users won't
+     *         be able to modify this attribute using their access token. For
+     *         example, <code>DeveloperOnlyAttribute</code> can be modified
+     *         using AdminUpdateUserAttributes but can't be updated using
      *         UpdateUserAttributes.
      *         </p>
      */
@@ -303,7 +303,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <note>
      * <p>
-     * We recommend that you use <a href=
+     * You should use <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      * >WriteAttributes</a> in the user pool client to control how attributes
      * can be mutated for new use cases instead of using
@@ -312,16 +312,16 @@ public class SchemaAttributeType implements Serializable {
      * </note>
      * <p>
      * Specifies whether the attribute type is developer only. This attribute
-     * can only be modified by an administrator. Users will not be able to
-     * modify this attribute using their access token. For example,
+     * can only be modified by an administrator. Users won't be able to modify
+     * this attribute using their access token. For example,
      * <code>DeveloperOnlyAttribute</code> can be modified using
-     * AdminUpdateUserAttributes but cannot be updated using
+     * AdminUpdateUserAttributes but can't be updated using
      * UpdateUserAttributes.
      * </p>
      *
      * @return <note>
      *         <p>
-     *         We recommend that you use <a href=
+     *         You should use <a href=
      *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      *         >WriteAttributes</a> in the user pool client to control how
      *         attributes can be mutated for new use cases instead of using
@@ -330,10 +330,10 @@ public class SchemaAttributeType implements Serializable {
      *         </note>
      *         <p>
      *         Specifies whether the attribute type is developer only. This
-     *         attribute can only be modified by an administrator. Users will
-     *         not be able to modify this attribute using their access token.
-     *         For example, <code>DeveloperOnlyAttribute</code> can be modified
-     *         using AdminUpdateUserAttributes but cannot be updated using
+     *         attribute can only be modified by an administrator. Users won't
+     *         be able to modify this attribute using their access token. For
+     *         example, <code>DeveloperOnlyAttribute</code> can be modified
+     *         using AdminUpdateUserAttributes but can't be updated using
      *         UpdateUserAttributes.
      *         </p>
      */
@@ -344,7 +344,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <note>
      * <p>
-     * We recommend that you use <a href=
+     * You should use <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      * >WriteAttributes</a> in the user pool client to control how attributes
      * can be mutated for new use cases instead of using
@@ -353,16 +353,16 @@ public class SchemaAttributeType implements Serializable {
      * </note>
      * <p>
      * Specifies whether the attribute type is developer only. This attribute
-     * can only be modified by an administrator. Users will not be able to
-     * modify this attribute using their access token. For example,
+     * can only be modified by an administrator. Users won't be able to modify
+     * this attribute using their access token. For example,
      * <code>DeveloperOnlyAttribute</code> can be modified using
-     * AdminUpdateUserAttributes but cannot be updated using
+     * AdminUpdateUserAttributes but can't be updated using
      * UpdateUserAttributes.
      * </p>
      *
      * @param developerOnlyAttribute <note>
      *            <p>
-     *            We recommend that you use <a href=
+     *            You should use <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      *            >WriteAttributes</a> in the user pool client to control how
      *            attributes can be mutated for new use cases instead of using
@@ -371,10 +371,10 @@ public class SchemaAttributeType implements Serializable {
      *            </note>
      *            <p>
      *            Specifies whether the attribute type is developer only. This
-     *            attribute can only be modified by an administrator. Users will
-     *            not be able to modify this attribute using their access token.
-     *            For example, <code>DeveloperOnlyAttribute</code> can be
-     *            modified using AdminUpdateUserAttributes but cannot be updated
+     *            attribute can only be modified by an administrator. Users
+     *            won't be able to modify this attribute using their access
+     *            token. For example, <code>DeveloperOnlyAttribute</code> can be
+     *            modified using AdminUpdateUserAttributes but can't be updated
      *            using UpdateUserAttributes.
      *            </p>
      */
@@ -385,7 +385,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <note>
      * <p>
-     * We recommend that you use <a href=
+     * You should use <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      * >WriteAttributes</a> in the user pool client to control how attributes
      * can be mutated for new use cases instead of using
@@ -394,10 +394,10 @@ public class SchemaAttributeType implements Serializable {
      * </note>
      * <p>
      * Specifies whether the attribute type is developer only. This attribute
-     * can only be modified by an administrator. Users will not be able to
-     * modify this attribute using their access token. For example,
+     * can only be modified by an administrator. Users won't be able to modify
+     * this attribute using their access token. For example,
      * <code>DeveloperOnlyAttribute</code> can be modified using
-     * AdminUpdateUserAttributes but cannot be updated using
+     * AdminUpdateUserAttributes but can't be updated using
      * UpdateUserAttributes.
      * </p>
      * <p>
@@ -406,7 +406,7 @@ public class SchemaAttributeType implements Serializable {
      *
      * @param developerOnlyAttribute <note>
      *            <p>
-     *            We recommend that you use <a href=
+     *            You should use <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserPoolClientType.html#CognitoUserPools-Type-UserPoolClientType-WriteAttributes"
      *            >WriteAttributes</a> in the user pool client to control how
      *            attributes can be mutated for new use cases instead of using
@@ -415,10 +415,10 @@ public class SchemaAttributeType implements Serializable {
      *            </note>
      *            <p>
      *            Specifies whether the attribute type is developer only. This
-     *            attribute can only be modified by an administrator. Users will
-     *            not be able to modify this attribute using their access token.
-     *            For example, <code>DeveloperOnlyAttribute</code> can be
-     *            modified using AdminUpdateUserAttributes but cannot be updated
+     *            attribute can only be modified by an administrator. Users
+     *            won't be able to modify this attribute using their access
+     *            token. For example, <code>DeveloperOnlyAttribute</code> can be
+     *            modified using AdminUpdateUserAttributes but can't be updated
      *            using UpdateUserAttributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -434,7 +434,7 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that's mapped to an identity provider
+     * For any user pool attribute that is mapped to an identity provider
      * attribute, you must set this parameter to <code>true</code>. Amazon
      * Cognito updates mapped attributes when users sign in to your application
      * through an identity provider. If an attribute is immutable, Amazon
@@ -448,12 +448,13 @@ public class SchemaAttributeType implements Serializable {
      *         Specifies whether the value of the attribute can be changed.
      *         </p>
      *         <p>
-     *         For any user pool attribute that's mapped to an identity provider
-     *         attribute, you must set this parameter to <code>true</code>.
-     *         Amazon Cognito updates mapped attributes when users sign in to
-     *         your application through an identity provider. If an attribute is
-     *         immutable, Amazon Cognito throws an error when it attempts to
-     *         update the attribute. For more information, see <a href=
+     *         For any user pool attribute that is mapped to an identity
+     *         provider attribute, you must set this parameter to
+     *         <code>true</code>. Amazon Cognito updates mapped attributes when
+     *         users sign in to your application through an identity provider.
+     *         If an attribute is immutable, Amazon Cognito throws an error when
+     *         it attempts to update the attribute. For more information, see <a
+     *         href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
@@ -468,7 +469,7 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that's mapped to an identity provider
+     * For any user pool attribute that is mapped to an identity provider
      * attribute, you must set this parameter to <code>true</code>. Amazon
      * Cognito updates mapped attributes when users sign in to your application
      * through an identity provider. If an attribute is immutable, Amazon
@@ -482,12 +483,13 @@ public class SchemaAttributeType implements Serializable {
      *         Specifies whether the value of the attribute can be changed.
      *         </p>
      *         <p>
-     *         For any user pool attribute that's mapped to an identity provider
-     *         attribute, you must set this parameter to <code>true</code>.
-     *         Amazon Cognito updates mapped attributes when users sign in to
-     *         your application through an identity provider. If an attribute is
-     *         immutable, Amazon Cognito throws an error when it attempts to
-     *         update the attribute. For more information, see <a href=
+     *         For any user pool attribute that is mapped to an identity
+     *         provider attribute, you must set this parameter to
+     *         <code>true</code>. Amazon Cognito updates mapped attributes when
+     *         users sign in to your application through an identity provider.
+     *         If an attribute is immutable, Amazon Cognito throws an error when
+     *         it attempts to update the attribute. For more information, see <a
+     *         href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
@@ -502,7 +504,7 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that's mapped to an identity provider
+     * For any user pool attribute that is mapped to an identity provider
      * attribute, you must set this parameter to <code>true</code>. Amazon
      * Cognito updates mapped attributes when users sign in to your application
      * through an identity provider. If an attribute is immutable, Amazon
@@ -516,7 +518,7 @@ public class SchemaAttributeType implements Serializable {
      *            Specifies whether the value of the attribute can be changed.
      *            </p>
      *            <p>
-     *            For any user pool attribute that's mapped to an identity
+     *            For any user pool attribute that is mapped to an identity
      *            provider attribute, you must set this parameter to
      *            <code>true</code>. Amazon Cognito updates mapped attributes
      *            when users sign in to your application through an identity
@@ -537,7 +539,7 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that's mapped to an identity provider
+     * For any user pool attribute that is mapped to an identity provider
      * attribute, you must set this parameter to <code>true</code>. Amazon
      * Cognito updates mapped attributes when users sign in to your application
      * through an identity provider. If an attribute is immutable, Amazon
@@ -554,7 +556,7 @@ public class SchemaAttributeType implements Serializable {
      *            Specifies whether the value of the attribute can be changed.
      *            </p>
      *            <p>
-     *            For any user pool attribute that's mapped to an identity
+     *            For any user pool attribute that is mapped to an identity
      *            provider attribute, you must set this parameter to
      *            <code>true</code>. Amazon Cognito updates mapped attributes
      *            when users sign in to your application through an identity
@@ -576,13 +578,13 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <p>
      * Specifies whether a user pool attribute is required. If the attribute is
-     * required and the user does not provide a value, registration or sign-in
+     * required and the user doesn't provide a value, registration or sign-in
      * will fail.
      * </p>
      *
      * @return <p>
      *         Specifies whether a user pool attribute is required. If the
-     *         attribute is required and the user does not provide a value,
+     *         attribute is required and the user doesn't provide a value,
      *         registration or sign-in will fail.
      *         </p>
      */
@@ -593,13 +595,13 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <p>
      * Specifies whether a user pool attribute is required. If the attribute is
-     * required and the user does not provide a value, registration or sign-in
+     * required and the user doesn't provide a value, registration or sign-in
      * will fail.
      * </p>
      *
      * @return <p>
      *         Specifies whether a user pool attribute is required. If the
-     *         attribute is required and the user does not provide a value,
+     *         attribute is required and the user doesn't provide a value,
      *         registration or sign-in will fail.
      *         </p>
      */
@@ -610,13 +612,13 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <p>
      * Specifies whether a user pool attribute is required. If the attribute is
-     * required and the user does not provide a value, registration or sign-in
+     * required and the user doesn't provide a value, registration or sign-in
      * will fail.
      * </p>
      *
      * @param required <p>
      *            Specifies whether a user pool attribute is required. If the
-     *            attribute is required and the user does not provide a value,
+     *            attribute is required and the user doesn't provide a value,
      *            registration or sign-in will fail.
      *            </p>
      */
@@ -627,7 +629,7 @@ public class SchemaAttributeType implements Serializable {
     /**
      * <p>
      * Specifies whether a user pool attribute is required. If the attribute is
-     * required and the user does not provide a value, registration or sign-in
+     * required and the user doesn't provide a value, registration or sign-in
      * will fail.
      * </p>
      * <p>
@@ -636,7 +638,7 @@ public class SchemaAttributeType implements Serializable {
      *
      * @param required <p>
      *            Specifies whether a user pool attribute is required. If the
-     *            attribute is required and the user does not provide a value,
+     *            attribute is required and the user doesn't provide a value,
      *            registration or sign-in will fail.
      *            </p>
      * @return A reference to this updated object so that method calls can be

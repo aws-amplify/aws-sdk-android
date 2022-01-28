@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Signs out users from all devices. It also invalidates all refresh tokens
- * issued to a user. The user's current access and Id tokens remain valid until
- * their expiry. Access and Id tokens expire one hour after they are issued.
+ * issued to a user. The user's current access and ID tokens remain valid until
+ * their expiry. Access and Id tokens expire one hour after they're issued.
  * </p>
  */
 public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Serializable {

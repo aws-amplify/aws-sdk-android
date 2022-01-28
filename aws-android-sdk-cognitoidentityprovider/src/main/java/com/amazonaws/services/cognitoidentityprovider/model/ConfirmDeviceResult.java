@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,21 +25,19 @@ import java.io.Serializable;
 public class ConfirmDeviceResult implements Serializable {
     /**
      * <p>
-     * Indicates whether the user confirmation is necessary to confirm the
-     * device response.
+     * Indicates whether the user confirmation must confirm the device response.
      * </p>
      */
     private Boolean userConfirmationNecessary;
 
     /**
      * <p>
-     * Indicates whether the user confirmation is necessary to confirm the
-     * device response.
+     * Indicates whether the user confirmation must confirm the device response.
      * </p>
      *
      * @return <p>
-     *         Indicates whether the user confirmation is necessary to confirm
-     *         the device response.
+     *         Indicates whether the user confirmation must confirm the device
+     *         response.
      *         </p>
      */
     public Boolean isUserConfirmationNecessary() {
@@ -48,13 +46,12 @@ public class ConfirmDeviceResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the user confirmation is necessary to confirm the
-     * device response.
+     * Indicates whether the user confirmation must confirm the device response.
      * </p>
      *
      * @return <p>
-     *         Indicates whether the user confirmation is necessary to confirm
-     *         the device response.
+     *         Indicates whether the user confirmation must confirm the device
+     *         response.
      *         </p>
      */
     public Boolean getUserConfirmationNecessary() {
@@ -63,13 +60,12 @@ public class ConfirmDeviceResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the user confirmation is necessary to confirm the
-     * device response.
+     * Indicates whether the user confirmation must confirm the device response.
      * </p>
      *
      * @param userConfirmationNecessary <p>
-     *            Indicates whether the user confirmation is necessary to
-     *            confirm the device response.
+     *            Indicates whether the user confirmation must confirm the
+     *            device response.
      *            </p>
      */
     public void setUserConfirmationNecessary(Boolean userConfirmationNecessary) {
@@ -78,16 +74,15 @@ public class ConfirmDeviceResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the user confirmation is necessary to confirm the
-     * device response.
+     * Indicates whether the user confirmation must confirm the device response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userConfirmationNecessary <p>
-     *            Indicates whether the user confirmation is necessary to
-     *            confirm the device response.
+     *            Indicates whether the user confirmation must confirm the
+     *            device response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

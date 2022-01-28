@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@ public class ContextDataType implements Serializable {
 
     /**
      * <p>
-     * Encoded data containing device fingerprinting details, collected using
-     * the Amazon Cognito context data collection library.
+     * Encoded data containing device fingerprinting details collected using the
+     * Amazon Cognito context data collection library.
      * </p>
      */
     private String encodedData;
@@ -271,12 +271,12 @@ public class ContextDataType implements Serializable {
 
     /**
      * <p>
-     * Encoded data containing device fingerprinting details, collected using
-     * the Amazon Cognito context data collection library.
+     * Encoded data containing device fingerprinting details collected using the
+     * Amazon Cognito context data collection library.
      * </p>
      *
      * @return <p>
-     *         Encoded data containing device fingerprinting details, collected
+     *         Encoded data containing device fingerprinting details collected
      *         using the Amazon Cognito context data collection library.
      *         </p>
      */
@@ -286,12 +286,12 @@ public class ContextDataType implements Serializable {
 
     /**
      * <p>
-     * Encoded data containing device fingerprinting details, collected using
-     * the Amazon Cognito context data collection library.
+     * Encoded data containing device fingerprinting details collected using the
+     * Amazon Cognito context data collection library.
      * </p>
      *
      * @param encodedData <p>
-     *            Encoded data containing device fingerprinting details,
+     *            Encoded data containing device fingerprinting details
      *            collected using the Amazon Cognito context data collection
      *            library.
      *            </p>
@@ -302,15 +302,15 @@ public class ContextDataType implements Serializable {
 
     /**
      * <p>
-     * Encoded data containing device fingerprinting details, collected using
-     * the Amazon Cognito context data collection library.
+     * Encoded data containing device fingerprinting details collected using the
+     * Amazon Cognito context data collection library.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param encodedData <p>
-     *            Encoded data containing device fingerprinting details,
+     *            Encoded data containing device fingerprinting details
      *            collected using the Amazon Cognito context data collection
      *            library.
      *            </p>

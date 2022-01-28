@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,17 +47,17 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The compromised credentials risk configuration object including the
-     * <code>EventFilter</code> and the <code>EventAction</code>
+     * The compromised credentials risk configuration object, including the
+     * <code>EventFilter</code> and the <code>EventAction</code>.
      * </p>
      */
     private CompromisedCredentialsRiskConfigurationType compromisedCredentialsRiskConfiguration;
 
     /**
      * <p>
-     * The account takeover risk configuration object including the
+     * The account takeover risk configuration object, including the
      * <code>NotifyConfiguration</code> object and <code>Actions</code> to take
-     * in the case of an account takeover.
+     * if there is an account takeover.
      * </p>
      */
     private AccountTakeoverRiskConfigurationType accountTakeoverRiskConfiguration;
@@ -192,13 +192,13 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The compromised credentials risk configuration object including the
-     * <code>EventFilter</code> and the <code>EventAction</code>
+     * The compromised credentials risk configuration object, including the
+     * <code>EventFilter</code> and the <code>EventAction</code>.
      * </p>
      *
      * @return <p>
-     *         The compromised credentials risk configuration object including
-     *         the <code>EventFilter</code> and the <code>EventAction</code>
+     *         The compromised credentials risk configuration object, including
+     *         the <code>EventFilter</code> and the <code>EventAction</code>.
      *         </p>
      */
     public CompromisedCredentialsRiskConfigurationType getCompromisedCredentialsRiskConfiguration() {
@@ -207,14 +207,14 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The compromised credentials risk configuration object including the
-     * <code>EventFilter</code> and the <code>EventAction</code>
+     * The compromised credentials risk configuration object, including the
+     * <code>EventFilter</code> and the <code>EventAction</code>.
      * </p>
      *
      * @param compromisedCredentialsRiskConfiguration <p>
-     *            The compromised credentials risk configuration object
+     *            The compromised credentials risk configuration object,
      *            including the <code>EventFilter</code> and the
-     *            <code>EventAction</code>
+     *            <code>EventAction</code>.
      *            </p>
      */
     public void setCompromisedCredentialsRiskConfiguration(
@@ -224,17 +224,17 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The compromised credentials risk configuration object including the
-     * <code>EventFilter</code> and the <code>EventAction</code>
+     * The compromised credentials risk configuration object, including the
+     * <code>EventFilter</code> and the <code>EventAction</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param compromisedCredentialsRiskConfiguration <p>
-     *            The compromised credentials risk configuration object
+     *            The compromised credentials risk configuration object,
      *            including the <code>EventFilter</code> and the
-     *            <code>EventAction</code>
+     *            <code>EventAction</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -247,15 +247,15 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The account takeover risk configuration object including the
+     * The account takeover risk configuration object, including the
      * <code>NotifyConfiguration</code> object and <code>Actions</code> to take
-     * in the case of an account takeover.
+     * if there is an account takeover.
      * </p>
      *
      * @return <p>
-     *         The account takeover risk configuration object including the
+     *         The account takeover risk configuration object, including the
      *         <code>NotifyConfiguration</code> object and <code>Actions</code>
-     *         to take in the case of an account takeover.
+     *         to take if there is an account takeover.
      *         </p>
      */
     public AccountTakeoverRiskConfigurationType getAccountTakeoverRiskConfiguration() {
@@ -264,16 +264,15 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The account takeover risk configuration object including the
+     * The account takeover risk configuration object, including the
      * <code>NotifyConfiguration</code> object and <code>Actions</code> to take
-     * in the case of an account takeover.
+     * if there is an account takeover.
      * </p>
      *
      * @param accountTakeoverRiskConfiguration <p>
-     *            The account takeover risk configuration object including the
+     *            The account takeover risk configuration object, including the
      *            <code>NotifyConfiguration</code> object and
-     *            <code>Actions</code> to take in the case of an account
-     *            takeover.
+     *            <code>Actions</code> to take if there is an account takeover.
      *            </p>
      */
     public void setAccountTakeoverRiskConfiguration(
@@ -283,19 +282,18 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The account takeover risk configuration object including the
+     * The account takeover risk configuration object, including the
      * <code>NotifyConfiguration</code> object and <code>Actions</code> to take
-     * in the case of an account takeover.
+     * if there is an account takeover.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param accountTakeoverRiskConfiguration <p>
-     *            The account takeover risk configuration object including the
+     *            The account takeover risk configuration object, including the
      *            <code>NotifyConfiguration</code> object and
-     *            <code>Actions</code> to take in the case of an account
-     *            takeover.
+     *            <code>Actions</code> to take if there is an account takeover.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

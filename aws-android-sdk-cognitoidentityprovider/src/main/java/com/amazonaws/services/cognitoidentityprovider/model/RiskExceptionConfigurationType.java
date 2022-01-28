@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ public class RiskExceptionConfigurationType implements Serializable {
     /**
      * <p>
      * Overrides the risk decision to always block the pre-authentication
-     * requests. The IP range is in CIDR notation: a compact representation of
-     * an IP address and its associated routing prefix.
+     * requests. The IP range is in CIDR notation, a compact representation of
+     * an IP address and its routing prefix.
      * </p>
      */
     private java.util.List<String> blockedIPRangeList;
 
     /**
      * <p>
-     * Risk detection is not performed on the IP addresses in the range list.
+     * Risk detection isn't performed on the IP addresses in this range list.
      * The IP range is in CIDR notation.
      * </p>
      */
@@ -43,15 +43,14 @@ public class RiskExceptionConfigurationType implements Serializable {
     /**
      * <p>
      * Overrides the risk decision to always block the pre-authentication
-     * requests. The IP range is in CIDR notation: a compact representation of
-     * an IP address and its associated routing prefix.
+     * requests. The IP range is in CIDR notation, a compact representation of
+     * an IP address and its routing prefix.
      * </p>
      *
      * @return <p>
      *         Overrides the risk decision to always block the
-     *         pre-authentication requests. The IP range is in CIDR notation: a
-     *         compact representation of an IP address and its associated
-     *         routing prefix.
+     *         pre-authentication requests. The IP range is in CIDR notation, a
+     *         compact representation of an IP address and its routing prefix.
      *         </p>
      */
     public java.util.List<String> getBlockedIPRangeList() {
@@ -61,15 +60,15 @@ public class RiskExceptionConfigurationType implements Serializable {
     /**
      * <p>
      * Overrides the risk decision to always block the pre-authentication
-     * requests. The IP range is in CIDR notation: a compact representation of
-     * an IP address and its associated routing prefix.
+     * requests. The IP range is in CIDR notation, a compact representation of
+     * an IP address and its routing prefix.
      * </p>
      *
      * @param blockedIPRangeList <p>
      *            Overrides the risk decision to always block the
-     *            pre-authentication requests. The IP range is in CIDR notation:
-     *            a compact representation of an IP address and its associated
-     *            routing prefix.
+     *            pre-authentication requests. The IP range is in CIDR notation,
+     *            a compact representation of an IP address and its routing
+     *            prefix.
      *            </p>
      */
     public void setBlockedIPRangeList(java.util.Collection<String> blockedIPRangeList) {
@@ -84,8 +83,8 @@ public class RiskExceptionConfigurationType implements Serializable {
     /**
      * <p>
      * Overrides the risk decision to always block the pre-authentication
-     * requests. The IP range is in CIDR notation: a compact representation of
-     * an IP address and its associated routing prefix.
+     * requests. The IP range is in CIDR notation, a compact representation of
+     * an IP address and its routing prefix.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -93,9 +92,9 @@ public class RiskExceptionConfigurationType implements Serializable {
      *
      * @param blockedIPRangeList <p>
      *            Overrides the risk decision to always block the
-     *            pre-authentication requests. The IP range is in CIDR notation:
-     *            a compact representation of an IP address and its associated
-     *            routing prefix.
+     *            pre-authentication requests. The IP range is in CIDR notation,
+     *            a compact representation of an IP address and its routing
+     *            prefix.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -113,8 +112,8 @@ public class RiskExceptionConfigurationType implements Serializable {
     /**
      * <p>
      * Overrides the risk decision to always block the pre-authentication
-     * requests. The IP range is in CIDR notation: a compact representation of
-     * an IP address and its associated routing prefix.
+     * requests. The IP range is in CIDR notation, a compact representation of
+     * an IP address and its routing prefix.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -122,9 +121,9 @@ public class RiskExceptionConfigurationType implements Serializable {
      *
      * @param blockedIPRangeList <p>
      *            Overrides the risk decision to always block the
-     *            pre-authentication requests. The IP range is in CIDR notation:
-     *            a compact representation of an IP address and its associated
-     *            routing prefix.
+     *            pre-authentication requests. The IP range is in CIDR notation,
+     *            a compact representation of an IP address and its routing
+     *            prefix.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,12 +136,12 @@ public class RiskExceptionConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Risk detection is not performed on the IP addresses in the range list.
+     * Risk detection isn't performed on the IP addresses in this range list.
      * The IP range is in CIDR notation.
      * </p>
      *
      * @return <p>
-     *         Risk detection is not performed on the IP addresses in the range
+     *         Risk detection isn't performed on the IP addresses in this range
      *         list. The IP range is in CIDR notation.
      *         </p>
      */
@@ -152,12 +151,12 @@ public class RiskExceptionConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Risk detection is not performed on the IP addresses in the range list.
+     * Risk detection isn't performed on the IP addresses in this range list.
      * The IP range is in CIDR notation.
      * </p>
      *
      * @param skippedIPRangeList <p>
-     *            Risk detection is not performed on the IP addresses in the
+     *            Risk detection isn't performed on the IP addresses in this
      *            range list. The IP range is in CIDR notation.
      *            </p>
      */
@@ -172,7 +171,7 @@ public class RiskExceptionConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Risk detection is not performed on the IP addresses in the range list.
+     * Risk detection isn't performed on the IP addresses in this range list.
      * The IP range is in CIDR notation.
      * </p>
      * <p>
@@ -180,7 +179,7 @@ public class RiskExceptionConfigurationType implements Serializable {
      * together.
      *
      * @param skippedIPRangeList <p>
-     *            Risk detection is not performed on the IP addresses in the
+     *            Risk detection isn't performed on the IP addresses in this
      *            range list. The IP range is in CIDR notation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -198,7 +197,7 @@ public class RiskExceptionConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Risk detection is not performed on the IP addresses in the range list.
+     * Risk detection isn't performed on the IP addresses in this range list.
      * The IP range is in CIDR notation.
      * </p>
      * <p>
@@ -206,7 +205,7 @@ public class RiskExceptionConfigurationType implements Serializable {
      * together.
      *
      * @param skippedIPRangeList <p>
-     *            Risk detection is not performed on the IP addresses in the
+     *            Risk detection isn't performed on the IP addresses in this
      *            range list. The IP range is in CIDR notation.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides feedback for an authentication event as to whether it was from a
+ * Provides feedback for an authentication event indicating if it was from a
  * valid user. This feedback is used for improving the risk evaluation decision
  * for the user pool as part of Amazon Cognito advanced security.
  * </p>

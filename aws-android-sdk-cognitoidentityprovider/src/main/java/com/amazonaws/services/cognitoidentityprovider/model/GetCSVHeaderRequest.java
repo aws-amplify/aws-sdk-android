@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the header information for the .csv file to be used as input for the
- * user import job.
+ * Gets the header information for the comma-separated value (CSV) file to be
+ * used as input for the user import job.
  * </p>
  */
 public class GetCSVHeaderRequest extends AmazonWebServiceRequest implements Serializable {

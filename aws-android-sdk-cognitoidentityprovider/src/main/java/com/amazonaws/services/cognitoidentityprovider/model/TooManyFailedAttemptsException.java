@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * This exception is thrown when the user has made too many failed attempts for
- * a given action (e.g., sign in).
+ * a given action, such as sign-in.
  * </p>
  */
 public class TooManyFailedAttemptsException extends AmazonServiceException {

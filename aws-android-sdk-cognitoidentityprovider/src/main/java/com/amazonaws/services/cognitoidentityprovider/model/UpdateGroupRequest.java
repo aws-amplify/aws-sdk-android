@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,9 +62,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The new role ARN for the group. This is used for setting the
-     * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims
-     * in the token.
+     * The new role Amazon Resource Name (ARN) for the group. This is used for
+     * setting the <code>cognito:roles</code> and
+     * <code>cognito:preferred_role</code> claims in the token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -258,9 +258,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The new role ARN for the group. This is used for setting the
-     * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims
-     * in the token.
+     * The new role Amazon Resource Name (ARN) for the group. This is used for
+     * setting the <code>cognito:roles</code> and
+     * <code>cognito:preferred_role</code> claims in the token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -270,8 +270,8 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The new role ARN for the group. This is used for setting the
-     *         <code>cognito:roles</code> and
+     *         The new role Amazon Resource Name (ARN) for the group. This is
+     *         used for setting the <code>cognito:roles</code> and
      *         <code>cognito:preferred_role</code> claims in the token.
      *         </p>
      */
@@ -281,9 +281,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The new role ARN for the group. This is used for setting the
-     * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims
-     * in the token.
+     * The new role Amazon Resource Name (ARN) for the group. This is used for
+     * setting the <code>cognito:roles</code> and
+     * <code>cognito:preferred_role</code> claims in the token.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -293,8 +293,8 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param roleArn <p>
-     *            The new role ARN for the group. This is used for setting the
-     *            <code>cognito:roles</code> and
+     *            The new role Amazon Resource Name (ARN) for the group. This is
+     *            used for setting the <code>cognito:roles</code> and
      *            <code>cognito:preferred_role</code> claims in the token.
      *            </p>
      */
@@ -304,9 +304,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The new role ARN for the group. This is used for setting the
-     * <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims
-     * in the token.
+     * The new role Amazon Resource Name (ARN) for the group. This is used for
+     * setting the <code>cognito:roles</code> and
+     * <code>cognito:preferred_role</code> claims in the token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -319,8 +319,8 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param roleArn <p>
-     *            The new role ARN for the group. This is used for setting the
-     *            <code>cognito:roles</code> and
+     *            The new role Amazon Resource Name (ARN) for the group. This is
+     *            used for setting the <code>cognito:roles</code> and
      *            <code>cognito:preferred_role</code> claims in the token.
      *            </p>
      * @return A reference to this updated object so that method calls can be

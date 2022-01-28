@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class HttpHeader implements Serializable {
     /**
      * <p>
-     * The header name
+     * The header name.
      * </p>
      */
     private String headerName;
@@ -39,11 +39,11 @@ public class HttpHeader implements Serializable {
 
     /**
      * <p>
-     * The header name
+     * The header name.
      * </p>
      *
      * @return <p>
-     *         The header name
+     *         The header name.
      *         </p>
      */
     public String getHeaderName() {
@@ -52,11 +52,11 @@ public class HttpHeader implements Serializable {
 
     /**
      * <p>
-     * The header name
+     * The header name.
      * </p>
      *
      * @param headerName <p>
-     *            The header name
+     *            The header name.
      *            </p>
      */
     public void setHeaderName(String headerName) {
@@ -65,14 +65,14 @@ public class HttpHeader implements Serializable {
 
     /**
      * <p>
-     * The header name
+     * The header name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param headerName <p>
-     *            The header name
+     *            The header name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

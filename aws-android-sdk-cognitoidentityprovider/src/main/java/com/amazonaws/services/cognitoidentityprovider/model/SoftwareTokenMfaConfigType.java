@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,18 +25,18 @@ import java.io.Serializable;
 public class SoftwareTokenMfaConfigType implements Serializable {
     /**
      * <p>
-     * Specifies whether software token MFA is enabled.
+     * Specifies whether software token MFA is activated.
      * </p>
      */
     private Boolean enabled;
 
     /**
      * <p>
-     * Specifies whether software token MFA is enabled.
+     * Specifies whether software token MFA is activated.
      * </p>
      *
      * @return <p>
-     *         Specifies whether software token MFA is enabled.
+     *         Specifies whether software token MFA is activated.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -45,11 +45,11 @@ public class SoftwareTokenMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether software token MFA is enabled.
+     * Specifies whether software token MFA is activated.
      * </p>
      *
      * @return <p>
-     *         Specifies whether software token MFA is enabled.
+     *         Specifies whether software token MFA is activated.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -58,11 +58,11 @@ public class SoftwareTokenMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether software token MFA is enabled.
+     * Specifies whether software token MFA is activated.
      * </p>
      *
      * @param enabled <p>
-     *            Specifies whether software token MFA is enabled.
+     *            Specifies whether software token MFA is activated.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -71,14 +71,14 @@ public class SoftwareTokenMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether software token MFA is enabled.
+     * Specifies whether software token MFA is activated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            Specifies whether software token MFA is enabled.
+     *            Specifies whether software token MFA is activated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

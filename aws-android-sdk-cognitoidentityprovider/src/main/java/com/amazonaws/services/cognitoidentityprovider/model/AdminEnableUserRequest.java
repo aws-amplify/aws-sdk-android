@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user name of the user you wish to enable.
+     * The user name of the user you want to enable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -112,7 +112,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user name of the user you wish to enable.
+     * The user name of the user you want to enable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +120,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user you wish to enable.
+     *         The user name of the user you want to enable.
      *         </p>
      */
     public String getUsername() {
@@ -129,7 +129,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user name of the user you wish to enable.
+     * The user name of the user you want to enable.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,7 +137,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you wish to enable.
+     *            The user name of the user you want to enable.
      *            </p>
      */
     public void setUsername(String username) {
@@ -146,7 +146,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The user name of the user you wish to enable.
+     * The user name of the user you want to enable.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,7 +157,7 @@ public class AdminEnableUserRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you wish to enable.
+     *            The user name of the user you want to enable.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,14 +36,16 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The account ID for the user pool owner.
+     * The Amazon Web Services ID for the user pool owner.
      * </p>
      */
     private String aWSAccountId;
 
     /**
      * <p>
-     * The domain string.
+     * The domain string. For custom domains, this is the fully-qualified domain
+     * name, such as <code>auth.example.com</code>. For Amazon Cognito prefix
+     * domains, this is the prefix alone, such as <code>auth</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,7 +56,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket where the static files for this domain are stored.
+     * The Amazon S3 bucket where the static files for this domain are stored.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +67,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The ARN of the CloudFront distribution.
+     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
      * </p>
      */
     private String cloudFrontDistribution;
@@ -157,11 +159,11 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The account ID for the user pool owner.
+     * The Amazon Web Services ID for the user pool owner.
      * </p>
      *
      * @return <p>
-     *         The account ID for the user pool owner.
+     *         The Amazon Web Services ID for the user pool owner.
      *         </p>
      */
     public String getAWSAccountId() {
@@ -170,11 +172,11 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The account ID for the user pool owner.
+     * The Amazon Web Services ID for the user pool owner.
      * </p>
      *
      * @param aWSAccountId <p>
-     *            The account ID for the user pool owner.
+     *            The Amazon Web Services ID for the user pool owner.
      *            </p>
      */
     public void setAWSAccountId(String aWSAccountId) {
@@ -183,14 +185,14 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The account ID for the user pool owner.
+     * The Amazon Web Services ID for the user pool owner.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aWSAccountId <p>
-     *            The account ID for the user pool owner.
+     *            The Amazon Web Services ID for the user pool owner.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -202,7 +204,9 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The domain string.
+     * The domain string. For custom domains, this is the fully-qualified domain
+     * name, such as <code>auth.example.com</code>. For Amazon Cognito prefix
+     * domains, this is the prefix alone, such as <code>auth</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,7 +214,10 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
      *
      * @return <p>
-     *         The domain string.
+     *         The domain string. For custom domains, this is the
+     *         fully-qualified domain name, such as
+     *         <code>auth.example.com</code>. For Amazon Cognito prefix domains,
+     *         this is the prefix alone, such as <code>auth</code>.
      *         </p>
      */
     public String getDomain() {
@@ -219,7 +226,9 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The domain string.
+     * The domain string. For custom domains, this is the fully-qualified domain
+     * name, such as <code>auth.example.com</code>. For Amazon Cognito prefix
+     * domains, this is the prefix alone, such as <code>auth</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -227,7 +236,10 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
      *
      * @param domain <p>
-     *            The domain string.
+     *            The domain string. For custom domains, this is the
+     *            fully-qualified domain name, such as
+     *            <code>auth.example.com</code>. For Amazon Cognito prefix
+     *            domains, this is the prefix alone, such as <code>auth</code>.
      *            </p>
      */
     public void setDomain(String domain) {
@@ -236,7 +248,9 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The domain string.
+     * The domain string. For custom domains, this is the fully-qualified domain
+     * name, such as <code>auth.example.com</code>. For Amazon Cognito prefix
+     * domains, this is the prefix alone, such as <code>auth</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -247,7 +261,10 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?$<br/>
      *
      * @param domain <p>
-     *            The domain string.
+     *            The domain string. For custom domains, this is the
+     *            fully-qualified domain name, such as
+     *            <code>auth.example.com</code>. For Amazon Cognito prefix
+     *            domains, this is the prefix alone, such as <code>auth</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -259,7 +276,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket where the static files for this domain are stored.
+     * The Amazon S3 bucket where the static files for this domain are stored.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -267,7 +284,8 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z\.\-_]*(?<!\.)$<br/>
      *
      * @return <p>
-     *         The S3 bucket where the static files for this domain are stored.
+     *         The Amazon S3 bucket where the static files for this domain are
+     *         stored.
      *         </p>
      */
     public String getS3Bucket() {
@@ -276,7 +294,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket where the static files for this domain are stored.
+     * The Amazon S3 bucket where the static files for this domain are stored.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -284,8 +302,8 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z\.\-_]*(?<!\.)$<br/>
      *
      * @param s3Bucket <p>
-     *            The S3 bucket where the static files for this domain are
-     *            stored.
+     *            The Amazon S3 bucket where the static files for this domain
+     *            are stored.
      *            </p>
      */
     public void setS3Bucket(String s3Bucket) {
@@ -294,7 +312,7 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket where the static files for this domain are stored.
+     * The Amazon S3 bucket where the static files for this domain are stored.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -305,8 +323,8 @@ public class DomainDescriptionType implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z\.\-_]*(?<!\.)$<br/>
      *
      * @param s3Bucket <p>
-     *            The S3 bucket where the static files for this domain are
-     *            stored.
+     *            The Amazon S3 bucket where the static files for this domain
+     *            are stored.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -318,11 +336,12 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The ARN of the CloudFront distribution.
+     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
      * </p>
      *
      * @return <p>
-     *         The ARN of the CloudFront distribution.
+     *         The Amazon Resource Name (ARN) of the Amazon CloudFront
+     *         distribution.
      *         </p>
      */
     public String getCloudFrontDistribution() {
@@ -331,11 +350,12 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The ARN of the CloudFront distribution.
+     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
      * </p>
      *
      * @param cloudFrontDistribution <p>
-     *            The ARN of the CloudFront distribution.
+     *            The Amazon Resource Name (ARN) of the Amazon CloudFront
+     *            distribution.
      *            </p>
      */
     public void setCloudFrontDistribution(String cloudFrontDistribution) {
@@ -344,14 +364,15 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The ARN of the CloudFront distribution.
+     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cloudFrontDistribution <p>
-     *            The ARN of the CloudFront distribution.
+     *            The Amazon Resource Name (ARN) of the Amazon CloudFront
+     *            distribution.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

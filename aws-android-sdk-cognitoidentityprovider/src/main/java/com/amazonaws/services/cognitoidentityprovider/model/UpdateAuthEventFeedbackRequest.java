@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides the feedback for an authentication event whether it was from a valid
- * user or not. This feedback is used for improving the risk evaluation decision
- * for the user pool as part of Amazon Cognito advanced security.
+ * Provides the feedback for an authentication event, whether it was from a
+ * valid user or not. This feedback is used for improving the risk evaluation
+ * decision for the user pool as part of Amazon Cognito advanced security.
  * </p>
  */
 public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest implements Serializable {

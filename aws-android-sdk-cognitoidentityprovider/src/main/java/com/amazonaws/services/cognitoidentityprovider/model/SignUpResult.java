@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The UUID of the authenticated user. This is not the same as
+     * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
      */
@@ -166,12 +166,12 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The UUID of the authenticated user. This is not the same as
+     * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
      *
      * @return <p>
-     *         The UUID of the authenticated user. This is not the same as
+     *         The UUID of the authenticated user. This isn't the same as
      *         <code>username</code>.
      *         </p>
      */
@@ -181,12 +181,12 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The UUID of the authenticated user. This is not the same as
+     * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
      *
      * @param userSub <p>
-     *            The UUID of the authenticated user. This is not the same as
+     *            The UUID of the authenticated user. This isn't the same as
      *            <code>username</code>.
      *            </p>
      */
@@ -196,7 +196,7 @@ public class SignUpResult implements Serializable {
 
     /**
      * <p>
-     * The UUID of the authenticated user. This is not the same as
+     * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
      * <p>
@@ -204,7 +204,7 @@ public class SignUpResult implements Serializable {
      * together.
      *
      * @param userSub <p>
-     *            The UUID of the authenticated user. This is not the same as
+     *            The UUID of the authenticated user. This isn't the same as
      *            <code>username</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
