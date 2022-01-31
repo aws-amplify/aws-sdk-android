@@ -110,6 +110,7 @@ import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidUserPoolConfigurationException;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONArray;
@@ -1705,28 +1706,34 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     
     private Runnable _deleteUser(final Callback<Void> callback) {
         return () -> {
-            CognitoUser currentUser = userpool.getCurrentUser();
-            currentUser.deleteUserInBackground(new GenericHandler() {
-                @Override
-                public void onSuccess() {
-                    signOut(SignOutOptions.builder().signOutGlobally(true).invalidateTokens(true).build(), new Callback<Void>() {
-                        @Override
-                        public void onResult(Void result) {
-                            callback.onResult(result);
-                        }
+            if (userpool == null) {
+                callback.onError(new InvalidUserPoolConfigurationException(
+                        "A user pool must be configured in order to delete a user."
+                ));
+            } else {
+                CognitoUser currentUser = userpool.getCurrentUser();
+                currentUser.deleteUserInBackground(new GenericHandler() {
+                    @Override
+                    public void onSuccess() {
+                        signOut(SignOutOptions.builder().signOutGlobally(true).invalidateTokens(true).build(), new Callback<Void>() {
+                            @Override
+                            public void onResult(Void result) {
+                                callback.onResult(result);
+                            }
 
-                        @Override
-                        public void onError(Exception e) {
-                            callback.onError(e);
-                        }
-                    });
-                }
+                            @Override
+                            public void onError(Exception e) {
+                                callback.onError(e);
+                            }
+                        });
+                    }
 
-                @Override
-                public void onFailure(Exception exception) {
-                    callback.onError(exception);
-                }
-            });
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
+            }
         };
     }
 

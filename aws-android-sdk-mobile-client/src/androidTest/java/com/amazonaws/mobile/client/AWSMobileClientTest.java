@@ -19,6 +19,8 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -685,6 +687,27 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test(expected = com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException.class)
     public void testSignInWrongPassword() throws Exception {
         AWSMobileClient.getInstance().signIn(getPackageConfigure().getString("username"), "wrong", null);
+    }
+    
+    @Test
+    public void testDeleteUser() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+        
+        auth.deleteUser();
+        assertTrue("isSignedIn is false", auth.isSignedIn());
+        
+        try {
+            auth.signIn(username, PASSWORD, null);
+            fail("Sign in should fail since the user should no longer exist in the user pool.");
+        } catch (Exception e) {
+            assertTrue(e instanceof com.amazonaws.services.cognitoidentityprovider.model.UserNotFoundException);
+        }
+    }
+    
+    @Test(expected = com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException.class)
+    public void testDeleteUserUnauthenticatedUser() throws Exception {
+        auth.deleteUser();
     }
 
     @Test
