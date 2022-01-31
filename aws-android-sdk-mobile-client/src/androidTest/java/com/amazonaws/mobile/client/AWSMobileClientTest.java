@@ -19,7 +19,6 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import android.util.Log;
 
