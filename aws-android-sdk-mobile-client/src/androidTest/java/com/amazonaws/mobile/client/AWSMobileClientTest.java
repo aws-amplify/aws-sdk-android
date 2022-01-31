@@ -19,7 +19,6 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import androidx.test.core.app.ApplicationProvider;
-
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
