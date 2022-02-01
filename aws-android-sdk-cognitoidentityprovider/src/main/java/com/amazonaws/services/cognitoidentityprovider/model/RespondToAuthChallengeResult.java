@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,10 +39,10 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
-     * to the service. If the caller needs to go through another challenge, they
-     * return a session with other challenge parameters. This session should be
-     * passed as it is to the next <code>RespondToAuthChallenge</code> API call.
+     * The session that should be passed both ways in challenge-response calls
+     * to the service. If the caller must pass another challenge, they return a
+     * session with other challenge parameters. This session should be passed as
+     * it is to the next <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,21 +196,21 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
-     * to the service. If the caller needs to go through another challenge, they
-     * return a session with other challenge parameters. This session should be
-     * passed as it is to the next <code>RespondToAuthChallenge</code> API call.
+     * The session that should be passed both ways in challenge-response calls
+     * to the service. If the caller must pass another challenge, they return a
+     * session with other challenge parameters. This session should be passed as
+     * it is to the next <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session which should be passed both ways in
-     *         challenge-response calls to the service. If the caller needs to
-     *         go through another challenge, they return a session with other
-     *         challenge parameters. This session should be passed as it is to
-     *         the next <code>RespondToAuthChallenge</code> API call.
+     *         The session that should be passed both ways in challenge-response
+     *         calls to the service. If the caller must pass another challenge,
+     *         they return a session with other challenge parameters. This
+     *         session should be passed as it is to the next
+     *         <code>RespondToAuthChallenge</code> API call.
      *         </p>
      */
     public String getSession() {
@@ -219,22 +219,21 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
-     * to the service. If the caller needs to go through another challenge, they
-     * return a session with other challenge parameters. This session should be
-     * passed as it is to the next <code>RespondToAuthChallenge</code> API call.
+     * The session that should be passed both ways in challenge-response calls
+     * to the service. If the caller must pass another challenge, they return a
+     * session with other challenge parameters. This session should be passed as
+     * it is to the next <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
-     *            challenge-response calls to the service. If the caller needs
-     *            to go through another challenge, they return a session with
-     *            other challenge parameters. This session should be passed as
-     *            it is to the next <code>RespondToAuthChallenge</code> API
-     *            call.
+     *            The session that should be passed both ways in
+     *            challenge-response calls to the service. If the caller must
+     *            pass another challenge, they return a session with other
+     *            challenge parameters. This session should be passed as it is
+     *            to the next <code>RespondToAuthChallenge</code> API call.
      *            </p>
      */
     public void setSession(String session) {
@@ -243,10 +242,10 @@ public class RespondToAuthChallengeResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
-     * to the service. If the caller needs to go through another challenge, they
-     * return a session with other challenge parameters. This session should be
-     * passed as it is to the next <code>RespondToAuthChallenge</code> API call.
+     * The session that should be passed both ways in challenge-response calls
+     * to the service. If the caller must pass another challenge, they return a
+     * session with other challenge parameters. This session should be passed as
+     * it is to the next <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -256,12 +255,11 @@ public class RespondToAuthChallengeResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
-     *            challenge-response calls to the service. If the caller needs
-     *            to go through another challenge, they return a session with
-     *            other challenge parameters. This session should be passed as
-     *            it is to the next <code>RespondToAuthChallenge</code> API
-     *            call.
+     *            The session that should be passed both ways in
+     *            challenge-response calls to the service. If the caller must
+     *            pass another challenge, they return a session with other
+     *            challenge parameters. This session should be passed as it is
+     *            to the next <code>RespondToAuthChallenge</code> API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An array of strings representing the user attribute names you wish to
+     * An array of strings representing the user attribute names you want to
      * delete.
      * </p>
      * <p>
@@ -190,7 +190,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An array of strings representing the user attribute names you wish to
+     * An array of strings representing the user attribute names you want to
      * delete.
      * </p>
      * <p>
@@ -200,7 +200,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
      *
      * @return <p>
      *         An array of strings representing the user attribute names you
-     *         wish to delete.
+     *         want to delete.
      *         </p>
      *         <p>
      *         For custom attributes, you must prepend the <code>custom:</code>
@@ -213,7 +213,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An array of strings representing the user attribute names you wish to
+     * An array of strings representing the user attribute names you want to
      * delete.
      * </p>
      * <p>
@@ -223,7 +223,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
-     *            wish to delete.
+     *            want to delete.
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the
@@ -241,7 +241,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An array of strings representing the user attribute names you wish to
+     * An array of strings representing the user attribute names you want to
      * delete.
      * </p>
      * <p>
@@ -254,7 +254,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
-     *            wish to delete.
+     *            want to delete.
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the
@@ -275,7 +275,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An array of strings representing the user attribute names you wish to
+     * An array of strings representing the user attribute names you want to
      * delete.
      * </p>
      * <p>
@@ -288,7 +288,7 @@ public class AdminDeleteUserAttributesRequest extends AmazonWebServiceRequest im
      *
      * @param userAttributeNames <p>
      *            An array of strings representing the user attribute names you
-     *            wish to delete.
+     *            want to delete.
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the

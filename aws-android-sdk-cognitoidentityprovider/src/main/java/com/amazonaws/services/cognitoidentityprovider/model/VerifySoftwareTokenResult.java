@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class VerifySoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service.
      * </p>
      * <p>
@@ -138,7 +138,7 @@ public class VerifySoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service.
      * </p>
      * <p>
@@ -146,8 +146,8 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session which should be passed both ways in
-     *         challenge-response calls to the service.
+     *         The session that should be passed both ways in challenge-response
+     *         calls to the service.
      *         </p>
      */
     public String getSession() {
@@ -156,7 +156,7 @@ public class VerifySoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service.
      * </p>
      * <p>
@@ -164,7 +164,7 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service.
      *            </p>
      */
@@ -174,7 +174,7 @@ public class VerifySoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service.
      * </p>
      * <p>
@@ -185,7 +185,7 @@ public class VerifySoftwareTokenResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service.
      *            </p>
      * @return A reference to this updated object so that method calls can be

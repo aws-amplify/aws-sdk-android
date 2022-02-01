@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,21 +26,21 @@ import java.io.Serializable;
 public class UpdateUserPoolClientResult implements Serializable {
     /**
      * <p>
-     * The user pool client value from the response from the server when an
-     * update user pool client request is made.
+     * The user pool client value from the response from the server when you
+     * request to update the user pool client.
      * </p>
      */
     private UserPoolClientType userPoolClient;
 
     /**
      * <p>
-     * The user pool client value from the response from the server when an
-     * update user pool client request is made.
+     * The user pool client value from the response from the server when you
+     * request to update the user pool client.
      * </p>
      *
      * @return <p>
      *         The user pool client value from the response from the server when
-     *         an update user pool client request is made.
+     *         you request to update the user pool client.
      *         </p>
      */
     public UserPoolClientType getUserPoolClient() {
@@ -49,13 +49,13 @@ public class UpdateUserPoolClientResult implements Serializable {
 
     /**
      * <p>
-     * The user pool client value from the response from the server when an
-     * update user pool client request is made.
+     * The user pool client value from the response from the server when you
+     * request to update the user pool client.
      * </p>
      *
      * @param userPoolClient <p>
      *            The user pool client value from the response from the server
-     *            when an update user pool client request is made.
+     *            when you request to update the user pool client.
      *            </p>
      */
     public void setUserPoolClient(UserPoolClientType userPoolClient) {
@@ -64,8 +64,8 @@ public class UpdateUserPoolClientResult implements Serializable {
 
     /**
      * <p>
-     * The user pool client value from the response from the server when an
-     * update user pool client request is made.
+     * The user pool client value from the response from the server when you
+     * request to update the user pool client.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -73,7 +73,7 @@ public class UpdateUserPoolClientResult implements Serializable {
      *
      * @param userPoolClient <p>
      *            The user pool client value from the response from the server
-     *            when an update user pool client request is made.
+     *            when you request to update the user pool client.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

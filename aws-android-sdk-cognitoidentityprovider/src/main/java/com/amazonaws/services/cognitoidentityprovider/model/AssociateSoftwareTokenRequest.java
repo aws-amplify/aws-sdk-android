@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,11 +28,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Calling AssociateSoftwareToken immediately disassociates the existing
  * software token from the user account. If the user doesn't subsequently verify
- * the software token, their account is essentially set up to authenticate
- * without MFA. If MFA config is set to Optional at the user pool level, the
- * user can then login without MFA. However, if MFA is set to Required for the
- * user pool, the user will be asked to setup a new software token MFA during
- * sign in.
+ * the software token, their account is set up to authenticate without MFA. If
+ * MFA config is set to Optional at the user pool level, the user can then log
+ * in without MFA. However, if MFA is set to Required for the user pool, the
+ * user is asked to set up a new software token MFA during sign-in.
  * </p>
  * </note>
  */
@@ -49,7 +48,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -115,7 +114,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -124,9 +123,9 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session which should be passed both ways in
-     *         challenge-response calls to the service. This allows
-     *         authentication of the user as part of the MFA setup process.
+     *         The session that should be passed both ways in challenge-response
+     *         calls to the service. This allows authentication of the user as
+     *         part of the MFA setup process.
      *         </p>
      */
     public String getSession() {
@@ -135,7 +134,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -144,7 +143,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. This allows
      *            authentication of the user as part of the MFA setup process.
      *            </p>
@@ -155,7 +154,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. This allows authentication of the user as part of the MFA
      * setup process.
      * </p>
@@ -167,7 +166,7 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. This allows
      *            authentication of the user as part of the MFA setup process.
      *            </p>

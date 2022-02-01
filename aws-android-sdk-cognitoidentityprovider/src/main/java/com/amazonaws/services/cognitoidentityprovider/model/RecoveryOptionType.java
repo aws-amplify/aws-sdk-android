@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,14 +106,14 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>verified_email, verified_phone_number, admin_only
      *
      * @return <p>
-     *         Specifies the recovery method for a user.
+     *         The recovery method for a user.
      *         </p>
      * @see RecoveryOptionNameType
      */
@@ -123,14 +123,14 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>verified_email, verified_phone_number, admin_only
      *
      * @param name <p>
-     *            Specifies the recovery method for a user.
+     *            The recovery method for a user.
      *            </p>
      * @see RecoveryOptionNameType
      */
@@ -140,7 +140,7 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -150,7 +150,7 @@ public class RecoveryOptionType implements Serializable {
      * <b>Allowed Values: </b>verified_email, verified_phone_number, admin_only
      *
      * @param name <p>
-     *            Specifies the recovery method for a user.
+     *            The recovery method for a user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -163,14 +163,14 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>verified_email, verified_phone_number, admin_only
      *
      * @param name <p>
-     *            Specifies the recovery method for a user.
+     *            The recovery method for a user.
      *            </p>
      * @see RecoveryOptionNameType
      */
@@ -180,7 +180,7 @@ public class RecoveryOptionType implements Serializable {
 
     /**
      * <p>
-     * Specifies the recovery method for a user.
+     * The recovery method for a user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -190,7 +190,7 @@ public class RecoveryOptionType implements Serializable {
      * <b>Allowed Values: </b>verified_email, verified_phone_number, admin_only
      *
      * @param name <p>
-     *            Specifies the recovery method for a user.
+     *            The recovery method for a user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * <i>This data type is no longer supported.</i> You can use it only for SMS MFA
- * configurations. You can't use it for TOTP software token MFA configurations.
+ * <i>This data type is no longer supported.</i> You can use it only for SMS
+ * multi-factor authentication (MFA) configurations. You can't use it for
+ * time-based one-time password (TOTP) software token MFA configurations.
  * </p>
  */
 public class MFAOptionType implements Serializable {

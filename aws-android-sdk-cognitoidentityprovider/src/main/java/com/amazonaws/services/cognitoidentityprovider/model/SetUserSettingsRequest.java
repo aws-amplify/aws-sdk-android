@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * <i>This action is no longer supported.</i> You can use it to configure only
- * SMS MFA. You can't use it to configure TOTP software token MFA. To configure
- * either type of MFA, use <a href=
+ * SMS MFA. You can't use it to configure time-based one-time password (TOTP)
+ * software token MFA. To configure either type of MFA, use <a href=
  * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserMFAPreference.html"
  * >SetUserMFAPreference</a> instead.
  * </p>

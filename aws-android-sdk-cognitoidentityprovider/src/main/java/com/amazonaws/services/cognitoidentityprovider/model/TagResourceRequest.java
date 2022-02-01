@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,15 +30,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * general category for more specific values. For example, if you have two
  * versions of a user pool, one for testing and another for production, you
  * might assign an <code>Environment</code> tag key to both user pools. The
- * value of this key might be <code>Test</code> for one user pool and
+ * value of this key might be <code>Test</code> for one user pool, and
  * <code>Production</code> for the other.
  * </p>
  * <p>
  * Tags are useful for cost tracking and access control. You can activate your
  * tags so that they appear on the Billing and Cost Management console, where
- * you can track the costs associated with your user pools. In an IAM policy,
- * you can constrain permissions for user pools based on specific tags or tag
- * values.
+ * you can track the costs associated with your user pools. In an Identity and
+ * Access Management policy, you can constrain permissions for user pools based
+ * on specific tags or tag values.
  * </p>
  * <p>
  * You can use this action up to 5 times per second, per account. A user pool

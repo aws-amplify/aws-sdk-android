@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,26 +25,27 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * This action might generate an SMS text message. Starting June 1, 2021, U.S.
- * telecom carriers require that you register an origination phone number before
+ * This action might generate an SMS text message. Starting June 1, 2021, US
+ * telecom carriers require you to register an origination phone number before
  * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
  * in Amazon Cognito, you must register a phone number with <a
  * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
- * Cognito will use the the registered number automatically. Otherwise, Cognito
- * users that must receive SMS messages might be unable to sign up, activate
- * their accounts, or sign in.
+ * Amazon Cognito will use the registered number automatically. Otherwise,
+ * Amazon Cognito users that must receive SMS messages might be unable to sign
+ * up, activate their accounts, or sign in.
  * </p>
  * <p>
  * If you have never used SMS text messages with Amazon Cognito or any other
- * Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
- * <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
- * sandbox mode</a> </i>, you’ll have limitations, such as sending messages to
- * only verified phone numbers. After testing in the sandbox environment, you
- * can move out of the SMS sandbox and into production. For more information,
- * see <a href=
+ * Amazon Web Service, Amazon Simple Notification Service might place your
+ * account in SMS sandbox. In <i> <a
+ * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+ * mode</a> </i>, you will have limitations, such as sending messages only to
+ * verified phone numbers. After testing in the sandbox environment, you can
+ * move out of the SMS sandbox and into production. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
- * > SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
- * Developer Guide</i>.
+ * > SMS message settings for Amazon Cognito User Pools</a> in the <i>Amazon
+ * Cognito Developer Guide</i>.
  * </p>
  * </note>
  */
@@ -67,7 +68,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,11 +80,11 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. If <code>InitiateAuth</code> or
      * <code>RespondToAuthChallenge</code> API call determines that the caller
-     * needs to go through another challenge, they return a session with other
-     * challenge parameters. This session should be passed as it is to the next
+     * must pass another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
      * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
@@ -100,7 +101,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <note>
      * <p>
      * <code>SECRET_HASH</code> (if app client is configured with client secret)
-     * applies to all inputs below (including <code>SOFTWARE_TOKEN_MFA</code>).
+     * applies to all of the inputs that follow (including
+     * <code>SOFTWARE_TOKEN_MFA</code>).
      * </p>
      * </note>
      * <ul>
@@ -115,7 +117,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      * <code>USERNAME</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when
+     * signing in with a remembered device.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
@@ -138,13 +145,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * <code>PASSWORD_VERIFIER</code> requires, plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
-     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
+     * the session value returned by <code>VerifySoftwareToken</code> in the
      * <code>Session</code> parameter.
      * </p>
      * </li>
@@ -196,27 +203,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -288,7 +295,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,7 +309,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         >InitiateAuth</a>.
      *         </p>
      *         <p>
-     *         <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     *         <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      *         </p>
      * @see ChallengeNameType
      */
@@ -317,7 +324,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -331,7 +338,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            >InitiateAuth</a>.
      *            </p>
      *            <p>
-     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     *            <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      *            </p>
      * @see ChallengeNameType
      */
@@ -346,7 +353,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -363,7 +370,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            >InitiateAuth</a>.
      *            </p>
      *            <p>
-     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     *            <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -381,7 +388,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -395,7 +402,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            >InitiateAuth</a>.
      *            </p>
      *            <p>
-     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     *            <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      *            </p>
      * @see ChallengeNameType
      */
@@ -410,7 +417,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * >InitiateAuth</a>.
      * </p>
      * <p>
-     * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     * <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -427,7 +434,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            >InitiateAuth</a>.
      *            </p>
      *            <p>
-     *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
+     *            <code>ADMIN_NO_SRP_AUTH</code> isn't a valid value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -440,11 +447,11 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. If <code>InitiateAuth</code> or
      * <code>RespondToAuthChallenge</code> API call determines that the caller
-     * needs to go through another challenge, they return a session with other
-     * challenge parameters. This session should be passed as it is to the next
+     * must pass another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
      * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
@@ -452,13 +459,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The session which should be passed both ways in
-     *         challenge-response calls to the service. If
-     *         <code>InitiateAuth</code> or <code>RespondToAuthChallenge</code>
-     *         API call determines that the caller needs to go through another
-     *         challenge, they return a session with other challenge parameters.
-     *         This session should be passed as it is to the next
-     *         <code>RespondToAuthChallenge</code> API call.
+     *         The session that should be passed both ways in challenge-response
+     *         calls to the service. If <code>InitiateAuth</code> or
+     *         <code>RespondToAuthChallenge</code> API call determines that the
+     *         caller must pass another challenge, they return a session with
+     *         other challenge parameters. This session should be passed as it
+     *         is to the next <code>RespondToAuthChallenge</code> API call.
      *         </p>
      */
     public String getSession() {
@@ -467,11 +473,11 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. If <code>InitiateAuth</code> or
      * <code>RespondToAuthChallenge</code> API call determines that the caller
-     * needs to go through another challenge, they return a session with other
-     * challenge parameters. This session should be passed as it is to the next
+     * must pass another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
      * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
@@ -479,14 +485,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. If
      *            <code>InitiateAuth</code> or
      *            <code>RespondToAuthChallenge</code> API call determines that
-     *            the caller needs to go through another challenge, they return
-     *            a session with other challenge parameters. This session should
-     *            be passed as it is to the next
-     *            <code>RespondToAuthChallenge</code> API call.
+     *            the caller must pass another challenge, they return a session
+     *            with other challenge parameters. This session should be passed
+     *            as it is to the next <code>RespondToAuthChallenge</code> API
+     *            call.
      *            </p>
      */
     public void setSession(String session) {
@@ -495,11 +501,11 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The session which should be passed both ways in challenge-response calls
+     * The session that should be passed both ways in challenge-response calls
      * to the service. If <code>InitiateAuth</code> or
      * <code>RespondToAuthChallenge</code> API call determines that the caller
-     * needs to go through another challenge, they return a session with other
-     * challenge parameters. This session should be passed as it is to the next
+     * must pass another challenge, they return a session with other challenge
+     * parameters. This session should be passed as it is to the next
      * <code>RespondToAuthChallenge</code> API call.
      * </p>
      * <p>
@@ -510,14 +516,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param session <p>
-     *            The session which should be passed both ways in
+     *            The session that should be passed both ways in
      *            challenge-response calls to the service. If
      *            <code>InitiateAuth</code> or
      *            <code>RespondToAuthChallenge</code> API call determines that
-     *            the caller needs to go through another challenge, they return
-     *            a session with other challenge parameters. This session should
-     *            be passed as it is to the next
-     *            <code>RespondToAuthChallenge</code> API call.
+     *            the caller must pass another challenge, they return a session
+     *            with other challenge parameters. This session should be passed
+     *            as it is to the next <code>RespondToAuthChallenge</code> API
+     *            call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -535,7 +541,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <note>
      * <p>
      * <code>SECRET_HASH</code> (if app client is configured with client secret)
-     * applies to all inputs below (including <code>SOFTWARE_TOKEN_MFA</code>).
+     * applies to all of the inputs that follow (including
+     * <code>SOFTWARE_TOKEN_MFA</code>).
      * </p>
      * </note>
      * <ul>
@@ -550,7 +557,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      * <code>USERNAME</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when
+     * signing in with a remembered device.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
@@ -573,13 +585,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * <code>PASSWORD_VERIFIER</code> requires, plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
-     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
+     * the session value returned by <code>VerifySoftwareToken</code> in the
      * <code>Session</code> parameter.
      * </p>
      * </li>
@@ -592,7 +604,7 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         <note>
      *         <p>
      *         <code>SECRET_HASH</code> (if app client is configured with client
-     *         secret) applies to all inputs below (including
+     *         secret) applies to all of the inputs that follow (including
      *         <code>SOFTWARE_TOKEN_MFA</code>).
      *         </p>
      *         </note>
@@ -610,7 +622,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      *         <code>USERNAME</code>.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code>
+     *         when signing in with a remembered device.
+     *         </p>
+     *         </note></li>
      *         <li>
      *         <p>
      *         <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
@@ -633,14 +650,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         <li>
      *         <p>
      *         <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     *         <code>PASSWORD_VERIFIER</code> requires plus
+     *         <code>PASSWORD_VERIFIER</code> requires, plus
      *         <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you
-     *         need to use the session value returned by
+     *         must use the session value returned by
      *         <code>VerifySoftwareToken</code> in the <code>Session</code>
      *         parameter.
      *         </p>
@@ -659,7 +676,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <note>
      * <p>
      * <code>SECRET_HASH</code> (if app client is configured with client secret)
-     * applies to all inputs below (including <code>SOFTWARE_TOKEN_MFA</code>).
+     * applies to all of the inputs that follow (including
+     * <code>SOFTWARE_TOKEN_MFA</code>).
      * </p>
      * </note>
      * <ul>
@@ -674,7 +692,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      * <code>USERNAME</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when
+     * signing in with a remembered device.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
@@ -697,13 +720,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * <code>PASSWORD_VERIFIER</code> requires, plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
-     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
+     * the session value returned by <code>VerifySoftwareToken</code> in the
      * <code>Session</code> parameter.
      * </p>
      * </li>
@@ -716,8 +739,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <note>
      *            <p>
      *            <code>SECRET_HASH</code> (if app client is configured with
-     *            client secret) applies to all inputs below (including
-     *            <code>SOFTWARE_TOKEN_MFA</code>).
+     *            client secret) applies to all of the inputs that follow
+     *            (including <code>SOFTWARE_TOKEN_MFA</code>).
      *            </p>
      *            </note>
      *            <ul>
@@ -734,7 +757,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
      *            <code>TIMESTAMP</code>, <code>USERNAME</code>.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code> requires
+     *            <code>DEVICE_KEY</code> when signing in with a remembered
+     *            device.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
@@ -757,14 +786,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <li>
      *            <p>
      *            <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     *            <code>PASSWORD_VERIFIER</code> requires plus
+     *            <code>PASSWORD_VERIFIER</code> requires, plus
      *            <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
-     *            you need to use the session value returned by
+     *            you must use the session value returned by
      *            <code>VerifySoftwareToken</code> in the <code>Session</code>
      *            parameter.
      *            </p>
@@ -783,7 +812,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <note>
      * <p>
      * <code>SECRET_HASH</code> (if app client is configured with client secret)
-     * applies to all inputs below (including <code>SOFTWARE_TOKEN_MFA</code>).
+     * applies to all of the inputs that follow (including
+     * <code>SOFTWARE_TOKEN_MFA</code>).
      * </p>
      * </note>
      * <ul>
@@ -798,7 +828,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      * <code>USERNAME</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when
+     * signing in with a remembered device.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
@@ -821,13 +856,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * <code>PASSWORD_VERIFIER</code> requires, plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
-     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
+     * the session value returned by <code>VerifySoftwareToken</code> in the
      * <code>Session</code> parameter.
      * </p>
      * </li>
@@ -843,8 +878,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <note>
      *            <p>
      *            <code>SECRET_HASH</code> (if app client is configured with
-     *            client secret) applies to all inputs below (including
-     *            <code>SOFTWARE_TOKEN_MFA</code>).
+     *            client secret) applies to all of the inputs that follow
+     *            (including <code>SOFTWARE_TOKEN_MFA</code>).
      *            </p>
      *            </note>
      *            <ul>
@@ -861,7 +896,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <code>PASSWORD_CLAIM_SECRET_BLOCK</code>,
      *            <code>TIMESTAMP</code>, <code>USERNAME</code>.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            <code>PASSWORD_VERIFIER</code> requires
+     *            <code>DEVICE_KEY</code> when signing in with a remembered
+     *            device.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
@@ -884,14 +925,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <li>
      *            <p>
      *            <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     *            <code>PASSWORD_VERIFIER</code> requires plus
+     *            <code>PASSWORD_VERIFIER</code> requires, plus
      *            <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
-     *            you need to use the session value returned by
+     *            you must use the session value returned by
      *            <code>VerifySoftwareToken</code> in the <code>Session</code>
      *            parameter.
      *            </p>
@@ -914,7 +955,8 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <note>
      * <p>
      * <code>SECRET_HASH</code> (if app client is configured with client secret)
-     * applies to all inputs below (including <code>SOFTWARE_TOKEN_MFA</code>).
+     * applies to all of the inputs that follow (including
+     * <code>SOFTWARE_TOKEN_MFA</code>).
      * </p>
      * </note>
      * <ul>
@@ -929,7 +971,12 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_CLAIM_SECRET_BLOCK</code>, <code>TIMESTAMP</code>,
      * <code>USERNAME</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * <code>PASSWORD_VERIFIER</code> requires <code>DEVICE_KEY</code> when
+     * signing in with a remembered device.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
@@ -952,13 +999,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
-     * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * <code>PASSWORD_VERIFIER</code> requires, plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
-     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
+     * the session value returned by <code>VerifySoftwareToken</code> in the
      * <code>Session</code> parameter.
      * </p>
      * </li>
@@ -1132,27 +1179,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -1185,28 +1232,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         <note>
      *         <p>
-     *         Take the following limitations into consideration when you use
-     *         the ClientMetadata parameter:
+     *         When you use the ClientMetadata parameter, remember that Amazon
+     *         Cognito won't do the following:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not store the ClientMetadata value. This data
-     *         is available only to Lambda triggers that are assigned to a user
-     *         pool to support custom workflows. If your user pool configuration
-     *         does not include triggers, the ClientMetadata parameter serves no
-     *         purpose.
+     *         Store the ClientMetadata value. This data is available only to
+     *         Lambda triggers that are assigned to a user pool to support
+     *         custom workflows. If your user pool configuration doesn't include
+     *         triggers, the ClientMetadata parameter serves no purpose.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not validate the ClientMetadata value.
+     *         Validate the ClientMetadata value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Amazon Cognito does not encrypt the the ClientMetadata value, so
-     *         don't use it to provide sensitive information.
+     *         Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *         provide sensitive information.
      *         </p>
      *         </li>
      *         </ul>
@@ -1243,27 +1289,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -1297,28 +1343,28 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <note>
      *            <p>
-     *            Take the following limitations into consideration when you use
-     *            the ClientMetadata parameter:
+     *            When you use the ClientMetadata parameter, remember that
+     *            Amazon Cognito won't do the following:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to Lambda triggers that are assigned to
-     *            a user pool to support custom workflows. If your user pool
-     *            configuration does not include triggers, the ClientMetadata
-     *            parameter serves no purpose.
+     *            Store the ClientMetadata value. This data is available only to
+     *            Lambda triggers that are assigned to a user pool to support
+     *            custom workflows. If your user pool configuration doesn't
+     *            include triggers, the ClientMetadata parameter serves no
+     *            purpose.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            Validate the ClientMetadata value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not encrypt the the ClientMetadata value,
-     *            so don't use it to provide sensitive information.
+     *            Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *            provide sensitive information.
      *            </p>
      *            </li>
      *            </ul>
@@ -1355,27 +1401,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>
@@ -1412,28 +1458,28 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            <note>
      *            <p>
-     *            Take the following limitations into consideration when you use
-     *            the ClientMetadata parameter:
+     *            When you use the ClientMetadata parameter, remember that
+     *            Amazon Cognito won't do the following:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to Lambda triggers that are assigned to
-     *            a user pool to support custom workflows. If your user pool
-     *            configuration does not include triggers, the ClientMetadata
-     *            parameter serves no purpose.
+     *            Store the ClientMetadata value. This data is available only to
+     *            Lambda triggers that are assigned to a user pool to support
+     *            custom workflows. If your user pool configuration doesn't
+     *            include triggers, the ClientMetadata parameter serves no
+     *            purpose.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not validate the ClientMetadata value.
+     *            Validate the ClientMetadata value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Amazon Cognito does not encrypt the the ClientMetadata value,
-     *            so don't use it to provide sensitive information.
+     *            Encrypt the ClientMetadata value. Don't use Amazon Cognito to
+     *            provide sensitive information.
      *            </p>
      *            </li>
      *            </ul>
@@ -1474,27 +1520,27 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * <note>
      * <p>
-     * Take the following limitations into consideration when you use the
-     * ClientMetadata parameter:
+     * When you use the ClientMetadata parameter, remember that Amazon Cognito
+     * won't do the following:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to Lambda triggers that are assigned to a user pool to
-     * support custom workflows. If your user pool configuration does not
-     * include triggers, the ClientMetadata parameter serves no purpose.
+     * Store the ClientMetadata value. This data is available only to Lambda
+     * triggers that are assigned to a user pool to support custom workflows. If
+     * your user pool configuration doesn't include triggers, the ClientMetadata
+     * parameter serves no purpose.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not validate the ClientMetadata value.
+     * Validate the ClientMetadata value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Amazon Cognito does not encrypt the the ClientMetadata value, so don't
-     * use it to provide sensitive information.
+     * Encrypt the ClientMetadata value. Don't use Amazon Cognito to provide
+     * sensitive information.
      * </p>
      * </li>
      * </ul>

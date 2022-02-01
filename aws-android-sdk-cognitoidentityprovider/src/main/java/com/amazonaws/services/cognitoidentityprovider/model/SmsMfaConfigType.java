@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@ public class SmsMfaConfigType implements Serializable {
     /**
      * <p>
      * The SMS authentication message that will be sent to users with the code
-     * they need to sign in. The message must contain the ‘{####}’ placeholder,
-     * which will be replaced with the code. If the message is not included, and
+     * they must sign in. The message must contain the ‘{####}’ placeholder,
+     * which is replaced with the code. If the message isn't included, and
      * default message will be used.
      * </p>
      * <p>
@@ -47,8 +47,8 @@ public class SmsMfaConfigType implements Serializable {
     /**
      * <p>
      * The SMS authentication message that will be sent to users with the code
-     * they need to sign in. The message must contain the ‘{####}’ placeholder,
-     * which will be replaced with the code. If the message is not included, and
+     * they must sign in. The message must contain the ‘{####}’ placeholder,
+     * which is replaced with the code. If the message isn't included, and
      * default message will be used.
      * </p>
      * <p>
@@ -58,9 +58,9 @@ public class SmsMfaConfigType implements Serializable {
      *
      * @return <p>
      *         The SMS authentication message that will be sent to users with
-     *         the code they need to sign in. The message must contain the
-     *         ‘{####}’ placeholder, which will be replaced with the code. If
-     *         the message is not included, and default message will be used.
+     *         the code they must sign in. The message must contain the ‘{####}’
+     *         placeholder, which is replaced with the code. If the message
+     *         isn't included, and default message will be used.
      *         </p>
      */
     public String getSmsAuthenticationMessage() {
@@ -70,8 +70,8 @@ public class SmsMfaConfigType implements Serializable {
     /**
      * <p>
      * The SMS authentication message that will be sent to users with the code
-     * they need to sign in. The message must contain the ‘{####}’ placeholder,
-     * which will be replaced with the code. If the message is not included, and
+     * they must sign in. The message must contain the ‘{####}’ placeholder,
+     * which is replaced with the code. If the message isn't included, and
      * default message will be used.
      * </p>
      * <p>
@@ -81,9 +81,9 @@ public class SmsMfaConfigType implements Serializable {
      *
      * @param smsAuthenticationMessage <p>
      *            The SMS authentication message that will be sent to users with
-     *            the code they need to sign in. The message must contain the
-     *            ‘{####}’ placeholder, which will be replaced with the code. If
-     *            the message is not included, and default message will be used.
+     *            the code they must sign in. The message must contain the
+     *            ‘{####}’ placeholder, which is replaced with the code. If the
+     *            message isn't included, and default message will be used.
      *            </p>
      */
     public void setSmsAuthenticationMessage(String smsAuthenticationMessage) {
@@ -93,8 +93,8 @@ public class SmsMfaConfigType implements Serializable {
     /**
      * <p>
      * The SMS authentication message that will be sent to users with the code
-     * they need to sign in. The message must contain the ‘{####}’ placeholder,
-     * which will be replaced with the code. If the message is not included, and
+     * they must sign in. The message must contain the ‘{####}’ placeholder,
+     * which is replaced with the code. If the message isn't included, and
      * default message will be used.
      * </p>
      * <p>
@@ -107,9 +107,9 @@ public class SmsMfaConfigType implements Serializable {
      *
      * @param smsAuthenticationMessage <p>
      *            The SMS authentication message that will be sent to users with
-     *            the code they need to sign in. The message must contain the
-     *            ‘{####}’ placeholder, which will be replaced with the code. If
-     *            the message is not included, and default message will be used.
+     *            the code they must sign in. The message must contain the
+     *            ‘{####}’ placeholder, which is replaced with the code. If the
+     *            message isn't included, and default message will be used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

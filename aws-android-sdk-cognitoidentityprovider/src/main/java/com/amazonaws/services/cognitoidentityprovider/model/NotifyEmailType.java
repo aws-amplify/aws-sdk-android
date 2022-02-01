@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class NotifyEmailType implements Serializable {
     /**
      * <p>
-     * The subject.
+     * The email subject.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +36,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The HTML body.
+     * The email HTML body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +47,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The text body.
+     * The email text body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +58,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The subject.
+     * The email subject.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,7 +66,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @return <p>
-     *         The subject.
+     *         The email subject.
      *         </p>
      */
     public String getSubject() {
@@ -75,7 +75,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The subject.
+     * The email subject.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +83,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param subject <p>
-     *            The subject.
+     *            The email subject.
      *            </p>
      */
     public void setSubject(String subject) {
@@ -92,7 +92,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The subject.
+     * The email subject.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -103,7 +103,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param subject <p>
-     *            The subject.
+     *            The email subject.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -115,7 +115,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The HTML body.
+     * The email HTML body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,7 +123,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @return <p>
-     *         The HTML body.
+     *         The email HTML body.
      *         </p>
      */
     public String getHtmlBody() {
@@ -132,7 +132,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The HTML body.
+     * The email HTML body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -140,7 +140,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @param htmlBody <p>
-     *            The HTML body.
+     *            The email HTML body.
      *            </p>
      */
     public void setHtmlBody(String htmlBody) {
@@ -149,7 +149,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The HTML body.
+     * The email HTML body.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -160,7 +160,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @param htmlBody <p>
-     *            The HTML body.
+     *            The email HTML body.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -172,7 +172,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The text body.
+     * The email text body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,7 +180,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @return <p>
-     *         The text body.
+     *         The email text body.
      *         </p>
      */
     public String getTextBody() {
@@ -189,7 +189,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The text body.
+     * The email text body.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -197,7 +197,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @param textBody <p>
-     *            The text body.
+     *            The email text body.
      *            </p>
      */
     public void setTextBody(String textBody) {
@@ -206,7 +206,7 @@ public class NotifyEmailType implements Serializable {
 
     /**
      * <p>
-     * The text body.
+     * The email text body.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -217,7 +217,7 @@ public class NotifyEmailType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s*]+<br/>
      *
      * @param textBody <p>
-     *            The text body.
+     *            The email text body.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

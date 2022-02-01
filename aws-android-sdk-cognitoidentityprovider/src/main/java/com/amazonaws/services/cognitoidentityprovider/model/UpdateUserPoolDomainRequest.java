@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You can use this operation to provide the Amazon Resource Name (ARN) of a new
- * certificate to Amazon Cognito. You cannot use it to change the domain for a
+ * certificate to Amazon Cognito. You can't use it to change the domain for a
  * user pool.
  * </p>
  * <p>
@@ -49,7 +49,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * When you add your new certificate in ACM, you must choose US East (N.
- * Virginia) as the Region.
+ * Virginia) as the Amazon Web Services Region.
  * </p>
  * <p>
  * After you submit your request, Amazon Cognito requires up to 1 hour to
@@ -66,12 +66,13 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The domain name for the custom domain that hosts the sign-up and sign-in
-     * pages for your application. For example: <code>auth.example.com</code>.
+     * pages for your application. One example might be
+     * <code>auth.example.com</code>.
      * </p>
      * <p>
-     * This string can include only lowercase letters, numbers, and hyphens. Do
-     * not use a hyphen for the first or last character. Use periods to separate
-     * subdomain names.
+     * This string can include only lowercase letters, numbers, and hyphens.
+     * Don't use a hyphen for the first or last character. Use periods to
+     * separate subdomain names.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,8 +83,8 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that is associated with the custom domain that
-     * you are updating the certificate for.
+     * The ID of the user pool that is associated with the custom domain whose
+     * certificate you're updating.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,12 +105,13 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The domain name for the custom domain that hosts the sign-up and sign-in
-     * pages for your application. For example: <code>auth.example.com</code>.
+     * pages for your application. One example might be
+     * <code>auth.example.com</code>.
      * </p>
      * <p>
-     * This string can include only lowercase letters, numbers, and hyphens. Do
-     * not use a hyphen for the first or last character. Use periods to separate
-     * subdomain names.
+     * This string can include only lowercase letters, numbers, and hyphens.
+     * Don't use a hyphen for the first or last character. Use periods to
+     * separate subdomain names.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,12 +120,12 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The domain name for the custom domain that hosts the sign-up and
-     *         sign-in pages for your application. For example:
+     *         sign-in pages for your application. One example might be
      *         <code>auth.example.com</code>.
      *         </p>
      *         <p>
      *         This string can include only lowercase letters, numbers, and
-     *         hyphens. Do not use a hyphen for the first or last character. Use
+     *         hyphens. Don't use a hyphen for the first or last character. Use
      *         periods to separate subdomain names.
      *         </p>
      */
@@ -134,12 +136,13 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The domain name for the custom domain that hosts the sign-up and sign-in
-     * pages for your application. For example: <code>auth.example.com</code>.
+     * pages for your application. One example might be
+     * <code>auth.example.com</code>.
      * </p>
      * <p>
-     * This string can include only lowercase letters, numbers, and hyphens. Do
-     * not use a hyphen for the first or last character. Use periods to separate
-     * subdomain names.
+     * This string can include only lowercase letters, numbers, and hyphens.
+     * Don't use a hyphen for the first or last character. Use periods to
+     * separate subdomain names.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -148,12 +151,12 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @param domain <p>
      *            The domain name for the custom domain that hosts the sign-up
-     *            and sign-in pages for your application. For example:
+     *            and sign-in pages for your application. One example might be
      *            <code>auth.example.com</code>.
      *            </p>
      *            <p>
      *            This string can include only lowercase letters, numbers, and
-     *            hyphens. Do not use a hyphen for the first or last character.
+     *            hyphens. Don't use a hyphen for the first or last character.
      *            Use periods to separate subdomain names.
      *            </p>
      */
@@ -164,12 +167,13 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The domain name for the custom domain that hosts the sign-up and sign-in
-     * pages for your application. For example: <code>auth.example.com</code>.
+     * pages for your application. One example might be
+     * <code>auth.example.com</code>.
      * </p>
      * <p>
-     * This string can include only lowercase letters, numbers, and hyphens. Do
-     * not use a hyphen for the first or last character. Use periods to separate
-     * subdomain names.
+     * This string can include only lowercase letters, numbers, and hyphens.
+     * Don't use a hyphen for the first or last character. Use periods to
+     * separate subdomain names.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,12 +185,12 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @param domain <p>
      *            The domain name for the custom domain that hosts the sign-up
-     *            and sign-in pages for your application. For example:
+     *            and sign-in pages for your application. One example might be
      *            <code>auth.example.com</code>.
      *            </p>
      *            <p>
      *            This string can include only lowercase letters, numbers, and
-     *            hyphens. Do not use a hyphen for the first or last character.
+     *            hyphens. Don't use a hyphen for the first or last character.
      *            Use periods to separate subdomain names.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -199,8 +203,8 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that is associated with the custom domain that
-     * you are updating the certificate for.
+     * The ID of the user pool that is associated with the custom domain whose
+     * certificate you're updating.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -209,7 +213,7 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The ID of the user pool that is associated with the custom domain
-     *         that you are updating the certificate for.
+     *         whose certificate you're updating.
      *         </p>
      */
     public String getUserPoolId() {
@@ -218,8 +222,8 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that is associated with the custom domain that
-     * you are updating the certificate for.
+     * The ID of the user pool that is associated with the custom domain whose
+     * certificate you're updating.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -228,7 +232,7 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @param userPoolId <p>
      *            The ID of the user pool that is associated with the custom
-     *            domain that you are updating the certificate for.
+     *            domain whose certificate you're updating.
      *            </p>
      */
     public void setUserPoolId(String userPoolId) {
@@ -237,8 +241,8 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that is associated with the custom domain that
-     * you are updating the certificate for.
+     * The ID of the user pool that is associated with the custom domain whose
+     * certificate you're updating.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -250,7 +254,7 @@ public class UpdateUserPoolDomainRequest extends AmazonWebServiceRequest impleme
      *
      * @param userPoolId <p>
      *            The ID of the user pool that is associated with the custom
-     *            domain that you are updating the certificate for.
+     *            domain whose certificate you're updating.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

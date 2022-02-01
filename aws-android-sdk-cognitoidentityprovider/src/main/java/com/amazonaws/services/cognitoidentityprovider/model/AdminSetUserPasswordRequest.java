@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The password can be temporary or permanent. If it is temporary, the user
- * status will be placed into the <code>FORCE_CHANGE_PASSWORD</code> state. When
- * the user next tries to sign in, the InitiateAuth/AdminInitiateAuth response
- * will contain the <code>NEW_PASSWORD_REQUIRED</code> challenge. If the user
- * does not sign in before it expires, the user will not be able to sign in and
- * their password will need to be reset by an administrator.
+ * status enters the <code>FORCE_CHANGE_PASSWORD</code> state. When the user
+ * next tries to sign in, the InitiateAuth/AdminInitiateAuth response will
+ * contain the <code>NEW_PASSWORD_REQUIRED</code> challenge. If the user doesn't
+ * sign in before it expires, the user won't be able to sign in, and an
+ * administrator must reset their password.
  * </p>
  * <p>
  * Once the user has set a new password, or the password is permanent, the user
- * status will be set to <code>Confirmed</code>.
+ * status is set to <code>Confirmed</code>.
  * </p>
  */
 public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest implements Serializable {
@@ -52,7 +52,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user whose password you wish to set.
+     * The user name of the user whose password you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +145,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user whose password you wish to set.
+     * The user name of the user whose password you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,7 +153,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user whose password you wish to set.
+     *         The user name of the user whose password you want to set.
      *         </p>
      */
     public String getUsername() {
@@ -162,7 +162,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user whose password you wish to set.
+     * The user name of the user whose password you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +170,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you wish to set.
+     *            The user name of the user whose password you want to set.
      *            </p>
      */
     public void setUsername(String username) {
@@ -179,7 +179,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user whose password you wish to set.
+     * The user name of the user whose password you want to set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -190,7 +190,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose password you wish to set.
+     *            The user name of the user whose password you want to set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

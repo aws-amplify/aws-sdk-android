@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * <i>This action is no longer supported.</i> You can use it to configure only
- * SMS MFA. You can't use it to configure TOTP software token MFA. To configure
- * either type of MFA, use <a href=
+ * SMS MFA. You can't use it to configure time-based one-time password (TOTP)
+ * software token MFA. To configure either type of MFA, use <a href=
  * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html"
  * >AdminSetUserMFAPreference</a> instead.
  * </p>
@@ -31,8 +31,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ID of the user pool that contains the user that you are setting
-     * options for.
+     * The ID of the user pool that contains the user whose options you're
+     * setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user that you are setting options for.
+     * The user name of the user whose options you're setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,8 +62,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that contains the user that you are setting
-     * options for.
+     * The ID of the user pool that contains the user whose options you're
+     * setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,8 +71,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @return <p>
-     *         The ID of the user pool that contains the user that you are
-     *         setting options for.
+     *         The ID of the user pool that contains the user whose options
+     *         you're setting.
      *         </p>
      */
     public String getUserPoolId() {
@@ -81,8 +81,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that contains the user that you are setting
-     * options for.
+     * The ID of the user pool that contains the user whose options you're
+     * setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,8 +90,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The ID of the user pool that contains the user that you are
-     *            setting options for.
+     *            The ID of the user pool that contains the user whose options
+     *            you're setting.
      *            </p>
      */
     public void setUserPoolId(String userPoolId) {
@@ -100,8 +100,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The ID of the user pool that contains the user that you are setting
-     * options for.
+     * The ID of the user pool that contains the user whose options you're
+     * setting.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -112,8 +112,8 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\w-]+_[0-9a-zA-Z]+<br/>
      *
      * @param userPoolId <p>
-     *            The ID of the user pool that contains the user that you are
-     *            setting options for.
+     *            The ID of the user pool that contains the user whose options
+     *            you're setting.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -125,7 +125,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user that you are setting options for.
+     * The user name of the user whose options you're setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +133,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user that you are setting options for.
+     *         The user name of the user whose options you're setting.
      *         </p>
      */
     public String getUsername() {
@@ -142,7 +142,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user that you are setting options for.
+     * The user name of the user whose options you're setting.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -150,7 +150,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user that you are setting options for.
+     *            The user name of the user whose options you're setting.
      *            </p>
      */
     public void setUsername(String username) {
@@ -159,7 +159,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The user name of the user that you are setting options for.
+     * The user name of the user whose options you're setting.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -170,7 +170,7 @@ public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user that you are setting options for.
+     *            The user name of the user whose options you're setting.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

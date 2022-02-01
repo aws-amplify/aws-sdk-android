@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,22 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The type used for enabling SMS MFA at the user level. Phone numbers don't
- * need to be verified to be used for SMS MFA. If an MFA type is enabled for a
- * user, the user will be prompted for MFA during all sign in attempts, unless
- * device tracking is turned on and the device has been trusted. If you would
- * like MFA to be applied selectively based on the assessed risk level of sign
- * in attempts, disable MFA for users and turn on Adaptive Authentication for
- * the user pool.
+ * The type used for enabling SMS multi-factor authentication (MFA) at the user
+ * level. Phone numbers don't need to be verified to be used for SMS MFA. If an
+ * MFA type is activated for a user, the user will be prompted for MFA during
+ * all sign-in attempts, unless device tracking is turned on and the device has
+ * been trusted. If you would like MFA to be applied selectively based on the
+ * assessed risk level of sign-in attempts, deactivate MFA for users and turn on
+ * Adaptive Authentication for the user pool.
  * </p>
  */
 public class SMSMfaSettingsType implements Serializable {
     /**
      * <p>
-     * Specifies whether SMS text message MFA is enabled. If an MFA type is
-     * enabled for a user, the user will be prompted for MFA during all sign in
-     * attempts, unless device tracking is turned on and the device has been
-     * trusted.
+     * Specifies whether SMS text message MFA is activated. If an MFA type is
+     * activated for a user, the user will be prompted for MFA during all
+     * sign-in attempts, unless device tracking is turned on and the device has
+     * been trusted.
      * </p>
      */
     private Boolean enabled;
@@ -48,17 +48,17 @@ public class SMSMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether SMS text message MFA is enabled. If an MFA type is
-     * enabled for a user, the user will be prompted for MFA during all sign in
-     * attempts, unless device tracking is turned on and the device has been
-     * trusted.
+     * Specifies whether SMS text message MFA is activated. If an MFA type is
+     * activated for a user, the user will be prompted for MFA during all
+     * sign-in attempts, unless device tracking is turned on and the device has
+     * been trusted.
      * </p>
      *
      * @return <p>
-     *         Specifies whether SMS text message MFA is enabled. If an MFA type
-     *         is enabled for a user, the user will be prompted for MFA during
-     *         all sign in attempts, unless device tracking is turned on and the
-     *         device has been trusted.
+     *         Specifies whether SMS text message MFA is activated. If an MFA
+     *         type is activated for a user, the user will be prompted for MFA
+     *         during all sign-in attempts, unless device tracking is turned on
+     *         and the device has been trusted.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -67,17 +67,17 @@ public class SMSMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether SMS text message MFA is enabled. If an MFA type is
-     * enabled for a user, the user will be prompted for MFA during all sign in
-     * attempts, unless device tracking is turned on and the device has been
-     * trusted.
+     * Specifies whether SMS text message MFA is activated. If an MFA type is
+     * activated for a user, the user will be prompted for MFA during all
+     * sign-in attempts, unless device tracking is turned on and the device has
+     * been trusted.
      * </p>
      *
      * @return <p>
-     *         Specifies whether SMS text message MFA is enabled. If an MFA type
-     *         is enabled for a user, the user will be prompted for MFA during
-     *         all sign in attempts, unless device tracking is turned on and the
-     *         device has been trusted.
+     *         Specifies whether SMS text message MFA is activated. If an MFA
+     *         type is activated for a user, the user will be prompted for MFA
+     *         during all sign-in attempts, unless device tracking is turned on
+     *         and the device has been trusted.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -86,17 +86,17 @@ public class SMSMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether SMS text message MFA is enabled. If an MFA type is
-     * enabled for a user, the user will be prompted for MFA during all sign in
-     * attempts, unless device tracking is turned on and the device has been
-     * trusted.
+     * Specifies whether SMS text message MFA is activated. If an MFA type is
+     * activated for a user, the user will be prompted for MFA during all
+     * sign-in attempts, unless device tracking is turned on and the device has
+     * been trusted.
      * </p>
      *
      * @param enabled <p>
-     *            Specifies whether SMS text message MFA is enabled. If an MFA
-     *            type is enabled for a user, the user will be prompted for MFA
-     *            during all sign in attempts, unless device tracking is turned
-     *            on and the device has been trusted.
+     *            Specifies whether SMS text message MFA is activated. If an MFA
+     *            type is activated for a user, the user will be prompted for
+     *            MFA during all sign-in attempts, unless device tracking is
+     *            turned on and the device has been trusted.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -105,20 +105,20 @@ public class SMSMfaSettingsType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether SMS text message MFA is enabled. If an MFA type is
-     * enabled for a user, the user will be prompted for MFA during all sign in
-     * attempts, unless device tracking is turned on and the device has been
-     * trusted.
+     * Specifies whether SMS text message MFA is activated. If an MFA type is
+     * activated for a user, the user will be prompted for MFA during all
+     * sign-in attempts, unless device tracking is turned on and the device has
+     * been trusted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            Specifies whether SMS text message MFA is enabled. If an MFA
-     *            type is enabled for a user, the user will be prompted for MFA
-     *            during all sign in attempts, unless device tracking is turned
-     *            on and the device has been trusted.
+     *            Specifies whether SMS text message MFA is activated. If an MFA
+     *            type is activated for a user, the user will be prompted for
+     *            MFA during all sign-in attempts, unless device tracking is
+     *            turned on and the device has been trusted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

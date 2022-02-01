@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sets the user's multi-factor authentication (MFA) preference, including which
- * MFA options are enabled and if any are preferred. Only one factor can be set
+ * The user's multi-factor authentication (MFA) preference, including which MFA
+ * options are activated, and if any are preferred. Only one factor can be set
  * as preferred. The preferred MFA factor will be used to authenticate a user if
- * multiple factors are enabled. If multiple options are enabled and no
+ * multiple factors are activated. If multiple options are activated and no
  * preference is set, a challenge to choose an MFA option will be returned
- * during sign in.
+ * during sign-in.
  * </p>
  */
 public class AdminSetUserMFAPreferenceRequest extends AmazonWebServiceRequest implements

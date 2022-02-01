@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class PasswordPolicyType implements Serializable {
     /**
      * <p>
-     * The minimum length of the password policy that you have set. Cannot be
-     * less than 6.
+     * The minimum length of the password in the policy that you have set. This
+     * value can't be less than 6.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,14 +68,14 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * In the password policy you have set, refers to the number of days a
-     * temporary password is valid. If the user does not sign-in during this
-     * time, their password will need to be reset by an administrator.
+     * The number of days a temporary password is valid in the password policy.
+     * If the user doesn't sign in during this time, an administrator must reset
+     * their password.
      * </p>
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you will no longer be able to set the deprecated
+     * you can no longer set the deprecated
      * <code>UnusedAccountValidityDays</code> value for that user pool.
      * </p>
      * </note>
@@ -87,16 +87,16 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * The minimum length of the password policy that you have set. Cannot be
-     * less than 6.
+     * The minimum length of the password in the policy that you have set. This
+     * value can't be less than 6.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>6 - 99<br/>
      *
      * @return <p>
-     *         The minimum length of the password policy that you have set.
-     *         Cannot be less than 6.
+     *         The minimum length of the password in the policy that you have
+     *         set. This value can't be less than 6.
      *         </p>
      */
     public Integer getMinimumLength() {
@@ -105,16 +105,16 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * The minimum length of the password policy that you have set. Cannot be
-     * less than 6.
+     * The minimum length of the password in the policy that you have set. This
+     * value can't be less than 6.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>6 - 99<br/>
      *
      * @param minimumLength <p>
-     *            The minimum length of the password policy that you have set.
-     *            Cannot be less than 6.
+     *            The minimum length of the password in the policy that you have
+     *            set. This value can't be less than 6.
      *            </p>
      */
     public void setMinimumLength(Integer minimumLength) {
@@ -123,8 +123,8 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * The minimum length of the password policy that you have set. Cannot be
-     * less than 6.
+     * The minimum length of the password in the policy that you have set. This
+     * value can't be less than 6.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -134,8 +134,8 @@ public class PasswordPolicyType implements Serializable {
      * <b>Range: </b>6 - 99<br/>
      *
      * @param minimumLength <p>
-     *            The minimum length of the password policy that you have set.
-     *            Cannot be less than 6.
+     *            The minimum length of the password in the policy that you have
+     *            set. This value can't be less than 6.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -423,14 +423,14 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * In the password policy you have set, refers to the number of days a
-     * temporary password is valid. If the user does not sign-in during this
-     * time, their password will need to be reset by an administrator.
+     * The number of days a temporary password is valid in the password policy.
+     * If the user doesn't sign in during this time, an administrator must reset
+     * their password.
      * </p>
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you will no longer be able to set the deprecated
+     * you can no longer set the deprecated
      * <code>UnusedAccountValidityDays</code> value for that user pool.
      * </p>
      * </note>
@@ -439,15 +439,14 @@ public class PasswordPolicyType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @return <p>
-     *         In the password policy you have set, refers to the number of days
-     *         a temporary password is valid. If the user does not sign-in
-     *         during this time, their password will need to be reset by an
-     *         administrator.
+     *         The number of days a temporary password is valid in the password
+     *         policy. If the user doesn't sign in during this time, an
+     *         administrator must reset their password.
      *         </p>
      *         <note>
      *         <p>
      *         When you set <code>TemporaryPasswordValidityDays</code> for a
-     *         user pool, you will no longer be able to set the deprecated
+     *         user pool, you can no longer set the deprecated
      *         <code>UnusedAccountValidityDays</code> value for that user pool.
      *         </p>
      *         </note>
@@ -458,14 +457,14 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * In the password policy you have set, refers to the number of days a
-     * temporary password is valid. If the user does not sign-in during this
-     * time, their password will need to be reset by an administrator.
+     * The number of days a temporary password is valid in the password policy.
+     * If the user doesn't sign in during this time, an administrator must reset
+     * their password.
      * </p>
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you will no longer be able to set the deprecated
+     * you can no longer set the deprecated
      * <code>UnusedAccountValidityDays</code> value for that user pool.
      * </p>
      * </note>
@@ -474,15 +473,14 @@ public class PasswordPolicyType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @param temporaryPasswordValidityDays <p>
-     *            In the password policy you have set, refers to the number of
-     *            days a temporary password is valid. If the user does not
-     *            sign-in during this time, their password will need to be reset
-     *            by an administrator.
+     *            The number of days a temporary password is valid in the
+     *            password policy. If the user doesn't sign in during this time,
+     *            an administrator must reset their password.
      *            </p>
      *            <note>
      *            <p>
      *            When you set <code>TemporaryPasswordValidityDays</code> for a
-     *            user pool, you will no longer be able to set the deprecated
+     *            user pool, you can no longer set the deprecated
      *            <code>UnusedAccountValidityDays</code> value for that user
      *            pool.
      *            </p>
@@ -494,14 +492,14 @@ public class PasswordPolicyType implements Serializable {
 
     /**
      * <p>
-     * In the password policy you have set, refers to the number of days a
-     * temporary password is valid. If the user does not sign-in during this
-     * time, their password will need to be reset by an administrator.
+     * The number of days a temporary password is valid in the password policy.
+     * If the user doesn't sign in during this time, an administrator must reset
+     * their password.
      * </p>
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you will no longer be able to set the deprecated
+     * you can no longer set the deprecated
      * <code>UnusedAccountValidityDays</code> value for that user pool.
      * </p>
      * </note>
@@ -513,15 +511,14 @@ public class PasswordPolicyType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @param temporaryPasswordValidityDays <p>
-     *            In the password policy you have set, refers to the number of
-     *            days a temporary password is valid. If the user does not
-     *            sign-in during this time, their password will need to be reset
-     *            by an administrator.
+     *            The number of days a temporary password is valid in the
+     *            password policy. If the user doesn't sign in during this time,
+     *            an administrator must reset their password.
      *            </p>
      *            <note>
      *            <p>
      *            When you set <code>TemporaryPasswordValidityDays</code> for a
-     *            user pool, you will no longer be able to set the deprecated
+     *            user pool, you can no longer set the deprecated
      *            <code>UnusedAccountValidityDays</code> value for that user
      *            pool.
      *            </p>

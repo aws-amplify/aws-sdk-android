@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,9 +43,9 @@ public class AdminCreateUserConfigType implements Serializable {
      * <note>
      * <p>
      * If you set a value for <code>TemporaryPasswordValidityDays</code> in
-     * <code>PasswordPolicy</code>, that value will be used and
-     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
-     * pool.
+     * <code>PasswordPolicy</code>, that value will be used, and
+     * <code>UnusedAccountValidityDays</code> will be no longer be an available
+     * parameter for that user pool.
      * </p>
      * </note>
      * <p>
@@ -151,9 +151,9 @@ public class AdminCreateUserConfigType implements Serializable {
      * <note>
      * <p>
      * If you set a value for <code>TemporaryPasswordValidityDays</code> in
-     * <code>PasswordPolicy</code>, that value will be used and
-     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
-     * pool.
+     * <code>PasswordPolicy</code>, that value will be used, and
+     * <code>UnusedAccountValidityDays</code> will be no longer be an available
+     * parameter for that user pool.
      * </p>
      * </note>
      * <p>
@@ -171,9 +171,9 @@ public class AdminCreateUserConfigType implements Serializable {
      *         <note>
      *         <p>
      *         If you set a value for <code>TemporaryPasswordValidityDays</code>
-     *         in <code>PasswordPolicy</code>, that value will be used and
-     *         <code>UnusedAccountValidityDays</code> will be deprecated for
-     *         that user pool.
+     *         in <code>PasswordPolicy</code>, that value will be used, and
+     *         <code>UnusedAccountValidityDays</code> will be no longer be an
+     *         available parameter for that user pool.
      *         </p>
      *         </note>
      */
@@ -192,9 +192,9 @@ public class AdminCreateUserConfigType implements Serializable {
      * <note>
      * <p>
      * If you set a value for <code>TemporaryPasswordValidityDays</code> in
-     * <code>PasswordPolicy</code>, that value will be used and
-     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
-     * pool.
+     * <code>PasswordPolicy</code>, that value will be used, and
+     * <code>UnusedAccountValidityDays</code> will be no longer be an available
+     * parameter for that user pool.
      * </p>
      * </note>
      * <p>
@@ -213,9 +213,9 @@ public class AdminCreateUserConfigType implements Serializable {
      *            <p>
      *            If you set a value for
      *            <code>TemporaryPasswordValidityDays</code> in
-     *            <code>PasswordPolicy</code>, that value will be used and
-     *            <code>UnusedAccountValidityDays</code> will be deprecated for
-     *            that user pool.
+     *            <code>PasswordPolicy</code>, that value will be used, and
+     *            <code>UnusedAccountValidityDays</code> will be no longer be an
+     *            available parameter for that user pool.
      *            </p>
      *            </note>
      */
@@ -234,9 +234,9 @@ public class AdminCreateUserConfigType implements Serializable {
      * <note>
      * <p>
      * If you set a value for <code>TemporaryPasswordValidityDays</code> in
-     * <code>PasswordPolicy</code>, that value will be used and
-     * <code>UnusedAccountValidityDays</code> will be deprecated for that user
-     * pool.
+     * <code>PasswordPolicy</code>, that value will be used, and
+     * <code>UnusedAccountValidityDays</code> will be no longer be an available
+     * parameter for that user pool.
      * </p>
      * </note>
      * <p>
@@ -258,9 +258,9 @@ public class AdminCreateUserConfigType implements Serializable {
      *            <p>
      *            If you set a value for
      *            <code>TemporaryPasswordValidityDays</code> in
-     *            <code>PasswordPolicy</code>, that value will be used and
-     *            <code>UnusedAccountValidityDays</code> will be deprecated for
-     *            that user pool.
+     *            <code>PasswordPolicy</code>, that value will be used, and
+     *            <code>UnusedAccountValidityDays</code> will be no longer be an
+     *            available parameter for that user pool.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

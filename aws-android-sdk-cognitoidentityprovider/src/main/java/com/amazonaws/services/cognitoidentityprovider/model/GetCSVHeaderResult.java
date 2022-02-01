@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Represents the response from the server to the request to get the header
- * information for the .csv file for the user import job.
+ * information of the CSV file for the user import job.
  * </p>
  */
 public class GetCSVHeaderResult implements Serializable {
@@ -38,7 +38,7 @@ public class GetCSVHeaderResult implements Serializable {
 
     /**
      * <p>
-     * The header information for the .csv file for the user import job.
+     * The header information of the CSV file for the user import job.
      * </p>
      */
     private java.util.List<String> cSVHeader;
@@ -108,11 +108,11 @@ public class GetCSVHeaderResult implements Serializable {
 
     /**
      * <p>
-     * The header information for the .csv file for the user import job.
+     * The header information of the CSV file for the user import job.
      * </p>
      *
      * @return <p>
-     *         The header information for the .csv file for the user import job.
+     *         The header information of the CSV file for the user import job.
      *         </p>
      */
     public java.util.List<String> getCSVHeader() {
@@ -121,11 +121,11 @@ public class GetCSVHeaderResult implements Serializable {
 
     /**
      * <p>
-     * The header information for the .csv file for the user import job.
+     * The header information of the CSV file for the user import job.
      * </p>
      *
      * @param cSVHeader <p>
-     *            The header information for the .csv file for the user import
+     *            The header information of the CSV file for the user import
      *            job.
      *            </p>
      */
@@ -140,14 +140,14 @@ public class GetCSVHeaderResult implements Serializable {
 
     /**
      * <p>
-     * The header information for the .csv file for the user import job.
+     * The header information of the CSV file for the user import job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cSVHeader <p>
-     *            The header information for the .csv file for the user import
+     *            The header information of the CSV file for the user import
      *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -165,14 +165,14 @@ public class GetCSVHeaderResult implements Serializable {
 
     /**
      * <p>
-     * The header information for the .csv file for the user import job.
+     * The header information of the CSV file for the user import job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cSVHeader <p>
-     *            The header information for the .csv file for the user import
+     *            The header information of the CSV file for the user import
      *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be

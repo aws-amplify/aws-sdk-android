@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,15 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Set the user's multi-factor authentication (MFA) method preference, including
- * which MFA factors are enabled and if any are preferred. Only one factor can
+ * which MFA factors are activated and if any are preferred. Only one factor can
  * be set as preferred. The preferred MFA factor will be used to authenticate a
- * user if multiple factors are enabled. If multiple options are enabled and no
- * preference is set, a challenge to choose an MFA option will be returned
- * during sign in. If an MFA type is enabled for a user, the user will be
- * prompted for MFA during all sign in attempts, unless device tracking is
- * turned on and the device has been trusted. If you would like MFA to be
- * applied selectively based on the assessed risk level of sign in attempts,
- * disable MFA for users and turn on Adaptive Authentication for the user pool.
+ * user if multiple factors are activated. If multiple options are activated and
+ * no preference is set, a challenge to choose an MFA option will be returned
+ * during sign-in. If an MFA type is activated for a user, the user will be
+ * prompted for MFA during all sign-in attempts unless device tracking is turned
+ * on and the device has been trusted. If you want MFA to be applied selectively
+ * based on the assessed risk level of sign-in attempts, deactivate MFA for
+ * users and turn on Adaptive Authentication for the user pool.
  * </p>
  */
 public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest implements Serializable {

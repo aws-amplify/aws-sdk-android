@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import java.io.Serializable;
 public class CustomEmailLambdaVersionConfigType implements Serializable {
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,8 +37,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda Amazon Resource Name of the Lambda function that Amazon
-     * Cognito triggers to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
+     * activates to send email notifications to users.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,19 +51,18 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @return <p>
-     *         The Lambda version represents the signature of the "request"
-     *         attribute in the "event" information Amazon Cognito passes to
-     *         your custom email Lambda function. The only supported value is
-     *         <code>V1_0</code>.
+     *         Signature of the "request" attribute in the "event" information
+     *         Amazon Cognito passes to your custom email Lambda function. The
+     *         only supported value is <code>V1_0</code>.
      *         </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -73,19 +72,18 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            The Lambda version represents the signature of the "request"
-     *            attribute in the "event" information Amazon Cognito passes to
-     *            your custom email Lambda function. The only supported value is
-     *            <code>V1_0</code>.
+     *            Signature of the "request" attribute in the "event"
+     *            information Amazon Cognito passes to your custom email Lambda
+     *            function. The only supported value is <code>V1_0</code>.
      *            </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -95,9 +93,9 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,10 +105,9 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            The Lambda version represents the signature of the "request"
-     *            attribute in the "event" information Amazon Cognito passes to
-     *            your custom email Lambda function. The only supported value is
-     *            <code>V1_0</code>.
+     *            Signature of the "request" attribute in the "event"
+     *            information Amazon Cognito passes to your custom email Lambda
+     *            function. The only supported value is <code>V1_0</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -123,19 +120,18 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            The Lambda version represents the signature of the "request"
-     *            attribute in the "event" information Amazon Cognito passes to
-     *            your custom email Lambda function. The only supported value is
-     *            <code>V1_0</code>.
+     *            Signature of the "request" attribute in the "event"
+     *            information Amazon Cognito passes to your custom email Lambda
+     *            function. The only supported value is <code>V1_0</code>.
      *            </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -145,9 +141,9 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda version represents the signature of the "request" attribute in
-     * the "event" information Amazon Cognito passes to your custom email Lambda
-     * function. The only supported value is <code>V1_0</code>.
+     * Signature of the "request" attribute in the "event" information Amazon
+     * Cognito passes to your custom email Lambda function. The only supported
+     * value is <code>V1_0</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,10 +153,9 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            The Lambda version represents the signature of the "request"
-     *            attribute in the "event" information Amazon Cognito passes to
-     *            your custom email Lambda function. The only supported value is
-     *            <code>V1_0</code>.
+     *            Signature of the "request" attribute in the "event"
+     *            information Amazon Cognito passes to your custom email Lambda
+     *            function. The only supported value is <code>V1_0</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -174,8 +169,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda Amazon Resource Name of the Lambda function that Amazon
-     * Cognito triggers to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
+     * activates to send email notifications to users.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,8 +180,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The Lambda Amazon Resource Name of the Lambda function that
-     *         Amazon Cognito triggers to send email notifications to users.
+     *         The Amazon Resource Name (ARN) of the Lambda function that Amazon
+     *         Cognito activates to send email notifications to users.
      *         </p>
      */
     public String getLambdaArn() {
@@ -195,8 +190,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda Amazon Resource Name of the Lambda function that Amazon
-     * Cognito triggers to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
+     * activates to send email notifications to users.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,8 +201,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param lambdaArn <p>
-     *            The Lambda Amazon Resource Name of the Lambda function that
-     *            Amazon Cognito triggers to send email notifications to users.
+     *            The Amazon Resource Name (ARN) of the Lambda function that
+     *            Amazon Cognito activates to send email notifications to users.
      *            </p>
      */
     public void setLambdaArn(String lambdaArn) {
@@ -216,8 +211,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Lambda Amazon Resource Name of the Lambda function that Amazon
-     * Cognito triggers to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
+     * activates to send email notifications to users.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -230,8 +225,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param lambdaArn <p>
-     *            The Lambda Amazon Resource Name of the Lambda function that
-     *            Amazon Cognito triggers to send email notifications to users.
+     *            The Amazon Resource Name (ARN) of the Lambda function that
+     *            Amazon Cognito activates to send email notifications to users.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

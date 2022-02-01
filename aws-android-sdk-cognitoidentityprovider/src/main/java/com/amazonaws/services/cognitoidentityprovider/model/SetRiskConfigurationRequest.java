@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,8 +26,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * four configuration types.
  * </p>
  * <p>
- * To enable Amazon Cognito advanced security features, update the user pool to
- * include the <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.
+ * To activate Amazon Cognito advanced security features, update the user pool
+ * to include the <code>UserPoolAddOns</code> key
+ * <code>AdvancedSecurityMode</code>.
  * </p>
  */
 public class SetRiskConfigurationRequest extends AmazonWebServiceRequest implements Serializable {
@@ -51,7 +52,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * Otherwise, <code>ClientId</code> is mapped to the client. When the client
-     * ID is not null, the user pool configuration is overridden and the risk
+     * ID isn't null, the user pool configuration is overridden and the risk
      * configuration for the client is used instead.
      * </p>
      * <p>
@@ -148,7 +149,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * Otherwise, <code>ClientId</code> is mapped to the client. When the client
-     * ID is not null, the user pool configuration is overridden and the risk
+     * ID isn't null, the user pool configuration is overridden and the risk
      * configuration for the client is used instead.
      * </p>
      * <p>
@@ -164,7 +165,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      *         </p>
      *         <p>
      *         Otherwise, <code>ClientId</code> is mapped to the client. When
-     *         the client ID is not null, the user pool configuration is
+     *         the client ID isn't null, the user pool configuration is
      *         overridden and the risk configuration for the client is used
      *         instead.
      *         </p>
@@ -182,7 +183,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * Otherwise, <code>ClientId</code> is mapped to the client. When the client
-     * ID is not null, the user pool configuration is overridden and the risk
+     * ID isn't null, the user pool configuration is overridden and the risk
      * configuration for the client is used instead.
      * </p>
      * <p>
@@ -198,7 +199,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            Otherwise, <code>ClientId</code> is mapped to the client. When
-     *            the client ID is not null, the user pool configuration is
+     *            the client ID isn't null, the user pool configuration is
      *            overridden and the risk configuration for the client is used
      *            instead.
      *            </p>
@@ -216,7 +217,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * Otherwise, <code>ClientId</code> is mapped to the client. When the client
-     * ID is not null, the user pool configuration is overridden and the risk
+     * ID isn't null, the user pool configuration is overridden and the risk
      * configuration for the client is used instead.
      * </p>
      * <p>
@@ -235,7 +236,7 @@ public class SetRiskConfigurationRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            Otherwise, <code>ClientId</code> is mapped to the client. When
-     *            the client ID is not null, the user pool configuration is
+     *            the client ID isn't null, the user pool configuration is
      *            overridden and the risk configuration for the client is used
      *            instead.
      *            </p>

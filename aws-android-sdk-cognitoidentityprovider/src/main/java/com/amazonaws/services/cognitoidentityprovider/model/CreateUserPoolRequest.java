@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,26 +26,27 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * This action might generate an SMS text message. Starting June 1, 2021, U.S.
- * telecom carriers require that you register an origination phone number before
+ * This action might generate an SMS text message. Starting June 1, 2021, US
+ * telecom carriers require you to register an origination phone number before
  * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
  * in Amazon Cognito, you must register a phone number with <a
  * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
- * Cognito will use the the registered number automatically. Otherwise, Cognito
- * users that must receive SMS messages might be unable to sign up, activate
- * their accounts, or sign in.
+ * Amazon Cognito will use the registered number automatically. Otherwise,
+ * Amazon Cognito users that must receive SMS messages might be unable to sign
+ * up, activate their accounts, or sign in.
  * </p>
  * <p>
  * If you have never used SMS text messages with Amazon Cognito or any other
- * Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
- * <i> <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
- * sandbox mode</a> </i>, you’ll have limitations, such as sending messages to
- * only verified phone numbers. After testing in the sandbox environment, you
- * can move out of the SMS sandbox and into production. For more information,
- * see <a href=
+ * Amazon Web Service, Amazon Simple Notification Service might place your
+ * account in SMS sandbox. In <i> <a
+ * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
+ * mode</a> </i>, you will have limitations, such as sending messages only to
+ * verified phone numbers. After testing in the sandbox environment, you can
+ * move out of the SMS sandbox and into production. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
- * > SMS message settings for Cognito User Pools</a> in the <i>Amazon Cognito
- * Developer Guide</i>.
+ * > SMS message settings for Amazon Cognito User Pools</a> in the <i>Amazon
+ * Cognito Developer Guide</i>.
  * </p>
  * </note>
  */
@@ -75,19 +76,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <note>
      * <p>
      * In a push model, event sources (such as Amazon S3 and custom
-     * applications) need permission to invoke a function. So you will need to
-     * make an extra call to add permission for these event sources to invoke
-     * your Lambda function.
+     * applications) need permission to invoke a function. So you must make an
+     * extra call to add permission for these event sources to invoke your
+     * Lambda function.
      * </p>
      * <p/>
      * <p>
-     * For more information on using the Lambda API to add permission, see <a
+     * For more information on using the Lambda API to add permission, see<a
      * href
      * ="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the CLI, see <a href=
+     * For adding permission using the CLI, see<a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -113,8 +114,8 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies whether email addresses or phone numbers can be specified as
-     * usernames when a user signs up.
+     * Specifies whether a user can use an email address or phone number as a
+     * username when they sign up.
      * </p>
      */
     private java.util.List<String> usernameAttributes;
@@ -236,7 +237,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Used to enable advanced security risk detection. Set the key
+     * Enables advanced security risk detection. Set the key
      * <code>AdvancedSecurityMode</code> to the value "AUDIT".
      * </p>
      */
@@ -244,11 +245,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * You can choose to set case sensitivity on the username input for the
-     * selected sign-in option. For example, when this is set to
-     * <code>False</code>, users will be able to sign in using either "username"
-     * or "Username". This configuration is immutable once it has been set. For
-     * more information, see <a href=
+     * Case sensitivity on the username input for the selected sign-in option.
+     * For example, when case sensitivity is set to <code>False</code>, users
+     * can sign in using either "username" or "Username". This configuration is
+     * immutable once it has been set. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
@@ -257,13 +257,14 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Use this setting to define which verified available method a user can use
-     * to recover their password when they call <code>ForgotPassword</code>. It
-     * allows you to define a preferred method when a user has more than one
-     * method available. With this setting, SMS does not qualify for a valid
-     * password recovery mechanism if the user also has SMS MFA enabled. In the
-     * absence of this setting, Cognito uses the legacy behavior to determine
-     * the recovery method where SMS is preferred over email.
+     * The available verified method a user can use to recover their password
+     * when they call <code>ForgotPassword</code>. You can use this setting to
+     * define a preferred method when a user has more than one method available.
+     * With this setting, SMS doesn't qualify for a valid password recovery
+     * mechanism if the user also has SMS multi-factor authentication (MFA)
+     * activated. In the absence of this setting, Amazon Cognito uses the legacy
+     * behavior to determine the recovery method where SMS is preferred through
+     * email.
      * </p>
      */
     private AccountRecoverySettingType accountRecoverySetting;
@@ -377,19 +378,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <note>
      * <p>
      * In a push model, event sources (such as Amazon S3 and custom
-     * applications) need permission to invoke a function. So you will need to
-     * make an extra call to add permission for these event sources to invoke
-     * your Lambda function.
+     * applications) need permission to invoke a function. So you must make an
+     * extra call to add permission for these event sources to invoke your
+     * Lambda function.
      * </p>
      * <p/>
      * <p>
-     * For more information on using the Lambda API to add permission, see <a
+     * For more information on using the Lambda API to add permission, see<a
      * href
      * ="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the CLI, see <a href=
+     * For adding permission using the CLI, see<a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -402,19 +403,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *         <note>
      *         <p>
      *         In a push model, event sources (such as Amazon S3 and custom
-     *         applications) need permission to invoke a function. So you will
-     *         need to make an extra call to add permission for these event
-     *         sources to invoke your Lambda function.
+     *         applications) need permission to invoke a function. So you must
+     *         make an extra call to add permission for these event sources to
+     *         invoke your Lambda function.
      *         </p>
      *         <p/>
      *         <p>
      *         For more information on using the Lambda API to add permission,
-     *         see <a href=
+     *         see<a href=
      *         "https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html"
      *         > AddPermission </a>.
      *         </p>
      *         <p>
-     *         For adding permission using the CLI, see <a href=
+     *         For adding permission using the CLI, see<a href=
      *         "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *         > add-permission </a>.
      *         </p>
@@ -431,19 +432,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <note>
      * <p>
      * In a push model, event sources (such as Amazon S3 and custom
-     * applications) need permission to invoke a function. So you will need to
-     * make an extra call to add permission for these event sources to invoke
-     * your Lambda function.
+     * applications) need permission to invoke a function. So you must make an
+     * extra call to add permission for these event sources to invoke your
+     * Lambda function.
      * </p>
      * <p/>
      * <p>
-     * For more information on using the Lambda API to add permission, see <a
+     * For more information on using the Lambda API to add permission, see<a
      * href
      * ="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the CLI, see <a href=
+     * For adding permission using the CLI, see<a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -457,18 +458,18 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            In a push model, event sources (such as Amazon S3 and custom
      *            applications) need permission to invoke a function. So you
-     *            will need to make an extra call to add permission for these
-     *            event sources to invoke your Lambda function.
+     *            must make an extra call to add permission for these event
+     *            sources to invoke your Lambda function.
      *            </p>
      *            <p/>
      *            <p>
      *            For more information on using the Lambda API to add
-     *            permission, see <a href=
+     *            permission, see<a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html"
      *            > AddPermission </a>.
      *            </p>
      *            <p>
-     *            For adding permission using the CLI, see <a href=
+     *            For adding permission using the CLI, see<a href=
      *            "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *            > add-permission </a>.
      *            </p>
@@ -485,19 +486,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <note>
      * <p>
      * In a push model, event sources (such as Amazon S3 and custom
-     * applications) need permission to invoke a function. So you will need to
-     * make an extra call to add permission for these event sources to invoke
-     * your Lambda function.
+     * applications) need permission to invoke a function. So you must make an
+     * extra call to add permission for these event sources to invoke your
+     * Lambda function.
      * </p>
      * <p/>
      * <p>
-     * For more information on using the Lambda API to add permission, see <a
+     * For more information on using the Lambda API to add permission, see<a
      * href
      * ="https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html">
      * AddPermission </a>.
      * </p>
      * <p>
-     * For adding permission using the CLI, see <a href=
+     * For adding permission using the CLI, see<a href=
      * "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      * > add-permission </a>.
      * </p>
@@ -514,18 +515,18 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            <p>
      *            In a push model, event sources (such as Amazon S3 and custom
      *            applications) need permission to invoke a function. So you
-     *            will need to make an extra call to add permission for these
-     *            event sources to invoke your Lambda function.
+     *            must make an extra call to add permission for these event
+     *            sources to invoke your Lambda function.
      *            </p>
      *            <p/>
      *            <p>
      *            For more information on using the Lambda API to add
-     *            permission, see <a href=
+     *            permission, see<a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html"
      *            > AddPermission </a>.
      *            </p>
      *            <p>
-     *            For adding permission using the CLI, see <a href=
+     *            For adding permission using the CLI, see<a href=
      *            "https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html"
      *            > add-permission </a>.
      *            </p>
@@ -710,13 +711,13 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies whether email addresses or phone numbers can be specified as
-     * usernames when a user signs up.
+     * Specifies whether a user can use an email address or phone number as a
+     * username when they sign up.
      * </p>
      *
      * @return <p>
-     *         Specifies whether email addresses or phone numbers can be
-     *         specified as usernames when a user signs up.
+     *         Specifies whether a user can use an email address or phone number
+     *         as a username when they sign up.
      *         </p>
      */
     public java.util.List<String> getUsernameAttributes() {
@@ -725,13 +726,13 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies whether email addresses or phone numbers can be specified as
-     * usernames when a user signs up.
+     * Specifies whether a user can use an email address or phone number as a
+     * username when they sign up.
      * </p>
      *
      * @param usernameAttributes <p>
-     *            Specifies whether email addresses or phone numbers can be
-     *            specified as usernames when a user signs up.
+     *            Specifies whether a user can use an email address or phone
+     *            number as a username when they sign up.
      *            </p>
      */
     public void setUsernameAttributes(java.util.Collection<String> usernameAttributes) {
@@ -745,16 +746,16 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies whether email addresses or phone numbers can be specified as
-     * usernames when a user signs up.
+     * Specifies whether a user can use an email address or phone number as a
+     * username when they sign up.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param usernameAttributes <p>
-     *            Specifies whether email addresses or phone numbers can be
-     *            specified as usernames when a user signs up.
+     *            Specifies whether a user can use an email address or phone
+     *            number as a username when they sign up.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -771,16 +772,16 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Specifies whether email addresses or phone numbers can be specified as
-     * usernames when a user signs up.
+     * Specifies whether a user can use an email address or phone number as a
+     * username when they sign up.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param usernameAttributes <p>
-     *            Specifies whether email addresses or phone numbers can be
-     *            specified as usernames when a user signs up.
+     *            Specifies whether a user can use an email address or phone
+     *            number as a username when they sign up.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1577,12 +1578,12 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Used to enable advanced security risk detection. Set the key
+     * Enables advanced security risk detection. Set the key
      * <code>AdvancedSecurityMode</code> to the value "AUDIT".
      * </p>
      *
      * @return <p>
-     *         Used to enable advanced security risk detection. Set the key
+     *         Enables advanced security risk detection. Set the key
      *         <code>AdvancedSecurityMode</code> to the value "AUDIT".
      *         </p>
      */
@@ -1592,12 +1593,12 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Used to enable advanced security risk detection. Set the key
+     * Enables advanced security risk detection. Set the key
      * <code>AdvancedSecurityMode</code> to the value "AUDIT".
      * </p>
      *
      * @param userPoolAddOns <p>
-     *            Used to enable advanced security risk detection. Set the key
+     *            Enables advanced security risk detection. Set the key
      *            <code>AdvancedSecurityMode</code> to the value "AUDIT".
      *            </p>
      */
@@ -1607,7 +1608,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Used to enable advanced security risk detection. Set the key
+     * Enables advanced security risk detection. Set the key
      * <code>AdvancedSecurityMode</code> to the value "AUDIT".
      * </p>
      * <p>
@@ -1615,7 +1616,7 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param userPoolAddOns <p>
-     *            Used to enable advanced security risk detection. Set the key
+     *            Enables advanced security risk detection. Set the key
      *            <code>AdvancedSecurityMode</code> to the value "AUDIT".
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1628,21 +1629,20 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * You can choose to set case sensitivity on the username input for the
-     * selected sign-in option. For example, when this is set to
-     * <code>False</code>, users will be able to sign in using either "username"
-     * or "Username". This configuration is immutable once it has been set. For
-     * more information, see <a href=
+     * Case sensitivity on the username input for the selected sign-in option.
+     * For example, when case sensitivity is set to <code>False</code>, users
+     * can sign in using either "username" or "Username". This configuration is
+     * immutable once it has been set. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
      *
      * @return <p>
-     *         You can choose to set case sensitivity on the username input for
-     *         the selected sign-in option. For example, when this is set to
-     *         <code>False</code>, users will be able to sign in using either
-     *         "username" or "Username". This configuration is immutable once it
-     *         has been set. For more information, see <a href=
+     *         Case sensitivity on the username input for the selected sign-in
+     *         option. For example, when case sensitivity is set to
+     *         <code>False</code>, users can sign in using either "username" or
+     *         "Username". This configuration is immutable once it has been set.
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *         >UsernameConfigurationType</a>.
      *         </p>
@@ -1653,22 +1653,20 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * You can choose to set case sensitivity on the username input for the
-     * selected sign-in option. For example, when this is set to
-     * <code>False</code>, users will be able to sign in using either "username"
-     * or "Username". This configuration is immutable once it has been set. For
-     * more information, see <a href=
+     * Case sensitivity on the username input for the selected sign-in option.
+     * For example, when case sensitivity is set to <code>False</code>, users
+     * can sign in using either "username" or "Username". This configuration is
+     * immutable once it has been set. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
      *
      * @param usernameConfiguration <p>
-     *            You can choose to set case sensitivity on the username input
-     *            for the selected sign-in option. For example, when this is set
-     *            to <code>False</code>, users will be able to sign in using
-     *            either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see <a
-     *            href=
+     *            Case sensitivity on the username input for the selected
+     *            sign-in option. For example, when case sensitivity is set to
+     *            <code>False</code>, users can sign in using either "username"
+     *            or "Username". This configuration is immutable once it has
+     *            been set. For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *            >UsernameConfigurationType</a>.
      *            </p>
@@ -1679,11 +1677,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * You can choose to set case sensitivity on the username input for the
-     * selected sign-in option. For example, when this is set to
-     * <code>False</code>, users will be able to sign in using either "username"
-     * or "Username". This configuration is immutable once it has been set. For
-     * more information, see <a href=
+     * Case sensitivity on the username input for the selected sign-in option.
+     * For example, when case sensitivity is set to <code>False</code>, users
+     * can sign in using either "username" or "Username". This configuration is
+     * immutable once it has been set. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
@@ -1692,12 +1689,11 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param usernameConfiguration <p>
-     *            You can choose to set case sensitivity on the username input
-     *            for the selected sign-in option. For example, when this is set
-     *            to <code>False</code>, users will be able to sign in using
-     *            either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see <a
-     *            href=
+     *            Case sensitivity on the username input for the selected
+     *            sign-in option. For example, when case sensitivity is set to
+     *            <code>False</code>, users can sign in using either "username"
+     *            or "Username". This configuration is immutable once it has
+     *            been set. For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *            >UsernameConfigurationType</a>.
      *            </p>
@@ -1712,24 +1708,26 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Use this setting to define which verified available method a user can use
-     * to recover their password when they call <code>ForgotPassword</code>. It
-     * allows you to define a preferred method when a user has more than one
-     * method available. With this setting, SMS does not qualify for a valid
-     * password recovery mechanism if the user also has SMS MFA enabled. In the
-     * absence of this setting, Cognito uses the legacy behavior to determine
-     * the recovery method where SMS is preferred over email.
+     * The available verified method a user can use to recover their password
+     * when they call <code>ForgotPassword</code>. You can use this setting to
+     * define a preferred method when a user has more than one method available.
+     * With this setting, SMS doesn't qualify for a valid password recovery
+     * mechanism if the user also has SMS multi-factor authentication (MFA)
+     * activated. In the absence of this setting, Amazon Cognito uses the legacy
+     * behavior to determine the recovery method where SMS is preferred through
+     * email.
      * </p>
      *
      * @return <p>
-     *         Use this setting to define which verified available method a user
-     *         can use to recover their password when they call
-     *         <code>ForgotPassword</code>. It allows you to define a preferred
-     *         method when a user has more than one method available. With this
-     *         setting, SMS does not qualify for a valid password recovery
-     *         mechanism if the user also has SMS MFA enabled. In the absence of
-     *         this setting, Cognito uses the legacy behavior to determine the
-     *         recovery method where SMS is preferred over email.
+     *         The available verified method a user can use to recover their
+     *         password when they call <code>ForgotPassword</code>. You can use
+     *         this setting to define a preferred method when a user has more
+     *         than one method available. With this setting, SMS doesn't qualify
+     *         for a valid password recovery mechanism if the user also has SMS
+     *         multi-factor authentication (MFA) activated. In the absence of
+     *         this setting, Amazon Cognito uses the legacy behavior to
+     *         determine the recovery method where SMS is preferred through
+     *         email.
      *         </p>
      */
     public AccountRecoverySettingType getAccountRecoverySetting() {
@@ -1738,25 +1736,26 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Use this setting to define which verified available method a user can use
-     * to recover their password when they call <code>ForgotPassword</code>. It
-     * allows you to define a preferred method when a user has more than one
-     * method available. With this setting, SMS does not qualify for a valid
-     * password recovery mechanism if the user also has SMS MFA enabled. In the
-     * absence of this setting, Cognito uses the legacy behavior to determine
-     * the recovery method where SMS is preferred over email.
+     * The available verified method a user can use to recover their password
+     * when they call <code>ForgotPassword</code>. You can use this setting to
+     * define a preferred method when a user has more than one method available.
+     * With this setting, SMS doesn't qualify for a valid password recovery
+     * mechanism if the user also has SMS multi-factor authentication (MFA)
+     * activated. In the absence of this setting, Amazon Cognito uses the legacy
+     * behavior to determine the recovery method where SMS is preferred through
+     * email.
      * </p>
      *
      * @param accountRecoverySetting <p>
-     *            Use this setting to define which verified available method a
-     *            user can use to recover their password when they call
-     *            <code>ForgotPassword</code>. It allows you to define a
-     *            preferred method when a user has more than one method
-     *            available. With this setting, SMS does not qualify for a valid
-     *            password recovery mechanism if the user also has SMS MFA
-     *            enabled. In the absence of this setting, Cognito uses the
-     *            legacy behavior to determine the recovery method where SMS is
-     *            preferred over email.
+     *            The available verified method a user can use to recover their
+     *            password when they call <code>ForgotPassword</code>. You can
+     *            use this setting to define a preferred method when a user has
+     *            more than one method available. With this setting, SMS doesn't
+     *            qualify for a valid password recovery mechanism if the user
+     *            also has SMS multi-factor authentication (MFA) activated. In
+     *            the absence of this setting, Amazon Cognito uses the legacy
+     *            behavior to determine the recovery method where SMS is
+     *            preferred through email.
      *            </p>
      */
     public void setAccountRecoverySetting(AccountRecoverySettingType accountRecoverySetting) {
@@ -1765,28 +1764,29 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Use this setting to define which verified available method a user can use
-     * to recover their password when they call <code>ForgotPassword</code>. It
-     * allows you to define a preferred method when a user has more than one
-     * method available. With this setting, SMS does not qualify for a valid
-     * password recovery mechanism if the user also has SMS MFA enabled. In the
-     * absence of this setting, Cognito uses the legacy behavior to determine
-     * the recovery method where SMS is preferred over email.
+     * The available verified method a user can use to recover their password
+     * when they call <code>ForgotPassword</code>. You can use this setting to
+     * define a preferred method when a user has more than one method available.
+     * With this setting, SMS doesn't qualify for a valid password recovery
+     * mechanism if the user also has SMS multi-factor authentication (MFA)
+     * activated. In the absence of this setting, Amazon Cognito uses the legacy
+     * behavior to determine the recovery method where SMS is preferred through
+     * email.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param accountRecoverySetting <p>
-     *            Use this setting to define which verified available method a
-     *            user can use to recover their password when they call
-     *            <code>ForgotPassword</code>. It allows you to define a
-     *            preferred method when a user has more than one method
-     *            available. With this setting, SMS does not qualify for a valid
-     *            password recovery mechanism if the user also has SMS MFA
-     *            enabled. In the absence of this setting, Cognito uses the
-     *            legacy behavior to determine the recovery method where SMS is
-     *            preferred over email.
+     *            The available verified method a user can use to recover their
+     *            password when they call <code>ForgotPassword</code>. You can
+     *            use this setting to define a preferred method when a user has
+     *            more than one method available. With this setting, SMS doesn't
+     *            qualify for a valid password recovery mechanism if the user
+     *            also has SMS multi-factor authentication (MFA) activated. In
+     *            the absence of this setting, Amazon Cognito uses the legacy
+     *            behavior to determine the recovery method where SMS is
+     *            preferred through email.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

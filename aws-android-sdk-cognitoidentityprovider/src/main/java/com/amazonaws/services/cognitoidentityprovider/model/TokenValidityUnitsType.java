@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@ import java.io.Serializable;
 public class TokenValidityUnitsType implements Serializable {
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,8 +37,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,8 +48,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,16 +59,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @return <p>
-     *         A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *         value in AccessTokenValidity, defaults to hours.
+     *         A time unit in “seconds”, “minutes”, “hours”, or “days” for the
+     *         value in AccessTokenValidity, defaulting to hours.
      *         </p>
      * @see TimeUnitsType
      */
@@ -78,16 +78,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param accessToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in AccessTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in AccessTokenValidity, defaulting to hours.
      *            </p>
      * @see TimeUnitsType
      */
@@ -97,8 +97,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -108,8 +108,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param accessToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in AccessTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in AccessTokenValidity, defaulting to hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,16 +122,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param accessToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in AccessTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in AccessTokenValidity, defaulting to hours.
      *            </p>
      * @see TimeUnitsType
      */
@@ -141,8 +141,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * AccessTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * AccessTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,8 +152,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param accessToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in AccessTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in AccessTokenValidity, defaulting to hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -166,16 +166,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @return <p>
-     *         A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *         value in IdTokenValidity, defaults to hours.
+     *         A time unit in “seconds”, “minutes”, “hours”, or “days” for the
+     *         value in IdTokenValidity, defaulting to hours.
      *         </p>
      * @see TimeUnitsType
      */
@@ -185,16 +185,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param idToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in IdTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in IdTokenValidity, defaulting to hours.
      *            </p>
      * @see TimeUnitsType
      */
@@ -204,8 +204,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -215,8 +215,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param idToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in IdTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in IdTokenValidity, defaulting to hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -229,16 +229,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param idToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in IdTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in IdTokenValidity, defaulting to hours.
      *            </p>
      * @see TimeUnitsType
      */
@@ -248,8 +248,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * IdTokenValidity, defaults to hours.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * IdTokenValidity, defaulting to hours.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -259,8 +259,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param idToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in IdTokenValidity, defaults to hours.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in IdTokenValidity, defaulting to hours.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -273,16 +273,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @return <p>
-     *         A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *         value in RefreshTokenValidity, defaults to days.
+     *         A time unit in “seconds”, “minutes”, “hours”, or “days” for the
+     *         value in RefreshTokenValidity, defaulting to days.
      *         </p>
      * @see TimeUnitsType
      */
@@ -292,16 +292,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param refreshToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in RefreshTokenValidity, defaults to days.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in RefreshTokenValidity, defaulting to days.
      *            </p>
      * @see TimeUnitsType
      */
@@ -311,8 +311,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -322,8 +322,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param refreshToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in RefreshTokenValidity, defaults to days.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in RefreshTokenValidity, defaulting to days.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -336,16 +336,16 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param refreshToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in RefreshTokenValidity, defaults to days.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in RefreshTokenValidity, defaulting to days.
      *            </p>
      * @see TimeUnitsType
      */
@@ -355,8 +355,8 @@ public class TokenValidityUnitsType implements Serializable {
 
     /**
      * <p>
-     * A time unit in “seconds”, “minutes”, “hours” or “days” for the value in
-     * RefreshTokenValidity, defaults to days.
+     * A time unit in “seconds”, “minutes”, “hours”, or “days” for the value in
+     * RefreshTokenValidity, defaulting to days.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -366,8 +366,8 @@ public class TokenValidityUnitsType implements Serializable {
      * <b>Allowed Values: </b>seconds, minutes, hours, days
      *
      * @param refreshToken <p>
-     *            A time unit in “seconds”, “minutes”, “hours” or “days” for the
-     *            value in RefreshTokenValidity, defaults to days.
+     *            A time unit in “seconds”, “minutes”, “hours”, or “days” for
+     *            the value in RefreshTokenValidity, defaulting to days.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
