@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 64<br/>
-     * <b>Pattern: </b>^(?:(?!\\n+|\\t+|\\r+|[\r\t\n,]).)+$<br/>
+     * <b>Pattern: </b>^(?![^\n\r\t,]*\\n|\\r|\\t)[^\n\r\t,]+$<br/>
      */
     private String type;
 
@@ -54,7 +54,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 64<br/>
-     * <b>Pattern: </b>^(?:(?!\\n+|\\t+|\\r+|[\r\t\n,]).)+$<br/>
+     * <b>Pattern: </b>^(?![^\n\r\t,]*\\n|\\r|\\t)[^\n\r\t,]+$<br/>
      *
      * @return <p>
      *         An entity type within a labeled training dataset that Amazon
@@ -84,7 +84,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 64<br/>
-     * <b>Pattern: </b>^(?:(?!\\n+|\\t+|\\r+|[\r\t\n,]).)+$<br/>
+     * <b>Pattern: </b>^(?![^\n\r\t,]*\\n|\\r|\\t)[^\n\r\t,]+$<br/>
      *
      * @param type <p>
      *            An entity type within a labeled training dataset that Amazon
@@ -117,7 +117,7 @@ public class EntityTypesListItem implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 64<br/>
-     * <b>Pattern: </b>^(?:(?!\\n+|\\t+|\\r+|[\r\t\n,]).)+$<br/>
+     * <b>Pattern: </b>^(?![^\n\r\t,]*\\n|\\r|\\t)[^\n\r\t,]+$<br/>
      *
      * @param type <p>
      *            An entity type within a labeled training dataset that Amazon

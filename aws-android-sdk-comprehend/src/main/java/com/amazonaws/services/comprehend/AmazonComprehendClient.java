@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1097,6 +1097,57 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Deletes a resource-based policy that is attached to a custom model.
+     * </p>
+     * 
+     * @param deleteResourcePolicyRequest
+     * @return deleteResourcePolicyResult The response from the
+     *         DeleteResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteResourcePolicyResult deleteResourcePolicy(
+            DeleteResourcePolicyRequest deleteResourcePolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteResourcePolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteResourcePolicyRequest> request = null;
+        Response<DeleteResourcePolicyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteResourcePolicyRequestMarshaller()
+                        .marshall(deleteResourcePolicyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteResourcePolicyResult, JsonUnmarshallerContext> unmarshaller = new DeleteResourcePolicyResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteResourcePolicyResult> responseHandler = new JsonResponseHandler<DeleteResourcePolicyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a document classification job. Use
      * this operation to get the status of a classification job.
      * </p>
@@ -1569,6 +1620,58 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets the details of a resource-based policy that is attached to a custom
+     * model, including the JSON body of the policy.
+     * </p>
+     * 
+     * @param describeResourcePolicyRequest
+     * @return describeResourcePolicyResult The response from the
+     *         DescribeResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeResourcePolicyResult describeResourcePolicy(
+            DescribeResourcePolicyRequest describeResourcePolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeResourcePolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeResourcePolicyRequest> request = null;
+        Response<DescribeResourcePolicyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeResourcePolicyRequestMarshaller()
+                        .marshall(describeResourcePolicyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeResourcePolicyResult, JsonUnmarshallerContext> unmarshaller = new DescribeResourcePolicyResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeResourcePolicyResult> responseHandler = new JsonResponseHandler<DescribeResourcePolicyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a sentiment detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -1969,6 +2072,69 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<DetectSyntaxResult, JsonUnmarshallerContext> unmarshaller = new DetectSyntaxResultJsonUnmarshaller();
             JsonResponseHandler<DetectSyntaxResult> responseHandler = new JsonResponseHandler<DetectSyntaxResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new custom model that replicates a source custom model that you
+     * import. The source model can be in your AWS account or another one.
+     * </p>
+     * <p>
+     * If the source model is in another AWS account, then it must have a
+     * resource-based policy that authorizes you to import it.
+     * </p>
+     * <p>
+     * The source model must be in the same AWS region that you're using when
+     * you import. You can't import a model that's in a different region.
+     * </p>
+     * 
+     * @param importModelRequest
+     * @return importModelResult The response from the ImportModel service
+     *         method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ResourceUnavailableException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ImportModelResult importModel(ImportModelRequest importModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(importModelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ImportModelRequest> request = null;
+        Response<ImportModelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ImportModelRequestMarshaller().marshall(importModelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ImportModelResult, JsonUnmarshallerContext> unmarshaller = new ImportModelResultJsonUnmarshaller();
+            JsonResponseHandler<ImportModelResult> responseHandler = new JsonResponseHandler<ImportModelResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2702,6 +2868,58 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<ListTopicsDetectionJobsResult, JsonUnmarshallerContext> unmarshaller = new ListTopicsDetectionJobsResultJsonUnmarshaller();
             JsonResponseHandler<ListTopicsDetectionJobsResult> responseHandler = new JsonResponseHandler<ListTopicsDetectionJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Attaches a resource-based policy to a custom model. You can use this
+     * policy to authorize an entity in another AWS account to import the custom
+     * model, which replicates it in Amazon Comprehend in their account.
+     * </p>
+     * 
+     * @param putResourcePolicyRequest
+     * @return putResourcePolicyResult The response from the PutResourcePolicy
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public PutResourcePolicyResult putResourcePolicy(
+            PutResourcePolicyRequest putResourcePolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putResourcePolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutResourcePolicyRequest> request = null;
+        Response<PutResourcePolicyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutResourcePolicyRequestMarshaller()
+                        .marshall(putResourcePolicyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutResourcePolicyResult, JsonUnmarshallerContext> unmarshaller = new PutResourcePolicyResultJsonUnmarshaller();
+            JsonResponseHandler<PutResourcePolicyResult> responseHandler = new JsonResponseHandler<PutResourcePolicyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
