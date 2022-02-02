@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -195,6 +195,36 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>.*<br/>
      */
     private String modelKmsKeyId;
+
+    /**
+     * <p>
+     * The resource-based policy to attach to your custom document classifier
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your policy as a JSON body that you enter as a UTF-8 encoded
+     * string without line breaks. To provide valid JSON, enclose the attribute
+     * names and values in double quotes. If the JSON body is also enclosed in
+     * double quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     */
+    private String modelPolicy;
 
     /**
      * <p>
@@ -1320,6 +1350,180 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     }
 
     /**
+     * <p>
+     * The resource-based policy to attach to your custom document classifier
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your policy as a JSON body that you enter as a UTF-8 encoded
+     * string without line breaks. To provide valid JSON, enclose the attribute
+     * names and values in double quotes. If the JSON body is also enclosed in
+     * double quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @return <p>
+     *         The resource-based policy to attach to your custom document
+     *         classifier model. You can use this policy to allow another AWS
+     *         account to import your custom model.
+     *         </p>
+     *         <p>
+     *         Provide your policy as a JSON body that you enter as a UTF-8
+     *         encoded string without line breaks. To provide valid JSON,
+     *         enclose the attribute names and values in double quotes. If the
+     *         JSON body is also enclosed in double quotes, then you must escape
+     *         the double quotes that are inside the policy:
+     *         </p>
+     *         <p>
+     *         <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *         </p>
+     *         <p>
+     *         To avoid escaping quotes, you can use single quotes to enclose
+     *         the policy and double quotes to enclose the JSON names and
+     *         values:
+     *         </p>
+     *         <p>
+     *         <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *         </p>
+     */
+    public String getModelPolicy() {
+        return modelPolicy;
+    }
+
+    /**
+     * <p>
+     * The resource-based policy to attach to your custom document classifier
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your policy as a JSON body that you enter as a UTF-8 encoded
+     * string without line breaks. To provide valid JSON, enclose the attribute
+     * names and values in double quotes. If the JSON body is also enclosed in
+     * double quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @param modelPolicy <p>
+     *            The resource-based policy to attach to your custom document
+     *            classifier model. You can use this policy to allow another AWS
+     *            account to import your custom model.
+     *            </p>
+     *            <p>
+     *            Provide your policy as a JSON body that you enter as a UTF-8
+     *            encoded string without line breaks. To provide valid JSON,
+     *            enclose the attribute names and values in double quotes. If
+     *            the JSON body is also enclosed in double quotes, then you must
+     *            escape the double quotes that are inside the policy:
+     *            </p>
+     *            <p>
+     *            <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *            </p>
+     *            <p>
+     *            To avoid escaping quotes, you can use single quotes to enclose
+     *            the policy and double quotes to enclose the JSON names and
+     *            values:
+     *            </p>
+     *            <p>
+     *            <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *            </p>
+     */
+    public void setModelPolicy(String modelPolicy) {
+        this.modelPolicy = modelPolicy;
+    }
+
+    /**
+     * <p>
+     * The resource-based policy to attach to your custom document classifier
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your policy as a JSON body that you enter as a UTF-8 encoded
+     * string without line breaks. To provide valid JSON, enclose the attribute
+     * names and values in double quotes. If the JSON body is also enclosed in
+     * double quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @param modelPolicy <p>
+     *            The resource-based policy to attach to your custom document
+     *            classifier model. You can use this policy to allow another AWS
+     *            account to import your custom model.
+     *            </p>
+     *            <p>
+     *            Provide your policy as a JSON body that you enter as a UTF-8
+     *            encoded string without line breaks. To provide valid JSON,
+     *            enclose the attribute names and values in double quotes. If
+     *            the JSON body is also enclosed in double quotes, then you must
+     *            escape the double quotes that are inside the policy:
+     *            </p>
+     *            <p>
+     *            <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *            </p>
+     *            <p>
+     *            To avoid escaping quotes, you can use single quotes to enclose
+     *            the policy and double quotes to enclose the JSON names and
+     *            values:
+     *            </p>
+     *            <p>
+     *            <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withModelPolicy(String modelPolicy) {
+        this.modelPolicy = modelPolicy;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1353,7 +1557,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         if (getMode() != null)
             sb.append("Mode: " + getMode() + ",");
         if (getModelKmsKeyId() != null)
-            sb.append("ModelKmsKeyId: " + getModelKmsKeyId());
+            sb.append("ModelKmsKeyId: " + getModelKmsKeyId() + ",");
+        if (getModelPolicy() != null)
+            sb.append("ModelPolicy: " + getModelPolicy());
         sb.append("}");
         return sb.toString();
     }
@@ -1386,6 +1592,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         hashCode = prime * hashCode + ((getMode() == null) ? 0 : getMode().hashCode());
         hashCode = prime * hashCode
                 + ((getModelKmsKeyId() == null) ? 0 : getModelKmsKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getModelPolicy() == null) ? 0 : getModelPolicy().hashCode());
         return hashCode;
     }
 
@@ -1457,6 +1665,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getModelKmsKeyId() != null
                 && other.getModelKmsKeyId().equals(this.getModelKmsKeyId()) == false)
+            return false;
+        if (other.getModelPolicy() == null ^ this.getModelPolicy() == null)
+            return false;
+        if (other.getModelPolicy() != null
+                && other.getModelPolicy().equals(this.getModelPolicy()) == false)
             return false;
         return true;
     }

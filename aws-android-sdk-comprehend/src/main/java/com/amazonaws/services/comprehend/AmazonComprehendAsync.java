@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -873,6 +873,59 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Deletes a resource-based policy that is attached to a custom model.
+     * </p>
+     * 
+     * @param deleteResourcePolicyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteResourcePolicyResult> deleteResourcePolicyAsync(
+            DeleteResourcePolicyRequest deleteResourcePolicyRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a resource-based policy that is attached to a custom model.
+     * </p>
+     * 
+     * @param deleteResourcePolicyRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteResourcePolicyResult> deleteResourcePolicyAsync(
+            DeleteResourcePolicyRequest deleteResourcePolicyRequest,
+            AsyncHandler<DeleteResourcePolicyRequest, DeleteResourcePolicyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets the properties associated with a document classification job. Use
      * this operation to get the status of a classification job.
      * </p>
@@ -1382,6 +1435,61 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
 
     /**
      * <p>
+     * Gets the details of a resource-based policy that is attached to a custom
+     * model, including the JSON body of the policy.
+     * </p>
+     * 
+     * @param describeResourcePolicyRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeResourcePolicyResult> describeResourcePolicyAsync(
+            DescribeResourcePolicyRequest describeResourcePolicyRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the details of a resource-based policy that is attached to a custom
+     * model, including the JSON body of the policy.
+     * </p>
+     * 
+     * @param describeResourcePolicyRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeResourcePolicyResult> describeResourcePolicyAsync(
+            DescribeResourcePolicyRequest describeResourcePolicyRequest,
+            AsyncHandler<DescribeResourcePolicyRequest, DescribeResourcePolicyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Gets the properties associated with a sentiment detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -1827,6 +1935,85 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      */
     Future<DetectSyntaxResult> detectSyntaxAsync(DetectSyntaxRequest detectSyntaxRequest,
             AsyncHandler<DetectSyntaxRequest, DetectSyntaxResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new custom model that replicates a source custom model that you
+     * import. The source model can be in your AWS account or another one.
+     * </p>
+     * <p>
+     * If the source model is in another AWS account, then it must have a
+     * resource-based policy that authorizes you to import it.
+     * </p>
+     * <p>
+     * The source model must be in the same AWS region that you're using when
+     * you import. You can't import a model that's in a different region.
+     * </p>
+     * 
+     * @param importModelRequest
+     * @return A Java Future object containing the response from the ImportModel
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ResourceUnavailableException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ImportModelResult> importModelAsync(ImportModelRequest importModelRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new custom model that replicates a source custom model that you
+     * import. The source model can be in your AWS account or another one.
+     * </p>
+     * <p>
+     * If the source model is in another AWS account, then it must have a
+     * resource-based policy that authorizes you to import it.
+     * </p>
+     * <p>
+     * The source model must be in the same AWS region that you're using when
+     * you import. You can't import a model that's in a different region.
+     * </p>
+     * 
+     * @param importModelRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the ImportModel
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ResourceUnavailableException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ImportModelResult> importModelAsync(ImportModelRequest importModelRequest,
+            AsyncHandler<ImportModelRequest, ImportModelResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2609,6 +2796,63 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<ListTopicsDetectionJobsResult> listTopicsDetectionJobsAsync(
             ListTopicsDetectionJobsRequest listTopicsDetectionJobsRequest,
             AsyncHandler<ListTopicsDetectionJobsRequest, ListTopicsDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Attaches a resource-based policy to a custom model. You can use this
+     * policy to authorize an entity in another AWS account to import the custom
+     * model, which replicates it in Amazon Comprehend in their account.
+     * </p>
+     * 
+     * @param putResourcePolicyRequest
+     * @return A Java Future object containing the response from the
+     *         PutResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<PutResourcePolicyResult> putResourcePolicyAsync(
+            PutResourcePolicyRequest putResourcePolicyRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Attaches a resource-based policy to a custom model. You can use this
+     * policy to authorize an entity in another AWS account to import the custom
+     * model, which replicates it in Amazon Comprehend in their account.
+     * </p>
+     * 
+     * @param putResourcePolicyRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         PutResourcePolicy service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<PutResourcePolicyResult> putResourcePolicyAsync(
+            PutResourcePolicyRequest putResourcePolicyRequest,
+            AsyncHandler<PutResourcePolicyRequest, PutResourcePolicyResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

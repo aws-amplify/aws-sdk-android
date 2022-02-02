@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -174,6 +174,36 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>.*<br/>
      */
     private String modelKmsKeyId;
+
+    /**
+     * <p>
+     * The JSON resource-based policy to attach to your custom entity recognizer
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your JSON as a UTF-8 encoded string without line breaks. To
+     * provide valid JSON for your policy, enclose the attribute names and
+     * values in double quotes. If the JSON body is also enclosed in double
+     * quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     */
+    private String modelPolicy;
 
     /**
      * <p>
@@ -1120,6 +1150,180 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The JSON resource-based policy to attach to your custom entity recognizer
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your JSON as a UTF-8 encoded string without line breaks. To
+     * provide valid JSON for your policy, enclose the attribute names and
+     * values in double quotes. If the JSON body is also enclosed in double
+     * quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @return <p>
+     *         The JSON resource-based policy to attach to your custom entity
+     *         recognizer model. You can use this policy to allow another AWS
+     *         account to import your custom model.
+     *         </p>
+     *         <p>
+     *         Provide your JSON as a UTF-8 encoded string without line breaks.
+     *         To provide valid JSON for your policy, enclose the attribute
+     *         names and values in double quotes. If the JSON body is also
+     *         enclosed in double quotes, then you must escape the double quotes
+     *         that are inside the policy:
+     *         </p>
+     *         <p>
+     *         <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *         </p>
+     *         <p>
+     *         To avoid escaping quotes, you can use single quotes to enclose
+     *         the policy and double quotes to enclose the JSON names and
+     *         values:
+     *         </p>
+     *         <p>
+     *         <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *         </p>
+     */
+    public String getModelPolicy() {
+        return modelPolicy;
+    }
+
+    /**
+     * <p>
+     * The JSON resource-based policy to attach to your custom entity recognizer
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your JSON as a UTF-8 encoded string without line breaks. To
+     * provide valid JSON for your policy, enclose the attribute names and
+     * values in double quotes. If the JSON body is also enclosed in double
+     * quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @param modelPolicy <p>
+     *            The JSON resource-based policy to attach to your custom entity
+     *            recognizer model. You can use this policy to allow another AWS
+     *            account to import your custom model.
+     *            </p>
+     *            <p>
+     *            Provide your JSON as a UTF-8 encoded string without line
+     *            breaks. To provide valid JSON for your policy, enclose the
+     *            attribute names and values in double quotes. If the JSON body
+     *            is also enclosed in double quotes, then you must escape the
+     *            double quotes that are inside the policy:
+     *            </p>
+     *            <p>
+     *            <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *            </p>
+     *            <p>
+     *            To avoid escaping quotes, you can use single quotes to enclose
+     *            the policy and double quotes to enclose the JSON names and
+     *            values:
+     *            </p>
+     *            <p>
+     *            <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *            </p>
+     */
+    public void setModelPolicy(String modelPolicy) {
+        this.modelPolicy = modelPolicy;
+    }
+
+    /**
+     * <p>
+     * The JSON resource-based policy to attach to your custom entity recognizer
+     * model. You can use this policy to allow another AWS account to import
+     * your custom model.
+     * </p>
+     * <p>
+     * Provide your JSON as a UTF-8 encoded string without line breaks. To
+     * provide valid JSON for your policy, enclose the attribute names and
+     * values in double quotes. If the JSON body is also enclosed in double
+     * quotes, then you must escape the double quotes that are inside the
+     * policy:
+     * </p>
+     * <p>
+     * <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     * </p>
+     * <p>
+     * To avoid escaping quotes, you can use single quotes to enclose the policy
+     * and double quotes to enclose the JSON names and values:
+     * </p>
+     * <p>
+     * <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 20000<br/>
+     * <b>Pattern: </b>[ -\u00FF]+<br/>
+     *
+     * @param modelPolicy <p>
+     *            The JSON resource-based policy to attach to your custom entity
+     *            recognizer model. You can use this policy to allow another AWS
+     *            account to import your custom model.
+     *            </p>
+     *            <p>
+     *            Provide your JSON as a UTF-8 encoded string without line
+     *            breaks. To provide valid JSON for your policy, enclose the
+     *            attribute names and values in double quotes. If the JSON body
+     *            is also enclosed in double quotes, then you must escape the
+     *            double quotes that are inside the policy:
+     *            </p>
+     *            <p>
+     *            <code>"{\"attribute\": \"value\", \"attribute\": [\"value\"]}"</code>
+     *            </p>
+     *            <p>
+     *            To avoid escaping quotes, you can use single quotes to enclose
+     *            the policy and double quotes to enclose the JSON names and
+     *            values:
+     *            </p>
+     *            <p>
+     *            <code>'{"attribute": "value", "attribute": ["value"]}'</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withModelPolicy(String modelPolicy) {
+        this.modelPolicy = modelPolicy;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1149,7 +1353,9 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         if (getVpcConfig() != null)
             sb.append("VpcConfig: " + getVpcConfig() + ",");
         if (getModelKmsKeyId() != null)
-            sb.append("ModelKmsKeyId: " + getModelKmsKeyId());
+            sb.append("ModelKmsKeyId: " + getModelKmsKeyId() + ",");
+        if (getModelPolicy() != null)
+            sb.append("ModelPolicy: " + getModelPolicy());
         sb.append("}");
         return sb.toString();
     }
@@ -1177,6 +1383,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getModelKmsKeyId() == null) ? 0 : getModelKmsKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getModelPolicy() == null) ? 0 : getModelPolicy().hashCode());
         return hashCode;
     }
 
@@ -1239,6 +1447,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getModelKmsKeyId() != null
                 && other.getModelKmsKeyId().equals(this.getModelKmsKeyId()) == false)
+            return false;
+        if (other.getModelPolicy() == null ^ this.getModelPolicy() == null)
+            return false;
+        if (other.getModelPolicy() != null
+                && other.getModelPolicy().equals(this.getModelPolicy()) == false)
             return false;
         return true;
     }

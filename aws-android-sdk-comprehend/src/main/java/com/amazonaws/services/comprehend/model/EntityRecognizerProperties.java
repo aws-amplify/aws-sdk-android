@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -194,6 +194,22 @@ public class EntityRecognizerProperties implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
      */
     private String versionName;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the source model. This model was
+     * imported from a different AWS account to create the entity recognizer
+     * model in your AWS account.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String sourceModelArn;
 
     /**
      * <p>
@@ -1287,6 +1303,84 @@ public class EntityRecognizerProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the source model. This model was
+     * imported from a different AWS account to create the entity recognizer
+     * model in your AWS account.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the source model. This model
+     *         was imported from a different AWS account to create the entity
+     *         recognizer model in your AWS account.
+     *         </p>
+     */
+    public String getSourceModelArn() {
+        return sourceModelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the source model. This model was
+     * imported from a different AWS account to create the entity recognizer
+     * model in your AWS account.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param sourceModelArn <p>
+     *            The Amazon Resource Name (ARN) of the source model. This model
+     *            was imported from a different AWS account to create the entity
+     *            recognizer model in your AWS account.
+     *            </p>
+     */
+    public void setSourceModelArn(String sourceModelArn) {
+        this.sourceModelArn = sourceModelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the source model. This model was
+     * imported from a different AWS account to create the entity recognizer
+     * model in your AWS account.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param sourceModelArn <p>
+     *            The Amazon Resource Name (ARN) of the source model. This model
+     *            was imported from a different AWS account to create the entity
+     *            recognizer model in your AWS account.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerProperties withSourceModelArn(String sourceModelArn) {
+        this.sourceModelArn = sourceModelArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1326,7 +1420,9 @@ public class EntityRecognizerProperties implements Serializable {
         if (getModelKmsKeyId() != null)
             sb.append("ModelKmsKeyId: " + getModelKmsKeyId() + ",");
         if (getVersionName() != null)
-            sb.append("VersionName: " + getVersionName());
+            sb.append("VersionName: " + getVersionName() + ",");
+        if (getSourceModelArn() != null)
+            sb.append("SourceModelArn: " + getSourceModelArn());
         sb.append("}");
         return sb.toString();
     }
@@ -1361,6 +1457,8 @@ public class EntityRecognizerProperties implements Serializable {
                 + ((getModelKmsKeyId() == null) ? 0 : getModelKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getVersionName() == null) ? 0 : getVersionName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSourceModelArn() == null) ? 0 : getSourceModelArn().hashCode());
         return hashCode;
     }
 
@@ -1446,6 +1544,11 @@ public class EntityRecognizerProperties implements Serializable {
             return false;
         if (other.getVersionName() != null
                 && other.getVersionName().equals(this.getVersionName()) == false)
+            return false;
+        if (other.getSourceModelArn() == null ^ this.getSourceModelArn() == null)
+            return false;
+        if (other.getSourceModelArn() != null
+                && other.getSourceModelArn().equals(this.getSourceModelArn()) == false)
             return false;
         return true;
     }
