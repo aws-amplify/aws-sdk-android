@@ -704,7 +704,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     }
     
     @Test(expected = com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException.class)
-    public void testDeleteUserUnauthenticatedUser() throws Exception {
+    public void testDeleteUserWithUnauthenticatedUser() throws Exception {
         auth.deleteUser();
     }
 
