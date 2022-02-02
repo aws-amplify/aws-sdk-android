@@ -686,6 +686,27 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     public void testSignInWrongPassword() throws Exception {
         AWSMobileClient.getInstance().signIn(getPackageConfigure().getString("username"), "wrong", null);
     }
+    
+    @Test
+    public void testDeleteUser() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+        
+        auth.deleteUser();
+        assertTrue("isSignedIn is false", auth.isSignedIn());
+        
+        try {
+            auth.signIn(username, PASSWORD, null);
+            fail("Sign in should fail since the user should no longer exist in the user pool.");
+        } catch (Exception e) {
+            assertTrue(e instanceof com.amazonaws.services.cognitoidentityprovider.model.UserNotFoundException);
+        }
+    }
+    
+    @Test(expected = com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException.class)
+    public void testDeleteUserWithUnauthenticatedUser() throws Exception {
+        auth.deleteUser();
+    }
 
     @Test
     public void testFederatedSignInFail() {

@@ -110,6 +110,7 @@ import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.InvalidUserPoolConfigurationException;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONArray;
@@ -1678,6 +1679,60 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
                 signOut();
                 return null;
+            }
+        };
+    }
+
+    /**
+     * Delete the account of the currently logged-in user.
+     * @throws Exception if the user cannot be deleted successfully
+     */
+    @WorkerThread
+    public void deleteUser() throws Exception {
+        final InternalCallback<Void> internalCallback = new InternalCallback<>();
+        internalCallback.await(_deleteUser(internalCallback));
+    }
+
+    /**
+     * Delete the account of the currently logged-in user.
+     * @param callback the callback will be invoked to notify the success or
+     *                 failure of the deleteUser operation
+     */
+    @AnyThread
+    public void deleteUser(final Callback<Void> callback) {
+        final InternalCallback<Void> internalCallback = new InternalCallback<>(callback);
+        internalCallback.async(_deleteUser(internalCallback));
+    }
+    
+    private Runnable _deleteUser(final Callback<Void> callback) {
+        return () -> {
+            if (userpool == null) {
+                callback.onError(new InvalidUserPoolConfigurationException(
+                        "A user pool must be configured in order to delete a user."
+                ));
+            } else {
+                CognitoUser currentUser = userpool.getCurrentUser();
+                currentUser.deleteUserInBackground(new GenericHandler() {
+                    @Override
+                    public void onSuccess() {
+                        signOut(SignOutOptions.builder().signOutGlobally(true).invalidateTokens(true).build(), new Callback<Void>() {
+                            @Override
+                            public void onResult(Void result) {
+                                callback.onResult(result);
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                callback.onError(e);
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Exception exception) {
+                        callback.onError(exception);
+                    }
+                });
             }
         };
     }
