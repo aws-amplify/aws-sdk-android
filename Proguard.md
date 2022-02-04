@@ -8,6 +8,14 @@ See [the `aws-android-sdk-core` package](aws-android-sdk-core/consumer-proguard-
 If you are using other third-party libraries, you need to consult the documentation
 for those libraries to see if they require additional configuration to support the use of ProGuard.
 
+# (Optional) Additional proguard rules
+If you are facing warnings like `Warning: com.amazonaws.mobile.client.AWSMobileClient: can't find referenced class` you can ignore them by using the following in your proguard-rules.pro file
+
+`
+-dontwarn com.amazonaws.mobileconnectors.cognitoauth.**
+-dontwarn com.amazonaws.mobile.auth.**
+`
+
 ## Additional Resources
 
 The configuration provided in this article allows developers to ship apps using the AWS SDK for Android
