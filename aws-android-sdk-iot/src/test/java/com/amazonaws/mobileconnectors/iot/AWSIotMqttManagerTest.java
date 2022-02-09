@@ -1131,6 +1131,48 @@ public class AWSIotMqttManagerTest {
         assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
     }
 
+    @Test
+    public void testSubscribeToTopicWithImmediateMessageArriving() throws Exception {
+        final MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, null);
+
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+
+        AWSIotMqttSubscriptionStatusCallback subscriptionStatusCallback = new AWSIotMqttSubscriptionStatusCallback() {
+            @Override
+            public void onSuccess() {
+                MqttMessage msg = new MqttMessage();
+                msg.setPayload("test payload".getBytes(StringUtils.UTF8));
+                try {
+                    mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+                } catch (Exception e) {
+                    fail("Could not simulate arriving message: " + e);
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable exception) {
+                fail("Subscribing failed while simulate arriving message: " + exception);
+            }
+        };
+
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, subscriptionStatusCallback, mcb);
+
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        assertEquals(1, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testSubscribeToTopicNullTopic() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
