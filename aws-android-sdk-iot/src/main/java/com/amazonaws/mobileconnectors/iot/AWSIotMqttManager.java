@@ -1477,6 +1477,9 @@ public class AWSIotMqttManager {
 
         if (null != mqttClient) {
             try {
+                final AWSIotMqttTopic topicModel = new AWSIotMqttTopic(topic, qos, callback);
+                topicListeners.put(topic, topicModel);
+
                 if (subscriptionStatusCallback != null) {
                     mqttClient.subscribe(topic, qos.asInt(), null, new IMqttActionListener() {
                         @Override
@@ -1495,14 +1498,14 @@ public class AWSIotMqttManager {
                     mqttClient.subscribe(topic, qos.asInt());
                 }
             } catch (final MqttException e) {
-                if(subscriptionStatusCallback != null) {
+                topicListeners.remove(topic);
+
+                if (subscriptionStatusCallback != null) {
                     subscriptionStatusCallback.onFailure(e);
                 } else {
                     throw new AmazonClientException("Client error when subscribing.", e);
                 }
             }
-            final AWSIotMqttTopic topicModel = new AWSIotMqttTopic(topic, qos, callback);
-            topicListeners.put(topic, topicModel);
         }
     }
 
