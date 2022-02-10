@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1832,7 +1832,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * When a <code>messageId</code> is returned, the message is saved and
-     * Amazon SNS immediately deliverers it to subscribers.
+     * Amazon SNS immediately delivers it to subscribers.
      * </p>
      * <p>
      * To use the <code>Publish</code> action for publishing a message to a
@@ -3372,7 +3372,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * When a <code>messageId</code> is returned, the message is saved and
-     * Amazon SNS immediately deliverers it to subscribers.
+     * Amazon SNS immediately delivers it to subscribers.
      * </p>
      * <p>
      * To use the <code>Publish</code> action for publishing a message to a
@@ -3548,7 +3548,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * When a <code>messageId</code> is returned, the message is saved and
-     * Amazon SNS immediately deliverers it to subscribers.
+     * Amazon SNS immediately delivers it to subscribers.
      * </p>
      * <p>
      * To use the <code>Publish</code> action for publishing a message to a
