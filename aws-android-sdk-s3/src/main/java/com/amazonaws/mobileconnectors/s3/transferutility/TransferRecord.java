@@ -357,7 +357,7 @@ class TransferRecord {
      * @param connManager the android connectivity manager
      * @return true if the preferred network is available, false otherwise.
      */
-    private boolean checkPreferredNetworkAvailability(final TransferStatusUpdater updater,
+    protected boolean checkPreferredNetworkAvailability(final TransferStatusUpdater updater,
                                                       final ConnectivityManager connManager) {
 
         if (connManager == null) { 
