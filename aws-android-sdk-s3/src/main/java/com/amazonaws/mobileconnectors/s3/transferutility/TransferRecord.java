@@ -364,9 +364,8 @@ class TransferRecord {
             // Unable to get the details of the network, we will start the transfer.
             return true;
         }
-            
-        if (transferUtilityOptions != null &&
-            !transferUtilityOptions.getTransferNetworkConnectionType().isConnected(connManager)) {
+
+        if (transferUtilityOptions != null && transferUtilityOptions.getTransferNetworkConnectionType() != null && !transferUtilityOptions.getTransferNetworkConnectionType().isConnected(connManager)) {
             // the network that is configured in the TransferUtilityOptions is not available.
             // we will set the state to WAITING_FOR_NETWORK. The transfer will be started
             // when a future notification is received for the desired network.
