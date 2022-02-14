@@ -35,7 +35,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
@@ -47,8 +46,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
-import javax.annotation.meta.When;
 
 /**
  * Tests that new upload with input stream method calls
