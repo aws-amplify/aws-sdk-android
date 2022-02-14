@@ -99,11 +99,6 @@ public class SignUpActivity extends Activity {
             return;
         }
 
-        if (password.length() < 6) {
-            showError(getString(R.string.password_length_validation_failed));
-            return;
-        }
-
         final CognitoUserAttributes userAttributes = new CognitoUserAttributes();
         userAttributes.addAttribute(GIVEN_NAME, givenName);
         userAttributes.addAttribute(EMAIL_ADDRESS, email);
