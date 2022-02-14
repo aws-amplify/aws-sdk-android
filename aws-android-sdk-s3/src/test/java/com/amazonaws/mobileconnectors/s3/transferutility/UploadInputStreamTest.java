@@ -16,7 +16,9 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.util.Log;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -82,6 +84,7 @@ public class UploadInputStreamTest {
     /**
      * Test that {@link TransferUtility#upload(String, InputStream)} calls the File based
      * upload method with all of the expected defaults.
+     *
      * @throws IOException if upload fails to read input file
      */
     @Test
@@ -101,6 +104,7 @@ public class UploadInputStreamTest {
     /**
      * Test that {@link TransferUtility#upload(String, InputStream, UploadOptions)} with
      * a default Builder calls the File based upload method with all of the expected defaults.
+     *
      * @throws IOException if upload fails to read input file
      */
     @Test
@@ -121,6 +125,7 @@ public class UploadInputStreamTest {
      * Test that {@link TransferUtility#upload(String, InputStream, UploadOptions)} with
      * all parameters specified calls the File based upload method with the same parameters
      * provided as input.
+     *
      * @throws IOException if upload fails to read input file
      */
     @Test
@@ -146,6 +151,7 @@ public class UploadInputStreamTest {
 
     /**
      * Verify that the File does in fact get deleted after the upload is complete.
+     *
      * @throws IOException if upload fails to read input file
      */
     @Test
@@ -169,6 +175,7 @@ public class UploadInputStreamTest {
 
     /**
      * Cleans up input stream
+     *
      * @throws IOException if input stream fails to close
      */
     @After
@@ -196,5 +203,32 @@ public class UploadInputStreamTest {
         public void onError(int id, Exception exception) {
             Log.e(TAG, "Error during upload: " + id, exception);
         }
+    }
+
+    @Test
+    public void testTransferRecordCheckPreferredNetworkAvailability() {
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        TransferStatusUpdater transferStatusUpdater = TransferStatusUpdater.getInstance(context);
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        transferStatusUpdater.updateState(2342, TransferState.IN_PROGRESS);
+        transferStatusUpdater.addTransfer(new TransferRecord(34234));
+        for (TransferRecord record : transferStatusUpdater.getTransfers().values()) {
+            //When connectionManager is null - Base case
+            assertTrue(record.checkPreferredNetworkAvailability(transferStatusUpdater, null));
+
+            //When TransferUtilityOptions is null
+            record.transferUtilityOptions = null;
+            assertTrue(record.checkPreferredNetworkAvailability(transferStatusUpdater, connManager));
+
+            //When TransferNetworkConnectionType is null
+            record.transferUtilityOptions = new TransferUtilityOptions();
+            record.transferUtilityOptions.transferNetworkConnectionType = null;
+            assertTrue(record.checkPreferredNetworkAvailability(transferStatusUpdater, connManager));
+
+            //When TransferNetworkConnectionType is not null
+            record.transferUtilityOptions.transferNetworkConnectionType = TransferNetworkConnectionType.ANY;
+            assertTrue(record.checkPreferredNetworkAvailability(transferStatusUpdater, connManager));
+        }
+
     }
 }

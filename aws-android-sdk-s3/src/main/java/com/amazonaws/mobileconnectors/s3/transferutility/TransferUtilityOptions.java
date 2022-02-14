@@ -67,7 +67,7 @@ public class TransferUtilityOptions implements Serializable {
     /**
      * Type of connection to use for transfers.
      */
-    private TransferNetworkConnectionType transferNetworkConnectionType;
+    protected TransferNetworkConnectionType transferNetworkConnectionType;
     
     /**
      * Constructor that sets the options to the
