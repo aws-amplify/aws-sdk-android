@@ -12,7 +12,7 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-auth-core')
-    api 'com.facebook.android:facebook-android-sdk:4.1.0'
+    api 'com.facebook.android:facebook-login:11.2.0'
     implementation 'androidx.annotation:annotation:1.1.0'
 }
 
