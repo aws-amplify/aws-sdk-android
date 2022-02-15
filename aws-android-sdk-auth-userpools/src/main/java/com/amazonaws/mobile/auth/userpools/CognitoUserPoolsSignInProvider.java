@@ -141,9 +141,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
         }
     }
 
-    /** Minimum length of password supported by Cognito. */
-    private static final int PASSWORD_MIN_LENGTH = 6;
-
     /** Prefix of the exception message. */
     private static final String USERPOOLS_EXCEPTION_PREFIX = "(Service";
 
@@ -407,13 +404,6 @@ public class CognitoUserPoolsSignInProvider implements SignInProvider {
                 case FORGOT_PASSWORD_REQUEST_CODE:
                     password = data.getStringExtra(PASSWORD);
                     verificationCode = data.getStringExtra(VERIFICATION_CODE);
-
-                    if (password.length() < PASSWORD_MIN_LENGTH) {
-                        ViewHelper.showDialog(activity, activity.getString(R.string.title_activity_forgot_password),
-                                    activity.getString(R.string.password_change_failed) 
-                                    + " " + activity.getString(R.string.password_length_validation_failed));
-                        return;
-                    }
 
                     Log.d(LOG_TAG, "verificationCode = " + verificationCode);
 
