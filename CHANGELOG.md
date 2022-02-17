@@ -1,3 +1,15 @@
+## [Release 2.41.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.41.0)
+
+### Features
+- **aws-android-sdk-sns:** update models to latest (#2795)
+
+### Miscellaneous
+- Updated the documentation to include optional proguard rules to ignore potential issues with transitive dependencies (#2791)
+- Fix 2634 : Adding the null guard when getTransferNetworkConnectionType is null (#2797)
+- Use 'com.facebook.android:facebook-login:11.2.0' (#2652)
+
+[See all changes between 2.40.0 and 2.41.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.40.0...release_v2.41.0)
+
 ## [Release 2.40.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.40.0)
 
 ### Features
