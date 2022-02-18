@@ -26,7 +26,7 @@ import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 class TransferThreadPool {
-    
+
     private static final Log LOGGER = LogFactory.getLog(TransferService.class);
 
     private static ExecutorService executorMainTask;
@@ -34,15 +34,14 @@ class TransferThreadPool {
 
     static synchronized void init(final int transferThreadPoolSize) {
         LOGGER.debug("Initializing the thread pool of size: " + transferThreadPoolSize);
-        
+
         final int poolSize = Math.max((int) (Math.ceil((double) transferThreadPoolSize / 2)), 1);
-        
+
         if (executorMainTask == null) {
             executorMainTask = buildExecutor(poolSize);
         }
         if (executorPartTask == null) {
-            // Upload individual parts serially
-            executorPartTask = buildExecutor(1);
+            executorPartTask = buildExecutor(poolSize);
         }
     }
 
