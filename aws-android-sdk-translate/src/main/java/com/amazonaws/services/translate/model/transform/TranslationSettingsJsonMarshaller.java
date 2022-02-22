@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,11 @@ class TranslationSettingsJsonMarshaller {
     public void marshall(TranslationSettings translationSettings, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (translationSettings.getFormality() != null) {
+            String formality = translationSettings.getFormality();
+            jsonWriter.name("Formality");
+            jsonWriter.value(formality);
+        }
         if (translationSettings.getProfanity() != null) {
             String profanity = translationSettings.getProfanity();
             jsonWriter.name("Profanity");

@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Directionality
+ * Formality
  */
-public enum Directionality {
+public enum Formality {
 
-    UNI("UNI"),
-    MULTI("MULTI");
+    FORMAL("FORMAL"),
+    INFORMAL("INFORMAL");
 
     private String value;
 
-    private Directionality(String value) {
+    private Formality(String value) {
         this.value = value;
     }
 
@@ -37,20 +37,20 @@ public enum Directionality {
         return value;
     }
 
-    private static final Map<String, Directionality> enumMap;
+    private static final Map<String, Formality> enumMap;
     static {
-        enumMap = new HashMap<String, Directionality>();
-        enumMap.put("UNI", UNI);
-        enumMap.put("MULTI", MULTI);
+        enumMap = new HashMap<String, Formality>();
+        enumMap.put("FORMAL", FORMAL);
+        enumMap.put("INFORMAL", INFORMAL);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return Directionality corresponding to the value
+     * @return Formality corresponding to the value
      */
-    public static Directionality fromValue(String value) {
+    public static Formality fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

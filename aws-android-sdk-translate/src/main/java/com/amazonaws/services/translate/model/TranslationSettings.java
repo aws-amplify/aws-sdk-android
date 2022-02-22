@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,14 @@ import java.io.Serializable;
  */
 public class TranslationSettings implements Serializable {
     /**
+     * The new value for the formality property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     */
+    private String formality;
+
+    /**
      * <p>
      * Enable the profanity setting if you want Amazon Translate to mask profane
      * words and phrases in your translation output.
@@ -45,6 +53,87 @@ public class TranslationSettings implements Serializable {
      * <b>Allowed Values: </b>MASK
      */
     private String profanity;
+
+    /**
+     * Returns the value of the formality property for this object.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     *
+     * @return The value of the formality property for this object.
+     * @see Formality
+     */
+    public String getFormality() {
+        return formality;
+    }
+
+    /**
+     * Sets the value of formality
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     *
+     * @param formality The new value for the formality property for this
+     *            object.
+     * @see Formality
+     */
+    public void setFormality(String formality) {
+        this.formality = formality;
+    }
+
+    /**
+     * Sets the value of the formality property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     *
+     * @param formality The new value for the formality property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Formality
+     */
+    public TranslationSettings withFormality(String formality) {
+        this.formality = formality;
+        return this;
+    }
+
+    /**
+     * Sets the value of formality
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     *
+     * @param formality The new value for the formality property for this
+     *            object.
+     * @see Formality
+     */
+    public void setFormality(Formality formality) {
+        this.formality = formality.toString();
+    }
+
+    /**
+     * Sets the value of the formality property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FORMAL, INFORMAL
+     *
+     * @param formality The new value for the formality property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Formality
+     */
+    public TranslationSettings withFormality(Formality formality) {
+        this.formality = formality.toString();
+        return this;
+    }
 
     /**
      * <p>
@@ -294,6 +383,8 @@ public class TranslationSettings implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getFormality() != null)
+            sb.append("Formality: " + getFormality() + ",");
         if (getProfanity() != null)
             sb.append("Profanity: " + getProfanity());
         sb.append("}");
@@ -305,6 +396,7 @@ public class TranslationSettings implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getFormality() == null) ? 0 : getFormality().hashCode());
         hashCode = prime * hashCode + ((getProfanity() == null) ? 0 : getProfanity().hashCode());
         return hashCode;
     }
@@ -320,6 +412,11 @@ public class TranslationSettings implements Serializable {
             return false;
         TranslationSettings other = (TranslationSettings) obj;
 
+        if (other.getFormality() == null ^ this.getFormality() == null)
+            return false;
+        if (other.getFormality() != null
+                && other.getFormality().equals(this.getFormality()) == false)
+            return false;
         if (other.getProfanity() == null ^ this.getProfanity() == null)
             return false;
         if (other.getProfanity() != null
