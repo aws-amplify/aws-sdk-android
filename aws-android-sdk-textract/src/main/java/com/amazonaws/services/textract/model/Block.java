@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -121,7 +121,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      */
     private String blockType;
 
@@ -380,7 +380,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      *
      * @return <p>
      *         The type of text item that's recognized. In operations for text
@@ -547,7 +547,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -718,7 +718,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -889,7 +889,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1060,7 +1060,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
