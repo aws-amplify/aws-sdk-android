@@ -1,3 +1,10 @@
+## [Release 2.41.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.41.1)
+
+### Bug Fixes
+- revert change from #2447 (#2804)
+
+[See all changes between 2.41.0 and 2.41.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.41.0...release_v2.41.1)
+
 ## [Release 2.41.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.41.0)
 
 ### Features
