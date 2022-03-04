@@ -59,7 +59,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      */
     private String resourceType;
 
@@ -192,7 +193,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      *
      * @return <p>
      *         A valid resource type.
@@ -210,7 +212,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -231,7 +234,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -252,7 +256,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -273,7 +278,8 @@ public class DisassociateInstanceStorageConfigRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
      *
      * @param resourceType <p>
      *            A valid resource type.
