@@ -170,7 +170,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      */
     private String volumeKmsKeyId;
 
@@ -959,7 +959,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1008,7 +1008,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1061,7 +1061,7 @@ public class DocumentClassificationJobProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon

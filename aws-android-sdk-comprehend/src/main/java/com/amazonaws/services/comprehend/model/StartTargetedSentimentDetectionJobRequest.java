@@ -21,21 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Starts an asynchronous entity detection job for a collection of documents.
- * Use the operation to track the status of a job.
- * </p>
- * <p>
- * This API can be used for either standard entity detection or custom entity
- * recognition. In order to be used for custom entity recognition, the optional
- * <code>EntityRecognizerArn</code> must be used in order to provide access to
- * the recognizer being used to detect the custom entity.
+ * Starts an asynchronous targeted sentiment detection job for a collection of
+ * documents. Use the operation to track the status of a job.
  * </p>
  */
-public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest implements
+public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * Specifies the format and location of the input data for the job.
+     * The input properties for an inference job.
      * </p>
      */
     private InputDataConfig inputDataConfig;
@@ -53,8 +47,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,26 +69,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that identifies the specific entity
-     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
-     * ARN is optional and is only used for a custom entity recognition job.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     */
-    private String entityRecognizerArn;
-
-    /**
-     * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,10 +93,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * analysis job. The VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -145,8 +120,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * Configuration parameters for an optional private Virtual Private Cloud
-     * (VPC) containing the resources you are using for your entity detection
-     * job. For more information, see <a href=
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
@@ -155,8 +130,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Tags to be associated with the entities detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
+     * Tags to be associated with the targeted sentiment detection job. A tag is
+     * a key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -165,11 +140,11 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Specifies the format and location of the input data for the job.
+     * The input properties for an inference job.
      * </p>
      *
      * @return <p>
-     *         Specifies the format and location of the input data for the job.
+     *         The input properties for an inference job.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -178,12 +153,11 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Specifies the format and location of the input data for the job.
+     * The input properties for an inference job.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            Specifies the format and location of the input data for the
-     *            job.
+     *            The input properties for an inference job.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -192,20 +166,20 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Specifies the format and location of the input data for the job.
+     * The input properties for an inference job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            Specifies the format and location of the input data for the
-     *            job.
+     *            The input properties for an inference job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withInputDataConfig(InputDataConfig inputDataConfig) {
+    public StartTargetedSentimentDetectionJobRequest withInputDataConfig(
+            InputDataConfig inputDataConfig) {
         this.inputDataConfig = inputDataConfig;
         return this;
     }
@@ -250,7 +224,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withOutputDataConfig(OutputDataConfig outputDataConfig) {
+    public StartTargetedSentimentDetectionJobRequest withOutputDataConfig(
+            OutputDataConfig outputDataConfig) {
         this.outputDataConfig = outputDataConfig;
         return this;
     }
@@ -261,8 +236,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -274,8 +248,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      *         Management (IAM) role that grants Amazon Comprehend read access
      *         to your input data. For more information, see <a href=
      *         "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *         >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-
-     *         managing-permissions.html#auth-role-permissions</a>.
+     *         >Role-based permissions</a>.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -288,8 +261,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -301,8 +273,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data. For more information, see <a href=
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *            >https://docs.aws.amazon.com/comprehend/latest/dg/access-
-     *            control-managing-permissions.html#auth-role-permissions</a>.
+     *            >Role-based permissions</a>.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -315,8 +286,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -331,13 +301,12 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data. For more information, see <a href=
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *            >https://docs.aws.amazon.com/comprehend/latest/dg/access-
-     *            control-managing-permissions.html#auth-role-permissions</a>.
+     *            >Role-based permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withDataAccessRoleArn(String dataAccessRoleArn) {
+    public StartTargetedSentimentDetectionJobRequest withDataAccessRoleArn(String dataAccessRoleArn) {
         this.dataAccessRoleArn = dataAccessRoleArn;
         return this;
     }
@@ -394,109 +363,25 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withJobName(String jobName) {
+    public StartTargetedSentimentDetectionJobRequest withJobName(String jobName) {
         this.jobName = jobName;
         return this;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that identifies the specific entity
-     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
-     * ARN is optional and is only used for a custom entity recognition job.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) that identifies the specific
-     *         entity recognizer to be used by the
-     *         <code>StartEntitiesDetectionJob</code>. This ARN is optional and
-     *         is only used for a custom entity recognition job.
-     *         </p>
-     */
-    public String getEntityRecognizerArn() {
-        return entityRecognizerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) that identifies the specific entity
-     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
-     * ARN is optional and is only used for a custom entity recognition job.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @param entityRecognizerArn <p>
-     *            The Amazon Resource Name (ARN) that identifies the specific
-     *            entity recognizer to be used by the
-     *            <code>StartEntitiesDetectionJob</code>. This ARN is optional
-     *            and is only used for a custom entity recognition job.
-     *            </p>
-     */
-    public void setEntityRecognizerArn(String entityRecognizerArn) {
-        this.entityRecognizerArn = entityRecognizerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) that identifies the specific entity
-     * recognizer to be used by the <code>StartEntitiesDetectionJob</code>. This
-     * ARN is optional and is only used for a custom entity recognition job.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @param entityRecognizerArn <p>
-     *            The Amazon Resource Name (ARN) that identifies the specific
-     *            entity recognizer to be used by the
-     *            <code>StartEntitiesDetectionJob</code>. This ARN is optional
-     *            and is only used for a custom entity recognition job.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public StartEntitiesDetectionJobRequest withEntityRecognizerArn(String entityRecognizerArn) {
-        this.entityRecognizerArn = entityRecognizerArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents. All documents must be in the
-     *         same language. You can specify any of the languages supported by
-     *         Amazon Comprehend. If custom entities recognition is used, this
-     *         parameter is ignored and the language used for training the model
-     *         is used instead.
+     *         The language of the input documents. You can specify any of the
+     *         primary languages supported by Amazon Comprehend. All documents
+     *         must be in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -506,21 +391,18 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend. If custom entities recognition
-     *            is used, this parameter is ignored and the language used for
-     *            training the model is used instead.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -530,10 +412,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -543,38 +424,33 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend. If custom entities recognition
-     *            is used, this parameter is ignored and the language used for
-     *            training the model is used instead.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public StartEntitiesDetectionJobRequest withLanguageCode(String languageCode) {
+    public StartTargetedSentimentDetectionJobRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend. If custom entities recognition
-     *            is used, this parameter is ignored and the language used for
-     *            training the model is used instead.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -584,10 +460,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The language of the input documents. All documents must be in the same
-     * language. You can specify any of the languages supported by Amazon
-     * Comprehend. If custom entities recognition is used, this parameter is
-     * ignored and the language used for training the model is used instead.
+     * The language of the input documents. You can specify any of the primary
+     * languages supported by Amazon Comprehend. All documents must be in the
+     * same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -597,17 +472,15 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. All documents must be in
-     *            the same language. You can specify any of the languages
-     *            supported by Amazon Comprehend. If custom entities recognition
-     *            is used, this parameter is ignored and the language used for
-     *            training the model is used instead.
+     *            The language of the input documents. You can specify any of
+     *            the primary languages supported by Amazon Comprehend. All
+     *            documents must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public StartEntitiesDetectionJobRequest withLanguageCode(LanguageCode languageCode) {
+    public StartTargetedSentimentDetectionJobRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
@@ -670,17 +543,17 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withClientRequestToken(String clientRequestToken) {
+    public StartTargetedSentimentDetectionJobRequest withClientRequestToken(
+            String clientRequestToken) {
         this.clientRequestToken = clientRequestToken;
         return this;
     }
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * analysis job. The VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -701,10 +574,10 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the analysis job. The
-     *         VolumeKmsKeyId can be either of the following formats:
+     *         ID for the KMS key that Amazon Comprehend uses to encrypt data on
+     *         the storage volume attached to the ML compute instance(s) that
+     *         process the analysis job. The VolumeKmsKeyId can be either of the
+     *         following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -726,10 +599,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * analysis job. The VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -750,10 +622,10 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt data
+     *            on the storage volume attached to the ML compute instance(s)
+     *            that process the analysis job. The VolumeKmsKeyId can be
+     *            either of the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -776,10 +648,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * analysis job. The VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -803,10 +674,10 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt data
+     *            on the storage volume attached to the ML compute instance(s)
+     *            that process the analysis job. The VolumeKmsKeyId can be
+     *            either of the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -825,7 +696,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withVolumeKmsKeyId(String volumeKmsKeyId) {
+    public StartTargetedSentimentDetectionJobRequest withVolumeKmsKeyId(String volumeKmsKeyId) {
         this.volumeKmsKeyId = volumeKmsKeyId;
         return this;
     }
@@ -833,16 +704,16 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * Configuration parameters for an optional private Virtual Private Cloud
-     * (VPC) containing the resources you are using for your entity detection
-     * job. For more information, see <a href=
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
      * @return <p>
      *         Configuration parameters for an optional private Virtual Private
-     *         Cloud (VPC) containing the resources you are using for your
-     *         entity detection job. For more information, see <a href=
+     *         Cloud (VPC) containing the resources you are using for the job.
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *         >Amazon VPC</a>.
      *         </p>
@@ -854,8 +725,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * Configuration parameters for an optional private Virtual Private Cloud
-     * (VPC) containing the resources you are using for your entity detection
-     * job. For more information, see <a href=
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
@@ -863,7 +734,7 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param vpcConfig <p>
      *            Configuration parameters for an optional private Virtual
      *            Private Cloud (VPC) containing the resources you are using for
-     *            your entity detection job. For more information, see <a href=
+     *            the job. For more information, see <a href=
      *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
@@ -875,8 +746,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * Configuration parameters for an optional private Virtual Private Cloud
-     * (VPC) containing the resources you are using for your entity detection
-     * job. For more information, see <a href=
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
@@ -887,31 +758,32 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * @param vpcConfig <p>
      *            Configuration parameters for an optional private Virtual
      *            Private Cloud (VPC) containing the resources you are using for
-     *            your entity detection job. For more information, see <a href=
+     *            the job. For more information, see <a href=
      *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withVpcConfig(VpcConfig vpcConfig) {
+    public StartTargetedSentimentDetectionJobRequest withVpcConfig(VpcConfig vpcConfig) {
         this.vpcConfig = vpcConfig;
         return this;
     }
 
     /**
      * <p>
-     * Tags to be associated with the entities detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
+     * Tags to be associated with the targeted sentiment detection job. A tag is
+     * a key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the entities detection job. A tag is a
-     *         key-value pair that adds metadata to a resource used by Amazon
-     *         Comprehend. For example, a tag with "Sales" as the key might be
-     *         added to a resource to indicate its use by the sales department.
+     *         Tags to be associated with the targeted sentiment detection job.
+     *         A tag is a key-value pair that adds metadata to a resource used
+     *         by Amazon Comprehend. For example, a tag with "Sales" as the key
+     *         might be added to a resource to indicate its use by the sales
+     *         department.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -920,18 +792,18 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Tags to be associated with the entities detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
+     * Tags to be associated with the targeted sentiment detection job. A tag is
+     * a key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the entities detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
-     *            department.
+     *            Tags to be associated with the targeted sentiment detection
+     *            job. A tag is a key-value pair that adds metadata to a
+     *            resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -945,8 +817,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Tags to be associated with the entities detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
+     * Tags to be associated with the targeted sentiment detection job. A tag is
+     * a key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -955,16 +827,16 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the entities detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
-     *            department.
+     *            Tags to be associated with the targeted sentiment detection
+     *            job. A tag is a key-value pair that adds metadata to a
+     *            resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withTags(Tag... tags) {
+    public StartTargetedSentimentDetectionJobRequest withTags(Tag... tags) {
         if (getTags() == null) {
             this.tags = new java.util.ArrayList<Tag>(tags.length);
         }
@@ -976,8 +848,8 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Tags to be associated with the entities detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
+     * Tags to be associated with the targeted sentiment detection job. A tag is
+     * a key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -986,16 +858,16 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the entities detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
-     *            department.
+     *            Tags to be associated with the targeted sentiment detection
+     *            job. A tag is a key-value pair that adds metadata to a
+     *            resource used by Amazon Comprehend. For example, a tag with
+     *            "Sales" as the key might be added to a resource to indicate
+     *            its use by the sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public StartEntitiesDetectionJobRequest withTags(java.util.Collection<Tag> tags) {
+    public StartTargetedSentimentDetectionJobRequest withTags(java.util.Collection<Tag> tags) {
         setTags(tags);
         return this;
     }
@@ -1019,8 +891,6 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
         if (getJobName() != null)
             sb.append("JobName: " + getJobName() + ",");
-        if (getEntityRecognizerArn() != null)
-            sb.append("EntityRecognizerArn: " + getEntityRecognizerArn() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
         if (getClientRequestToken() != null)
@@ -1048,8 +918,6 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         hashCode = prime * hashCode + ((getJobName() == null) ? 0 : getJobName().hashCode());
         hashCode = prime * hashCode
-                + ((getEntityRecognizerArn() == null) ? 0 : getEntityRecognizerArn().hashCode());
-        hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getClientRequestToken() == null) ? 0 : getClientRequestToken().hashCode());
@@ -1067,9 +935,9 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
         if (obj == null)
             return false;
 
-        if (obj instanceof StartEntitiesDetectionJobRequest == false)
+        if (obj instanceof StartTargetedSentimentDetectionJobRequest == false)
             return false;
-        StartEntitiesDetectionJobRequest other = (StartEntitiesDetectionJobRequest) obj;
+        StartTargetedSentimentDetectionJobRequest other = (StartTargetedSentimentDetectionJobRequest) obj;
 
         if (other.getInputDataConfig() == null ^ this.getInputDataConfig() == null)
             return false;
@@ -1089,11 +957,6 @@ public class StartEntitiesDetectionJobRequest extends AmazonWebServiceRequest im
         if (other.getJobName() == null ^ this.getJobName() == null)
             return false;
         if (other.getJobName() != null && other.getJobName().equals(this.getJobName()) == false)
-            return false;
-        if (other.getEntityRecognizerArn() == null ^ this.getEntityRecognizerArn() == null)
-            return false;
-        if (other.getEntityRecognizerArn() != null
-                && other.getEntityRecognizerArn().equals(this.getEntityRecognizerArn()) == false)
             return false;
         if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
             return false;

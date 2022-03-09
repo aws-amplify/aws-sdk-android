@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about an entities detection job.
+ * Provides information about a targeted sentiment detection job.
  * </p>
  */
-public class EntitiesDetectionJobProperties implements Serializable {
+public class TargetedSentimentDetectionJobProperties implements Serializable {
     /**
      * <p>
-     * The identifier assigned to the entities detection job.
+     * The identifier assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,18 +36,18 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the entities detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
+     * It is a unique, fully qualified identifier for the job. It includes the
+     * AWS account, Region, and the job ID. The format of the ARN is as follows:
      * </p>
      * <p>
-     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      * </p>
      * <p>
      * The following is an example job ARN:
      * </p>
      * <p>
-     * <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The name that you assigned the entities detection job.
+     * The name that you assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,9 +72,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -92,45 +92,31 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The time that the entities detection job was submitted for processing.
+     * The time that the targeted sentiment detection job was submitted for
+     * processing.
      * </p>
      */
     private java.util.Date submitTime;
 
     /**
      * <p>
-     * The time that the entities detection job completed
+     * The time that the targeted sentiment detection job ended.
      * </p>
      */
     private java.util.Date endTime;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     */
-    private String entityRecognizerArn;
-
-    /**
-     * <p>
-     * The input data configuration that you supplied when you created the
-     * entities detection job.
+     * The input properties for an inference job.
      * </p>
      */
     private InputDataConfig inputDataConfig;
 
     /**
      * <p>
-     * The output data configuration that you supplied when you created the
-     * entities detection job.
+     * Provides configuration parameters for the output of inference jobs.
      * </p>
+     * <p/>
      */
     private OutputDataConfig outputDataConfig;
 
@@ -160,8 +146,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * instance(s) that process the targeted sentiment detection job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -185,9 +171,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration parameters for a private Virtual Private Cloud (VPC)
-     * containing the resources you are using for your entity detection job. For
-     * more information, see <a href=
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
@@ -196,7 +182,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The identifier assigned to the entities detection job.
+     * The identifier assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -204,7 +190,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
-     *         The identifier assigned to the entities detection job.
+     *         The identifier assigned to the targeted sentiment detection job.
      *         </p>
      */
     public String getJobId() {
@@ -213,7 +199,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The identifier assigned to the entities detection job.
+     * The identifier assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -221,7 +207,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
-     *            The identifier assigned to the entities detection job.
+     *            The identifier assigned to the targeted sentiment detection
+     *            job.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -230,7 +217,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The identifier assigned to the entities detection job.
+     * The identifier assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -241,30 +228,31 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobId <p>
-     *            The identifier assigned to the entities detection job.
+     *            The identifier assigned to the targeted sentiment detection
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withJobId(String jobId) {
+    public TargetedSentimentDetectionJobProperties withJobId(String jobId) {
         this.jobId = jobId;
         return this;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the entities detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
+     * It is a unique, fully qualified identifier for the job. It includes the
+     * AWS account, Region, and the job ID. The format of the ARN is as follows:
      * </p>
      * <p>
-     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      * </p>
      * <p>
      * The following is an example job ARN:
      * </p>
      * <p>
-     * <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -275,19 +263,19 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the entities detection job. It
-     *         is a unique, fully qualified identifier for the job. It includes
-     *         the AWS account, Region, and the job ID. The format of the ARN is
-     *         as follows:
+     *         The Amazon Resource Name (ARN) of the targeted sentiment
+     *         detection job. It is a unique, fully qualified identifier for the
+     *         job. It includes the AWS account, Region, and the job ID. The
+     *         format of the ARN is as follows:
      *         </p>
      *         <p>
-     *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      *         </p>
      *         <p>
      *         The following is an example job ARN:
      *         </p>
      *         <p>
-     *         <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *         <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      *         </p>
      */
     public String getJobArn() {
@@ -296,18 +284,18 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the entities detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
+     * It is a unique, fully qualified identifier for the job. It includes the
+     * AWS account, Region, and the job ID. The format of the ARN is as follows:
      * </p>
      * <p>
-     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      * </p>
      * <p>
      * The following is an example job ARN:
      * </p>
      * <p>
-     * <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -318,19 +306,19 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param jobArn <p>
-     *            The Amazon Resource Name (ARN) of the entities detection job.
-     *            It is a unique, fully qualified identifier for the job. It
-     *            includes the AWS account, Region, and the job ID. The format
-     *            of the ARN is as follows:
+     *            The Amazon Resource Name (ARN) of the targeted sentiment
+     *            detection job. It is a unique, fully qualified identifier for
+     *            the job. It includes the AWS account, Region, and the job ID.
+     *            The format of the ARN is as follows:
      *            </p>
      *            <p>
-     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      *            </p>
      *            <p>
      *            The following is an example job ARN:
      *            </p>
      *            <p>
-     *            <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *            <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      *            </p>
      */
     public void setJobArn(String jobArn) {
@@ -339,18 +327,18 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the entities detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
+     * It is a unique, fully qualified identifier for the job. It includes the
+     * AWS account, Region, and the job ID. The format of the ARN is as follows:
      * </p>
      * <p>
-     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      * </p>
      * <p>
      * The following is an example job ARN:
      * </p>
      * <p>
-     * <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -364,31 +352,31 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param jobArn <p>
-     *            The Amazon Resource Name (ARN) of the entities detection job.
-     *            It is a unique, fully qualified identifier for the job. It
-     *            includes the AWS account, Region, and the job ID. The format
-     *            of the ARN is as follows:
+     *            The Amazon Resource Name (ARN) of the targeted sentiment
+     *            detection job. It is a unique, fully qualified identifier for
+     *            the job. It includes the AWS account, Region, and the job ID.
+     *            The format of the ARN is as follows:
      *            </p>
      *            <p>
-     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:entities-detection-job/&lt;job-id&gt;</code>
+     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
      *            </p>
      *            <p>
      *            The following is an example job ARN:
      *            </p>
      *            <p>
-     *            <code>arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *            <code>arn:aws:comprehend:us-west-2:111122223333:targeted-sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withJobArn(String jobArn) {
+    public TargetedSentimentDetectionJobProperties withJobArn(String jobArn) {
         this.jobArn = jobArn;
         return this;
     }
 
     /**
      * <p>
-     * The name that you assigned the entities detection job.
+     * The name that you assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -396,7 +384,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @return <p>
-     *         The name that you assigned the entities detection job.
+     *         The name that you assigned to the targeted sentiment detection
+     *         job.
      *         </p>
      */
     public String getJobName() {
@@ -405,7 +394,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The name that you assigned the entities detection job.
+     * The name that you assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -413,7 +402,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobName <p>
-     *            The name that you assigned the entities detection job.
+     *            The name that you assigned to the targeted sentiment detection
+     *            job.
      *            </p>
      */
     public void setJobName(String jobName) {
@@ -422,7 +412,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The name that you assigned the entities detection job.
+     * The name that you assigned to the targeted sentiment detection job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -433,21 +423,22 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-%@]*)$<br/>
      *
      * @param jobName <p>
-     *            The name that you assigned the entities detection job.
+     *            The name that you assigned to the targeted sentiment detection
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withJobName(String jobName) {
+    public TargetedSentimentDetectionJobProperties withJobName(String jobName) {
         this.jobName = jobName;
         return this;
     }
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -455,9 +446,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * STOP_REQUESTED, STOPPED
      *
      * @return <p>
-     *         The current status of the entities detection job. If the status
-     *         is <code>FAILED</code>, the <code>Message</code> field shows the
-     *         reason for the failure.
+     *         The current status of the targeted sentiment detection job. If
+     *         the status is <code>FAILED</code>, the <code>Messages</code>
+     *         field shows the reason for the failure.
      *         </p>
      * @see JobStatus
      */
@@ -467,9 +458,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -477,9 +468,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
-     *            The current status of the entities detection job. If the
-     *            status is <code>FAILED</code>, the <code>Message</code> field
-     *            shows the reason for the failure.
+     *            The current status of the targeted sentiment detection job. If
+     *            the status is <code>FAILED</code>, the <code>Messages</code>
+     *            field shows the reason for the failure.
      *            </p>
      * @see JobStatus
      */
@@ -489,9 +480,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -502,24 +493,24 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
-     *            The current status of the entities detection job. If the
-     *            status is <code>FAILED</code>, the <code>Message</code> field
-     *            shows the reason for the failure.
+     *            The current status of the targeted sentiment detection job. If
+     *            the status is <code>FAILED</code>, the <code>Messages</code>
+     *            field shows the reason for the failure.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
      */
-    public EntitiesDetectionJobProperties withJobStatus(String jobStatus) {
+    public TargetedSentimentDetectionJobProperties withJobStatus(String jobStatus) {
         this.jobStatus = jobStatus;
         return this;
     }
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -527,9 +518,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
-     *            The current status of the entities detection job. If the
-     *            status is <code>FAILED</code>, the <code>Message</code> field
-     *            shows the reason for the failure.
+     *            The current status of the targeted sentiment detection job. If
+     *            the status is <code>FAILED</code>, the <code>Messages</code>
+     *            field shows the reason for the failure.
      *            </p>
      * @see JobStatus
      */
@@ -539,9 +530,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The current status of the entities detection job. If the status is
-     * <code>FAILED</code>, the <code>Message</code> field shows the reason for
-     * the failure.
+     * The current status of the targeted sentiment detection job. If the status
+     * is <code>FAILED</code>, the <code>Messages</code> field shows the reason
+     * for the failure.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -552,15 +543,15 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * STOP_REQUESTED, STOPPED
      *
      * @param jobStatus <p>
-     *            The current status of the entities detection job. If the
-     *            status is <code>FAILED</code>, the <code>Message</code> field
-     *            shows the reason for the failure.
+     *            The current status of the targeted sentiment detection job. If
+     *            the status is <code>FAILED</code>, the <code>Messages</code>
+     *            field shows the reason for the failure.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see JobStatus
      */
-    public EntitiesDetectionJobProperties withJobStatus(JobStatus jobStatus) {
+    public TargetedSentimentDetectionJobProperties withJobStatus(JobStatus jobStatus) {
         this.jobStatus = jobStatus.toString();
         return this;
     }
@@ -605,19 +596,20 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withMessage(String message) {
+    public TargetedSentimentDetectionJobProperties withMessage(String message) {
         this.message = message;
         return this;
     }
 
     /**
      * <p>
-     * The time that the entities detection job was submitted for processing.
+     * The time that the targeted sentiment detection job was submitted for
+     * processing.
      * </p>
      *
      * @return <p>
-     *         The time that the entities detection job was submitted for
-     *         processing.
+     *         The time that the targeted sentiment detection job was submitted
+     *         for processing.
      *         </p>
      */
     public java.util.Date getSubmitTime() {
@@ -626,12 +618,13 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The time that the entities detection job was submitted for processing.
+     * The time that the targeted sentiment detection job was submitted for
+     * processing.
      * </p>
      *
      * @param submitTime <p>
-     *            The time that the entities detection job was submitted for
-     *            processing.
+     *            The time that the targeted sentiment detection job was
+     *            submitted for processing.
      *            </p>
      */
     public void setSubmitTime(java.util.Date submitTime) {
@@ -640,31 +633,32 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The time that the entities detection job was submitted for processing.
+     * The time that the targeted sentiment detection job was submitted for
+     * processing.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param submitTime <p>
-     *            The time that the entities detection job was submitted for
-     *            processing.
+     *            The time that the targeted sentiment detection job was
+     *            submitted for processing.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withSubmitTime(java.util.Date submitTime) {
+    public TargetedSentimentDetectionJobProperties withSubmitTime(java.util.Date submitTime) {
         this.submitTime = submitTime;
         return this;
     }
 
     /**
      * <p>
-     * The time that the entities detection job completed
+     * The time that the targeted sentiment detection job ended.
      * </p>
      *
      * @return <p>
-     *         The time that the entities detection job completed
+     *         The time that the targeted sentiment detection job ended.
      *         </p>
      */
     public java.util.Date getEndTime() {
@@ -673,11 +667,11 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The time that the entities detection job completed
+     * The time that the targeted sentiment detection job ended.
      * </p>
      *
      * @param endTime <p>
-     *            The time that the entities detection job completed
+     *            The time that the targeted sentiment detection job ended.
      *            </p>
      */
     public void setEndTime(java.util.Date endTime) {
@@ -686,101 +680,30 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The time that the entities detection job completed
+     * The time that the targeted sentiment detection job ended.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endTime <p>
-     *            The time that the entities detection job completed
+     *            The time that the targeted sentiment detection job ended.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withEndTime(java.util.Date endTime) {
+    public TargetedSentimentDetectionJobProperties withEndTime(java.util.Date endTime) {
         this.endTime = endTime;
         return this;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) that identifies the entity
-     *         recognizer.
-     *         </p>
-     */
-    public String getEntityRecognizerArn() {
-        return entityRecognizerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @param entityRecognizerArn <p>
-     *            The Amazon Resource Name (ARN) that identifies the entity
-     *            recognizer.
-     *            </p>
-     */
-    public void setEntityRecognizerArn(String entityRecognizerArn) {
-        this.entityRecognizerArn = entityRecognizerArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) that identifies the entity recognizer.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 256<br/>
-     * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/
-     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
-     *
-     * @param entityRecognizerArn <p>
-     *            The Amazon Resource Name (ARN) that identifies the entity
-     *            recognizer.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public EntitiesDetectionJobProperties withEntityRecognizerArn(String entityRecognizerArn) {
-        this.entityRecognizerArn = entityRecognizerArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The input data configuration that you supplied when you created the
-     * entities detection job.
+     * The input properties for an inference job.
      * </p>
      *
      * @return <p>
-     *         The input data configuration that you supplied when you created
-     *         the entities detection job.
+     *         The input properties for an inference job.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -789,13 +712,11 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input data configuration that you supplied when you created the
-     * entities detection job.
+     * The input properties for an inference job.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            The input data configuration that you supplied when you
-     *            created the entities detection job.
+     *            The input properties for an inference job.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -804,35 +725,35 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input data configuration that you supplied when you created the
-     * entities detection job.
+     * The input properties for an inference job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            The input data configuration that you supplied when you
-     *            created the entities detection job.
+     *            The input properties for an inference job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withInputDataConfig(InputDataConfig inputDataConfig) {
+    public TargetedSentimentDetectionJobProperties withInputDataConfig(
+            InputDataConfig inputDataConfig) {
         this.inputDataConfig = inputDataConfig;
         return this;
     }
 
     /**
      * <p>
-     * The output data configuration that you supplied when you created the
-     * entities detection job.
+     * Provides configuration parameters for the output of inference jobs.
      * </p>
+     * <p/>
      *
      * @return <p>
-     *         The output data configuration that you supplied when you created
-     *         the entities detection job.
+     *         Provides configuration parameters for the output of inference
+     *         jobs.
      *         </p>
+     *         <p/>
      */
     public OutputDataConfig getOutputDataConfig() {
         return outputDataConfig;
@@ -840,14 +761,15 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The output data configuration that you supplied when you created the
-     * entities detection job.
+     * Provides configuration parameters for the output of inference jobs.
      * </p>
+     * <p/>
      *
      * @param outputDataConfig <p>
-     *            The output data configuration that you supplied when you
-     *            created the entities detection job.
+     *            Provides configuration parameters for the output of inference
+     *            jobs.
      *            </p>
+     *            <p/>
      */
     public void setOutputDataConfig(OutputDataConfig outputDataConfig) {
         this.outputDataConfig = outputDataConfig;
@@ -855,21 +777,23 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The output data configuration that you supplied when you created the
-     * entities detection job.
+     * Provides configuration parameters for the output of inference jobs.
      * </p>
+     * <p/>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outputDataConfig <p>
-     *            The output data configuration that you supplied when you
-     *            created the entities detection job.
+     *            Provides configuration parameters for the output of inference
+     *            jobs.
      *            </p>
+     *            <p/>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withOutputDataConfig(OutputDataConfig outputDataConfig) {
+    public TargetedSentimentDetectionJobProperties withOutputDataConfig(
+            OutputDataConfig outputDataConfig) {
         this.outputDataConfig = outputDataConfig;
         return this;
     }
@@ -926,7 +850,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      *         chained together.
      * @see LanguageCode
      */
-    public EntitiesDetectionJobProperties withLanguageCode(String languageCode) {
+    public TargetedSentimentDetectionJobProperties withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
@@ -966,7 +890,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      *         chained together.
      * @see LanguageCode
      */
-    public EntitiesDetectionJobProperties withLanguageCode(LanguageCode languageCode) {
+    public TargetedSentimentDetectionJobProperties withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
@@ -1029,7 +953,7 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withDataAccessRoleArn(String dataAccessRoleArn) {
+    public TargetedSentimentDetectionJobProperties withDataAccessRoleArn(String dataAccessRoleArn) {
         this.dataAccessRoleArn = dataAccessRoleArn;
         return this;
     }
@@ -1038,8 +962,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * instance(s) that process the targeted sentiment detection job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1062,8 +986,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
      *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the analysis job. The
-     *         VolumeKmsKeyId can be either of the following formats:
+     *         the ML compute instance(s) that process the targeted sentiment
+     *         detection job. The VolumeKmsKeyId can be either of the following
+     *         formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -1087,8 +1012,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * instance(s) that process the targeted sentiment detection job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1111,8 +1036,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
      *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            to the ML compute instance(s) that process the targeted
+     *            sentiment detection job. The VolumeKmsKeyId can be either of
+     *            the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1137,8 +1063,8 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * instance(s) that process the targeted sentiment detection job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1164,8 +1090,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
      *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            to the ML compute instance(s) that process the targeted
+     *            sentiment detection job. The VolumeKmsKeyId can be either of
+     *            the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1184,24 +1111,24 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withVolumeKmsKeyId(String volumeKmsKeyId) {
+    public TargetedSentimentDetectionJobProperties withVolumeKmsKeyId(String volumeKmsKeyId) {
         this.volumeKmsKeyId = volumeKmsKeyId;
         return this;
     }
 
     /**
      * <p>
-     * Configuration parameters for a private Virtual Private Cloud (VPC)
-     * containing the resources you are using for your entity detection job. For
-     * more information, see <a href=
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
      * @return <p>
-     *         Configuration parameters for a private Virtual Private Cloud
-     *         (VPC) containing the resources you are using for your entity
-     *         detection job. For more information, see <a href=
+     *         Configuration parameters for an optional private Virtual Private
+     *         Cloud (VPC) containing the resources you are using for the job.
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *         >Amazon VPC</a>.
      *         </p>
@@ -1212,17 +1139,17 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration parameters for a private Virtual Private Cloud (VPC)
-     * containing the resources you are using for your entity detection job. For
-     * more information, see <a href=
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
      * @param vpcConfig <p>
-     *            Configuration parameters for a private Virtual Private Cloud
-     *            (VPC) containing the resources you are using for your entity
-     *            detection job. For more information, see <a href=
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            the job. For more information, see <a href=
      *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
@@ -1233,9 +1160,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration parameters for a private Virtual Private Cloud (VPC)
-     * containing the resources you are using for your entity detection job. For
-     * more information, see <a href=
+     * Configuration parameters for an optional private Virtual Private Cloud
+     * (VPC) containing the resources you are using for the job. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
@@ -1244,16 +1171,16 @@ public class EntitiesDetectionJobProperties implements Serializable {
      * together.
      *
      * @param vpcConfig <p>
-     *            Configuration parameters for a private Virtual Private Cloud
-     *            (VPC) containing the resources you are using for your entity
-     *            detection job. For more information, see <a href=
+     *            Configuration parameters for an optional private Virtual
+     *            Private Cloud (VPC) containing the resources you are using for
+     *            the job. For more information, see <a href=
      *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public EntitiesDetectionJobProperties withVpcConfig(VpcConfig vpcConfig) {
+    public TargetedSentimentDetectionJobProperties withVpcConfig(VpcConfig vpcConfig) {
         this.vpcConfig = vpcConfig;
         return this;
     }
@@ -1283,8 +1210,6 @@ public class EntitiesDetectionJobProperties implements Serializable {
             sb.append("SubmitTime: " + getSubmitTime() + ",");
         if (getEndTime() != null)
             sb.append("EndTime: " + getEndTime() + ",");
-        if (getEntityRecognizerArn() != null)
-            sb.append("EntityRecognizerArn: " + getEntityRecognizerArn() + ",");
         if (getInputDataConfig() != null)
             sb.append("InputDataConfig: " + getInputDataConfig() + ",");
         if (getOutputDataConfig() != null)
@@ -1314,8 +1239,6 @@ public class EntitiesDetectionJobProperties implements Serializable {
         hashCode = prime * hashCode + ((getSubmitTime() == null) ? 0 : getSubmitTime().hashCode());
         hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
         hashCode = prime * hashCode
-                + ((getEntityRecognizerArn() == null) ? 0 : getEntityRecognizerArn().hashCode());
-        hashCode = prime * hashCode
                 + ((getInputDataConfig() == null) ? 0 : getInputDataConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getOutputDataConfig() == null) ? 0 : getOutputDataConfig().hashCode());
@@ -1336,9 +1259,9 @@ public class EntitiesDetectionJobProperties implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof EntitiesDetectionJobProperties == false)
+        if (obj instanceof TargetedSentimentDetectionJobProperties == false)
             return false;
-        EntitiesDetectionJobProperties other = (EntitiesDetectionJobProperties) obj;
+        TargetedSentimentDetectionJobProperties other = (TargetedSentimentDetectionJobProperties) obj;
 
         if (other.getJobId() == null ^ this.getJobId() == null)
             return false;
@@ -1369,11 +1292,6 @@ public class EntitiesDetectionJobProperties implements Serializable {
         if (other.getEndTime() == null ^ this.getEndTime() == null)
             return false;
         if (other.getEndTime() != null && other.getEndTime().equals(this.getEndTime()) == false)
-            return false;
-        if (other.getEntityRecognizerArn() == null ^ this.getEntityRecognizerArn() == null)
-            return false;
-        if (other.getEntityRecognizerArn() != null
-                && other.getEntityRecognizerArn().equals(this.getEntityRecognizerArn()) == false)
             return false;
         if (other.getInputDataConfig() == null ^ this.getInputDataConfig() == null)
             return false;

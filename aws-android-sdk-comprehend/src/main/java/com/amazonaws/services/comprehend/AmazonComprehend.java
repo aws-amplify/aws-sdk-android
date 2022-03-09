@@ -778,6 +778,32 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets the properties associated with a targeted sentiment detection job.
+     * Use this operation to get the status of the job.
+     * </p>
+     * 
+     * @param describeTargetedSentimentDetectionJobRequest
+     * @return describeTargetedSentimentDetectionJobResult The response from the
+     *         DescribeTargetedSentimentDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeTargetedSentimentDetectionJobResult describeTargetedSentimentDetectionJob(
+            DescribeTargetedSentimentDetectionJobRequest describeTargetedSentimentDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the properties associated with a topic detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -1320,6 +1346,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets a list of targeted sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listTargetedSentimentDetectionJobsRequest
+     * @return listTargetedSentimentDetectionJobsResult The response from the
+     *         ListTargetedSentimentDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTargetedSentimentDetectionJobsResult listTargetedSentimentDetectionJobs(
+            ListTargetedSentimentDetectionJobsRequest listTargetedSentimentDetectionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -1541,7 +1592,7 @@ public interface AmazonComprehend {
     /**
      * <p>
      * Starts an asynchronous sentiment detection job for a collection of
-     * documents. use the operation to track the status of a job.
+     * documents. Use the operation to track the status of a job.
      * </p>
      * 
      * @param startSentimentDetectionJobRequest
@@ -1563,6 +1614,33 @@ public interface AmazonComprehend {
      */
     StartSentimentDetectionJobResult startSentimentDetectionJob(
             StartSentimentDetectionJobRequest startSentimentDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Starts an asynchronous targeted sentiment detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startTargetedSentimentDetectionJobRequest
+     * @return startTargetedSentimentDetectionJobResult The response from the
+     *         StartTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartTargetedSentimentDetectionJobResult startTargetedSentimentDetectionJob(
+            StartTargetedSentimentDetectionJobRequest startTargetedSentimentDetectionJobRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1799,6 +1877,46 @@ public interface AmazonComprehend {
      */
     StopSentimentDetectionJobResult stopSentimentDetectionJob(
             StopSentimentDetectionJobRequest stopSentimentDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops a targeted sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopTargetedSentimentDetectionJobRequest
+     * @return stopTargetedSentimentDetectionJobResult The response from the
+     *         StopTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopTargetedSentimentDetectionJobResult stopTargetedSentimentDetectionJob(
+            StopTargetedSentimentDetectionJobRequest stopTargetedSentimentDetectionJobRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

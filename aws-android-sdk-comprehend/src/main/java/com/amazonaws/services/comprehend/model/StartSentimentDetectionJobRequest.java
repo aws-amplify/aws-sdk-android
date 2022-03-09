@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Starts an asynchronous sentiment detection job for a collection of documents.
- * use the operation to track the status of a job.
+ * Use the operation to track the status of a job.
  * </p>
  */
 public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest implements
@@ -115,7 +115,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      */
     private String volumeKmsKeyId;
 
@@ -579,7 +579,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -628,7 +628,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -681,7 +681,7 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
