@@ -27,8 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary that you want information about. The value is
-     * case sensitive.
+     * The name of the medical vocabulary you want information about. This value
+     * is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,8 +39,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The name of the vocabulary that you want information about. The value is
-     * case sensitive.
+     * The name of the medical vocabulary you want information about. This value
+     * is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,8 +48,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary that you want information about. The
-     *         value is case sensitive.
+     *         The name of the medical vocabulary you want information about.
+     *         This value is case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -58,8 +58,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The name of the vocabulary that you want information about. The value is
-     * case sensitive.
+     * The name of the medical vocabulary you want information about. This value
+     * is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,8 +67,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that you want information about.
-     *            The value is case sensitive.
+     *            The name of the medical vocabulary you want information about.
+     *            This value is case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -77,8 +77,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The name of the vocabulary that you want information about. The value is
-     * case sensitive.
+     * The name of the medical vocabulary you want information about. This value
+     * is case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,8 +89,8 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that you want information about.
-     *            The value is case sensitive.
+     *            The name of the medical vocabulary you want information about.
+     *            This value is case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,15 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a call analytics category using its name.
+ * Deletes a call analytics category. To use this operation, specify the name of
+ * the category you want to delete using <code>CategoryName</code>.
  * </p>
  */
 public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name of the call analytics category that you're choosing to delete.
-     * The value is case sensitive.
+     * The name of the call analytics category you want to delete. Category
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,8 +41,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the call analytics category that you're choosing to delete.
-     * The value is case sensitive.
+     * The name of the call analytics category you want to delete. Category
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,8 +50,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the call analytics category that you're choosing to
-     *         delete. The value is case sensitive.
+     *         The name of the call analytics category you want to delete.
+     *         Category names are case-sensitive.
      *         </p>
      */
     public String getCategoryName() {
@@ -59,8 +60,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the call analytics category that you're choosing to delete.
-     * The value is case sensitive.
+     * The name of the call analytics category you want to delete. Category
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +69,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the call analytics category that you're choosing
-     *            to delete. The value is case sensitive.
+     *            The name of the call analytics category you want to delete.
+     *            Category names are case-sensitive.
      *            </p>
      */
     public void setCategoryName(String categoryName) {
@@ -78,8 +79,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the call analytics category that you're choosing to delete.
-     * The value is case sensitive.
+     * The name of the call analytics category you want to delete. Category
+     * names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,8 +91,8 @@ public class DeleteCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the call analytics category that you're choosing
-     *            to delete. The value is case sensitive.
+     *            The name of the call analytics category you want to delete.
+     *            Category names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

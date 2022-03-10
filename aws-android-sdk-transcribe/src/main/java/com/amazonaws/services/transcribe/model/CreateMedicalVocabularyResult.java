@@ -20,8 +20,7 @@ import java.io.Serializable;
 public class CreateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an Amazon Web
-     * Services account and is case sensitive.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,8 +31,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,9 +47,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,23 +59,22 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that you created the vocabulary.
+     * The date and time you created your custom medical vocabulary.
      * </p>
      */
     private java.util.Date lastModifiedTime;
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an Amazon Web
-     * Services account and is case sensitive.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,8 +82,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary. The name must be unique within an
-     *         Amazon Web Services account and is case sensitive.
+     *         The name you chose for your vocabulary.
      *         </p>
      */
     public String getVocabularyName() {
@@ -93,8 +91,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an Amazon Web
-     * Services account and is case sensitive.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,8 +99,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary. The name must be unique within an
-     *            Amazon Web Services account and is case sensitive.
+     *            The name you chose for your vocabulary.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -112,8 +108,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an Amazon Web
-     * Services account and is case sensitive.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -124,8 +119,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary. The name must be unique within an
-     *            Amazon Web Services account and is case sensitive.
+     *            The name you chose for your vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,8 +131,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,9 +144,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code for the entries in your custom vocabulary. US
-     *         English (en-US) is the only valid language code for Amazon
-     *         Transcribe Medical.
+     *         The language code you selected for your medical vocabulary. Note
+     *         that U.S. English (<code>en-US</code>) is the only language
+     *         supported with Amazon Transcribe Medical.
      *         </p>
      * @see LanguageCode
      */
@@ -161,8 +156,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,9 +169,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the entries in your custom vocabulary.
-     *            US English (en-US) is the only valid language code for Amazon
-     *            Transcribe Medical.
+     *            The language code you selected for your medical vocabulary.
+     *            Note that U.S. English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -185,8 +181,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -200,9 +197,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the entries in your custom vocabulary.
-     *            US English (en-US) is the only valid language code for Amazon
-     *            Transcribe Medical.
+     *            The language code you selected for your medical vocabulary.
+     *            Note that U.S. English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -215,8 +212,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -227,9 +225,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the entries in your custom vocabulary.
-     *            US English (en-US) is the only valid language code for Amazon
-     *            Transcribe Medical.
+     *            The language code you selected for your medical vocabulary.
+     *            Note that U.S. English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -239,8 +237,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code for the entries in your custom vocabulary. US English
-     * (en-US) is the only valid language code for Amazon Transcribe Medical.
+     * The language code you selected for your medical vocabulary. Note that
+     * U.S. English (<code>en-US</code>) is the only language supported with
+     * Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -254,9 +253,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the entries in your custom vocabulary.
-     *            US English (en-US) is the only valid language code for Amazon
-     *            Transcribe Medical.
+     *            The language code you selected for your medical vocabulary.
+     *            Note that U.S. English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -269,19 +268,18 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
-     *         The processing state of your custom vocabulary in Amazon
-     *         Transcribe Medical. If the state is <code>READY</code>, you can
-     *         use the vocabulary in a <code>StartMedicalTranscriptionJob</code>
-     *         request.
+     *         The processing state of your custom medical vocabulary. If the
+     *         state is <code>READY</code>, you can use the vocabulary in a
+     *         <code>StartMedicalTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
      */
@@ -291,18 +289,17 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of your custom vocabulary in Amazon
-     *            Transcribe Medical. If the state is <code>READY</code>, you
-     *            can use the vocabulary in a
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -313,9 +310,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -325,9 +322,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of your custom vocabulary in Amazon
-     *            Transcribe Medical. If the state is <code>READY</code>, you
-     *            can use the vocabulary in a
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -341,18 +337,17 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of your custom vocabulary in Amazon
-     *            Transcribe Medical. If the state is <code>READY</code>, you
-     *            can use the vocabulary in a
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -363,9 +358,9 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of your custom vocabulary in Amazon Transcribe
-     * Medical. If the state is <code>READY</code>, you can use the vocabulary
-     * in a <code>StartMedicalTranscriptionJob</code> request.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -375,9 +370,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of your custom vocabulary in Amazon
-     *            Transcribe Medical. If the state is <code>READY</code>, you
-     *            can use the vocabulary in a
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -391,11 +385,11 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that you created the vocabulary.
+     * The date and time you created your custom medical vocabulary.
      * </p>
      *
      * @return <p>
-     *         The date and time that you created the vocabulary.
+     *         The date and time you created your custom medical vocabulary.
      *         </p>
      */
     public java.util.Date getLastModifiedTime() {
@@ -404,11 +398,11 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that you created the vocabulary.
+     * The date and time you created your custom medical vocabulary.
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time that you created the vocabulary.
+     *            The date and time you created your custom medical vocabulary.
      *            </p>
      */
     public void setLastModifiedTime(java.util.Date lastModifiedTime) {
@@ -417,14 +411,14 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that you created the vocabulary.
+     * The date and time you created your custom medical vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time that you created the vocabulary.
+     *            The date and time you created your custom medical vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -436,13 +430,14 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      *
      * @return <p>
      *         If the <code>VocabularyState</code> field is <code>FAILED</code>,
-     *         this field contains information about why the job failed.
+     *         <code>FailureReason</code> contains information about why the job
+     *         failed.
      *         </p>
      */
     public String getFailureReason() {
@@ -451,14 +446,14 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      *
      * @param failureReason <p>
      *            If the <code>VocabularyState</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            <code>FAILED</code>, <code>FailureReason</code> contains
+     *            information about why the job failed.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -467,8 +462,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -476,8 +471,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
      *
      * @param failureReason <p>
      *            If the <code>VocabularyState</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            <code>FAILED</code>, <code>FailureReason</code> contains
+     *            information about why the job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

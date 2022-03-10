@@ -20,18 +20,21 @@ import java.io.Serializable;
 public class GetCallAnalyticsCategoryResult implements Serializable {
     /**
      * <p>
-     * The rules you've defined for a category.
+     * Provides you with the rules associated with the category you specified in
+     * your <code>GetCallAnalyticsCategory</code> request.
      * </p>
      */
     private CategoryProperties categoryProperties;
 
     /**
      * <p>
-     * The rules you've defined for a category.
+     * Provides you with the rules associated with the category you specified in
+     * your <code>GetCallAnalyticsCategory</code> request.
      * </p>
      *
      * @return <p>
-     *         The rules you've defined for a category.
+     *         Provides you with the rules associated with the category you
+     *         specified in your <code>GetCallAnalyticsCategory</code> request.
      *         </p>
      */
     public CategoryProperties getCategoryProperties() {
@@ -40,11 +43,14 @@ public class GetCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * The rules you've defined for a category.
+     * Provides you with the rules associated with the category you specified in
+     * your <code>GetCallAnalyticsCategory</code> request.
      * </p>
      *
      * @param categoryProperties <p>
-     *            The rules you've defined for a category.
+     *            Provides you with the rules associated with the category you
+     *            specified in your <code>GetCallAnalyticsCategory</code>
+     *            request.
      *            </p>
      */
     public void setCategoryProperties(CategoryProperties categoryProperties) {
@@ -53,14 +59,17 @@ public class GetCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * The rules you've defined for a category.
+     * Provides you with the rules associated with the category you specified in
+     * your <code>GetCallAnalyticsCategory</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param categoryProperties <p>
-     *            The rules you've defined for a category.
+     *            Provides you with the rules associated with the category you
+     *            specified in your <code>GetCallAnalyticsCategory</code>
+     *            request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,19 +21,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about a single custom language model. Use this information
- * to see details about the language model in your Amazon Web Services account.
- * You can also see whether the base language model used to create your custom
- * language model has been updated. If Amazon Transcribe has updated the base
- * model, you can create a new custom language model using the updated base
- * model. If the language model wasn't created, you can use this operation to
- * understand why Amazon Transcribe couldn't create it.
+ * Provides information about a specific custom language model in your Amazon
+ * Web Services account.
+ * </p>
+ * <p>
+ * This operation also shows if the base language model you used to create your
+ * custom language model has been updated. If Amazon Transcribe has updated the
+ * base model, you can create a new custom language model using the updated base
+ * model.
+ * </p>
+ * <p>
+ * If you tried to create a new custom language model and the request wasn't
+ * successful, you can use this operation to help identify the reason.
  * </p>
  */
 public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the custom language model you submit to get more information.
+     * The name of the custom language model you want described. Model names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +50,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you submit to get more information.
+     * The name of the custom language model you want described. Model names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,8 +59,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the custom language model you submit to get more
-     *         information.
+     *         The name of the custom language model you want described. Model
+     *         names are case-sensitive.
      *         </p>
      */
     public String getModelName() {
@@ -62,7 +69,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you submit to get more information.
+     * The name of the custom language model you want described. Model names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,8 +78,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the custom language model you submit to get more
-     *            information.
+     *            The name of the custom language model you want described.
+     *            Model names are case-sensitive.
      *            </p>
      */
     public void setModelName(String modelName) {
@@ -80,7 +88,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you submit to get more information.
+     * The name of the custom language model you want described. Model names are
+     * case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -91,8 +100,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the custom language model you submit to get more
-     *            information.
+     *            The name of the custom language model you want described.
+     *            Model names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

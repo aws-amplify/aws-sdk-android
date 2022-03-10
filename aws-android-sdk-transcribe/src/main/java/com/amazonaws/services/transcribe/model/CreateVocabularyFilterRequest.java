@@ -21,16 +21,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new vocabulary filter that you can use to filter words, such as
- * profane words, from the output of a transcription job.
+ * Creates a new vocabulary filter that you can use to filter words from your
+ * transcription output. For example, you can use this operation to remove
+ * profanity from your transcript.
  * </p>
  */
 public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The vocabulary filter name. The name must be unique within the account
-     * that contains it. If you try to create a vocabulary filter with the same
-     * name as another vocabulary filter, you get a
+     * The name of your new vocabulary filter.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a vocabulary
+     * filter with the same name as a previous vocabulary filter, you get a
      * <code>ConflictException</code> error.
      * </p>
      * <p>
@@ -58,15 +62,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The words to use in the vocabulary filter. Only use characters from the
-     * character set defined for custom vocabularies. For a list of character
-     * sets, see <a
+     * The words you want in your vocabulary filter. Only use characters
+     * specified in the <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     * >Character Sets for Custom Vocabularies</a>.
+     * >Character sets</a> for the language you're transcribing.
      * </p>
      * <p>
-     * If you provide a list of words in the <code>Words</code> parameter, you
-     * can't use the <code>VocabularyFilterFileUri</code> parameter.
+     * Note that if you include <code>Words</code> in your request, you cannot
+     * use <code>VocabularyFilterFileUri</code>; you must choose one or the
+     * other.
      * </p>
      */
     private java.util.List<String> words;
@@ -80,12 +84,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
-     * The specified file must be less than 50 KB of UTF-8 characters.
+     * Your vocabulary filter file must be less than 50 KB in size.
      * </p>
      * <p>
-     * If you provide the location of a list of words in the
-     * <code>VocabularyFilterFileUri</code> parameter, you can't use the
-     * <code>Words</code> parameter.
+     * Note that if you include <code>VocabularyFilterFileUri</code> in your
+     * request, you cannot use <code>Words</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -97,17 +101,19 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more tags, each in the form of a key:value pair, to a new
-     * Amazon Transcribe vocabulary filter at the time you create this new
-     * vocabulary filter.
+     * vocabulary filter at the time you create this new vocabulary filter.
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * The vocabulary filter name. The name must be unique within the account
-     * that contains it. If you try to create a vocabulary filter with the same
-     * name as another vocabulary filter, you get a
+     * The name of your new vocabulary filter.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a vocabulary
+     * filter with the same name as a previous vocabulary filter, you get a
      * <code>ConflictException</code> error.
      * </p>
      * <p>
@@ -116,10 +122,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The vocabulary filter name. The name must be unique within the
-     *         account that contains it. If you try to create a vocabulary
-     *         filter with the same name as another vocabulary filter, you get a
-     *         <code>ConflictException</code> error.
+     *         The name of your new vocabulary filter.
+     *         </p>
+     *         <p>
+     *         This name is case sensitive, cannot contain spaces, and must be
+     *         unique within an Amazon Web Services account. If you try to
+     *         create a vocabulary filter with the same name as a previous
+     *         vocabulary filter, you get a <code>ConflictException</code>
+     *         error.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -128,9 +138,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The vocabulary filter name. The name must be unique within the account
-     * that contains it. If you try to create a vocabulary filter with the same
-     * name as another vocabulary filter, you get a
+     * The name of your new vocabulary filter.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a vocabulary
+     * filter with the same name as a previous vocabulary filter, you get a
      * <code>ConflictException</code> error.
      * </p>
      * <p>
@@ -139,10 +152,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The vocabulary filter name. The name must be unique within the
-     *            account that contains it. If you try to create a vocabulary
-     *            filter with the same name as another vocabulary filter, you
-     *            get a <code>ConflictException</code> error.
+     *            The name of your new vocabulary filter.
+     *            </p>
+     *            <p>
+     *            This name is case sensitive, cannot contain spaces, and must
+     *            be unique within an Amazon Web Services account. If you try to
+     *            create a vocabulary filter with the same name as a previous
+     *            vocabulary filter, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -151,9 +168,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The vocabulary filter name. The name must be unique within the account
-     * that contains it. If you try to create a vocabulary filter with the same
-     * name as another vocabulary filter, you get a
+     * The name of your new vocabulary filter.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a vocabulary
+     * filter with the same name as a previous vocabulary filter, you get a
      * <code>ConflictException</code> error.
      * </p>
      * <p>
@@ -165,10 +185,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The vocabulary filter name. The name must be unique within the
-     *            account that contains it. If you try to create a vocabulary
-     *            filter with the same name as another vocabulary filter, you
-     *            get a <code>ConflictException</code> error.
+     *            The name of your new vocabulary filter.
+     *            </p>
+     *            <p>
+     *            This name is case sensitive, cannot contain spaces, and must
+     *            be unique within an Amazon Web Services account. If you try to
+     *            create a vocabulary filter with the same name as a previous
+     *            vocabulary filter, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -322,28 +346,27 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The words to use in the vocabulary filter. Only use characters from the
-     * character set defined for custom vocabularies. For a list of character
-     * sets, see <a
+     * The words you want in your vocabulary filter. Only use characters
+     * specified in the <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     * >Character Sets for Custom Vocabularies</a>.
+     * >Character sets</a> for the language you're transcribing.
      * </p>
      * <p>
-     * If you provide a list of words in the <code>Words</code> parameter, you
-     * can't use the <code>VocabularyFilterFileUri</code> parameter.
+     * Note that if you include <code>Words</code> in your request, you cannot
+     * use <code>VocabularyFilterFileUri</code>; you must choose one or the
+     * other.
      * </p>
      *
      * @return <p>
-     *         The words to use in the vocabulary filter. Only use characters
-     *         from the character set defined for custom vocabularies. For a
-     *         list of character sets, see <a href=
+     *         The words you want in your vocabulary filter. Only use characters
+     *         specified in the <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     *         >Character Sets for Custom Vocabularies</a>.
+     *         >Character sets</a> for the language you're transcribing.
      *         </p>
      *         <p>
-     *         If you provide a list of words in the <code>Words</code>
-     *         parameter, you can't use the <code>VocabularyFilterFileUri</code>
-     *         parameter.
+     *         Note that if you include <code>Words</code> in your request, you
+     *         cannot use <code>VocabularyFilterFileUri</code>; you must choose
+     *         one or the other.
      *         </p>
      */
     public java.util.List<String> getWords() {
@@ -352,28 +375,27 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The words to use in the vocabulary filter. Only use characters from the
-     * character set defined for custom vocabularies. For a list of character
-     * sets, see <a
+     * The words you want in your vocabulary filter. Only use characters
+     * specified in the <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     * >Character Sets for Custom Vocabularies</a>.
+     * >Character sets</a> for the language you're transcribing.
      * </p>
      * <p>
-     * If you provide a list of words in the <code>Words</code> parameter, you
-     * can't use the <code>VocabularyFilterFileUri</code> parameter.
+     * Note that if you include <code>Words</code> in your request, you cannot
+     * use <code>VocabularyFilterFileUri</code>; you must choose one or the
+     * other.
      * </p>
      *
      * @param words <p>
-     *            The words to use in the vocabulary filter. Only use characters
-     *            from the character set defined for custom vocabularies. For a
-     *            list of character sets, see <a href=
+     *            The words you want in your vocabulary filter. Only use
+     *            characters specified in the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     *            >Character Sets for Custom Vocabularies</a>.
+     *            >Character sets</a> for the language you're transcribing.
      *            </p>
      *            <p>
-     *            If you provide a list of words in the <code>Words</code>
-     *            parameter, you can't use the
-     *            <code>VocabularyFilterFileUri</code> parameter.
+     *            Note that if you include <code>Words</code> in your request,
+     *            you cannot use <code>VocabularyFilterFileUri</code>; you must
+     *            choose one or the other.
      *            </p>
      */
     public void setWords(java.util.Collection<String> words) {
@@ -387,31 +409,30 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The words to use in the vocabulary filter. Only use characters from the
-     * character set defined for custom vocabularies. For a list of character
-     * sets, see <a
+     * The words you want in your vocabulary filter. Only use characters
+     * specified in the <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     * >Character Sets for Custom Vocabularies</a>.
+     * >Character sets</a> for the language you're transcribing.
      * </p>
      * <p>
-     * If you provide a list of words in the <code>Words</code> parameter, you
-     * can't use the <code>VocabularyFilterFileUri</code> parameter.
+     * Note that if you include <code>Words</code> in your request, you cannot
+     * use <code>VocabularyFilterFileUri</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param words <p>
-     *            The words to use in the vocabulary filter. Only use characters
-     *            from the character set defined for custom vocabularies. For a
-     *            list of character sets, see <a href=
+     *            The words you want in your vocabulary filter. Only use
+     *            characters specified in the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     *            >Character Sets for Custom Vocabularies</a>.
+     *            >Character sets</a> for the language you're transcribing.
      *            </p>
      *            <p>
-     *            If you provide a list of words in the <code>Words</code>
-     *            parameter, you can't use the
-     *            <code>VocabularyFilterFileUri</code> parameter.
+     *            Note that if you include <code>Words</code> in your request,
+     *            you cannot use <code>VocabularyFilterFileUri</code>; you must
+     *            choose one or the other.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -428,31 +449,30 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The words to use in the vocabulary filter. Only use characters from the
-     * character set defined for custom vocabularies. For a list of character
-     * sets, see <a
+     * The words you want in your vocabulary filter. Only use characters
+     * specified in the <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     * >Character Sets for Custom Vocabularies</a>.
+     * >Character sets</a> for the language you're transcribing.
      * </p>
      * <p>
-     * If you provide a list of words in the <code>Words</code> parameter, you
-     * can't use the <code>VocabularyFilterFileUri</code> parameter.
+     * Note that if you include <code>Words</code> in your request, you cannot
+     * use <code>VocabularyFilterFileUri</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param words <p>
-     *            The words to use in the vocabulary filter. Only use characters
-     *            from the character set defined for custom vocabularies. For a
-     *            list of character sets, see <a href=
+     *            The words you want in your vocabulary filter. Only use
+     *            characters specified in the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
-     *            >Character Sets for Custom Vocabularies</a>.
+     *            >Character sets</a> for the language you're transcribing.
      *            </p>
      *            <p>
-     *            If you provide a list of words in the <code>Words</code>
-     *            parameter, you can't use the
-     *            <code>VocabularyFilterFileUri</code> parameter.
+     *            Note that if you include <code>Words</code> in your request,
+     *            you cannot use <code>VocabularyFilterFileUri</code>; you must
+     *            choose one or the other.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -471,12 +491,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
-     * The specified file must be less than 50 KB of UTF-8 characters.
+     * Your vocabulary filter file must be less than 50 KB in size.
      * </p>
      * <p>
-     * If you provide the location of a list of words in the
-     * <code>VocabularyFilterFileUri</code> parameter, you can't use the
-     * <code>Words</code> parameter.
+     * Note that if you include <code>VocabularyFilterFileUri</code> in your
+     * request, you cannot use <code>Words</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -492,12 +512,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         >Character Sets for Custom Vocabularies</a>.
      *         </p>
      *         <p>
-     *         The specified file must be less than 50 KB of UTF-8 characters.
+     *         Your vocabulary filter file must be less than 50 KB in size.
      *         </p>
      *         <p>
-     *         If you provide the location of a list of words in the
-     *         <code>VocabularyFilterFileUri</code> parameter, you can't use the
-     *         <code>Words</code> parameter.
+     *         Note that if you include <code>VocabularyFilterFileUri</code> in
+     *         your request, you cannot use <code>Words</code>; you must choose
+     *         one or the other.
      *         </p>
      */
     public String getVocabularyFilterFileUri() {
@@ -513,12 +533,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
-     * The specified file must be less than 50 KB of UTF-8 characters.
+     * Your vocabulary filter file must be less than 50 KB in size.
      * </p>
      * <p>
-     * If you provide the location of a list of words in the
-     * <code>VocabularyFilterFileUri</code> parameter, you can't use the
-     * <code>Words</code> parameter.
+     * Note that if you include <code>VocabularyFilterFileUri</code> in your
+     * request, you cannot use <code>Words</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -534,13 +554,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
-     *            The specified file must be less than 50 KB of UTF-8
-     *            characters.
+     *            Your vocabulary filter file must be less than 50 KB in size.
      *            </p>
      *            <p>
-     *            If you provide the location of a list of words in the
-     *            <code>VocabularyFilterFileUri</code> parameter, you can't use
-     *            the <code>Words</code> parameter.
+     *            Note that if you include <code>VocabularyFilterFileUri</code>
+     *            in your request, you cannot use <code>Words</code>; you must
+     *            choose one or the other.
      *            </p>
      */
     public void setVocabularyFilterFileUri(String vocabularyFilterFileUri) {
@@ -556,12 +575,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * >Character Sets for Custom Vocabularies</a>.
      * </p>
      * <p>
-     * The specified file must be less than 50 KB of UTF-8 characters.
+     * Your vocabulary filter file must be less than 50 KB in size.
      * </p>
      * <p>
-     * If you provide the location of a list of words in the
-     * <code>VocabularyFilterFileUri</code> parameter, you can't use the
-     * <code>Words</code> parameter.
+     * Note that if you include <code>VocabularyFilterFileUri</code> in your
+     * request, you cannot use <code>Words</code>; you must choose one or the
+     * other.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -580,13 +599,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            >Character Sets for Custom Vocabularies</a>.
      *            </p>
      *            <p>
-     *            The specified file must be less than 50 KB of UTF-8
-     *            characters.
+     *            Your vocabulary filter file must be less than 50 KB in size.
      *            </p>
      *            <p>
-     *            If you provide the location of a list of words in the
-     *            <code>VocabularyFilterFileUri</code> parameter, you can't use
-     *            the <code>Words</code> parameter.
+     *            Note that if you include <code>VocabularyFilterFileUri</code>
+     *            in your request, you cannot use <code>Words</code>; you must
+     *            choose one or the other.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -599,14 +617,13 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more tags, each in the form of a key:value pair, to a new
-     * Amazon Transcribe vocabulary filter at the time you create this new
-     * vocabulary filter.
+     * vocabulary filter at the time you create this new vocabulary filter.
      * </p>
      *
      * @return <p>
      *         Adds one or more tags, each in the form of a key:value pair, to a
-     *         new Amazon Transcribe vocabulary filter at the time you create
-     *         this new vocabulary filter.
+     *         new vocabulary filter at the time you create this new vocabulary
+     *         filter.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -616,14 +633,13 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more tags, each in the form of a key:value pair, to a new
-     * Amazon Transcribe vocabulary filter at the time you create this new
-     * vocabulary filter.
+     * vocabulary filter at the time you create this new vocabulary filter.
      * </p>
      *
      * @param tags <p>
      *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new Amazon Transcribe vocabulary filter at the time you
-     *            create this new vocabulary filter.
+     *            to a new vocabulary filter at the time you create this new
+     *            vocabulary filter.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -638,8 +654,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more tags, each in the form of a key:value pair, to a new
-     * Amazon Transcribe vocabulary filter at the time you create this new
-     * vocabulary filter.
+     * vocabulary filter at the time you create this new vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -647,8 +662,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param tags <p>
      *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new Amazon Transcribe vocabulary filter at the time you
-     *            create this new vocabulary filter.
+     *            to a new vocabulary filter at the time you create this new
+     *            vocabulary filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -666,8 +681,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more tags, each in the form of a key:value pair, to a new
-     * Amazon Transcribe vocabulary filter at the time you create this new
-     * vocabulary filter.
+     * vocabulary filter at the time you create this new vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -675,8 +689,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param tags <p>
      *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new Amazon Transcribe vocabulary filter at the time you
-     *            create this new vocabulary filter.
+     *            to a new vocabulary filter at the time you create this new
+     *            vocabulary filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

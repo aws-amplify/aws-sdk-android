@@ -72,7 +72,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      */
     private Integer mediaSampleRateHertz;
 
@@ -263,7 +263,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * Add tags to an Amazon Transcribe medical transcription job.
+     * Add tags to an Amazon Transcribe Medical transcription job.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -518,7 +518,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @return <p>
      *         The sample rate, in Hertz, of the audio track in the input media
@@ -550,7 +550,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the audio track in the input
@@ -585,7 +585,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the audio track in the input
@@ -1953,11 +1953,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * Add tags to an Amazon Transcribe medical transcription job.
+     * Add tags to an Amazon Transcribe Medical transcription job.
      * </p>
      *
      * @return <p>
-     *         Add tags to an Amazon Transcribe medical transcription job.
+     *         Add tags to an Amazon Transcribe Medical transcription job.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -1966,11 +1966,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * Add tags to an Amazon Transcribe medical transcription job.
+     * Add tags to an Amazon Transcribe Medical transcription job.
      * </p>
      *
      * @param tags <p>
-     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            Add tags to an Amazon Transcribe Medical transcription job.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -1984,14 +1984,14 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * Add tags to an Amazon Transcribe medical transcription job.
+     * Add tags to an Amazon Transcribe Medical transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            Add tags to an Amazon Transcribe Medical transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2008,14 +2008,14 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * Add tags to an Amazon Transcribe medical transcription job.
+     * Add tags to an Amazon Transcribe Medical transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            Add tags to an Amazon Transcribe Medical transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

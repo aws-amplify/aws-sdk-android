@@ -30,16 +30,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -72,16 +72,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -99,16 +99,16 @@ public class Media implements Serializable {
      *         general form is:
      *         </p>
      *         <p>
-     *         <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *         <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      *         </p>
      *         <p>
      *         For example:
      *         </p>
      *         <p>
-     *         <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *         <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      *         </p>
      *         <p>
-     *         <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     *         <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -127,16 +127,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -154,16 +154,16 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
-     *            <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      *            </p>
      *            <p>
-     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -182,16 +182,16 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      * </p>
      * <p>
-     * <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     * <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -212,16 +212,16 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
-     *            <code> s3://&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/keyprefix/objectkey</code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/example.mp4</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/example.flac</code>
      *            </p>
      *            <p>
-     *            <code>s3://AWSDOC-EXAMPLE-BUCKET/mediadocs/example.mp4</code>
+     *            <code>s3://DOC-EXAMPLE-BUCKET/mediafiles/example.flac</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

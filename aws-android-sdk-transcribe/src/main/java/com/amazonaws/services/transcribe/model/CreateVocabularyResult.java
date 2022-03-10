@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreateVocabularyResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +31,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,10 +45,9 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,22 +57,22 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was created.
+     * The date and time you created your custom vocabulary.
      * </p>
      */
     private java.util.Date lastModifiedTime;
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * The name of the vocabulary.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,7 +80,7 @@ public class CreateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary.
+     *         The name you chose for your vocabulary.
      *         </p>
      */
     public String getVocabularyName() {
@@ -90,7 +89,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +97,7 @@ public class CreateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary.
+     *            The name you chose for your vocabulary.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -107,7 +106,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary.
+     * The name you chose for your vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +117,7 @@ public class CreateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary.
+     *            The name you chose for your vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -130,7 +129,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,7 +140,7 @@ public class CreateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code of the vocabulary entries.
+     *         The language code you selected for your vocabulary.
      *         </p>
      * @see LanguageCode
      */
@@ -151,7 +150,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -162,7 +161,7 @@ public class CreateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your vocabulary.
      *            </p>
      * @see LanguageCode
      */
@@ -172,7 +171,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -186,7 +185,7 @@ public class CreateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -199,7 +198,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,7 +209,7 @@ public class CreateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your vocabulary.
      *            </p>
      * @see LanguageCode
      */
@@ -220,7 +219,7 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -234,7 +233,7 @@ public class CreateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -247,19 +246,17 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
-     *         The processing state of the vocabulary. When the
-     *         <code>VocabularyState</code> field contains <code>READY</code>
-     *         the vocabulary is ready to be used in a
+     *         The processing state of your vocabulary. If the state is
+     *         <code>READY</code>, you can use the vocabulary in a
      *         <code>StartTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
@@ -270,19 +267,17 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your vocabulary. If the state is
+     *            <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -293,10 +288,9 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -306,9 +300,8 @@ public class CreateVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your vocabulary. If the state is
+     *            <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -322,19 +315,17 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your vocabulary. If the state is
+     *            <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -345,10 +336,9 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -358,9 +348,8 @@ public class CreateVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your vocabulary. If the state is
+     *            <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -374,11 +363,11 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was created.
+     * The date and time you created your custom vocabulary.
      * </p>
      *
      * @return <p>
-     *         The date and time that the vocabulary was created.
+     *         The date and time you created your custom vocabulary.
      *         </p>
      */
     public java.util.Date getLastModifiedTime() {
@@ -387,11 +376,11 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was created.
+     * The date and time you created your custom vocabulary.
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was created.
+     *            The date and time you created your custom vocabulary.
      *            </p>
      */
     public void setLastModifiedTime(java.util.Date lastModifiedTime) {
@@ -400,14 +389,14 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was created.
+     * The date and time you created your custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was created.
+     *            The date and time you created your custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -419,13 +408,14 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      *
      * @return <p>
      *         If the <code>VocabularyState</code> field is <code>FAILED</code>,
-     *         this field contains information about why the job failed.
+     *         <code>FailureReason</code> contains information about why the job
+     *         failed.
      *         </p>
      */
     public String getFailureReason() {
@@ -434,14 +424,14 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      *
      * @param failureReason <p>
      *            If the <code>VocabularyState</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            <code>FAILED</code>, <code>FailureReason</code> contains
+     *            information about why the job failed.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -450,8 +440,8 @@ public class CreateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> field is <code>FAILED</code>, this
-     * field contains information about why the job failed.
+     * If the <code>VocabularyState</code> field is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -459,8 +449,8 @@ public class CreateVocabularyResult implements Serializable {
      *
      * @param failureReason <p>
      *            If the <code>VocabularyState</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            <code>FAILED</code>, <code>FailureReason</code> contains
+     *            information about why the job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
