@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      */
     private String type;
 
@@ -65,7 +65,7 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      *
      * @return <p>
      *         The type of relationship that the blocks in the IDs array have
@@ -95,7 +95,7 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -128,7 +128,7 @@ public class Relationship implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -161,7 +161,7 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -194,7 +194,7 @@ public class Relationship implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
