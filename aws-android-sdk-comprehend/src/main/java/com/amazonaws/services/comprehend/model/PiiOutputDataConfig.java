@@ -31,6 +31,11 @@ public class PiiOutputDataConfig implements Serializable {
      * want to write the output data.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -45,7 +50,7 @@ public class PiiOutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      */
     private String kmsKeyId;
 
@@ -56,6 +61,11 @@ public class PiiOutputDataConfig implements Serializable {
      * want to write the output data.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -64,6 +74,11 @@ public class PiiOutputDataConfig implements Serializable {
      *         When you use the <code>PiiOutputDataConfig</code> object with
      *         asynchronous operations, you specify the Amazon S3 location where
      *         you want to write the output data.
+     *         </p>
+     *         <p>
+     *         For a PII entity detection job, the output file is plain text,
+     *         not a compressed archive. The output file name is the same as the
+     *         input file, with <code>.out</code> appended at the end.
      *         </p>
      */
     public String getS3Uri() {
@@ -77,6 +92,11 @@ public class PiiOutputDataConfig implements Serializable {
      * want to write the output data.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -85,6 +105,11 @@ public class PiiOutputDataConfig implements Serializable {
      *            When you use the <code>PiiOutputDataConfig</code> object with
      *            asynchronous operations, you specify the Amazon S3 location
      *            where you want to write the output data.
+     *            </p>
+     *            <p>
+     *            For a PII entity detection job, the output file is plain text,
+     *            not a compressed archive. The output file name is the same as
+     *            the input file, with <code>.out</code> appended at the end.
      *            </p>
      */
     public void setS3Uri(String s3Uri) {
@@ -98,6 +123,11 @@ public class PiiOutputDataConfig implements Serializable {
      * want to write the output data.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -109,6 +139,11 @@ public class PiiOutputDataConfig implements Serializable {
      *            When you use the <code>PiiOutputDataConfig</code> object with
      *            asynchronous operations, you specify the Amazon S3 location
      *            where you want to write the output data.
+     *            </p>
+     *            <p>
+     *            For a PII entity detection job, the output file is plain text,
+     *            not a compressed archive. The output file name is the same as
+     *            the input file, with <code>.out</code> appended at the end.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,7 +161,7 @@ public class PiiOutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -146,7 +181,7 @@ public class PiiOutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -169,7 +204,7 @@ public class PiiOutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon

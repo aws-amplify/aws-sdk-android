@@ -1725,6 +1725,59 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets the properties associated with a targeted sentiment detection job.
+     * Use this operation to get the status of the job.
+     * </p>
+     * 
+     * @param describeTargetedSentimentDetectionJobRequest
+     * @return describeTargetedSentimentDetectionJobResult The response from the
+     *         DescribeTargetedSentimentDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeTargetedSentimentDetectionJobResult describeTargetedSentimentDetectionJob(
+            DescribeTargetedSentimentDetectionJobRequest describeTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeTargetedSentimentDetectionJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTargetedSentimentDetectionJobRequest> request = null;
+        Response<DescribeTargetedSentimentDetectionJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTargetedSentimentDetectionJobRequestMarshaller()
+                        .marshall(describeTargetedSentimentDetectionJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeTargetedSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeTargetedSentimentDetectionJobResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeTargetedSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<DescribeTargetedSentimentDetectionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a topic detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -2829,6 +2882,58 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets a list of targeted sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listTargetedSentimentDetectionJobsRequest
+     * @return listTargetedSentimentDetectionJobsResult The response from the
+     *         ListTargetedSentimentDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTargetedSentimentDetectionJobsResult listTargetedSentimentDetectionJobs(
+            ListTargetedSentimentDetectionJobsRequest listTargetedSentimentDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTargetedSentimentDetectionJobsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTargetedSentimentDetectionJobsRequest> request = null;
+        Response<ListTargetedSentimentDetectionJobsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTargetedSentimentDetectionJobsRequestMarshaller()
+                        .marshall(listTargetedSentimentDetectionJobsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTargetedSentimentDetectionJobsResult, JsonUnmarshallerContext> unmarshaller = new ListTargetedSentimentDetectionJobsResultJsonUnmarshaller();
+            JsonResponseHandler<ListTargetedSentimentDetectionJobsResult> responseHandler = new JsonResponseHandler<ListTargetedSentimentDetectionJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -3267,7 +3372,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Starts an asynchronous sentiment detection job for a collection of
-     * documents. use the operation to track the status of a job.
+     * documents. Use the operation to track the status of a job.
      * </p>
      * 
      * @param startSentimentDetectionJobRequest
@@ -3307,6 +3412,60 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StartSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new StartSentimentDetectionJobResultJsonUnmarshaller();
             JsonResponseHandler<StartSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<StartSentimentDetectionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Starts an asynchronous targeted sentiment detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startTargetedSentimentDetectionJobRequest
+     * @return startTargetedSentimentDetectionJobResult The response from the
+     *         StartTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartTargetedSentimentDetectionJobResult startTargetedSentimentDetectionJob(
+            StartTargetedSentimentDetectionJobRequest startTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startTargetedSentimentDetectionJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartTargetedSentimentDetectionJobRequest> request = null;
+        Response<StartTargetedSentimentDetectionJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartTargetedSentimentDetectionJobRequestMarshaller()
+                        .marshall(startTargetedSentimentDetectionJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartTargetedSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new StartTargetedSentimentDetectionJobResultJsonUnmarshaller();
+            JsonResponseHandler<StartTargetedSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<StartTargetedSentimentDetectionJobResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3732,6 +3891,73 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StopSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new StopSentimentDetectionJobResultJsonUnmarshaller();
             JsonResponseHandler<StopSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<StopSentimentDetectionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Stops a targeted sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopTargetedSentimentDetectionJobRequest
+     * @return stopTargetedSentimentDetectionJobResult The response from the
+     *         StopTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StopTargetedSentimentDetectionJobResult stopTargetedSentimentDetectionJob(
+            StopTargetedSentimentDetectionJobRequest stopTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(stopTargetedSentimentDetectionJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StopTargetedSentimentDetectionJobRequest> request = null;
+        Response<StopTargetedSentimentDetectionJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StopTargetedSentimentDetectionJobRequestMarshaller()
+                        .marshall(stopTargetedSentimentDetectionJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StopTargetedSentimentDetectionJobResult, JsonUnmarshallerContext> unmarshaller = new StopTargetedSentimentDetectionJobResultJsonUnmarshaller();
+            JsonResponseHandler<StopTargetedSentimentDetectionJobResult> responseHandler = new JsonResponseHandler<StopTargetedSentimentDetectionJobResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

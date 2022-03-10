@@ -2179,6 +2179,79 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Gets the properties associated with a targeted sentiment detection job.
+     * Use this operation to get the status of the job.
+     * </p>
+     * 
+     * @param describeTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeTargetedSentimentDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeTargetedSentimentDetectionJobResult> describeTargetedSentimentDetectionJobAsync(
+            final DescribeTargetedSentimentDetectionJobRequest describeTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTargetedSentimentDetectionJobResult>() {
+            public DescribeTargetedSentimentDetectionJobResult call() throws Exception {
+                return describeTargetedSentimentDetectionJob(describeTargetedSentimentDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets the properties associated with a targeted sentiment detection job.
+     * Use this operation to get the status of the job.
+     * </p>
+     * 
+     * @param describeTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeTargetedSentimentDetectionJob service method, as returned
+     *         by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeTargetedSentimentDetectionJobResult> describeTargetedSentimentDetectionJobAsync(
+            final DescribeTargetedSentimentDetectionJobRequest describeTargetedSentimentDetectionJobRequest,
+            final AsyncHandler<DescribeTargetedSentimentDetectionJobRequest, DescribeTargetedSentimentDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeTargetedSentimentDetectionJobResult>() {
+            public DescribeTargetedSentimentDetectionJobResult call() throws Exception {
+                DescribeTargetedSentimentDetectionJobResult result = null;
+                try {
+                    result = describeTargetedSentimentDetectionJob(describeTargetedSentimentDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeTargetedSentimentDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a topic detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -3720,6 +3793,77 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Gets a list of targeted sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listTargetedSentimentDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListTargetedSentimentDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTargetedSentimentDetectionJobsResult> listTargetedSentimentDetectionJobsAsync(
+            final ListTargetedSentimentDetectionJobsRequest listTargetedSentimentDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTargetedSentimentDetectionJobsResult>() {
+            public ListTargetedSentimentDetectionJobsResult call() throws Exception {
+                return listTargetedSentimentDetectionJobs(listTargetedSentimentDetectionJobsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of targeted sentiment detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listTargetedSentimentDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListTargetedSentimentDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTargetedSentimentDetectionJobsResult> listTargetedSentimentDetectionJobsAsync(
+            final ListTargetedSentimentDetectionJobsRequest listTargetedSentimentDetectionJobsRequest,
+            final AsyncHandler<ListTargetedSentimentDetectionJobsRequest, ListTargetedSentimentDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTargetedSentimentDetectionJobsResult>() {
+            public ListTargetedSentimentDetectionJobsResult call() throws Exception {
+                ListTargetedSentimentDetectionJobsResult result = null;
+                try {
+                    result = listTargetedSentimentDetectionJobs(listTargetedSentimentDetectionJobsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTargetedSentimentDetectionJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets a list of the topic detection jobs that you have submitted.
      * </p>
      * 
@@ -4333,7 +4477,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Starts an asynchronous sentiment detection job for a collection of
-     * documents. use the operation to track the status of a job.
+     * documents. Use the operation to track the status of a job.
      * </p>
      * 
      * @param startSentimentDetectionJobRequest
@@ -4366,7 +4510,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Starts an asynchronous sentiment detection job for a collection of
-     * documents. use the operation to track the status of a job.
+     * documents. Use the operation to track the status of a job.
      * </p>
      * 
      * @param startSentimentDetectionJobRequest
@@ -4400,6 +4544,81 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(startSentimentDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts an asynchronous targeted sentiment detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartTargetedSentimentDetectionJobResult> startTargetedSentimentDetectionJobAsync(
+            final StartTargetedSentimentDetectionJobRequest startTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartTargetedSentimentDetectionJobResult>() {
+            public StartTargetedSentimentDetectionJobResult call() throws Exception {
+                return startTargetedSentimentDetectionJob(startTargetedSentimentDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts an asynchronous targeted sentiment detection job for a collection
+     * of documents. Use the operation to track the status of a job.
+     * </p>
+     * 
+     * @param startTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartTargetedSentimentDetectionJobResult> startTargetedSentimentDetectionJobAsync(
+            final StartTargetedSentimentDetectionJobRequest startTargetedSentimentDetectionJobRequest,
+            final AsyncHandler<StartTargetedSentimentDetectionJobRequest, StartTargetedSentimentDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartTargetedSentimentDetectionJobResult>() {
+            public StartTargetedSentimentDetectionJobResult call() throws Exception {
+                StartTargetedSentimentDetectionJobResult result = null;
+                try {
+                    result = startTargetedSentimentDetectionJob(startTargetedSentimentDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startTargetedSentimentDetectionJobRequest, result);
                 return result;
             }
         });
@@ -5019,6 +5238,107 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(stopSentimentDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Stops a targeted sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopTargetedSentimentDetectionJobResult> stopTargetedSentimentDetectionJobAsync(
+            final StopTargetedSentimentDetectionJobRequest stopTargetedSentimentDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopTargetedSentimentDetectionJobResult>() {
+            public StopTargetedSentimentDetectionJobResult call() throws Exception {
+                return stopTargetedSentimentDetectionJob(stopTargetedSentimentDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Stops a targeted sentiment detection job in progress.
+     * </p>
+     * <p>
+     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * termination and put into the <code>STOP_REQUESTED</code> state. If the
+     * job completes before it can be stopped, it is put into the
+     * <code>COMPLETED</code> state; otherwise the job is be stopped and put
+     * into the <code>STOPPED</code> state.
+     * </p>
+     * <p>
+     * If the job is in the <code>COMPLETED</code> or <code>FAILED</code> state
+     * when you call the <code>StopDominantLanguageDetectionJob</code>
+     * operation, the operation returns a 400 Internal Request Exception.
+     * </p>
+     * <p>
+     * When a job is stopped, any documents already processed are written to the
+     * output location.
+     * </p>
+     * 
+     * @param stopTargetedSentimentDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopTargetedSentimentDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopTargetedSentimentDetectionJobResult> stopTargetedSentimentDetectionJobAsync(
+            final StopTargetedSentimentDetectionJobRequest stopTargetedSentimentDetectionJobRequest,
+            final AsyncHandler<StopTargetedSentimentDetectionJobRequest, StopTargetedSentimentDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopTargetedSentimentDetectionJobResult>() {
+            public StopTargetedSentimentDetectionJobResult call() throws Exception {
+                StopTargetedSentimentDetectionJobResult result = null;
+                try {
+                    result = stopTargetedSentimentDetectionJob(stopTargetedSentimentDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(stopTargetedSentimentDetectionJobRequest, result);
                 return result;
             }
         });

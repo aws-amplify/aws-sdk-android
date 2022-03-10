@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides configuration parameters for the output of topic detection jobs.
+ * Provides configuration parameters for the output of inference jobs.
  * </p>
  * <p/>
  */
@@ -38,6 +38,11 @@ public class OutputDataConfig implements Serializable {
      * contains the location of the output file, called
      * <code>output.tar.gz</code>. It is a compressed archive that contains the
      * ouput of the operation.
+     * </p>
+     * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,7 +84,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      */
     private String kmsKeyId;
 
@@ -99,6 +104,11 @@ public class OutputDataConfig implements Serializable {
      * ouput of the operation.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -116,6 +126,11 @@ public class OutputDataConfig implements Serializable {
      *         <code>S3Uri</code> field contains the location of the output
      *         file, called <code>output.tar.gz</code>. It is a compressed
      *         archive that contains the ouput of the operation.
+     *         </p>
+     *         <p>
+     *         For a PII entity detection job, the output file is plain text,
+     *         not a compressed archive. The output file name is the same as the
+     *         input file, with <code>.out</code> appended at the end.
      *         </p>
      */
     public String getS3Uri() {
@@ -138,6 +153,11 @@ public class OutputDataConfig implements Serializable {
      * ouput of the operation.
      * </p>
      * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -156,6 +176,11 @@ public class OutputDataConfig implements Serializable {
      *            <code>S3Uri</code> field contains the location of the output
      *            file, called <code>output.tar.gz</code>. It is a compressed
      *            archive that contains the ouput of the operation.
+     *            </p>
+     *            <p>
+     *            For a PII entity detection job, the output file is plain text,
+     *            not a compressed archive. The output file name is the same as
+     *            the input file, with <code>.out</code> appended at the end.
      *            </p>
      */
     public void setS3Uri(String s3Uri) {
@@ -176,6 +201,11 @@ public class OutputDataConfig implements Serializable {
      * contains the location of the output file, called
      * <code>output.tar.gz</code>. It is a compressed archive that contains the
      * ouput of the operation.
+     * </p>
+     * <p>
+     * For a PII entity detection job, the output file is plain text, not a
+     * compressed archive. The output file name is the same as the input file,
+     * with <code>.out</code> appended at the end.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -199,6 +229,11 @@ public class OutputDataConfig implements Serializable {
      *            <code>S3Uri</code> field contains the location of the output
      *            file, called <code>output.tar.gz</code>. It is a compressed
      *            archive that contains the ouput of the operation.
+     *            </p>
+     *            <p>
+     *            For a PII entity detection job, the output file is plain text,
+     *            not a compressed archive. The output file name is the same as
+     *            the input file, with <code>.out</code> appended at the end.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -241,7 +276,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -310,7 +345,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -383,7 +418,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
-     * <b>Pattern: </b>.*<br/>
+     * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
