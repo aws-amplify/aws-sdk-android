@@ -1,3 +1,21 @@
+## [Release 2.42.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.42.0)
+
+### Features
+- **aws-android-sdk-textract:** update models to latest (#2809)
+- **aws-android-sdk-lambda:** update models to latest (#2808)
+- **aws-android-sdk-translate:** update models to latest (#2805)
+- **aws-android-sdk-transcribe:** update models to latest (#2825)
+- **aws-android-sdk-comprehend:** update models to latest (#2823)
+- **aws-android-sdk-core:** update models to latest (#2819)
+- **aws-android-sdk-connect:** update models to latest (#2818)
+
+### Miscellaneous
+- Create notify_comments.yml (#2815)
+- Create notify_release.yml (#2814)
+- Update notify_comments.yml (#2821)
+
+[See all changes between 2.41.1 and 2.42.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.41.1...release_v2.42.0)
+
 ---
 
 MOVE THIS SECTION TO THE CORRECT LOCATION
