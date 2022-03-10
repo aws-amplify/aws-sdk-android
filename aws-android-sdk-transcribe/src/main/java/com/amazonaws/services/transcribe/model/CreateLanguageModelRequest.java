@@ -21,16 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new custom language model. Use Amazon S3 prefixes to provide the
- * location of your input files. The time it takes to create your model depends
- * on the size of your training data.
+ * Creates a new custom language model. When creating a new language model, you
+ * must specify if you want a Wideband (audio sample rates over 16,000 Hz) or
+ * Narrowband (audio sample rates under 16,000 Hz) base model. You then include
+ * the S3 URI location of your training and tuning files, the language for the
+ * model, a unique name, and any tags you want associated with your model.
  * </p>
  */
 public class CreateLanguageModelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,16 +42,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name you choose for your custom language model when you create it.
+     * The name of your new custom language model.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a language
+     * model with the same name as a previous language model, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,32 +76,34 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains the data access role and the Amazon S3 prefixes to read the
-     * required input files to create a custom language model.
+     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
+     * S3 locations of your training (<code>S3Uri</code>) and tuning (
+     * <code>TuningDataS3Uri</code>) data.
      * </p>
      */
     private InputDataConfig inputDataConfig;
 
     /**
      * <p>
-     * Adds one or more tags, each in the form of a key:value pair, to a new
-     * language model at the time you create this new model.
+     * Optionally add tags, each in the form of a key:value pair, to your new
+     * language model. See also: .
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
-     *         The language of the input text you're using to train your custom
-     *         language model.
+     *         The language of your custom language model; note that the
+     *         language code you select must match the language of your training
+     *         and tuning data.
      *         </p>
      * @see CLMLanguageCode
      */
@@ -105,16 +113,17 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of the input text you're using to train your
-     *            custom language model.
+     *            The language of your custom language model; note that the
+     *            language code you select must match the language of your
+     *            training and tuning data.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -124,8 +133,8 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -135,8 +144,9 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of the input text you're using to train your
-     *            custom language model.
+     *            The language of your custom language model; note that the
+     *            language code you select must match the language of your
+     *            training and tuning data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -149,16 +159,17 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of the input text you're using to train your
-     *            custom language model.
+     *            The language of your custom language model; note that the
+     *            language code you select must match the language of your
+     *            training and tuning data.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -168,8 +179,8 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of the input text you're using to train your custom language
-     * model.
+     * The language of your custom language model; note that the language code
+     * you select must match the language of your training and tuning data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -179,8 +190,9 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of the input text you're using to train your
-     *            custom language model.
+     *            The language of your custom language model; note that the
+     *            language code you select must match the language of your
+     *            training and tuning data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -193,34 +205,29 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @return <p>
-     *         The Amazon Transcribe standard language model, or base model used
-     *         to create your custom language model.
+     *         The Amazon Transcribe standard language model, or base model,
+     *         used to create your custom language model. Amazon Transcribe
+     *         offers two options for base models: Wideband and Narrowband.
      *         </p>
      *         <p>
-     *         If you want to use your custom language model to transcribe audio
-     *         with a sample rate of 16,000 Hz or greater, choose
-     *         <code>Wideband</code>.
-     *         </p>
-     *         <p>
-     *         If you want to use your custom language model to transcribe audio
-     *         with a sample rate that is less than 16,000 Hz, choose
-     *         <code>Narrowband</code>.
+     *         If the audio you want to transcribe has a sample rate of 16,000
+     *         Hz or greater, choose <code>WideBand</code>. To transcribe audio
+     *         with a sample rate less than 16,000 Hz, choose
+     *         <code>NarrowBand</code>.
      *         </p>
      * @see BaseModelName
      */
@@ -230,34 +237,29 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            used to create your custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            used to create your custom language model. Amazon Transcribe
+     *            offers two options for base models: Wideband and Narrowband.
      *            </p>
      *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16,000 Hz or greater, choose
-     *            <code>Wideband</code>.
-     *            </p>
-     *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16,000 Hz, choose
-     *            <code>Narrowband</code>.
+     *            If the audio you want to transcribe has a sample rate of
+     *            16,000 Hz or greater, choose <code>WideBand</code>. To
+     *            transcribe audio with a sample rate less than 16,000 Hz,
+     *            choose <code>NarrowBand</code>.
      *            </p>
      * @see BaseModelName
      */
@@ -267,16 +269,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -286,18 +286,15 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            used to create your custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            used to create your custom language model. Amazon Transcribe
+     *            offers two options for base models: Wideband and Narrowband.
      *            </p>
      *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16,000 Hz or greater, choose
-     *            <code>Wideband</code>.
-     *            </p>
-     *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16,000 Hz, choose
-     *            <code>Narrowband</code>.
+     *            If the audio you want to transcribe has a sample rate of
+     *            16,000 Hz or greater, choose <code>WideBand</code>. To
+     *            transcribe audio with a sample rate less than 16,000 Hz,
+     *            choose <code>NarrowBand</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -310,34 +307,29 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            used to create your custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            used to create your custom language model. Amazon Transcribe
+     *            offers two options for base models: Wideband and Narrowband.
      *            </p>
      *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16,000 Hz or greater, choose
-     *            <code>Wideband</code>.
-     *            </p>
-     *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16,000 Hz, choose
-     *            <code>Narrowband</code>.
+     *            If the audio you want to transcribe has a sample rate of
+     *            16,000 Hz or greater, choose <code>WideBand</code>. To
+     *            transcribe audio with a sample rate less than 16,000 Hz,
+     *            choose <code>NarrowBand</code>.
      *            </p>
      * @see BaseModelName
      */
@@ -347,16 +339,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model used to
-     * create your custom language model.
+     * The Amazon Transcribe standard language model, or base model, used to
+     * create your custom language model. Amazon Transcribe offers two options
+     * for base models: Wideband and Narrowband.
      * </p>
      * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
-     * </p>
-     * <p>
-     * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
+     * If the audio you want to transcribe has a sample rate of 16,000 Hz or
+     * greater, choose <code>WideBand</code>. To transcribe audio with a sample
+     * rate less than 16,000 Hz, choose <code>NarrowBand</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -366,18 +356,15 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            used to create your custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            used to create your custom language model. Amazon Transcribe
+     *            offers two options for base models: Wideband and Narrowband.
      *            </p>
      *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16,000 Hz or greater, choose
-     *            <code>Wideband</code>.
-     *            </p>
-     *            <p>
-     *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16,000 Hz, choose
-     *            <code>Narrowband</code>.
+     *            If the audio you want to transcribe has a sample rate of
+     *            16,000 Hz or greater, choose <code>WideBand</code>. To
+     *            transcribe audio with a sample rate less than 16,000 Hz,
+     *            choose <code>NarrowBand</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -390,7 +377,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name you choose for your custom language model when you create it.
+     * The name of your new custom language model.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a language
+     * model with the same name as a previous language model, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -398,8 +391,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name you choose for your custom language model when you
-     *         create it.
+     *         The name of your new custom language model.
+     *         </p>
+     *         <p>
+     *         This name is case sensitive, cannot contain spaces, and must be
+     *         unique within an Amazon Web Services account. If you try to
+     *         create a language model with the same name as a previous language
+     *         model, you get a <code>ConflictException</code> error.
      *         </p>
      */
     public String getModelName() {
@@ -408,7 +406,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name you choose for your custom language model when you create it.
+     * The name of your new custom language model.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a language
+     * model with the same name as a previous language model, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -416,8 +420,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name you choose for your custom language model when you
-     *            create it.
+     *            The name of your new custom language model.
+     *            </p>
+     *            <p>
+     *            This name is case sensitive, cannot contain spaces, and must
+     *            be unique within an Amazon Web Services account. If you try to
+     *            create a language model with the same name as a previous
+     *            language model, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      */
     public void setModelName(String modelName) {
@@ -426,7 +436,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name you choose for your custom language model when you create it.
+     * The name of your new custom language model.
+     * </p>
+     * <p>
+     * This name is case sensitive, cannot contain spaces, and must be unique
+     * within an Amazon Web Services account. If you try to create a language
+     * model with the same name as a previous language model, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -437,8 +453,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name you choose for your custom language model when you
-     *            create it.
+     *            The name of your new custom language model.
+     *            </p>
+     *            <p>
+     *            This name is case sensitive, cannot contain spaces, and must
+     *            be unique within an Amazon Web Services account. If you try to
+     *            create a language model with the same name as a previous
+     *            language model, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -450,13 +472,15 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains the data access role and the Amazon S3 prefixes to read the
-     * required input files to create a custom language model.
+     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
+     * S3 locations of your training (<code>S3Uri</code>) and tuning (
+     * <code>TuningDataS3Uri</code>) data.
      * </p>
      *
      * @return <p>
-     *         Contains the data access role and the Amazon S3 prefixes to read
-     *         the required input files to create a custom language model.
+     *         Contains your data access role ARN (Amazon Resource Name) and the
+     *         Amazon S3 locations of your training (<code>S3Uri</code>) and
+     *         tuning (<code>TuningDataS3Uri</code>) data.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -465,14 +489,15 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains the data access role and the Amazon S3 prefixes to read the
-     * required input files to create a custom language model.
+     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
+     * S3 locations of your training (<code>S3Uri</code>) and tuning (
+     * <code>TuningDataS3Uri</code>) data.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            Contains the data access role and the Amazon S3 prefixes to
-     *            read the required input files to create a custom language
-     *            model.
+     *            Contains your data access role ARN (Amazon Resource Name) and
+     *            the Amazon S3 locations of your training (<code>S3Uri</code>)
+     *            and tuning (<code>TuningDataS3Uri</code>) data.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -481,17 +506,18 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains the data access role and the Amazon S3 prefixes to read the
-     * required input files to create a custom language model.
+     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
+     * S3 locations of your training (<code>S3Uri</code>) and tuning (
+     * <code>TuningDataS3Uri</code>) data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            Contains the data access role and the Amazon S3 prefixes to
-     *            read the required input files to create a custom language
-     *            model.
+     *            Contains your data access role ARN (Amazon Resource Name) and
+     *            the Amazon S3 locations of your training (<code>S3Uri</code>)
+     *            and tuning (<code>TuningDataS3Uri</code>) data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -503,13 +529,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Adds one or more tags, each in the form of a key:value pair, to a new
-     * language model at the time you create this new model.
+     * Optionally add tags, each in the form of a key:value pair, to your new
+     * language model. See also: .
      * </p>
      *
      * @return <p>
-     *         Adds one or more tags, each in the form of a key:value pair, to a
-     *         new language model at the time you create this new model.
+     *         Optionally add tags, each in the form of a key:value pair, to
+     *         your new language model. See also: .
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -518,13 +544,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Adds one or more tags, each in the form of a key:value pair, to a new
-     * language model at the time you create this new model.
+     * Optionally add tags, each in the form of a key:value pair, to your new
+     * language model. See also: .
      * </p>
      *
      * @param tags <p>
-     *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new language model at the time you create this new model.
+     *            Optionally add tags, each in the form of a key:value pair, to
+     *            your new language model. See also: .
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -538,16 +564,16 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Adds one or more tags, each in the form of a key:value pair, to a new
-     * language model at the time you create this new model.
+     * Optionally add tags, each in the form of a key:value pair, to your new
+     * language model. See also: .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new language model at the time you create this new model.
+     *            Optionally add tags, each in the form of a key:value pair, to
+     *            your new language model. See also: .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -564,16 +590,16 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Adds one or more tags, each in the form of a key:value pair, to a new
-     * language model at the time you create this new model.
+     * Optionally add tags, each in the form of a key:value pair, to your new
+     * language model. See also: .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Adds one or more tags, each in the form of a key:value pair,
-     *            to a new language model at the time you create this new model.
+     *            Optionally add tags, each in the form of a key:value pair, to
+     *            your new language model. See also: .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

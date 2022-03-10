@@ -21,13 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes a vocabulary filter.
+ * Deletes a vocabulary filter. To use this operation, specify the name of the
+ * vocabulary filter you want to delete using <code>VocabularyFilterName</code>.
  * </p>
  */
 public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary filter to remove.
+     * The name of the vocabulary filter you want to delete. Vocabulary filter
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +40,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to remove.
+     * The name of the vocabulary filter you want to delete. Vocabulary filter
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +49,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary filter to remove.
+     *         The name of the vocabulary filter you want to delete. Vocabulary
+     *         filter names are case-sensitive.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -55,7 +59,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to remove.
+     * The name of the vocabulary filter you want to delete. Vocabulary filter
+     * names are case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +68,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter to remove.
+     *            The name of the vocabulary filter you want to delete.
+     *            Vocabulary filter names are case-sensitive.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -72,7 +78,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to remove.
+     * The name of the vocabulary filter you want to delete. Vocabulary filter
+     * names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,7 +90,8 @@ public class DeleteVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter to remove.
+     *            The name of the vocabulary filter you want to delete.
+     *            Vocabulary filter names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -36,7 +36,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * more jobs in the list will fit on a page, Amazon Transcribe Medical
      * returns the <code>NextPage</code> token. To return the next page of
      * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation .
+     * <code>ListMedicalVocabularies</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,7 +158,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * more jobs in the list will fit on a page, Amazon Transcribe Medical
      * returns the <code>NextPage</code> token. To return the next page of
      * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation .
+     * <code>ListMedicalVocabularies</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,7 +173,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *         Amazon Transcribe Medical returns the <code>NextPage</code>
      *         token. To return the next page of vocabularies, include the token
      *         in the next request to the <code>ListMedicalVocabularies</code>
-     *         operation .
+     *         operation.
      *         </p>
      */
     public String getNextToken() {
@@ -188,7 +188,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * more jobs in the list will fit on a page, Amazon Transcribe Medical
      * returns the <code>NextPage</code> token. To return the next page of
      * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation .
+     * <code>ListMedicalVocabularies</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +203,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *            the list will fit on a page, Amazon Transcribe Medical returns
      *            the <code>NextPage</code> token. To return the next page of
      *            vocabularies, include the token in the next request to the
-     *            <code>ListMedicalVocabularies</code> operation .
+     *            <code>ListMedicalVocabularies</code> operation.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -218,7 +218,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * more jobs in the list will fit on a page, Amazon Transcribe Medical
      * returns the <code>NextPage</code> token. To return the next page of
      * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation .
+     * <code>ListMedicalVocabularies</code> operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -236,7 +236,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *            the list will fit on a page, Amazon Transcribe Medical returns
      *            the <code>NextPage</code> token. To return the next page of
      *            vocabularies, include the token in the next request to the
-     *            <code>ListMedicalVocabularies</code> operation .
+     *            <code>ListMedicalVocabularies</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

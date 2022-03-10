@@ -74,7 +74,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      */
     private Integer mediaSampleRateHertz;
 
@@ -561,7 +561,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @return <p>
      *         The sample rate, in Hertz, of the source audio containing medical
@@ -589,7 +589,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the source audio containing
@@ -621,7 +621,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>8000 - 48000<br/>
+     * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
      *            The sample rate, in Hertz, of the source audio containing

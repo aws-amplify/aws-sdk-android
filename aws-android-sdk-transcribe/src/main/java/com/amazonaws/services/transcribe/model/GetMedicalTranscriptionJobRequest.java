@@ -21,17 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns information about a transcription job from Amazon Transcribe Medical.
- * To see the status of the job, check the <code>TranscriptionJobStatus</code>
- * field. If the status is <code>COMPLETED</code>, the job is finished. You find
- * the results of the completed job in the <code>TranscriptFileUri</code> field.
+ * Retrieves information about a medical transcription job.
+ * </p>
+ * <p>
+ * To view the job's status, refer to the <code>TranscriptionJobStatus</code>
+ * field. If the status is <code>COMPLETED</code>, the job is finished. You can
+ * then find your transcript at the URI specified in the
+ * <code>TranscriptFileUri</code> field.
  * </p>
  */
 public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name of the medical transcription job.
+     * The name of the medical transcription job you want information about.
+     * This value is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +46,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the medical transcription job.
+     * The name of the medical transcription job you want information about.
+     * This value is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,7 +55,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the medical transcription job.
+     *         The name of the medical transcription job you want information
+     *         about. This value is case sensitive.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -59,7 +65,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the medical transcription job.
+     * The name of the medical transcription job you want information about.
+     * This value is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +74,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name of the medical transcription job.
+     *            The name of the medical transcription job you want information
+     *            about. This value is case sensitive.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -76,7 +84,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the medical transcription job.
+     * The name of the medical transcription job you want information about.
+     * This value is case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +96,8 @@ public class GetMedicalTranscriptionJobRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name of the medical transcription job.
+     *            The name of the medical transcription job you want information
+     *            about. This value is case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

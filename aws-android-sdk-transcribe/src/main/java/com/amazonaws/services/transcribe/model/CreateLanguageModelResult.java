@@ -20,8 +20,7 @@ import java.io.Serializable;
 public class CreateLanguageModelResult implements Serializable {
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,8 +30,13 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +46,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name you've chosen for your custom language model.
+     * The unique name you chose for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,16 +57,17 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The data access role and Amazon S3 prefixes you've chosen to create your
-     * custom language model.
+     * Lists your data access role ARN (Amazon Resource Name) and the Amazon S3
+     * locations your provided for your training (<code>S3Uri</code>) and tuning
+     * (<code>TuningDataS3Uri</code>) data.
      * </p>
      */
     private InputDataConfig inputDataConfig;
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,16 +77,14 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
-     *         The language code of the text you've used to create a custom
-     *         language model.
+     *         The language code you selected for your custom language model.
      *         </p>
      * @see CLMLanguageCode
      */
@@ -91,16 +94,14 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language code of the text you've used to create a custom
-     *            language model.
+     *            The language code you selected for your custom language model.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -110,8 +111,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -121,8 +121,7 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language code of the text you've used to create a custom
-     *            language model.
+     *            The language code you selected for your custom language model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -135,16 +134,14 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language code of the text you've used to create a custom
-     *            language model.
+     *            The language code you selected for your custom language model.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -154,8 +151,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the text you've used to create a custom language
-     * model.
+     * The language code you selected for your custom language model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,8 +161,7 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language code of the text you've used to create a custom
-     *            language model.
+     *            The language code you selected for your custom language model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -179,16 +174,27 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @return <p>
-     *         The Amazon Transcribe standard language model, or base model
-     *         you've used to create a custom language model.
+     *         The Amazon Transcribe standard language model, or base model, you
+     *         used when creating your custom language model.
+     *         </p>
+     *         <p>
+     *         If your audio has a sample rate of 16,000 Hz or greater, this
+     *         value should be <code>WideBand</code>. If your audio has a sample
+     *         rate of less than 16,000 Hz, this value should be
+     *         <code>NarrowBand</code>.
      *         </p>
      * @see BaseModelName
      */
@@ -198,16 +204,27 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            you've used to create a custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            you used when creating your custom language model.
+     *            </p>
+     *            <p>
+     *            If your audio has a sample rate of 16,000 Hz or greater, this
+     *            value should be <code>WideBand</code>. If your audio has a
+     *            sample rate of less than 16,000 Hz, this value should be
+     *            <code>NarrowBand</code>.
      *            </p>
      * @see BaseModelName
      */
@@ -217,8 +234,13 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -228,8 +250,14 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            you've used to create a custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            you used when creating your custom language model.
+     *            </p>
+     *            <p>
+     *            If your audio has a sample rate of 16,000 Hz or greater, this
+     *            value should be <code>WideBand</code>. If your audio has a
+     *            sample rate of less than 16,000 Hz, this value should be
+     *            <code>NarrowBand</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -242,16 +270,27 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            you've used to create a custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            you used when creating your custom language model.
+     *            </p>
+     *            <p>
+     *            If your audio has a sample rate of 16,000 Hz or greater, this
+     *            value should be <code>WideBand</code>. If your audio has a
+     *            sample rate of less than 16,000 Hz, this value should be
+     *            <code>NarrowBand</code>.
      *            </p>
      * @see BaseModelName
      */
@@ -261,8 +300,13 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Transcribe standard language model, or base model you've used
-     * to create a custom language model.
+     * The Amazon Transcribe standard language model, or base model, you used
+     * when creating your custom language model.
+     * </p>
+     * <p>
+     * If your audio has a sample rate of 16,000 Hz or greater, this value
+     * should be <code>WideBand</code>. If your audio has a sample rate of less
+     * than 16,000 Hz, this value should be <code>NarrowBand</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -272,8 +316,14 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>NarrowBand, WideBand
      *
      * @param baseModelName <p>
-     *            The Amazon Transcribe standard language model, or base model
-     *            you've used to create a custom language model.
+     *            The Amazon Transcribe standard language model, or base model,
+     *            you used when creating your custom language model.
+     *            </p>
+     *            <p>
+     *            If your audio has a sample rate of 16,000 Hz or greater, this
+     *            value should be <code>WideBand</code>. If your audio has a
+     *            sample rate of less than 16,000 Hz, this value should be
+     *            <code>NarrowBand</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -286,7 +336,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name you've chosen for your custom language model.
+     * The unique name you chose for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -294,7 +344,7 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name you've chosen for your custom language model.
+     *         The unique name you chose for your custom language model.
      *         </p>
      */
     public String getModelName() {
@@ -303,7 +353,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name you've chosen for your custom language model.
+     * The unique name you chose for your custom language model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -311,7 +361,7 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name you've chosen for your custom language model.
+     *            The unique name you chose for your custom language model.
      *            </p>
      */
     public void setModelName(String modelName) {
@@ -320,7 +370,7 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name you've chosen for your custom language model.
+     * The unique name you chose for your custom language model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -331,7 +381,7 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name you've chosen for your custom language model.
+     *            The unique name you chose for your custom language model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -343,13 +393,16 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The data access role and Amazon S3 prefixes you've chosen to create your
-     * custom language model.
+     * Lists your data access role ARN (Amazon Resource Name) and the Amazon S3
+     * locations your provided for your training (<code>S3Uri</code>) and tuning
+     * (<code>TuningDataS3Uri</code>) data.
      * </p>
      *
      * @return <p>
-     *         The data access role and Amazon S3 prefixes you've chosen to
-     *         create your custom language model.
+     *         Lists your data access role ARN (Amazon Resource Name) and the
+     *         Amazon S3 locations your provided for your training (
+     *         <code>S3Uri</code>) and tuning (<code>TuningDataS3Uri</code>)
+     *         data.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -358,13 +411,16 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The data access role and Amazon S3 prefixes you've chosen to create your
-     * custom language model.
+     * Lists your data access role ARN (Amazon Resource Name) and the Amazon S3
+     * locations your provided for your training (<code>S3Uri</code>) and tuning
+     * (<code>TuningDataS3Uri</code>) data.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            The data access role and Amazon S3 prefixes you've chosen to
-     *            create your custom language model.
+     *            Lists your data access role ARN (Amazon Resource Name) and the
+     *            Amazon S3 locations your provided for your training (
+     *            <code>S3Uri</code>) and tuning (<code>TuningDataS3Uri</code>)
+     *            data.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -373,16 +429,19 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The data access role and Amazon S3 prefixes you've chosen to create your
-     * custom language model.
+     * Lists your data access role ARN (Amazon Resource Name) and the Amazon S3
+     * locations your provided for your training (<code>S3Uri</code>) and tuning
+     * (<code>TuningDataS3Uri</code>) data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            The data access role and Amazon S3 prefixes you've chosen to
-     *            create your custom language model.
+     *            Lists your data access role ARN (Amazon Resource Name) and the
+     *            Amazon S3 locations your provided for your training (
+     *            <code>S3Uri</code>) and tuning (<code>TuningDataS3Uri</code>)
+     *            data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -394,16 +453,16 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The status of the custom language model. When the status is
-     *         <code>COMPLETED</code> the model is ready to use.
+     *         The status of your custom language model. When the status shows
+     *         as <code>COMPLETED</code>, your model is ready to use.
      *         </p>
      * @see ModelStatus
      */
@@ -413,16 +472,16 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param modelStatus <p>
-     *            The status of the custom language model. When the status is
-     *            <code>COMPLETED</code> the model is ready to use.
+     *            The status of your custom language model. When the status
+     *            shows as <code>COMPLETED</code>, your model is ready to use.
      *            </p>
      * @see ModelStatus
      */
@@ -432,8 +491,8 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -443,8 +502,8 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param modelStatus <p>
-     *            The status of the custom language model. When the status is
-     *            <code>COMPLETED</code> the model is ready to use.
+     *            The status of your custom language model. When the status
+     *            shows as <code>COMPLETED</code>, your model is ready to use.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -457,16 +516,16 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param modelStatus <p>
-     *            The status of the custom language model. When the status is
-     *            <code>COMPLETED</code> the model is ready to use.
+     *            The status of your custom language model. When the status
+     *            shows as <code>COMPLETED</code>, your model is ready to use.
      *            </p>
      * @see ModelStatus
      */
@@ -476,8 +535,8 @@ public class CreateLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The status of the custom language model. When the status is
-     * <code>COMPLETED</code> the model is ready to use.
+     * The status of your custom language model. When the status shows as
+     * <code>COMPLETED</code>, your model is ready to use.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -487,8 +546,8 @@ public class CreateLanguageModelResult implements Serializable {
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param modelStatus <p>
-     *            The status of the custom language model. When the status is
-     *            <code>COMPLETED</code> the model is ready to use.
+     *            The status of your custom language model. When the status
+     *            shows as <code>COMPLETED</code>, your model is ready to use.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

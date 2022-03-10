@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specify the output format for your subtitle file.
+ * Choose the output format for your subtitle file and the S3 location where you
+ * want your file saved.
  * </p>
  */
 public class SubtitlesOutput implements Serializable {
@@ -33,8 +34,8 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Choose the output location for your subtitle file. This location must be
-     * an S3 bucket.
+     * Contains the output location for your subtitle file. This location must
+     * be an S3 bucket.
      * </p>
      */
     private java.util.List<String> subtitleFileUris;
@@ -126,13 +127,13 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Choose the output location for your subtitle file. This location must be
-     * an S3 bucket.
+     * Contains the output location for your subtitle file. This location must
+     * be an S3 bucket.
      * </p>
      *
      * @return <p>
-     *         Choose the output location for your subtitle file. This location
-     *         must be an S3 bucket.
+     *         Contains the output location for your subtitle file. This
+     *         location must be an S3 bucket.
      *         </p>
      */
     public java.util.List<String> getSubtitleFileUris() {
@@ -141,12 +142,12 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Choose the output location for your subtitle file. This location must be
-     * an S3 bucket.
+     * Contains the output location for your subtitle file. This location must
+     * be an S3 bucket.
      * </p>
      *
      * @param subtitleFileUris <p>
-     *            Choose the output location for your subtitle file. This
+     *            Contains the output location for your subtitle file. This
      *            location must be an S3 bucket.
      *            </p>
      */
@@ -161,15 +162,15 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Choose the output location for your subtitle file. This location must be
-     * an S3 bucket.
+     * Contains the output location for your subtitle file. This location must
+     * be an S3 bucket.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param subtitleFileUris <p>
-     *            Choose the output location for your subtitle file. This
+     *            Contains the output location for your subtitle file. This
      *            location must be an S3 bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -187,15 +188,15 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Choose the output location for your subtitle file. This location must be
-     * an S3 bucket.
+     * Contains the output location for your subtitle file. This location must
+     * be an S3 bucket.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param subtitleFileUris <p>
-     *            Choose the output location for your subtitle file. This
+     *            Contains the output location for your subtitle file. This
      *            location must be an S3 bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be

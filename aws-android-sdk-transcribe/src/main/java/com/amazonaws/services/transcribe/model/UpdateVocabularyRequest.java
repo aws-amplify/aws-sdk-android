@@ -71,13 +71,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
-     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -396,13 +396,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
-     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -425,13 +425,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         API endpoint that you are calling. The general form is:
      *         </p>
      *         <p>
-     *         <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *         <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      *         </p>
      *         <p>
      *         For example:
      *         </p>
      *         <p>
-     *         <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *         <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -455,13 +455,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
-     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -484,13 +484,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
-     *            <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -514,13 +514,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is:
      * </p>
      * <p>
-     * <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      * </p>
      * <p>
      * For example:
      * </p>
      * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -546,13 +546,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
-     *            <code>https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;AWSDOC-EXAMPLE-BUCKET&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt;</code>
+     *            <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
      *            </p>
      *            <p>
      *            For example:
      *            </p>
      *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
+     *            <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

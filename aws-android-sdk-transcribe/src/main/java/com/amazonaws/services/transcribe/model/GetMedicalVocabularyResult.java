@@ -65,17 +65,22 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If your request returns a <code>VocabularyState</code> that is
+     * <code>FAILED</code>, the <code>FailureReason</code> field contains
+     * information about why the request failed.
+     * </p>
+     * <p>
+     * For more information, refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a> section.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * The location in Amazon S3 where the vocabulary is stored. Use this URI to
-     * get the contents of the vocabulary. You can download your vocabulary from
-     * the URI for a limited time.
+     * The S3 location where the vocabulary is stored; use this URI to view or
+     * download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -435,13 +440,25 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If your request returns a <code>VocabularyState</code> that is
+     * <code>FAILED</code>, the <code>FailureReason</code> field contains
+     * information about why the request failed.
+     * </p>
+     * <p>
+     * For more information, refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a> section.
      * </p>
      *
      * @return <p>
-     *         If the <code>VocabularyState</code> is <code>FAILED</code>, this
-     *         field contains information about why the job failed.
+     *         If your request returns a <code>VocabularyState</code> that is
+     *         <code>FAILED</code>, the <code>FailureReason</code> field
+     *         contains information about why the request failed.
+     *         </p>
+     *         <p>
+     *         For more information, refer to the <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *         >Common Errors</a> section.
      *         </p>
      */
     public String getFailureReason() {
@@ -450,13 +467,25 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If your request returns a <code>VocabularyState</code> that is
+     * <code>FAILED</code>, the <code>FailureReason</code> field contains
+     * information about why the request failed.
+     * </p>
+     * <p>
+     * For more information, refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a> section.
      * </p>
      *
      * @param failureReason <p>
-     *            If the <code>VocabularyState</code> is <code>FAILED</code>,
-     *            this field contains information about why the job failed.
+     *            If your request returns a <code>VocabularyState</code> that is
+     *            <code>FAILED</code>, the <code>FailureReason</code> field
+     *            contains information about why the request failed.
+     *            </p>
+     *            <p>
+     *            For more information, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a> section.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -465,16 +494,28 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If the <code>VocabularyState</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If your request returns a <code>VocabularyState</code> that is
+     * <code>FAILED</code>, the <code>FailureReason</code> field contains
+     * information about why the request failed.
+     * </p>
+     * <p>
+     * For more information, refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a> section.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failureReason <p>
-     *            If the <code>VocabularyState</code> is <code>FAILED</code>,
-     *            this field contains information about why the job failed.
+     *            If your request returns a <code>VocabularyState</code> that is
+     *            <code>FAILED</code>, the <code>FailureReason</code> field
+     *            contains information about why the request failed.
+     *            </p>
+     *            <p>
+     *            For more information, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a> section.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -486,9 +527,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The location in Amazon S3 where the vocabulary is stored. Use this URI to
-     * get the contents of the vocabulary. You can download your vocabulary from
-     * the URI for a limited time.
+     * The S3 location where the vocabulary is stored; use this URI to view or
+     * download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -496,9 +536,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The location in Amazon S3 where the vocabulary is stored. Use
-     *         this URI to get the contents of the vocabulary. You can download
-     *         your vocabulary from the URI for a limited time.
+     *         The S3 location where the vocabulary is stored; use this URI to
+     *         view or download the vocabulary.
      *         </p>
      */
     public String getDownloadUri() {
@@ -507,9 +546,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The location in Amazon S3 where the vocabulary is stored. Use this URI to
-     * get the contents of the vocabulary. You can download your vocabulary from
-     * the URI for a limited time.
+     * The S3 location where the vocabulary is stored; use this URI to view or
+     * download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -517,9 +555,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The location in Amazon S3 where the vocabulary is stored. Use
-     *            this URI to get the contents of the vocabulary. You can
-     *            download your vocabulary from the URI for a limited time.
+     *            The S3 location where the vocabulary is stored; use this URI
+     *            to view or download the vocabulary.
      *            </p>
      */
     public void setDownloadUri(String downloadUri) {
@@ -528,9 +565,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The location in Amazon S3 where the vocabulary is stored. Use this URI to
-     * get the contents of the vocabulary. You can download your vocabulary from
-     * the URI for a limited time.
+     * The S3 location where the vocabulary is stored; use this URI to view or
+     * download the vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -541,9 +577,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The location in Amazon S3 where the vocabulary is stored. Use
-     *            this URI to get the contents of the vocabulary. You can
-     *            download your vocabulary from the URI for a limited time.
+     *            The S3 location where the vocabulary is stored; use this URI
+     *            to view or download the vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

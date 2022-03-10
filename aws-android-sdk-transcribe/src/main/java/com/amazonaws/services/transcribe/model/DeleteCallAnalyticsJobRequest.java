@@ -21,13 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a call analytics job using its name.
+ * Deletes a call analytics job. To use this operation, specify the name of the
+ * job you want to delete using <code>CallAnalyticsJobName</code>.
  * </p>
  */
 public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the call analytics job you want to delete.
+     * The name of the call analytics job you want to delete. Job names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +40,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the call analytics job you want to delete.
+     * The name of the call analytics job you want to delete. Job names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +49,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the call analytics job you want to delete.
+     *         The name of the call analytics job you want to delete. Job names
+     *         are case-sensitive.
      *         </p>
      */
     public String getCallAnalyticsJobName() {
@@ -55,7 +59,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the call analytics job you want to delete.
+     * The name of the call analytics job you want to delete. Job names are
+     * case-sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +68,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the call analytics job you want to delete.
+     *            The name of the call analytics job you want to delete. Job
+     *            names are case-sensitive.
      *            </p>
      */
     public void setCallAnalyticsJobName(String callAnalyticsJobName) {
@@ -72,7 +78,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the call analytics job you want to delete.
+     * The name of the call analytics job you want to delete. Job names are
+     * case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,7 +90,8 @@ public class DeleteCallAnalyticsJobRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the call analytics job you want to delete.
+     *            The name of the call analytics job you want to delete. Job
+     *            names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

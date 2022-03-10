@@ -83,7 +83,7 @@ public class LanguageModel implements Serializable {
     /**
      * <p>
      * Whether the base model used for the custom language model is up to date.
-     * If this field is <code>true</code> then you are running the most
+     * If this field is <code>false</code> then you are running the most
      * up-to-date version of the base model in your custom language model.
      * </p>
      */
@@ -569,13 +569,13 @@ public class LanguageModel implements Serializable {
     /**
      * <p>
      * Whether the base model used for the custom language model is up to date.
-     * If this field is <code>true</code> then you are running the most
+     * If this field is <code>false</code> then you are running the most
      * up-to-date version of the base model in your custom language model.
      * </p>
      *
      * @return <p>
      *         Whether the base model used for the custom language model is up
-     *         to date. If this field is <code>true</code> then you are running
+     *         to date. If this field is <code>false</code> then you are running
      *         the most up-to-date version of the base model in your custom
      *         language model.
      *         </p>
@@ -587,13 +587,13 @@ public class LanguageModel implements Serializable {
     /**
      * <p>
      * Whether the base model used for the custom language model is up to date.
-     * If this field is <code>true</code> then you are running the most
+     * If this field is <code>false</code> then you are running the most
      * up-to-date version of the base model in your custom language model.
      * </p>
      *
      * @return <p>
      *         Whether the base model used for the custom language model is up
-     *         to date. If this field is <code>true</code> then you are running
+     *         to date. If this field is <code>false</code> then you are running
      *         the most up-to-date version of the base model in your custom
      *         language model.
      *         </p>
@@ -605,13 +605,13 @@ public class LanguageModel implements Serializable {
     /**
      * <p>
      * Whether the base model used for the custom language model is up to date.
-     * If this field is <code>true</code> then you are running the most
+     * If this field is <code>false</code> then you are running the most
      * up-to-date version of the base model in your custom language model.
      * </p>
      *
      * @param upgradeAvailability <p>
      *            Whether the base model used for the custom language model is
-     *            up to date. If this field is <code>true</code> then you are
+     *            up to date. If this field is <code>false</code> then you are
      *            running the most up-to-date version of the base model in your
      *            custom language model.
      *            </p>
@@ -623,7 +623,7 @@ public class LanguageModel implements Serializable {
     /**
      * <p>
      * Whether the base model used for the custom language model is up to date.
-     * If this field is <code>true</code> then you are running the most
+     * If this field is <code>false</code> then you are running the most
      * up-to-date version of the base model in your custom language model.
      * </p>
      * <p>
@@ -632,7 +632,7 @@ public class LanguageModel implements Serializable {
      *
      * @param upgradeAvailability <p>
      *            Whether the base model used for the custom language model is
-     *            up to date. If this field is <code>true</code> then you are
+     *            up to date. If this field is <code>false</code> then you are
      *            running the most up-to-date version of the base model in your
      *            custom language model.
      *            </p>
