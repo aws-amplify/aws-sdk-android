@@ -49,7 +49,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the contact flow.
+     * TThe name of the contact flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -190,14 +190,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the contact flow.
+     * TThe name of the contact flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The name of the contact flow.
+     *         TThe name of the contact flow.
      *         </p>
      */
     public String getName() {
@@ -206,14 +206,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the contact flow.
+     * TThe name of the contact flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            TThe name of the contact flow.
      *            </p>
      */
     public void setName(String name) {
@@ -222,7 +222,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The name of the contact flow.
+     * TThe name of the contact flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -232,7 +232,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            TThe name of the contact flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
