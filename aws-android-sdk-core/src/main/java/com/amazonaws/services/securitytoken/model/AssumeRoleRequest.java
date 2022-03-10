@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -374,7 +374,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * calling session. If you pass a session tag with the same key as an
      * inherited tag, the operation fails. To view the inherited tags for a
      * session, see the CloudTrail logs. For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      * >Viewing Session Tags in CloudTrail</a> in the <i>IAM User Guide</i>.
      * </p>
      */
@@ -1647,7 +1647,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * calling session. If you pass a session tag with the same key as an
      * inherited tag, the operation fails. To view the inherited tags for a
      * session, see the CloudTrail logs. For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      * >Viewing Session Tags in CloudTrail</a> in the <i>IAM User Guide</i>.
      * </p>
      *
@@ -1701,7 +1701,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *         key as an inherited tag, the operation fails. To view the
      *         inherited tags for a session, see the CloudTrail logs. For more
      *         information, see <a href=
-     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      *         >Viewing Session Tags in CloudTrail</a> in the <i>IAM User
      *         Guide</i>.
      *         </p>
@@ -1758,7 +1758,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * calling session. If you pass a session tag with the same key as an
      * inherited tag, the operation fails. To view the inherited tags for a
      * session, see the CloudTrail logs. For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      * >Viewing Session Tags in CloudTrail</a> in the <i>IAM User Guide</i>.
      * </p>
      *
@@ -1813,7 +1813,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            tag with the same key as an inherited tag, the operation
      *            fails. To view the inherited tags for a session, see the
      *            CloudTrail logs. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      *            >Viewing Session Tags in CloudTrail</a> in the <i>IAM User
      *            Guide</i>.
      *            </p>
@@ -1875,7 +1875,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * calling session. If you pass a session tag with the same key as an
      * inherited tag, the operation fails. To view the inherited tags for a
      * session, see the CloudTrail logs. For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      * >Viewing Session Tags in CloudTrail</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -1933,7 +1933,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            tag with the same key as an inherited tag, the operation
      *            fails. To view the inherited tags for a session, see the
      *            CloudTrail logs. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      *            >Viewing Session Tags in CloudTrail</a> in the <i>IAM User
      *            Guide</i>.
      *            </p>
@@ -1998,7 +1998,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      * calling session. If you pass a session tag with the same key as an
      * inherited tag, the operation fails. To view the inherited tags for a
      * session, see the CloudTrail logs. For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      * >Viewing Session Tags in CloudTrail</a> in the <i>IAM User Guide</i>.
      * </p>
      * <p>
@@ -2056,7 +2056,7 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
      *            tag with the same key as an inherited tag, the operation
      *            fails. To view the inherited tags for a session, see the
      *            CloudTrail logs. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/session-tags.html#id_session-tags_ctlogs"
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html#id_session-tags_ctlogs"
      *            >Viewing Session Tags in CloudTrail</a> in the <i>IAM User
      *            Guide</i>.
      *            </p>
