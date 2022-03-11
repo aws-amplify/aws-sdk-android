@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ChatMessage implements Serializable {
     /**
      * <p>
-     * The type of the content. Supported types are text and plain.
+     * The type of the content. Supported types are <code>text/plain</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +45,15 @@ public class ChatMessage implements Serializable {
 
     /**
      * <p>
-     * The type of the content. Supported types are text and plain.
+     * The type of the content. Supported types are <code>text/plain</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The type of the content. Supported types are text and plain.
+     *         The type of the content. Supported types are
+     *         <code>text/plain</code>.
      *         </p>
      */
     public String getContentType() {
@@ -61,14 +62,15 @@ public class ChatMessage implements Serializable {
 
     /**
      * <p>
-     * The type of the content. Supported types are text and plain.
+     * The type of the content. Supported types are <code>text/plain</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param contentType <p>
-     *            The type of the content. Supported types are text and plain.
+     *            The type of the content. Supported types are
+     *            <code>text/plain</code>.
      *            </p>
      */
     public void setContentType(String contentType) {
@@ -77,7 +79,7 @@ public class ChatMessage implements Serializable {
 
     /**
      * <p>
-     * The type of the content. Supported types are text and plain.
+     * The type of the content. Supported types are <code>text/plain</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +89,8 @@ public class ChatMessage implements Serializable {
      * <b>Length: </b>1 - 100<br/>
      *
      * @param contentType <p>
-     *            The type of the content. Supported types are text and plain.
+     *            The type of the content. Supported types are
+     *            <code>text/plain</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

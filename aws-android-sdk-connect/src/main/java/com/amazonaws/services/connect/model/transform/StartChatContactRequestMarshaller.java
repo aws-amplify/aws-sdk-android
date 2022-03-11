@@ -105,6 +105,18 @@ public class StartChatContactRequestMarshaller implements
                 jsonWriter.name("ChatDurationInMinutes");
                 jsonWriter.value(chatDurationInMinutes);
             }
+            if (startChatContactRequest.getSupportedMessagingContentTypes() != null) {
+                java.util.List<String> supportedMessagingContentTypes = startChatContactRequest
+                        .getSupportedMessagingContentTypes();
+                jsonWriter.name("SupportedMessagingContentTypes");
+                jsonWriter.beginArray();
+                for (String supportedMessagingContentTypesItem : supportedMessagingContentTypes) {
+                    if (supportedMessagingContentTypesItem != null) {
+                        jsonWriter.value(supportedMessagingContentTypesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

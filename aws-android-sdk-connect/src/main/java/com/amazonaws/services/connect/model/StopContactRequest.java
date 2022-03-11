@@ -21,8 +21,31 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Ends the specified contact.
+ * Ends the specified contact. This call does not work for the following
+ * initiation methods:
  * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * CALLBACK
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * DISCONNECT
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * TRANSFER
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * QUEUE_TRANSFER
+ * </p>
+ * </li>
+ * </ul>
  */
 public class StopContactRequest extends AmazonWebServiceRequest implements Serializable {
     /**
