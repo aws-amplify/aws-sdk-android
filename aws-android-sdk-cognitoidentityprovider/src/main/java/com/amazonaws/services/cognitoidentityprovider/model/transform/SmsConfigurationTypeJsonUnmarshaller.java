@@ -42,6 +42,9 @@ class SmsConfigurationTypeJsonUnmarshaller implements
             } else if (name.equals("ExternalId")) {
                 smsConfigurationType.setExternalId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SnsRegion")) {
+                smsConfigurationType.setSnsRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

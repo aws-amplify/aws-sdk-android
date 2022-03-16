@@ -84,11 +84,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -421,11 +416,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -465,12 +455,6 @@ public class UserType implements Serializable {
      *         <li>
      *         <p>
      *         ARCHIVED - User is no longer active.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         COMPROMISED - User is disabled due to a potential security
-     *         threat.
      *         </p>
      *         </li>
      *         <li>
@@ -521,11 +505,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -565,12 +544,6 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            ARCHIVED - User is no longer active.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            COMPROMISED - User is disabled due to a potential security
-     *            threat.
      *            </p>
      *            </li>
      *            <li>
@@ -621,11 +594,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -668,12 +636,6 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            ARCHIVED - User is no longer active.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            COMPROMISED - User is disabled due to a potential security
-     *            threat.
      *            </p>
      *            </li>
      *            <li>
@@ -727,11 +689,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -771,12 +728,6 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            ARCHIVED - User is no longer active.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            COMPROMISED - User is disabled due to a potential security
-     *            threat.
      *            </p>
      *            </li>
      *            <li>
@@ -827,11 +778,6 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * COMPROMISED - User is disabled due to a potential security threat.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -874,12 +820,6 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            ARCHIVED - User is no longer active.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            COMPROMISED - User is disabled due to a potential security
-     *            threat.
      *            </p>
      *            </li>
      *            <li>

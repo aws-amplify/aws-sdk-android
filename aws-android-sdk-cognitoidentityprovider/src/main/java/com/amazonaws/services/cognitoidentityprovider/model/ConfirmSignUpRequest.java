@@ -122,7 +122,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * > Customizing user pool Workflows with Lambda Triggers</a> in the
      * <i>Amazon Cognito Developer Guide</i>.
      * </p>
      * <note>
@@ -640,7 +640,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * > Customizing user pool Workflows with Lambda Triggers</a> in the
      * <i>Amazon Cognito Developer Guide</i>.
      * </p>
      * <note>
@@ -691,7 +691,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     *         >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     *         > Customizing user pool Workflows with Lambda Triggers</a> in the
      *         <i>Amazon Cognito Developer Guide</i>.
      *         </p>
      *         <note>
@@ -746,7 +746,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * > Customizing user pool Workflows with Lambda Triggers</a> in the
      * <i>Amazon Cognito Developer Guide</i>.
      * </p>
      * <note>
@@ -797,7 +797,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            > Customizing user pool Workflows with Lambda Triggers</a> in
      *            the <i>Amazon Cognito Developer Guide</i>.
      *            </p>
      *            <note>
@@ -853,7 +853,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * > Customizing user pool Workflows with Lambda Triggers</a> in the
      * <i>Amazon Cognito Developer Guide</i>.
      * </p>
      * <note>
@@ -907,7 +907,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     *            >Customizing User Pool Workflows with Lambda Triggers</a> in
+     *            > Customizing user pool Workflows with Lambda Triggers</a> in
      *            the <i>Amazon Cognito Developer Guide</i>.
      *            </p>
      *            <note>
@@ -966,7 +966,7 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"
-     * >Customizing User Pool Workflows with Lambda Triggers</a> in the
+     * > Customizing user pool Workflows with Lambda Triggers</a> in the
      * <i>Amazon Cognito Developer Guide</i>.
      * </p>
      * <note>

@@ -39,7 +39,12 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To request Amazon SNS
+     * in the Amazon Web Services Region that you want, the Amazon Cognito user
+     * pool uses an Identity and Access Management (IAM) role that you provide
+     * for your Amazon Web Services account.
      * </p>
      */
     private SmsConfigurationType smsConfiguration;
@@ -121,11 +126,22 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To request Amazon SNS
+     * in the Amazon Web Services Region that you want, the Amazon Cognito user
+     * pool uses an Identity and Access Management (IAM) role that you provide
+     * for your Amazon Web Services account.
      * </p>
      *
      * @return <p>
-     *         The SMS configuration.
+     *         The SMS configuration with the settings that your Amazon Cognito
+     *         user pool must use to send an SMS message from your Amazon Web
+     *         Services account through Amazon Simple Notification Service. To
+     *         request Amazon SNS in the Amazon Web Services Region that you
+     *         want, the Amazon Cognito user pool uses an Identity and Access
+     *         Management (IAM) role that you provide for your Amazon Web
+     *         Services account.
      *         </p>
      */
     public SmsConfigurationType getSmsConfiguration() {
@@ -134,11 +150,22 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To request Amazon SNS
+     * in the Amazon Web Services Region that you want, the Amazon Cognito user
+     * pool uses an Identity and Access Management (IAM) role that you provide
+     * for your Amazon Web Services account.
      * </p>
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To request Amazon SNS in the Amazon Web Services
+     *            Region that you want, the Amazon Cognito user pool uses an
+     *            Identity and Access Management (IAM) role that you provide for
+     *            your Amazon Web Services account.
      *            </p>
      */
     public void setSmsConfiguration(SmsConfigurationType smsConfiguration) {
@@ -147,14 +174,25 @@ public class SmsMfaConfigType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To request Amazon SNS
+     * in the Amazon Web Services Region that you want, the Amazon Cognito user
+     * pool uses an Identity and Access Management (IAM) role that you provide
+     * for your Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To request Amazon SNS in the Amazon Web Services
+     *            Region that you want, the Amazon Cognito user pool uses an
+     *            Identity and Access Management (IAM) role that you provide for
+     *            your Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

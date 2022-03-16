@@ -21,14 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disables the user from signing in with the specified external (SAML or
- * social) identity provider. If the user to disable is a Amazon Cognito User
- * Pools native username + password user, they aren't permitted to use their
- * password to sign in. If the user to deactivate is a linked external identity
- * provider (IdP) user, any link between that user and an existing user is
- * removed. The next time the external user (no longer attached to the
- * previously linked <code>DestinationUser</code>) signs in, they must create a
- * new user account. See <a href=
+ * Prevents the user from signing in with the specified external (SAML or
+ * social) identity provider. If the user that you want to deactivate is a
+ * Amazon Cognito user pools native username + password user, they can't use
+ * their password to sign in. If the user to deactivate is a linked external
+ * identity provider (IdP) user, any link between that user and an existing user
+ * is removed. When the external user signs in again, and the user is no longer
+ * attached to the previously linked <code>DestinationUser</code>, the user must
+ * create a new user account. See <a href=
  * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
  * >AdminLinkProviderForUser</a>.
  * </p>
