@@ -37,6 +37,11 @@ class SmsConfigurationTypeJsonMarshaller {
             jsonWriter.name("ExternalId");
             jsonWriter.value(externalId);
         }
+        if (smsConfigurationType.getSnsRegion() != null) {
+            String snsRegion = smsConfigurationType.getSnsRegion();
+            jsonWriter.name("SnsRegion");
+            jsonWriter.value(snsRegion);
+        }
         jsonWriter.endObject();
     }
 

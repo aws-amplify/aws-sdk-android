@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * <i>This data type is no longer supported.</i> You can use it only for SMS
- * multi-factor authentication (MFA) configurations. You can't use it for
+ * <i>This data type is no longer supported.</i> Applies only to SMS
+ * multi-factor authentication (MFA) configurations. Does not apply to
  * time-based one-time password (TOTP) software token MFA configurations.
  * </p>
  */

@@ -28,24 +28,23 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * This action might generate an SMS text message. Starting June 1, 2021, US
  * telecom carriers require you to register an origination phone number before
- * you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+ * you can send SMS messages to US phone numbers. If you use SMS text messages
  * in Amazon Cognito, you must register a phone number with <a
  * href="https://console.aws.amazon.com/pinpoint/home/">Amazon Pinpoint</a>.
- * Amazon Cognito will use the registered number automatically. Otherwise,
- * Amazon Cognito users that must receive SMS messages might be unable to sign
- * up, activate their accounts, or sign in.
+ * Amazon Cognito uses the registered number automatically. Otherwise, Amazon
+ * Cognito users who must receive SMS messages might not be able to sign up,
+ * activate their accounts, or sign in.
  * </p>
  * <p>
  * If you have never used SMS text messages with Amazon Cognito or any other
  * Amazon Web Service, Amazon Simple Notification Service might place your
- * account in SMS sandbox. In <i> <a
+ * account in the SMS sandbox. In <i> <a
  * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">sandbox
- * mode</a> </i>, you will have limitations, such as sending messages only to
- * verified phone numbers. After testing in the sandbox environment, you can
- * move out of the SMS sandbox and into production. For more information, see <a
- * href=
+ * mode</a> </i>, you can send messages only to verified phone numbers. After
+ * you test your app while in the sandbox environment, you can move out of the
+ * sandbox and into production. For more information, see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
- * > SMS message settings for Amazon Cognito User Pools</a> in the <i>Amazon
+ * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>
  * </note>
@@ -199,14 +198,21 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages from your user pool.
      * </p>
      */
     private EmailConfigurationType emailConfiguration;
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      */
     private SmsConfigurationType smsConfiguration;
@@ -1261,11 +1267,15 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages from your user pool.
      * </p>
      *
      * @return <p>
-     *         The email configuration.
+     *         The email configuration of your user pool. The email
+     *         configuration type sets your preferred sending method, Amazon Web
+     *         Services Region, and sender for messages from your user pool.
      *         </p>
      */
     public EmailConfigurationType getEmailConfiguration() {
@@ -1274,11 +1284,16 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages from your user pool.
      * </p>
      *
      * @param emailConfiguration <p>
-     *            The email configuration.
+     *            The email configuration of your user pool. The email
+     *            configuration type sets your preferred sending method, Amazon
+     *            Web Services Region, and sender for messages from your user
+     *            pool.
      *            </p>
      */
     public void setEmailConfiguration(EmailConfigurationType emailConfiguration) {
@@ -1287,14 +1302,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages from your user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param emailConfiguration <p>
-     *            The email configuration.
+     *            The email configuration of your user pool. The email
+     *            configuration type sets your preferred sending method, Amazon
+     *            Web Services Region, and sender for messages from your user
+     *            pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1306,11 +1326,22 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      *
      * @return <p>
-     *         The SMS configuration.
+     *         The SMS configuration with the settings that your Amazon Cognito
+     *         user pool must use to send an SMS message from your Amazon Web
+     *         Services account through Amazon Simple Notification Service. To
+     *         send SMS messages with Amazon SNS in the Amazon Web Services
+     *         Region that you want, the Amazon Cognito user pool uses an
+     *         Identity and Access Management (IAM) role in your Amazon Web
+     *         Services account.
      *         </p>
      */
     public SmsConfigurationType getSmsConfiguration() {
@@ -1319,11 +1350,22 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To send SMS messages with Amazon SNS in the Amazon
+     *            Web Services Region that you want, the Amazon Cognito user
+     *            pool uses an Identity and Access Management (IAM) role in your
+     *            Amazon Web Services account.
      *            </p>
      */
     public void setSmsConfiguration(SmsConfigurationType smsConfiguration) {
@@ -1332,14 +1374,25 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To send SMS messages with Amazon SNS in the Amazon
+     *            Web Services Region that you want, the Amazon Cognito user
+     *            pool uses an Identity and Access Management (IAM) role in your
+     *            Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

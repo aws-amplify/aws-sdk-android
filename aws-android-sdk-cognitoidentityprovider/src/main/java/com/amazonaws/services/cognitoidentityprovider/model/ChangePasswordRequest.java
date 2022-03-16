@@ -31,7 +31,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String previousPassword;
@@ -42,7 +42,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String proposedPassword;
@@ -63,7 +63,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -80,7 +80,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param previousPassword <p>
@@ -100,7 +100,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param previousPassword <p>
@@ -120,7 +120,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -137,7 +137,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param proposedPassword <p>
@@ -157,7 +157,7 @@ public class ChangePasswordRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param proposedPassword <p>
