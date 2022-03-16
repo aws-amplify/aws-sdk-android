@@ -38,7 +38,7 @@ public class SearchForTextResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double distance;
 
@@ -61,7 +61,7 @@ public class SearchForTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 1<br/>
+     * <b>Range: </b>0.0 - 1.0<br/>
      */
     private Double relevance;
 
@@ -79,7 +79,7 @@ public class SearchForTextResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The distance in meters of a great-circle arc between the bias
@@ -112,7 +112,7 @@ public class SearchForTextResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance in meters of a great-circle arc between the bias
@@ -149,7 +149,7 @@ public class SearchForTextResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance in meters of a great-circle arc between the bias
@@ -232,7 +232,7 @@ public class SearchForTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 1<br/>
+     * <b>Range: </b>0.0 - 1.0<br/>
      *
      * @return <p>
      *         The relative confidence in the match for a result among the
@@ -260,7 +260,7 @@ public class SearchForTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 1<br/>
+     * <b>Range: </b>0.0 - 1.0<br/>
      *
      * @param relevance <p>
      *            The relative confidence in the match for a result among the
@@ -291,7 +291,7 @@ public class SearchForTextResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 1<br/>
+     * <b>Range: </b>0.0 - 1.0<br/>
      *
      * @param relevance <p>
      *            The relative confidence in the match for a result among the

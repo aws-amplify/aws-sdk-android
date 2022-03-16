@@ -39,7 +39,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double height;
 
@@ -56,7 +56,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double length;
 
@@ -86,7 +86,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double width;
 
@@ -103,7 +103,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The height of the truck.
@@ -133,7 +133,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param height <p>
      *            The height of the truck.
@@ -166,7 +166,7 @@ public class TruckDimensions implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param height <p>
      *            The height of the truck.
@@ -199,7 +199,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The length of the truck.
@@ -229,7 +229,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param length <p>
      *            The length of the truck.
@@ -262,7 +262,7 @@ public class TruckDimensions implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param length <p>
      *            The length of the truck.
@@ -422,7 +422,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The width of the truck.
@@ -452,7 +452,7 @@ public class TruckDimensions implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param width <p>
      *            The width of the truck.
@@ -485,7 +485,7 @@ public class TruckDimensions implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param width <p>
      *            The width of the truck.
