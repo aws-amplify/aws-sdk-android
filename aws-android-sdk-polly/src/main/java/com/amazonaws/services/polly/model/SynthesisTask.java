@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -164,7 +164,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      */
     private String voiceId;
 
@@ -188,7 +188,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      */
     private String languageCode;
 
@@ -1223,7 +1223,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1247,7 +1247,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1274,7 +1274,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1301,7 +1301,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1328,7 +1328,7 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda
+     * Ayanda, Arlet
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1362,7 +1362,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      *
      * @return <p>
      *         Optional language code for a synthesis task. This is only
@@ -1405,7 +1405,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1452,7 +1452,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1499,7 +1499,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1546,7 +1546,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -87,7 +87,8 @@ public enum VoiceId {
     Zeina("Zeina"),
     Zhiyu("Zhiyu"),
     Aria("Aria"),
-    Ayanda("Ayanda");
+    Ayanda("Ayanda"),
+    Arlet("Arlet");
 
     private String value;
 
@@ -168,6 +169,7 @@ public enum VoiceId {
         enumMap.put("Zhiyu", Zhiyu);
         enumMap.put("Aria", Aria);
         enumMap.put("Ayanda", Ayanda);
+        enumMap.put("Arlet", Arlet);
     }
 
     /**

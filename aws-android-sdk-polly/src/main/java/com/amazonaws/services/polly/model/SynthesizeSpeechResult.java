@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>json</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/json.
+     * <code>ContentType</code> returned is application/x-json-stream.
      * </p>
      * </li>
      * </ul>
@@ -142,7 +142,7 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>json</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/json.
+     * <code>ContentType</code> returned is application/x-json-stream.
      * </p>
      * </li>
      * </ul>
@@ -177,7 +177,8 @@ public class SynthesizeSpeechResult implements Serializable {
      *         <li>
      *         <p>
      *         If you request <code>json</code> as the <code>OutputFormat</code>
-     *         , the <code>ContentType</code> returned is audio/json.
+     *         , the <code>ContentType</code> returned is
+     *         application/x-json-stream.
      *         </p>
      *         </li>
      *         </ul>
@@ -216,7 +217,7 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>json</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/json.
+     * <code>ContentType</code> returned is application/x-json-stream.
      * </p>
      * </li>
      * </ul>
@@ -254,7 +255,7 @@ public class SynthesizeSpeechResult implements Serializable {
      *            <p>
      *            If you request <code>json</code> as the
      *            <code>OutputFormat</code>, the <code>ContentType</code>
-     *            returned is audio/json.
+     *            returned is application/x-json-stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -293,7 +294,7 @@ public class SynthesizeSpeechResult implements Serializable {
      * <li>
      * <p>
      * If you request <code>json</code> as the <code>OutputFormat</code>, the
-     * <code>ContentType</code> returned is audio/json.
+     * <code>ContentType</code> returned is application/x-json-stream.
      * </p>
      * </li>
      * </ul>
@@ -334,7 +335,7 @@ public class SynthesizeSpeechResult implements Serializable {
      *            <p>
      *            If you request <code>json</code> as the
      *            <code>OutputFormat</code>, the <code>ContentType</code>
-     *            returned is audio/json.
+     *            returned is application/x-json-stream.
      *            </p>
      *            </li>
      *            </ul>

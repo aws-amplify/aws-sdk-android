@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,7 +53,8 @@ public enum LanguageCode {
     SvSE("sv-SE"),
     TrTR("tr-TR"),
     EnNZ("en-NZ"),
-    EnZA("en-ZA");
+    EnZA("en-ZA"),
+    CaES("ca-ES");
 
     private String value;
 
@@ -100,6 +101,7 @@ public enum LanguageCode {
         enumMap.put("tr-TR", TrTR);
         enumMap.put("en-NZ", EnNZ);
         enumMap.put("en-ZA", EnZA);
+        enumMap.put("ca-ES", CaES);
     }
 
     /**
