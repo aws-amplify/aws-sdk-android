@@ -37,7 +37,7 @@ public class SearchForPositionResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double distance;
 
@@ -61,7 +61,7 @@ public class SearchForPositionResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The distance in meters of a great-circle arc between the query
@@ -92,7 +92,7 @@ public class SearchForPositionResult implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance in meters of a great-circle arc between the query
@@ -126,7 +126,7 @@ public class SearchForPositionResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance in meters of a great-circle arc between the query

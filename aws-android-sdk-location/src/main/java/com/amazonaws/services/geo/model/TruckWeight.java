@@ -38,7 +38,7 @@ public class TruckWeight implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double total;
 
@@ -68,7 +68,7 @@ public class TruckWeight implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The total weight of the truck.
@@ -98,7 +98,7 @@ public class TruckWeight implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param total <p>
      *            The total weight of the truck.
@@ -131,7 +131,7 @@ public class TruckWeight implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param total <p>
      *            The total weight of the truck.

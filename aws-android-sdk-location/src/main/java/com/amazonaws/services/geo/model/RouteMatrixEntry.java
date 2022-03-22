@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The result for one <code>SnappedDeparturePosition</code>
- * <code>SnappedDestinationPosition</code> pair.
+ * The result for the calculated route of one <code>DeparturePosition</code>
+ * <code>DestinationPosition</code> pair.
  * </p>
  */
 public class RouteMatrixEntry implements Serializable {
@@ -30,7 +30,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double distance;
 
@@ -40,7 +40,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double durationSeconds;
 
@@ -58,7 +58,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The total distance of travel for the route.
@@ -74,7 +74,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The total distance of travel for the route.
@@ -93,7 +93,7 @@ public class RouteMatrixEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The total distance of travel for the route.
@@ -112,7 +112,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The expected duration of travel for the route.
@@ -128,7 +128,7 @@ public class RouteMatrixEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The expected duration of travel for the route.
@@ -147,7 +147,7 @@ public class RouteMatrixEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The expected duration of travel for the route.

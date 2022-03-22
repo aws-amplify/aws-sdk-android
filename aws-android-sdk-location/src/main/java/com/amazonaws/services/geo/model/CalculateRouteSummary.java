@@ -62,7 +62,7 @@ public class CalculateRouteSummary implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double distance;
 
@@ -83,7 +83,7 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double durationSeconds;
 
@@ -299,7 +299,7 @@ public class CalculateRouteSummary implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The total distance covered by the route. The sum of the distance
@@ -332,7 +332,7 @@ public class CalculateRouteSummary implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The total distance covered by the route. The sum of the
@@ -368,7 +368,7 @@ public class CalculateRouteSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The total distance covered by the route. The sum of the
@@ -494,7 +494,7 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The total travel time for the route measured in seconds. The sum
@@ -512,7 +512,7 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The total travel time for the route measured in seconds. The
@@ -533,7 +533,7 @@ public class CalculateRouteSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The total travel time for the route measured in seconds. The

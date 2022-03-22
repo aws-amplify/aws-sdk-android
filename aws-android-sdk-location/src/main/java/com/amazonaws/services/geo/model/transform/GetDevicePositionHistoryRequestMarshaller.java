@@ -75,6 +75,11 @@ public class GetDevicePositionHistoryRequestMarshaller implements
                 jsonWriter.name("EndTimeExclusive");
                 jsonWriter.value(DateUtils.formatISO8601Date(endTimeExclusive));
             }
+            if (getDevicePositionHistoryRequest.getMaxResults() != null) {
+                Integer maxResults = getDevicePositionHistoryRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
             if (getDevicePositionHistoryRequest.getNextToken() != null) {
                 String nextToken = getDevicePositionHistoryRequest.getNextToken();
                 jsonWriter.name("NextToken");
