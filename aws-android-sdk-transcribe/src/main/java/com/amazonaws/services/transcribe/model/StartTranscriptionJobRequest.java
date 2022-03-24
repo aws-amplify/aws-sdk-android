@@ -42,7 +42,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -266,6 +268,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * You receive a <code>BadRequestException</code> error if you enter a value
      * for a <code>LanguageCode</code>.
      * </p>
+     * <p>
+     * You must include either <code>LanguageCode</code> or
+     * <code>IdentifyLanguage</code> in your request.
+     * </p>
      */
     private Boolean identifyLanguage;
 
@@ -391,7 +397,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -407,6 +415,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         The language code for the language used in the input media file.
+     *         You must include either <code>LanguageCode</code> or
+     *         <code>IdentifyLanguage</code> in your request.
      *         </p>
      *         <p>
      *         To transcribe speech in Modern Standard Arabic (ar-SA), your
@@ -421,7 +431,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -437,7 +449,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
-     *            file.
+     *            file. You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
@@ -452,7 +465,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -471,7 +486,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
-     *            file.
+     *            file. You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
@@ -489,7 +505,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -505,7 +523,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
-     *            file.
+     *            file. You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
@@ -520,7 +539,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language code for the language used in the input media file.
+     * The language code for the language used in the input media file. You must
+     * include either <code>LanguageCode</code> or <code>IdentifyLanguage</code>
+     * in your request.
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
@@ -539,7 +560,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
-     *            file.
+     *            file. You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
@@ -1868,12 +1890,20 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * You receive a <code>BadRequestException</code> error if you enter a value
      * for a <code>LanguageCode</code>.
      * </p>
+     * <p>
+     * You must include either <code>LanguageCode</code> or
+     * <code>IdentifyLanguage</code> in your request.
+     * </p>
      *
      * @return <p>
      *         Set this field to <code>true</code> to enable automatic language
      *         identification. Automatic language identification is disabled by
      *         default. You receive a <code>BadRequestException</code> error if
      *         you enter a value for a <code>LanguageCode</code>.
+     *         </p>
+     *         <p>
+     *         You must include either <code>LanguageCode</code> or
+     *         <code>IdentifyLanguage</code> in your request.
      *         </p>
      */
     public Boolean isIdentifyLanguage() {
@@ -1887,12 +1917,20 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * You receive a <code>BadRequestException</code> error if you enter a value
      * for a <code>LanguageCode</code>.
      * </p>
+     * <p>
+     * You must include either <code>LanguageCode</code> or
+     * <code>IdentifyLanguage</code> in your request.
+     * </p>
      *
      * @return <p>
      *         Set this field to <code>true</code> to enable automatic language
      *         identification. Automatic language identification is disabled by
      *         default. You receive a <code>BadRequestException</code> error if
      *         you enter a value for a <code>LanguageCode</code>.
+     *         </p>
+     *         <p>
+     *         You must include either <code>LanguageCode</code> or
+     *         <code>IdentifyLanguage</code> in your request.
      *         </p>
      */
     public Boolean getIdentifyLanguage() {
@@ -1906,6 +1944,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * You receive a <code>BadRequestException</code> error if you enter a value
      * for a <code>LanguageCode</code>.
      * </p>
+     * <p>
+     * You must include either <code>LanguageCode</code> or
+     * <code>IdentifyLanguage</code> in your request.
+     * </p>
      *
      * @param identifyLanguage <p>
      *            Set this field to <code>true</code> to enable automatic
@@ -1913,6 +1955,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            disabled by default. You receive a
      *            <code>BadRequestException</code> error if you enter a value
      *            for a <code>LanguageCode</code>.
+     *            </p>
+     *            <p>
+     *            You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      */
     public void setIdentifyLanguage(Boolean identifyLanguage) {
@@ -1927,6 +1973,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * for a <code>LanguageCode</code>.
      * </p>
      * <p>
+     * You must include either <code>LanguageCode</code> or
+     * <code>IdentifyLanguage</code> in your request.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -1936,6 +1986,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            disabled by default. You receive a
      *            <code>BadRequestException</code> error if you enter a value
      *            for a <code>LanguageCode</code>.
+     *            </p>
+     *            <p>
+     *            You must include either <code>LanguageCode</code> or
+     *            <code>IdentifyLanguage</code> in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,24 +19,48 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Generate subtitles for your batch transcription job.
+ * Generate subtitles for your batch transcription job. Note that your subtitle
+ * files are placed in the same location as your transcription output.
  * </p>
  */
 public class Subtitles implements Serializable {
     /**
      * <p>
-     * Specify the output format for your subtitle file.
+     * Specify the output format for your subtitle file; if you select both
+     * <code>srt</code> and <code>vtt</code> formats, two output files are
+     * generated.
      * </p>
      */
     private java.util.List<String> formats;
 
     /**
      * <p>
-     * Specify the output format for your subtitle file.
+     * Defines the starting value that is assigned to the first subtitle
+     * segment.
+     * </p>
+     * <p>
+     * The default start index for Amazon Transcribe is <code>0</code>, which
+     * differs from the more widely used standard of <code>1</code>. If you're
+     * uncertain which value to use, we recommend choosing <code>1</code>, as
+     * this may improve compatibility with other services.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     */
+    private Integer outputStartIndex;
+
+    /**
+     * <p>
+     * Specify the output format for your subtitle file; if you select both
+     * <code>srt</code> and <code>vtt</code> formats, two output files are
+     * generated.
      * </p>
      *
      * @return <p>
-     *         Specify the output format for your subtitle file.
+     *         Specify the output format for your subtitle file; if you select
+     *         both <code>srt</code> and <code>vtt</code> formats, two output
+     *         files are generated.
      *         </p>
      */
     public java.util.List<String> getFormats() {
@@ -45,11 +69,15 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file.
+     * Specify the output format for your subtitle file; if you select both
+     * <code>srt</code> and <code>vtt</code> formats, two output files are
+     * generated.
      * </p>
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file.
+     *            Specify the output format for your subtitle file; if you
+     *            select both <code>srt</code> and <code>vtt</code> formats, two
+     *            output files are generated.
      *            </p>
      */
     public void setFormats(java.util.Collection<String> formats) {
@@ -63,14 +91,18 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file.
+     * Specify the output format for your subtitle file; if you select both
+     * <code>srt</code> and <code>vtt</code> formats, two output files are
+     * generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file.
+     *            Specify the output format for your subtitle file; if you
+     *            select both <code>srt</code> and <code>vtt</code> formats, two
+     *            output files are generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -87,20 +119,123 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file.
+     * Specify the output format for your subtitle file; if you select both
+     * <code>srt</code> and <code>vtt</code> formats, two output files are
+     * generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file.
+     *            Specify the output format for your subtitle file; if you
+     *            select both <code>srt</code> and <code>vtt</code> formats, two
+     *            output files are generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public Subtitles withFormats(java.util.Collection<String> formats) {
         setFormats(formats);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Defines the starting value that is assigned to the first subtitle
+     * segment.
+     * </p>
+     * <p>
+     * The default start index for Amazon Transcribe is <code>0</code>, which
+     * differs from the more widely used standard of <code>1</code>. If you're
+     * uncertain which value to use, we recommend choosing <code>1</code>, as
+     * this may improve compatibility with other services.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @return <p>
+     *         Defines the starting value that is assigned to the first subtitle
+     *         segment.
+     *         </p>
+     *         <p>
+     *         The default start index for Amazon Transcribe is <code>0</code>,
+     *         which differs from the more widely used standard of
+     *         <code>1</code>. If you're uncertain which value to use, we
+     *         recommend choosing <code>1</code>, as this may improve
+     *         compatibility with other services.
+     *         </p>
+     */
+    public Integer getOutputStartIndex() {
+        return outputStartIndex;
+    }
+
+    /**
+     * <p>
+     * Defines the starting value that is assigned to the first subtitle
+     * segment.
+     * </p>
+     * <p>
+     * The default start index for Amazon Transcribe is <code>0</code>, which
+     * differs from the more widely used standard of <code>1</code>. If you're
+     * uncertain which value to use, we recommend choosing <code>1</code>, as
+     * this may improve compatibility with other services.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param outputStartIndex <p>
+     *            Defines the starting value that is assigned to the first
+     *            subtitle segment.
+     *            </p>
+     *            <p>
+     *            The default start index for Amazon Transcribe is
+     *            <code>0</code>, which differs from the more widely used
+     *            standard of <code>1</code>. If you're uncertain which value to
+     *            use, we recommend choosing <code>1</code>, as this may improve
+     *            compatibility with other services.
+     *            </p>
+     */
+    public void setOutputStartIndex(Integer outputStartIndex) {
+        this.outputStartIndex = outputStartIndex;
+    }
+
+    /**
+     * <p>
+     * Defines the starting value that is assigned to the first subtitle
+     * segment.
+     * </p>
+     * <p>
+     * The default start index for Amazon Transcribe is <code>0</code>, which
+     * differs from the more widely used standard of <code>1</code>. If you're
+     * uncertain which value to use, we recommend choosing <code>1</code>, as
+     * this may improve compatibility with other services.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param outputStartIndex <p>
+     *            Defines the starting value that is assigned to the first
+     *            subtitle segment.
+     *            </p>
+     *            <p>
+     *            The default start index for Amazon Transcribe is
+     *            <code>0</code>, which differs from the more widely used
+     *            standard of <code>1</code>. If you're uncertain which value to
+     *            use, we recommend choosing <code>1</code>, as this may improve
+     *            compatibility with other services.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Subtitles withOutputStartIndex(Integer outputStartIndex) {
+        this.outputStartIndex = outputStartIndex;
         return this;
     }
 
@@ -116,7 +251,9 @@ public class Subtitles implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getFormats() != null)
-            sb.append("Formats: " + getFormats());
+            sb.append("Formats: " + getFormats() + ",");
+        if (getOutputStartIndex() != null)
+            sb.append("OutputStartIndex: " + getOutputStartIndex());
         sb.append("}");
         return sb.toString();
     }
@@ -127,6 +264,8 @@ public class Subtitles implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getFormats() == null) ? 0 : getFormats().hashCode());
+        hashCode = prime * hashCode
+                + ((getOutputStartIndex() == null) ? 0 : getOutputStartIndex().hashCode());
         return hashCode;
     }
 
@@ -144,6 +283,11 @@ public class Subtitles implements Serializable {
         if (other.getFormats() == null ^ this.getFormats() == null)
             return false;
         if (other.getFormats() != null && other.getFormats().equals(this.getFormats()) == false)
+            return false;
+        if (other.getOutputStartIndex() == null ^ this.getOutputStartIndex() == null)
+            return false;
+        if (other.getOutputStartIndex() != null
+                && other.getOutputStartIndex().equals(this.getOutputStartIndex()) == false)
             return false;
         return true;
     }

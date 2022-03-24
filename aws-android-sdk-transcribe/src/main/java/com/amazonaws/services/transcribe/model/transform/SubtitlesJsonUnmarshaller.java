@@ -40,6 +40,9 @@ class SubtitlesJsonUnmarshaller implements Unmarshaller<Subtitles, JsonUnmarshal
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("OutputStartIndex")) {
+                subtitles.setOutputStartIndex(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

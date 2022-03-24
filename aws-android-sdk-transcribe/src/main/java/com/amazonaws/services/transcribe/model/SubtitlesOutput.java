@@ -19,15 +19,16 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Choose the output format for your subtitle file and the S3 location where you
- * want your file saved.
+ * The S3 location where your subtitle files are located. Note that your
+ * subtitle files are placed in the same location as your transcription output.
+ * Refer to <code>TranscriptFileUri</code> to download your files.
  * </p>
  */
 public class SubtitlesOutput implements Serializable {
     /**
      * <p>
-     * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are generated.
+     * The format of your subtitle files. If your request specified both
+     * <code>srt</code> and <code>vtt</code> formats, both formats are shown.
      * </p>
      */
     private java.util.List<String> formats;
@@ -42,13 +43,26 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are generated.
+     * Shows the output start index value for your subtitle files. If you did
+     * not specify a value in your request, the default value of <code>0</code>
+     * is used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     */
+    private Integer outputStartIndex;
+
+    /**
+     * <p>
+     * The format of your subtitle files. If your request specified both
+     * <code>srt</code> and <code>vtt</code> formats, both formats are shown.
      * </p>
      *
      * @return <p>
-     *         Specify the output format for your subtitle file; if you select
-     *         both SRT and VTT formats, two output files are generated.
+     *         The format of your subtitle files. If your request specified both
+     *         <code>srt</code> and <code>vtt</code> formats, both formats are
+     *         shown.
      *         </p>
      */
     public java.util.List<String> getFormats() {
@@ -57,14 +71,14 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are generated.
+     * The format of your subtitle files. If your request specified both
+     * <code>srt</code> and <code>vtt</code> formats, both formats are shown.
      * </p>
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file; if you
-     *            select both SRT and VTT formats, two output files are
-     *            generated.
+     *            The format of your subtitle files. If your request specified
+     *            both <code>srt</code> and <code>vtt</code> formats, both
+     *            formats are shown.
      *            </p>
      */
     public void setFormats(java.util.Collection<String> formats) {
@@ -78,17 +92,17 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are generated.
+     * The format of your subtitle files. If your request specified both
+     * <code>srt</code> and <code>vtt</code> formats, both formats are shown.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file; if you
-     *            select both SRT and VTT formats, two output files are
-     *            generated.
+     *            The format of your subtitle files. If your request specified
+     *            both <code>srt</code> and <code>vtt</code> formats, both
+     *            formats are shown.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,17 +119,17 @@ public class SubtitlesOutput implements Serializable {
 
     /**
      * <p>
-     * Specify the output format for your subtitle file; if you select both SRT
-     * and VTT formats, two output files are generated.
+     * The format of your subtitle files. If your request specified both
+     * <code>srt</code> and <code>vtt</code> formats, both formats are shown.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param formats <p>
-     *            Specify the output format for your subtitle file; if you
-     *            select both SRT and VTT formats, two output files are
-     *            generated.
+     *            The format of your subtitle files. If your request specified
+     *            both <code>srt</code> and <code>vtt</code> formats, both
+     *            formats are shown.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -208,6 +222,72 @@ public class SubtitlesOutput implements Serializable {
     }
 
     /**
+     * <p>
+     * Shows the output start index value for your subtitle files. If you did
+     * not specify a value in your request, the default value of <code>0</code>
+     * is used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @return <p>
+     *         Shows the output start index value for your subtitle files. If
+     *         you did not specify a value in your request, the default value of
+     *         <code>0</code> is used.
+     *         </p>
+     */
+    public Integer getOutputStartIndex() {
+        return outputStartIndex;
+    }
+
+    /**
+     * <p>
+     * Shows the output start index value for your subtitle files. If you did
+     * not specify a value in your request, the default value of <code>0</code>
+     * is used.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param outputStartIndex <p>
+     *            Shows the output start index value for your subtitle files. If
+     *            you did not specify a value in your request, the default value
+     *            of <code>0</code> is used.
+     *            </p>
+     */
+    public void setOutputStartIndex(Integer outputStartIndex) {
+        this.outputStartIndex = outputStartIndex;
+    }
+
+    /**
+     * <p>
+     * Shows the output start index value for your subtitle files. If you did
+     * not specify a value in your request, the default value of <code>0</code>
+     * is used.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 1<br/>
+     *
+     * @param outputStartIndex <p>
+     *            Shows the output start index value for your subtitle files. If
+     *            you did not specify a value in your request, the default value
+     *            of <code>0</code> is used.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SubtitlesOutput withOutputStartIndex(Integer outputStartIndex) {
+        this.outputStartIndex = outputStartIndex;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -221,7 +301,9 @@ public class SubtitlesOutput implements Serializable {
         if (getFormats() != null)
             sb.append("Formats: " + getFormats() + ",");
         if (getSubtitleFileUris() != null)
-            sb.append("SubtitleFileUris: " + getSubtitleFileUris());
+            sb.append("SubtitleFileUris: " + getSubtitleFileUris() + ",");
+        if (getOutputStartIndex() != null)
+            sb.append("OutputStartIndex: " + getOutputStartIndex());
         sb.append("}");
         return sb.toString();
     }
@@ -234,6 +316,8 @@ public class SubtitlesOutput implements Serializable {
         hashCode = prime * hashCode + ((getFormats() == null) ? 0 : getFormats().hashCode());
         hashCode = prime * hashCode
                 + ((getSubtitleFileUris() == null) ? 0 : getSubtitleFileUris().hashCode());
+        hashCode = prime * hashCode
+                + ((getOutputStartIndex() == null) ? 0 : getOutputStartIndex().hashCode());
         return hashCode;
     }
 
@@ -256,6 +340,11 @@ public class SubtitlesOutput implements Serializable {
             return false;
         if (other.getSubtitleFileUris() != null
                 && other.getSubtitleFileUris().equals(this.getSubtitleFileUris()) == false)
+            return false;
+        if (other.getOutputStartIndex() == null ^ this.getOutputStartIndex() == null)
+            return false;
+        if (other.getOutputStartIndex() != null
+                && other.getOutputStartIndex().equals(this.getOutputStartIndex()) == false)
             return false;
         return true;
     }
