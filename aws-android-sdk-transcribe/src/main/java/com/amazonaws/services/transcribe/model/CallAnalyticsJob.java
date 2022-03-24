@@ -71,7 +71,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio.
+     * The sample rate, in Hertz, of the input audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -610,14 +610,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio.
+     * The sample rate, in Hertz, of the input audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the audio.
+     *         The sample rate, in Hertz, of the input audio.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -626,14 +626,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio.
+     * The sample rate, in Hertz, of the input audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio.
+     *            The sample rate, in Hertz, of the input audio.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -642,7 +642,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio.
+     * The sample rate, in Hertz, of the input audio.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -652,7 +652,7 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio.
+     *            The sample rate, in Hertz, of the input audio.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

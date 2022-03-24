@@ -46,6 +46,9 @@ class SubtitlesOutputJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("OutputStartIndex")) {
+                subtitlesOutput.setOutputStartIndex(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

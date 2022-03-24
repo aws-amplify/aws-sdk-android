@@ -49,6 +49,11 @@ class SubtitlesOutputJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (subtitlesOutput.getOutputStartIndex() != null) {
+            Integer outputStartIndex = subtitlesOutput.getOutputStartIndex();
+            jsonWriter.name("OutputStartIndex");
+            jsonWriter.value(outputStartIndex);
+        }
         jsonWriter.endObject();
     }
 

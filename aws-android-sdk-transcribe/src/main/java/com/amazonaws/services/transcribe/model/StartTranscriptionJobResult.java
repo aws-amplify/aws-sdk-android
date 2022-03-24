@@ -20,19 +20,18 @@ import java.io.Serializable;
 public class StartTranscriptionJobResult implements Serializable {
     /**
      * <p>
-     * An object containing details of the asynchronous transcription job.
+     * Provides information about your asynchronous transcription job.
      * </p>
      */
     private TranscriptionJob transcriptionJob;
 
     /**
      * <p>
-     * An object containing details of the asynchronous transcription job.
+     * Provides information about your asynchronous transcription job.
      * </p>
      *
      * @return <p>
-     *         An object containing details of the asynchronous transcription
-     *         job.
+     *         Provides information about your asynchronous transcription job.
      *         </p>
      */
     public TranscriptionJob getTranscriptionJob() {
@@ -41,11 +40,11 @@ public class StartTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * An object containing details of the asynchronous transcription job.
+     * Provides information about your asynchronous transcription job.
      * </p>
      *
      * @param transcriptionJob <p>
-     *            An object containing details of the asynchronous transcription
+     *            Provides information about your asynchronous transcription
      *            job.
      *            </p>
      */
@@ -55,14 +54,14 @@ public class StartTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * An object containing details of the asynchronous transcription job.
+     * Provides information about your asynchronous transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcriptionJob <p>
-     *            An object containing details of the asynchronous transcription
+     *            Provides information about your asynchronous transcription
      *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
