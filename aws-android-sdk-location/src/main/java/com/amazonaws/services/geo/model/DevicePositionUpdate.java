@@ -44,8 +44,8 @@ public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
      * The latest device position defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[X or longitude, Y or latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      */
     private java.util.List<Double> position;
@@ -176,14 +176,14 @@ public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
      * The latest device position defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[X or longitude, Y or latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      *
      * @return <p>
-     *         The latest device position defined in <a
-     *         href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *         84</a> format: <code>[X or longitude, Y or latitude]</code>.
+     *         The latest device position defined in <a href=
+     *         "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *         >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      *         </p>
      */
     public java.util.List<Double> getPosition() {
@@ -193,14 +193,15 @@ public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
      * The latest device position defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[X or longitude, Y or latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      *
      * @param position <p>
-     *            The latest device position defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
+     *            The latest device position defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >WGS 84</a> format:
+     *            <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      */
     public void setPosition(java.util.Collection<Double> position) {
@@ -215,17 +216,18 @@ public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
      * The latest device position defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[X or longitude, Y or latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param position <p>
-     *            The latest device position defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
+     *            The latest device position defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >WGS 84</a> format:
+     *            <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -243,17 +245,18 @@ public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
      * The latest device position defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[X or longitude, Y or latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >WGS 84</a> format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param position <p>
-     *            The latest device position defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
+     *            The latest device position defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >WGS 84</a> format:
+     *            <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

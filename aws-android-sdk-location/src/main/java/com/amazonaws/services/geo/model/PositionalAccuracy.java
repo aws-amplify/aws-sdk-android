@@ -30,7 +30,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 10000<br/>
+     * <b>Range: </b>0.0 - 10000.0<br/>
      */
     private Double horizontal;
 
@@ -41,7 +41,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 10000<br/>
+     * <b>Range: </b>0.0 - 10000.0<br/>
      *
      * @return <p>
      *         Estimated maximum distance, in meters, between the measured
@@ -60,7 +60,7 @@ public class PositionalAccuracy implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 10000<br/>
+     * <b>Range: </b>0.0 - 10000.0<br/>
      *
      * @param horizontal <p>
      *            Estimated maximum distance, in meters, between the measured
@@ -82,7 +82,7 @@ public class PositionalAccuracy implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 10000<br/>
+     * <b>Range: </b>0.0 - 10000.0<br/>
      *
      * @param horizontal <p>
      *            Estimated maximum distance, in meters, between the measured

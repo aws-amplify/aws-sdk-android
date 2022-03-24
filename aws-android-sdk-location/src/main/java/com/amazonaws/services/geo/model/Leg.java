@@ -76,7 +76,7 @@ public class Leg implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double distance;
 
@@ -88,7 +88,7 @@ public class Leg implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      */
     private Double durationSeconds;
 
@@ -154,7 +154,7 @@ public class Leg implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The distance between the leg's <code>StartPosition</code> and
@@ -189,7 +189,7 @@ public class Leg implements Serializable {
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance between the leg's <code>StartPosition</code> and
@@ -227,7 +227,7 @@ public class Leg implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param distance <p>
      *            The distance between the leg's <code>StartPosition</code> and
@@ -258,7 +258,7 @@ public class Leg implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @return <p>
      *         The estimated travel time between the leg's
@@ -279,7 +279,7 @@ public class Leg implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The estimated travel time between the leg's
@@ -303,7 +303,7 @@ public class Leg implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - <br/>
+     * <b>Range: </b>0.0 - <br/>
      *
      * @param durationSeconds <p>
      *            The estimated travel time between the leg's

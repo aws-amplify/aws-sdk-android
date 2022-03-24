@@ -39,7 +39,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
 
     /**
      * <p>
-     * Avoids ferries when calculating routes.
+     * Avoids tolls when calculating routes.
      * </p>
      * <p>
      * Default Value: <code>false</code>
@@ -176,7 +176,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
 
     /**
      * <p>
-     * Avoids ferries when calculating routes.
+     * Avoids tolls when calculating routes.
      * </p>
      * <p>
      * Default Value: <code>false</code>
@@ -186,7 +186,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Avoids ferries when calculating routes.
+     *         Avoids tolls when calculating routes.
      *         </p>
      *         <p>
      *         Default Value: <code>false</code>
@@ -201,7 +201,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
 
     /**
      * <p>
-     * Avoids ferries when calculating routes.
+     * Avoids tolls when calculating routes.
      * </p>
      * <p>
      * Default Value: <code>false</code>
@@ -211,7 +211,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Avoids ferries when calculating routes.
+     *         Avoids tolls when calculating routes.
      *         </p>
      *         <p>
      *         Default Value: <code>false</code>
@@ -226,7 +226,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
 
     /**
      * <p>
-     * Avoids ferries when calculating routes.
+     * Avoids tolls when calculating routes.
      * </p>
      * <p>
      * Default Value: <code>false</code>
@@ -236,7 +236,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
      * </p>
      *
      * @param avoidTolls <p>
-     *            Avoids ferries when calculating routes.
+     *            Avoids tolls when calculating routes.
      *            </p>
      *            <p>
      *            Default Value: <code>false</code>
@@ -251,7 +251,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
 
     /**
      * <p>
-     * Avoids ferries when calculating routes.
+     * Avoids tolls when calculating routes.
      * </p>
      * <p>
      * Default Value: <code>false</code>
@@ -264,7 +264,7 @@ public class CalculateRouteTruckModeOptions implements Serializable {
      * together.
      *
      * @param avoidTolls <p>
-     *            Avoids ferries when calculating routes.
+     *            Avoids tolls when calculating routes.
      *            </p>
      *            <p>
      *            Default Value: <code>false</code>

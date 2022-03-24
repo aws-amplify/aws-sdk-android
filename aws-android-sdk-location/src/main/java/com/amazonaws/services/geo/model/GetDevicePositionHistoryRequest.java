@@ -66,6 +66,20 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     */
+    private Integer maxResults;
+
+    /**
+     * <p>
      * The pagination token specifying which page of results to return in the
      * response. If no token is provided, the default page is the first page.
      * </p>
@@ -294,6 +308,84 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      */
     public GetDevicePositionHistoryRequest withEndTimeExclusive(java.util.Date endTimeExclusive) {
         this.endTimeExclusive = endTimeExclusive;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         An optional limit for the number of device positions returned in
+     *         a single call.
+     *         </p>
+     *         <p>
+     *         Default value: <code>100</code>
+     *         </p>
+     */
+    public Integer getMaxResults() {
+        return maxResults;
+    }
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     *
+     * @param maxResults <p>
+     *            An optional limit for the number of device positions returned
+     *            in a single call.
+     *            </p>
+     *            <p>
+     *            Default value: <code>100</code>
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * An optional limit for the number of device positions returned in a single
+     * call.
+     * </p>
+     * <p>
+     * Default value: <code>100</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
+     *
+     * @param maxResults <p>
+     *            An optional limit for the number of device positions returned
+     *            in a single call.
+     *            </p>
+     *            <p>
+     *            Default value: <code>100</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetDevicePositionHistoryRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -588,6 +680,8 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
             sb.append("DeviceId: " + getDeviceId() + ",");
         if (getEndTimeExclusive() != null)
             sb.append("EndTimeExclusive: " + getEndTimeExclusive() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getStartTimeInclusive() != null)
@@ -606,6 +700,7 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
         hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode
                 + ((getEndTimeExclusive() == null) ? 0 : getEndTimeExclusive().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
                 + ((getStartTimeInclusive() == null) ? 0 : getStartTimeInclusive().hashCode());
@@ -633,6 +728,11 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getEndTimeExclusive() != null
                 && other.getEndTimeExclusive().equals(this.getEndTimeExclusive()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
