@@ -109,6 +109,7 @@ import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentityClient;
 import com.amazonaws.services.cognitoidentity.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
+import com.amazonaws.services.cognitoidentityprovider.model.AuthFlowType;
 import com.amazonaws.services.cognitoidentityprovider.model.GlobalSignOutRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.InvalidUserPoolConfigurationException;
 import com.amazonaws.util.StringUtils;
@@ -1192,7 +1193,19 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                        final Callback<SignInResult> callback) {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_signIn(username, password, validationData, clientMetadata, internalCallback));
+        internalCallback.async(_signIn(username, password, validationData, clientMetadata, null, internalCallback));
+    }
+
+    @AnyThread
+    public void signIn(final String username,
+                       final String password,
+                       final Map<String, String> validationData,
+                       final Map<String, String> clientMetadata,
+                       final AuthFlowType authFlowType,
+                       final Callback<SignInResult> callback) {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_signIn(username, password, validationData, clientMetadata, authFlowType, internalCallback));
     }
 
     @WorkerThread
@@ -1209,13 +1222,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_signIn(username, password, validationData, clientMetadata, internalCallback));
+        return internalCallback.await(_signIn(username, password, validationData, clientMetadata, null, internalCallback));
+    }
+
+    @WorkerThread
+    public SignInResult signIn(final String username,
+                               final String password,
+                               final Map<String, String> validationData,
+                               final Map<String, String> clientMetadata,
+                               final AuthFlowType authFlowType) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_signIn(username, password, validationData, clientMetadata, authFlowType, internalCallback));
     }
 
     private Runnable _signIn(final String username,
                              final String password,
                              final Map<String, String> validationData,
                              final Map<String, String> clientMetadata,
+                             final AuthFlowType authFlowType,
                              final Callback<SignInResult> callback) {
 
         this.signInCallback = callback;
@@ -1264,10 +1289,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
 
                                 try {
-                                    String authFlowType = authFlowTypeInConfig ?
-                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
-                                        null;
-                                    if (authFlowTypeInConfig && AUTH_TYPE_INIT_CUSTOM_AUTH.equals(authFlowType)) {
+                                    String resolvedAuthFlowType = authFlowType != null ? authFlowType.name() : null;
+                                    if (resolvedAuthFlowType == null && authFlowTypeInConfig) {
+                                        resolvedAuthFlowType = awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType");
+                                    }
+                                    if (resolvedAuthFlowType != null && AUTH_TYPE_INIT_CUSTOM_AUTH.equals(resolvedAuthFlowType)) {
                                         // If there's a value in the config and it's CUSTOM_AUTH, we'll
                                         // use one of the below constructors depending on what's passed in.
                                         if (password != null) {
@@ -1275,7 +1301,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                         } else {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
                                         }
-                                    } else if (authFlowTypeInConfig && AUTH_TYPE_INIT_USER_PASSWORD.equals(authFlowType)) {
+                                    } else if (resolvedAuthFlowType != null && AUTH_TYPE_INIT_USER_PASSWORD.equals(resolvedAuthFlowType)) {
                                         // If there's a value in the config and it's USER_PASSWORD_AUTH, set the auth type (challenge name)
                                         // to be USER_PASSWORD.
                                         AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, password, validationData);
@@ -1703,7 +1729,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         final InternalCallback<Void> internalCallback = new InternalCallback<>(callback);
         internalCallback.async(_deleteUser(internalCallback));
     }
-    
+
     private Runnable _deleteUser(final Callback<Void> callback) {
         return () -> {
             if (userpool == null) {
