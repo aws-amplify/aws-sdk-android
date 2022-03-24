@@ -7867,7 +7867,23 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Starts recording the contact when the agent joins the call.
+     * Starts recording the contact:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the API is called <i>before</i> the agent joins the call, recording
+     * starts when the agent joins the call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the API is called <i>after</i> the agent joins the call, recording
+     * starts at the time of the API call.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * StartContactRecording is a one-time action. For example, if you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -7913,7 +7929,23 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Starts recording the contact when the agent joins the call.
+     * Starts recording the contact:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the API is called <i>before</i> the agent joins the call, recording
+     * starts when the agent joins the call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the API is called <i>after</i> the agent joins the call, recording
+     * starts at the time of the API call.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * StartContactRecording is a one-time action. For example, if you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -8265,8 +8297,31 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Ends the specified contact.
+     * Ends the specified contact. This call does not work for the following
+     * initiation methods:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * CALLBACK
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DISCONNECT
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TRANSFER
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * QUEUE_TRANSFER
+     * </p>
+     * </li>
+     * </ul>
      * 
      * @param stopContactRequest
      * @return A Java Future object containing the response from the StopContact
@@ -8295,8 +8350,31 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Ends the specified contact.
+     * Ends the specified contact. This call does not work for the following
+     * initiation methods:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * CALLBACK
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * DISCONNECT
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * TRANSFER
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * QUEUE_TRANSFER
+     * </p>
+     * </li>
+     * </ul>
      * 
      * @param stopContactRequest
      * @return A Java Future object containing the response from the StopContact
