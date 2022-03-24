@@ -27,6 +27,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Auth
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 
+import com.amazonaws.services.cognitoidentityprovider.model.AuthFlowType;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -82,54 +83,71 @@ public class AWSMobileClientAuthFlowSettingTest {
     public void testUserPasswordAuth() throws JSONException, InterruptedException {
         String flowFromConfig = "USER_PASSWORD_AUTH";
         String expectedAuthType = "USER_PASSWORD";
-        verifyScenario(flowFromConfig, expectedAuthType);
+        verifyScenario(flowFromConfig, null, expectedAuthType);
     }
 
     @Test
     public void testUserSrpAuth() throws JSONException, InterruptedException {
         String flowFromConfig = "USER_SRP_AUTH";
         String expectedAuthType = "PASSWORD_VERIFIER";
-        verifyScenario(flowFromConfig, expectedAuthType);
+        verifyScenario(flowFromConfig, null, expectedAuthType);
     }
 
     @Test
     public void testCustomAuth() throws JSONException, InterruptedException {
         String flowFromConfig = "CUSTOM_AUTH";
         String expectedAuthType = "CUSTOM_CHALLENGE";
-        verifyScenario(flowFromConfig, expectedAuthType);
+        verifyScenario(flowFromConfig, null, expectedAuthType);
     }
 
     @Test
     public void testNoAuthFlowInConfig() throws JSONException, InterruptedException {
         String flowFromConfig = null;
         String expectedAuthType = "PASSWORD_VERIFIER";
-        verifyScenario(flowFromConfig, expectedAuthType);
+        verifyScenario(flowFromConfig, null, expectedAuthType);
+    }
+
+    @Test
+    public void testSwitchAuthFlowInAPI() throws JSONException, InterruptedException {
+        String flowFromConfig = "USER_SRP_AUTH";
+        String expectedAuthType = "CUSTOM_CHALLENGE";
+        verifyScenario(flowFromConfig, "CUSTOM_AUTH", expectedAuthType);
+    }
+
+    @Test
+    public void testSwitchFromNoAuthFlowInConfig() throws JSONException, InterruptedException {
+        String flowFromConfig = null;
+        String expectedAuthType = "USER_PASSWORD";
+        verifyScenario(flowFromConfig, "USER_PASSWORD_AUTH", expectedAuthType);
     }
 
     /**
      * Verify that the correct auth type (aka challenge name) is passed in based on the
      * auth flow type from the config file.
-     * @param authFlowType The auth flow type from the config.
+     * @param configAuthFlowType The auth flow type from the config.
      * @param expectedAuthType The auth type expected.
+     * @param overridenAuthFlowType The authType passed to the API
      * @throws JSONException Not expected.
      * @throws InterruptedException Not expected.
      */
-    private void verifyScenario(String authFlowType, String expectedAuthType) throws JSONException, InterruptedException {
+    private void verifyScenario(String configAuthFlowType, String overridenAuthFlowType, String expectedAuthType) throws JSONException, InterruptedException {
         AuthenticationContinuation mockContinuation = setupMockContinuation();
         CognitoUserPool mockUserPool = setupMockUserPool(mockContinuation);
-        initMobileClientAndWait(authFlowType, mockUserPool);
-        signinAndWait();
+        initMobileClientAndWait(configAuthFlowType, mockUserPool);
+        signinAndWait(overridenAuthFlowType);
         ArgumentCaptor<AuthenticationDetails> argumentCaptor = ArgumentCaptor.forClass(AuthenticationDetails.class);
         verify(mockContinuation).setAuthenticationDetails(argumentCaptor.capture());
         AuthenticationDetails actualAuthDetails = argumentCaptor.getValue();
         assertEquals(expectedAuthType, actualAuthDetails.getAuthenticationType());
     }
 
-    private void signinAndWait() throws InterruptedException {
+    private void signinAndWait(String overridenAuthFlowType) throws InterruptedException {
+        AuthFlowType overridenAuthFlowEnum = overridenAuthFlowType == null ? null : AuthFlowType.valueOf(overridenAuthFlowType);
         mobileClient.signIn("test",
                             "fakepassword",
                             Collections.emptyMap(),
                             Collections.emptyMap(),
+                            overridenAuthFlowEnum,
                             new Callback<SignInResult>() {
                                 @Override
                                 public void onResult(SignInResult result) {
