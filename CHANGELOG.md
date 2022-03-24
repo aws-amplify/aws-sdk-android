@@ -1,3 +1,10 @@
+## [Release 2.43.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.43.0)
+
+### Features
+- Update SignIn API to accept authFlowType (#2846)
+
+[See all changes between 2.42.0 and 2.43.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.42.0...release_v2.43.0)
+
 ## [Release 2.42.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.42.0)
 
 ### Features
