@@ -118,14 +118,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * If your app client allows users to sign in through an identity provider,
-     * this array must include all attributes that are mapped to identity
+     * this array must include all attributes that you have mapped to identity
      * provider attributes. Amazon Cognito updates mapped attributes when users
      * sign in to your application through an identity provider. If your app
-     * client lacks write access to a mapped attribute, Amazon Cognito throws an
-     * error when it tries to update the attribute. For more information, see <a
-     * href=
+     * client does not have write access to a mapped attribute, Amazon Cognito
+     * throws an error when it tries to update the attribute. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
+     * >Specifying Identity Provider Attribute Mappings for Your user pool</a>.
      * </p>
      */
     private java.util.List<String> writeAttributes;
@@ -135,9 +135,13 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * The authentication flows that are supported by the user pool clients.
      * Flow names without the <code>ALLOW_</code> prefix are no longer
      * supported, in favor of new names with the <code>ALLOW_</code> prefix.
-     * Note that values with <code>ALLOW_</code> prefix must be used only along
-     * with the <code>ALLOW_</code> prefix.
      * </p>
+     * <note>
+     * <p>
+     * Values with <code>ALLOW_</code> prefix must be used only along with the
+     * <code>ALLOW_</code> prefix.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -318,16 +322,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics configuration for collecting metrics for
-     * this user pool.
+     * The user pool analytics configuration for collecting metrics and sending
+     * them to your Amazon Pinpoint campaign.
      * </p>
      * <note>
      * <p>
-     * In Amazon Web Services Regions where isn't available, User Pools only
-     * supports sending events to Amazon Pinpoint projects in Amazon Web
-     * Services Region us-east-1. In Regions where is available, User Pools will
-     * support sending events to Amazon Pinpoint projects within that same
-     * Region.
+     * In Amazon Web Services Regions where Amazon Pinpoint isn't available,
+     * user pools only support sending events to Amazon Pinpoint projects in
+     * Amazon Web Services Region us-east-1. In Regions where Amazon Pinpoint is
+     * available, user pools support sending events to Amazon Pinpoint projects
+     * within that same Region.
      * </p>
      * </note>
      */
@@ -904,14 +908,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * If your app client allows users to sign in through an identity provider,
-     * this array must include all attributes that are mapped to identity
+     * this array must include all attributes that you have mapped to identity
      * provider attributes. Amazon Cognito updates mapped attributes when users
      * sign in to your application through an identity provider. If your app
-     * client lacks write access to a mapped attribute, Amazon Cognito throws an
-     * error when it tries to update the attribute. For more information, see <a
-     * href=
+     * client does not have write access to a mapped attribute, Amazon Cognito
+     * throws an error when it tries to update the attribute. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
+     * >Specifying Identity Provider Attribute Mappings for Your user pool</a>.
      * </p>
      *
      * @return <p>
@@ -919,15 +923,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         </p>
      *         <p>
      *         If your app client allows users to sign in through an identity
-     *         provider, this array must include all attributes that are mapped
-     *         to identity provider attributes. Amazon Cognito updates mapped
-     *         attributes when users sign in to your application through an
-     *         identity provider. If your app client lacks write access to a
-     *         mapped attribute, Amazon Cognito throws an error when it tries to
-     *         update the attribute. For more information, see <a href=
+     *         provider, this array must include all attributes that you have
+     *         mapped to identity provider attributes. Amazon Cognito updates
+     *         mapped attributes when users sign in to your application through
+     *         an identity provider. If your app client does not have write
+     *         access to a mapped attribute, Amazon Cognito throws an error when
+     *         it tries to update the attribute. For more information, see <a
+     *         href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     *         >Specifying Identity Provider Attribute Mappings for Your User
-     *         Pool</a>.
+     *         >Specifying Identity Provider Attribute Mappings for Your user
+     *         pool</a>.
      *         </p>
      */
     public java.util.List<String> getWriteAttributes() {
@@ -940,14 +945,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * If your app client allows users to sign in through an identity provider,
-     * this array must include all attributes that are mapped to identity
+     * this array must include all attributes that you have mapped to identity
      * provider attributes. Amazon Cognito updates mapped attributes when users
      * sign in to your application through an identity provider. If your app
-     * client lacks write access to a mapped attribute, Amazon Cognito throws an
-     * error when it tries to update the attribute. For more information, see <a
-     * href=
+     * client does not have write access to a mapped attribute, Amazon Cognito
+     * throws an error when it tries to update the attribute. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
+     * >Specifying Identity Provider Attribute Mappings for Your user pool</a>.
      * </p>
      *
      * @param writeAttributes <p>
@@ -955,16 +960,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            If your app client allows users to sign in through an identity
-     *            provider, this array must include all attributes that are
+     *            provider, this array must include all attributes that you have
      *            mapped to identity provider attributes. Amazon Cognito updates
      *            mapped attributes when users sign in to your application
-     *            through an identity provider. If your app client lacks write
-     *            access to a mapped attribute, Amazon Cognito throws an error
-     *            when it tries to update the attribute. For more information,
-     *            see <a href=
+     *            through an identity provider. If your app client does not have
+     *            write access to a mapped attribute, Amazon Cognito throws an
+     *            error when it tries to update the attribute. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     *            >Specifying Identity Provider Attribute Mappings for Your User
-     *            Pool</a>.
+     *            >Specifying Identity Provider Attribute Mappings for Your user
+     *            pool</a>.
      *            </p>
      */
     public void setWriteAttributes(java.util.Collection<String> writeAttributes) {
@@ -982,14 +987,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * If your app client allows users to sign in through an identity provider,
-     * this array must include all attributes that are mapped to identity
+     * this array must include all attributes that you have mapped to identity
      * provider attributes. Amazon Cognito updates mapped attributes when users
      * sign in to your application through an identity provider. If your app
-     * client lacks write access to a mapped attribute, Amazon Cognito throws an
-     * error when it tries to update the attribute. For more information, see <a
-     * href=
+     * client does not have write access to a mapped attribute, Amazon Cognito
+     * throws an error when it tries to update the attribute. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
+     * >Specifying Identity Provider Attribute Mappings for Your user pool</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1000,16 +1005,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            If your app client allows users to sign in through an identity
-     *            provider, this array must include all attributes that are
+     *            provider, this array must include all attributes that you have
      *            mapped to identity provider attributes. Amazon Cognito updates
      *            mapped attributes when users sign in to your application
-     *            through an identity provider. If your app client lacks write
-     *            access to a mapped attribute, Amazon Cognito throws an error
-     *            when it tries to update the attribute. For more information,
-     *            see <a href=
+     *            through an identity provider. If your app client does not have
+     *            write access to a mapped attribute, Amazon Cognito throws an
+     *            error when it tries to update the attribute. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     *            >Specifying Identity Provider Attribute Mappings for Your User
-     *            Pool</a>.
+     *            >Specifying Identity Provider Attribute Mappings for Your user
+     *            pool</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1030,14 +1035,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * If your app client allows users to sign in through an identity provider,
-     * this array must include all attributes that are mapped to identity
+     * this array must include all attributes that you have mapped to identity
      * provider attributes. Amazon Cognito updates mapped attributes when users
      * sign in to your application through an identity provider. If your app
-     * client lacks write access to a mapped attribute, Amazon Cognito throws an
-     * error when it tries to update the attribute. For more information, see <a
-     * href=
+     * client does not have write access to a mapped attribute, Amazon Cognito
+     * throws an error when it tries to update the attribute. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
+     * >Specifying Identity Provider Attribute Mappings for Your user pool</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1048,16 +1053,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            </p>
      *            <p>
      *            If your app client allows users to sign in through an identity
-     *            provider, this array must include all attributes that are
+     *            provider, this array must include all attributes that you have
      *            mapped to identity provider attributes. Amazon Cognito updates
      *            mapped attributes when users sign in to your application
-     *            through an identity provider. If your app client lacks write
-     *            access to a mapped attribute, Amazon Cognito throws an error
-     *            when it tries to update the attribute. For more information,
-     *            see <a href=
+     *            through an identity provider. If your app client does not have
+     *            write access to a mapped attribute, Amazon Cognito throws an
+     *            error when it tries to update the attribute. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
-     *            >Specifying Identity Provider Attribute Mappings for Your User
-     *            Pool</a>.
+     *            >Specifying Identity Provider Attribute Mappings for Your user
+     *            pool</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1073,9 +1078,13 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * The authentication flows that are supported by the user pool clients.
      * Flow names without the <code>ALLOW_</code> prefix are no longer
      * supported, in favor of new names with the <code>ALLOW_</code> prefix.
-     * Note that values with <code>ALLOW_</code> prefix must be used only along
-     * with the <code>ALLOW_</code> prefix.
      * </p>
+     * <note>
+     * <p>
+     * Values with <code>ALLOW_</code> prefix must be used only along with the
+     * <code>ALLOW_</code> prefix.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1119,10 +1128,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *         The authentication flows that are supported by the user pool
      *         clients. Flow names without the <code>ALLOW_</code> prefix are no
      *         longer supported, in favor of new names with the
-     *         <code>ALLOW_</code> prefix. Note that values with
-     *         <code>ALLOW_</code> prefix must be used only along with the
      *         <code>ALLOW_</code> prefix.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Values with <code>ALLOW_</code> prefix must be used only along
+     *         with the <code>ALLOW_</code> prefix.
+     *         </p>
+     *         </note>
      *         <p>
      *         Valid values include:
      *         </p>
@@ -1175,9 +1188,13 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * The authentication flows that are supported by the user pool clients.
      * Flow names without the <code>ALLOW_</code> prefix are no longer
      * supported, in favor of new names with the <code>ALLOW_</code> prefix.
-     * Note that values with <code>ALLOW_</code> prefix must be used only along
-     * with the <code>ALLOW_</code> prefix.
      * </p>
+     * <note>
+     * <p>
+     * Values with <code>ALLOW_</code> prefix must be used only along with the
+     * <code>ALLOW_</code> prefix.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1221,10 +1238,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The authentication flows that are supported by the user pool
      *            clients. Flow names without the <code>ALLOW_</code> prefix are
      *            no longer supported, in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with the
      *            <code>ALLOW_</code> prefix.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Values with <code>ALLOW_</code> prefix must be used only along
+     *            with the <code>ALLOW_</code> prefix.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -1282,9 +1303,13 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * The authentication flows that are supported by the user pool clients.
      * Flow names without the <code>ALLOW_</code> prefix are no longer
      * supported, in favor of new names with the <code>ALLOW_</code> prefix.
-     * Note that values with <code>ALLOW_</code> prefix must be used only along
-     * with the <code>ALLOW_</code> prefix.
      * </p>
+     * <note>
+     * <p>
+     * Values with <code>ALLOW_</code> prefix must be used only along with the
+     * <code>ALLOW_</code> prefix.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1331,10 +1356,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The authentication flows that are supported by the user pool
      *            clients. Flow names without the <code>ALLOW_</code> prefix are
      *            no longer supported, in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with the
      *            <code>ALLOW_</code> prefix.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Values with <code>ALLOW_</code> prefix must be used only along
+     *            with the <code>ALLOW_</code> prefix.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -1395,9 +1424,13 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * The authentication flows that are supported by the user pool clients.
      * Flow names without the <code>ALLOW_</code> prefix are no longer
      * supported, in favor of new names with the <code>ALLOW_</code> prefix.
-     * Note that values with <code>ALLOW_</code> prefix must be used only along
-     * with the <code>ALLOW_</code> prefix.
      * </p>
+     * <note>
+     * <p>
+     * Values with <code>ALLOW_</code> prefix must be used only along with the
+     * <code>ALLOW_</code> prefix.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1444,10 +1477,14 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The authentication flows that are supported by the user pool
      *            clients. Flow names without the <code>ALLOW_</code> prefix are
      *            no longer supported, in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with the
      *            <code>ALLOW_</code> prefix.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Values with <code>ALLOW_</code> prefix must be used only along
+     *            with the <code>ALLOW_</code> prefix.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -2629,30 +2666,31 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics configuration for collecting metrics for
-     * this user pool.
+     * The user pool analytics configuration for collecting metrics and sending
+     * them to your Amazon Pinpoint campaign.
      * </p>
      * <note>
      * <p>
-     * In Amazon Web Services Regions where isn't available, User Pools only
-     * supports sending events to Amazon Pinpoint projects in Amazon Web
-     * Services Region us-east-1. In Regions where is available, User Pools will
-     * support sending events to Amazon Pinpoint projects within that same
-     * Region.
+     * In Amazon Web Services Regions where Amazon Pinpoint isn't available,
+     * user pools only support sending events to Amazon Pinpoint projects in
+     * Amazon Web Services Region us-east-1. In Regions where Amazon Pinpoint is
+     * available, user pools support sending events to Amazon Pinpoint projects
+     * within that same Region.
      * </p>
      * </note>
      *
      * @return <p>
-     *         The Amazon Pinpoint analytics configuration for collecting
-     *         metrics for this user pool.
+     *         The user pool analytics configuration for collecting metrics and
+     *         sending them to your Amazon Pinpoint campaign.
      *         </p>
      *         <note>
      *         <p>
-     *         In Amazon Web Services Regions where isn't available, User Pools
-     *         only supports sending events to Amazon Pinpoint projects in
-     *         Amazon Web Services Region us-east-1. In Regions where is
-     *         available, User Pools will support sending events to Amazon
-     *         Pinpoint projects within that same Region.
+     *         In Amazon Web Services Regions where Amazon Pinpoint isn't
+     *         available, user pools only support sending events to Amazon
+     *         Pinpoint projects in Amazon Web Services Region us-east-1. In
+     *         Regions where Amazon Pinpoint is available, user pools support
+     *         sending events to Amazon Pinpoint projects within that same
+     *         Region.
      *         </p>
      *         </note>
      */
@@ -2662,30 +2700,31 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics configuration for collecting metrics for
-     * this user pool.
+     * The user pool analytics configuration for collecting metrics and sending
+     * them to your Amazon Pinpoint campaign.
      * </p>
      * <note>
      * <p>
-     * In Amazon Web Services Regions where isn't available, User Pools only
-     * supports sending events to Amazon Pinpoint projects in Amazon Web
-     * Services Region us-east-1. In Regions where is available, User Pools will
-     * support sending events to Amazon Pinpoint projects within that same
-     * Region.
+     * In Amazon Web Services Regions where Amazon Pinpoint isn't available,
+     * user pools only support sending events to Amazon Pinpoint projects in
+     * Amazon Web Services Region us-east-1. In Regions where Amazon Pinpoint is
+     * available, user pools support sending events to Amazon Pinpoint projects
+     * within that same Region.
      * </p>
      * </note>
      *
      * @param analyticsConfiguration <p>
-     *            The Amazon Pinpoint analytics configuration for collecting
-     *            metrics for this user pool.
+     *            The user pool analytics configuration for collecting metrics
+     *            and sending them to your Amazon Pinpoint campaign.
      *            </p>
      *            <note>
      *            <p>
-     *            In Amazon Web Services Regions where isn't available, User
-     *            Pools only supports sending events to Amazon Pinpoint projects
-     *            in Amazon Web Services Region us-east-1. In Regions where is
-     *            available, User Pools will support sending events to Amazon
-     *            Pinpoint projects within that same Region.
+     *            In Amazon Web Services Regions where Amazon Pinpoint isn't
+     *            available, user pools only support sending events to Amazon
+     *            Pinpoint projects in Amazon Web Services Region us-east-1. In
+     *            Regions where Amazon Pinpoint is available, user pools support
+     *            sending events to Amazon Pinpoint projects within that same
+     *            Region.
      *            </p>
      *            </note>
      */
@@ -2695,16 +2734,16 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics configuration for collecting metrics for
-     * this user pool.
+     * The user pool analytics configuration for collecting metrics and sending
+     * them to your Amazon Pinpoint campaign.
      * </p>
      * <note>
      * <p>
-     * In Amazon Web Services Regions where isn't available, User Pools only
-     * supports sending events to Amazon Pinpoint projects in Amazon Web
-     * Services Region us-east-1. In Regions where is available, User Pools will
-     * support sending events to Amazon Pinpoint projects within that same
-     * Region.
+     * In Amazon Web Services Regions where Amazon Pinpoint isn't available,
+     * user pools only support sending events to Amazon Pinpoint projects in
+     * Amazon Web Services Region us-east-1. In Regions where Amazon Pinpoint is
+     * available, user pools support sending events to Amazon Pinpoint projects
+     * within that same Region.
      * </p>
      * </note>
      * <p>
@@ -2712,16 +2751,17 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * together.
      *
      * @param analyticsConfiguration <p>
-     *            The Amazon Pinpoint analytics configuration for collecting
-     *            metrics for this user pool.
+     *            The user pool analytics configuration for collecting metrics
+     *            and sending them to your Amazon Pinpoint campaign.
      *            </p>
      *            <note>
      *            <p>
-     *            In Amazon Web Services Regions where isn't available, User
-     *            Pools only supports sending events to Amazon Pinpoint projects
-     *            in Amazon Web Services Region us-east-1. In Regions where is
-     *            available, User Pools will support sending events to Amazon
-     *            Pinpoint projects within that same Region.
+     *            In Amazon Web Services Regions where Amazon Pinpoint isn't
+     *            available, user pools only support sending events to Amazon
+     *            Pinpoint projects in Amazon Web Services Region us-east-1. In
+     *            Regions where Amazon Pinpoint is available, user pools support
+     *            sending events to Amazon Pinpoint projects within that same
+     *            Region.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

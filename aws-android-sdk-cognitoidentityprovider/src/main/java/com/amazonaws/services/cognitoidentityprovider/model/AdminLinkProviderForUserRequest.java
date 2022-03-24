@@ -61,12 +61,12 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The existing user in the user pool to be linked to the external identity
-     * provider user account. Can be a native (Username + Password) Amazon
-     * Cognito User Pools user or a federated user (for example, a SAML or
-     * Facebook user). If the user doesn't exist, an exception is thrown. This
-     * is the user that is returned when the new user (with the linked identity
-     * provider attribute) signs in.
+     * The existing user in the user pool that you want to assign to the
+     * external identity provider user account. This user can be a native
+     * (Username + Password) Amazon Cognito user pools user or a federated user
+     * (for example, a SAML or Facebook user). If the user doesn't exist, Amazon
+     * Cognito generates an exception. Amazon Cognito returns this user when the
+     * new user (with the linked identity provider attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -172,12 +172,12 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The existing user in the user pool to be linked to the external identity
-     * provider user account. Can be a native (Username + Password) Amazon
-     * Cognito User Pools user or a federated user (for example, a SAML or
-     * Facebook user). If the user doesn't exist, an exception is thrown. This
-     * is the user that is returned when the new user (with the linked identity
-     * provider attribute) signs in.
+     * The existing user in the user pool that you want to assign to the
+     * external identity provider user account. This user can be a native
+     * (Username + Password) Amazon Cognito user pools user or a federated user
+     * (for example, a SAML or Facebook user). If the user doesn't exist, Amazon
+     * Cognito generates an exception. Amazon Cognito returns this user when the
+     * new user (with the linked identity provider attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -202,12 +202,13 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </important>
      *
      * @return <p>
-     *         The existing user in the user pool to be linked to the external
-     *         identity provider user account. Can be a native (Username +
-     *         Password) Amazon Cognito User Pools user or a federated user (for
-     *         example, a SAML or Facebook user). If the user doesn't exist, an
-     *         exception is thrown. This is the user that is returned when the
-     *         new user (with the linked identity provider attribute) signs in.
+     *         The existing user in the user pool that you want to assign to the
+     *         external identity provider user account. This user can be a
+     *         native (Username + Password) Amazon Cognito user pools user or a
+     *         federated user (for example, a SAML or Facebook user). If the
+     *         user doesn't exist, Amazon Cognito generates an exception. Amazon
+     *         Cognito returns this user when the new user (with the linked
+     *         identity provider attribute) signs in.
      *         </p>
      *         <p>
      *         For a native username + password user, the
@@ -238,12 +239,12 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The existing user in the user pool to be linked to the external identity
-     * provider user account. Can be a native (Username + Password) Amazon
-     * Cognito User Pools user or a federated user (for example, a SAML or
-     * Facebook user). If the user doesn't exist, an exception is thrown. This
-     * is the user that is returned when the new user (with the linked identity
-     * provider attribute) signs in.
+     * The existing user in the user pool that you want to assign to the
+     * external identity provider user account. This user can be a native
+     * (Username + Password) Amazon Cognito user pools user or a federated user
+     * (for example, a SAML or Facebook user). If the user doesn't exist, Amazon
+     * Cognito generates an exception. Amazon Cognito returns this user when the
+     * new user (with the linked identity provider attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -268,13 +269,13 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </important>
      *
      * @param destinationUser <p>
-     *            The existing user in the user pool to be linked to the
-     *            external identity provider user account. Can be a native
-     *            (Username + Password) Amazon Cognito User Pools user or a
-     *            federated user (for example, a SAML or Facebook user). If the
-     *            user doesn't exist, an exception is thrown. This is the user
-     *            that is returned when the new user (with the linked identity
-     *            provider attribute) signs in.
+     *            The existing user in the user pool that you want to assign to
+     *            the external identity provider user account. This user can be
+     *            a native (Username + Password) Amazon Cognito user pools user
+     *            or a federated user (for example, a SAML or Facebook user). If
+     *            the user doesn't exist, Amazon Cognito generates an exception.
+     *            Amazon Cognito returns this user when the new user (with the
+     *            linked identity provider attribute) signs in.
      *            </p>
      *            <p>
      *            For a native username + password user, the
@@ -305,12 +306,12 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The existing user in the user pool to be linked to the external identity
-     * provider user account. Can be a native (Username + Password) Amazon
-     * Cognito User Pools user or a federated user (for example, a SAML or
-     * Facebook user). If the user doesn't exist, an exception is thrown. This
-     * is the user that is returned when the new user (with the linked identity
-     * provider attribute) signs in.
+     * The existing user in the user pool that you want to assign to the
+     * external identity provider user account. This user can be a native
+     * (Username + Password) Amazon Cognito user pools user or a federated user
+     * (for example, a SAML or Facebook user). If the user doesn't exist, Amazon
+     * Cognito generates an exception. Amazon Cognito returns this user when the
+     * new user (with the linked identity provider attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -338,13 +339,13 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * together.
      *
      * @param destinationUser <p>
-     *            The existing user in the user pool to be linked to the
-     *            external identity provider user account. Can be a native
-     *            (Username + Password) Amazon Cognito User Pools user or a
-     *            federated user (for example, a SAML or Facebook user). If the
-     *            user doesn't exist, an exception is thrown. This is the user
-     *            that is returned when the new user (with the linked identity
-     *            provider attribute) signs in.
+     *            The existing user in the user pool that you want to assign to
+     *            the external identity provider user account. This user can be
+     *            a native (Username + Password) Amazon Cognito user pools user
+     *            or a federated user (for example, a SAML or Facebook user). If
+     *            the user doesn't exist, Amazon Cognito generates an exception.
+     *            Amazon Cognito returns this user when the new user (with the
+     *            linked identity provider attribute) signs in.
      *            </p>
      *            <p>
      *            For a native username + password user, the

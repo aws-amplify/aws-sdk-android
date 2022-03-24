@@ -32,7 +32,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -124,7 +125,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -155,7 +157,8 @@ public class AccountTakeoverActionType implements Serializable {
      * <b>Allowed Values: </b>BLOCK, MFA_IF_CONFIGURED, MFA_REQUIRED, NO_ACTION
      *
      * @return <p>
-     *         The event action.
+     *         The action to take in response to the account takeover action.
+     *         Valid values are:
      *         </p>
      *         <ul>
      *         <li>
@@ -189,7 +192,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -220,7 +224,8 @@ public class AccountTakeoverActionType implements Serializable {
      * <b>Allowed Values: </b>BLOCK, MFA_IF_CONFIGURED, MFA_REQUIRED, NO_ACTION
      *
      * @param eventAction <p>
-     *            The event action.
+     *            The action to take in response to the account takeover action.
+     *            Valid values are:
      *            </p>
      *            <ul>
      *            <li>
@@ -255,7 +260,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -289,7 +295,8 @@ public class AccountTakeoverActionType implements Serializable {
      * <b>Allowed Values: </b>BLOCK, MFA_IF_CONFIGURED, MFA_REQUIRED, NO_ACTION
      *
      * @param eventAction <p>
-     *            The event action.
+     *            The action to take in response to the account takeover action.
+     *            Valid values are:
      *            </p>
      *            <ul>
      *            <li>
@@ -327,7 +334,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -358,7 +366,8 @@ public class AccountTakeoverActionType implements Serializable {
      * <b>Allowed Values: </b>BLOCK, MFA_IF_CONFIGURED, MFA_REQUIRED, NO_ACTION
      *
      * @param eventAction <p>
-     *            The event action.
+     *            The action to take in response to the account takeover action.
+     *            Valid values are:
      *            </p>
      *            <ul>
      *            <li>
@@ -393,7 +402,8 @@ public class AccountTakeoverActionType implements Serializable {
 
     /**
      * <p>
-     * The event action.
+     * The action to take in response to the account takeover action. Valid
+     * values are:
      * </p>
      * <ul>
      * <li>
@@ -427,7 +437,8 @@ public class AccountTakeoverActionType implements Serializable {
      * <b>Allowed Values: </b>BLOCK, MFA_IF_CONFIGURED, MFA_REQUIRED, NO_ACTION
      *
      * @param eventAction <p>
-     *            The event action.
+     *            The action to take in response to the account takeover action.
+     *            Valid values are:
      *            </p>
      *            <ul>
      *            <li>

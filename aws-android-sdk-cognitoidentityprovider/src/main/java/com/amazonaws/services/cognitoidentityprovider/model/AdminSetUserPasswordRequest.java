@@ -67,7 +67,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String password;
@@ -206,7 +206,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -223,7 +223,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param password <p>
@@ -243,7 +243,7 @@ public class AdminSetUserPasswordRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>6 - 256<br/>
+     * <b>Length: </b> - 256<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param password <p>

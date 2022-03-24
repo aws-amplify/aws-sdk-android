@@ -211,14 +211,21 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages tfrom your user pool.
      * </p>
      */
     private EmailConfigurationType emailConfiguration;
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      */
     private SmsConfigurationType smsConfiguration;
@@ -241,35 +248,38 @@ public class UserPoolType implements Serializable {
      * This message might include comma-separated values to describe why your
      * SMS configuration can't send messages to user pool end users.
      * </p>
-     * <ul>
-     * <li>
+     * <dl>
+     * <dt>InvalidSmsRoleAccessPolicyException</dt>
+     * <dd>
      * <p>
-     * InvalidSmsRoleAccessPolicyException - The Identity and Access Management
-     * role that Amazon Cognito uses to send SMS messages isn't properly
-     * configured. For more information, see <a href=
+     * The Identity and Access Management role that Amazon Cognito uses to send
+     * SMS messages isn't properly configured. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      * >SmsConfigurationType</a>.
      * </p>
-     * </li>
-     * <li>
+     * </dd>
+     * <dt>SNSSandbox</dt>
+     * <dd>
      * <p>
-     * SNSSandbox - The Amazon Web Services account is in SNS Sandbox and
-     * messages will only reach verified end users. This parameter won’t get
-     * populated with SNSSandbox if the IAM user creating the user pool doesn’t
-     * have SNS permissions. To learn how to move your Amazon Web Services
-     * account out of the sandbox, see <a href=
+     * The Amazon Web Services account is in the SNS SMS Sandbox and messages
+     * will only reach verified end users. This parameter won’t get populated
+     * with SNSSandbox if the IAM user creating the user pool doesn’t have SNS
+     * permissions. To learn how to move your Amazon Web Services account out of
+     * the sandbox, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      * >Moving out of the SMS sandbox</a>.
      * </p>
-     * </li>
-     * </ul>
+     * </dd>
+     * </dl>
      */
     private String smsConfigurationFailure;
 
     /**
      * <p>
-     * The reason why the email configuration can't send the messages to your
-     * users.
+     * Deprecated. Review error codes from API requests with
+     * <code>EventSource:cognito-idp.amazonaws.com</code> in CloudTrail for
+     * information about problems with user pool email configuration.
      * </p>
      */
     private String emailConfigurationFailure;
@@ -1732,11 +1742,15 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages tfrom your user pool.
      * </p>
      *
      * @return <p>
-     *         The email configuration.
+     *         The email configuration of your user pool. The email
+     *         configuration type sets your preferred sending method, Amazon Web
+     *         Services Region, and sender for messages tfrom your user pool.
      *         </p>
      */
     public EmailConfigurationType getEmailConfiguration() {
@@ -1745,11 +1759,16 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages tfrom your user pool.
      * </p>
      *
      * @param emailConfiguration <p>
-     *            The email configuration.
+     *            The email configuration of your user pool. The email
+     *            configuration type sets your preferred sending method, Amazon
+     *            Web Services Region, and sender for messages tfrom your user
+     *            pool.
      *            </p>
      */
     public void setEmailConfiguration(EmailConfigurationType emailConfiguration) {
@@ -1758,14 +1777,19 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The email configuration.
+     * The email configuration of your user pool. The email configuration type
+     * sets your preferred sending method, Amazon Web Services Region, and
+     * sender for messages tfrom your user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param emailConfiguration <p>
-     *            The email configuration.
+     *            The email configuration of your user pool. The email
+     *            configuration type sets your preferred sending method, Amazon
+     *            Web Services Region, and sender for messages tfrom your user
+     *            pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1777,11 +1801,22 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      *
      * @return <p>
-     *         The SMS configuration.
+     *         The SMS configuration with the settings that your Amazon Cognito
+     *         user pool must use to send an SMS message from your Amazon Web
+     *         Services account through Amazon Simple Notification Service. To
+     *         send SMS messages with Amazon SNS in the Amazon Web Services
+     *         Region that you want, the Amazon Cognito user pool uses an
+     *         Identity and Access Management (IAM) role in your Amazon Web
+     *         Services account.
      *         </p>
      */
     public SmsConfigurationType getSmsConfiguration() {
@@ -1790,11 +1825,22 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To send SMS messages with Amazon SNS in the Amazon
+     *            Web Services Region that you want, the Amazon Cognito user
+     *            pool uses an Identity and Access Management (IAM) role in your
+     *            Amazon Web Services account.
      *            </p>
      */
     public void setSmsConfiguration(SmsConfigurationType smsConfiguration) {
@@ -1803,14 +1849,25 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The SMS configuration.
+     * The SMS configuration with the settings that your Amazon Cognito user
+     * pool must use to send an SMS message from your Amazon Web Services
+     * account through Amazon Simple Notification Service. To send SMS messages
+     * with Amazon SNS in the Amazon Web Services Region that you want, the
+     * Amazon Cognito user pool uses an Identity and Access Management (IAM)
+     * role in your Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param smsConfiguration <p>
-     *            The SMS configuration.
+     *            The SMS configuration with the settings that your Amazon
+     *            Cognito user pool must use to send an SMS message from your
+     *            Amazon Web Services account through Amazon Simple Notification
+     *            Service. To send SMS messages with Amazon SNS in the Amazon
+     *            Web Services Region that you want, the Amazon Cognito user
+     *            pool uses an Identity and Access Management (IAM) role in your
+     *            Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1928,28 +1985,30 @@ public class UserPoolType implements Serializable {
      * This message might include comma-separated values to describe why your
      * SMS configuration can't send messages to user pool end users.
      * </p>
-     * <ul>
-     * <li>
+     * <dl>
+     * <dt>InvalidSmsRoleAccessPolicyException</dt>
+     * <dd>
      * <p>
-     * InvalidSmsRoleAccessPolicyException - The Identity and Access Management
-     * role that Amazon Cognito uses to send SMS messages isn't properly
-     * configured. For more information, see <a href=
+     * The Identity and Access Management role that Amazon Cognito uses to send
+     * SMS messages isn't properly configured. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      * >SmsConfigurationType</a>.
      * </p>
-     * </li>
-     * <li>
+     * </dd>
+     * <dt>SNSSandbox</dt>
+     * <dd>
      * <p>
-     * SNSSandbox - The Amazon Web Services account is in SNS Sandbox and
-     * messages will only reach verified end users. This parameter won’t get
-     * populated with SNSSandbox if the IAM user creating the user pool doesn’t
-     * have SNS permissions. To learn how to move your Amazon Web Services
-     * account out of the sandbox, see <a href=
+     * The Amazon Web Services account is in the SNS SMS Sandbox and messages
+     * will only reach verified end users. This parameter won’t get populated
+     * with SNSSandbox if the IAM user creating the user pool doesn’t have SNS
+     * permissions. To learn how to move your Amazon Web Services account out of
+     * the sandbox, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      * >Moving out of the SMS sandbox</a>.
      * </p>
-     * </li>
-     * </ul>
+     * </dd>
+     * </dl>
      *
      * @return <p>
      *         The reason why the SMS configuration can't send the messages to
@@ -1960,28 +2019,30 @@ public class UserPoolType implements Serializable {
      *         your SMS configuration can't send messages to user pool end
      *         users.
      *         </p>
-     *         <ul>
-     *         <li>
+     *         <dl>
+     *         <dt>InvalidSmsRoleAccessPolicyException</dt>
+     *         <dd>
      *         <p>
-     *         InvalidSmsRoleAccessPolicyException - The Identity and Access
-     *         Management role that Amazon Cognito uses to send SMS messages
-     *         isn't properly configured. For more information, see <a href=
+     *         The Identity and Access Management role that Amazon Cognito uses
+     *         to send SMS messages isn't properly configured. For more
+     *         information, see <a href=
      *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      *         >SmsConfigurationType</a>.
      *         </p>
-     *         </li>
-     *         <li>
+     *         </dd>
+     *         <dt>SNSSandbox</dt>
+     *         <dd>
      *         <p>
-     *         SNSSandbox - The Amazon Web Services account is in SNS Sandbox
-     *         and messages will only reach verified end users. This parameter
-     *         won’t get populated with SNSSandbox if the IAM user creating the
-     *         user pool doesn’t have SNS permissions. To learn how to move your
+     *         The Amazon Web Services account is in the SNS SMS Sandbox and
+     *         messages will only reach verified end users. This parameter won’t
+     *         get populated with SNSSandbox if the IAM user creating the user
+     *         pool doesn’t have SNS permissions. To learn how to move your
      *         Amazon Web Services account out of the sandbox, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      *         >Moving out of the SMS sandbox</a>.
      *         </p>
-     *         </li>
-     *         </ul>
+     *         </dd>
+     *         </dl>
      */
     public String getSmsConfigurationFailure() {
         return smsConfigurationFailure;
@@ -1996,28 +2057,30 @@ public class UserPoolType implements Serializable {
      * This message might include comma-separated values to describe why your
      * SMS configuration can't send messages to user pool end users.
      * </p>
-     * <ul>
-     * <li>
+     * <dl>
+     * <dt>InvalidSmsRoleAccessPolicyException</dt>
+     * <dd>
      * <p>
-     * InvalidSmsRoleAccessPolicyException - The Identity and Access Management
-     * role that Amazon Cognito uses to send SMS messages isn't properly
-     * configured. For more information, see <a href=
+     * The Identity and Access Management role that Amazon Cognito uses to send
+     * SMS messages isn't properly configured. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      * >SmsConfigurationType</a>.
      * </p>
-     * </li>
-     * <li>
+     * </dd>
+     * <dt>SNSSandbox</dt>
+     * <dd>
      * <p>
-     * SNSSandbox - The Amazon Web Services account is in SNS Sandbox and
-     * messages will only reach verified end users. This parameter won’t get
-     * populated with SNSSandbox if the IAM user creating the user pool doesn’t
-     * have SNS permissions. To learn how to move your Amazon Web Services
-     * account out of the sandbox, see <a href=
+     * The Amazon Web Services account is in the SNS SMS Sandbox and messages
+     * will only reach verified end users. This parameter won’t get populated
+     * with SNSSandbox if the IAM user creating the user pool doesn’t have SNS
+     * permissions. To learn how to move your Amazon Web Services account out of
+     * the sandbox, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      * >Moving out of the SMS sandbox</a>.
      * </p>
-     * </li>
-     * </ul>
+     * </dd>
+     * </dl>
      *
      * @param smsConfigurationFailure <p>
      *            The reason why the SMS configuration can't send the messages
@@ -2028,29 +2091,31 @@ public class UserPoolType implements Serializable {
      *            why your SMS configuration can't send messages to user pool
      *            end users.
      *            </p>
-     *            <ul>
-     *            <li>
+     *            <dl>
+     *            <dt>InvalidSmsRoleAccessPolicyException</dt>
+     *            <dd>
      *            <p>
-     *            InvalidSmsRoleAccessPolicyException - The Identity and Access
-     *            Management role that Amazon Cognito uses to send SMS messages
-     *            isn't properly configured. For more information, see <a href=
+     *            The Identity and Access Management role that Amazon Cognito
+     *            uses to send SMS messages isn't properly configured. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      *            >SmsConfigurationType</a>.
      *            </p>
-     *            </li>
-     *            <li>
+     *            </dd>
+     *            <dt>SNSSandbox</dt>
+     *            <dd>
      *            <p>
-     *            SNSSandbox - The Amazon Web Services account is in SNS Sandbox
-     *            and messages will only reach verified end users. This
-     *            parameter won’t get populated with SNSSandbox if the IAM user
-     *            creating the user pool doesn’t have SNS permissions. To learn
-     *            how to move your Amazon Web Services account out of the
-     *            sandbox, see <a href=
+     *            The Amazon Web Services account is in the SNS SMS Sandbox and
+     *            messages will only reach verified end users. This parameter
+     *            won’t get populated with SNSSandbox if the IAM user creating
+     *            the user pool doesn’t have SNS permissions. To learn how to
+     *            move your Amazon Web Services account out of the sandbox, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      *            >Moving out of the SMS sandbox</a>.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            </dd>
+     *            </dl>
      */
     public void setSmsConfigurationFailure(String smsConfigurationFailure) {
         this.smsConfigurationFailure = smsConfigurationFailure;
@@ -2065,28 +2130,30 @@ public class UserPoolType implements Serializable {
      * This message might include comma-separated values to describe why your
      * SMS configuration can't send messages to user pool end users.
      * </p>
-     * <ul>
-     * <li>
+     * <dl>
+     * <dt>InvalidSmsRoleAccessPolicyException</dt>
+     * <dd>
      * <p>
-     * InvalidSmsRoleAccessPolicyException - The Identity and Access Management
-     * role that Amazon Cognito uses to send SMS messages isn't properly
-     * configured. For more information, see <a href=
+     * The Identity and Access Management role that Amazon Cognito uses to send
+     * SMS messages isn't properly configured. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      * >SmsConfigurationType</a>.
      * </p>
-     * </li>
-     * <li>
+     * </dd>
+     * <dt>SNSSandbox</dt>
+     * <dd>
      * <p>
-     * SNSSandbox - The Amazon Web Services account is in SNS Sandbox and
-     * messages will only reach verified end users. This parameter won’t get
-     * populated with SNSSandbox if the IAM user creating the user pool doesn’t
-     * have SNS permissions. To learn how to move your Amazon Web Services
-     * account out of the sandbox, see <a href=
+     * The Amazon Web Services account is in the SNS SMS Sandbox and messages
+     * will only reach verified end users. This parameter won’t get populated
+     * with SNSSandbox if the IAM user creating the user pool doesn’t have SNS
+     * permissions. To learn how to move your Amazon Web Services account out of
+     * the sandbox, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      * >Moving out of the SMS sandbox</a>.
      * </p>
-     * </li>
-     * </ul>
+     * </dd>
+     * </dl>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -2100,29 +2167,31 @@ public class UserPoolType implements Serializable {
      *            why your SMS configuration can't send messages to user pool
      *            end users.
      *            </p>
-     *            <ul>
-     *            <li>
+     *            <dl>
+     *            <dt>InvalidSmsRoleAccessPolicyException</dt>
+     *            <dd>
      *            <p>
-     *            InvalidSmsRoleAccessPolicyException - The Identity and Access
-     *            Management role that Amazon Cognito uses to send SMS messages
-     *            isn't properly configured. For more information, see <a href=
+     *            The Identity and Access Management role that Amazon Cognito
+     *            uses to send SMS messages isn't properly configured. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html"
      *            >SmsConfigurationType</a>.
      *            </p>
-     *            </li>
-     *            <li>
+     *            </dd>
+     *            <dt>SNSSandbox</dt>
+     *            <dd>
      *            <p>
-     *            SNSSandbox - The Amazon Web Services account is in SNS Sandbox
-     *            and messages will only reach verified end users. This
-     *            parameter won’t get populated with SNSSandbox if the IAM user
-     *            creating the user pool doesn’t have SNS permissions. To learn
-     *            how to move your Amazon Web Services account out of the
-     *            sandbox, see <a href=
+     *            The Amazon Web Services account is in the SNS SMS Sandbox and
+     *            messages will only reach verified end users. This parameter
+     *            won’t get populated with SNSSandbox if the IAM user creating
+     *            the user pool doesn’t have SNS permissions. To learn how to
+     *            move your Amazon Web Services account out of the sandbox, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html"
      *            >Moving out of the SMS sandbox</a>.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            </dd>
+     *            </dl>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -2133,13 +2202,16 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The reason why the email configuration can't send the messages to your
-     * users.
+     * Deprecated. Review error codes from API requests with
+     * <code>EventSource:cognito-idp.amazonaws.com</code> in CloudTrail for
+     * information about problems with user pool email configuration.
      * </p>
      *
      * @return <p>
-     *         The reason why the email configuration can't send the messages to
-     *         your users.
+     *         Deprecated. Review error codes from API requests with
+     *         <code>EventSource:cognito-idp.amazonaws.com</code> in CloudTrail
+     *         for information about problems with user pool email
+     *         configuration.
      *         </p>
      */
     public String getEmailConfigurationFailure() {
@@ -2148,13 +2220,16 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The reason why the email configuration can't send the messages to your
-     * users.
+     * Deprecated. Review error codes from API requests with
+     * <code>EventSource:cognito-idp.amazonaws.com</code> in CloudTrail for
+     * information about problems with user pool email configuration.
      * </p>
      *
      * @param emailConfigurationFailure <p>
-     *            The reason why the email configuration can't send the messages
-     *            to your users.
+     *            Deprecated. Review error codes from API requests with
+     *            <code>EventSource:cognito-idp.amazonaws.com</code> in
+     *            CloudTrail for information about problems with user pool email
+     *            configuration.
      *            </p>
      */
     public void setEmailConfigurationFailure(String emailConfigurationFailure) {
@@ -2163,16 +2238,19 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The reason why the email configuration can't send the messages to your
-     * users.
+     * Deprecated. Review error codes from API requests with
+     * <code>EventSource:cognito-idp.amazonaws.com</code> in CloudTrail for
+     * information about problems with user pool email configuration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param emailConfigurationFailure <p>
-     *            The reason why the email configuration can't send the messages
-     *            to your users.
+     *            Deprecated. Review error codes from API requests with
+     *            <code>EventSource:cognito-idp.amazonaws.com</code> in
+     *            CloudTrail for information about problems with user pool email
+     *            configuration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

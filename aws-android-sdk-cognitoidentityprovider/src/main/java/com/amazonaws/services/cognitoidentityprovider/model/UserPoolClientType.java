@@ -326,9 +326,9 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+     * Amazon Cognito user pools only support sending events to Amazon Pinpoint
      * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-     * Region in which the user pool resides.
+     * Region where the user pool resides.
      * </p>
      * </note>
      */
@@ -2629,9 +2629,9 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+     * Amazon Cognito user pools only support sending events to Amazon Pinpoint
      * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-     * Region in which the user pool resides.
+     * Region where the user pool resides.
      * </p>
      * </note>
      *
@@ -2641,9 +2641,9 @@ public class UserPoolClientType implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         Amazon Cognito User Pools only supports sending events to Amazon
+     *         Amazon Cognito user pools only support sending events to Amazon
      *         Pinpoint projects in the US East (N. Virginia) us-east-1 Region,
-     *         regardless of the Region in which the user pool resides.
+     *         regardless of the Region where the user pool resides.
      *         </p>
      *         </note>
      */
@@ -2657,9 +2657,9 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+     * Amazon Cognito user pools only support sending events to Amazon Pinpoint
      * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-     * Region in which the user pool resides.
+     * Region where the user pool resides.
      * </p>
      * </note>
      *
@@ -2669,10 +2669,10 @@ public class UserPoolClientType implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Amazon Cognito User Pools only supports sending events to
+     *            Amazon Cognito user pools only support sending events to
      *            Amazon Pinpoint projects in the US East (N. Virginia)
-     *            us-east-1 Region, regardless of the Region in which the user
-     *            pool resides.
+     *            us-east-1 Region, regardless of the Region where the user pool
+     *            resides.
      *            </p>
      *            </note>
      */
@@ -2686,9 +2686,9 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Amazon Cognito User Pools only supports sending events to Amazon Pinpoint
+     * Amazon Cognito user pools only support sending events to Amazon Pinpoint
      * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
-     * Region in which the user pool resides.
+     * Region where the user pool resides.
      * </p>
      * </note>
      * <p>
@@ -2701,10 +2701,10 @@ public class UserPoolClientType implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Amazon Cognito User Pools only supports sending events to
+     *            Amazon Cognito user pools only support sending events to
      *            Amazon Pinpoint projects in the US East (N. Virginia)
-     *            us-east-1 Region, regardless of the Region in which the user
-     *            pool resides.
+     *            us-east-1 Region, regardless of the Region where the user pool
+     *            resides.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
