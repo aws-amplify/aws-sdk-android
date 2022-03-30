@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -94,6 +94,13 @@ public class UpdateJobRequestMarshaller implements
                 TimeoutConfig timeoutConfig = updateJobRequest.getTimeoutConfig();
                 jsonWriter.name("timeoutConfig");
                 TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
+            }
+            if (updateJobRequest.getJobExecutionsRetryConfig() != null) {
+                JobExecutionsRetryConfig jobExecutionsRetryConfig = updateJobRequest
+                        .getJobExecutionsRetryConfig();
+                jsonWriter.name("jobExecutionsRetryConfig");
+                JobExecutionsRetryConfigJsonMarshaller.getInstance().marshall(
+                        jobExecutionsRetryConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

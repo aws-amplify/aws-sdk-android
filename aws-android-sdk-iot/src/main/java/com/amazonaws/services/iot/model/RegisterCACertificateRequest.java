@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String caCertificate;
 
@@ -53,12 +54,16 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String verificationCertificate;
 
     /**
      * <p>
      * A boolean value that specifies if the CA certificate is set to active.
+     * </p>
+     * <p>
+     * Valid values: <code>ACTIVE | INACTIVE</code>
      * </p>
      */
     private Boolean setAsActive;
@@ -105,6 +110,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The CA certificate.
@@ -121,6 +127,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param caCertificate <p>
      *            The CA certificate.
@@ -140,6 +147,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param caCertificate <p>
      *            The CA certificate.
@@ -159,6 +167,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The private key verification certificate.
@@ -175,6 +184,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param verificationCertificate <p>
      *            The private key verification certificate.
@@ -194,6 +204,7 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param verificationCertificate <p>
      *            The private key verification certificate.
@@ -210,10 +221,16 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * A boolean value that specifies if the CA certificate is set to active.
      * </p>
+     * <p>
+     * Valid values: <code>ACTIVE | INACTIVE</code>
+     * </p>
      *
      * @return <p>
      *         A boolean value that specifies if the CA certificate is set to
      *         active.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>ACTIVE | INACTIVE</code>
      *         </p>
      */
     public Boolean isSetAsActive() {
@@ -224,10 +241,16 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * A boolean value that specifies if the CA certificate is set to active.
      * </p>
+     * <p>
+     * Valid values: <code>ACTIVE | INACTIVE</code>
+     * </p>
      *
      * @return <p>
      *         A boolean value that specifies if the CA certificate is set to
      *         active.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>ACTIVE | INACTIVE</code>
      *         </p>
      */
     public Boolean getSetAsActive() {
@@ -238,10 +261,16 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <p>
      * A boolean value that specifies if the CA certificate is set to active.
      * </p>
+     * <p>
+     * Valid values: <code>ACTIVE | INACTIVE</code>
+     * </p>
      *
      * @param setAsActive <p>
      *            A boolean value that specifies if the CA certificate is set to
      *            active.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>ACTIVE | INACTIVE</code>
      *            </p>
      */
     public void setSetAsActive(Boolean setAsActive) {
@@ -253,12 +282,18 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * A boolean value that specifies if the CA certificate is set to active.
      * </p>
      * <p>
+     * Valid values: <code>ACTIVE | INACTIVE</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param setAsActive <p>
      *            A boolean value that specifies if the CA certificate is set to
      *            active.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>ACTIVE | INACTIVE</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

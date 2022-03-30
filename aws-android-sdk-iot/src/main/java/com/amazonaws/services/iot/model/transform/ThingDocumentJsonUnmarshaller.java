@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,9 @@ class ThingDocumentJsonUnmarshaller implements Unmarshaller<ThingDocument, JsonU
                                 .unmarshall(context));
             } else if (name.equals("shadow")) {
                 thingDocument.setShadow(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("deviceDefender")) {
+                thingDocument.setDeviceDefender(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("connectivity")) {
                 thingDocument.setConnectivity(ThingConnectivityJsonUnmarshaller.getInstance()

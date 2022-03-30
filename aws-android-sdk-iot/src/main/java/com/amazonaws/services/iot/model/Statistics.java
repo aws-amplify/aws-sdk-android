@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,14 +19,17 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A map of key-value pairs for all supported statistics. Currently, only count
- * is supported.
+ * A map of key-value pairs for all supported statistics. For issues with
+ * missing or unexpected values for this API, consult <a href=
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/fleet-indexing-troubleshooting.html"
+ * > Fleet indexing troubleshooting guide</a>.
  * </p>
  */
 public class Statistics implements Serializable {
     /**
      * <p>
-     * The count of things that match the query.
+     * The count of things that match the query string criteria and contain a
+     * valid aggregation field value.
      * </p>
      */
     private Integer count;
@@ -82,11 +85,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The count of things that match the query.
+     * The count of things that match the query string criteria and contain a
+     * valid aggregation field value.
      * </p>
      *
      * @return <p>
-     *         The count of things that match the query.
+     *         The count of things that match the query string criteria and
+     *         contain a valid aggregation field value.
      *         </p>
      */
     public Integer getCount() {
@@ -95,11 +100,13 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The count of things that match the query.
+     * The count of things that match the query string criteria and contain a
+     * valid aggregation field value.
      * </p>
      *
      * @param count <p>
-     *            The count of things that match the query.
+     *            The count of things that match the query string criteria and
+     *            contain a valid aggregation field value.
      *            </p>
      */
     public void setCount(Integer count) {
@@ -108,14 +115,16 @@ public class Statistics implements Serializable {
 
     /**
      * <p>
-     * The count of things that match the query.
+     * The count of things that match the query string criteria and contain a
+     * valid aggregation field value.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param count <p>
-     *            The count of things that match the query.
+     *            The count of things that match the query string criteria and
+     *            contain a valid aggregation field value.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

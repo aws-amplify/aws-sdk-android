@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,10 @@ public class RegistrationConfig implements Serializable {
      * <p>
      * The template body.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10240<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String templateBody;
 
@@ -44,6 +48,10 @@ public class RegistrationConfig implements Serializable {
      * <p>
      * The template body.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10240<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The template body.
@@ -57,6 +65,10 @@ public class RegistrationConfig implements Serializable {
      * <p>
      * The template body.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10240<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
      *            The template body.
@@ -73,6 +85,10 @@ public class RegistrationConfig implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 10240<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
      *            The template body.

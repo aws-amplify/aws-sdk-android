@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,10 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
      * The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespace.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 404600<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String policyDocument;
 
@@ -129,6 +133,10 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
      * The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespace.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 404600<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The JSON document that describes the policy. Minimum length of 1.
@@ -144,6 +152,10 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
      * The JSON document that describes the policy. Minimum length of 1. Maximum
      * length of 2048, excluding whitespace.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 404600<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param policyDocument <p>
      *            The JSON document that describes the policy. Minimum length of
@@ -162,6 +174,10 @@ public class CreatePolicyVersionRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 404600<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param policyDocument <p>
      *            The JSON document that describes the policy. Minimum length of

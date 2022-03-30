@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ public class HttpContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String queryString;
 
@@ -128,6 +129,7 @@ public class HttpContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The query string keys and values in an HTTP authorization
@@ -145,6 +147,7 @@ public class HttpContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param queryString <p>
      *            The query string keys and values in an HTTP authorization
@@ -165,6 +168,7 @@ public class HttpContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param queryString <p>
      *            The query string keys and values in an HTTP authorization

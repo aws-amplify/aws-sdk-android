@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String username;
 
@@ -53,6 +54,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String clientId;
 
@@ -64,6 +66,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The value of the <code>username</code> key in an MQTT
@@ -82,6 +85,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param username <p>
      *            The value of the <code>username</code> key in an MQTT
@@ -103,6 +107,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param username <p>
      *            The value of the <code>username</code> key in an MQTT
@@ -184,6 +189,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The value of the <code>clientId</code> key in an MQTT
@@ -202,6 +208,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param clientId <p>
      *            The value of the <code>clientId</code> key in an MQTT
@@ -223,6 +230,7 @@ public class MqttContext implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65535<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param clientId <p>
      *            The value of the <code>clientId</code> key in an MQTT

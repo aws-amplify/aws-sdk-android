@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ public class AbortCriteria implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b> - 100<br/>
+     * <b>Range: </b> - 100.0<br/>
      */
     private Double thresholdPercentage;
 
@@ -278,7 +278,7 @@ public class AbortCriteria implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b> - 100<br/>
+     * <b>Range: </b> - 100.0<br/>
      *
      * @return <p>
      *         The minimum percentage of job execution failures that must occur
@@ -304,7 +304,7 @@ public class AbortCriteria implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b> - 100<br/>
+     * <b>Range: </b> - 100.0<br/>
      *
      * @param thresholdPercentage <p>
      *            The minimum percentage of job execution failures that must
@@ -333,7 +333,7 @@ public class AbortCriteria implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b> - 100<br/>
+     * <b>Range: </b> - 100.0<br/>
      *
      * @param thresholdPercentage <p>
      *            The minimum percentage of job execution failures that must

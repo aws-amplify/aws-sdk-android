@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,10 +38,15 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
@@ -177,19 +182,30 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
      *
      * @return <p>
-     *         The type of the custom metric. Types include
-     *         <code>string-list</code>, <code>ip-address-list</code>,
-     *         <code>number-list</code>, and <code>number</code>.
+     *         The type of the custom metric.
      *         </p>
+     *         <important>
+     *         <p>
+     *         The type <code>number</code> only takes a single metric value as
+     *         an input, but while submitting the metrics value in the
+     *         DeviceMetrics report, it must be passed as an array with a single
+     *         value.
+     *         </p>
+     *         </important>
      * @see CustomMetricType
      */
     public String getMetricType() {
@@ -198,19 +214,30 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
      *
      * @param metricType <p>
-     *            The type of the custom metric. Types include
-     *            <code>string-list</code>, <code>ip-address-list</code>,
-     *            <code>number-list</code>, and <code>number</code>.
+     *            The type of the custom metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The type <code>number</code> only takes a single metric value
+     *            as an input, but while submitting the metrics value in the
+     *            DeviceMetrics report, it must be passed as an array with a
+     *            single value.
+     *            </p>
+     *            </important>
      * @see CustomMetricType
      */
     public void setMetricType(String metricType) {
@@ -219,10 +246,15 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -231,10 +263,16 @@ public class UpdateCustomMetricResult implements Serializable {
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
      *
      * @param metricType <p>
-     *            The type of the custom metric. Types include
-     *            <code>string-list</code>, <code>ip-address-list</code>,
-     *            <code>number-list</code>, and <code>number</code>.
+     *            The type of the custom metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The type <code>number</code> only takes a single metric value
+     *            as an input, but while submitting the metrics value in the
+     *            DeviceMetrics report, it must be passed as an array with a
+     *            single value.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CustomMetricType
@@ -246,19 +284,30 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
      *
      * @param metricType <p>
-     *            The type of the custom metric. Types include
-     *            <code>string-list</code>, <code>ip-address-list</code>,
-     *            <code>number-list</code>, and <code>number</code>.
+     *            The type of the custom metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The type <code>number</code> only takes a single metric value
+     *            as an input, but while submitting the metrics value in the
+     *            DeviceMetrics report, it must be passed as an array with a
+     *            single value.
+     *            </p>
+     *            </important>
      * @see CustomMetricType
      */
     public void setMetricType(CustomMetricType metricType) {
@@ -267,10 +316,15 @@ public class UpdateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The type of the custom metric. Types include <code>string-list</code>,
-     * <code>ip-address-list</code>, <code>number-list</code>, and
-     * <code>number</code>.
+     * The type of the custom metric.
      * </p>
+     * <important>
+     * <p>
+     * The type <code>number</code> only takes a single metric value as an
+     * input, but while submitting the metrics value in the DeviceMetrics
+     * report, it must be passed as an array with a single value.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -279,10 +333,16 @@ public class UpdateCustomMetricResult implements Serializable {
      * <b>Allowed Values: </b>string-list, ip-address-list, number-list, number
      *
      * @param metricType <p>
-     *            The type of the custom metric. Types include
-     *            <code>string-list</code>, <code>ip-address-list</code>,
-     *            <code>number-list</code>, and <code>number</code>.
+     *            The type of the custom metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The type <code>number</code> only takes a single metric value
+     *            as an input, but while submitting the metrics value in the
+     *            DeviceMetrics report, it must be passed as an array with a
+     *            single value.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CustomMetricType

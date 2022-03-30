@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -136,6 +136,13 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
      * </p>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     */
+    private JobExecutionsRetryConfig jobExecutionsRetryConfig;
 
     /**
      * <p>
@@ -807,6 +814,52 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     }
 
     /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @return <p>
+     *         Allows you to create the criteria to retry a job.
+     *         </p>
+     */
+    public JobExecutionsRetryConfig getJobExecutionsRetryConfig() {
+        return jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     */
+    public void setJobExecutionsRetryConfig(JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobTemplateRequest withJobExecutionsRetryConfig(
+            JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -836,7 +889,9 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
         if (getTimeoutConfig() != null)
             sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getJobExecutionsRetryConfig() != null)
+            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -865,6 +920,10 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
         hashCode = prime * hashCode
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getJobExecutionsRetryConfig() == null) ? 0 : getJobExecutionsRetryConfig()
+                        .hashCode());
         return hashCode;
     }
 
@@ -927,6 +986,12 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getJobExecutionsRetryConfig() == null
+                ^ this.getJobExecutionsRetryConfig() == null)
+            return false;
+        if (other.getJobExecutionsRetryConfig() != null
+                && other.getJobExecutionsRetryConfig().equals(this.getJobExecutionsRetryConfig()) == false)
             return false;
         return true;
     }

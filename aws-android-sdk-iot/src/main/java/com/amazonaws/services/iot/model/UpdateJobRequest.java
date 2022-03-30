@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -107,6 +107,13 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     */
+    private JobExecutionsRetryConfig jobExecutionsRetryConfig;
 
     /**
      * <p>
@@ -568,6 +575,52 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @return <p>
+     *         Allows you to create the criteria to retry a job.
+     *         </p>
+     */
+    public JobExecutionsRetryConfig getJobExecutionsRetryConfig() {
+        return jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     */
+    public void setJobExecutionsRetryConfig(JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateJobRequest withJobExecutionsRetryConfig(
+            JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -591,7 +644,9 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getTimeoutConfig() != null)
             sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
         if (getNamespaceId() != null)
-            sb.append("namespaceId: " + getNamespaceId());
+            sb.append("namespaceId: " + getNamespaceId() + ",");
+        if (getJobExecutionsRetryConfig() != null)
+            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -616,6 +671,10 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getJobExecutionsRetryConfig() == null) ? 0 : getJobExecutionsRetryConfig()
+                        .hashCode());
         return hashCode;
     }
 
@@ -665,6 +724,12 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getNamespaceId() != null
                 && other.getNamespaceId().equals(this.getNamespaceId()) == false)
+            return false;
+        if (other.getJobExecutionsRetryConfig() == null
+                ^ this.getJobExecutionsRetryConfig() == null)
+            return false;
+        if (other.getJobExecutionsRetryConfig() != null
+                && other.getJobExecutionsRetryConfig().equals(this.getJobExecutionsRetryConfig()) == false)
             return false;
         return true;
     }
