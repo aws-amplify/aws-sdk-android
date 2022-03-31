@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class CreateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the custom metric, e.g.
+     * The Amazon Resource Number (ARN) of the custom metric. For example,
      * <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      * </p>
      */
@@ -96,12 +96,13 @@ public class CreateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the custom metric, e.g.
+     * The Amazon Resource Number (ARN) of the custom metric. For example,
      * <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Number (ARN) of the custom metric, e.g.
+     *         The Amazon Resource Number (ARN) of the custom metric. For
+     *         example,
      *         <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      *         </p>
      */
@@ -111,12 +112,13 @@ public class CreateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the custom metric, e.g.
+     * The Amazon Resource Number (ARN) of the custom metric. For example,
      * <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      * </p>
      *
      * @param metricArn <p>
-     *            The Amazon Resource Number (ARN) of the custom metric, e.g.
+     *            The Amazon Resource Number (ARN) of the custom metric. For
+     *            example,
      *            <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      *            </p>
      */
@@ -126,7 +128,7 @@ public class CreateCustomMetricResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the custom metric, e.g.
+     * The Amazon Resource Number (ARN) of the custom metric. For example,
      * <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      * </p>
      * <p>
@@ -134,7 +136,8 @@ public class CreateCustomMetricResult implements Serializable {
      * together.
      *
      * @param metricArn <p>
-     *            The Amazon Resource Number (ARN) of the custom metric, e.g.
+     *            The Amazon Resource Number (ARN) of the custom metric. For
+     *            example,
      *            <code>arn:<i>aws-partition</i>:iot:<i>region</i>:<i>accountId</i>:custommetric/<i>metricName</i> </code>
      *            </p>
      * @return A reference to this updated object so that method calls can be

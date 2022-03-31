@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String authorizerFunctionArn;
 
@@ -78,6 +79,16 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      */
     private String status;
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for the time specified in <code>refreshAfterInSeconds</code>.
+     * The cached result is used while the device reuses the same HTTP
+     * connection.
+     * </p>
+     */
+    private Boolean enableCachingForHttp;
 
     /**
      * <p>
@@ -143,6 +154,7 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The ARN of the authorizer's Lambda function.
@@ -159,6 +171,7 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -178,6 +191,7 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -428,6 +442,88 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for the time specified in <code>refreshAfterInSeconds</code>.
+     * The cached result is used while the device reuses the same HTTP
+     * connection.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the result from the authorizer’s Lambda
+     *         function is cached for the time specified in
+     *         <code>refreshAfterInSeconds</code>. The cached result is used
+     *         while the device reuses the same HTTP connection.
+     *         </p>
+     */
+    public Boolean isEnableCachingForHttp() {
+        return enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for the time specified in <code>refreshAfterInSeconds</code>.
+     * The cached result is used while the device reuses the same HTTP
+     * connection.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the result from the authorizer’s Lambda
+     *         function is cached for the time specified in
+     *         <code>refreshAfterInSeconds</code>. The cached result is used
+     *         while the device reuses the same HTTP connection.
+     *         </p>
+     */
+    public Boolean getEnableCachingForHttp() {
+        return enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for the time specified in <code>refreshAfterInSeconds</code>.
+     * The cached result is used while the device reuses the same HTTP
+     * connection.
+     * </p>
+     *
+     * @param enableCachingForHttp <p>
+     *            When <code>true</code>, the result from the authorizer’s
+     *            Lambda function is cached for the time specified in
+     *            <code>refreshAfterInSeconds</code>. The cached result is used
+     *            while the device reuses the same HTTP connection.
+     *            </p>
+     */
+    public void setEnableCachingForHttp(Boolean enableCachingForHttp) {
+        this.enableCachingForHttp = enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for the time specified in <code>refreshAfterInSeconds</code>.
+     * The cached result is used while the device reuses the same HTTP
+     * connection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enableCachingForHttp <p>
+     *            When <code>true</code>, the result from the authorizer’s
+     *            Lambda function is cached for the time specified in
+     *            <code>refreshAfterInSeconds</code>. The cached result is used
+     *            while the device reuses the same HTTP connection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAuthorizerRequest withEnableCachingForHttp(Boolean enableCachingForHttp) {
+        this.enableCachingForHttp = enableCachingForHttp;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -447,7 +543,9 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (getTokenSigningPublicKeys() != null)
             sb.append("tokenSigningPublicKeys: " + getTokenSigningPublicKeys() + ",");
         if (getStatus() != null)
-            sb.append("status: " + getStatus());
+            sb.append("status: " + getStatus() + ",");
+        if (getEnableCachingForHttp() != null)
+            sb.append("enableCachingForHttp: " + getEnableCachingForHttp());
         sb.append("}");
         return sb.toString();
     }
@@ -469,6 +567,8 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
                 + ((getTokenSigningPublicKeys() == null) ? 0 : getTokenSigningPublicKeys()
                         .hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getEnableCachingForHttp() == null) ? 0 : getEnableCachingForHttp().hashCode());
         return hashCode;
     }
 
@@ -506,6 +606,11 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getEnableCachingForHttp() == null ^ this.getEnableCachingForHttp() == null)
+            return false;
+        if (other.getEnableCachingForHttp() != null
+                && other.getEnableCachingForHttp().equals(this.getEnableCachingForHttp()) == false)
             return false;
         return true;
     }

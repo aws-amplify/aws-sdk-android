@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String authorizerFunctionArn;
 
@@ -108,6 +109,20 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * </p>
      */
     private Boolean signingDisabled;
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for clients that use persistent HTTP connections. The results
+     * are cached for the time specified by the Lambda function in
+     * <code>refreshAfterInSeconds</code>. This value does not affect
+     * authorization of clients that use MQTT connections.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     */
+    private Boolean enableCachingForHttp;
 
     /**
      * <p>
@@ -173,6 +188,7 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The ARN of the authorizer's Lambda function.
@@ -189,6 +205,7 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -208,6 +225,7 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -719,6 +737,124 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for clients that use persistent HTTP connections. The results
+     * are cached for the time specified by the Lambda function in
+     * <code>refreshAfterInSeconds</code>. This value does not affect
+     * authorization of clients that use MQTT connections.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the result from the authorizer’s Lambda
+     *         function is cached for clients that use persistent HTTP
+     *         connections. The results are cached for the time specified by the
+     *         Lambda function in <code>refreshAfterInSeconds</code>. This value
+     *         does not affect authorization of clients that use MQTT
+     *         connections.
+     *         </p>
+     *         <p>
+     *         The default value is <code>false</code>.
+     *         </p>
+     */
+    public Boolean isEnableCachingForHttp() {
+        return enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for clients that use persistent HTTP connections. The results
+     * are cached for the time specified by the Lambda function in
+     * <code>refreshAfterInSeconds</code>. This value does not affect
+     * authorization of clients that use MQTT connections.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @return <p>
+     *         When <code>true</code>, the result from the authorizer’s Lambda
+     *         function is cached for clients that use persistent HTTP
+     *         connections. The results are cached for the time specified by the
+     *         Lambda function in <code>refreshAfterInSeconds</code>. This value
+     *         does not affect authorization of clients that use MQTT
+     *         connections.
+     *         </p>
+     *         <p>
+     *         The default value is <code>false</code>.
+     *         </p>
+     */
+    public Boolean getEnableCachingForHttp() {
+        return enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for clients that use persistent HTTP connections. The results
+     * are cached for the time specified by the Lambda function in
+     * <code>refreshAfterInSeconds</code>. This value does not affect
+     * authorization of clients that use MQTT connections.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     *
+     * @param enableCachingForHttp <p>
+     *            When <code>true</code>, the result from the authorizer’s
+     *            Lambda function is cached for clients that use persistent HTTP
+     *            connections. The results are cached for the time specified by
+     *            the Lambda function in <code>refreshAfterInSeconds</code>.
+     *            This value does not affect authorization of clients that use
+     *            MQTT connections.
+     *            </p>
+     *            <p>
+     *            The default value is <code>false</code>.
+     *            </p>
+     */
+    public void setEnableCachingForHttp(Boolean enableCachingForHttp) {
+        this.enableCachingForHttp = enableCachingForHttp;
+    }
+
+    /**
+     * <p>
+     * When <code>true</code>, the result from the authorizer’s Lambda function
+     * is cached for clients that use persistent HTTP connections. The results
+     * are cached for the time specified by the Lambda function in
+     * <code>refreshAfterInSeconds</code>. This value does not affect
+     * authorization of clients that use MQTT connections.
+     * </p>
+     * <p>
+     * The default value is <code>false</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enableCachingForHttp <p>
+     *            When <code>true</code>, the result from the authorizer’s
+     *            Lambda function is cached for clients that use persistent HTTP
+     *            connections. The results are cached for the time specified by
+     *            the Lambda function in <code>refreshAfterInSeconds</code>.
+     *            This value does not affect authorization of clients that use
+     *            MQTT connections.
+     *            </p>
+     *            <p>
+     *            The default value is <code>false</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAuthorizerRequest withEnableCachingForHttp(Boolean enableCachingForHttp) {
+        this.enableCachingForHttp = enableCachingForHttp;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -742,7 +878,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (getTags() != null)
             sb.append("tags: " + getTags() + ",");
         if (getSigningDisabled() != null)
-            sb.append("signingDisabled: " + getSigningDisabled());
+            sb.append("signingDisabled: " + getSigningDisabled() + ",");
+        if (getEnableCachingForHttp() != null)
+            sb.append("enableCachingForHttp: " + getEnableCachingForHttp());
         sb.append("}");
         return sb.toString();
     }
@@ -767,6 +905,8 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getSigningDisabled() == null) ? 0 : getSigningDisabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getEnableCachingForHttp() == null) ? 0 : getEnableCachingForHttp().hashCode());
         return hashCode;
     }
 
@@ -813,6 +953,11 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getSigningDisabled() != null
                 && other.getSigningDisabled().equals(this.getSigningDisabled()) == false)
+            return false;
+        if (other.getEnableCachingForHttp() == null ^ this.getEnableCachingForHttp() == null)
+            return false;
+        if (other.getEnableCachingForHttp() != null
+                && other.getEnableCachingForHttp().equals(this.getEnableCachingForHttp()) == false)
             return false;
         return true;
     }

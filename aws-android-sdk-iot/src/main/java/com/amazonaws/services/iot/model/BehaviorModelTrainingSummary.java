@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ public class BehaviorModelTrainingSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Range: </b>0.0 - 100.0<br/>
      */
     private Double datapointsCollectionPercentage;
 
@@ -342,7 +342,7 @@ public class BehaviorModelTrainingSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Range: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The percentage of datapoints collected.
@@ -358,7 +358,7 @@ public class BehaviorModelTrainingSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Range: </b>0.0 - 100.0<br/>
      *
      * @param datapointsCollectionPercentage <p>
      *            The percentage of datapoints collected.
@@ -377,7 +377,7 @@ public class BehaviorModelTrainingSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>0 - 100<br/>
+     * <b>Range: </b>0.0 - 100.0<br/>
      *
      * @param datapointsCollectionPercentage <p>
      *            The percentage of datapoints collected.

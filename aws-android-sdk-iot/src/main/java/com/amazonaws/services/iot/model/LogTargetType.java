@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,10 @@ import java.util.Map;
 public enum LogTargetType {
 
     DEFAULT("DEFAULT"),
-    THING_GROUP("THING_GROUP");
+    THING_GROUP("THING_GROUP"),
+    CLIENT_ID("CLIENT_ID"),
+    SOURCE_IP("SOURCE_IP"),
+    PRINCIPAL_ID("PRINCIPAL_ID");
 
     private String value;
 
@@ -42,6 +45,9 @@ public enum LogTargetType {
         enumMap = new HashMap<String, LogTargetType>();
         enumMap.put("DEFAULT", DEFAULT);
         enumMap.put("THING_GROUP", THING_GROUP);
+        enumMap.put("CLIENT_ID", CLIENT_ID);
+        enumMap.put("SOURCE_IP", SOURCE_IP);
+        enumMap.put("PRINCIPAL_ID", PRINCIPAL_ID);
     }
 
     /**

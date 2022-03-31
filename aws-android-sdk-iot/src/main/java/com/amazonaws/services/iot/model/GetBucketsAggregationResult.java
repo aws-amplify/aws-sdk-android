@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@ import java.io.Serializable;
 public class GetBucketsAggregationResult implements Serializable {
     /**
      * <p>
-     * The total number of documents that fit the query string criteria and
-     * contain a value for the Aggregation field targeted in the request.
+     * The total number of things that fit the query string criteria.
      * </p>
      */
     private Integer totalCount;
@@ -43,14 +42,11 @@ public class GetBucketsAggregationResult implements Serializable {
 
     /**
      * <p>
-     * The total number of documents that fit the query string criteria and
-     * contain a value for the Aggregation field targeted in the request.
+     * The total number of things that fit the query string criteria.
      * </p>
      *
      * @return <p>
-     *         The total number of documents that fit the query string criteria
-     *         and contain a value for the Aggregation field targeted in the
-     *         request.
+     *         The total number of things that fit the query string criteria.
      *         </p>
      */
     public Integer getTotalCount() {
@@ -59,14 +55,11 @@ public class GetBucketsAggregationResult implements Serializable {
 
     /**
      * <p>
-     * The total number of documents that fit the query string criteria and
-     * contain a value for the Aggregation field targeted in the request.
+     * The total number of things that fit the query string criteria.
      * </p>
      *
      * @param totalCount <p>
-     *            The total number of documents that fit the query string
-     *            criteria and contain a value for the Aggregation field
-     *            targeted in the request.
+     *            The total number of things that fit the query string criteria.
      *            </p>
      */
     public void setTotalCount(Integer totalCount) {
@@ -75,17 +68,14 @@ public class GetBucketsAggregationResult implements Serializable {
 
     /**
      * <p>
-     * The total number of documents that fit the query string criteria and
-     * contain a value for the Aggregation field targeted in the request.
+     * The total number of things that fit the query string criteria.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param totalCount <p>
-     *            The total number of documents that fit the query string
-     *            criteria and contain a value for the Aggregation field
-     *            targeted in the request.
+     *            The total number of things that fit the query string criteria.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

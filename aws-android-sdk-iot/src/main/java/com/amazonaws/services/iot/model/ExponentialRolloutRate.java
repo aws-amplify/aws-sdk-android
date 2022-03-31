@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ public class ExponentialRolloutRate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1.1 - 5.0<br/>
      */
     private Double incrementFactor;
 
@@ -132,7 +132,7 @@ public class ExponentialRolloutRate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1.1 - 5.0<br/>
      *
      * @return <p>
      *         The exponential factor to increase the rate of rollout for a job.
@@ -156,7 +156,7 @@ public class ExponentialRolloutRate implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1.1 - 5.0<br/>
      *
      * @param incrementFactor <p>
      *            The exponential factor to increase the rate of rollout for a
@@ -184,7 +184,7 @@ public class ExponentialRolloutRate implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1.1 - 5.0<br/>
      *
      * @param incrementFactor <p>
      *            The exponential factor to increase the rate of rollout for a

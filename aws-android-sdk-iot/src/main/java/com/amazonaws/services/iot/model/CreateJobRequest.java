@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -130,7 +130,7 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Allows you to create criteria to abort a job.
+     * Allows you to create the criteria to abort a job.
      * </p>
      */
     private AbortConfig abortConfig;
@@ -187,6 +187,21 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>^arn:[!-~]+$<br/>
      */
     private String jobTemplateArn;
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     */
+    private JobExecutionsRetryConfig jobExecutionsRetryConfig;
+
+    /**
+     * <p>
+     * Parameters of a managed template that you can specify to create the job
+     * document.
+     * </p>
+     */
+    private java.util.Map<String, String> documentParameters;
 
     /**
      * <p>
@@ -853,11 +868,11 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Allows you to create criteria to abort a job.
+     * Allows you to create the criteria to abort a job.
      * </p>
      *
      * @return <p>
-     *         Allows you to create criteria to abort a job.
+     *         Allows you to create the criteria to abort a job.
      *         </p>
      */
     public AbortConfig getAbortConfig() {
@@ -866,11 +881,11 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Allows you to create criteria to abort a job.
+     * Allows you to create the criteria to abort a job.
      * </p>
      *
      * @param abortConfig <p>
-     *            Allows you to create criteria to abort a job.
+     *            Allows you to create the criteria to abort a job.
      *            </p>
      */
     public void setAbortConfig(AbortConfig abortConfig) {
@@ -879,14 +894,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Allows you to create criteria to abort a job.
+     * Allows you to create the criteria to abort a job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param abortConfig <p>
-     *            Allows you to create criteria to abort a job.
+     *            Allows you to create the criteria to abort a job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1237,6 +1252,141 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @return <p>
+     *         Allows you to create the criteria to retry a job.
+     *         </p>
+     */
+    public JobExecutionsRetryConfig getJobExecutionsRetryConfig() {
+        return jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     */
+    public void setJobExecutionsRetryConfig(JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * Allows you to create the criteria to retry a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            Allows you to create the criteria to retry a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withJobExecutionsRetryConfig(
+            JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Parameters of a managed template that you can specify to create the job
+     * document.
+     * </p>
+     *
+     * @return <p>
+     *         Parameters of a managed template that you can specify to create
+     *         the job document.
+     *         </p>
+     */
+    public java.util.Map<String, String> getDocumentParameters() {
+        return documentParameters;
+    }
+
+    /**
+     * <p>
+     * Parameters of a managed template that you can specify to create the job
+     * document.
+     * </p>
+     *
+     * @param documentParameters <p>
+     *            Parameters of a managed template that you can specify to
+     *            create the job document.
+     *            </p>
+     */
+    public void setDocumentParameters(java.util.Map<String, String> documentParameters) {
+        this.documentParameters = documentParameters;
+    }
+
+    /**
+     * <p>
+     * Parameters of a managed template that you can specify to create the job
+     * document.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentParameters <p>
+     *            Parameters of a managed template that you can specify to
+     *            create the job document.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withDocumentParameters(java.util.Map<String, String> documentParameters) {
+        this.documentParameters = documentParameters;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Parameters of a managed template that you can specify to create the job
+     * document.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into documentParameters parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into documentParameters.
+     * @param value The corresponding value of the entry to be added into
+     *            documentParameters.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest adddocumentParametersEntry(String key, String value) {
+        if (null == this.documentParameters) {
+            this.documentParameters = new java.util.HashMap<String, String>();
+        }
+        if (this.documentParameters.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.documentParameters.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into documentParameters.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreateJobRequest cleardocumentParametersEntries() {
+        this.documentParameters = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1272,7 +1422,11 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getNamespaceId() != null)
             sb.append("namespaceId: " + getNamespaceId() + ",");
         if (getJobTemplateArn() != null)
-            sb.append("jobTemplateArn: " + getJobTemplateArn());
+            sb.append("jobTemplateArn: " + getJobTemplateArn() + ",");
+        if (getJobExecutionsRetryConfig() != null)
+            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
+        if (getDocumentParameters() != null)
+            sb.append("documentParameters: " + getDocumentParameters());
         sb.append("}");
         return sb.toString();
     }
@@ -1306,6 +1460,12 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
                 + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
         hashCode = prime * hashCode
                 + ((getJobTemplateArn() == null) ? 0 : getJobTemplateArn().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getJobExecutionsRetryConfig() == null) ? 0 : getJobExecutionsRetryConfig()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
         return hashCode;
     }
 
@@ -1382,6 +1542,17 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getJobTemplateArn() != null
                 && other.getJobTemplateArn().equals(this.getJobTemplateArn()) == false)
+            return false;
+        if (other.getJobExecutionsRetryConfig() == null
+                ^ this.getJobExecutionsRetryConfig() == null)
+            return false;
+        if (other.getJobExecutionsRetryConfig() != null
+                && other.getJobExecutionsRetryConfig().equals(this.getJobExecutionsRetryConfig()) == false)
+            return false;
+        if (other.getDocumentParameters() == null ^ this.getDocumentParameters() == null)
+            return false;
+        if (other.getDocumentParameters() != null
+                && other.getDocumentParameters().equals(this.getDocumentParameters()) == false)
             return false;
         return true;
     }

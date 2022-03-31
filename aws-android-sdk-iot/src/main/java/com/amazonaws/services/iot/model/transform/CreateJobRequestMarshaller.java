@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -137,6 +137,28 @@ public class CreateJobRequestMarshaller implements
                 String jobTemplateArn = createJobRequest.getJobTemplateArn();
                 jsonWriter.name("jobTemplateArn");
                 jsonWriter.value(jobTemplateArn);
+            }
+            if (createJobRequest.getJobExecutionsRetryConfig() != null) {
+                JobExecutionsRetryConfig jobExecutionsRetryConfig = createJobRequest
+                        .getJobExecutionsRetryConfig();
+                jsonWriter.name("jobExecutionsRetryConfig");
+                JobExecutionsRetryConfigJsonMarshaller.getInstance().marshall(
+                        jobExecutionsRetryConfig, jsonWriter);
+            }
+            if (createJobRequest.getDocumentParameters() != null) {
+                java.util.Map<String, String> documentParameters = createJobRequest
+                        .getDocumentParameters();
+                jsonWriter.name("documentParameters");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> documentParametersEntry : documentParameters
+                        .entrySet()) {
+                    String documentParametersValue = documentParametersEntry.getValue();
+                    if (documentParametersValue != null) {
+                        jsonWriter.name(documentParametersEntry.getKey());
+                        jsonWriter.value(documentParametersValue);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,6 +66,7 @@ public class OutgoingCertificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String transferMessage;
 
@@ -289,6 +290,7 @@ public class OutgoingCertificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The transfer message.
@@ -305,6 +307,7 @@ public class OutgoingCertificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param transferMessage <p>
      *            The transfer message.
@@ -324,6 +327,7 @@ public class OutgoingCertificate implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 128<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param transferMessage <p>
      *            The transfer message.

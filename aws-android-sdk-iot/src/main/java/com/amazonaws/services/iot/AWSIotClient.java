@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -361,6 +361,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new IndexNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalFailureExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidAggregationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidQueryExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
@@ -1519,8 +1520,10 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * </p>
      * <p>
      * <b>Note:</b> The CSR must include a public key that is either an RSA key
-     * with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST
-     * P-384 curves.
+     * with a length of at least 2048 bits or an ECC key from NIST P-256, NIST
+     * P-384, or NIST P-512 curves. For supported certificates, consult <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
+     * > Certificate signing algorithms supported by IoT</a>.
      * </p>
      * <p>
      * <b>Note:</b> Reusing the same certificate signing request (CSR) results
@@ -6092,6 +6095,58 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * View details of a managed job template.
+     * </p>
+     * 
+     * @param describeManagedJobTemplateRequest
+     * @return describeManagedJobTemplateResult The response from the
+     *         DescribeManagedJobTemplate service method, as returned by AWS
+     *         IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeManagedJobTemplateResult describeManagedJobTemplate(
+            DescribeManagedJobTemplateRequest describeManagedJobTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeManagedJobTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeManagedJobTemplateRequest> request = null;
+        Response<DescribeManagedJobTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeManagedJobTemplateRequestMarshaller()
+                        .marshall(describeManagedJobTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeManagedJobTemplateResult, JsonUnmarshallerContext> unmarshaller = new DescribeManagedJobTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeManagedJobTemplateResult> responseHandler = new JsonResponseHandler<DescribeManagedJobTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets information about a mitigation action.
      * </p>
      * <p>
@@ -9301,6 +9356,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Returns a list of managed job templates.
+     * </p>
+     * 
+     * @param listManagedJobTemplatesRequest
+     * @return listManagedJobTemplatesResult The response from the
+     *         ListManagedJobTemplates service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListManagedJobTemplatesResult listManagedJobTemplates(
+            ListManagedJobTemplatesRequest listManagedJobTemplatesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listManagedJobTemplatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListManagedJobTemplatesRequest> request = null;
+        Response<ListManagedJobTemplatesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListManagedJobTemplatesRequestMarshaller()
+                        .marshall(listManagedJobTemplatesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListManagedJobTemplatesResult, JsonUnmarshallerContext> unmarshaller = new ListManagedJobTemplatesResultJsonUnmarshaller();
+            JsonResponseHandler<ListManagedJobTemplatesResult> responseHandler = new JsonResponseHandler<ListManagedJobTemplatesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of all mitigation actions that match the specified filter
      * criteria.
      * </p>
@@ -11292,6 +11398,9 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Register a certificate that does not have a certificate authority (CA).
+     * For supported certificates, consult <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
+     * > Certificate signing algorithms supported by IoT</a>.
      * </p>
      * 
      * @param registerCertificateWithoutCARequest
@@ -11481,6 +11590,12 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
      * >RemoveThingFromBillingGroup</a> action.
      * </p>
+     * <note>
+     * <p>
+     * This call is asynchronous. It might take several seconds for the
+     * detachment to propagate.
+     * </p>
+     * </note>
      * 
      * @param removeThingFromBillingGroupRequest
      * @return removeThingFromBillingGroupResult The response from the

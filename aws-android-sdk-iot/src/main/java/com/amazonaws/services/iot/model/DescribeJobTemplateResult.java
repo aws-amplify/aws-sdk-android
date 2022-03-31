@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -109,6 +109,14 @@ public class DescribeJobTemplateResult implements Serializable {
      * </p>
      */
     private TimeoutConfig timeoutConfig;
+
+    /**
+     * <p>
+     * The configuration that determines how many retries are allowed for each
+     * failure type for a job.
+     * </p>
+     */
+    private JobExecutionsRetryConfig jobExecutionsRetryConfig;
 
     /**
      * <p>
@@ -647,6 +655,58 @@ public class DescribeJobTemplateResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The configuration that determines how many retries are allowed for each
+     * failure type for a job.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration that determines how many retries are allowed
+     *         for each failure type for a job.
+     *         </p>
+     */
+    public JobExecutionsRetryConfig getJobExecutionsRetryConfig() {
+        return jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that determines how many retries are allowed for each
+     * failure type for a job.
+     * </p>
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            The configuration that determines how many retries are allowed
+     *            for each failure type for a job.
+     *            </p>
+     */
+    public void setJobExecutionsRetryConfig(JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that determines how many retries are allowed for each
+     * failure type for a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param jobExecutionsRetryConfig <p>
+     *            The configuration that determines how many retries are allowed
+     *            for each failure type for a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeJobTemplateResult withJobExecutionsRetryConfig(
+            JobExecutionsRetryConfig jobExecutionsRetryConfig) {
+        this.jobExecutionsRetryConfig = jobExecutionsRetryConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -676,7 +736,9 @@ public class DescribeJobTemplateResult implements Serializable {
         if (getAbortConfig() != null)
             sb.append("abortConfig: " + getAbortConfig() + ",");
         if (getTimeoutConfig() != null)
-            sb.append("timeoutConfig: " + getTimeoutConfig());
+            sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
+        if (getJobExecutionsRetryConfig() != null)
+            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -706,6 +768,10 @@ public class DescribeJobTemplateResult implements Serializable {
                 + ((getAbortConfig() == null) ? 0 : getAbortConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getJobExecutionsRetryConfig() == null) ? 0 : getJobExecutionsRetryConfig()
+                        .hashCode());
         return hashCode;
     }
 
@@ -770,6 +836,12 @@ public class DescribeJobTemplateResult implements Serializable {
             return false;
         if (other.getTimeoutConfig() != null
                 && other.getTimeoutConfig().equals(this.getTimeoutConfig()) == false)
+            return false;
+        if (other.getJobExecutionsRetryConfig() == null
+                ^ this.getJobExecutionsRetryConfig() == null)
+            return false;
+        if (other.getJobExecutionsRetryConfig() != null
+                && other.getJobExecutionsRetryConfig().equals(this.getJobExecutionsRetryConfig()) == false)
             return false;
         return true;
     }

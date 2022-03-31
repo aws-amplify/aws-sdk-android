@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
  * >RemoveThingFromBillingGroup</a> action.
  * </p>
+ * <note>
+ * <p>
+ * This call is asynchronous. It might take several seconds for the detachment
+ * to propagate.
+ * </p>
+ * </note>
  */
 public class RemoveThingFromBillingGroupRequest extends AmazonWebServiceRequest implements
         Serializable {

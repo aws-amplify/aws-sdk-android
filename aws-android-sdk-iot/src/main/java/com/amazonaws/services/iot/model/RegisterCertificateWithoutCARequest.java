@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Register a certificate that does not have a certificate authority (CA).
+ * Register a certificate that does not have a certificate authority (CA). For
+ * supported certificates, consult <a href=
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
+ * > Certificate signing algorithms supported by IoT</a>.
  * </p>
  */
 public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest implements
@@ -33,6 +36,7 @@ public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String certificatePem;
 
@@ -54,6 +58,7 @@ public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The certificate data, in PEM format.
@@ -70,6 +75,7 @@ public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param certificatePem <p>
      *            The certificate data, in PEM format.
@@ -89,6 +95,7 @@ public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 65536<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param certificatePem <p>
      *            The certificate data, in PEM format.

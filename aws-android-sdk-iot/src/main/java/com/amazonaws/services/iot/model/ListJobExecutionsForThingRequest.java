@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -94,6 +94,17 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
      * </p>
      */
     private String nextToken;
+
+    /**
+     * <p>
+     * The unique identifier you assigned to this job when it was created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     */
+    private String jobId;
 
     /**
      * <p>
@@ -502,6 +513,66 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
+     * The unique identifier you assigned to this job when it was created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @return <p>
+     *         The unique identifier you assigned to this job when it was
+     *         created.
+     *         </p>
+     */
+    public String getJobId() {
+        return jobId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier you assigned to this job when it was created.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param jobId <p>
+     *            The unique identifier you assigned to this job when it was
+     *            created.
+     *            </p>
+     */
+    public void setJobId(String jobId) {
+        this.jobId = jobId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier you assigned to this job when it was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param jobId <p>
+     *            The unique identifier you assigned to this job when it was
+     *            created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListJobExecutionsForThingRequest withJobId(String jobId) {
+        this.jobId = jobId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -521,7 +592,9 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
         if (getMaxResults() != null)
             sb.append("maxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
-            sb.append("nextToken: " + getNextToken());
+            sb.append("nextToken: " + getNextToken() + ",");
+        if (getJobId() != null)
+            sb.append("jobId: " + getJobId());
         sb.append("}");
         return sb.toString();
     }
@@ -537,6 +610,7 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
                 + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         return hashCode;
     }
 
@@ -574,6 +648,10 @@ public class ListJobExecutionsForThingRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getNextToken() != null
                 && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getJobId() == null ^ this.getJobId() == null)
+            return false;
+        if (other.getJobId() != null && other.getJobId().equals(this.getJobId()) == false)
             return false;
         return true;
     }

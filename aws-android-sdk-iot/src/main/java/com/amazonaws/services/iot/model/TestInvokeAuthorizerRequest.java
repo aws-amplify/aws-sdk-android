@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,6 +50,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String token;
 
@@ -150,6 +151,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
      *         The token returned by your custom authentication service.
@@ -166,6 +168,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param token <p>
      *            The token returned by your custom authentication service.
@@ -185,6 +188,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param token <p>
      *            The token returned by your custom authentication service.
