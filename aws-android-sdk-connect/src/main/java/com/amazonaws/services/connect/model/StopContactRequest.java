@@ -27,11 +27,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * CALLBACK
- * </p>
- * </li>
- * <li>
- * <p>
  * DISCONNECT
  * </p>
  * </li>

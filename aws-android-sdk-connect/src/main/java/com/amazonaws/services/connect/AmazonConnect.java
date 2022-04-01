@@ -3004,11 +3004,6 @@ public interface AmazonConnect {
      * <ul>
      * <li>
      * <p>
-     * CALLBACK
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * DISCONNECT
      * </p>
      * </li>

@@ -6481,11 +6481,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <ul>
      * <li>
      * <p>
-     * CALLBACK
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * DISCONNECT
      * </p>
      * </li>
@@ -6526,11 +6521,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * initiation methods:
      * </p>
      * <ul>
-     * <li>
-     * <p>
-     * CALLBACK
-     * </p>
-     * </li>
      * <li>
      * <p>
      * DISCONNECT
