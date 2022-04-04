@@ -5057,6 +5057,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists the values reported for an IoT Device Defender metric (device-side
+     * metric, cloud-side metric, or custom metric) by the given thing during
+     * the specified time period.
+     * </p>
+     * 
+     * @param listMetricValuesRequest
+     * @return listMetricValuesResult The response from the ListMetricValues
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListMetricValuesResult listMetricValues(ListMetricValuesRequest listMetricValuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of all mitigation actions that match the specified filter
      * criteria.
      * </p>

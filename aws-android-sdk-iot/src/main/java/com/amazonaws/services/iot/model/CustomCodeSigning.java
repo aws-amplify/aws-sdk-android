@@ -39,24 +39,14 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The hash algorithm used to code sign the file. You can use a string as
-     * the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>SHA256</code> or
-     * <code>SHA1</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The hash algorithm used to code sign the file.
      * </p>
      */
     private String hashAlgorithm;
 
     /**
      * <p>
-     * The signature algorithm used to code sign the file. You can use a string
-     * as the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>ECDSA</code> or
-     * <code>RSA</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The signature algorithm used to code sign the file.
      * </p>
      */
     private String signatureAlgorithm;
@@ -153,22 +143,11 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The hash algorithm used to code sign the file. You can use a string as
-     * the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>SHA256</code> or
-     * <code>SHA1</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The hash algorithm used to code sign the file.
      * </p>
      *
      * @return <p>
-     *         The hash algorithm used to code sign the file. You can use a
-     *         string as the algorithm name if the target over-the-air (OTA)
-     *         update devices are able to verify the signature that was
-     *         generated using the same signature algorithm. For example,
-     *         FreeRTOS uses <code>SHA256</code> or <code>SHA1</code>, so you
-     *         can pass either of them based on which was used for generating
-     *         the signature.
+     *         The hash algorithm used to code sign the file.
      *         </p>
      */
     public String getHashAlgorithm() {
@@ -177,22 +156,11 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The hash algorithm used to code sign the file. You can use a string as
-     * the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>SHA256</code> or
-     * <code>SHA1</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The hash algorithm used to code sign the file.
      * </p>
      *
      * @param hashAlgorithm <p>
-     *            The hash algorithm used to code sign the file. You can use a
-     *            string as the algorithm name if the target over-the-air (OTA)
-     *            update devices are able to verify the signature that was
-     *            generated using the same signature algorithm. For example,
-     *            FreeRTOS uses <code>SHA256</code> or <code>SHA1</code>, so you
-     *            can pass either of them based on which was used for generating
-     *            the signature.
+     *            The hash algorithm used to code sign the file.
      *            </p>
      */
     public void setHashAlgorithm(String hashAlgorithm) {
@@ -201,25 +169,14 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The hash algorithm used to code sign the file. You can use a string as
-     * the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>SHA256</code> or
-     * <code>SHA1</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The hash algorithm used to code sign the file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hashAlgorithm <p>
-     *            The hash algorithm used to code sign the file. You can use a
-     *            string as the algorithm name if the target over-the-air (OTA)
-     *            update devices are able to verify the signature that was
-     *            generated using the same signature algorithm. For example,
-     *            FreeRTOS uses <code>SHA256</code> or <code>SHA1</code>, so you
-     *            can pass either of them based on which was used for generating
-     *            the signature.
+     *            The hash algorithm used to code sign the file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -231,22 +188,11 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The signature algorithm used to code sign the file. You can use a string
-     * as the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>ECDSA</code> or
-     * <code>RSA</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The signature algorithm used to code sign the file.
      * </p>
      *
      * @return <p>
-     *         The signature algorithm used to code sign the file. You can use a
-     *         string as the algorithm name if the target over-the-air (OTA)
-     *         update devices are able to verify the signature that was
-     *         generated using the same signature algorithm. For example,
-     *         FreeRTOS uses <code>ECDSA</code> or <code>RSA</code>, so you can
-     *         pass either of them based on which was used for generating the
-     *         signature.
+     *         The signature algorithm used to code sign the file.
      *         </p>
      */
     public String getSignatureAlgorithm() {
@@ -255,22 +201,11 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The signature algorithm used to code sign the file. You can use a string
-     * as the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>ECDSA</code> or
-     * <code>RSA</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The signature algorithm used to code sign the file.
      * </p>
      *
      * @param signatureAlgorithm <p>
-     *            The signature algorithm used to code sign the file. You can
-     *            use a string as the algorithm name if the target over-the-air
-     *            (OTA) update devices are able to verify the signature that was
-     *            generated using the same signature algorithm. For example,
-     *            FreeRTOS uses <code>ECDSA</code> or <code>RSA</code>, so you
-     *            can pass either of them based on which was used for generating
-     *            the signature.
+     *            The signature algorithm used to code sign the file.
      *            </p>
      */
     public void setSignatureAlgorithm(String signatureAlgorithm) {
@@ -279,25 +214,14 @@ public class CustomCodeSigning implements Serializable {
 
     /**
      * <p>
-     * The signature algorithm used to code sign the file. You can use a string
-     * as the algorithm name if the target over-the-air (OTA) update devices are
-     * able to verify the signature that was generated using the same signature
-     * algorithm. For example, FreeRTOS uses <code>ECDSA</code> or
-     * <code>RSA</code>, so you can pass either of them based on which was used
-     * for generating the signature.
+     * The signature algorithm used to code sign the file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param signatureAlgorithm <p>
-     *            The signature algorithm used to code sign the file. You can
-     *            use a string as the algorithm name if the target over-the-air
-     *            (OTA) update devices are able to verify the signature that was
-     *            generated using the same signature algorithm. For example,
-     *            FreeRTOS uses <code>ECDSA</code> or <code>RSA</code>, so you
-     *            can pass either of them based on which was used for generating
-     *            the signature.
+     *            The signature algorithm used to code sign the file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
