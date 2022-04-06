@@ -9407,6 +9407,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Lists the values reported for an IoT Device Defender metric (device-side
+     * metric, cloud-side metric, or custom metric) by the given thing during
+     * the specified time period.
+     * </p>
+     * 
+     * @param listMetricValuesRequest
+     * @return listMetricValuesResult The response from the ListMetricValues
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListMetricValuesResult listMetricValues(ListMetricValuesRequest listMetricValuesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listMetricValuesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListMetricValuesRequest> request = null;
+        Response<ListMetricValuesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListMetricValuesRequestMarshaller().marshall(listMetricValuesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListMetricValuesResult, JsonUnmarshallerContext> unmarshaller = new ListMetricValuesResultJsonUnmarshaller();
+            JsonResponseHandler<ListMetricValuesResult> responseHandler = new JsonResponseHandler<ListMetricValuesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of all mitigation actions that match the specified filter
      * criteria.
      * </p>

@@ -57,7 +57,7 @@ public class PutVerificationStateOnViolationRequest extends AmazonWebServiceRequ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1000<br/>
-     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     * <b>Pattern: </b>[^\p{Cntrl}]*<br/>
      */
     private String verificationStateDescription;
 
@@ -229,7 +229,7 @@ public class PutVerificationStateOnViolationRequest extends AmazonWebServiceRequ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1000<br/>
-     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     * <b>Pattern: </b>[^\p{Cntrl}]*<br/>
      *
      * @return <p>
      *         The description of the verification state of the violation
@@ -248,7 +248,7 @@ public class PutVerificationStateOnViolationRequest extends AmazonWebServiceRequ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1000<br/>
-     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     * <b>Pattern: </b>[^\p{Cntrl}]*<br/>
      *
      * @param verificationStateDescription <p>
      *            The description of the verification state of the violation
@@ -270,7 +270,7 @@ public class PutVerificationStateOnViolationRequest extends AmazonWebServiceRequ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1000<br/>
-     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     * <b>Pattern: </b>[^\p{Cntrl}]*<br/>
      *
      * @param verificationStateDescription <p>
      *            The description of the verification state of the violation
