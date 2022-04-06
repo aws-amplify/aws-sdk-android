@@ -8303,11 +8303,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * <ul>
      * <li>
      * <p>
-     * CALLBACK
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * DISCONNECT
      * </p>
      * </li>
@@ -8354,11 +8349,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * initiation methods:
      * </p>
      * <ul>
-     * <li>
-     * <p>
-     * CALLBACK
-     * </p>
-     * </li>
      * <li>
      * <p>
      * DISCONNECT

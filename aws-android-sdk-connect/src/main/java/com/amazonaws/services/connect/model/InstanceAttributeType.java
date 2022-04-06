@@ -29,7 +29,8 @@ public enum InstanceAttributeType {
     CONTACT_LENS("CONTACT_LENS"),
     AUTO_RESOLVE_BEST_VOICES("AUTO_RESOLVE_BEST_VOICES"),
     USE_CUSTOM_TTS_VOICES("USE_CUSTOM_TTS_VOICES"),
-    EARLY_MEDIA("EARLY_MEDIA");
+    EARLY_MEDIA("EARLY_MEDIA"),
+    MULTI_PARTY_CONFERENCE("MULTI_PARTY_CONFERENCE");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum InstanceAttributeType {
         enumMap.put("AUTO_RESOLVE_BEST_VOICES", AUTO_RESOLVE_BEST_VOICES);
         enumMap.put("USE_CUSTOM_TTS_VOICES", USE_CUSTOM_TTS_VOICES);
         enumMap.put("EARLY_MEDIA", EARLY_MEDIA);
+        enumMap.put("MULTI_PARTY_CONFERENCE", MULTI_PARTY_CONFERENCE);
     }
 
     /**
