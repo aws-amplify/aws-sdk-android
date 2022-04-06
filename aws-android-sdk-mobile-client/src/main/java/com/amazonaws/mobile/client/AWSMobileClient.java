@@ -3271,7 +3271,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 return new Runnable() {
                     @Override
                     public void run() {
-                        callback.onError(new Exception("showSignIn called with HostedUI options in awsconfiguration.json"));
+                        callback.onError(new Exception("showSignIn called without HostedUI options in awsconfiguration.json"));
                     }
                 };
             }
