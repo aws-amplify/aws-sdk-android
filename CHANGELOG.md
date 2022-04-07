@@ -1,3 +1,16 @@
+## [Release 2.44.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.44.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#2853)
+- **aws-android-sdk-connect:** update models to latest (#2855)
+- **aws-android-sdk-iot:** update models to latest (#2858)
+
+### Miscellaneous
+- Adding codeowners (#2860)
+- Fix typo in AWSMobileClient (#2841)
+
+[See all changes between 2.43.0 and 2.44.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.43.0...release_v2.44.0)
+
 ## [Release 2.43.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.43.0)
 
 ### Features
