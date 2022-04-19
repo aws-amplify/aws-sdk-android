@@ -47,7 +47,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      */
     private String id;
 
@@ -60,7 +60,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      */
     private String languageCode;
 
@@ -212,7 +212,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      *
      * @return <p>
      *         Amazon Polly assigned voice ID. This is the ID that you specify
@@ -238,7 +238,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -268,7 +268,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -298,7 +298,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -328,7 +328,7 @@ public class Voice implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet
+     * Ayanda, Arlet, Hannah
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -353,7 +353,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      *
      * @return <p>
      *         Language code of the voice.
@@ -373,7 +373,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -396,7 +396,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -419,7 +419,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      *
      * @param languageCode <p>
      *            Language code of the voice.
@@ -442,7 +442,7 @@ public class Voice implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT
      *
      * @param languageCode <p>
      *            Language code of the voice.
