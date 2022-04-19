@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -91,7 +91,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      */
     private String keyUsage;
 
@@ -103,8 +103,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -222,7 +222,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      */
     private String customerMasterKeySpec;
 
@@ -233,7 +234,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      */
     private String keySpec;
 
@@ -271,7 +273,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about multi-Region keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+     * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -335,6 +337,18 @@ public class KeyMetadata implements Serializable {
      * <b>Range: </b>1 - 365<br/>
      */
     private Integer pendingDeletionWindowInDays;
+
+    /**
+     * <p>
+     * The message authentication code (MAC) algorithm that the HMAC KMS key
+     * supports.
+     * </p>
+     * <p>
+     * This value is present only when the <code>KeyUsage</code> of the KMS key
+     * is <code>GENERATE_VERIFY_MAC</code>.
+     * </p>
+     */
+    private java.util.List<String> macAlgorithms = new java.util.ArrayList<String>();
 
     /**
      * <p>
@@ -693,7 +707,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @return <p>
      *         The <a href=
@@ -714,7 +728,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -739,7 +753,7 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -764,7 +778,7 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -789,7 +803,7 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The <a href=
@@ -814,8 +828,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -829,8 +843,8 @@ public class KeyMetadata implements Serializable {
      *         For more information about how key state affects the use of a KMS
      *         key, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >Key state: Effect on your KMS key</a> in the <i>Key Management
-     *         Service Developer Guide</i>.
+     *         >Key states of KMS keys</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      * @see KeyState
      */
@@ -846,8 +860,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -861,8 +875,8 @@ public class KeyMetadata implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -878,8 +892,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -896,8 +910,8 @@ public class KeyMetadata implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -916,8 +930,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -931,8 +945,8 @@ public class KeyMetadata implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -948,8 +962,8 @@ public class KeyMetadata implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -966,8 +980,8 @@ public class KeyMetadata implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1743,7 +1757,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @return <p>
      *         Instead, use the <code>KeySpec</code> field.
@@ -1773,7 +1788,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1807,7 +1823,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1841,7 +1858,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1875,7 +1893,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1903,7 +1922,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @return <p>
      *         Describes the type of key material in the KMS key.
@@ -1921,7 +1941,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -1942,7 +1963,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -1963,7 +1985,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -1984,7 +2007,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -2239,7 +2263,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about multi-Region keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+     * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -2252,7 +2276,7 @@ public class KeyMetadata implements Serializable {
      *         <p>
      *         For more information about multi-Region keys, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     *         >Using multi-Region keys</a> in the <i>Key Management Service
+     *         >Multi-Region keys in KMS</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -2270,7 +2294,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about multi-Region keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+     * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -2283,7 +2307,7 @@ public class KeyMetadata implements Serializable {
      *         <p>
      *         For more information about multi-Region keys, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     *         >Using multi-Region keys</a> in the <i>Key Management Service
+     *         >Multi-Region keys in KMS</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -2301,7 +2325,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about multi-Region keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+     * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -2314,7 +2338,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about multi-Region keys, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     *            >Using multi-Region keys</a> in the <i>Key Management Service
+     *            >Multi-Region keys in KMS</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -2332,7 +2356,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * For more information about multi-Region keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+     * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -2348,7 +2372,7 @@ public class KeyMetadata implements Serializable {
      *            <p>
      *            For more information about multi-Region keys, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
-     *            >Using multi-Region keys</a> in the <i>Key Management Service
+     *            >Multi-Region keys in KMS</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -2729,6 +2753,120 @@ public class KeyMetadata implements Serializable {
     }
 
     /**
+     * <p>
+     * The message authentication code (MAC) algorithm that the HMAC KMS key
+     * supports.
+     * </p>
+     * <p>
+     * This value is present only when the <code>KeyUsage</code> of the KMS key
+     * is <code>GENERATE_VERIFY_MAC</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The message authentication code (MAC) algorithm that the HMAC KMS
+     *         key supports.
+     *         </p>
+     *         <p>
+     *         This value is present only when the <code>KeyUsage</code> of the
+     *         KMS key is <code>GENERATE_VERIFY_MAC</code>.
+     *         </p>
+     */
+    public java.util.List<String> getMacAlgorithms() {
+        return macAlgorithms;
+    }
+
+    /**
+     * <p>
+     * The message authentication code (MAC) algorithm that the HMAC KMS key
+     * supports.
+     * </p>
+     * <p>
+     * This value is present only when the <code>KeyUsage</code> of the KMS key
+     * is <code>GENERATE_VERIFY_MAC</code>.
+     * </p>
+     *
+     * @param macAlgorithms <p>
+     *            The message authentication code (MAC) algorithm that the HMAC
+     *            KMS key supports.
+     *            </p>
+     *            <p>
+     *            This value is present only when the <code>KeyUsage</code> of
+     *            the KMS key is <code>GENERATE_VERIFY_MAC</code>.
+     *            </p>
+     */
+    public void setMacAlgorithms(java.util.Collection<String> macAlgorithms) {
+        if (macAlgorithms == null) {
+            this.macAlgorithms = null;
+            return;
+        }
+
+        this.macAlgorithms = new java.util.ArrayList<String>(macAlgorithms);
+    }
+
+    /**
+     * <p>
+     * The message authentication code (MAC) algorithm that the HMAC KMS key
+     * supports.
+     * </p>
+     * <p>
+     * This value is present only when the <code>KeyUsage</code> of the KMS key
+     * is <code>GENERATE_VERIFY_MAC</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param macAlgorithms <p>
+     *            The message authentication code (MAC) algorithm that the HMAC
+     *            KMS key supports.
+     *            </p>
+     *            <p>
+     *            This value is present only when the <code>KeyUsage</code> of
+     *            the KMS key is <code>GENERATE_VERIFY_MAC</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withMacAlgorithms(String... macAlgorithms) {
+        if (getMacAlgorithms() == null) {
+            this.macAlgorithms = new java.util.ArrayList<String>(macAlgorithms.length);
+        }
+        for (String value : macAlgorithms) {
+            this.macAlgorithms.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message authentication code (MAC) algorithm that the HMAC KMS key
+     * supports.
+     * </p>
+     * <p>
+     * This value is present only when the <code>KeyUsage</code> of the KMS key
+     * is <code>GENERATE_VERIFY_MAC</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param macAlgorithms <p>
+     *            The message authentication code (MAC) algorithm that the HMAC
+     *            KMS key supports.
+     *            </p>
+     *            <p>
+     *            This value is present only when the <code>KeyUsage</code> of
+     *            the KMS key is <code>GENERATE_VERIFY_MAC</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withMacAlgorithms(java.util.Collection<String> macAlgorithms) {
+        setMacAlgorithms(macAlgorithms);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2782,7 +2920,9 @@ public class KeyMetadata implements Serializable {
         if (getMultiRegionConfiguration() != null)
             sb.append("MultiRegionConfiguration: " + getMultiRegionConfiguration() + ",");
         if (getPendingDeletionWindowInDays() != null)
-            sb.append("PendingDeletionWindowInDays: " + getPendingDeletionWindowInDays());
+            sb.append("PendingDeletionWindowInDays: " + getPendingDeletionWindowInDays() + ",");
+        if (getMacAlgorithms() != null)
+            sb.append("MacAlgorithms: " + getMacAlgorithms());
         sb.append("}");
         return sb.toString();
     }
@@ -2832,6 +2972,8 @@ public class KeyMetadata implements Serializable {
                 * hashCode
                 + ((getPendingDeletionWindowInDays() == null) ? 0
                         : getPendingDeletionWindowInDays().hashCode());
+        hashCode = prime * hashCode
+                + ((getMacAlgorithms() == null) ? 0 : getMacAlgorithms().hashCode());
         return hashCode;
     }
 
@@ -2950,6 +3092,11 @@ public class KeyMetadata implements Serializable {
         if (other.getPendingDeletionWindowInDays() != null
                 && other.getPendingDeletionWindowInDays().equals(
                         this.getPendingDeletionWindowInDays()) == false)
+            return false;
+        if (other.getMacAlgorithms() == null ^ this.getMacAlgorithms() == null)
+            return false;
+        if (other.getMacAlgorithms() != null
+                && other.getMacAlgorithms().equals(this.getMacAlgorithms()) == false)
             return false;
         return true;
     }

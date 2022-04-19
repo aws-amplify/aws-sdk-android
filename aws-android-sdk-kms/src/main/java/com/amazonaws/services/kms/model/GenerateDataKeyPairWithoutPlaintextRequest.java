@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,11 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Generates a unique asymmetric data key pair. The
- * <code>GenerateDataKeyPairWithoutPlaintext</code> operation returns a
- * plaintext public key and a copy of the private key that is encrypted under
- * the symmetric KMS key you specify. Unlike <a>GenerateDataKeyPair</a>, this
- * operation does not return a plaintext private key.
+ * Returns a unique asymmetric data key pair for use outside of KMS. This
+ * operation returns a plaintext public key and a copy of the private key that
+ * is encrypted under the symmetric encryption KMS key you specify. Unlike
+ * <a>GenerateDataKeyPair</a>, this operation does not return a plaintext
+ * private key. The bytes in the keys are random; they are not related to the
+ * caller or to the KMS key that is used to encrypt the private key.
  * </p>
  * <p>
  * You can use the public key that
@@ -35,10 +36,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * the <a>Decrypt</a> operation to decrypt the encrypted private key.
  * </p>
  * <p>
- * To generate a data key pair, you must specify a symmetric KMS key to encrypt
- * the private key in a data key pair. You cannot use an asymmetric KMS key or a
- * KMS key in a custom key store. To get the type and origin of your KMS key,
- * use the <a>DescribeKey</a> operation.
+ * To generate a data key pair, you must specify a symmetric encryption KMS key
+ * to encrypt the private key in a data key pair. You cannot use an asymmetric
+ * KMS key or a KMS key in a custom key store. To get the type and origin of
+ * your KMS key, use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
  * Use the <code>KeyPairSpec</code> parameter to choose an RSA or Elliptic Curve
@@ -55,7 +56,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>.
  * </p>
  * <p>
- * You can use the optional encryption context to add additional security to the
+ * You can use an optional encryption context to add additional security to the
  * encryption operation. If you specify an <code>EncryptionContext</code>, you
  * must specify the same encryption context (a case-sensitive exact match) when
  * decrypting the encrypted data key. Otherwise, the request to decrypt fails
@@ -68,8 +69,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The KMS key that you use for this operation must be in a compatible key
  * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
- * Developer Guide</i>.
+ * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a
@@ -121,16 +122,17 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -138,10 +140,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
 
     /**
      * <p>
-     * Specifies the KMS key that encrypts the private key in the data key pair.
-     * You must specify a symmetric KMS key. You cannot use an asymmetric KMS
-     * key or a KMS key in a custom key store. To get the type and origin of
-     * your KMS key, use the <a>DescribeKey</a> operation.
+     * Specifies the symmetric encryption KMS key that encrypts the private key
+     * in the data key pair. You cannot specify an asymmetric KMS key or a KMS
+     * key in a custom key store. To get the type and origin of your KMS key,
+     * use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -228,16 +230,17 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -247,17 +250,18 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *         </p>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
-     *         key-value pairs that represents additional authenticated data.
+     *         key-value pairs that represent additional authenticated data.
      *         When you use an encryption context to encrypt data, you must
      *         specify the same (an exact case-sensitive match) encryption
-     *         context to decrypt the data. An encryption context is optional
-     *         when encrypting with a symmetric KMS key, but it is highly
-     *         recommended.
+     *         context to decrypt the data. An encryption context is supported
+     *         only on operations with symmetric encryption KMS keys. On
+     *         operations with symmetric encryption KMS keys, an encryption
+     *         context is optional, but it is strongly recommended.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a> in the <i>Key Management Service
+     *         >Encryption context</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -272,16 +276,17 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -291,17 +296,19 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -316,16 +323,17 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -338,17 +346,19 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -367,16 +377,17 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -415,10 +426,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
 
     /**
      * <p>
-     * Specifies the KMS key that encrypts the private key in the data key pair.
-     * You must specify a symmetric KMS key. You cannot use an asymmetric KMS
-     * key or a KMS key in a custom key store. To get the type and origin of
-     * your KMS key, use the <a>DescribeKey</a> operation.
+     * Specifies the symmetric encryption KMS key that encrypts the private key
+     * in the data key pair. You cannot specify an asymmetric KMS key or a KMS
+     * key in a custom key store. To get the type and origin of your KMS key,
+     * use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -463,8 +474,8 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Specifies the KMS key that encrypts the private key in the data
-     *         key pair. You must specify a symmetric KMS key. You cannot use an
+     *         Specifies the symmetric encryption KMS key that encrypts the
+     *         private key in the data key pair. You cannot specify an
      *         asymmetric KMS key or a KMS key in a custom key store. To get the
      *         type and origin of your KMS key, use the <a>DescribeKey</a>
      *         operation.
@@ -514,10 +525,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
 
     /**
      * <p>
-     * Specifies the KMS key that encrypts the private key in the data key pair.
-     * You must specify a symmetric KMS key. You cannot use an asymmetric KMS
-     * key or a KMS key in a custom key store. To get the type and origin of
-     * your KMS key, use the <a>DescribeKey</a> operation.
+     * Specifies the symmetric encryption KMS key that encrypts the private key
+     * in the data key pair. You cannot specify an asymmetric KMS key or a KMS
+     * key in a custom key store. To get the type and origin of your KMS key,
+     * use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -562,10 +573,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Specifies the KMS key that encrypts the private key in the
-     *            data key pair. You must specify a symmetric KMS key. You
-     *            cannot use an asymmetric KMS key or a KMS key in a custom key
-     *            store. To get the type and origin of your KMS key, use the
+     *            Specifies the symmetric encryption KMS key that encrypts the
+     *            private key in the data key pair. You cannot specify an
+     *            asymmetric KMS key or a KMS key in a custom key store. To get
+     *            the type and origin of your KMS key, use the
      *            <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
@@ -614,10 +625,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
 
     /**
      * <p>
-     * Specifies the KMS key that encrypts the private key in the data key pair.
-     * You must specify a symmetric KMS key. You cannot use an asymmetric KMS
-     * key or a KMS key in a custom key store. To get the type and origin of
-     * your KMS key, use the <a>DescribeKey</a> operation.
+     * Specifies the symmetric encryption KMS key that encrypts the private key
+     * in the data key pair. You cannot specify an asymmetric KMS key or a KMS
+     * key in a custom key store. To get the type and origin of your KMS key,
+     * use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -665,10 +676,10 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Specifies the KMS key that encrypts the private key in the
-     *            data key pair. You must specify a symmetric KMS key. You
-     *            cannot use an asymmetric KMS key or a KMS key in a custom key
-     *            store. To get the type and origin of your KMS key, use the
+     *            Specifies the symmetric encryption KMS key that encrypts the
+     *            private key in the data key pair. You cannot specify an
+     *            asymmetric KMS key or a KMS key in a custom key store. To get
+     *            the type and origin of your KMS key, use the
      *            <a>DescribeKey</a> operation.
      *            </p>
      *            <p>

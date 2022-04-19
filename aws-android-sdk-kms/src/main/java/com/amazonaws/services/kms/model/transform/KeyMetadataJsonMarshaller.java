@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -149,6 +149,17 @@ class KeyMetadataJsonMarshaller {
             Integer pendingDeletionWindowInDays = keyMetadata.getPendingDeletionWindowInDays();
             jsonWriter.name("PendingDeletionWindowInDays");
             jsonWriter.value(pendingDeletionWindowInDays);
+        }
+        if (keyMetadata.getMacAlgorithms() != null) {
+            java.util.List<String> macAlgorithms = keyMetadata.getMacAlgorithms();
+            jsonWriter.name("MacAlgorithms");
+            jsonWriter.beginArray();
+            for (String macAlgorithmsItem : macAlgorithms) {
+                if (macAlgorithmsItem != null) {
+                    jsonWriter.value(macAlgorithmsItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

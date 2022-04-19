@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import java.util.Map;
 public enum KeyUsageType {
 
     SIGN_VERIFY("SIGN_VERIFY"),
-    ENCRYPT_DECRYPT("ENCRYPT_DECRYPT");
+    ENCRYPT_DECRYPT("ENCRYPT_DECRYPT"),
+    GENERATE_VERIFY_MAC("GENERATE_VERIFY_MAC");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum KeyUsageType {
         enumMap = new HashMap<String, KeyUsageType>();
         enumMap.put("SIGN_VERIFY", SIGN_VERIFY);
         enumMap.put("ENCRYPT_DECRYPT", ENCRYPT_DECRYPT);
+        enumMap.put("GENERATE_VERIFY_MAC", GENERATE_VERIFY_MAC);
     }
 
     /**

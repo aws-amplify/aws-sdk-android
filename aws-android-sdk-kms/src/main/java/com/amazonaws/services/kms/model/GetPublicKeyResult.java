@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,7 +63,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      */
     private String customerMasterKeySpec;
 
@@ -74,7 +75,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      */
     private String keySpec;
 
@@ -90,7 +92,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      */
     private String keyUsage;
 
@@ -309,7 +311,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @return <p>
      *         Instead, use the <code>KeySpec</code> field in the
@@ -341,7 +344,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -377,7 +381,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -413,7 +418,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -449,7 +455,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -478,7 +485,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @return <p>
      *         The type of the of the public key that was downloaded.
@@ -496,7 +504,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -517,7 +526,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -538,7 +548,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -559,7 +570,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -585,7 +597,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @return <p>
      *         The permitted use of the public key. Valid values are
@@ -614,7 +626,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The permitted use of the public key. Valid values are
@@ -646,7 +658,7 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The permitted use of the public key. Valid values are
@@ -678,7 +690,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The permitted use of the public key. Valid values are
@@ -710,7 +722,7 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
+     * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT, GENERATE_VERIFY_MAC
      *
      * @param keyUsage <p>
      *            The permitted use of the public key. Valid values are

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,9 +32,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This detailed information includes the key ARN, creation date (and deletion
  * date, if applicable), the key state, and the origin and expiration date (if
  * any) of the key material. It includes fields, like <code>KeySpec</code>, that
- * help you distinguish symmetric from asymmetric KMS keys. It also provides
- * information that is particularly important to asymmetric keys, such as the
- * key usage (encryption or signing) and the encryption algorithms or signing
+ * help you distinguish different types of KMS keys. It also displays the key
+ * usage (encryption, signing, or generating and verifying MACs) and the
  * algorithms that the KMS key supports. For KMS keys in custom key stores, it
  * includes information about the custom key store, such as the key store ID and
  * the CloudHSM cluster ID. For multi-Region keys, it displays the primary key
@@ -73,13 +72,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * If you call the <code>DescribeKey</code> operation on a <i>predefined Amazon
- * Web Services alias</i>, that is, an Amazon Web Services alias with no key ID,
- * KMS creates an <a href=
+ * In general, <code>DescribeKey</code> is a non-mutating operation. It returns
+ * data about KMS keys, but doesn't change them. However, Amazon Web Services
+ * services use <code>DescribeKey</code> to create <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
- * >Amazon Web Services managed key</a>. Then, it associates the alias with the
- * new KMS key, and returns the <code>KeyId</code> and <code>Arn</code> of the
- * new KMS key in the response.
+ * >Amazon Web Services managed keys</a> from a <i>predefined Amazon Web
+ * Services alias</i> with no key ID.
  * </p>
  * <p>
  * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a

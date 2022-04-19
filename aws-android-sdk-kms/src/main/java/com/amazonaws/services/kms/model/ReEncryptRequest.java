@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The <code>ReEncrypt</code> operation can decrypt ciphertext that was
- * encrypted by using an KMS KMS key in an KMS operation, such as <a>Encrypt</a>
- * or <a>GenerateDataKey</a>. It can also decrypt ciphertext that was encrypted
- * by using the public key of an <a href=
+ * encrypted by using a KMS key in an KMS operation, such as <a>Encrypt</a> or
+ * <a>GenerateDataKey</a>. It can also decrypt ciphertext that was encrypted by
+ * using the public key of an <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html#asymmetric-cmks"
  * >asymmetric KMS key</a> outside of KMS. However, it cannot decrypt ciphertext
  * produced by other libraries, such as the <a
@@ -60,7 +60,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * If your ciphertext was encrypted under a symmetric KMS key, the
+ * If your ciphertext was encrypted under a symmetric encryption KMS key, the
  * <code>SourceKeyId</code> parameter is optional. KMS can get this information
  * from metadata that it adds to the symmetric ciphertext blob. This feature
  * adds durability to your implementation by ensuring that authorized users can
@@ -76,10 +76,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To reencrypt the data, you must use the <code>DestinationKeyId</code>
  * parameter specify the KMS key that re-encrypts the data after it is
- * decrypted. You can select a symmetric or asymmetric KMS key. If the
- * destination KMS key is an asymmetric KMS key, you must also provide the
- * encryption algorithm. The algorithm that you choose must be compatible with
- * the KMS key.
+ * decrypted. If the destination KMS key is an asymmetric KMS key, you must also
+ * provide the encryption algorithm. The algorithm that you choose must be
+ * compatible with the KMS key.
  * </p>
  * <important>
  * <p>
@@ -91,10 +90,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You are not required to supply the key ID and encryption algorithm when you
- * decrypt with symmetric KMS keys because KMS stores this information in the
- * ciphertext blob. KMS cannot store metadata in ciphertext generated with
- * asymmetric keys. The standard format for asymmetric key ciphertext does not
- * include configurable fields.
+ * decrypt with symmetric encryption KMS keys because KMS stores this
+ * information in the ciphertext blob. KMS cannot store metadata in ciphertext
+ * generated with asymmetric keys. The standard format for asymmetric key
+ * ciphertext does not include configurable fields.
  * </p>
  * </important></li>
  * </ul>
@@ -102,8 +101,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The KMS key that you use for this operation must be in a compatible key
  * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
- * Developer Guide</i>.
+ * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: Yes. The source KMS key and destination KMS key can
@@ -183,16 +182,17 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -201,15 +201,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Specifies the KMS key that KMS will use to decrypt the ciphertext before
-     * it is re-encrypted. Enter a key ID of the KMS key that was used to
-     * encrypt the ciphertext.
+     * it is re-encrypted.
+     * </p>
+     * <p>
+     * Enter a key ID of the KMS key that was used to encrypt the ciphertext. If
+     * you identify a different KMS key, the <code>ReEncrypt</code> operation
+     * throws an <code>IncorrectKeyException</code>.
      * </p>
      * <p>
      * This parameter is required only when the ciphertext was encrypted under
-     * an asymmetric KMS key. If you used a symmetric KMS key, KMS can get the
-     * KMS key from metadata that it adds to the symmetric ciphertext blob.
-     * However, it is always recommended as a best practice. This practice
-     * ensures that you use the KMS key that you intend.
+     * an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS
+     * can get the KMS key from metadata that it adds to the symmetric
+     * ciphertext blob. However, it is always recommended as a best practice.
+     * This practice ensures that you use the KMS key that you intend.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -258,9 +262,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique identifier for the KMS key that is used to reencrypt the data.
-     * Specify a symmetric or asymmetric KMS key with a <code>KeyUsage</code>
-     * value of <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code>
-     * value of a KMS key, use the <a>DescribeKey</a> operation.
+     * Specify a symmetric encryption KMS key or an asymmetric KMS key with a
+     * <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>. To find the
+     * <code>KeyUsage</code> value of a KMS key, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -312,21 +317,22 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * A destination encryption context is valid only when the destination KMS
-     * key is a symmetric KMS key. The standard ciphertext format for asymmetric
-     * KMS keys does not include fields for metadata.
+     * key is a symmetric encryption KMS key. The standard ciphertext format for
+     * asymmetric KMS keys does not include fields for metadata.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -337,7 +343,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -359,7 +365,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -450,16 +456,17 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -470,17 +477,18 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
-     *         key-value pairs that represents additional authenticated data.
+     *         key-value pairs that represent additional authenticated data.
      *         When you use an encryption context to encrypt data, you must
      *         specify the same (an exact case-sensitive match) encryption
-     *         context to decrypt the data. An encryption context is optional
-     *         when encrypting with a symmetric KMS key, but it is highly
-     *         recommended.
+     *         context to decrypt the data. An encryption context is supported
+     *         only on operations with symmetric encryption KMS keys. On
+     *         operations with symmetric encryption KMS keys, an encryption
+     *         context is optional, but it is strongly recommended.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a> in the <i>Key Management Service
+     *         >Encryption context</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -495,16 +503,17 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -515,17 +524,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -540,16 +551,17 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -563,17 +575,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -592,16 +606,17 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -640,15 +655,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Specifies the KMS key that KMS will use to decrypt the ciphertext before
-     * it is re-encrypted. Enter a key ID of the KMS key that was used to
-     * encrypt the ciphertext.
+     * it is re-encrypted.
+     * </p>
+     * <p>
+     * Enter a key ID of the KMS key that was used to encrypt the ciphertext. If
+     * you identify a different KMS key, the <code>ReEncrypt</code> operation
+     * throws an <code>IncorrectKeyException</code>.
      * </p>
      * <p>
      * This parameter is required only when the ciphertext was encrypted under
-     * an asymmetric KMS key. If you used a symmetric KMS key, KMS can get the
-     * KMS key from metadata that it adds to the symmetric ciphertext blob.
-     * However, it is always recommended as a best practice. This practice
-     * ensures that you use the KMS key that you intend.
+     * an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS
+     * can get the KMS key from metadata that it adds to the symmetric
+     * ciphertext blob. However, it is always recommended as a best practice.
+     * This practice ensures that you use the KMS key that you intend.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -694,16 +713,21 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @return <p>
      *         Specifies the KMS key that KMS will use to decrypt the ciphertext
-     *         before it is re-encrypted. Enter a key ID of the KMS key that was
-     *         used to encrypt the ciphertext.
+     *         before it is re-encrypted.
+     *         </p>
+     *         <p>
+     *         Enter a key ID of the KMS key that was used to encrypt the
+     *         ciphertext. If you identify a different KMS key, the
+     *         <code>ReEncrypt</code> operation throws an
+     *         <code>IncorrectKeyException</code>.
      *         </p>
      *         <p>
      *         This parameter is required only when the ciphertext was encrypted
-     *         under an asymmetric KMS key. If you used a symmetric KMS key, KMS
-     *         can get the KMS key from metadata that it adds to the symmetric
-     *         ciphertext blob. However, it is always recommended as a best
-     *         practice. This practice ensures that you use the KMS key that you
-     *         intend.
+     *         under an asymmetric KMS key. If you used a symmetric encryption
+     *         KMS key, KMS can get the KMS key from metadata that it adds to
+     *         the symmetric ciphertext blob. However, it is always recommended
+     *         as a best practice. This practice ensures that you use the KMS
+     *         key that you intend.
      *         </p>
      *         <p>
      *         To specify a KMS key, use its key ID, key ARN, alias name, or
@@ -751,15 +775,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Specifies the KMS key that KMS will use to decrypt the ciphertext before
-     * it is re-encrypted. Enter a key ID of the KMS key that was used to
-     * encrypt the ciphertext.
+     * it is re-encrypted.
+     * </p>
+     * <p>
+     * Enter a key ID of the KMS key that was used to encrypt the ciphertext. If
+     * you identify a different KMS key, the <code>ReEncrypt</code> operation
+     * throws an <code>IncorrectKeyException</code>.
      * </p>
      * <p>
      * This parameter is required only when the ciphertext was encrypted under
-     * an asymmetric KMS key. If you used a symmetric KMS key, KMS can get the
-     * KMS key from metadata that it adds to the symmetric ciphertext blob.
-     * However, it is always recommended as a best practice. This practice
-     * ensures that you use the KMS key that you intend.
+     * an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS
+     * can get the KMS key from metadata that it adds to the symmetric
+     * ciphertext blob. However, it is always recommended as a best practice.
+     * This practice ensures that you use the KMS key that you intend.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -805,16 +833,21 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param sourceKeyId <p>
      *            Specifies the KMS key that KMS will use to decrypt the
-     *            ciphertext before it is re-encrypted. Enter a key ID of the
-     *            KMS key that was used to encrypt the ciphertext.
+     *            ciphertext before it is re-encrypted.
+     *            </p>
+     *            <p>
+     *            Enter a key ID of the KMS key that was used to encrypt the
+     *            ciphertext. If you identify a different KMS key, the
+     *            <code>ReEncrypt</code> operation throws an
+     *            <code>IncorrectKeyException</code>.
      *            </p>
      *            <p>
      *            This parameter is required only when the ciphertext was
      *            encrypted under an asymmetric KMS key. If you used a symmetric
-     *            KMS key, KMS can get the KMS key from metadata that it adds to
-     *            the symmetric ciphertext blob. However, it is always
-     *            recommended as a best practice. This practice ensures that you
-     *            use the KMS key that you intend.
+     *            encryption KMS key, KMS can get the KMS key from metadata that
+     *            it adds to the symmetric ciphertext blob. However, it is
+     *            always recommended as a best practice. This practice ensures
+     *            that you use the KMS key that you intend.
      *            </p>
      *            <p>
      *            To specify a KMS key, use its key ID, key ARN, alias name, or
@@ -863,15 +896,19 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * Specifies the KMS key that KMS will use to decrypt the ciphertext before
-     * it is re-encrypted. Enter a key ID of the KMS key that was used to
-     * encrypt the ciphertext.
+     * it is re-encrypted.
+     * </p>
+     * <p>
+     * Enter a key ID of the KMS key that was used to encrypt the ciphertext. If
+     * you identify a different KMS key, the <code>ReEncrypt</code> operation
+     * throws an <code>IncorrectKeyException</code>.
      * </p>
      * <p>
      * This parameter is required only when the ciphertext was encrypted under
-     * an asymmetric KMS key. If you used a symmetric KMS key, KMS can get the
-     * KMS key from metadata that it adds to the symmetric ciphertext blob.
-     * However, it is always recommended as a best practice. This practice
-     * ensures that you use the KMS key that you intend.
+     * an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS
+     * can get the KMS key from metadata that it adds to the symmetric
+     * ciphertext blob. However, it is always recommended as a best practice.
+     * This practice ensures that you use the KMS key that you intend.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -920,16 +957,21 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param sourceKeyId <p>
      *            Specifies the KMS key that KMS will use to decrypt the
-     *            ciphertext before it is re-encrypted. Enter a key ID of the
-     *            KMS key that was used to encrypt the ciphertext.
+     *            ciphertext before it is re-encrypted.
+     *            </p>
+     *            <p>
+     *            Enter a key ID of the KMS key that was used to encrypt the
+     *            ciphertext. If you identify a different KMS key, the
+     *            <code>ReEncrypt</code> operation throws an
+     *            <code>IncorrectKeyException</code>.
      *            </p>
      *            <p>
      *            This parameter is required only when the ciphertext was
      *            encrypted under an asymmetric KMS key. If you used a symmetric
-     *            KMS key, KMS can get the KMS key from metadata that it adds to
-     *            the symmetric ciphertext blob. However, it is always
-     *            recommended as a best practice. This practice ensures that you
-     *            use the KMS key that you intend.
+     *            encryption KMS key, KMS can get the KMS key from metadata that
+     *            it adds to the symmetric ciphertext blob. However, it is
+     *            always recommended as a best practice. This practice ensures
+     *            that you use the KMS key that you intend.
      *            </p>
      *            <p>
      *            To specify a KMS key, use its key ID, key ARN, alias name, or
@@ -981,9 +1023,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique identifier for the KMS key that is used to reencrypt the data.
-     * Specify a symmetric or asymmetric KMS key with a <code>KeyUsage</code>
-     * value of <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code>
-     * value of a KMS key, use the <a>DescribeKey</a> operation.
+     * Specify a symmetric encryption KMS key or an asymmetric KMS key with a
+     * <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>. To find the
+     * <code>KeyUsage</code> value of a KMS key, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -1029,10 +1072,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @return <p>
      *         A unique identifier for the KMS key that is used to reencrypt the
-     *         data. Specify a symmetric or asymmetric KMS key with a
-     *         <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>. To
-     *         find the <code>KeyUsage</code> value of a KMS key, use the
-     *         <a>DescribeKey</a> operation.
+     *         data. Specify a symmetric encryption KMS key or an asymmetric KMS
+     *         key with a <code>KeyUsage</code> value of
+     *         <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code>
+     *         value of a KMS key, use the <a>DescribeKey</a> operation.
      *         </p>
      *         <p>
      *         To specify a KMS key, use its key ID, key ARN, alias name, or
@@ -1080,9 +1123,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique identifier for the KMS key that is used to reencrypt the data.
-     * Specify a symmetric or asymmetric KMS key with a <code>KeyUsage</code>
-     * value of <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code>
-     * value of a KMS key, use the <a>DescribeKey</a> operation.
+     * Specify a symmetric encryption KMS key or an asymmetric KMS key with a
+     * <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>. To find the
+     * <code>KeyUsage</code> value of a KMS key, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -1128,9 +1172,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param destinationKeyId <p>
      *            A unique identifier for the KMS key that is used to reencrypt
-     *            the data. Specify a symmetric or asymmetric KMS key with a
-     *            <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>.
-     *            To find the <code>KeyUsage</code> value of a KMS key, use the
+     *            the data. Specify a symmetric encryption KMS key or an
+     *            asymmetric KMS key with a <code>KeyUsage</code> value of
+     *            <code>ENCRYPT_DECRYPT</code>. To find the
+     *            <code>KeyUsage</code> value of a KMS key, use the
      *            <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
@@ -1180,9 +1225,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique identifier for the KMS key that is used to reencrypt the data.
-     * Specify a symmetric or asymmetric KMS key with a <code>KeyUsage</code>
-     * value of <code>ENCRYPT_DECRYPT</code>. To find the <code>KeyUsage</code>
-     * value of a KMS key, use the <a>DescribeKey</a> operation.
+     * Specify a symmetric encryption KMS key or an asymmetric KMS key with a
+     * <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>. To find the
+     * <code>KeyUsage</code> value of a KMS key, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
@@ -1231,9 +1277,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param destinationKeyId <p>
      *            A unique identifier for the KMS key that is used to reencrypt
-     *            the data. Specify a symmetric or asymmetric KMS key with a
-     *            <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT</code>.
-     *            To find the <code>KeyUsage</code> value of a KMS key, use the
+     *            the data. Specify a symmetric encryption KMS key or an
+     *            asymmetric KMS key with a <code>KeyUsage</code> value of
+     *            <code>ENCRYPT_DECRYPT</code>. To find the
+     *            <code>KeyUsage</code> value of a KMS key, use the
      *            <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
@@ -1289,21 +1336,22 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * A destination encryption context is valid only when the destination KMS
-     * key is a symmetric KMS key. The standard ciphertext format for asymmetric
-     * KMS keys does not include fields for metadata.
+     * key is a symmetric encryption KMS key. The standard ciphertext format for
+     * asymmetric KMS keys does not include fields for metadata.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -1313,23 +1361,24 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         A destination encryption context is valid only when the
-     *         destination KMS key is a symmetric KMS key. The standard
-     *         ciphertext format for asymmetric KMS keys does not include fields
-     *         for metadata.
+     *         destination KMS key is a symmetric encryption KMS key. The
+     *         standard ciphertext format for asymmetric KMS keys does not
+     *         include fields for metadata.
      *         </p>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
-     *         key-value pairs that represents additional authenticated data.
+     *         key-value pairs that represent additional authenticated data.
      *         When you use an encryption context to encrypt data, you must
      *         specify the same (an exact case-sensitive match) encryption
-     *         context to decrypt the data. An encryption context is optional
-     *         when encrypting with a symmetric KMS key, but it is highly
-     *         recommended.
+     *         context to decrypt the data. An encryption context is supported
+     *         only on operations with symmetric encryption KMS keys. On
+     *         operations with symmetric encryption KMS keys, an encryption
+     *         context is optional, but it is strongly recommended.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a> in the <i>Key Management Service
+     *         >Encryption context</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -1343,21 +1392,22 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * A destination encryption context is valid only when the destination KMS
-     * key is a symmetric KMS key. The standard ciphertext format for asymmetric
-     * KMS keys does not include fields for metadata.
+     * key is a symmetric encryption KMS key. The standard ciphertext format for
+     * asymmetric KMS keys does not include fields for metadata.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -1367,23 +1417,25 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            A destination encryption context is valid only when the
-     *            destination KMS key is a symmetric KMS key. The standard
-     *            ciphertext format for asymmetric KMS keys does not include
-     *            fields for metadata.
+     *            destination KMS key is a symmetric encryption KMS key. The
+     *            standard ciphertext format for asymmetric KMS keys does not
+     *            include fields for metadata.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -1398,21 +1450,22 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * A destination encryption context is valid only when the destination KMS
-     * key is a symmetric KMS key. The standard ciphertext format for asymmetric
-     * KMS keys does not include fields for metadata.
+     * key is a symmetric encryption KMS key. The standard ciphertext format for
+     * asymmetric KMS keys does not include fields for metadata.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1425,23 +1478,25 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            A destination encryption context is valid only when the
-     *            destination KMS key is a symmetric KMS key. The standard
-     *            ciphertext format for asymmetric KMS keys does not include
-     *            fields for metadata.
+     *            destination KMS key is a symmetric encryption KMS key. The
+     *            standard ciphertext format for asymmetric KMS keys does not
+     *            include fields for metadata.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
-     *            key-value pairs that represents additional authenticated data.
+     *            key-value pairs that represent additional authenticated data.
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
-     *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric KMS key, but it is highly
+     *            context to decrypt the data. An encryption context is
+     *            supported only on operations with symmetric encryption KMS
+     *            keys. On operations with symmetric encryption KMS keys, an
+     *            encryption context is optional, but it is strongly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>Key Management Service
+     *            >Encryption context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1459,21 +1514,22 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * A destination encryption context is valid only when the destination KMS
-     * key is a symmetric KMS key. The standard ciphertext format for asymmetric
-     * KMS keys does not include fields for metadata.
+     * key is a symmetric encryption KMS key. The standard ciphertext format for
+     * asymmetric KMS keys does not include fields for metadata.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
-     * pairs that represents additional authenticated data. When you use an
+     * pairs that represent additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric KMS key,
-     * but it is highly recommended.
+     * encryption context is supported only on operations with symmetric
+     * encryption KMS keys. On operations with symmetric encryption KMS keys, an
+     * encryption context is optional, but it is strongly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>Key Management Service Developer
+     * >Encryption context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1515,7 +1571,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -1534,7 +1590,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         Specifies the encryption algorithm that KMS will use to decrypt
      *         the ciphertext before it is reencrypted. The default value,
      *         <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     *         symmetric KMS keys.
+     *         symmetric encryption KMS keys.
      *         </p>
      *         <p>
      *         Specify the same algorithm that was used to encrypt the
@@ -1556,7 +1612,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -1575,7 +1631,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            decrypt the ciphertext before it is reencrypted. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            algorithm used for symmetric KMS keys.
+     *            algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            Specify the same algorithm that was used to encrypt the
@@ -1597,7 +1653,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -1619,7 +1675,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            decrypt the ciphertext before it is reencrypted. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            algorithm used for symmetric KMS keys.
+     *            algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            Specify the same algorithm that was used to encrypt the
@@ -1644,7 +1700,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -1663,7 +1719,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            decrypt the ciphertext before it is reencrypted. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            algorithm used for symmetric KMS keys.
+     *            algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            Specify the same algorithm that was used to encrypt the
@@ -1685,7 +1741,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to decrypt the
      * ciphertext before it is reencrypted. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the algorithm used for
-     * symmetric KMS keys.
+     * symmetric encryption KMS keys.
      * </p>
      * <p>
      * Specify the same algorithm that was used to encrypt the ciphertext. If
@@ -1707,7 +1763,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            decrypt the ciphertext before it is reencrypted. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            algorithm used for symmetric KMS keys.
+     *            algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            Specify the same algorithm that was used to encrypt the
@@ -1733,7 +1789,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -1748,7 +1804,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         Specifies the encryption algorithm that KMS will use to reecrypt
      *         the data after it has decrypted it. The default value,
      *         <code>SYMMETRIC_DEFAULT</code>, represents the encryption
-     *         algorithm used for symmetric KMS keys.
+     *         algorithm used for symmetric encryption KMS keys.
      *         </p>
      *         <p>
      *         This parameter is required only when the destination KMS key is
@@ -1765,7 +1821,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -1780,7 +1836,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            reecrypt the data after it has decrypted it. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            encryption algorithm used for symmetric KMS keys.
+     *            encryption algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            This parameter is required only when the destination KMS key
@@ -1797,7 +1853,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -1815,7 +1871,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            reecrypt the data after it has decrypted it. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            encryption algorithm used for symmetric KMS keys.
+     *            encryption algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            This parameter is required only when the destination KMS key
@@ -1835,7 +1891,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -1850,7 +1906,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            reecrypt the data after it has decrypted it. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            encryption algorithm used for symmetric KMS keys.
+     *            encryption algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            This parameter is required only when the destination KMS key
@@ -1868,7 +1924,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * Specifies the encryption algorithm that KMS will use to reecrypt the data
      * after it has decrypted it. The default value,
      * <code>SYMMETRIC_DEFAULT</code>, represents the encryption algorithm used
-     * for symmetric KMS keys.
+     * for symmetric encryption KMS keys.
      * </p>
      * <p>
      * This parameter is required only when the destination KMS key is an
@@ -1886,7 +1942,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies the encryption algorithm that KMS will use to
      *            reecrypt the data after it has decrypted it. The default
      *            value, <code>SYMMETRIC_DEFAULT</code>, represents the
-     *            encryption algorithm used for symmetric KMS keys.
+     *            encryption algorithm used for symmetric encryption KMS keys.
      *            </p>
      *            <p>
      *            This parameter is required only when the destination KMS key

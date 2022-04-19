@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * This operation can be called by the <i>retiring principal</i> for a grant, by
  * the <i>grantee principal</i> if the grant allows the <code>RetireGrant</code>
- * operation, and by the Amazon Web Services account (root user) in which the
- * grant is created. It can also be called by principals to whom permission for
- * retiring a grant is delegated. For details, see <a href=
+ * operation, and by the Amazon Web Services account in which the grant is
+ * created. It can also be called by principals to whom permission for retiring
+ * a grant is delegated. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
  * >Retiring and revoking grants</a> in the <i>Key Management Service Developer
  * Guide</i>.
@@ -40,8 +40,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For detailed information about grants, including grant terminology, see <a
  * href
- * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Using
- * grants</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Grants
+ * in KMS</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
  * examples of working with grants in several programming languages, see <a
  * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-grants.html"

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,8 +50,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -224,8 +224,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,8 +239,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *         For more information about how key state affects the use of a KMS
      *         key, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >Key state: Effect on your KMS key</a> in the <i>Key Management
-     *         Service Developer Guide</i>.
+     *         >Key states of KMS keys</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      * @see KeyState
      */
@@ -256,8 +256,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -271,8 +271,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -288,8 +288,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -306,8 +306,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -326,8 +326,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -341,8 +341,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -358,8 +358,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * For more information about how key state affects the use of a KMS key,
      * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
-     * Developer Guide</i>.
+     * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -376,8 +376,8 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *            For more information about how key state affects the use of a
      *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your KMS key</a> in the <i>Key
-     *            Management Service Developer Guide</i>.
+     *            >Key states of KMS keys</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
