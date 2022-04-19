@@ -24,7 +24,8 @@ import java.util.Map;
 public enum FeatureType {
 
     TABLES("TABLES"),
-    FORMS("FORMS");
+    FORMS("FORMS"),
+    QUERIES("QUERIES");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum FeatureType {
         enumMap = new HashMap<String, FeatureType>();
         enumMap.put("TABLES", TABLES);
         enumMap.put("FORMS", FORMS);
+        enumMap.put("QUERIES", QUERIES);
     }
 
     /**

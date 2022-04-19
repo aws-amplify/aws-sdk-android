@@ -27,7 +27,8 @@ public enum RelationshipType {
     CHILD("CHILD"),
     COMPLEX_FEATURES("COMPLEX_FEATURES"),
     MERGED_CELL("MERGED_CELL"),
-    TITLE("TITLE");
+    TITLE("TITLE"),
+    ANSWER("ANSWER");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum RelationshipType {
         enumMap.put("COMPLEX_FEATURES", COMPLEX_FEATURES);
         enumMap.put("MERGED_CELL", MERGED_CELL);
         enumMap.put("TITLE", TITLE);
+        enumMap.put("ANSWER", ANSWER);
     }
 
     /**

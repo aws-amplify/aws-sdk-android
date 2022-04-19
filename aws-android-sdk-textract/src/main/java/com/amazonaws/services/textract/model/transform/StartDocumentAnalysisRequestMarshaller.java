@@ -108,6 +108,11 @@ public class StartDocumentAnalysisRequestMarshaller implements
                 jsonWriter.name("KMSKeyId");
                 jsonWriter.value(kMSKeyId);
             }
+            if (startDocumentAnalysisRequest.getQueriesConfig() != null) {
+                QueriesConfig queriesConfig = startDocumentAnalysisRequest.getQueriesConfig();
+                jsonWriter.name("QueriesConfig");
+                QueriesConfigJsonMarshaller.getInstance().marshall(queriesConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

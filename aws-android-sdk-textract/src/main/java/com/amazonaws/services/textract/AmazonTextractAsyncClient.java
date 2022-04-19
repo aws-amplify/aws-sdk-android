@@ -289,6 +289,13 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * relationship with the value of <code>FeatureTypes</code>).
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Queries.A QUERIES_RESULT Block object contains the answer to the query,
+     * the alias associated and an ID that connect it to the query asked. This
+     * Block also contains a location and attached confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Selection elements such as check boxes and option buttons (radio buttons)
@@ -374,6 +381,13 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * more WORD <code>Block</code> objects. All lines and words that are
      * detected in the document are returned (including text that doesn't have a
      * relationship with the value of <code>FeatureTypes</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Queries.A QUERIES_RESULT Block object contains the answer to the query,
+     * the alias associated and an ID that connect it to the query asked. This
+     * Block also contains a location and attached confidence score.
      * </p>
      * </li>
      * </ul>
@@ -563,7 +577,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Analyzes identity documents for relevant information. This information is
      * extracted and returned as <code>IdentityDocumentFields</code>, which
-     * records both the normalized field and value of the extracted text.
+     * records both the normalized field and value of the extracted text.Unlike
+     * other Amazon Textract operations, <code>AnalyzeID</code> doesn't return
+     * any Geometry data.
      * </p>
      * 
      * @param analyzeIDRequest
@@ -599,7 +615,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Analyzes identity documents for relevant information. This information is
      * extracted and returned as <code>IdentityDocumentFields</code>, which
-     * records both the normalized field and value of the extracted text.
+     * records both the normalized field and value of the extracted text.Unlike
+     * other Amazon Textract operations, <code>AnalyzeID</code> doesn't return
+     * any Geometry data.
      * </p>
      * 
      * @param analyzeIDRequest
@@ -644,8 +662,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
-     * be an image in JPEG or PNG format. <code>DetectDocumentText</code>
-     * returns the detected text in an array of <a>Block</a> objects.
+     * be an image in JPEG, PNG, PDF, or TIFF format.
+     * <code>DetectDocumentText</code> returns the detected text in an array of
+     * <a>Block</a> objects.
      * </p>
      * <p>
      * Each document page has as an associated <code>Block</code> of type PAGE.
@@ -700,8 +719,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
-     * be an image in JPEG or PNG format. <code>DetectDocumentText</code>
-     * returns the detected text in an array of <a>Block</a> objects.
+     * be an image in JPEG, PNG, PDF, or TIFF format.
+     * <code>DetectDocumentText</code> returns the detected text in an array of
+     * <a>Block</a> objects.
      * </p>
      * <p>
      * Each document page has as an associated <code>Block</code> of type PAGE.
@@ -809,6 +829,13 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <code>FeatureTypes</code> input parameter).
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Queries. A QUERIES_RESULT Block object contains the answer to the query,
+     * the alias associated and an ID that connect it to the query asked. This
+     * Block also contains a location and attached confidence score
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Selection elements such as check boxes and option buttons (radio buttons)
@@ -908,6 +935,13 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * detected in the document are returned (including text that doesn't have a
      * relationship with the value of the <code>StartDocumentAnalysis</code>
      * <code>FeatureTypes</code> input parameter).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Queries. A QUERIES_RESULT Block object contains the answer to the query,
+     * the alias associated and an ID that connect it to the query asked. This
+     * Block also contains a location and attached confidence score
      * </p>
      * </li>
      * </ul>

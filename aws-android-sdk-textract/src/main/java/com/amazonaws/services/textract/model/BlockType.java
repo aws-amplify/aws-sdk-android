@@ -31,7 +31,9 @@ public enum BlockType {
     CELL("CELL"),
     SELECTION_ELEMENT("SELECTION_ELEMENT"),
     MERGED_CELL("MERGED_CELL"),
-    TITLE("TITLE");
+    TITLE("TITLE"),
+    QUERY("QUERY"),
+    QUERY_RESULT("QUERY_RESULT");
 
     private String value;
 
@@ -56,6 +58,8 @@ public enum BlockType {
         enumMap.put("SELECTION_ELEMENT", SELECTION_ELEMENT);
         enumMap.put("MERGED_CELL", MERGED_CELL);
         enumMap.put("TITLE", TITLE);
+        enumMap.put("QUERY", QUERY);
+        enumMap.put("QUERY_RESULT", QUERY_RESULT);
     }
 
     /**

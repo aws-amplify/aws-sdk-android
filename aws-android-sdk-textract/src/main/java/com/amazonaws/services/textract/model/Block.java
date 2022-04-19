@@ -117,11 +117,24 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      */
     private String blockType;
 
@@ -133,7 +146,7 @@ public class Block implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -301,6 +314,11 @@ public class Block implements Serializable {
     private Integer page;
 
     /**
+     * <p/>
+     */
+    private Query query;
+
+    /**
      * <p>
      * The type of text item that's recognized. In operations for text
      * detection, the following types are returned:
@@ -376,11 +394,24 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      *
      * @return <p>
      *         The type of text item that's recognized. In operations for text
@@ -458,6 +489,21 @@ public class Block implements Serializable {
      *         button (radio button) or a check box that's detected on a
      *         document page. Use the value of <code>SelectionStatus</code> to
      *         determine the status of the selection element.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>QUERY</i> - A question asked during the call of
+     *         AnalyzeDocument. Contains an alias and an ID that attachs it to
+     *         its answer.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>QUERY_RESULT</i> - A response to a question asked during the
+     *         call of analyze document. Comes with an alias and ID for ease of
+     *         locating in a response. Also contains location and confidence
+     *         score.
      *         </p>
      *         </li>
      *         </ul>
@@ -543,11 +589,24 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -626,6 +685,21 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY</i> - A question asked during the call of
+     *            AnalyzeDocument. Contains an alias and an ID that attachs it
+     *            to its answer.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY_RESULT</i> - A response to a question asked during
+     *            the call of analyze document. Comes with an alias and ID for
+     *            ease of locating in a response. Also contains location and
+     *            confidence score.
      *            </p>
      *            </li>
      *            </ul>
@@ -711,6 +785,19 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -718,7 +805,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -797,6 +884,21 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY</i> - A question asked during the call of
+     *            AnalyzeDocument. Contains an alias and an ID that attachs it
+     *            to its answer.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY_RESULT</i> - A response to a question asked during
+     *            the call of analyze document. Comes with an alias and ID for
+     *            ease of locating in a response. Also contains location and
+     *            confidence score.
      *            </p>
      *            </li>
      *            </ul>
@@ -885,11 +987,24 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -968,6 +1083,21 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY</i> - A question asked during the call of
+     *            AnalyzeDocument. Contains an alias and an ID that attachs it
+     *            to its answer.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY_RESULT</i> - A response to a question asked during
+     *            the call of analyze document. Comes with an alias and ID for
+     *            ease of locating in a response. Also contains location and
+     *            confidence score.
      *            </p>
      *            </li>
      *            </ul>
@@ -1053,6 +1183,19 @@ public class Block implements Serializable {
      * selection element.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
+     * Contains an alias and an ID that attachs it to its answer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>QUERY_RESULT</i> - A response to a question asked during the call of
+     * analyze document. Comes with an alias and ID for ease of locating in a
+     * response. Also contains location and confidence score.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1060,7 +1203,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1141,6 +1284,21 @@ public class Block implements Serializable {
      *            to determine the status of the selection element.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY</i> - A question asked during the call of
+     *            AnalyzeDocument. Contains an alias and an ID that attachs it
+     *            to its answer.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>QUERY_RESULT</i> - A response to a question asked during
+     *            the call of analyze document. Comes with an alias and ID for
+     *            ease of locating in a response. Also contains location and
+     *            confidence score.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1159,7 +1317,7 @@ public class Block implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The confidence score that Amazon Textract has in the accuracy of
@@ -1179,7 +1337,7 @@ public class Block implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence score that Amazon Textract has in the accuracy
@@ -1202,7 +1360,7 @@ public class Block implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence score that Amazon Textract has in the accuracy
@@ -2397,6 +2555,39 @@ public class Block implements Serializable {
     }
 
     /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public Query getQuery() {
+        return query;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param query <p/>
+     */
+    public void setQuery(Query query) {
+        this.query = query;
+    }
+
+    /**
+     * <p/>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param query <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Block withQuery(Query query) {
+        this.query = query;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2434,7 +2625,9 @@ public class Block implements Serializable {
         if (getSelectionStatus() != null)
             sb.append("SelectionStatus: " + getSelectionStatus() + ",");
         if (getPage() != null)
-            sb.append("Page: " + getPage());
+            sb.append("Page: " + getPage() + ",");
+        if (getQuery() != null)
+            sb.append("Query: " + getQuery());
         sb.append("}");
         return sb.toString();
     }
@@ -2462,6 +2655,7 @@ public class Block implements Serializable {
         hashCode = prime * hashCode
                 + ((getSelectionStatus() == null) ? 0 : getSelectionStatus().hashCode());
         hashCode = prime * hashCode + ((getPage() == null) ? 0 : getPage().hashCode());
+        hashCode = prime * hashCode + ((getQuery() == null) ? 0 : getQuery().hashCode());
         return hashCode;
     }
 
@@ -2538,6 +2732,10 @@ public class Block implements Serializable {
         if (other.getPage() == null ^ this.getPage() == null)
             return false;
         if (other.getPage() != null && other.getPage().equals(this.getPage()) == false)
+            return false;
+        if (other.getQuery() == null ^ this.getQuery() == null)
+            return false;
+        if (other.getQuery() != null && other.getQuery().equals(this.getQuery()) == false)
             return false;
         return true;
     }

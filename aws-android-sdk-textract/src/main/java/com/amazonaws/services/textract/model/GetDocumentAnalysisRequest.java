@@ -66,6 +66,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>FeatureTypes</code> input parameter).
  * </p>
  * </li>
+ * <li>
+ * <p>
+ * Queries. A QUERIES_RESULT Block object contains the answer to the query, the
+ * alias associated and an ID that connect it to the query asked. This Block
+ * also contains a location and attached confidence score
+ * </p>
+ * </li>
  * </ul>
  * <p>
  * Selection elements such as check boxes and option buttons (radio buttons) can
