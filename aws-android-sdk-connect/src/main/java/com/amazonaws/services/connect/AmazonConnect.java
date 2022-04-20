@@ -298,6 +298,30 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Associates a contact flow with a phone number claimed to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param associatePhoneNumberContactFlowRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void associatePhoneNumberContactFlow(
+            AssociatePhoneNumberContactFlowRequest associatePhoneNumberContactFlowRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -378,6 +402,31 @@ public interface AmazonConnect {
     AssociateSecurityKeyResult associateSecurityKey(
             AssociateSecurityKeyRequest associateSecurityKeyRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Claims an available phone number to your Amazon Connect instance.
+     * </p>
+     * 
+     * @param claimPhoneNumberRequest
+     * @return claimPhoneNumberResult The response from the ClaimPhoneNumber
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ClaimPhoneNumberResult claimPhoneNumber(ClaimPhoneNumberRequest claimPhoneNumberRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -1328,6 +1377,33 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Gets details and status of a phone number that’s claimed to your Amazon
+     * Connect instance
+     * </p>
+     * 
+     * @param describePhoneNumberRequest
+     * @return describePhoneNumberResult The response from the
+     *         DescribePhoneNumber service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribePhoneNumberResult describePhoneNumber(
+            DescribePhoneNumberRequest describePhoneNumberRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1674,6 +1750,30 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void disassociateLexBot(DisassociateLexBotRequest disassociateLexBotRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the contact flow association from a phone number claimed to your
+     * Amazon Connect instance, if a contact flow association exists.
+     * </p>
+     * 
+     * @param disassociatePhoneNumberContactFlowRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void disassociatePhoneNumberContactFlow(
+            DisassociatePhoneNumberContactFlowRequest disassociatePhoneNumberContactFlowRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2321,6 +2421,36 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Lists phone numbers claimed to your Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param listPhoneNumbersV2Request
+     * @return listPhoneNumbersV2Result The response from the ListPhoneNumbersV2
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListPhoneNumbersV2Result listPhoneNumbersV2(ListPhoneNumbersV2Request listPhoneNumbersV2Request)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides information about the prompts for the specified Amazon Connect
      * instance.
      * </p>
@@ -2706,6 +2836,30 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * </p>
+     * 
+     * @param releasePhoneNumberRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void releasePhoneNumber(ReleasePhoneNumberRequest releasePhoneNumberRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * When a contact is being recorded, and the recording has been suspended
      * using SuspendContactRecording, this API resumes recording the call.
      * </p>
@@ -2730,6 +2884,32 @@ public interface AmazonConnect {
      */
     ResumeContactRecordingResult resumeContactRecording(
             ResumeContactRecordingRequest resumeContactRecordingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches for available phone numbers that you can claim to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param searchAvailablePhoneNumbersRequest
+     * @return searchAvailablePhoneNumbersResult The response from the
+     *         SearchAvailablePhoneNumbers service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchAvailablePhoneNumbersResult searchAvailablePhoneNumbers(
+            SearchAvailablePhoneNumbersRequest searchAvailablePhoneNumbersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3139,7 +3319,8 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, and hours of operation.
+     * connects, contact flows, agent status, hours of operation, and phone
+     * number.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -3545,6 +3726,33 @@ public interface AmazonConnect {
      */
     void updateInstanceStorageConfig(
             UpdateInstanceStorageConfigRequest updateInstanceStorageConfigRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates your claimed phone number from its current Amazon Connect
+     * instance to another Amazon Connect instance in the same Region.
+     * </p>
+     * 
+     * @param updatePhoneNumberRequest
+     * @return updatePhoneNumberResult The response from the UpdatePhoneNumber
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdatePhoneNumberResult updatePhoneNumber(UpdatePhoneNumberRequest updatePhoneNumberRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

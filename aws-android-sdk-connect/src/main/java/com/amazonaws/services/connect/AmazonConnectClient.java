@@ -717,6 +717,52 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Associates a contact flow with a phone number claimed to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param associatePhoneNumberContactFlowRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void associatePhoneNumberContactFlow(
+            AssociatePhoneNumberContactFlowRequest associatePhoneNumberContactFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associatePhoneNumberContactFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociatePhoneNumberContactFlowRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociatePhoneNumberContactFlowRequestMarshaller()
+                        .marshall(associatePhoneNumberContactFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -858,6 +904,57 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<AssociateSecurityKeyResult, JsonUnmarshallerContext> unmarshaller = new AssociateSecurityKeyResultJsonUnmarshaller();
             JsonResponseHandler<AssociateSecurityKeyResult> responseHandler = new JsonResponseHandler<AssociateSecurityKeyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Claims an available phone number to your Amazon Connect instance.
+     * </p>
+     * 
+     * @param claimPhoneNumberRequest
+     * @return claimPhoneNumberResult The response from the ClaimPhoneNumber
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ClaimPhoneNumberResult claimPhoneNumber(ClaimPhoneNumberRequest claimPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(claimPhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ClaimPhoneNumberRequest> request = null;
+        Response<ClaimPhoneNumberResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ClaimPhoneNumberRequestMarshaller().marshall(claimPhoneNumberRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ClaimPhoneNumberResult, JsonUnmarshallerContext> unmarshaller = new ClaimPhoneNumberResultJsonUnmarshaller();
+            JsonResponseHandler<ClaimPhoneNumberResult> responseHandler = new JsonResponseHandler<ClaimPhoneNumberResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2657,6 +2754,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Gets details and status of a phone number that’s claimed to your Amazon
+     * Connect instance
+     * </p>
+     * 
+     * @param describePhoneNumberRequest
+     * @return describePhoneNumberResult The response from the
+     *         DescribePhoneNumber service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribePhoneNumberResult describePhoneNumber(
+            DescribePhoneNumberRequest describePhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describePhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribePhoneNumberRequest> request = null;
+        Response<DescribePhoneNumberResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribePhoneNumberRequestMarshaller()
+                        .marshall(describePhoneNumberRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribePhoneNumberResult, JsonUnmarshallerContext> unmarshaller = new DescribePhoneNumberResultJsonUnmarshaller();
+            JsonResponseHandler<DescribePhoneNumberResult> responseHandler = new JsonResponseHandler<DescribePhoneNumberResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -3316,6 +3467,52 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             try {
                 request = new DisassociateLexBotRequestMarshaller()
                         .marshall(disassociateLexBotRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the contact flow association from a phone number claimed to your
+     * Amazon Connect instance, if a contact flow association exists.
+     * </p>
+     * 
+     * @param disassociatePhoneNumberContactFlowRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void disassociatePhoneNumberContactFlow(
+            DisassociatePhoneNumberContactFlowRequest disassociatePhoneNumberContactFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(disassociatePhoneNumberContactFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociatePhoneNumberContactFlowRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociatePhoneNumberContactFlowRequestMarshaller()
+                        .marshall(disassociatePhoneNumberContactFlowRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
@@ -4550,6 +4747,64 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Lists phone numbers claimed to your Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param listPhoneNumbersV2Request
+     * @return listPhoneNumbersV2Result The response from the ListPhoneNumbersV2
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListPhoneNumbersV2Result listPhoneNumbersV2(
+            ListPhoneNumbersV2Request listPhoneNumbersV2Request)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listPhoneNumbersV2Request);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListPhoneNumbersV2Request> request = null;
+        Response<ListPhoneNumbersV2Result> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListPhoneNumbersV2RequestMarshaller()
+                        .marshall(listPhoneNumbersV2Request);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListPhoneNumbersV2Result, JsonUnmarshallerContext> unmarshaller = new ListPhoneNumbersV2ResultJsonUnmarshaller();
+            JsonResponseHandler<ListPhoneNumbersV2Result> responseHandler = new JsonResponseHandler<ListPhoneNumbersV2Result>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provides information about the prompts for the specified Amazon Connect
      * instance.
      * </p>
@@ -5282,6 +5537,52 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * </p>
+     * 
+     * @param releasePhoneNumberRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void releasePhoneNumber(ReleasePhoneNumberRequest releasePhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(releasePhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ReleasePhoneNumberRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ReleasePhoneNumberRequestMarshaller()
+                        .marshall(releasePhoneNumberRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * When a contact is being recorded, and the recording has been suspended
      * using SuspendContactRecording, this API resumes recording the call.
      * </p>
@@ -5324,6 +5625,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ResumeContactRecordingResult, JsonUnmarshallerContext> unmarshaller = new ResumeContactRecordingResultJsonUnmarshaller();
             JsonResponseHandler<ResumeContactRecordingResult> responseHandler = new JsonResponseHandler<ResumeContactRecordingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Searches for available phone numbers that you can claim to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param searchAvailablePhoneNumbersRequest
+     * @return searchAvailablePhoneNumbersResult The response from the
+     *         SearchAvailablePhoneNumbers service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchAvailablePhoneNumbersResult searchAvailablePhoneNumbers(
+            SearchAvailablePhoneNumbersRequest searchAvailablePhoneNumbersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchAvailablePhoneNumbersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchAvailablePhoneNumbersRequest> request = null;
+        Response<SearchAvailablePhoneNumbersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchAvailablePhoneNumbersRequestMarshaller()
+                        .marshall(searchAvailablePhoneNumbersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchAvailablePhoneNumbersResult, JsonUnmarshallerContext> unmarshaller = new SearchAvailablePhoneNumbersResultJsonUnmarshaller();
+            JsonResponseHandler<SearchAvailablePhoneNumbersResult> responseHandler = new JsonResponseHandler<SearchAvailablePhoneNumbersResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6010,7 +6364,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, and hours of operation.
+     * connects, contact flows, agent status, hours of operation, and phone
+     * number.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -6745,6 +7100,61 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates your claimed phone number from its current Amazon Connect
+     * instance to another Amazon Connect instance in the same Region.
+     * </p>
+     * 
+     * @param updatePhoneNumberRequest
+     * @return updatePhoneNumberResult The response from the UpdatePhoneNumber
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdatePhoneNumberResult updatePhoneNumber(
+            UpdatePhoneNumberRequest updatePhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updatePhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdatePhoneNumberRequest> request = null;
+        Response<UpdatePhoneNumberResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdatePhoneNumberRequestMarshaller()
+                        .marshall(updatePhoneNumberRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdatePhoneNumberResult, JsonUnmarshallerContext> unmarshaller = new UpdatePhoneNumberResultJsonUnmarshaller();
+            JsonResponseHandler<UpdatePhoneNumberResult> responseHandler = new JsonResponseHandler<UpdatePhoneNumberResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);

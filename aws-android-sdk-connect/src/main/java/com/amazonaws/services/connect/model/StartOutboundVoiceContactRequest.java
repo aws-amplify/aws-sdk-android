@@ -61,6 +61,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The phone number of the customer, in E.164 format.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      */
     private String destinationPhoneNumber;
 
@@ -112,6 +115,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * format. If you do not specify a source phone number, you must specify a
      * queue.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      */
     private String sourcePhoneNumber;
 
@@ -174,6 +180,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The phone number of the customer, in E.164 format.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @return <p>
      *         The phone number of the customer, in E.164 format.
@@ -187,6 +196,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The phone number of the customer, in E.164 format.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param destinationPhoneNumber <p>
      *            The phone number of the customer, in E.164 format.
@@ -203,6 +215,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param destinationPhoneNumber <p>
      *            The phone number of the customer, in E.164 format.
@@ -464,6 +479,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * format. If you do not specify a source phone number, you must specify a
      * queue.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @return <p>
      *         The phone number associated with the Amazon Connect instance, in
@@ -481,6 +499,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * format. If you do not specify a source phone number, you must specify a
      * queue.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param sourcePhoneNumber <p>
      *            The phone number associated with the Amazon Connect instance,
@@ -501,6 +522,9 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param sourcePhoneNumber <p>
      *            The phone number associated with the Amazon Connect instance,

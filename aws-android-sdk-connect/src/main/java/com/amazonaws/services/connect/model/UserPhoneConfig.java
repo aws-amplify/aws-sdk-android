@@ -54,6 +54,9 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The phone number for the user's desk phone.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      */
     private String deskPhoneNumber;
 
@@ -270,6 +273,9 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The phone number for the user's desk phone.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @return <p>
      *         The phone number for the user's desk phone.
@@ -283,6 +289,9 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The phone number for the user's desk phone.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param deskPhoneNumber <p>
      *            The phone number for the user's desk phone.
@@ -299,6 +308,9 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param deskPhoneNumber <p>
      *            The phone number for the user's desk phone.
