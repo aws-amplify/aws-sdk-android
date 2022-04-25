@@ -479,6 +479,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Associates a contact flow with a phone number claimed to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param associatePhoneNumberContactFlowRequest
+     * @return A Java Future object containing the response from the
+     *         AssociatePhoneNumberContactFlow service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> associatePhoneNumberContactFlowAsync(
+            AssociatePhoneNumberContactFlowRequest associatePhoneNumberContactFlowRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Associates a contact flow with a phone number claimed to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param associatePhoneNumberContactFlowRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         AssociatePhoneNumberContactFlow service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> associatePhoneNumberContactFlowAsync(
+            AssociatePhoneNumberContactFlowRequest associatePhoneNumberContactFlowRequest,
+            AsyncHandler<AssociatePhoneNumberContactFlowRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -668,6 +727,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<AssociateSecurityKeyResult> associateSecurityKeyAsync(
             AssociateSecurityKeyRequest associateSecurityKeyRequest,
             AsyncHandler<AssociateSecurityKeyRequest, AssociateSecurityKeyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Claims an available phone number to your Amazon Connect instance.
+     * </p>
+     * 
+     * @param claimPhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         ClaimPhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ClaimPhoneNumberResult> claimPhoneNumberAsync(
+            ClaimPhoneNumberRequest claimPhoneNumberRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Claims an available phone number to your Amazon Connect instance.
+     * </p>
+     * 
+     * @param claimPhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ClaimPhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ClaimPhoneNumberResult> claimPhoneNumberAsync(
+            ClaimPhoneNumberRequest claimPhoneNumberRequest,
+            AsyncHandler<ClaimPhoneNumberRequest, ClaimPhoneNumberResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2794,6 +2910,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Gets details and status of a phone number that’s claimed to your Amazon
+     * Connect instance
+     * </p>
+     * 
+     * @param describePhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         DescribePhoneNumber service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribePhoneNumberResult> describePhoneNumberAsync(
+            DescribePhoneNumberRequest describePhoneNumberRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Gets details and status of a phone number that’s claimed to your Amazon
+     * Connect instance
+     * </p>
+     * 
+     * @param describePhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribePhoneNumber service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribePhoneNumberResult> describePhoneNumberAsync(
+            DescribePhoneNumberRequest describePhoneNumberRequest,
+            AsyncHandler<DescribePhoneNumberRequest, DescribePhoneNumberResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -3583,6 +3758,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<Void> disassociateLexBotAsync(DisassociateLexBotRequest disassociateLexBotRequest,
             AsyncHandler<DisassociateLexBotRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Removes the contact flow association from a phone number claimed to your
+     * Amazon Connect instance, if a contact flow association exists.
+     * </p>
+     * 
+     * @param disassociatePhoneNumberContactFlowRequest
+     * @return A Java Future object containing the response from the
+     *         DisassociatePhoneNumberContactFlow service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> disassociatePhoneNumberContactFlowAsync(
+            DisassociatePhoneNumberContactFlowRequest disassociatePhoneNumberContactFlowRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Removes the contact flow association from a phone number claimed to your
+     * Amazon Connect instance, if a contact flow association exists.
+     * </p>
+     * 
+     * @param disassociatePhoneNumberContactFlowRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DisassociatePhoneNumberContactFlow service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> disassociatePhoneNumberContactFlowAsync(
+            DisassociatePhoneNumberContactFlowRequest disassociatePhoneNumberContactFlowRequest,
+            AsyncHandler<DisassociatePhoneNumberContactFlowRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5011,6 +5245,73 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Lists phone numbers claimed to your Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param listPhoneNumbersV2Request
+     * @return A Java Future object containing the response from the
+     *         ListPhoneNumbersV2 service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListPhoneNumbersV2Result> listPhoneNumbersV2Async(
+            ListPhoneNumbersV2Request listPhoneNumbersV2Request) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Lists phone numbers claimed to your Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param listPhoneNumbersV2Request
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListPhoneNumbersV2 service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListPhoneNumbersV2Result> listPhoneNumbersV2Async(
+            ListPhoneNumbersV2Request listPhoneNumbersV2Request,
+            AsyncHandler<ListPhoneNumbersV2Request, ListPhoneNumbersV2Result> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Provides information about the prompts for the specified Amazon Connect
      * instance.
      * </p>
@@ -5850,6 +6151,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * </p>
+     * 
+     * @param releasePhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         ReleasePhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> releasePhoneNumberAsync(ReleasePhoneNumberRequest releasePhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * </p>
+     * 
+     * @param releasePhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ReleasePhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> releasePhoneNumberAsync(ReleasePhoneNumberRequest releasePhoneNumberRequest,
+            AsyncHandler<ReleasePhoneNumberRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * When a contact is being recorded, and the recording has been suspended
      * using SuspendContactRecording, this API resumes recording the call.
      * </p>
@@ -5907,6 +6265,116 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<ResumeContactRecordingResult> resumeContactRecordingAsync(
             ResumeContactRecordingRequest resumeContactRecordingRequest,
             AsyncHandler<ResumeContactRecordingRequest, ResumeContactRecordingResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Searches for available phone numbers that you can claim to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param searchAvailablePhoneNumbersRequest
+     * @return A Java Future object containing the response from the
+     *         SearchAvailablePhoneNumbers service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchAvailablePhoneNumbersResult> searchAvailablePhoneNumbersAsync(
+            SearchAvailablePhoneNumbersRequest searchAvailablePhoneNumbersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Searches for available phone numbers that you can claim to your Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param searchAvailablePhoneNumbersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SearchAvailablePhoneNumbers service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchAvailablePhoneNumbersResult> searchAvailablePhoneNumbersAsync(
+            SearchAvailablePhoneNumbersRequest searchAvailablePhoneNumbersRequest,
+            AsyncHandler<SearchAvailablePhoneNumbersRequest, SearchAvailablePhoneNumbersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Searches users in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchUsersRequest
+     * @return A Java Future object containing the response from the SearchUsers
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchUsersResult> searchUsersAsync(SearchUsersRequest searchUsersRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Searches users in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchUsersRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the SearchUsers
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchUsersResult> searchUsersAsync(SearchUsersRequest searchUsersRequest,
+            AsyncHandler<SearchUsersRequest, SearchUsersResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -6773,7 +7241,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, and hours of operation.
+     * connects, contact flows, agent status, hours of operation, and phone
+     * number.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -6807,7 +7276,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, and hours of operation.
+     * connects, contact flows, agent status, hours of operation, and phone
+     * number.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -7721,6 +8191,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> updateInstanceStorageConfigAsync(
             UpdateInstanceStorageConfigRequest updateInstanceStorageConfigRequest,
             AsyncHandler<UpdateInstanceStorageConfigRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates your claimed phone number from its current Amazon Connect
+     * instance to another Amazon Connect instance in the same Region.
+     * </p>
+     * 
+     * @param updatePhoneNumberRequest
+     * @return A Java Future object containing the response from the
+     *         UpdatePhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdatePhoneNumberResult> updatePhoneNumberAsync(
+            UpdatePhoneNumberRequest updatePhoneNumberRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Updates your claimed phone number from its current Amazon Connect
+     * instance to another Amazon Connect instance in the same Region.
+     * </p>
+     * 
+     * @param updatePhoneNumberRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdatePhoneNumber service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdatePhoneNumberResult> updatePhoneNumberAsync(
+            UpdatePhoneNumberRequest updatePhoneNumberRequest,
+            AsyncHandler<UpdatePhoneNumberRequest, UpdatePhoneNumberResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
