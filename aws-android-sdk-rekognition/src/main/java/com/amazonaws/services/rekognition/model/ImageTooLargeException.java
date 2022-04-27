@@ -21,8 +21,8 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The input image size exceeds the allowed limit. If you are calling
  * DetectProtectiveEquipment, the image size or resolution exceeds the allowed
- * limit. For more information, see Limits in Amazon Rekognition in the Amazon
- * Rekognition Developer Guide.
+ * limit. For more information, see Guidelines and quotas in Amazon Rekognition
+ * in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class ImageTooLargeException extends AmazonServiceException {

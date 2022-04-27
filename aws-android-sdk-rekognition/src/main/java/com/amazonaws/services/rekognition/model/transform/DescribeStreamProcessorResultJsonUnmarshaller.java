@@ -70,6 +70,25 @@ public class DescribeStreamProcessorResultJsonUnmarshaller implements
                 describeStreamProcessorResult.setSettings(StreamProcessorSettingsJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("NotificationChannel")) {
+                describeStreamProcessorResult
+                        .setNotificationChannel(StreamProcessorNotificationChannelJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("KmsKeyId")) {
+                describeStreamProcessorResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("RegionsOfInterest")) {
+                describeStreamProcessorResult
+                        .setRegionsOfInterest(new ListUnmarshaller<RegionOfInterest>(
+                                RegionOfInterestJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DataSharingPreference")) {
+                describeStreamProcessorResult
+                        .setDataSharingPreference(StreamProcessorDataSharingPreferenceJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

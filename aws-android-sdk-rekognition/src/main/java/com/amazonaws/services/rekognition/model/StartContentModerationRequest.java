@@ -43,7 +43,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * from the initial call to <code>StartContentModeration</code>.
  * </p>
  * <p>
- * For more information, see Content moderation in the Amazon Rekognition
+ * For more information, see Moderating content in the Amazon Rekognition
  * Developer Guide.
  * </p>
  */
@@ -69,7 +69,7 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -179,7 +179,7 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Specifies the minimum confidence that Amazon Rekognition must
@@ -210,7 +210,7 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence that Amazon Rekognition must
@@ -245,7 +245,7 @@ public class StartContentModerationRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence that Amazon Rekognition must

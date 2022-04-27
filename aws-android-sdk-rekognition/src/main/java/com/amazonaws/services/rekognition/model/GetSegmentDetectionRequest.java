@@ -61,7 +61,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * returned from the previous call to <code>GetSegmentDetection</code>.
  * </p>
  * <p>
- * For more information, see Detecting Video Segments in Stored Video in the
+ * For more information, see Detecting video segments in stored video in the
  * Amazon Rekognition Developer Guide.
  * </p>
  */

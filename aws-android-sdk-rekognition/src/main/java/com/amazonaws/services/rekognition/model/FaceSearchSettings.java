@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Input face recognition parameters for an Amazon Rekognition stream processor.
- * <code>FaceRecognitionSettings</code> is a request parameter for
+ * Includes the collection to use for face recognition and the face attributes
+ * to detect. Defining the settings is required in the request parameter for
  * <a>CreateStreamProcessor</a>.
  * </p>
  */
@@ -45,7 +46,7 @@ public class FaceSearchSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float faceMatchThreshold;
 
@@ -118,7 +119,7 @@ public class FaceSearchSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Minimum face match confidence score that must be met to return a
@@ -140,7 +141,7 @@ public class FaceSearchSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            Minimum face match confidence score that must be met to return
@@ -166,7 +167,7 @@ public class FaceSearchSettings implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            Minimum face match confidence score that must be met to return

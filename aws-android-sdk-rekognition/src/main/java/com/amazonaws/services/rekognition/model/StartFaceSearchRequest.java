@@ -35,7 +35,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
  * If so, call <a>GetFaceSearch</a> and pass the job identifier (
  * <code>JobId</code>) from the initial call to <code>StartFaceSearch</code>.
- * For more information, see <a>procedure-person-search-videos</a>.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/dg/procedure-person-search-videos.html"
+ * >Searching stored videos for faces</a>.
  * </p>
  */
 public class StartFaceSearchRequest extends AmazonWebServiceRequest implements Serializable {
@@ -69,7 +71,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float faceMatchThreshold;
 
@@ -246,7 +248,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The minimum confidence in the person match to return. For
@@ -266,7 +268,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            The minimum confidence in the person match to return. For
@@ -289,7 +291,7 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            The minimum confidence in the person match to return. For

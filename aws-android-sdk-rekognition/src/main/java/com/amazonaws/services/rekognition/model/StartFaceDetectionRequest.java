@@ -37,7 +37,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>StartFaceDetection</code>.
  * </p>
  * <p>
- * For more information, see Detecting Faces in a Stored Video in the Amazon
+ * For more information, see Detecting faces in a stored video in the Amazon
  * Rekognition Developer Guide.
  * </p>
  */

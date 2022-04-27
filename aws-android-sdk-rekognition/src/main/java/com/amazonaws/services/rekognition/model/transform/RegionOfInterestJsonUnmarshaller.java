@@ -39,6 +39,11 @@ class RegionOfInterestJsonUnmarshaller implements
             if (name.equals("BoundingBox")) {
                 regionOfInterest.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Polygon")) {
+                regionOfInterest.setPolygon(new ListUnmarshaller<Point>(PointJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

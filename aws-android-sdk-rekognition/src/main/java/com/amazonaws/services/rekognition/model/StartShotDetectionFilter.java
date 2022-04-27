@@ -41,7 +41,7 @@ public class StartShotDetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      */
     private Float minSegmentConfidence;
 
@@ -61,7 +61,7 @@ public class StartShotDetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @return <p>
      *         Specifies the minimum confidence that Amazon Rekognition Video
@@ -97,7 +97,7 @@ public class StartShotDetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @param minSegmentConfidence <p>
      *            Specifies the minimum confidence that Amazon Rekognition Video
@@ -137,7 +137,7 @@ public class StartShotDetectionFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @param minSegmentConfidence <p>
      *            Specifies the minimum confidence that Amazon Rekognition Video

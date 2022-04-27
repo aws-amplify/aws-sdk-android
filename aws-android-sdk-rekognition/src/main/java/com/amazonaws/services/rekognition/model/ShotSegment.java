@@ -41,7 +41,7 @@ public class ShotSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -108,7 +108,7 @@ public class ShotSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @return <p>
      *         The confidence that Amazon Rekognition Video has in the accuracy
@@ -126,7 +126,7 @@ public class ShotSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition Video has in the
@@ -147,7 +147,7 @@ public class ShotSegment implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>50 - 100<br/>
+     * <b>Length: </b>50.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition Video has in the

@@ -50,8 +50,8 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For Amazon Rekognition to process an S3 object, the user must have permission
- * to access the S3 object. For more information, see Resource Based Policies in
- * the Amazon Rekognition Developer Guide.
+ * to access the S3 object. For more information, see How Amazon Rekognition
+ * works with IAM in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class Image implements Serializable {

@@ -32,6 +32,11 @@ class StreamProcessorSettingsJsonMarshaller {
             jsonWriter.name("FaceSearch");
             FaceSearchSettingsJsonMarshaller.getInstance().marshall(faceSearch, jsonWriter);
         }
+        if (streamProcessorSettings.getConnectedHome() != null) {
+            ConnectedHomeSettings connectedHome = streamProcessorSettings.getConnectedHome();
+            jsonWriter.name("ConnectedHome");
+            ConnectedHomeSettingsJsonMarshaller.getInstance().marshall(connectedHome, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

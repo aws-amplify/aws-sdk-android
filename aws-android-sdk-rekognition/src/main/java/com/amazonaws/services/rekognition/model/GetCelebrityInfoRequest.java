@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * empty.
  * </p>
  * <p>
- * For more information, see Recognizing Celebrities in an Image in the Amazon
+ * For more information, see Getting information about a celebrity in the Amazon
  * Rekognition Developer Guide.
  * </p>
  * <p>

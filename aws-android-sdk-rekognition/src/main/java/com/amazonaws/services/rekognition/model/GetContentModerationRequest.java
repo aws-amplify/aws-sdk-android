@@ -67,7 +67,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * previous call to <code>GetContentModeration</code>.
  * </p>
  * <p>
- * For more information, see Content moderation in the Amazon Rekognition
+ * For more information, see moderating content in the Amazon Rekognition
  * Developer Guide.
  * </p>
  */

@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * evening, and nature.
  * </p>
  * <p>
- * For an example, see Analyzing Images Stored in an Amazon S3 Bucket in the
+ * For an example, see Analyzing images stored in an Amazon S3 bucket in the
  * Amazon Rekognition Developer Guide.
  * </p>
  * <note>
@@ -157,7 +157,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -365,7 +365,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Specifies the minimum confidence level for the labels to return.
@@ -394,7 +394,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to
@@ -426,7 +426,7 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to

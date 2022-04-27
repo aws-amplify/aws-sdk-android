@@ -36,6 +36,14 @@ public class StreamProcessorOutput implements Serializable {
 
     /**
      * <p>
+     * The Amazon S3 bucket location to which Amazon Rekognition publishes the
+     * detailed inference results of a video analysis operation.
+     * </p>
+     */
+    private S3Destination s3Destination;
+
+    /**
+     * <p>
      * The Amazon Kinesis Data Streams stream to which the Amazon Rekognition
      * stream processor streams the analysis results.
      * </p>
@@ -86,6 +94,60 @@ public class StreamProcessorOutput implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon S3 bucket location to which Amazon Rekognition publishes the
+     * detailed inference results of a video analysis operation.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon S3 bucket location to which Amazon Rekognition
+     *         publishes the detailed inference results of a video analysis
+     *         operation.
+     *         </p>
+     */
+    public S3Destination getS3Destination() {
+        return s3Destination;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 bucket location to which Amazon Rekognition publishes the
+     * detailed inference results of a video analysis operation.
+     * </p>
+     *
+     * @param s3Destination <p>
+     *            The Amazon S3 bucket location to which Amazon Rekognition
+     *            publishes the detailed inference results of a video analysis
+     *            operation.
+     *            </p>
+     */
+    public void setS3Destination(S3Destination s3Destination) {
+        this.s3Destination = s3Destination;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 bucket location to which Amazon Rekognition publishes the
+     * detailed inference results of a video analysis operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param s3Destination <p>
+     *            The Amazon S3 bucket location to which Amazon Rekognition
+     *            publishes the detailed inference results of a video analysis
+     *            operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StreamProcessorOutput withS3Destination(S3Destination s3Destination) {
+        this.s3Destination = s3Destination;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -97,7 +159,9 @@ public class StreamProcessorOutput implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getKinesisDataStream() != null)
-            sb.append("KinesisDataStream: " + getKinesisDataStream());
+            sb.append("KinesisDataStream: " + getKinesisDataStream() + ",");
+        if (getS3Destination() != null)
+            sb.append("S3Destination: " + getS3Destination());
         sb.append("}");
         return sb.toString();
     }
@@ -109,6 +173,8 @@ public class StreamProcessorOutput implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getKinesisDataStream() == null) ? 0 : getKinesisDataStream().hashCode());
+        hashCode = prime * hashCode
+                + ((getS3Destination() == null) ? 0 : getS3Destination().hashCode());
         return hashCode;
     }
 
@@ -127,6 +193,11 @@ public class StreamProcessorOutput implements Serializable {
             return false;
         if (other.getKinesisDataStream() != null
                 && other.getKinesisDataStream().equals(this.getKinesisDataStream()) == false)
+            return false;
+        if (other.getS3Destination() == null ^ this.getS3Destination() == null)
+            return false;
+        if (other.getS3Destination() != null
+                && other.getS3Destination().equals(this.getS3Destination()) == false)
             return false;
         return true;
     }

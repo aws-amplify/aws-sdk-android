@@ -140,7 +140,7 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float similarityThreshold;
 
@@ -401,7 +401,7 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The minimum level of confidence in the face matches that a match
@@ -419,7 +419,7 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param similarityThreshold <p>
      *            The minimum level of confidence in the face matches that a
@@ -441,7 +441,7 @@ public class CompareFacesRequest extends AmazonWebServiceRequest implements Seri
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param similarityThreshold <p>
      *            The minimum level of confidence in the face matches that a

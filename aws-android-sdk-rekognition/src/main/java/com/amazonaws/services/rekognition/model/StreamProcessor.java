@@ -19,11 +19,12 @@ import java.io.Serializable;
 
 /**
  * <p>
- * An object that recognizes faces in a streaming video. An Amazon Rekognition
- * stream processor is created by a call to <a>CreateStreamProcessor</a>. The
- * request parameters for <code>CreateStreamProcessor</code> describe the
- * Kinesis video stream source for the streaming video, face recognition
- * parameters, and where to stream the analysis resullts.
+ * An object that recognizes faces or labels in a streaming video. An Amazon
+ * Rekognition stream processor is created by a call to
+ * <a>CreateStreamProcessor</a>. The request parameters for
+ * <code>CreateStreamProcessor</code> describe the Kinesis video stream source
+ * for the streaming video, face recognition parameters, and where to stream the
+ * analysis resullts.
  * </p>
  */
 public class StreamProcessor implements Serializable {
@@ -44,7 +45,8 @@ public class StreamProcessor implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      */
     private String status;
 
@@ -111,7 +113,8 @@ public class StreamProcessor implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      *
      * @return <p>
      *         Current status of the Amazon Rekognition stream processor.
@@ -128,7 +131,8 @@ public class StreamProcessor implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      *
      * @param status <p>
      *            Current status of the Amazon Rekognition stream processor.
@@ -148,7 +152,8 @@ public class StreamProcessor implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      *
      * @param status <p>
      *            Current status of the Amazon Rekognition stream processor.
@@ -168,7 +173,8 @@ public class StreamProcessor implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      *
      * @param status <p>
      *            Current status of the Amazon Rekognition stream processor.
@@ -188,7 +194,8 @@ public class StreamProcessor implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING
+     * <b>Allowed Values: </b>STOPPED, STARTING, RUNNING, FAILED, STOPPING,
+     * UPDATING
      *
      * @param status <p>
      *            Current status of the Amazon Rekognition stream processor.

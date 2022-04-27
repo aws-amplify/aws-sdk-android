@@ -38,7 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>StartCelebrityRecognition</code>.
  * </p>
  * <p>
- * For more information, see Recognizing Celebrities in the Amazon Rekognition
+ * For more information, see Recognizing celebrities in the Amazon Rekognition
  * Developer Guide.
  * </p>
  */

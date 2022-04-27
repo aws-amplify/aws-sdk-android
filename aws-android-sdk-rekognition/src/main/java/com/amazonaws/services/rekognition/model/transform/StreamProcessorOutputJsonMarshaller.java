@@ -32,6 +32,11 @@ class StreamProcessorOutputJsonMarshaller {
             jsonWriter.name("KinesisDataStream");
             KinesisDataStreamJsonMarshaller.getInstance().marshall(kinesisDataStream, jsonWriter);
         }
+        if (streamProcessorOutput.getS3Destination() != null) {
+            S3Destination s3Destination = streamProcessorOutput.getS3Destination();
+            jsonWriter.name("S3Destination");
+            S3DestinationJsonMarshaller.getInstance().marshall(s3Destination, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

@@ -40,6 +40,10 @@ class StreamProcessorSettingsJsonUnmarshaller implements
                 streamProcessorSettings.setFaceSearch(FaceSearchSettingsJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ConnectedHome")) {
+                streamProcessorSettings.setConnectedHome(ConnectedHomeSettingsJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

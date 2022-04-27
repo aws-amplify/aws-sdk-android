@@ -65,7 +65,7 @@ public class Celebrity implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float matchConfidence;
 
@@ -324,7 +324,7 @@ public class Celebrity implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The confidence, in percentage, that Amazon Rekognition has that
@@ -342,7 +342,7 @@ public class Celebrity implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param matchConfidence <p>
      *            The confidence, in percentage, that Amazon Rekognition has
@@ -363,7 +363,7 @@ public class Celebrity implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param matchConfidence <p>
      *            The confidence, in percentage, that Amazon Rekognition has

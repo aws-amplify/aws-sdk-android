@@ -27,7 +27,8 @@ public enum StreamProcessorStatus {
     STARTING("STARTING"),
     RUNNING("RUNNING"),
     FAILED("FAILED"),
-    STOPPING("STOPPING");
+    STOPPING("STOPPING"),
+    UPDATING("UPDATING");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum StreamProcessorStatus {
         enumMap.put("RUNNING", RUNNING);
         enumMap.put("FAILED", FAILED);
         enumMap.put("STOPPING", STOPPING);
+        enumMap.put("UPDATING", UPDATING);
     }
 
     /**
