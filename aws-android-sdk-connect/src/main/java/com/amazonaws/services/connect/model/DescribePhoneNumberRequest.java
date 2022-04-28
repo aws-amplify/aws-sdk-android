@@ -17,73 +17,64 @@ package com.amazonaws.services.connect.model;
 
 import java.io.Serializable;
 
+import com.amazonaws.AmazonWebServiceRequest;
+
 /**
  * <p>
- * Contains information about a phone number for a quick connect.
+ * Gets details and status of a phone number that’s claimed to your Amazon
+ * Connect instance
  * </p>
  */
-public class PhoneNumberQuickConnectConfig implements Serializable {
+public class DescribePhoneNumberRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The phone number in E.164 format.
+     * A unique identifier for the phone number.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      */
-    private String phoneNumber;
+    private String phoneNumberId;
 
     /**
      * <p>
-     * The phone number in E.164 format.
+     * A unique identifier for the phone number.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @return <p>
-     *         The phone number in E.164 format.
+     *         A unique identifier for the phone number.
      *         </p>
      */
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNumberId() {
+        return phoneNumberId;
     }
 
     /**
      * <p>
-     * The phone number in E.164 format.
+     * A unique identifier for the phone number.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
-     * @param phoneNumber <p>
-     *            The phone number in E.164 format.
+     * @param phoneNumberId <p>
+     *            A unique identifier for the phone number.
      *            </p>
      */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumberId(String phoneNumberId) {
+        this.phoneNumberId = phoneNumberId;
     }
 
     /**
      * <p>
-     * The phone number in E.164 format.
+     * A unique identifier for the phone number.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
-     * @param phoneNumber <p>
-     *            The phone number in E.164 format.
+     * @param phoneNumberId <p>
+     *            A unique identifier for the phone number.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PhoneNumberQuickConnectConfig withPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public DescribePhoneNumberRequest withPhoneNumberId(String phoneNumberId) {
+        this.phoneNumberId = phoneNumberId;
         return this;
     }
 
@@ -98,8 +89,8 @@ public class PhoneNumberQuickConnectConfig implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getPhoneNumber() != null)
-            sb.append("PhoneNumber: " + getPhoneNumber());
+        if (getPhoneNumberId() != null)
+            sb.append("PhoneNumberId: " + getPhoneNumberId());
         sb.append("}");
         return sb.toString();
     }
@@ -110,7 +101,7 @@ public class PhoneNumberQuickConnectConfig implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getPhoneNumber() == null) ? 0 : getPhoneNumber().hashCode());
+                + ((getPhoneNumberId() == null) ? 0 : getPhoneNumberId().hashCode());
         return hashCode;
     }
 
@@ -121,14 +112,14 @@ public class PhoneNumberQuickConnectConfig implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof PhoneNumberQuickConnectConfig == false)
+        if (obj instanceof DescribePhoneNumberRequest == false)
             return false;
-        PhoneNumberQuickConnectConfig other = (PhoneNumberQuickConnectConfig) obj;
+        DescribePhoneNumberRequest other = (DescribePhoneNumberRequest) obj;
 
-        if (other.getPhoneNumber() == null ^ this.getPhoneNumber() == null)
+        if (other.getPhoneNumberId() == null ^ this.getPhoneNumberId() == null)
             return false;
-        if (other.getPhoneNumber() != null
-                && other.getPhoneNumber().equals(this.getPhoneNumber()) == false)
+        if (other.getPhoneNumberId() != null
+                && other.getPhoneNumberId().equals(this.getPhoneNumberId()) == false)
             return false;
         return true;
     }

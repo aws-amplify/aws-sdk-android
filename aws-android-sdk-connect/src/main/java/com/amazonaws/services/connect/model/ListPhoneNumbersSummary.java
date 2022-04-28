@@ -19,43 +19,35 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains summary information about a phone number for a contact center.
+ * Information about phone numbers that have been claimed to your Amazon Connect
+ * instance.
  * </p>
  */
-public class PhoneNumberSummary implements Serializable {
+public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
-     * The identifier of the phone number.
+     * A unique identifier for the phone number.
      * </p>
      */
-    private String id;
+    private String phoneNumberId;
 
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the phone number.
      * </p>
      */
-    private String arn;
+    private String phoneNumberArn;
 
     /**
      * <p>
-     * The phone number.
+     * The phone number. Phone numbers are formatted
+     * <code>[+] [country code] [subscriber number including area code]</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      */
     private String phoneNumber;
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     */
-    private String phoneNumberType;
 
     /**
      * <p>
@@ -82,46 +74,64 @@ public class PhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the phone number.
+     * The type of phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     */
+    private String phoneNumberType;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
+     * numbers are claimed to.
+     * </p>
+     */
+    private String targetArn;
+
+    /**
+     * <p>
+     * A unique identifier for the phone number.
      * </p>
      *
      * @return <p>
-     *         The identifier of the phone number.
+     *         A unique identifier for the phone number.
      *         </p>
      */
-    public String getId() {
-        return id;
+    public String getPhoneNumberId() {
+        return phoneNumberId;
     }
 
     /**
      * <p>
-     * The identifier of the phone number.
+     * A unique identifier for the phone number.
      * </p>
      *
-     * @param id <p>
-     *            The identifier of the phone number.
+     * @param phoneNumberId <p>
+     *            A unique identifier for the phone number.
      *            </p>
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setPhoneNumberId(String phoneNumberId) {
+        this.phoneNumberId = phoneNumberId;
     }
 
     /**
      * <p>
-     * The identifier of the phone number.
+     * A unique identifier for the phone number.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id <p>
-     *            The identifier of the phone number.
+     * @param phoneNumberId <p>
+     *            A unique identifier for the phone number.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PhoneNumberSummary withId(String id) {
-        this.id = id;
+    public ListPhoneNumbersSummary withPhoneNumberId(String phoneNumberId) {
+        this.phoneNumberId = phoneNumberId;
         return this;
     }
 
@@ -134,8 +144,8 @@ public class PhoneNumberSummary implements Serializable {
      *         The Amazon Resource Name (ARN) of the phone number.
      *         </p>
      */
-    public String getArn() {
-        return arn;
+    public String getPhoneNumberArn() {
+        return phoneNumberArn;
     }
 
     /**
@@ -143,12 +153,12 @@ public class PhoneNumberSummary implements Serializable {
      * The Amazon Resource Name (ARN) of the phone number.
      * </p>
      *
-     * @param arn <p>
+     * @param phoneNumberArn <p>
      *            The Amazon Resource Name (ARN) of the phone number.
      *            </p>
      */
-    public void setArn(String arn) {
-        this.arn = arn;
+    public void setPhoneNumberArn(String phoneNumberArn) {
+        this.phoneNumberArn = phoneNumberArn;
     }
 
     /**
@@ -159,27 +169,30 @@ public class PhoneNumberSummary implements Serializable {
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param arn <p>
+     * @param phoneNumberArn <p>
      *            The Amazon Resource Name (ARN) of the phone number.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PhoneNumberSummary withArn(String arn) {
-        this.arn = arn;
+    public ListPhoneNumbersSummary withPhoneNumberArn(String phoneNumberArn) {
+        this.phoneNumberArn = phoneNumberArn;
         return this;
     }
 
     /**
      * <p>
-     * The phone number.
+     * The phone number. Phone numbers are formatted
+     * <code>[+] [country code] [subscriber number including area code]</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @return <p>
-     *         The phone number.
+     *         The phone number. Phone numbers are formatted
+     *         <code>[+] [country code] [subscriber number including area code]</code>
+     *         .
      *         </p>
      */
     public String getPhoneNumber() {
@@ -188,14 +201,17 @@ public class PhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The phone number.
+     * The phone number. Phone numbers are formatted
+     * <code>[+] [country code] [subscriber number including area code]</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param phoneNumber <p>
-     *            The phone number.
+     *            The phone number. Phone numbers are formatted
+     *            <code>[+] [country code] [subscriber number including area code]</code>
+     *            .
      *            </p>
      */
     public void setPhoneNumber(String phoneNumber) {
@@ -204,7 +220,8 @@ public class PhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The phone number.
+     * The phone number. Phone numbers are formatted
+     * <code>[+] [country code] [subscriber number including area code]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -214,110 +231,15 @@ public class PhoneNumberSummary implements Serializable {
      * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
      *
      * @param phoneNumber <p>
-     *            The phone number.
+     *            The phone number. Phone numbers are formatted
+     *            <code>[+] [country code] [subscriber number including area code]</code>
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public PhoneNumberSummary withPhoneNumber(String phoneNumber) {
+    public ListPhoneNumbersSummary withPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     *
-     * @return <p>
-     *         The type of phone number.
-     *         </p>
-     * @see PhoneNumberType
-     */
-    public String getPhoneNumberType() {
-        return phoneNumberType;
-    }
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     *
-     * @param phoneNumberType <p>
-     *            The type of phone number.
-     *            </p>
-     * @see PhoneNumberType
-     */
-    public void setPhoneNumberType(String phoneNumberType) {
-        this.phoneNumberType = phoneNumberType;
-    }
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     *
-     * @param phoneNumberType <p>
-     *            The type of phone number.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PhoneNumberType
-     */
-    public PhoneNumberSummary withPhoneNumberType(String phoneNumberType) {
-        this.phoneNumberType = phoneNumberType;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     *
-     * @param phoneNumberType <p>
-     *            The type of phone number.
-     *            </p>
-     * @see PhoneNumberType
-     */
-    public void setPhoneNumberType(PhoneNumberType phoneNumberType) {
-        this.phoneNumberType = phoneNumberType.toString();
-    }
-
-    /**
-     * <p>
-     * The type of phone number.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
-     *
-     * @param phoneNumberType <p>
-     *            The type of phone number.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see PhoneNumberType
-     */
-    public PhoneNumberSummary withPhoneNumberType(PhoneNumberType phoneNumberType) {
-        this.phoneNumberType = phoneNumberType.toString();
         return this;
     }
 
@@ -412,7 +334,7 @@ public class PhoneNumberSummary implements Serializable {
      *         chained together.
      * @see PhoneNumberCountryCode
      */
-    public PhoneNumberSummary withPhoneNumberCountryCode(String phoneNumberCountryCode) {
+    public ListPhoneNumbersSummary withPhoneNumberCountryCode(String phoneNumberCountryCode) {
         this.phoneNumberCountryCode = phoneNumberCountryCode;
         return this;
     }
@@ -478,9 +400,157 @@ public class PhoneNumberSummary implements Serializable {
      *         chained together.
      * @see PhoneNumberCountryCode
      */
-    public PhoneNumberSummary withPhoneNumberCountryCode(
+    public ListPhoneNumbersSummary withPhoneNumberCountryCode(
             PhoneNumberCountryCode phoneNumberCountryCode) {
         this.phoneNumberCountryCode = phoneNumberCountryCode.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     *
+     * @return <p>
+     *         The type of phone number.
+     *         </p>
+     * @see PhoneNumberType
+     */
+    public String getPhoneNumberType() {
+        return phoneNumberType;
+    }
+
+    /**
+     * <p>
+     * The type of phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     *
+     * @param phoneNumberType <p>
+     *            The type of phone number.
+     *            </p>
+     * @see PhoneNumberType
+     */
+    public void setPhoneNumberType(String phoneNumberType) {
+        this.phoneNumberType = phoneNumberType;
+    }
+
+    /**
+     * <p>
+     * The type of phone number.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     *
+     * @param phoneNumberType <p>
+     *            The type of phone number.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PhoneNumberType
+     */
+    public ListPhoneNumbersSummary withPhoneNumberType(String phoneNumberType) {
+        this.phoneNumberType = phoneNumberType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of phone number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     *
+     * @param phoneNumberType <p>
+     *            The type of phone number.
+     *            </p>
+     * @see PhoneNumberType
+     */
+    public void setPhoneNumberType(PhoneNumberType phoneNumberType) {
+        this.phoneNumberType = phoneNumberType.toString();
+    }
+
+    /**
+     * <p>
+     * The type of phone number.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TOLL_FREE, DID
+     *
+     * @param phoneNumberType <p>
+     *            The type of phone number.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PhoneNumberType
+     */
+    public ListPhoneNumbersSummary withPhoneNumberType(PhoneNumberType phoneNumberType) {
+        this.phoneNumberType = phoneNumberType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
+     * numbers are claimed to.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
+     *         phone numbers are claimed to.
+     *         </p>
+     */
+    public String getTargetArn() {
+        return targetArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
+     * numbers are claimed to.
+     * </p>
+     *
+     * @param targetArn <p>
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances
+     *            that phone numbers are claimed to.
+     *            </p>
+     */
+    public void setTargetArn(String targetArn) {
+        this.targetArn = targetArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
+     * numbers are claimed to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param targetArn <p>
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances
+     *            that phone numbers are claimed to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersSummary withTargetArn(String targetArn) {
+        this.targetArn = targetArn;
         return this;
     }
 
@@ -495,16 +565,18 @@ public class PhoneNumberSummary implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getId() != null)
-            sb.append("Id: " + getId() + ",");
-        if (getArn() != null)
-            sb.append("Arn: " + getArn() + ",");
+        if (getPhoneNumberId() != null)
+            sb.append("PhoneNumberId: " + getPhoneNumberId() + ",");
+        if (getPhoneNumberArn() != null)
+            sb.append("PhoneNumberArn: " + getPhoneNumberArn() + ",");
         if (getPhoneNumber() != null)
             sb.append("PhoneNumber: " + getPhoneNumber() + ",");
+        if (getPhoneNumberCountryCode() != null)
+            sb.append("PhoneNumberCountryCode: " + getPhoneNumberCountryCode() + ",");
         if (getPhoneNumberType() != null)
             sb.append("PhoneNumberType: " + getPhoneNumberType() + ",");
-        if (getPhoneNumberCountryCode() != null)
-            sb.append("PhoneNumberCountryCode: " + getPhoneNumberCountryCode());
+        if (getTargetArn() != null)
+            sb.append("TargetArn: " + getTargetArn());
         sb.append("}");
         return sb.toString();
     }
@@ -514,16 +586,19 @@ public class PhoneNumberSummary implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
-        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getPhoneNumberId() == null) ? 0 : getPhoneNumberId().hashCode());
+        hashCode = prime * hashCode
+                + ((getPhoneNumberArn() == null) ? 0 : getPhoneNumberArn().hashCode());
         hashCode = prime * hashCode
                 + ((getPhoneNumber() == null) ? 0 : getPhoneNumber().hashCode());
-        hashCode = prime * hashCode
-                + ((getPhoneNumberType() == null) ? 0 : getPhoneNumberType().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getPhoneNumberCountryCode() == null) ? 0 : getPhoneNumberCountryCode()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getPhoneNumberType() == null) ? 0 : getPhoneNumberType().hashCode());
+        hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
         return hashCode;
     }
 
@@ -534,32 +609,39 @@ public class PhoneNumberSummary implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof PhoneNumberSummary == false)
+        if (obj instanceof ListPhoneNumbersSummary == false)
             return false;
-        PhoneNumberSummary other = (PhoneNumberSummary) obj;
+        ListPhoneNumbersSummary other = (ListPhoneNumbersSummary) obj;
 
-        if (other.getId() == null ^ this.getId() == null)
+        if (other.getPhoneNumberId() == null ^ this.getPhoneNumberId() == null)
             return false;
-        if (other.getId() != null && other.getId().equals(this.getId()) == false)
+        if (other.getPhoneNumberId() != null
+                && other.getPhoneNumberId().equals(this.getPhoneNumberId()) == false)
             return false;
-        if (other.getArn() == null ^ this.getArn() == null)
+        if (other.getPhoneNumberArn() == null ^ this.getPhoneNumberArn() == null)
             return false;
-        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
+        if (other.getPhoneNumberArn() != null
+                && other.getPhoneNumberArn().equals(this.getPhoneNumberArn()) == false)
             return false;
         if (other.getPhoneNumber() == null ^ this.getPhoneNumber() == null)
             return false;
         if (other.getPhoneNumber() != null
                 && other.getPhoneNumber().equals(this.getPhoneNumber()) == false)
             return false;
+        if (other.getPhoneNumberCountryCode() == null ^ this.getPhoneNumberCountryCode() == null)
+            return false;
+        if (other.getPhoneNumberCountryCode() != null
+                && other.getPhoneNumberCountryCode().equals(this.getPhoneNumberCountryCode()) == false)
+            return false;
         if (other.getPhoneNumberType() == null ^ this.getPhoneNumberType() == null)
             return false;
         if (other.getPhoneNumberType() != null
                 && other.getPhoneNumberType().equals(this.getPhoneNumberType()) == false)
             return false;
-        if (other.getPhoneNumberCountryCode() == null ^ this.getPhoneNumberCountryCode() == null)
+        if (other.getTargetArn() == null ^ this.getTargetArn() == null)
             return false;
-        if (other.getPhoneNumberCountryCode() != null
-                && other.getPhoneNumberCountryCode().equals(this.getPhoneNumberCountryCode()) == false)
+        if (other.getTargetArn() != null
+                && other.getTargetArn().equals(this.getTargetArn()) == false)
             return false;
         return true;
     }
