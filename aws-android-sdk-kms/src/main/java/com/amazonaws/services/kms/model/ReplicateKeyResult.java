@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ public class ReplicateKeyResult implements Serializable {
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and Amazon Web Services Region
-     * of its primary key and other replica keys.
+     * >Key states of KMS keys</a>. It also includes the ARN and Amazon Web
+     * Services Region of its primary key and other replica keys.
      * </p>
      */
     private KeyMetadata replicaKeyMetadata;
@@ -58,8 +58,8 @@ public class ReplicateKeyResult implements Serializable {
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and Amazon Web Services Region
-     * of its primary key and other replica keys.
+     * >Key states of KMS keys</a>. It also includes the ARN and Amazon Web
+     * Services Region of its primary key and other replica keys.
      * </p>
      *
      * @return <p>
@@ -68,8 +68,8 @@ public class ReplicateKeyResult implements Serializable {
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *         >key ARN</a>) and <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >key state</a>. It also includes the ARN and Amazon Web Services
-     *         Region of its primary key and other replica keys.
+     *         >Key states of KMS keys</a>. It also includes the ARN and Amazon
+     *         Web Services Region of its primary key and other replica keys.
      *         </p>
      */
     public KeyMetadata getReplicaKeyMetadata() {
@@ -83,8 +83,8 @@ public class ReplicateKeyResult implements Serializable {
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and Amazon Web Services Region
-     * of its primary key and other replica keys.
+     * >Key states of KMS keys</a>. It also includes the ARN and Amazon Web
+     * Services Region of its primary key and other replica keys.
      * </p>
      *
      * @param replicaKeyMetadata <p>
@@ -93,8 +93,9 @@ public class ReplicateKeyResult implements Serializable {
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *            >key ARN</a>) and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >key state</a>. It also includes the ARN and Amazon Web
-     *            Services Region of its primary key and other replica keys.
+     *            >Key states of KMS keys</a>. It also includes the ARN and
+     *            Amazon Web Services Region of its primary key and other
+     *            replica keys.
      *            </p>
      */
     public void setReplicaKeyMetadata(KeyMetadata replicaKeyMetadata) {
@@ -108,8 +109,8 @@ public class ReplicateKeyResult implements Serializable {
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and Amazon Web Services Region
-     * of its primary key and other replica keys.
+     * >Key states of KMS keys</a>. It also includes the ARN and Amazon Web
+     * Services Region of its primary key and other replica keys.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -121,8 +122,9 @@ public class ReplicateKeyResult implements Serializable {
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *            >key ARN</a>) and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >key state</a>. It also includes the ARN and Amazon Web
-     *            Services Region of its primary key and other replica keys.
+     *            >Key states of KMS keys</a>. It also includes the ARN and
+     *            Amazon Web Services Region of its primary key and other
+     *            replica keys.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

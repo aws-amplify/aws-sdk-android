@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,8 +30,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For detailed information about grants, including grant terminology, see <a
  * href
- * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Using
- * grants</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Grants
+ * in KMS</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
  * examples of working with grants in several programming languages, see <a
  * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-grants.html"

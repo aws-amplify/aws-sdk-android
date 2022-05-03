@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,11 @@ public enum KeySpec {
     ECC_NIST_P384("ECC_NIST_P384"),
     ECC_NIST_P521("ECC_NIST_P521"),
     ECC_SECG_P256K1("ECC_SECG_P256K1"),
-    SYMMETRIC_DEFAULT("SYMMETRIC_DEFAULT");
+    SYMMETRIC_DEFAULT("SYMMETRIC_DEFAULT"),
+    HMAC_224("HMAC_224"),
+    HMAC_256("HMAC_256"),
+    HMAC_384("HMAC_384"),
+    HMAC_512("HMAC_512");
 
     private String value;
 
@@ -54,6 +58,10 @@ public enum KeySpec {
         enumMap.put("ECC_NIST_P521", ECC_NIST_P521);
         enumMap.put("ECC_SECG_P256K1", ECC_SECG_P256K1);
         enumMap.put("SYMMETRIC_DEFAULT", SYMMETRIC_DEFAULT);
+        enumMap.put("HMAC_224", HMAC_224);
+        enumMap.put("HMAC_256", HMAC_256);
+        enumMap.put("HMAC_384", HMAC_384);
+        enumMap.put("HMAC_512", HMAC_512);
     }
 
     /**

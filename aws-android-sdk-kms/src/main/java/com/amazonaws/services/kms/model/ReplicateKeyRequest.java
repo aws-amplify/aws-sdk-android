@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * without re-encrypting the data or making a cross-Region call. For more
  * information about multi-Region keys, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html"
- * >Using multi-Region keys</a> in the <i>Key Management Service Developer
+ * >Multi-Region keys in KMS</a> in the <i>Key Management Service Developer
  * Guide</i>.
  * </p>
  * <p>
@@ -63,8 +63,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html"
  * >aliases</a>, and <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >key state</a>. KMS pricing and quotas for KMS keys apply to each primary key
- * and replica key.
+ * >Key states of KMS keys</a>. KMS pricing and quotas for KMS keys apply to
+ * each primary key and replica key.
  * </p>
  * <p>
  * When this operation completes, the new replica key has a transient key state
@@ -76,8 +76,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>KMSInvalidStateException</code> or call <code>DescribeKey</code> to
  * check its <code>KeyState</code> value before using it. For details about the
  * <code>Creating</code> key state, see <a
- * href="kms/latest/developerguide/key-state.html">Key state: Effect on your KMS
- * key</a> in the <i>Key Management Service Developer Guide</i>.
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+ * >Key states of KMS keys</a> in the <i>Key Management Service Developer
+ * Guide</i>.
+ * </p>
+ * <p>
+ * You cannot create more than one replica of a primary key in any Region. If
+ * the Region already includes a replica of the key you're trying to replicate,
+ * <code>ReplicateKey</code> returns an <code>AlreadyExistsException</code>
+ * error. If the key state of the existing replica is
+ * <code>PendingDeletion</code>, you can cancel the scheduled key deletion
+ * (<a>CancelKeyDeletion</a>) or wait for the key to be deleted. The new replica
+ * key you create will have the same <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html#mrk-sync-properties"
+ * >shared properties</a> as the original replica key.
  * </p>
  * <p>
  * The CloudTrail log of a <code>ReplicateKey</code> operation records a
@@ -194,19 +206,29 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * service endpoints</a> in the <i>Amazon Web Services General
      * Reference</i>.
      * </p>
+     * <note>
+     * <p>
+     * HMAC KMS keys are not supported in all Amazon Web Services Regions. If
+     * you try to replicate an HMAC KMS key in an Amazon Web Services Region in
+     * which HMAC keys are not supported, the <code>ReplicateKey</code>
+     * operation returns an <code>UnsupportedOperationException</code>. For a
+     * list of Regions in which HMAC KMS keys are supported, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     * >HMAC keys in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * The replica must be in a different Amazon Web Services Region than its
      * primary key and other replicas of that primary key, but in the same
      * Amazon Web Services partition. KMS must be available in the replica
      * Region. If the Region is not enabled by default, the Amazon Web Services
-     * account must be enabled in the Region.
-     * </p>
-     * <p>
-     * For information about Amazon Web Services partitions, see <a href=
+     * account must be enabled in the Region. For information about Amazon Web
+     * Services partitions, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) in the <i>Amazon Web Services General
-     * Reference</i>.</a> For information about enabling and disabling Regions,
-     * see <a href=
+     * >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General
+     * Reference</i>. For information about enabling and disabling Regions, see
+     * <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      * >Enabling a Region</a> and <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -327,8 +349,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -581,19 +602,29 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * service endpoints</a> in the <i>Amazon Web Services General
      * Reference</i>.
      * </p>
+     * <note>
+     * <p>
+     * HMAC KMS keys are not supported in all Amazon Web Services Regions. If
+     * you try to replicate an HMAC KMS key in an Amazon Web Services Region in
+     * which HMAC keys are not supported, the <code>ReplicateKey</code>
+     * operation returns an <code>UnsupportedOperationException</code>. For a
+     * list of Regions in which HMAC KMS keys are supported, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     * >HMAC keys in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * The replica must be in a different Amazon Web Services Region than its
      * primary key and other replicas of that primary key, but in the same
      * Amazon Web Services partition. KMS must be available in the replica
      * Region. If the Region is not enabled by default, the Amazon Web Services
-     * account must be enabled in the Region.
-     * </p>
-     * <p>
-     * For information about Amazon Web Services partitions, see <a href=
+     * account must be enabled in the Region. For information about Amazon Web
+     * Services partitions, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) in the <i>Amazon Web Services General
-     * Reference</i>.</a> For information about enabling and disabling Regions,
-     * see <a href=
+     * >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General
+     * Reference</i>. For information about enabling and disabling Regions, see
+     * <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      * >Enabling a Region</a> and <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -617,19 +648,30 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         >KMS service endpoints</a> in the <i>Amazon Web Services General
      *         Reference</i>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         HMAC KMS keys are not supported in all Amazon Web Services
+     *         Regions. If you try to replicate an HMAC KMS key in an Amazon Web
+     *         Services Region in which HMAC keys are not supported, the
+     *         <code>ReplicateKey</code> operation returns an
+     *         <code>UnsupportedOperationException</code>. For a list of Regions
+     *         in which HMAC KMS keys are supported, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     *         >HMAC keys in KMS</a> in the <i>Key Management Service Developer
+     *         Guide</i>.
+     *         </p>
+     *         </note>
      *         <p>
      *         The replica must be in a different Amazon Web Services Region
      *         than its primary key and other replicas of that primary key, but
      *         in the same Amazon Web Services partition. KMS must be available
      *         in the replica Region. If the Region is not enabled by default,
      *         the Amazon Web Services account must be enabled in the Region.
-     *         </p>
-     *         <p>
      *         For information about Amazon Web Services partitions, see <a
      *         href=
      *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *         >Amazon Resource Names (ARNs) in the <i>Amazon Web Services
-     *         General Reference</i>.</a> For information about enabling and
+     *         >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services
+     *         General Reference</i>. For information about enabling and
      *         disabling Regions, see <a href=
      *         "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      *         >Enabling a Region</a> and <a href=
@@ -654,19 +696,29 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * service endpoints</a> in the <i>Amazon Web Services General
      * Reference</i>.
      * </p>
+     * <note>
+     * <p>
+     * HMAC KMS keys are not supported in all Amazon Web Services Regions. If
+     * you try to replicate an HMAC KMS key in an Amazon Web Services Region in
+     * which HMAC keys are not supported, the <code>ReplicateKey</code>
+     * operation returns an <code>UnsupportedOperationException</code>. For a
+     * list of Regions in which HMAC KMS keys are supported, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     * >HMAC keys in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * The replica must be in a different Amazon Web Services Region than its
      * primary key and other replicas of that primary key, but in the same
      * Amazon Web Services partition. KMS must be available in the replica
      * Region. If the Region is not enabled by default, the Amazon Web Services
-     * account must be enabled in the Region.
-     * </p>
-     * <p>
-     * For information about Amazon Web Services partitions, see <a href=
+     * account must be enabled in the Region. For information about Amazon Web
+     * Services partitions, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) in the <i>Amazon Web Services General
-     * Reference</i>.</a> For information about enabling and disabling Regions,
-     * see <a href=
+     * >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General
+     * Reference</i>. For information about enabling and disabling Regions, see
+     * <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      * >Enabling a Region</a> and <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -690,21 +742,31 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            >KMS service endpoints</a> in the <i>Amazon Web Services
      *            General Reference</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            HMAC KMS keys are not supported in all Amazon Web Services
+     *            Regions. If you try to replicate an HMAC KMS key in an Amazon
+     *            Web Services Region in which HMAC keys are not supported, the
+     *            <code>ReplicateKey</code> operation returns an
+     *            <code>UnsupportedOperationException</code>. For a list of
+     *            Regions in which HMAC KMS keys are supported, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     *            >HMAC keys in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     *            </note>
      *            <p>
      *            The replica must be in a different Amazon Web Services Region
      *            than its primary key and other replicas of that primary key,
      *            but in the same Amazon Web Services partition. KMS must be
      *            available in the replica Region. If the Region is not enabled
      *            by default, the Amazon Web Services account must be enabled in
-     *            the Region.
-     *            </p>
-     *            <p>
-     *            For information about Amazon Web Services partitions, see <a
-     *            href=
+     *            the Region. For information about Amazon Web Services
+     *            partitions, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Names (ARNs) in the <i>Amazon Web Services
-     *            General Reference</i>.</a> For information about enabling and
-     *            disabling Regions, see <a href=
+     *            >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web
+     *            Services General Reference</i>. For information about enabling
+     *            and disabling Regions, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      *            >Enabling a Region</a> and <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -728,19 +790,29 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * service endpoints</a> in the <i>Amazon Web Services General
      * Reference</i>.
      * </p>
+     * <note>
+     * <p>
+     * HMAC KMS keys are not supported in all Amazon Web Services Regions. If
+     * you try to replicate an HMAC KMS key in an Amazon Web Services Region in
+     * which HMAC keys are not supported, the <code>ReplicateKey</code>
+     * operation returns an <code>UnsupportedOperationException</code>. For a
+     * list of Regions in which HMAC KMS keys are supported, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     * >HMAC keys in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * The replica must be in a different Amazon Web Services Region than its
      * primary key and other replicas of that primary key, but in the same
      * Amazon Web Services partition. KMS must be available in the replica
      * Region. If the Region is not enabled by default, the Amazon Web Services
-     * account must be enabled in the Region.
-     * </p>
-     * <p>
-     * For information about Amazon Web Services partitions, see <a href=
+     * account must be enabled in the Region. For information about Amazon Web
+     * Services partitions, see <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) in the <i>Amazon Web Services General
-     * Reference</i>.</a> For information about enabling and disabling Regions,
-     * see <a href=
+     * >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web Services General
+     * Reference</i>. For information about enabling and disabling Regions, see
+     * <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      * >Enabling a Region</a> and <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -767,21 +839,31 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            >KMS service endpoints</a> in the <i>Amazon Web Services
      *            General Reference</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            HMAC KMS keys are not supported in all Amazon Web Services
+     *            Regions. If you try to replicate an HMAC KMS key in an Amazon
+     *            Web Services Region in which HMAC keys are not supported, the
+     *            <code>ReplicateKey</code> operation returns an
+     *            <code>UnsupportedOperationException</code>. For a list of
+     *            Regions in which HMAC KMS keys are supported, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html"
+     *            >HMAC keys in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
+     *            </p>
+     *            </note>
      *            <p>
      *            The replica must be in a different Amazon Web Services Region
      *            than its primary key and other replicas of that primary key,
      *            but in the same Amazon Web Services partition. KMS must be
      *            available in the replica Region. If the Region is not enabled
      *            by default, the Amazon Web Services account must be enabled in
-     *            the Region.
-     *            </p>
-     *            <p>
-     *            For information about Amazon Web Services partitions, see <a
-     *            href=
+     *            the Region. For information about Amazon Web Services
+     *            partitions, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Names (ARNs) in the <i>Amazon Web Services
-     *            General Reference</i>.</a> For information about enabling and
-     *            disabling Regions, see <a href=
+     *            >Amazon Resource Names (ARNs)</a> in the <i>Amazon Web
+     *            Services General Reference</i>. For information about enabling
+     *            and disabling Regions, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-enable"
      *            >Enabling a Region</a> and <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/rande-manage.html#rande-manage-disable"
@@ -1450,8 +1532,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1490,7 +1571,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         Tagging or untagging a KMS key can allow or deny permission to
      *         the KMS key. For details, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *         >Using ABAC in KMS</a> in the <i>Key Management Service Developer
+     *         >ABAC in KMS</a> in the <i>Key Management Service Developer
      *         Guide</i>.
      *         </p>
      *         </note>
@@ -1537,8 +1618,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1577,8 +1657,8 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in KMS</a> in the <i>Key Management Service
-     *            Developer Guide</i>.
+     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            Guide</i>.
      *            </p>
      *            </note>
      *            <p>
@@ -1629,8 +1709,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1672,8 +1751,8 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in KMS</a> in the <i>Key Management Service
-     *            Developer Guide</i>.
+     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            Guide</i>.
      *            </p>
      *            </note>
      *            <p>
@@ -1727,8 +1806,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1770,8 +1848,8 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in KMS</a> in the <i>Key Management Service
-     *            Developer Guide</i>.
+     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            Guide</i>.
      *            </p>
      *            </note>
      *            <p>

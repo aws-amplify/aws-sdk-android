@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,7 +44,9 @@ public class GenerateDataKeyPairResult implements Serializable {
 
     /**
      * <p>
-     * The public key (in plaintext).
+     * The public key (in plaintext). When you use the HTTP API or the Amazon
+     * Web Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,14 +212,18 @@ public class GenerateDataKeyPairResult implements Serializable {
 
     /**
      * <p>
-     * The public key (in plaintext).
+     * The public key (in plaintext). When you use the HTTP API or the Amazon
+     * Web Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 8192<br/>
      *
      * @return <p>
-     *         The public key (in plaintext).
+     *         The public key (in plaintext). When you use the HTTP API or the
+     *         Amazon Web Services CLI, the value is Base64-encoded. Otherwise,
+     *         it is not Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPublicKey() {
@@ -226,14 +232,18 @@ public class GenerateDataKeyPairResult implements Serializable {
 
     /**
      * <p>
-     * The public key (in plaintext).
+     * The public key (in plaintext). When you use the HTTP API or the Amazon
+     * Web Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 8192<br/>
      *
      * @param publicKey <p>
-     *            The public key (in plaintext).
+     *            The public key (in plaintext). When you use the HTTP API or
+     *            the Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      */
     public void setPublicKey(java.nio.ByteBuffer publicKey) {
@@ -242,7 +252,9 @@ public class GenerateDataKeyPairResult implements Serializable {
 
     /**
      * <p>
-     * The public key (in plaintext).
+     * The public key (in plaintext). When you use the HTTP API or the Amazon
+     * Web Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -252,7 +264,9 @@ public class GenerateDataKeyPairResult implements Serializable {
      * <b>Length: </b>1 - 8192<br/>
      *
      * @param publicKey <p>
-     *            The public key (in plaintext).
+     *            The public key (in plaintext). When you use the HTTP API or
+     *            the Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Adding, deleting, or updating an alias can allow or deny permission to the
  * KMS key. For details, see <a
- * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">Using
- * ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">ABAC
+ * in KMS</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * </note>
  * <p>
