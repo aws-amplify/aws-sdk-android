@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
@@ -973,6 +974,10 @@ abstract class NotificationClientBase {
     boolean areAppNotificationsEnabledOnPlatform() {
         if (android.os.Build.VERSION.SDK_INT < ANDROID_KITKAT) {
             return true;
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+            return NotificationManagerCompat.from(pinpointContext.getApplicationContext()).areNotificationsEnabled();
         }
 
         final String appOpsServiceName;
