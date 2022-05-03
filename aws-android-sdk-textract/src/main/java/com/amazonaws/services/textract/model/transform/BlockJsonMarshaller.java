@@ -109,6 +109,11 @@ class BlockJsonMarshaller {
             jsonWriter.name("Page");
             jsonWriter.value(page);
         }
+        if (block.getQuery() != null) {
+            Query query = block.getQuery();
+            jsonWriter.name("Query");
+            QueryJsonMarshaller.getInstance().marshall(query, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

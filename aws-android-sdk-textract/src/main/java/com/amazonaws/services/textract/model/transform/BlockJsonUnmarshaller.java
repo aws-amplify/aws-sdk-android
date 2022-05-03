@@ -81,6 +81,9 @@ class BlockJsonUnmarshaller implements Unmarshaller<Block, JsonUnmarshallerConte
             } else if (name.equals("Page")) {
                 block.setPage(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Query")) {
+                block.setQuery(QueryJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

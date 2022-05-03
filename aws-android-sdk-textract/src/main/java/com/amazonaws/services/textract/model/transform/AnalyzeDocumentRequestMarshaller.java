@@ -83,6 +83,11 @@ public class AnalyzeDocumentRequestMarshaller implements
                 jsonWriter.name("HumanLoopConfig");
                 HumanLoopConfigJsonMarshaller.getInstance().marshall(humanLoopConfig, jsonWriter);
             }
+            if (analyzeDocumentRequest.getQueriesConfig() != null) {
+                QueriesConfig queriesConfig = analyzeDocumentRequest.getQueriesConfig();
+                jsonWriter.name("QueriesConfig");
+                QueriesConfigJsonMarshaller.getInstance().marshall(queriesConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

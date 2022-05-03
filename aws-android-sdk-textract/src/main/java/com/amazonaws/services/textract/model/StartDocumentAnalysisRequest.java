@@ -133,6 +133,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
     private String kMSKeyId;
 
     /**
+     * <p/>
+     */
+    private QueriesConfig queriesConfig;
+
+    /**
      * <p>
      * The location of the document to be processed.
      * </p>
@@ -669,6 +674,39 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public QueriesConfig getQueriesConfig() {
+        return queriesConfig;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param queriesConfig <p/>
+     */
+    public void setQueriesConfig(QueriesConfig queriesConfig) {
+        this.queriesConfig = queriesConfig;
+    }
+
+    /**
+     * <p/>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param queriesConfig <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentAnalysisRequest withQueriesConfig(QueriesConfig queriesConfig) {
+        this.queriesConfig = queriesConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -692,7 +730,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         if (getOutputConfig() != null)
             sb.append("OutputConfig: " + getOutputConfig() + ",");
         if (getKMSKeyId() != null)
-            sb.append("KMSKeyId: " + getKMSKeyId());
+            sb.append("KMSKeyId: " + getKMSKeyId() + ",");
+        if (getQueriesConfig() != null)
+            sb.append("QueriesConfig: " + getQueriesConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -714,6 +754,8 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode
                 + ((getOutputConfig() == null) ? 0 : getOutputConfig().hashCode());
         hashCode = prime * hashCode + ((getKMSKeyId() == null) ? 0 : getKMSKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getQueriesConfig() == null) ? 0 : getQueriesConfig().hashCode());
         return hashCode;
     }
 
@@ -760,6 +802,11 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         if (other.getKMSKeyId() == null ^ this.getKMSKeyId() == null)
             return false;
         if (other.getKMSKeyId() != null && other.getKMSKeyId().equals(this.getKMSKeyId()) == false)
+            return false;
+        if (other.getQueriesConfig() == null ^ this.getQueriesConfig() == null)
+            return false;
+        if (other.getQueriesConfig() != null
+                && other.getQueriesConfig().equals(this.getQueriesConfig()) == false)
             return false;
         return true;
     }

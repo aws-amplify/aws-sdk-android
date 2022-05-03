@@ -41,7 +41,8 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      */
     private String type;
 
@@ -65,7 +66,8 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      *
      * @return <p>
      *         The type of relationship that the blocks in the IDs array have
@@ -95,7 +97,8 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -128,7 +131,8 @@ public class Relationship implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -161,7 +165,8 @@ public class Relationship implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
@@ -194,7 +199,8 @@ public class Relationship implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL, TITLE
+     * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
+     * TITLE, ANSWER
      *
      * @param type <p>
      *            The type of relationship that the blocks in the IDs array have
