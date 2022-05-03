@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns an array of celebrities recognized in the input image. For more
- * information, see Recognizing Celebrities in the Amazon Rekognition Developer
+ * information, see Recognizing celebrities in the Amazon Rekognition Developer
  * Guide.
  * </p>
  * <p>
@@ -54,7 +54,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * image must be either a PNG or JPEG formatted file.
  * </p>
  * <p>
- * For an example, see Recognizing Celebrities in an Image in the Amazon
+ * For an example, see Recognizing celebrities in an image in the Amazon
  * Rekognition Developer Guide.
  * </p>
  * <p>

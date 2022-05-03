@@ -47,7 +47,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      */
     private Float maxPixelThreshold;
 
@@ -64,7 +64,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minCoveragePercentage;
 
@@ -88,7 +88,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @return <p>
      *         A threshold used to determine the maximum luminance value for a
@@ -132,7 +132,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param maxPixelThreshold <p>
      *            A threshold used to determine the maximum luminance value for
@@ -179,7 +179,7 @@ public class BlackFrame implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param maxPixelThreshold <p>
      *            A threshold used to determine the maximum luminance value for
@@ -219,7 +219,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The minimum percentage of pixels in a frame that need to have a
@@ -251,7 +251,7 @@ public class BlackFrame implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minCoveragePercentage <p>
      *            The minimum percentage of pixels in a frame that need to have
@@ -286,7 +286,7 @@ public class BlackFrame implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minCoveragePercentage <p>
      *            The minimum percentage of pixels in a frame that need to have

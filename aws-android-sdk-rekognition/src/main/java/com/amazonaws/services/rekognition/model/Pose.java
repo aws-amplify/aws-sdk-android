@@ -29,7 +29,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      */
     private Float roll;
 
@@ -39,7 +39,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      */
     private Float yaw;
 
@@ -49,7 +49,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      */
     private Float pitch;
 
@@ -59,7 +59,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @return <p>
      *         Value representing the face rotation on the roll axis.
@@ -75,7 +75,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param roll <p>
      *            Value representing the face rotation on the roll axis.
@@ -94,7 +94,7 @@ public class Pose implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param roll <p>
      *            Value representing the face rotation on the roll axis.
@@ -113,7 +113,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @return <p>
      *         Value representing the face rotation on the yaw axis.
@@ -129,7 +129,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param yaw <p>
      *            Value representing the face rotation on the yaw axis.
@@ -148,7 +148,7 @@ public class Pose implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param yaw <p>
      *            Value representing the face rotation on the yaw axis.
@@ -167,7 +167,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @return <p>
      *         Value representing the face rotation on the pitch axis.
@@ -183,7 +183,7 @@ public class Pose implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param pitch <p>
      *            Value representing the face rotation on the pitch axis.
@@ -202,7 +202,7 @@ public class Pose implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>-180 - 180<br/>
+     * <b>Length: </b>-180.0 - 180.0<br/>
      *
      * @param pitch <p>
      *            Value representing the face rotation on the pitch axis.

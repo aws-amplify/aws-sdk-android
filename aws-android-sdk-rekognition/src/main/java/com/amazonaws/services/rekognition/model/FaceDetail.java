@@ -181,7 +181,7 @@ public class FaceDetail implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -984,7 +984,7 @@ public class FaceDetail implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Confidence level that the bounding box contains a face (and not a
@@ -1002,7 +1002,7 @@ public class FaceDetail implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            Confidence level that the bounding box contains a face (and
@@ -1023,7 +1023,7 @@ public class FaceDetail implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            Confidence level that the bounding box contains a face (and

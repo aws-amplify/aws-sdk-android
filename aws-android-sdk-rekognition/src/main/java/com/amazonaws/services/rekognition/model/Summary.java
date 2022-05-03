@@ -39,8 +39,8 @@ public class Summary implements Serializable {
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see
-     * Resource-Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      */
     private S3Object s3Object;
@@ -55,8 +55,8 @@ public class Summary implements Serializable {
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see
-     * Resource-Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      *
      * @return <p>
@@ -69,8 +69,8 @@ public class Summary implements Serializable {
      *         <p>
      *         For Amazon Rekognition to process an S3 object, the user must
      *         have permission to access the S3 object. For more information,
-     *         see Resource-Based Policies in the Amazon Rekognition Developer
-     *         Guide.
+     *         see How Amazon Rekognition works with IAM in the Amazon
+     *         Rekognition Developer Guide.
      *         </p>
      */
     public S3Object getS3Object() {
@@ -87,8 +87,8 @@ public class Summary implements Serializable {
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see
-     * Resource-Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      *
      * @param s3Object <p>
@@ -101,8 +101,8 @@ public class Summary implements Serializable {
      *            <p>
      *            For Amazon Rekognition to process an S3 object, the user must
      *            have permission to access the S3 object. For more information,
-     *            see Resource-Based Policies in the Amazon Rekognition
-     *            Developer Guide.
+     *            see How Amazon Rekognition works with IAM in the Amazon
+     *            Rekognition Developer Guide.
      *            </p>
      */
     public void setS3Object(S3Object s3Object) {
@@ -119,8 +119,8 @@ public class Summary implements Serializable {
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see
-     * Resource-Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -136,8 +136,8 @@ public class Summary implements Serializable {
      *            <p>
      *            For Amazon Rekognition to process an S3 object, the user must
      *            have permission to access the S3 object. For more information,
-     *            see Resource-Based Policies in the Amazon Rekognition
-     *            Developer Guide.
+     *            see How Amazon Rekognition works with IAM in the Amazon
+     *            Rekognition Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

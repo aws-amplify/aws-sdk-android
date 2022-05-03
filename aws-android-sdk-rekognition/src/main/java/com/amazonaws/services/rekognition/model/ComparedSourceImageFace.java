@@ -39,7 +39,7 @@ public class ComparedSourceImageFace implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -94,7 +94,7 @@ public class ComparedSourceImageFace implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Confidence level that the selected bounding box contains a face.
@@ -110,7 +110,7 @@ public class ComparedSourceImageFace implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            Confidence level that the selected bounding box contains a
@@ -130,7 +130,7 @@ public class ComparedSourceImageFace implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            Confidence level that the selected bounding box contains a

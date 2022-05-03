@@ -33,7 +33,7 @@ public class CompareFacesMatch implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float similarity;
 
@@ -51,7 +51,7 @@ public class CompareFacesMatch implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Level of confidence that the faces match.
@@ -67,7 +67,7 @@ public class CompareFacesMatch implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param similarity <p>
      *            Level of confidence that the faces match.
@@ -86,7 +86,7 @@ public class CompareFacesMatch implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param similarity <p>
      *            Level of confidence that the faces match.

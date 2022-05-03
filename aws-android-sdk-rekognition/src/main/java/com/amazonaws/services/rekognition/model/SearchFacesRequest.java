@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * input face.
  * </p>
  * <p>
- * For an example, see Searching for a Face Using Its Face ID in the Amazon
+ * For an example, see Searching for a face using its face ID in the Amazon
  * Rekognition Developer Guide.
  * </p>
  * <p>
@@ -91,7 +91,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float faceMatchThreshold;
 
@@ -304,7 +304,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Optional value specifying the minimum confidence in the face
@@ -324,7 +324,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            Optional value specifying the minimum confidence in the face
@@ -348,7 +348,7 @@ public class SearchFacesRequest extends AmazonWebServiceRequest implements Seria
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            Optional value specifying the minimum confidence in the face

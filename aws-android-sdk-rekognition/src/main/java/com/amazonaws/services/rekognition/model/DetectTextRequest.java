@@ -59,7 +59,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * horizontal axis.
  * </p>
  * <p>
- * For more information, see DetectText in the Amazon Rekognition Developer
+ * For more information, see Detecting text in the Amazon Rekognition Developer
  * Guide.
  * </p>
  */

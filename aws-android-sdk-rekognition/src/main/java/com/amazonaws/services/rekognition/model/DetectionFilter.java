@@ -27,12 +27,12 @@ public class DetectionFilter implements Serializable {
     /**
      * <p>
      * Sets the confidence of word detection. Words with detection confidence
-     * below this will be excluded from the result. Values should be between 50
-     * and 100 as Text in Video will not return any result below 50.
+     * below this will be excluded from the result. Values should be between 0
+     * and 100. The default MinConfidence is 80.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -44,7 +44,7 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      */
     private Float minBoundingBoxHeight;
 
@@ -56,25 +56,24 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      */
     private Float minBoundingBoxWidth;
 
     /**
      * <p>
      * Sets the confidence of word detection. Words with detection confidence
-     * below this will be excluded from the result. Values should be between 50
-     * and 100 as Text in Video will not return any result below 50.
+     * below this will be excluded from the result. Values should be between 0
+     * and 100. The default MinConfidence is 80.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Sets the confidence of word detection. Words with detection
      *         confidence below this will be excluded from the result. Values
-     *         should be between 50 and 100 as Text in Video will not return any
-     *         result below 50.
+     *         should be between 0 and 100. The default MinConfidence is 80.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -84,18 +83,17 @@ public class DetectionFilter implements Serializable {
     /**
      * <p>
      * Sets the confidence of word detection. Words with detection confidence
-     * below this will be excluded from the result. Values should be between 50
-     * and 100 as Text in Video will not return any result below 50.
+     * below this will be excluded from the result. Values should be between 0
+     * and 100. The default MinConfidence is 80.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Sets the confidence of word detection. Words with detection
      *            confidence below this will be excluded from the result. Values
-     *            should be between 50 and 100 as Text in Video will not return
-     *            any result below 50.
+     *            should be between 0 and 100. The default MinConfidence is 80.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -105,21 +103,20 @@ public class DetectionFilter implements Serializable {
     /**
      * <p>
      * Sets the confidence of word detection. Words with detection confidence
-     * below this will be excluded from the result. Values should be between 50
-     * and 100 as Text in Video will not return any result below 50.
+     * below this will be excluded from the result. Values should be between 0
+     * and 100. The default MinConfidence is 80.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Sets the confidence of word detection. Words with detection
      *            confidence below this will be excluded from the result. Values
-     *            should be between 50 and 100 as Text in Video will not return
-     *            any result below 50.
+     *            should be between 0 and 100. The default MinConfidence is 80.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,7 +134,7 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @return <p>
      *         Sets the minimum height of the word bounding box. Words with
@@ -157,7 +154,7 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param minBoundingBoxHeight <p>
      *            Sets the minimum height of the word bounding box. Words with
@@ -180,7 +177,7 @@ public class DetectionFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param minBoundingBoxHeight <p>
      *            Sets the minimum height of the word bounding box. Words with
@@ -203,7 +200,7 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @return <p>
      *         Sets the minimum width of the word bounding box. Words with
@@ -223,7 +220,7 @@ public class DetectionFilter implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param minBoundingBoxWidth <p>
      *            Sets the minimum width of the word bounding box. Words with
@@ -246,7 +243,7 @@ public class DetectionFilter implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 1<br/>
+     * <b>Length: </b>0.0 - 1.0<br/>
      *
      * @param minBoundingBoxWidth <p>
      *            Sets the minimum width of the word bounding box. Words with

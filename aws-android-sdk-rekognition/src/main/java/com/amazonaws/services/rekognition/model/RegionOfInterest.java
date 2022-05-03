@@ -19,14 +19,15 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specifies a location within the frame that Rekognition checks for text. Uses
- * a <code>BoundingBox</code> object to set a region of the screen.
+ * Specifies a location within the frame that Rekognition checks for objects of
+ * interest such as text, labels, or faces. It uses a <code>BoundingBox</code>
+ * or object or <code>Polygon</code> to set a region of the screen.
  * </p>
  * <p>
- * A word is included in the region if the word is more than half in that
- * region. If there is more than one region, the word will be compared with all
- * regions of the screen. Any word more than half in a region is kept in the
- * results.
+ * A word, face, or label is included in the region if it is more than half in
+ * that region. If there is more than one region, the word, face, or label is
+ * compared with all regions of the screen. Any object of interest that is more
+ * than half in a region is kept in the results.
  * </p>
  */
 public class RegionOfInterest implements Serializable {
@@ -36,6 +37,14 @@ public class RegionOfInterest implements Serializable {
      * </p>
      */
     private BoundingBox boundingBox;
+
+    /**
+     * <p>
+     * Specifies a shape made up of up to 10 <code>Point</code> objects to
+     * define a region of interest.
+     * </p>
+     */
+    private java.util.List<Point> polygon;
 
     /**
      * <p>
@@ -83,6 +92,88 @@ public class RegionOfInterest implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies a shape made up of up to 10 <code>Point</code> objects to
+     * define a region of interest.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies a shape made up of up to 10 <code>Point</code> objects
+     *         to define a region of interest.
+     *         </p>
+     */
+    public java.util.List<Point> getPolygon() {
+        return polygon;
+    }
+
+    /**
+     * <p>
+     * Specifies a shape made up of up to 10 <code>Point</code> objects to
+     * define a region of interest.
+     * </p>
+     *
+     * @param polygon <p>
+     *            Specifies a shape made up of up to 10 <code>Point</code>
+     *            objects to define a region of interest.
+     *            </p>
+     */
+    public void setPolygon(java.util.Collection<Point> polygon) {
+        if (polygon == null) {
+            this.polygon = null;
+            return;
+        }
+
+        this.polygon = new java.util.ArrayList<Point>(polygon);
+    }
+
+    /**
+     * <p>
+     * Specifies a shape made up of up to 10 <code>Point</code> objects to
+     * define a region of interest.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param polygon <p>
+     *            Specifies a shape made up of up to 10 <code>Point</code>
+     *            objects to define a region of interest.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RegionOfInterest withPolygon(Point... polygon) {
+        if (getPolygon() == null) {
+            this.polygon = new java.util.ArrayList<Point>(polygon.length);
+        }
+        for (Point value : polygon) {
+            this.polygon.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies a shape made up of up to 10 <code>Point</code> objects to
+     * define a region of interest.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param polygon <p>
+     *            Specifies a shape made up of up to 10 <code>Point</code>
+     *            objects to define a region of interest.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RegionOfInterest withPolygon(java.util.Collection<Point> polygon) {
+        setPolygon(polygon);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -94,7 +185,9 @@ public class RegionOfInterest implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getBoundingBox() != null)
-            sb.append("BoundingBox: " + getBoundingBox());
+            sb.append("BoundingBox: " + getBoundingBox() + ",");
+        if (getPolygon() != null)
+            sb.append("Polygon: " + getPolygon());
         sb.append("}");
         return sb.toString();
     }
@@ -106,6 +199,7 @@ public class RegionOfInterest implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
+        hashCode = prime * hashCode + ((getPolygon() == null) ? 0 : getPolygon().hashCode());
         return hashCode;
     }
 
@@ -124,6 +218,10 @@ public class RegionOfInterest implements Serializable {
             return false;
         if (other.getBoundingBox() != null
                 && other.getBoundingBox().equals(this.getBoundingBox()) == false)
+            return false;
+        if (other.getPolygon() == null ^ this.getPolygon() == null)
+            return false;
+        if (other.getPolygon() != null && other.getPolygon().equals(this.getPolygon()) == false)
             return false;
         return true;
     }

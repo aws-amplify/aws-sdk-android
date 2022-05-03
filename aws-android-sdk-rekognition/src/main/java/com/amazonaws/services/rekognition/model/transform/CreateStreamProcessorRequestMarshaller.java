@@ -101,6 +101,38 @@ public class CreateStreamProcessorRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createStreamProcessorRequest.getNotificationChannel() != null) {
+                StreamProcessorNotificationChannel notificationChannel = createStreamProcessorRequest
+                        .getNotificationChannel();
+                jsonWriter.name("NotificationChannel");
+                StreamProcessorNotificationChannelJsonMarshaller.getInstance().marshall(
+                        notificationChannel, jsonWriter);
+            }
+            if (createStreamProcessorRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createStreamProcessorRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
+            if (createStreamProcessorRequest.getRegionsOfInterest() != null) {
+                java.util.List<RegionOfInterest> regionsOfInterest = createStreamProcessorRequest
+                        .getRegionsOfInterest();
+                jsonWriter.name("RegionsOfInterest");
+                jsonWriter.beginArray();
+                for (RegionOfInterest regionsOfInterestItem : regionsOfInterest) {
+                    if (regionsOfInterestItem != null) {
+                        RegionOfInterestJsonMarshaller.getInstance().marshall(
+                                regionsOfInterestItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createStreamProcessorRequest.getDataSharingPreference() != null) {
+                StreamProcessorDataSharingPreference dataSharingPreference = createStreamProcessorRequest
+                        .getDataSharingPreference();
+                jsonWriter.name("DataSharingPreference");
+                StreamProcessorDataSharingPreferenceJsonMarshaller.getInstance().marshall(
+                        dataSharingPreference, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

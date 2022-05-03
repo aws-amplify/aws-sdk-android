@@ -122,8 +122,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see Resource
-     * Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      */
     private Image image;
@@ -153,7 +153,7 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -253,8 +253,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see Resource
-     * Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      *
      * @return <p>
@@ -291,8 +291,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *         <p>
      *         For Amazon Rekognition to process an S3 object, the user must
      *         have permission to access the S3 object. For more information,
-     *         see Resource Based Policies in the Amazon Rekognition Developer
-     *         Guide.
+     *         see How Amazon Rekognition works with IAM in the Amazon
+     *         Rekognition Developer Guide.
      *         </p>
      */
     public Image getImage() {
@@ -332,8 +332,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see Resource
-     * Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      *
      * @param image <p>
@@ -371,8 +371,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For Amazon Rekognition to process an S3 object, the user must
      *            have permission to access the S3 object. For more information,
-     *            see Resource Based Policies in the Amazon Rekognition
-     *            Developer Guide.
+     *            see How Amazon Rekognition works with IAM in the Amazon
+     *            Rekognition Developer Guide.
      *            </p>
      */
     public void setImage(Image image) {
@@ -412,8 +412,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * For Amazon Rekognition to process an S3 object, the user must have
-     * permission to access the S3 object. For more information, see Resource
-     * Based Policies in the Amazon Rekognition Developer Guide.
+     * permission to access the S3 object. For more information, see How Amazon
+     * Rekognition works with IAM in the Amazon Rekognition Developer Guide.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -454,8 +454,8 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *            <p>
      *            For Amazon Rekognition to process an S3 object, the user must
      *            have permission to access the S3 object. For more information,
-     *            see Resource Based Policies in the Amazon Rekognition
-     *            Developer Guide.
+     *            see How Amazon Rekognition works with IAM in the Amazon
+     *            Rekognition Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -546,7 +546,7 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Specifies the minimum confidence level for the labels to return.
@@ -576,7 +576,7 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to
@@ -610,7 +610,7 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to

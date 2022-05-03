@@ -32,6 +32,17 @@ class RegionOfInterestJsonMarshaller {
             jsonWriter.name("BoundingBox");
             BoundingBoxJsonMarshaller.getInstance().marshall(boundingBox, jsonWriter);
         }
+        if (regionOfInterest.getPolygon() != null) {
+            java.util.List<Point> polygon = regionOfInterest.getPolygon();
+            jsonWriter.name("Polygon");
+            jsonWriter.beginArray();
+            for (Point polygonItem : polygon) {
+                if (polygonItem != null) {
+                    PointJsonMarshaller.getInstance().marshall(polygonItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Identifies the bounding box around the label, face, text or personal
- * protective equipment. The <code>left</code> (x-coordinate) and
+ * Identifies the bounding box around the label, face, text, object of interest,
+ * or personal protective equipment. The <code>left</code> (x-coordinate) and
  * <code>top</code> (y-coordinate) are coordinates representing the top and left
  * sides of the bounding box. Note that the upper-left corner of the image is
  * the origin (0,0).

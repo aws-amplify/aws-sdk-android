@@ -128,7 +128,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float faceMatchThreshold;
 
@@ -409,7 +409,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         (Optional) Specifies the minimum confidence in the face match to
@@ -429,7 +429,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            (Optional) Specifies the minimum confidence in the face match
@@ -453,7 +453,7 @@ public class SearchFacesByImageRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param faceMatchThreshold <p>
      *            (Optional) Specifies the minimum confidence in the face match

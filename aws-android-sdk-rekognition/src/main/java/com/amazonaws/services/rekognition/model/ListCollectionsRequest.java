@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * subsequent request to fetch the next set of collection IDs.
  * </p>
  * <p>
- * For an example, see Listing Collections in the Amazon Rekognition Developer
+ * For an example, see Listing collections in the Amazon Rekognition Developer
  * Guide.
  * </p>
  * <p>

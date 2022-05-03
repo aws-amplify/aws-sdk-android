@@ -35,7 +35,7 @@ public class DescribeCollectionResult implements Serializable {
      * detection.
      * </p>
      * <p>
-     * For more information, see Model Versioning in the Amazon Rekognition
+     * For more information, see Model versioning in the Amazon Rekognition
      * Developer Guide.
      * </p>
      */
@@ -123,7 +123,7 @@ public class DescribeCollectionResult implements Serializable {
      * detection.
      * </p>
      * <p>
-     * For more information, see Model Versioning in the Amazon Rekognition
+     * For more information, see Model versioning in the Amazon Rekognition
      * Developer Guide.
      * </p>
      *
@@ -132,7 +132,7 @@ public class DescribeCollectionResult implements Serializable {
      *         face detection.
      *         </p>
      *         <p>
-     *         For more information, see Model Versioning in the Amazon
+     *         For more information, see Model versioning in the Amazon
      *         Rekognition Developer Guide.
      *         </p>
      */
@@ -146,7 +146,7 @@ public class DescribeCollectionResult implements Serializable {
      * detection.
      * </p>
      * <p>
-     * For more information, see Model Versioning in the Amazon Rekognition
+     * For more information, see Model versioning in the Amazon Rekognition
      * Developer Guide.
      * </p>
      *
@@ -155,7 +155,7 @@ public class DescribeCollectionResult implements Serializable {
      *            for face detection.
      *            </p>
      *            <p>
-     *            For more information, see Model Versioning in the Amazon
+     *            For more information, see Model versioning in the Amazon
      *            Rekognition Developer Guide.
      *            </p>
      */
@@ -169,7 +169,7 @@ public class DescribeCollectionResult implements Serializable {
      * detection.
      * </p>
      * <p>
-     * For more information, see Model Versioning in the Amazon Rekognition
+     * For more information, see Model versioning in the Amazon Rekognition
      * Developer Guide.
      * </p>
      * <p>
@@ -181,7 +181,7 @@ public class DescribeCollectionResult implements Serializable {
      *            for face detection.
      *            </p>
      *            <p>
-     *            For more information, see Model Versioning in the Amazon
+     *            For more information, see Model versioning in the Amazon
      *            Rekognition Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -29,6 +29,19 @@ public class StartStreamProcessorResultJsonUnmarshaller implements
     public StartStreamProcessorResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         StartStreamProcessorResult startStreamProcessorResult = new StartStreamProcessorResult();
 
+        AwsJsonReader reader = context.getReader();
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("SessionId")) {
+                startStreamProcessorResult.setSessionId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else {
+                reader.skipValue();
+            }
+        }
+        reader.endObject();
+
         return startStreamProcessorResult;
     }
 

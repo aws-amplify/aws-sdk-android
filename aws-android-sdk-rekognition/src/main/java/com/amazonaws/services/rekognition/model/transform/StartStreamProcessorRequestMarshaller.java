@@ -68,6 +68,20 @@ public class StartStreamProcessorRequestMarshaller implements
                 jsonWriter.name("Name");
                 jsonWriter.value(name);
             }
+            if (startStreamProcessorRequest.getStartSelector() != null) {
+                StreamProcessingStartSelector startSelector = startStreamProcessorRequest
+                        .getStartSelector();
+                jsonWriter.name("StartSelector");
+                StreamProcessingStartSelectorJsonMarshaller.getInstance().marshall(startSelector,
+                        jsonWriter);
+            }
+            if (startStreamProcessorRequest.getStopSelector() != null) {
+                StreamProcessingStopSelector stopSelector = startStreamProcessorRequest
+                        .getStopSelector();
+                jsonWriter.name("StopSelector");
+                StreamProcessingStopSelectorJsonMarshaller.getInstance().marshall(stopSelector,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

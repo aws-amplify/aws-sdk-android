@@ -50,7 +50,7 @@ public class ProtectiveEquipmentSummarizationAttributes implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -84,7 +84,7 @@ public class ProtectiveEquipmentSummarizationAttributes implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The minimum confidence level for which you want summary
@@ -126,7 +126,7 @@ public class ProtectiveEquipmentSummarizationAttributes implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            The minimum confidence level for which you want summary
@@ -171,7 +171,7 @@ public class ProtectiveEquipmentSummarizationAttributes implements Serializable 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            The minimum confidence level for which you want summary

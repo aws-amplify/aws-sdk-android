@@ -32,7 +32,7 @@ import java.io.Serializable;
  * an index for the word within a line of words.
  * </p>
  * <p>
- * For more information, see Detecting Text in the Amazon Rekognition Developer
+ * For more information, see Detecting text in the Amazon Rekognition Developer
  * Guide.
  * </p>
  */
@@ -85,7 +85,7 @@ public class TextDetection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -377,7 +377,7 @@ public class TextDetection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The confidence that Amazon Rekognition has in the accuracy of the
@@ -397,7 +397,7 @@ public class TextDetection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition has in the accuracy of
@@ -420,7 +420,7 @@ public class TextDetection implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition has in the accuracy of

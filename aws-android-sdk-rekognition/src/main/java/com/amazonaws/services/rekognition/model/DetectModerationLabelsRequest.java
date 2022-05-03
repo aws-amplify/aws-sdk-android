@@ -70,7 +70,7 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
 
@@ -216,7 +216,7 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         Specifies the minimum confidence level for the labels to return.
@@ -245,7 +245,7 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to
@@ -277,7 +277,7 @@ public class DetectModerationLabelsRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to

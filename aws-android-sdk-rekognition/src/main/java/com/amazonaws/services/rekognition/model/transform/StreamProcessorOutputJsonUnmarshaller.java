@@ -40,6 +40,9 @@ class StreamProcessorOutputJsonUnmarshaller implements
                 streamProcessorOutput.setKinesisDataStream(KinesisDataStreamJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("S3Destination")) {
+                streamProcessorOutput.setS3Destination(S3DestinationJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -39,7 +39,7 @@ public class Instance implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float confidence;
 
@@ -95,7 +95,7 @@ public class Instance implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @return <p>
      *         The confidence that Amazon Rekognition has in the accuracy of the
@@ -113,7 +113,7 @@ public class Instance implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition has in the accuracy of
@@ -134,7 +134,7 @@ public class Instance implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 100<br/>
+     * <b>Length: </b>0.0 - 100.0<br/>
      *
      * @param confidence <p>
      *            The confidence that Amazon Rekognition has in the accuracy of

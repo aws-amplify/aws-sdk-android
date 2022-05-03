@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreateStreamProcessorResult implements Serializable {
     /**
      * <p>
-     * ARN for the newly create stream processor.
+     * Amazon Resource Number for the newly created stream processor.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,7 +32,7 @@ public class CreateStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * ARN for the newly create stream processor.
+     * Amazon Resource Number for the newly created stream processor.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,7 +41,7 @@ public class CreateStreamProcessorResult implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         ARN for the newly create stream processor.
+     *         Amazon Resource Number for the newly created stream processor.
      *         </p>
      */
     public String getStreamProcessorArn() {
@@ -50,7 +50,7 @@ public class CreateStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * ARN for the newly create stream processor.
+     * Amazon Resource Number for the newly created stream processor.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,7 @@ public class CreateStreamProcessorResult implements Serializable {
      * <br/>
      *
      * @param streamProcessorArn <p>
-     *            ARN for the newly create stream processor.
+     *            Amazon Resource Number for the newly created stream processor.
      *            </p>
      */
     public void setStreamProcessorArn(String streamProcessorArn) {
@@ -68,7 +68,7 @@ public class CreateStreamProcessorResult implements Serializable {
 
     /**
      * <p>
-     * ARN for the newly create stream processor.
+     * Amazon Resource Number for the newly created stream processor.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +80,7 @@ public class CreateStreamProcessorResult implements Serializable {
      * <br/>
      *
      * @param streamProcessorArn <p>
-     *            ARN for the newly create stream processor.
+     *            Amazon Resource Number for the newly created stream processor.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
