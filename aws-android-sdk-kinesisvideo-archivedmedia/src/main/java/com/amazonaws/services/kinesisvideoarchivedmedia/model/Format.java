@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Container Format
+ * Format
  */
-public enum ContainerFormat {
+public enum Format {
 
-    FRAGMENTED_MP4("FRAGMENTED_MP4"),
-    MPEG_TS("MPEG_TS");
+    JPEG("JPEG"),
+    PNG("PNG");
 
     private String value;
 
-    private ContainerFormat(String value) {
+    private Format(String value) {
         this.value = value;
     }
 
@@ -37,20 +37,20 @@ public enum ContainerFormat {
         return value;
     }
 
-    private static final Map<String, ContainerFormat> enumMap;
+    private static final Map<String, Format> enumMap;
     static {
-        enumMap = new HashMap<String, ContainerFormat>();
-        enumMap.put("FRAGMENTED_MP4", FRAGMENTED_MP4);
-        enumMap.put("MPEG_TS", MPEG_TS);
+        enumMap = new HashMap<String, Format>();
+        enumMap.put("JPEG", JPEG);
+        enumMap.put("PNG", PNG);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ContainerFormat corresponding to the value
+     * @return Format corresponding to the value
      */
-    public static ContainerFormat fromValue(String value) {
+    public static Format fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

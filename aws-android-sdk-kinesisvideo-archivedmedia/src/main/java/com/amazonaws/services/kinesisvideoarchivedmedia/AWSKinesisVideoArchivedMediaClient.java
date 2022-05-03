@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1041,6 +1041,56 @@ public class AWSKinesisVideoArchivedMediaClient extends AmazonWebServiceClient i
             }
             Unmarshaller<GetHLSStreamingSessionURLResult, JsonUnmarshallerContext> unmarshaller = new GetHLSStreamingSessionURLResultJsonUnmarshaller();
             JsonResponseHandler<GetHLSStreamingSessionURLResult> responseHandler = new JsonResponseHandler<GetHLSStreamingSessionURLResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves a list of Images corresponding to each timestamp for a given
+     * time range, sampling interval, and image format configuration.
+     * </p>
+     * 
+     * @param getImagesRequest
+     * @return getImagesResult The response from the GetImages service method,
+     *         as returned by Amazon Kinesis Video Streams Archived Media.
+     * @throws ResourceNotFoundException
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Kinesis Video Streams Archived Media indicating either a
+     *             problem with the data in the request, or a server side issue.
+     */
+    public GetImagesResult getImages(GetImagesRequest getImagesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getImagesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetImagesRequest> request = null;
+        Response<GetImagesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetImagesRequestMarshaller().marshall(getImagesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetImagesResult, JsonUnmarshallerContext> unmarshaller = new GetImagesResultJsonUnmarshaller();
+            JsonResponseHandler<GetImagesResult> responseHandler = new JsonResponseHandler<GetImagesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Container Format
+ * Image Selector Type
  */
-public enum ContainerFormat {
+public enum ImageSelectorType {
 
-    FRAGMENTED_MP4("FRAGMENTED_MP4"),
-    MPEG_TS("MPEG_TS");
+    PRODUCER_TIMESTAMP("PRODUCER_TIMESTAMP"),
+    SERVER_TIMESTAMP("SERVER_TIMESTAMP");
 
     private String value;
 
-    private ContainerFormat(String value) {
+    private ImageSelectorType(String value) {
         this.value = value;
     }
 
@@ -37,20 +37,20 @@ public enum ContainerFormat {
         return value;
     }
 
-    private static final Map<String, ContainerFormat> enumMap;
+    private static final Map<String, ImageSelectorType> enumMap;
     static {
-        enumMap = new HashMap<String, ContainerFormat>();
-        enumMap.put("FRAGMENTED_MP4", FRAGMENTED_MP4);
-        enumMap.put("MPEG_TS", MPEG_TS);
+        enumMap = new HashMap<String, ImageSelectorType>();
+        enumMap.put("PRODUCER_TIMESTAMP", PRODUCER_TIMESTAMP);
+        enumMap.put("SERVER_TIMESTAMP", SERVER_TIMESTAMP);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ContainerFormat corresponding to the value
+     * @return ImageSelectorType corresponding to the value
      */
-    public static ContainerFormat fromValue(String value) {
+    public static ImageSelectorType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

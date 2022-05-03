@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -696,6 +696,30 @@ public interface AWSKinesisVideoArchivedMedia {
     GetHLSStreamingSessionURLResult getHLSStreamingSessionURL(
             GetHLSStreamingSessionURLRequest getHLSStreamingSessionURLRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves a list of Images corresponding to each timestamp for a given
+     * time range, sampling interval, and image format configuration.
+     * </p>
+     * 
+     * @param getImagesRequest
+     * @return getImagesResult The response from the GetImages service method,
+     *         as returned by Amazon Kinesis Video Streams Archived Media.
+     * @throws ResourceNotFoundException
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws NotAuthorizedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Kinesis Video Streams Archived Media indicating either a
+     *             problem with the data in the request, or a server side issue.
+     */
+    GetImagesResult getImages(GetImagesRequest getImagesRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
