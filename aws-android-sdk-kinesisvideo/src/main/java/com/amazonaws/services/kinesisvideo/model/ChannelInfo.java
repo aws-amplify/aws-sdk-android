@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,14 +36,14 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String channelARN;
 
@@ -53,7 +53,7 @@ public class ChannelInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      */
     private String channelType;
 
@@ -152,17 +152,17 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel.
+     *         The Amazon Resource Name (ARN) of the signaling channel.
      *         </p>
      */
     public String getChannelARN() {
@@ -171,17 +171,17 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel.
+     *            The Amazon Resource Name (ARN) of the signaling channel.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -190,7 +190,7 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -199,11 +199,11 @@ public class ChannelInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel.
+     *            The Amazon Resource Name (ARN) of the signaling channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -219,7 +219,7 @@ public class ChannelInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @return <p>
      *         The type of the signaling channel.
@@ -236,7 +236,7 @@ public class ChannelInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            The type of the signaling channel.
@@ -256,7 +256,7 @@ public class ChannelInfo implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            The type of the signaling channel.
@@ -276,7 +276,7 @@ public class ChannelInfo implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            The type of the signaling channel.
@@ -296,7 +296,7 @@ public class ChannelInfo implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            The type of the signaling channel.

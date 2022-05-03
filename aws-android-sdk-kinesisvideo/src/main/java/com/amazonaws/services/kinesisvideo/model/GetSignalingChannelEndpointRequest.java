@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <code>Protocols</code> is used to determine the communication mechanism. For
- * example, specifying <code>WSS</code> as the protocol, results in this API
- * producing a secure websocket endpoint, and specifying <code>HTTPS</code> as
- * the protocol, results in this API generating an HTTPS endpoint.
+ * example, if you specify <code>WSS</code> as the protocol, this API produces a
+ * secure websocket endpoint. If you specify <code>HTTPS</code> as the protocol,
+ * this API generates an HTTPS endpoint.
  * </p>
  * <p>
  * <code>Role</code> determines the messaging permissions. A <code>MASTER</code>
@@ -44,14 +44,15 @@ public class GetSignalingChannelEndpointRequest extends AmazonWebServiceRequest 
         Serializable {
     /**
      * <p>
-     * The ARN of the signalling channel for which you want to get an endpoint.
+     * The Amazon Resource Name (ARN) of the signalling channel for which you
+     * want to get an endpoint.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String channelARN;
 
@@ -65,18 +66,19 @@ public class GetSignalingChannelEndpointRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The ARN of the signalling channel for which you want to get an endpoint.
+     * The Amazon Resource Name (ARN) of the signalling channel for which you
+     * want to get an endpoint.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signalling channel for which you want to get an
-     *         endpoint.
+     *         The Amazon Resource Name (ARN) of the signalling channel for
+     *         which you want to get an endpoint.
      *         </p>
      */
     public String getChannelARN() {
@@ -85,18 +87,19 @@ public class GetSignalingChannelEndpointRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The ARN of the signalling channel for which you want to get an endpoint.
+     * The Amazon Resource Name (ARN) of the signalling channel for which you
+     * want to get an endpoint.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signalling channel for which you want to get an
-     *            endpoint.
+     *            The Amazon Resource Name (ARN) of the signalling channel for
+     *            which you want to get an endpoint.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -105,7 +108,8 @@ public class GetSignalingChannelEndpointRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The ARN of the signalling channel for which you want to get an endpoint.
+     * The Amazon Resource Name (ARN) of the signalling channel for which you
+     * want to get an endpoint.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -114,12 +118,12 @@ public class GetSignalingChannelEndpointRequest extends AmazonWebServiceRequest 
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signalling channel for which you want to get an
-     *            endpoint.
+     *            The Amazon Resource Name (ARN) of the signalling channel for
+     *            which you want to get an endpoint.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

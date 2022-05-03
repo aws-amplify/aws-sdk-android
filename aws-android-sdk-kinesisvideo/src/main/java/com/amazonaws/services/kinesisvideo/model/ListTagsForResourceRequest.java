@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,9 +27,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next batch of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next batch of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,22 +41,24 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The ARN of the signaling channel for which you want to list tags.
+     * The Amazon Resource Name (ARN) of the signaling channel for which you
+     * want to list tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String resourceARN;
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next batch of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next batch of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,9 +67,9 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *
      * @return <p>
      *         If you specify this parameter and the result of a
-     *         ListTagsForResource call is truncated, the response includes a
-     *         token that you can use in the next request to fetch the next
-     *         batch of tags.
+     *         <code>ListTagsForResource</code> call is truncated, the response
+     *         includes a token that you can use in the next request to fetch
+     *         the next batch of tags.
      *         </p>
      */
     public String getNextToken() {
@@ -75,9 +78,10 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next batch of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next batch of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,9 +90,9 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            ListTagsForResource call is truncated, the response includes a
-     *            token that you can use in the next request to fetch the next
-     *            batch of tags.
+     *            <code>ListTagsForResource</code> call is truncated, the
+     *            response includes a token that you can use in the next request
+     *            to fetch the next batch of tags.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -97,9 +101,10 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next batch of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next batch of
+     * tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -111,9 +116,9 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            ListTagsForResource call is truncated, the response includes a
-     *            token that you can use in the next request to fetch the next
-     *            batch of tags.
+     *            <code>ListTagsForResource</code> call is truncated, the
+     *            response includes a token that you can use in the next request
+     *            to fetch the next batch of tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -125,17 +130,19 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The ARN of the signaling channel for which you want to list tags.
+     * The Amazon Resource Name (ARN) of the signaling channel for which you
+     * want to list tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel for which you want to list tags.
+     *         The Amazon Resource Name (ARN) of the signaling channel for which
+     *         you want to list tags.
      *         </p>
      */
     public String getResourceARN() {
@@ -144,18 +151,19 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The ARN of the signaling channel for which you want to list tags.
+     * The Amazon Resource Name (ARN) of the signaling channel for which you
+     * want to list tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel for which you want to list
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel for
+     *            which you want to list tags.
      *            </p>
      */
     public void setResourceARN(String resourceARN) {
@@ -164,7 +172,8 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The ARN of the signaling channel for which you want to list tags.
+     * The Amazon Resource Name (ARN) of the signaling channel for which you
+     * want to list tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -173,12 +182,12 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel for which you want to list
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel for
+     *            which you want to list tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

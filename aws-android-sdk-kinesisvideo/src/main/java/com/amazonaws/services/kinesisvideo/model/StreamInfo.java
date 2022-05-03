@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String streamARN;
 
@@ -71,12 +71,13 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
-     * Streams uses to encrypt data on the stream.
+     * The ID of the Key Management Service (KMS) key that Kinesis Video Streams
+     * uses to encrypt data on the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String kmsKeyId;
 
@@ -240,8 +241,8 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the stream.
@@ -259,8 +260,8 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream.
@@ -281,8 +282,8 @@ public class StreamInfo implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream.
@@ -354,16 +355,17 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
-     * Streams uses to encrypt data on the stream.
+     * The ID of the Key Management Service (KMS) key that Kinesis Video Streams
+     * uses to encrypt data on the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The ID of the AWS Key Management Service (AWS KMS) key that
-     *         Kinesis Video Streams uses to encrypt data on the stream.
+     *         The ID of the Key Management Service (KMS) key that Kinesis Video
+     *         Streams uses to encrypt data on the stream.
      *         </p>
      */
     public String getKmsKeyId() {
@@ -372,16 +374,17 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
-     * Streams uses to encrypt data on the stream.
+     * The ID of the Key Management Service (KMS) key that Kinesis Video Streams
+     * uses to encrypt data on the stream.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
-     *            The ID of the AWS Key Management Service (AWS KMS) key that
-     *            Kinesis Video Streams uses to encrypt data on the stream.
+     *            The ID of the Key Management Service (KMS) key that Kinesis
+     *            Video Streams uses to encrypt data on the stream.
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -390,8 +393,8 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that Kinesis Video
-     * Streams uses to encrypt data on the stream.
+     * The ID of the Key Management Service (KMS) key that Kinesis Video Streams
+     * uses to encrypt data on the stream.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -399,10 +402,11 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
-     *            The ID of the AWS Key Management Service (AWS KMS) key that
-     *            Kinesis Video Streams uses to encrypt data on the stream.
+     *            The ID of the Key Management Service (KMS) key that Kinesis
+     *            Video Streams uses to encrypt data on the stream.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

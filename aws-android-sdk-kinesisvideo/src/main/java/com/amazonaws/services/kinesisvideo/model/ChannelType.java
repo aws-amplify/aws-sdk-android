@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ import java.util.Map;
  */
 public enum ChannelType {
 
-    SINGLE_MASTER("SINGLE_MASTER");
+    SINGLE_MASTER("SINGLE_MASTER"),
+    FULL_MESH("FULL_MESH");
 
     private String value;
 
@@ -40,6 +41,7 @@ public enum ChannelType {
     static {
         enumMap = new HashMap<String, ChannelType>();
         enumMap.put("SINGLE_MASTER", SINGLE_MASTER);
+        enumMap.put("FULL_MESH", FULL_MESH);
     }
 
     /**

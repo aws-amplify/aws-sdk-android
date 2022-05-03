@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,12 +22,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Adds one or more tags to a stream. A <i>tag</i> is a key-value pair (the
- * value is optional) that you can define and assign to AWS resources. If you
- * specify a tag that already exists, the tag value is replaced with the value
- * that you specify in the request. For more information, see <a href=
+ * value is optional) that you can define and assign to Amazon Web Services
+ * resources. If you specify a tag that already exists, the tag value is
+ * replaced with the value that you specify in the request. For more
+ * information, see <a href=
  * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
- * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
- * User Guide</i>.
+ * >Using Cost Allocation Tags</a> in the <i>Billing and Cost Management and
+ * Cost Management User Guide</i>.
  * </p>
  * <p>
  * You must provide either the <code>StreamName</code> or the
@@ -38,7 +39,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>KinesisVideo:TagStream</code> action.
  * </p>
  * <p>
- * Kinesis video streams support up to 50 tags.
+ * A Kinesis video stream can support up to 50 tags.
  * </p>
  */
 public class TagStreamRequest extends AmazonWebServiceRequest implements Serializable {
@@ -51,8 +52,8 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String streamARN;
 
@@ -84,8 +85,8 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the resource that you want to
@@ -105,8 +106,8 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the resource that you want
@@ -129,8 +130,8 @@ public class TagStreamRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the resource that you want

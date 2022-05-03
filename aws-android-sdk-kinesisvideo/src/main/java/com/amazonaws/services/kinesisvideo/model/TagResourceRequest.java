@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,25 +22,27 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Adds one or more tags to a signaling channel. A <i>tag</i> is a key-value
- * pair (the value is optional) that you can define and assign to AWS resources.
- * If you specify a tag that already exists, the tag value is replaced with the
- * value that you specify in the request. For more information, see <a href=
+ * pair (the value is optional) that you can define and assign to Amazon Web
+ * Services resources. If you specify a tag that already exists, the tag value
+ * is replaced with the value that you specify in the request. For more
+ * information, see <a href=
  * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
- * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
- * User Guide</i>.
+ * >Using Cost Allocation Tags</a> in the <i>Billing and Cost Management and
+ * Cost Management User Guide</i>.
  * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String resourceARN;
 
@@ -54,17 +56,19 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel to which you want to add tags.
+     *         The Amazon Resource Name (ARN) of the signaling channel to which
+     *         you want to add tags.
      *         </p>
      */
     public String getResourceARN() {
@@ -73,18 +77,19 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel to which you want to add
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel to
+     *            which you want to add tags.
      *            </p>
      */
     public void setResourceARN(String resourceARN) {
@@ -93,7 +98,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,12 +108,12 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel to which you want to add
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel to
+     *            which you want to add tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

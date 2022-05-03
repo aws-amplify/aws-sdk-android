@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -100,8 +100,8 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that you want
-     * Kinesis Video Streams to use to encrypt stream data.
+     * The ID of the Key Management Service (KMS) key that you want Kinesis
+     * Video Streams to use to encrypt stream data.
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
@@ -115,6 +115,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String kmsKeyId;
 
@@ -465,8 +466,8 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that you want
-     * Kinesis Video Streams to use to encrypt stream data.
+     * The ID of the Key Management Service (KMS) key that you want Kinesis
+     * Video Streams to use to encrypt stream data.
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
@@ -480,10 +481,11 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The ID of the AWS Key Management Service (AWS KMS) key that you
-     *         want Kinesis Video Streams to use to encrypt stream data.
+     *         The ID of the Key Management Service (KMS) key that you want
+     *         Kinesis Video Streams to use to encrypt stream data.
      *         </p>
      *         <p>
      *         If no key ID is specified, the default, Kinesis Video-managed key
@@ -501,8 +503,8 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that you want
-     * Kinesis Video Streams to use to encrypt stream data.
+     * The ID of the Key Management Service (KMS) key that you want Kinesis
+     * Video Streams to use to encrypt stream data.
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
@@ -516,10 +518,11 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
-     *            The ID of the AWS Key Management Service (AWS KMS) key that
-     *            you want Kinesis Video Streams to use to encrypt stream data.
+     *            The ID of the Key Management Service (KMS) key that you want
+     *            Kinesis Video Streams to use to encrypt stream data.
      *            </p>
      *            <p>
      *            If no key ID is specified, the default, Kinesis Video-managed
@@ -537,8 +540,8 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The ID of the AWS Key Management Service (AWS KMS) key that you want
-     * Kinesis Video Streams to use to encrypt stream data.
+     * The ID of the Key Management Service (KMS) key that you want Kinesis
+     * Video Streams to use to encrypt stream data.
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
@@ -555,10 +558,11 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
-     *            The ID of the AWS Key Management Service (AWS KMS) key that
-     *            you want Kinesis Video Streams to use to encrypt stream data.
+     *            The ID of the Key Management Service (KMS) key that you want
+     *            Kinesis Video Streams to use to encrypt stream data.
      *            </p>
      *            <p>
      *            If no key ID is specified, the default, Kinesis Video-managed

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,8 +60,8 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String streamARN;
 
@@ -73,7 +73,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      */
     private String aPIName;
 
@@ -153,8 +153,8 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the stream that you want to get
@@ -176,8 +176,8 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream that you want to
@@ -202,8 +202,8 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream that you want to
@@ -226,7 +226,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      *
      * @return <p>
      *         The name of the API action for which to get an endpoint.
@@ -245,7 +245,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -267,7 +267,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -289,7 +289,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -311,7 +311,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP, GET_IMAGES
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
