@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,14 +29,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String channelARN;
 
@@ -45,7 +46,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,17 +57,19 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel that you want to delete.
+     *         The Amazon Resource Name (ARN) of the signaling channel that you
+     *         want to delete.
      *         </p>
      */
     public String getChannelARN() {
@@ -75,17 +78,19 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to delete.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to delete.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -94,7 +99,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -103,11 +109,12 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to delete.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +129,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +140,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *         The current version of the signaling channel that you want to
      *         delete. You can obtain the current version by invoking the
      *         <code>DescribeSignalingChannel</code> or
-     *         <code>ListSignalingChannels</code> APIs.
+     *         <code>ListSignalingChannels</code> API operations.
      *         </p>
      */
     public String getCurrentVersion() {
@@ -145,7 +152,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,7 +163,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *            The current version of the signaling channel that you want to
      *            delete. You can obtain the current version by invoking the
      *            <code>DescribeSignalingChannel</code> or
-     *            <code>ListSignalingChannels</code> APIs.
+     *            <code>ListSignalingChannels</code> API operations.
      *            </p>
      */
     public void setCurrentVersion(String currentVersion) {
@@ -168,7 +175,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,7 +189,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *            The current version of the signaling channel that you want to
      *            delete. You can obtain the current version by invoking the
      *            <code>DescribeSignalingChannel</code> or
-     *            <code>ListSignalingChannels</code> APIs.
+     *            <code>ListSignalingChannels</code> API operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -332,6 +332,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
         jsonErrorUnmarshallers.add(new InvalidArgumentExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidDeviceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidResourceFormatExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new NoDataRetentionExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new NotAuthorizedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
@@ -499,6 +500,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws ResourceNotFoundException
      * @throws AccessDeniedException
      * @throws VersionMismatchException
+     * @throws ResourceInUseException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -568,6 +570,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
      * @throws VersionMismatchException
+     * @throws ResourceInUseException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -607,9 +610,115 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * Gets the <code>ImageGenerationConfiguration</code> for a given Kinesis
+     * video stream.
+     * </p>
+     * 
+     * @param describeImageGenerationConfigurationRequest
+     * @return describeImageGenerationConfigurationResult The response from the
+     *         DescribeImageGenerationConfiguration service method, as returned
+     *         by AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DescribeImageGenerationConfigurationResult describeImageGenerationConfiguration(
+            DescribeImageGenerationConfigurationRequest describeImageGenerationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeImageGenerationConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeImageGenerationConfigurationRequest> request = null;
+        Response<DescribeImageGenerationConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeImageGenerationConfigurationRequestMarshaller()
+                        .marshall(describeImageGenerationConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeImageGenerationConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DescribeImageGenerationConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeImageGenerationConfigurationResult> responseHandler = new JsonResponseHandler<DescribeImageGenerationConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the <code>NotificationConfiguration</code> for a given Kinesis video
+     * stream.
+     * </p>
+     * 
+     * @param describeNotificationConfigurationRequest
+     * @return describeNotificationConfigurationResult The response from the
+     *         DescribeNotificationConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DescribeNotificationConfigurationResult describeNotificationConfiguration(
+            DescribeNotificationConfigurationRequest describeNotificationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeNotificationConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeNotificationConfigurationRequest> request = null;
+        Response<DescribeNotificationConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeNotificationConfigurationRequestMarshaller()
+                        .marshall(describeNotificationConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeNotificationConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DescribeNotificationConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeNotificationConfigurationResult> responseHandler = new JsonResponseHandler<DescribeNotificationConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the most current information about the signaling channel. You
-     * must specify either the name or the ARN of the channel that you want to
-     * describe.
+     * must specify either the name or the Amazon Resource Name (ARN) of the
+     * channel that you want to describe.
      * </p>
      * 
      * @param describeSignalingChannelRequest
@@ -781,10 +890,9 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * </p>
      * <p>
      * <code>Protocols</code> is used to determine the communication mechanism.
-     * For example, specifying <code>WSS</code> as the protocol, results in this
-     * API producing a secure websocket endpoint, and specifying
-     * <code>HTTPS</code> as the protocol, results in this API generating an
-     * HTTPS endpoint.
+     * For example, if you specify <code>WSS</code> as the protocol, this API
+     * produces a secure websocket endpoint. If you specify <code>HTTPS</code>
+     * as the protocol, this API generates an HTTPS endpoint.
      * </p>
      * <p>
      * <code>Role</code> determines the messaging permissions. A
@@ -1056,13 +1164,13 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
     /**
      * <p>
      * Adds one or more tags to a signaling channel. A <i>tag</i> is a key-value
-     * pair (the value is optional) that you can define and assign to AWS
-     * resources. If you specify a tag that already exists, the tag value is
-     * replaced with the value that you specify in the request. For more
-     * information, see <a href=
+     * pair (the value is optional) that you can define and assign to Amazon Web
+     * Services resources. If you specify a tag that already exists, the tag
+     * value is replaced with the value that you specify in the request. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
-     * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
-     * User Guide</i>.
+     * >Using Cost Allocation Tags</a> in the <i>Billing and Cost Management and
+     * Cost Management User Guide</i>.
      * </p>
      * 
      * @param tagResourceRequest
@@ -1113,12 +1221,13 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
     /**
      * <p>
      * Adds one or more tags to a stream. A <i>tag</i> is a key-value pair (the
-     * value is optional) that you can define and assign to AWS resources. If
-     * you specify a tag that already exists, the tag value is replaced with the
-     * value that you specify in the request. For more information, see <a href=
+     * value is optional) that you can define and assign to Amazon Web Services
+     * resources. If you specify a tag that already exists, the tag value is
+     * replaced with the value that you specify in the request. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html"
-     * >Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management
-     * User Guide</i>.
+     * >Using Cost Allocation Tags</a> in the <i>Billing and Cost Management and
+     * Cost Management User Guide</i>.
      * </p>
      * <p>
      * You must provide either the <code>StreamName</code> or the
@@ -1129,7 +1238,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * <code>KinesisVideo:TagStream</code> action.
      * </p>
      * <p>
-     * Kinesis video streams support up to 50 tags.
+     * A Kinesis video stream can support up to 50 tags.
      * </p>
      * 
      * @param tagStreamRequest
@@ -1376,13 +1485,122 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * Updates the <code>StreamInfo</code> and
+     * <code>ImageProcessingConfiguration</code> fields.
+     * </p>
+     * 
+     * @param updateImageGenerationConfigurationRequest
+     * @return updateImageGenerationConfigurationResult The response from the
+     *         UpdateImageGenerationConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws NoDataRetentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateImageGenerationConfigurationResult updateImageGenerationConfiguration(
+            UpdateImageGenerationConfigurationRequest updateImageGenerationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateImageGenerationConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateImageGenerationConfigurationRequest> request = null;
+        Response<UpdateImageGenerationConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateImageGenerationConfigurationRequestMarshaller()
+                        .marshall(updateImageGenerationConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateImageGenerationConfigurationResult, JsonUnmarshallerContext> unmarshaller = new UpdateImageGenerationConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateImageGenerationConfigurationResult> responseHandler = new JsonResponseHandler<UpdateImageGenerationConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the notification information for a stream.
+     * </p>
+     * 
+     * @param updateNotificationConfigurationRequest
+     * @return updateNotificationConfigurationResult The response from the
+     *         UpdateNotificationConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws InvalidArgumentException
+     * @throws ClientLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws NoDataRetentionException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public UpdateNotificationConfigurationResult updateNotificationConfiguration(
+            UpdateNotificationConfigurationRequest updateNotificationConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateNotificationConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateNotificationConfigurationRequest> request = null;
+        Response<UpdateNotificationConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateNotificationConfigurationRequestMarshaller()
+                        .marshall(updateNotificationConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateNotificationConfigurationResult, JsonUnmarshallerContext> unmarshaller = new UpdateNotificationConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateNotificationConfigurationResult> responseHandler = new JsonResponseHandler<UpdateNotificationConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates the existing signaling channel. This is an asynchronous operation
      * and takes time to complete.
      * </p>
      * <p>
      * If the <code>MessageTtlSeconds</code> value is updated (either increased
-     * or reduced), then it only applies to new messages sent via this channel
-     * after it's been updated. Existing messages are still expire as per the
+     * or reduced), it only applies to new messages sent via this channel after
+     * it's been updated. Existing messages are still expired as per the
      * previous <code>MessageTtlSeconds</code> value.
      * </p>
      * 

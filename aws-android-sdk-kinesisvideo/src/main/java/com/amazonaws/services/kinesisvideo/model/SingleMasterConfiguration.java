@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class SingleMasterConfiguration implements Serializable {
     /**
      * <p>
-     * The period of time a signaling channel retains underlivered messages
+     * The period of time a signaling channel retains undelivered messages
      * before they are discarded.
      * </p>
      * <p>
@@ -37,7 +37,7 @@ public class SingleMasterConfiguration implements Serializable {
 
     /**
      * <p>
-     * The period of time a signaling channel retains underlivered messages
+     * The period of time a signaling channel retains undelivered messages
      * before they are discarded.
      * </p>
      * <p>
@@ -45,7 +45,7 @@ public class SingleMasterConfiguration implements Serializable {
      * <b>Range: </b>5 - 120<br/>
      *
      * @return <p>
-     *         The period of time a signaling channel retains underlivered
+     *         The period of time a signaling channel retains undelivered
      *         messages before they are discarded.
      *         </p>
      */
@@ -55,7 +55,7 @@ public class SingleMasterConfiguration implements Serializable {
 
     /**
      * <p>
-     * The period of time a signaling channel retains underlivered messages
+     * The period of time a signaling channel retains undelivered messages
      * before they are discarded.
      * </p>
      * <p>
@@ -63,7 +63,7 @@ public class SingleMasterConfiguration implements Serializable {
      * <b>Range: </b>5 - 120<br/>
      *
      * @param messageTtlSeconds <p>
-     *            The period of time a signaling channel retains underlivered
+     *            The period of time a signaling channel retains undelivered
      *            messages before they are discarded.
      *            </p>
      */
@@ -73,7 +73,7 @@ public class SingleMasterConfiguration implements Serializable {
 
     /**
      * <p>
-     * The period of time a signaling channel retains underlivered messages
+     * The period of time a signaling channel retains undelivered messages
      * before they are discarded.
      * </p>
      * <p>
@@ -84,7 +84,7 @@ public class SingleMasterConfiguration implements Serializable {
      * <b>Range: </b>5 - 120<br/>
      *
      * @param messageTtlSeconds <p>
-     *            The period of time a signaling channel retains underlivered
+     *            The period of time a signaling channel retains undelivered
      *            messages before they are discarded.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,8 +52,8 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String streamARN;
 
@@ -152,8 +152,8 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the stream that you want to
@@ -173,8 +173,8 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream that you want to
@@ -197,8 +197,8 @@ public class ListTagsForStreamRequest extends AmazonWebServiceRequest implements
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream that you want to

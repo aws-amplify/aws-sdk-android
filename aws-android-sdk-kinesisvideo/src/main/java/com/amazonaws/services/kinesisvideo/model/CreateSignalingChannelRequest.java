@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * A name for the signaling channel that you are creating. It must be unique
-     * for each account and region.
+     * for each Amazon Web Services account and Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +47,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      */
     private String channelType;
 
@@ -61,7 +61,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * A set of tags (key/value pairs) that you want to associate with this
+     * A set of tags (key-value pairs) that you want to associate with this
      * channel.
      * </p>
      */
@@ -70,7 +70,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * A name for the signaling channel that you are creating. It must be unique
-     * for each account and region.
+     * for each Amazon Web Services account and Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,7 +79,8 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         A name for the signaling channel that you are creating. It must
-     *         be unique for each account and region.
+     *         be unique for each Amazon Web Services account and Amazon Web
+     *         Services Region.
      *         </p>
      */
     public String getChannelName() {
@@ -89,7 +90,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * A name for the signaling channel that you are creating. It must be unique
-     * for each account and region.
+     * for each Amazon Web Services account and Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +99,8 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      *
      * @param channelName <p>
      *            A name for the signaling channel that you are creating. It
-     *            must be unique for each account and region.
+     *            must be unique for each Amazon Web Services account and Amazon
+     *            Web Services Region.
      *            </p>
      */
     public void setChannelName(String channelName) {
@@ -108,7 +110,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * A name for the signaling channel that you are creating. It must be unique
-     * for each account and region.
+     * for each Amazon Web Services account and Amazon Web Services Region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -120,7 +122,8 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      *
      * @param channelName <p>
      *            A name for the signaling channel that you are creating. It
-     *            must be unique for each account and region.
+     *            must be unique for each Amazon Web Services account and Amazon
+     *            Web Services Region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,7 +140,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @return <p>
      *         A type of the signaling channel that you are creating. Currently,
@@ -156,7 +159,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            A type of the signaling channel that you are creating.
@@ -179,7 +182,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            A type of the signaling channel that you are creating.
@@ -202,7 +205,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            A type of the signaling channel that you are creating.
@@ -225,7 +228,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SINGLE_MASTER
+     * <b>Allowed Values: </b>SINGLE_MASTER, FULL_MESH
      *
      * @param channelType <p>
      *            A type of the signaling channel that you are creating.
@@ -295,12 +298,12 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * A set of tags (key/value pairs) that you want to associate with this
+     * A set of tags (key-value pairs) that you want to associate with this
      * channel.
      * </p>
      *
      * @return <p>
-     *         A set of tags (key/value pairs) that you want to associate with
+     *         A set of tags (key-value pairs) that you want to associate with
      *         this channel.
      *         </p>
      */
@@ -310,12 +313,12 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * A set of tags (key/value pairs) that you want to associate with this
+     * A set of tags (key-value pairs) that you want to associate with this
      * channel.
      * </p>
      *
      * @param tags <p>
-     *            A set of tags (key/value pairs) that you want to associate
+     *            A set of tags (key-value pairs) that you want to associate
      *            with this channel.
      *            </p>
      */
@@ -330,7 +333,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * A set of tags (key/value pairs) that you want to associate with this
+     * A set of tags (key-value pairs) that you want to associate with this
      * channel.
      * </p>
      * <p>
@@ -338,7 +341,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param tags <p>
-     *            A set of tags (key/value pairs) that you want to associate
+     *            A set of tags (key-value pairs) that you want to associate
      *            with this channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -356,7 +359,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * A set of tags (key/value pairs) that you want to associate with this
+     * A set of tags (key-value pairs) that you want to associate with this
      * channel.
      * </p>
      * <p>
@@ -364,7 +367,7 @@ public class CreateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param tags <p>
-     *            A set of tags (key/value pairs) that you want to associate
+     *            A set of tags (key-value pairs) that you want to associate
      *            with this channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be

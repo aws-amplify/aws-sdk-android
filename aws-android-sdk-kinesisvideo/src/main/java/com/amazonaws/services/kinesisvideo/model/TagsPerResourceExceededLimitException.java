@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * You have exceeded the limit of tags that you can associate with the resource.
- * Kinesis video streams support up to 50 tags.
+ * A Kinesis video stream can support up to 50 tags.
  * </p>
  */
 public class TagsPerResourceExceededLimitException extends AmazonServiceException {

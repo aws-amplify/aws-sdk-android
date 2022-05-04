@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,14 +29,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UntagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String resourceARN;
 
@@ -49,18 +50,19 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel from which you want to remove
-     *         tags.
+     *         The Amazon Resource Name (ARN) of the signaling channel from
+     *         which you want to remove tags.
      *         </p>
      */
     public String getResourceARN() {
@@ -69,18 +71,19 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel from which you want to remove
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel from
+     *            which you want to remove tags.
      *            </p>
      */
     public void setResourceARN(String resourceARN) {
@@ -89,7 +92,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -98,12 +102,12 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel from which you want to remove
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel from
+     *            which you want to remove tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
