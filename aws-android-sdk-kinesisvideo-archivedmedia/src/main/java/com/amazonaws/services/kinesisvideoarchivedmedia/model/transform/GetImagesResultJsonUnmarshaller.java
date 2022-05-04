@@ -21,40 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO FragmentSelector
+ * JSON unmarshaller for response GetImagesResult
  */
-class FragmentSelectorJsonUnmarshaller implements
-        Unmarshaller<FragmentSelector, JsonUnmarshallerContext> {
+public class GetImagesResultJsonUnmarshaller implements
+        Unmarshaller<GetImagesResult, JsonUnmarshallerContext> {
 
-    public FragmentSelector unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public GetImagesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        GetImagesResult getImagesResult = new GetImagesResult();
+
         AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-        FragmentSelector fragmentSelector = new FragmentSelector();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("FragmentSelectorType")) {
-                fragmentSelector.setFragmentSelectorType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("TimestampRange")) {
-                fragmentSelector.setTimestampRange(TimestampRangeJsonUnmarshaller.getInstance()
+            if (name.equals("Images")) {
+                getImagesResult.setImages(new ListUnmarshaller<Image>(ImageJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("NextToken")) {
+                getImagesResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return fragmentSelector;
+
+        return getImagesResult;
     }
 
-    private static FragmentSelectorJsonUnmarshaller instance;
+    private static GetImagesResultJsonUnmarshaller instance;
 
-    public static FragmentSelectorJsonUnmarshaller getInstance() {
+    public static GetImagesResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new FragmentSelectorJsonUnmarshaller();
+            instance = new GetImagesResultJsonUnmarshaller();
         return instance;
     }
 }

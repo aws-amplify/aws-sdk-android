@@ -20,30 +20,35 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO TimestampRange
+ * JSON marshaller for POJO Image
  */
-class TimestampRangeJsonMarshaller {
+class ImageJsonMarshaller {
 
-    public void marshall(TimestampRange timestampRange, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(Image image, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (timestampRange.getStartTimestamp() != null) {
-            java.util.Date startTimestamp = timestampRange.getStartTimestamp();
-            jsonWriter.name("StartTimestamp");
-            jsonWriter.value(startTimestamp);
+        if (image.getTimeStamp() != null) {
+            java.util.Date timeStamp = image.getTimeStamp();
+            jsonWriter.name("TimeStamp");
+            jsonWriter.value(timeStamp);
         }
-        if (timestampRange.getEndTimestamp() != null) {
-            java.util.Date endTimestamp = timestampRange.getEndTimestamp();
-            jsonWriter.name("EndTimestamp");
-            jsonWriter.value(endTimestamp);
+        if (image.getError() != null) {
+            String error = image.getError();
+            jsonWriter.name("Error");
+            jsonWriter.value(error);
+        }
+        if (image.getImageContent() != null) {
+            String imageContent = image.getImageContent();
+            jsonWriter.name("ImageContent");
+            jsonWriter.value(imageContent);
         }
         jsonWriter.endObject();
     }
 
-    private static TimestampRangeJsonMarshaller instance;
+    private static ImageJsonMarshaller instance;
 
-    public static TimestampRangeJsonMarshaller getInstance() {
+    public static ImageJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new TimestampRangeJsonMarshaller();
+            instance = new ImageJsonMarshaller();
         return instance;
     }
 }
