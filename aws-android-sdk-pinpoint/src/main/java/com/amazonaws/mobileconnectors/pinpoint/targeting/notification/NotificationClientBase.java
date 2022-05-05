@@ -959,7 +959,7 @@ abstract class NotificationClientBase {
      * above, so devices from API level 16 to 18 will return true from this
      * method even when local notifications have been disabled for the app.
      * Also, at API level 24 and higher, we use the more consistent API
-     * `NotificationManagerCompat#areNotificationsEnabled()` to fix an issue we were
+     * {@link NotificationManagerCompat#areNotificationsEnabled()} to fix an issue we were
      * seeing with Samsung devices.
      *
      * @return true if local notifications are enabled for this app, otherwise
