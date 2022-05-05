@@ -1,3 +1,19 @@
+## [Release 2.45.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.45.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2881)
+- **aws-android-sdk-rekognition:** update models to latest (#2879)
+- **aws-android-sdk-textract:** update models to latest (#2870)
+- **aws-android-sdk-polly:** update models to latest (#2869)
+- **aws-android-sdk-kms:** update models to latest (#2868)
+- **aws-android-sdk-kinesisvideo:** update models to latest (#2885)
+- **aws-android-sdk-kinesisvideo-archivedmedia:** update models to latest (#2884)
+
+### Miscellaneous
+- Fix notification opt-out checking on Samsung devices (#2883)
+
+[See all changes between 2.44.0 and 2.45.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.44.0...release_v2.45.0)
+
 ## [Release 2.44.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.44.0)
 
 ### Features
