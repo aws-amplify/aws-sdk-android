@@ -38,6 +38,8 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.DateUtil;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileDemographic;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfileLocation;
+
+import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 
@@ -280,6 +282,9 @@ public class EndpointProfileTest extends MobileAnalyticsTestBase {
         when(mockResources.getConfiguration()).thenReturn(mockConfiguration);
         when(mockApplicationContext.getResources()).thenReturn(mockResources);
         when(mockApplicationContext.getApplicationContext()).thenReturn(mockedContext);
+        NotificationManager notificationManager = mock(NotificationManager.class);
+        when(mockApplicationContext.getSystemService(Context.NOTIFICATION_SERVICE)).thenReturn(notificationManager);
+        when(notificationManager.areNotificationsEnabled()).thenReturn(true);
         when(mockContext.getApplicationContext()).thenReturn(mockApplicationContext);
 
         final TargetingClient targetingClient = new TargetingClient(mockContext, mock(ThreadPoolExecutor.class));

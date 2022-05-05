@@ -31,6 +31,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
@@ -957,6 +958,9 @@ abstract class NotificationClientBase {
      * notifications was a feature added on devices supporting API Level 16 and
      * above, so devices from API level 16 to 18 will return true from this
      * method even when local notifications have been disabled for the app.
+     * Also, at API level 24 and higher, we use the more consistent API
+     * {@link NotificationManagerCompat#areNotificationsEnabled()} to fix an issue we were
+     * seeing with Samsung devices.
      *
      * @return true if local notifications are enabled for this app, otherwise
      * false.
@@ -973,6 +977,10 @@ abstract class NotificationClientBase {
     boolean areAppNotificationsEnabledOnPlatform() {
         if (android.os.Build.VERSION.SDK_INT < ANDROID_KITKAT) {
             return true;
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= ANDROID_NOUGAT) {
+            return NotificationManagerCompat.from(pinpointContext.getApplicationContext()).areNotificationsEnabled();
         }
 
         final String appOpsServiceName;
