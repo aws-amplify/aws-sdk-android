@@ -100,6 +100,11 @@ public class JobSummary implements Serializable {
     private java.util.Date completedAt;
 
     /**
+     * The new value for the isConcurrent property for this object.
+     */
+    private Boolean isConcurrent;
+
+    /**
      * <p>
      * The job ARN.
      * </p>
@@ -656,6 +661,50 @@ public class JobSummary implements Serializable {
     }
 
     /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean isIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean getIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Sets the value of isConcurrent
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     */
+    public void setIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
+    }
+
+    /**
+     * Sets the value of the isConcurrent property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public JobSummary withIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -681,7 +730,9 @@ public class JobSummary implements Serializable {
         if (getLastUpdatedAt() != null)
             sb.append("lastUpdatedAt: " + getLastUpdatedAt() + ",");
         if (getCompletedAt() != null)
-            sb.append("completedAt: " + getCompletedAt());
+            sb.append("completedAt: " + getCompletedAt() + ",");
+        if (getIsConcurrent() != null)
+            sb.append("isConcurrent: " + getIsConcurrent());
         sb.append("}");
         return sb.toString();
     }
@@ -703,6 +754,8 @@ public class JobSummary implements Serializable {
                 + ((getLastUpdatedAt() == null) ? 0 : getLastUpdatedAt().hashCode());
         hashCode = prime * hashCode
                 + ((getCompletedAt() == null) ? 0 : getCompletedAt().hashCode());
+        hashCode = prime * hashCode
+                + ((getIsConcurrent() == null) ? 0 : getIsConcurrent().hashCode());
         return hashCode;
     }
 
@@ -753,6 +806,11 @@ public class JobSummary implements Serializable {
             return false;
         if (other.getCompletedAt() != null
                 && other.getCompletedAt().equals(this.getCompletedAt()) == false)
+            return false;
+        if (other.getIsConcurrent() == null ^ this.getIsConcurrent() == null)
+            return false;
+        if (other.getIsConcurrent() != null
+                && other.getIsConcurrent().equals(this.getIsConcurrent()) == false)
             return false;
         return true;
     }

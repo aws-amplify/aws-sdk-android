@@ -66,6 +66,11 @@ class JobSummaryJsonMarshaller {
             jsonWriter.name("completedAt");
             jsonWriter.value(completedAt);
         }
+        if (jobSummary.getIsConcurrent() != null) {
+            Boolean isConcurrent = jobSummary.getIsConcurrent();
+            jsonWriter.name("isConcurrent");
+            jsonWriter.value(isConcurrent);
+        }
         jsonWriter.endObject();
     }
 

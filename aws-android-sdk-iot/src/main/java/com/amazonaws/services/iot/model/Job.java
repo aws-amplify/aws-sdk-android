@@ -231,6 +231,11 @@ public class Job implements Serializable {
     private java.util.Map<String, String> documentParameters;
 
     /**
+     * The new value for the isConcurrent property for this object.
+     */
+    private Boolean isConcurrent;
+
+    /**
      * <p>
      * An ARN identifying the job with format
      * "arn:aws:iot:region:account:job/jobId".
@@ -1671,6 +1676,50 @@ public class Job implements Serializable {
     }
 
     /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean isIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean getIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Sets the value of isConcurrent
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     */
+    public void setIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
+    }
+
+    /**
+     * Sets the value of the isConcurrent property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1722,7 +1771,9 @@ public class Job implements Serializable {
         if (getJobExecutionsRetryConfig() != null)
             sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
         if (getDocumentParameters() != null)
-            sb.append("documentParameters: " + getDocumentParameters());
+            sb.append("documentParameters: " + getDocumentParameters() + ",");
+        if (getIsConcurrent() != null)
+            sb.append("isConcurrent: " + getIsConcurrent());
         sb.append("}");
         return sb.toString();
     }
@@ -1771,6 +1822,8 @@ public class Job implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
+        hashCode = prime * hashCode
+                + ((getIsConcurrent() == null) ? 0 : getIsConcurrent().hashCode());
         return hashCode;
     }
 
@@ -1887,6 +1940,11 @@ public class Job implements Serializable {
             return false;
         if (other.getDocumentParameters() != null
                 && other.getDocumentParameters().equals(this.getDocumentParameters()) == false)
+            return false;
+        if (other.getIsConcurrent() == null ^ this.getIsConcurrent() == null)
+            return false;
+        if (other.getIsConcurrent() != null
+                && other.getIsConcurrent().equals(this.getIsConcurrent()) == false)
             return false;
         return true;
     }
