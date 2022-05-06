@@ -221,6 +221,12 @@ public interface AmazonLocation {
      * for the optional <code>Accuracy</code> of a
      * <code>DevicePositionUpdate</code>.
      * </p>
+     * </note> <note>
+     * <p>
+     * The <code>DeviceID</code> is used as a string to represent the device.
+     * You do not need to have a <code>Tracker</code> associated with the
+     * <code>DeviceID</code>.
+     * </p>
      * </note>
      * 
      * @param batchEvaluateGeofencesRequest
