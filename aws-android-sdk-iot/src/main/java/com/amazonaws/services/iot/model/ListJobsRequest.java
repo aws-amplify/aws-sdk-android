@@ -51,6 +51,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -241,6 +248,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -254,6 +268,14 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      *         target group, even after the job was completed by all things
      *         originally in the group.
      *         </p>
+     *         <note>
+     *         <p>
+     *         We recommend that you use continuous jobs instead of snapshot
+     *         jobs for dynamic thing group targets. By using continuous jobs,
+     *         devices that join the group receive the job execution even after
+     *         the job has been created.
+     *         </p>
+     *         </note>
      * @see TargetSelection
      */
     public String getTargetSelection() {
@@ -269,6 +291,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -282,6 +311,14 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(String targetSelection) {
@@ -297,6 +334,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -313,6 +357,14 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection
@@ -331,6 +383,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -344,6 +403,14 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(TargetSelection targetSelection) {
@@ -359,6 +426,13 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -375,6 +449,14 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection

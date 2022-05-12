@@ -543,6 +543,7 @@ public interface AWSIot {
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
      * @throws ServiceUnavailableException
+     * @throws LimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

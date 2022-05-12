@@ -72,6 +72,13 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      * A map of key-value pairs that you can use as guidance to specify the
      * inputs for creating a job from a managed template.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      */
     private java.util.List<DocumentParameter> documentParameters;
 
@@ -394,11 +401,26 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      * A map of key-value pairs that you can use as guidance to specify the
      * inputs for creating a job from a managed template.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         A map of key-value pairs that you can use as guidance to specify
      *         the inputs for creating a job from a managed template.
      *         </p>
+     *         <note>
+     *         <p>
+     *         <code>documentParameters</code> can only be used when creating
+     *         jobs from Amazon Web Services managed templates. This parameter
+     *         can't be used with custom job templates or to create jobs from
+     *         them.
+     *         </p>
+     *         </note>
      */
     public java.util.List<DocumentParameter> getDocumentParameters() {
         return documentParameters;
@@ -409,11 +431,26 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      * A map of key-value pairs that you can use as guidance to specify the
      * inputs for creating a job from a managed template.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @param documentParameters <p>
      *            A map of key-value pairs that you can use as guidance to
      *            specify the inputs for creating a job from a managed template.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      */
     public void setDocumentParameters(java.util.Collection<DocumentParameter> documentParameters) {
         if (documentParameters == null) {
@@ -429,6 +466,13 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      * A map of key-value pairs that you can use as guidance to specify the
      * inputs for creating a job from a managed template.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -437,6 +481,14 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      *            A map of key-value pairs that you can use as guidance to
      *            specify the inputs for creating a job from a managed template.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -457,6 +509,13 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      * A map of key-value pairs that you can use as guidance to specify the
      * inputs for creating a job from a managed template.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -465,6 +524,14 @@ public class DescribeManagedJobTemplateResult implements Serializable {
      *            A map of key-value pairs that you can use as guidance to
      *            specify the inputs for creating a job from a managed template.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

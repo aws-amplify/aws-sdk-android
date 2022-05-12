@@ -23,6 +23,13 @@ import java.io.Serializable;
  * a managed template job document schema. You can use the description of each
  * key as a guidance to specify the inputs during runtime when creating a job.
  * </p>
+ * <note>
+ * <p>
+ * <code>documentParameters</code> can only be used when creating jobs from
+ * Amazon Web Services managed templates. This parameter can't be used with
+ * custom job templates or to create jobs from them.
+ * </p>
+ * </note>
  */
 public class DocumentParameter implements Serializable {
     /**

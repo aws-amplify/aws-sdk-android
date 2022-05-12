@@ -115,6 +115,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -197,9 +204,16 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Parameters of a managed template that you can specify to create the job
-     * document.
+     * Parameters of an Amazon Web Services managed template that you can
+     * specify to create the job document.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      */
     private java.util.Map<String, String> documentParameters;
 
@@ -677,6 +691,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -690,6 +711,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *         target group, even after the job was completed by all things
      *         originally in the group.
      *         </p>
+     *         <note>
+     *         <p>
+     *         We recommend that you use continuous jobs instead of snapshot
+     *         jobs for dynamic thing group targets. By using continuous jobs,
+     *         devices that join the group receive the job execution even after
+     *         the job has been created.
+     *         </p>
+     *         </note>
      * @see TargetSelection
      */
     public String getTargetSelection() {
@@ -705,6 +734,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -718,6 +754,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(String targetSelection) {
@@ -733,6 +777,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -749,6 +800,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection
@@ -767,6 +826,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -780,6 +846,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(TargetSelection targetSelection) {
@@ -795,6 +869,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * when the thing is added to a target group, even after the job was
      * completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -811,6 +892,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            is added to a target group, even after the job was completed
      *            by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection
@@ -1299,14 +1388,29 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Parameters of a managed template that you can specify to create the job
-     * document.
+     * Parameters of an Amazon Web Services managed template that you can
+     * specify to create the job document.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @return <p>
-     *         Parameters of a managed template that you can specify to create
-     *         the job document.
+     *         Parameters of an Amazon Web Services managed template that you
+     *         can specify to create the job document.
      *         </p>
+     *         <note>
+     *         <p>
+     *         <code>documentParameters</code> can only be used when creating
+     *         jobs from Amazon Web Services managed templates. This parameter
+     *         can't be used with custom job templates or to create jobs from
+     *         them.
+     *         </p>
+     *         </note>
      */
     public java.util.Map<String, String> getDocumentParameters() {
         return documentParameters;
@@ -1314,14 +1418,29 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Parameters of a managed template that you can specify to create the job
-     * document.
+     * Parameters of an Amazon Web Services managed template that you can
+     * specify to create the job document.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @param documentParameters <p>
-     *            Parameters of a managed template that you can specify to
-     *            create the job document.
+     *            Parameters of an Amazon Web Services managed template that you
+     *            can specify to create the job document.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      */
     public void setDocumentParameters(java.util.Map<String, String> documentParameters) {
         this.documentParameters = documentParameters;
@@ -1329,17 +1448,32 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Parameters of a managed template that you can specify to create the job
-     * document.
+     * Parameters of an Amazon Web Services managed template that you can
+     * specify to create the job document.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param documentParameters <p>
-     *            Parameters of a managed template that you can specify to
-     *            create the job document.
+     *            Parameters of an Amazon Web Services managed template that you
+     *            can specify to create the job document.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1350,9 +1484,16 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Parameters of a managed template that you can specify to create the job
-     * document.
+     * Parameters of an Amazon Web Services managed template that you can
+     * specify to create the job document.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * The method adds a new key-value pair into documentParameters parameter,
      * and returns a reference to this object so that method calls can be
