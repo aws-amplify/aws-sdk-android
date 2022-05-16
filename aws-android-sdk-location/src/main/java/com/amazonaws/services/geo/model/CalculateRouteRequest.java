@@ -107,8 +107,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The start position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -160,8 +161,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The finish position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -561,8 +563,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The start position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -586,9 +589,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * </p>
      *
      * @return <p>
-     *         The start position for the route. Defined in <a
-     *         href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *         84</a> format: <code>[longitude, latitude]</code>.
+     *         The start position for the route. Defined in <a href=
+     *         "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *         >World Geodetic System (WGS 84)</a> format:
+     *         <code>[longitude, latitude]</code>.
      *         </p>
      *         <ul>
      *         <li>
@@ -619,8 +623,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The start position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -644,9 +649,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * </p>
      *
      * @param departurePosition <p>
-     *            The start position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The start position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
@@ -682,8 +688,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The start position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -710,9 +717,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param departurePosition <p>
-     *            The start position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The start position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
@@ -751,8 +759,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The start position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -779,9 +788,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param departurePosition <p>
-     *            The start position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The start position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
@@ -968,8 +978,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The finish position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -991,9 +1002,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * </p>
      *
      * @return <p>
-     *         The finish position for the route. Defined in <a
-     *         href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *         84</a> format: <code>[longitude, latitude]</code>.
+     *         The finish position for the route. Defined in <a href=
+     *         "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *         >World Geodetic System (WGS 84)</a> format:
+     *         <code>[longitude, latitude]</code>.
      *         </p>
      *         <ul>
      *         <li>
@@ -1021,8 +1033,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The finish position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -1044,9 +1057,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * </p>
      *
      * @param destinationPosition <p>
-     *            The finish position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The finish position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
@@ -1079,8 +1093,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The finish position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -1105,9 +1120,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param destinationPosition <p>
-     *            The finish position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The finish position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
@@ -1143,8 +1159,9 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The finish position for the route. Defined in <a
-     * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[longitude, latitude]</code>.
+     * href="https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     * >World Geodetic System (WGS 84)</a> format:
+     * <code>[longitude, latitude]</code>.
      * </p>
      * <ul>
      * <li>
@@ -1169,9 +1186,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param destinationPosition <p>
-     *            The finish position for the route. Defined in <a
-     *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[longitude, latitude]</code>.
+     *            The finish position for the route. Defined in <a href=
+     *            "https://earth-info.nga.mil/index.php?dir=wgs84&amp;action=wgs84"
+     *            >World Geodetic System (WGS 84)</a> format:
+     *            <code>[longitude, latitude]</code>.
      *            </p>
      *            <ul>
      *            <li>
