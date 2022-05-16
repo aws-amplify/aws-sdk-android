@@ -149,6 +149,11 @@ class JobJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (job.getIsConcurrent() != null) {
+            Boolean isConcurrent = job.getIsConcurrent();
+            jsonWriter.name("isConcurrent");
+            jsonWriter.value(isConcurrent);
+        }
         jsonWriter.endObject();
     }
 
