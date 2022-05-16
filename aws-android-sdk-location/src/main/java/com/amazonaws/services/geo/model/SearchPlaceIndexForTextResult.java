@@ -23,6 +23,10 @@ public class SearchPlaceIndexForTextResult implements Serializable {
      * A list of Places matching the input text. Each result contains additional
      * information about the specific point of interest.
      * </p>
+     * <p>
+     * Not all response properties are included with all responses. Some
+     * properties may only be returned by specific data partners.
+     * </p>
      */
     private java.util.List<SearchForTextResult> results;
 
@@ -43,10 +47,18 @@ public class SearchPlaceIndexForTextResult implements Serializable {
      * A list of Places matching the input text. Each result contains additional
      * information about the specific point of interest.
      * </p>
+     * <p>
+     * Not all response properties are included with all responses. Some
+     * properties may only be returned by specific data partners.
+     * </p>
      *
      * @return <p>
      *         A list of Places matching the input text. Each result contains
      *         additional information about the specific point of interest.
+     *         </p>
+     *         <p>
+     *         Not all response properties are included with all responses. Some
+     *         properties may only be returned by specific data partners.
      *         </p>
      */
     public java.util.List<SearchForTextResult> getResults() {
@@ -58,10 +70,19 @@ public class SearchPlaceIndexForTextResult implements Serializable {
      * A list of Places matching the input text. Each result contains additional
      * information about the specific point of interest.
      * </p>
+     * <p>
+     * Not all response properties are included with all responses. Some
+     * properties may only be returned by specific data partners.
+     * </p>
      *
      * @param results <p>
      *            A list of Places matching the input text. Each result contains
      *            additional information about the specific point of interest.
+     *            </p>
+     *            <p>
+     *            Not all response properties are included with all responses.
+     *            Some properties may only be returned by specific data
+     *            partners.
      *            </p>
      */
     public void setResults(java.util.Collection<SearchForTextResult> results) {
@@ -79,12 +100,21 @@ public class SearchPlaceIndexForTextResult implements Serializable {
      * information about the specific point of interest.
      * </p>
      * <p>
+     * Not all response properties are included with all responses. Some
+     * properties may only be returned by specific data partners.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
      *            A list of Places matching the input text. Each result contains
      *            additional information about the specific point of interest.
+     *            </p>
+     *            <p>
+     *            Not all response properties are included with all responses.
+     *            Some properties may only be returned by specific data
+     *            partners.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,12 +135,21 @@ public class SearchPlaceIndexForTextResult implements Serializable {
      * information about the specific point of interest.
      * </p>
      * <p>
+     * Not all response properties are included with all responses. Some
+     * properties may only be returned by specific data partners.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
      *            A list of Places matching the input text. Each result contains
      *            additional information about the specific point of interest.
+     *            </p>
+     *            <p>
+     *            Not all response properties are included with all responses.
+     *            Some properties may only be returned by specific data
+     *            partners.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

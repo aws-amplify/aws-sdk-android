@@ -22,6 +22,10 @@ import java.io.Serializable;
  * Contains details about addresses or points of interest that match the search
  * criteria.
  * </p>
+ * <p>
+ * Not all details are included with all responses. Some details may only be
+ * returned by specific data partners.
+ * </p>
  */
 public class Place implements Serializable {
     /**

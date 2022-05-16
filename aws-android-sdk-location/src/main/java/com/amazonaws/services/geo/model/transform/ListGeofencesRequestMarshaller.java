@@ -64,6 +64,11 @@ public class ListGeofencesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (listGeofencesRequest.getMaxResults() != null) {
+                Integer maxResults = listGeofencesRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
             if (listGeofencesRequest.getNextToken() != null) {
                 String nextToken = listGeofencesRequest.getNextToken();
                 jsonWriter.name("NextToken");
