@@ -33,7 +33,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * You can train a modelin a project that doesn't have associated datasets by
+ * You can train a model in a project that doesn't have associated datasets by
  * specifying manifest files in the <code>TrainingData</code> and
  * <code>TestingData</code> fields.
  * </p>
