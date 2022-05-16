@@ -51,6 +51,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -227,8 +234,20 @@ public class Job implements Serializable {
      * key as a guidance to specify the inputs during runtime when creating a
      * job.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      */
     private java.util.Map<String, String> documentParameters;
+
+    /**
+     * The new value for the isConcurrent property for this object.
+     */
+    private Boolean isConcurrent;
 
     /**
      * <p>
@@ -350,6 +369,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -363,6 +389,14 @@ public class Job implements Serializable {
      *         the device is added to a target group, even after the job was
      *         completed by all things originally in the group.
      *         </p>
+     *         <note>
+     *         <p>
+     *         We recommend that you use continuous jobs instead of snapshot
+     *         jobs for dynamic thing group targets. By using continuous jobs,
+     *         devices that join the group receive the job execution even after
+     *         the job has been created.
+     *         </p>
+     *         </note>
      * @see TargetSelection
      */
     public String getTargetSelection() {
@@ -378,6 +412,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -391,6 +432,14 @@ public class Job implements Serializable {
      *            representing the device is added to a target group, even after
      *            the job was completed by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(String targetSelection) {
@@ -406,6 +455,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -422,6 +478,14 @@ public class Job implements Serializable {
      *            representing the device is added to a target group, even after
      *            the job was completed by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection
@@ -440,6 +504,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTINUOUS, SNAPSHOT
@@ -453,6 +524,14 @@ public class Job implements Serializable {
      *            representing the device is added to a target group, even after
      *            the job was completed by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @see TargetSelection
      */
     public void setTargetSelection(TargetSelection targetSelection) {
@@ -468,6 +547,13 @@ public class Job implements Serializable {
      * when the thing representing the device is added to a target group, even
      * after the job was completed by all things originally in the group.
      * </p>
+     * <note>
+     * <p>
+     * We recommend that you use continuous jobs instead of snapshot jobs for
+     * dynamic thing group targets. By using continuous jobs, devices that join
+     * the group receive the job execution even after the job has been created.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -484,6 +570,14 @@ public class Job implements Serializable {
      *            representing the device is added to a target group, even after
      *            the job was completed by all things originally in the group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            We recommend that you use continuous jobs instead of snapshot
+     *            jobs for dynamic thing group targets. By using continuous
+     *            jobs, devices that join the group receive the job execution
+     *            even after the job has been created.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see TargetSelection
@@ -1574,6 +1668,13 @@ public class Job implements Serializable {
      * key as a guidance to specify the inputs during runtime when creating a
      * job.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         A key-value map that pairs the patterns that need to be replaced
@@ -1581,6 +1682,14 @@ public class Job implements Serializable {
      *         description of each key as a guidance to specify the inputs
      *         during runtime when creating a job.
      *         </p>
+     *         <note>
+     *         <p>
+     *         <code>documentParameters</code> can only be used when creating
+     *         jobs from Amazon Web Services managed templates. This parameter
+     *         can't be used with custom job templates or to create jobs from
+     *         them.
+     *         </p>
+     *         </note>
      */
     public java.util.Map<String, String> getDocumentParameters() {
         return documentParameters;
@@ -1593,6 +1702,13 @@ public class Job implements Serializable {
      * key as a guidance to specify the inputs during runtime when creating a
      * job.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      *
      * @param documentParameters <p>
      *            A key-value map that pairs the patterns that need to be
@@ -1600,6 +1716,14 @@ public class Job implements Serializable {
      *            use the description of each key as a guidance to specify the
      *            inputs during runtime when creating a job.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      */
     public void setDocumentParameters(java.util.Map<String, String> documentParameters) {
         this.documentParameters = documentParameters;
@@ -1612,6 +1736,13 @@ public class Job implements Serializable {
      * key as a guidance to specify the inputs during runtime when creating a
      * job.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1622,6 +1753,14 @@ public class Job implements Serializable {
      *            use the description of each key as a guidance to specify the
      *            inputs during runtime when creating a job.
      *            </p>
+     *            <note>
+     *            <p>
+     *            <code>documentParameters</code> can only be used when creating
+     *            jobs from Amazon Web Services managed templates. This
+     *            parameter can't be used with custom job templates or to create
+     *            jobs from them.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1637,6 +1776,13 @@ public class Job implements Serializable {
      * key as a guidance to specify the inputs during runtime when creating a
      * job.
      * </p>
+     * <note>
+     * <p>
+     * <code>documentParameters</code> can only be used when creating jobs from
+     * Amazon Web Services managed templates. This parameter can't be used with
+     * custom job templates or to create jobs from them.
+     * </p>
+     * </note>
      * <p>
      * The method adds a new key-value pair into documentParameters parameter,
      * and returns a reference to this object so that method calls can be
@@ -1667,6 +1813,50 @@ public class Job implements Serializable {
      */
     public Job cleardocumentParametersEntries() {
         this.documentParameters = null;
+        return this;
+    }
+
+    /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean isIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Returns the value of the isConcurrent property for this object.
+     *
+     * @return The value of the isConcurrent property for this object.
+     */
+    public Boolean getIsConcurrent() {
+        return isConcurrent;
+    }
+
+    /**
+     * Sets the value of isConcurrent
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     */
+    public void setIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
+    }
+
+    /**
+     * Sets the value of the isConcurrent property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isConcurrent The new value for the isConcurrent property for this
+     *            object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withIsConcurrent(Boolean isConcurrent) {
+        this.isConcurrent = isConcurrent;
         return this;
     }
 
@@ -1722,7 +1912,9 @@ public class Job implements Serializable {
         if (getJobExecutionsRetryConfig() != null)
             sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
         if (getDocumentParameters() != null)
-            sb.append("documentParameters: " + getDocumentParameters());
+            sb.append("documentParameters: " + getDocumentParameters() + ",");
+        if (getIsConcurrent() != null)
+            sb.append("isConcurrent: " + getIsConcurrent());
         sb.append("}");
         return sb.toString();
     }
@@ -1771,6 +1963,8 @@ public class Job implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
+        hashCode = prime * hashCode
+                + ((getIsConcurrent() == null) ? 0 : getIsConcurrent().hashCode());
         return hashCode;
     }
 
@@ -1887,6 +2081,11 @@ public class Job implements Serializable {
             return false;
         if (other.getDocumentParameters() != null
                 && other.getDocumentParameters().equals(this.getDocumentParameters()) == false)
+            return false;
+        if (other.getIsConcurrent() == null ^ this.getIsConcurrent() == null)
+            return false;
+        if (other.getIsConcurrent() != null
+                && other.getIsConcurrent().equals(this.getIsConcurrent()) == false)
             return false;
         return true;
     }

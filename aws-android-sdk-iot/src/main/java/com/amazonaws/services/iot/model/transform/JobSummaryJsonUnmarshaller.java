@@ -59,6 +59,9 @@ class JobSummaryJsonUnmarshaller implements Unmarshaller<JobSummary, JsonUnmarsh
             } else if (name.equals("completedAt")) {
                 jobSummary.setCompletedAt(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("isConcurrent")) {
+                jobSummary.setIsConcurrent(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

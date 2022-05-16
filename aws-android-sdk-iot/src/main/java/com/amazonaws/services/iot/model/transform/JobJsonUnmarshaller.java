@@ -103,6 +103,9 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("isConcurrent")) {
+                job.setIsConcurrent(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
