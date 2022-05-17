@@ -72,12 +72,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Asymmetric KMS keys contain an RSA key pair or an Elliptic Curve (ECC) key
- * pair. The private key in an asymmetric KMS key never leaves AWS KMS
- * unencrypted. However, you can use the <a>GetPublicKey</a> operation to
- * download the public key so it can be used outside of AWS KMS. KMS keys with
- * RSA key pairs can be used to encrypt or decrypt data or sign and verify
- * messages (but not both). KMS keys with ECC key pairs can be used only to sign
- * and verify messages. For information about asymmetric KMS keys, see <a href=
+ * pair. The private key in an asymmetric KMS key never leaves KMS unencrypted.
+ * However, you can use the <a>GetPublicKey</a> operation to download the public
+ * key so it can be used outside of KMS. KMS keys with RSA key pairs can be used
+ * to encrypt or decrypt data or sign and verify messages (but not both). KMS
+ * keys with ECC key pairs can be used only to sign and verify messages. For
+ * information about asymmetric KMS keys, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
  * >Asymmetric KMS keys</a> in the <i>Key Management Service Developer
  * Guide</i>.
@@ -234,7 +234,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The key policy to attach to the KMS key.
+     * The key policy to attach to the KMS key. If you do not specify a key
+     * policy, KMS attaches a default key policy to the KMS key. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * >Default key policy</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * If you provide a key policy, it must meet the following criteria:
@@ -242,11 +247,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     * key policy must allow the principal that is making the
-     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the KMS key. This reduces the risk that the KMS key becomes
-     * unmanageable. For more information, refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
+     * <code>True</code>, the key policy must allow the principal that is making
+     * the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the KMS key. This reduces the risk that
+     * the KMS key becomes unmanageable. For more information, refer to the
+     * scenario in the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      * >Default Key Policy</a> section of the <i> <i>Key Management Service
      * Developer Guide</i> </i>.
@@ -267,15 +273,34 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * If you do not provide a key policy, KMS attaches a default key policy to
-     * the KMS key. For more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     * >Default Key Policy</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * A key policy document must conform to the following rules.
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * The key policy size quota is 32 kilobytes (32768 bytes).
+     * Up to 32 kilobytes (32768 bytes)
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be UTF-8 encoded
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The only Unicode characters that are permitted in a key policy document
+     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
+     * (U+000D), and characters in the range U+0020 to U+00FF.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Sid</code> element in a key policy statement can include
+     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
+     * policy document.)
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * For help writing and formatting a JSON policy document, see the <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
@@ -383,7 +408,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -671,16 +696,22 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      * </p>
      * <p>
-     * You can create a symmetric or asymmetric multi-Region key, and you can
-     * create a multi-Region key with imported key material. However, you cannot
-     * create a multi-Region key in a custom key store.
+     * You can create a multi-Region version of a symmetric encryption KMS key,
+     * an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key
+     * material. However, you cannot create a multi-Region key in a custom key
+     * store.
      * </p>
      */
     private Boolean multiRegion;
 
     /**
      * <p>
-     * The key policy to attach to the KMS key.
+     * The key policy to attach to the KMS key. If you do not specify a key
+     * policy, KMS attaches a default key policy to the KMS key. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * >Default key policy</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * If you provide a key policy, it must meet the following criteria:
@@ -688,11 +719,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     * key policy must allow the principal that is making the
-     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the KMS key. This reduces the risk that the KMS key becomes
-     * unmanageable. For more information, refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
+     * <code>True</code>, the key policy must allow the principal that is making
+     * the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the KMS key. This reduces the risk that
+     * the KMS key becomes unmanageable. For more information, refer to the
+     * scenario in the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      * >Default Key Policy</a> section of the <i> <i>Key Management Service
      * Developer Guide</i> </i>.
@@ -713,15 +745,34 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * If you do not provide a key policy, KMS attaches a default key policy to
-     * the KMS key. For more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     * >Default Key Policy</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * A key policy document must conform to the following rules.
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * The key policy size quota is 32 kilobytes (32768 bytes).
+     * Up to 32 kilobytes (32768 bytes)
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be UTF-8 encoded
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The only Unicode characters that are permitted in a key policy document
+     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
+     * (U+000D), and characters in the range U+0020 to U+00FF.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Sid</code> element in a key policy statement can include
+     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
+     * policy document.)
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * For help writing and formatting a JSON policy document, see the <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
@@ -734,7 +785,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @return <p>
-     *         The key policy to attach to the KMS key.
+     *         The key policy to attach to the KMS key. If you do not specify a
+     *         key policy, KMS attaches a default key policy to the KMS key. For
+     *         more information, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *         >Default key policy</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      *         <p>
      *         If you provide a key policy, it must meet the following criteria:
@@ -743,8 +799,8 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
-     *         true, the key policy must allow the principal that is making the
-     *         <code>CreateKey</code> request to make a subsequent
+     *         <code>True</code>, the key policy must allow the principal that
+     *         is making the <code>CreateKey</code> request to make a subsequent
      *         <a>PutKeyPolicy</a> request on the KMS key. This reduces the risk
      *         that the KMS key becomes unmanageable. For more information,
      *         refer to the scenario in the <a href=
@@ -770,15 +826,35 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         </li>
      *         </ul>
      *         <p>
-     *         If you do not provide a key policy, KMS attaches a default key
-     *         policy to the KMS key. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     *         >Default Key Policy</a> in the <i>Key Management Service
-     *         Developer Guide</i>.
+     *         A key policy document must conform to the following rules.
      *         </p>
+     *         <ul>
+     *         <li>
      *         <p>
-     *         The key policy size quota is 32 kilobytes (32768 bytes).
+     *         Up to 32 kilobytes (32768 bytes)
      *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Must be UTF-8 encoded
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         The only Unicode characters that are permitted in a key policy
+     *         document are the horizontal tab (U+0009), linefeed (U+000A),
+     *         carriage return (U+000D), and characters in the range U+0020 to
+     *         U+00FF.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         The <code>Sid</code> element in a key policy statement can
+     *         include spaces. (Spaces are prohibited in the <code>Sid</code>
+     *         element of an IAM policy document.)
+     *         </p>
+     *         </li>
+     *         </ul>
      *         <p>
      *         For help writing and formatting a JSON policy document, see the
      *         <a href=
@@ -793,7 +869,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The key policy to attach to the KMS key.
+     * The key policy to attach to the KMS key. If you do not specify a key
+     * policy, KMS attaches a default key policy to the KMS key. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * >Default key policy</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * If you provide a key policy, it must meet the following criteria:
@@ -801,11 +882,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     * key policy must allow the principal that is making the
-     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the KMS key. This reduces the risk that the KMS key becomes
-     * unmanageable. For more information, refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
+     * <code>True</code>, the key policy must allow the principal that is making
+     * the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the KMS key. This reduces the risk that
+     * the KMS key becomes unmanageable. For more information, refer to the
+     * scenario in the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      * >Default Key Policy</a> section of the <i> <i>Key Management Service
      * Developer Guide</i> </i>.
@@ -826,15 +908,34 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * If you do not provide a key policy, KMS attaches a default key policy to
-     * the KMS key. For more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     * >Default Key Policy</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * A key policy document must conform to the following rules.
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * The key policy size quota is 32 kilobytes (32768 bytes).
+     * Up to 32 kilobytes (32768 bytes)
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be UTF-8 encoded
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The only Unicode characters that are permitted in a key policy document
+     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
+     * (U+000D), and characters in the range U+0020 to U+00FF.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Sid</code> element in a key policy statement can include
+     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
+     * policy document.)
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * For help writing and formatting a JSON policy document, see the <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
@@ -847,7 +948,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            The key policy to attach to the KMS key.
+     *            The key policy to attach to the KMS key. If you do not specify
+     *            a key policy, KMS attaches a default key policy to the KMS
+     *            key. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *            >Default key policy</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      *            <p>
      *            If you provide a key policy, it must meet the following
@@ -857,11 +963,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            If you don't set <code>BypassPolicyLockoutSafetyCheck</code>
-     *            to true, the key policy must allow the principal that is
-     *            making the <code>CreateKey</code> request to make a subsequent
-     *            <a>PutKeyPolicy</a> request on the KMS key. This reduces the
-     *            risk that the KMS key becomes unmanageable. For more
-     *            information, refer to the scenario in the <a href=
+     *            to <code>True</code>, the key policy must allow the principal
+     *            that is making the <code>CreateKey</code> request to make a
+     *            subsequent <a>PutKeyPolicy</a> request on the KMS key. This
+     *            reduces the risk that the KMS key becomes unmanageable. For
+     *            more information, refer to the scenario in the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      *            >Default Key Policy</a> section of the <i> <i>Key Management
      *            Service Developer Guide</i> </i>.
@@ -884,15 +990,35 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            </ul>
      *            <p>
-     *            If you do not provide a key policy, KMS attaches a default key
-     *            policy to the KMS key. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     *            >Default Key Policy</a> in the <i>Key Management Service
-     *            Developer Guide</i>.
+     *            A key policy document must conform to the following rules.
      *            </p>
+     *            <ul>
+     *            <li>
      *            <p>
-     *            The key policy size quota is 32 kilobytes (32768 bytes).
+     *            Up to 32 kilobytes (32768 bytes)
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be UTF-8 encoded
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The only Unicode characters that are permitted in a key policy
+     *            document are the horizontal tab (U+0009), linefeed (U+000A),
+     *            carriage return (U+000D), and characters in the range U+0020
+     *            to U+00FF.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The <code>Sid</code> element in a key policy statement can
+     *            include spaces. (Spaces are prohibited in the <code>Sid</code>
+     *            element of an IAM policy document.)
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            For help writing and formatting a JSON policy document, see
      *            the <a href=
@@ -907,7 +1033,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The key policy to attach to the KMS key.
+     * The key policy to attach to the KMS key. If you do not specify a key
+     * policy, KMS attaches a default key policy to the KMS key. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     * >Default key policy</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * If you provide a key policy, it must meet the following criteria:
@@ -915,11 +1046,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to true, the
-     * key policy must allow the principal that is making the
-     * <code>CreateKey</code> request to make a subsequent <a>PutKeyPolicy</a>
-     * request on the KMS key. This reduces the risk that the KMS key becomes
-     * unmanageable. For more information, refer to the scenario in the <a href=
+     * If you don't set <code>BypassPolicyLockoutSafetyCheck</code> to
+     * <code>True</code>, the key policy must allow the principal that is making
+     * the <code>CreateKey</code> request to make a subsequent
+     * <a>PutKeyPolicy</a> request on the KMS key. This reduces the risk that
+     * the KMS key becomes unmanageable. For more information, refer to the
+     * scenario in the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      * >Default Key Policy</a> section of the <i> <i>Key Management Service
      * Developer Guide</i> </i>.
@@ -940,15 +1072,34 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
-     * If you do not provide a key policy, KMS attaches a default key policy to
-     * the KMS key. For more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     * >Default Key Policy</a> in the <i>Key Management Service Developer
-     * Guide</i>.
+     * A key policy document must conform to the following rules.
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * The key policy size quota is 32 kilobytes (32768 bytes).
+     * Up to 32 kilobytes (32768 bytes)
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Must be UTF-8 encoded
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The only Unicode characters that are permitted in a key policy document
+     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
+     * (U+000D), and characters in the range U+0020 to U+00FF.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>Sid</code> element in a key policy statement can include
+     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
+     * policy document.)
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * For help writing and formatting a JSON policy document, see the <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
@@ -964,7 +1115,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[ -\u00FF]+<br/>
      *
      * @param policy <p>
-     *            The key policy to attach to the KMS key.
+     *            The key policy to attach to the KMS key. If you do not specify
+     *            a key policy, KMS attaches a default key policy to the KMS
+     *            key. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
+     *            >Default key policy</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      *            <p>
      *            If you provide a key policy, it must meet the following
@@ -974,11 +1130,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            If you don't set <code>BypassPolicyLockoutSafetyCheck</code>
-     *            to true, the key policy must allow the principal that is
-     *            making the <code>CreateKey</code> request to make a subsequent
-     *            <a>PutKeyPolicy</a> request on the KMS key. This reduces the
-     *            risk that the KMS key becomes unmanageable. For more
-     *            information, refer to the scenario in the <a href=
+     *            to <code>True</code>, the key policy must allow the principal
+     *            that is making the <code>CreateKey</code> request to make a
+     *            subsequent <a>PutKeyPolicy</a> request on the KMS key. This
+     *            reduces the risk that the KMS key becomes unmanageable. For
+     *            more information, refer to the scenario in the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default-allow-root-enable-iam"
      *            >Default Key Policy</a> section of the <i> <i>Key Management
      *            Service Developer Guide</i> </i>.
@@ -1001,15 +1157,35 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </li>
      *            </ul>
      *            <p>
-     *            If you do not provide a key policy, KMS attaches a default key
-     *            policy to the KMS key. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html#key-policy-default"
-     *            >Default Key Policy</a> in the <i>Key Management Service
-     *            Developer Guide</i>.
+     *            A key policy document must conform to the following rules.
      *            </p>
+     *            <ul>
+     *            <li>
      *            <p>
-     *            The key policy size quota is 32 kilobytes (32768 bytes).
+     *            Up to 32 kilobytes (32768 bytes)
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Must be UTF-8 encoded
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The only Unicode characters that are permitted in a key policy
+     *            document are the horizontal tab (U+0009), linefeed (U+000A),
+     *            carriage return (U+000D), and characters in the range U+0020
+     *            to U+00FF.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The <code>Sid</code> element in a key policy statement can
+     *            include spaces. (Spaces are prohibited in the <code>Sid</code>
+     *            element of an IAM policy document.)
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            For help writing and formatting a JSON policy document, see
      *            the <a href=
@@ -1764,7 +1940,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -1903,11 +2079,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         The <code>KeySpec</code> determines whether the KMS key contains
      *         a symmetric key or an asymmetric key pair. It also determines the
-     *         algorithms that the KMS key supports. You can't change the
-     *         <code>KeySpec</code> after the KMS key is created. To further
-     *         restrict the algorithms that can be used with the KMS key, use a
-     *         condition key in its key policy or IAM policy. For more
-     *         information, see <a href=
+     *         cryptographic algorithms that the KMS key supports. You can't
+     *         change the <code>KeySpec</code> after the KMS key is created. To
+     *         further restrict the algorithms that can be used with the KMS
+     *         key, use a condition key in its key policy or IAM policy. For
+     *         more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
      *         >kms:EncryptionAlgorithm</a>, <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-mac-algorithm"
@@ -2045,7 +2221,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -2184,11 +2360,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            The <code>KeySpec</code> determines whether the KMS key
      *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the algorithms that the KMS key supports. You can't
-     *            change the <code>KeySpec</code> after the KMS key is created.
-     *            To further restrict the algorithms that can be used with the
-     *            KMS key, use a condition key in its key policy or IAM policy.
-     *            For more information, see <a href=
+     *            determines the cryptographic algorithms that the KMS key
+     *            supports. You can't change the <code>KeySpec</code> after the
+     *            KMS key is created. To further restrict the algorithms that
+     *            can be used with the KMS key, use a condition key in its key
+     *            policy or IAM policy. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
      *            >kms:EncryptionAlgorithm</a>, <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-mac-algorithm"
@@ -2326,7 +2502,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -2468,11 +2644,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            The <code>KeySpec</code> determines whether the KMS key
      *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the algorithms that the KMS key supports. You can't
-     *            change the <code>KeySpec</code> after the KMS key is created.
-     *            To further restrict the algorithms that can be used with the
-     *            KMS key, use a condition key in its key policy or IAM policy.
-     *            For more information, see <a href=
+     *            determines the cryptographic algorithms that the KMS key
+     *            supports. You can't change the <code>KeySpec</code> after the
+     *            KMS key is created. To further restrict the algorithms that
+     *            can be used with the KMS key, use a condition key in its key
+     *            policy or IAM policy. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
      *            >kms:EncryptionAlgorithm</a>, <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-mac-algorithm"
@@ -2613,7 +2789,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -2752,11 +2928,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            The <code>KeySpec</code> determines whether the KMS key
      *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the algorithms that the KMS key supports. You can't
-     *            change the <code>KeySpec</code> after the KMS key is created.
-     *            To further restrict the algorithms that can be used with the
-     *            KMS key, use a condition key in its key policy or IAM policy.
-     *            For more information, see <a href=
+     *            determines the cryptographic algorithms that the KMS key
+     *            supports. You can't change the <code>KeySpec</code> after the
+     *            KMS key is created. To further restrict the algorithms that
+     *            can be used with the KMS key, use a condition key in its key
+     *            policy or IAM policy. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
      *            >kms:EncryptionAlgorithm</a>, <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-mac-algorithm"
@@ -2894,7 +3070,7 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * The <code>KeySpec</code> determines whether the KMS key contains a
      * symmetric key or an asymmetric key pair. It also determines the
-     * algorithms that the KMS key supports. You can't change the
+     * cryptographic algorithms that the KMS key supports. You can't change the
      * <code>KeySpec</code> after the KMS key is created. To further restrict
      * the algorithms that can be used with the KMS key, use a condition key in
      * its key policy or IAM policy. For more information, see <a href=
@@ -3036,11 +3212,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            The <code>KeySpec</code> determines whether the KMS key
      *            contains a symmetric key or an asymmetric key pair. It also
-     *            determines the algorithms that the KMS key supports. You can't
-     *            change the <code>KeySpec</code> after the KMS key is created.
-     *            To further restrict the algorithms that can be used with the
-     *            KMS key, use a condition key in its key policy or IAM policy.
-     *            For more information, see <a href=
+     *            determines the cryptographic algorithms that the KMS key
+     *            supports. You can't change the <code>KeySpec</code> after the
+     *            KMS key is created. To further restrict the algorithms that
+     *            can be used with the KMS key, use a condition key in its key
+     *            policy or IAM policy. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-encryption-algorithm"
      *            >kms:EncryptionAlgorithm</a>, <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/policy-conditions.html#conditions-kms-mac-algorithm"
@@ -4274,9 +4450,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      * </p>
      * <p>
-     * You can create a symmetric or asymmetric multi-Region key, and you can
-     * create a multi-Region key with imported key material. However, you cannot
-     * create a multi-Region key in a custom key store.
+     * You can create a multi-Region version of a symmetric encryption KMS key,
+     * an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key
+     * material. However, you cannot create a multi-Region key in a custom key
+     * store.
      * </p>
      *
      * @return <p>
@@ -4307,10 +4484,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         a <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      *         </p>
      *         <p>
-     *         You can create a symmetric or asymmetric multi-Region key, and
-     *         you can create a multi-Region key with imported key material.
-     *         However, you cannot create a multi-Region key in a custom key
-     *         store.
+     *         You can create a multi-Region version of a symmetric encryption
+     *         KMS key, an HMAC KMS key, an asymmetric KMS key, or a KMS key
+     *         with imported key material. However, you cannot create a
+     *         multi-Region key in a custom key store.
      *         </p>
      */
     public Boolean isMultiRegion() {
@@ -4346,9 +4523,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      * </p>
      * <p>
-     * You can create a symmetric or asymmetric multi-Region key, and you can
-     * create a multi-Region key with imported key material. However, you cannot
-     * create a multi-Region key in a custom key store.
+     * You can create a multi-Region version of a symmetric encryption KMS key,
+     * an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key
+     * material. However, you cannot create a multi-Region key in a custom key
+     * store.
      * </p>
      *
      * @return <p>
@@ -4379,10 +4557,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         a <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      *         </p>
      *         <p>
-     *         You can create a symmetric or asymmetric multi-Region key, and
-     *         you can create a multi-Region key with imported key material.
-     *         However, you cannot create a multi-Region key in a custom key
-     *         store.
+     *         You can create a multi-Region version of a symmetric encryption
+     *         KMS key, an HMAC KMS key, an asymmetric KMS key, or a KMS key
+     *         with imported key material. However, you cannot create a
+     *         multi-Region key in a custom key store.
      *         </p>
      */
     public Boolean getMultiRegion() {
@@ -4418,9 +4596,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      * </p>
      * <p>
-     * You can create a symmetric or asymmetric multi-Region key, and you can
-     * create a multi-Region key with imported key material. However, you cannot
-     * create a multi-Region key in a custom key store.
+     * You can create a multi-Region version of a symmetric encryption KMS key,
+     * an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key
+     * material. However, you cannot create a multi-Region key in a custom key
+     * store.
      * </p>
      *
      * @param multiRegion <p>
@@ -4454,10 +4633,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            operation.
      *            </p>
      *            <p>
-     *            You can create a symmetric or asymmetric multi-Region key, and
-     *            you can create a multi-Region key with imported key material.
-     *            However, you cannot create a multi-Region key in a custom key
-     *            store.
+     *            You can create a multi-Region version of a symmetric
+     *            encryption KMS key, an HMAC KMS key, an asymmetric KMS key, or
+     *            a KMS key with imported key material. However, you cannot
+     *            create a multi-Region key in a custom key store.
      *            </p>
      */
     public void setMultiRegion(Boolean multiRegion) {
@@ -4493,9 +4672,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <i>replica key</i>, use the <a>ReplicateKey</a> operation.
      * </p>
      * <p>
-     * You can create a symmetric or asymmetric multi-Region key, and you can
-     * create a multi-Region key with imported key material. However, you cannot
-     * create a multi-Region key in a custom key store.
+     * You can create a multi-Region version of a symmetric encryption KMS key,
+     * an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key
+     * material. However, you cannot create a multi-Region key in a custom key
+     * store.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -4532,10 +4712,10 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            operation.
      *            </p>
      *            <p>
-     *            You can create a symmetric or asymmetric multi-Region key, and
-     *            you can create a multi-Region key with imported key material.
-     *            However, you cannot create a multi-Region key in a custom key
-     *            store.
+     *            You can create a multi-Region version of a symmetric
+     *            encryption KMS key, an HMAC KMS key, an asymmetric KMS key, or
+     *            a KMS key with imported key material. However, you cannot
+     *            create a multi-Region key in a custom key store.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
