@@ -64,8 +64,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The <code>Decrypt</code> operation also decrypts ciphertext that was
  * encrypted outside of KMS by the public key in an KMS asymmetric KMS key.
- * However, it cannot decrypt symmetric ciphertext produced by other libraries,
- * such as the <a
+ * However, it cannot decrypt ciphertext produced by other libraries, such as
+ * the <a
  * href="https://docs.aws.amazon.com/encryption-sdk/latest/developer-guide/"
  * >Amazon Web Services Encryption SDK</a> or <a href=
  * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"

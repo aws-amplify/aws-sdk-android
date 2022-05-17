@@ -36,6 +36,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * keys in KMS</a> in the <i> <i>Key Management Service Developer Guide</i>
  * </i>.
  * </p>
+ * <note>
+ * <p>
+ * Best practices recommend that you limit the time during which any signing
+ * mechanism, including an HMAC, is effective. This deters an attack where the
+ * actor uses a signed message to establish validity repeatedly or long after
+ * the message is superseded. HMAC tags do not include a timestamp, but you can
+ * include a timestamp in the token or message to help you detect when its time
+ * to refresh the HMAC.
+ * </p>
+ * </note>
  * <p>
  * The KMS key that you use for this operation must be in a compatible key
  * state. For details, see <a

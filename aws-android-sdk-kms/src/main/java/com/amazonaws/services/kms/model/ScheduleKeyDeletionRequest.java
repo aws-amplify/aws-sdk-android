@@ -138,9 +138,9 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      * ends, KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the KMS key is a multi-Region primary key with replicas, the waiting
-     * period begins when the last of its replica keys is deleted. Otherwise,
-     * the waiting period begins immediately.
+     * If the KMS key is a multi-Region primary key with replica keys, the
+     * waiting period begins when the last of its replica keys is deleted.
+     * Otherwise, the waiting period begins immediately.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 7 and
@@ -350,9 +350,9 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      * ends, KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the KMS key is a multi-Region primary key with replicas, the waiting
-     * period begins when the last of its replica keys is deleted. Otherwise,
-     * the waiting period begins immediately.
+     * If the KMS key is a multi-Region primary key with replica keys, the
+     * waiting period begins when the last of its replica keys is deleted.
+     * Otherwise, the waiting period begins immediately.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 7 and
@@ -367,8 +367,8 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      *         waiting period ends, KMS deletes the KMS key.
      *         </p>
      *         <p>
-     *         If the KMS key is a multi-Region primary key with replicas, the
-     *         waiting period begins when the last of its replica keys is
+     *         If the KMS key is a multi-Region primary key with replica keys,
+     *         the waiting period begins when the last of its replica keys is
      *         deleted. Otherwise, the waiting period begins immediately.
      *         </p>
      *         <p>
@@ -387,9 +387,9 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      * ends, KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the KMS key is a multi-Region primary key with replicas, the waiting
-     * period begins when the last of its replica keys is deleted. Otherwise,
-     * the waiting period begins immediately.
+     * If the KMS key is a multi-Region primary key with replica keys, the
+     * waiting period begins when the last of its replica keys is deleted.
+     * Otherwise, the waiting period begins immediately.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 7 and
@@ -404,9 +404,10 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      *            waiting period ends, KMS deletes the KMS key.
      *            </p>
      *            <p>
-     *            If the KMS key is a multi-Region primary key with replicas,
-     *            the waiting period begins when the last of its replica keys is
-     *            deleted. Otherwise, the waiting period begins immediately.
+     *            If the KMS key is a multi-Region primary key with replica
+     *            keys, the waiting period begins when the last of its replica
+     *            keys is deleted. Otherwise, the waiting period begins
+     *            immediately.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
@@ -424,9 +425,9 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      * ends, KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the KMS key is a multi-Region primary key with replicas, the waiting
-     * period begins when the last of its replica keys is deleted. Otherwise,
-     * the waiting period begins immediately.
+     * If the KMS key is a multi-Region primary key with replica keys, the
+     * waiting period begins when the last of its replica keys is deleted.
+     * Otherwise, the waiting period begins immediately.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 7 and
@@ -444,9 +445,10 @@ public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implemen
      *            waiting period ends, KMS deletes the KMS key.
      *            </p>
      *            <p>
-     *            If the KMS key is a multi-Region primary key with replicas,
-     *            the waiting period begins when the last of its replica keys is
-     *            deleted. Otherwise, the waiting period begins immediately.
+     *            If the KMS key is a multi-Region primary key with replica
+     *            keys, the waiting period begins when the last of its replica
+     *            keys is deleted. Otherwise, the waiting period begins
+     *            immediately.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
