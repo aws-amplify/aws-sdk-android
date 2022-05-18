@@ -5,7 +5,7 @@
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
  *
- *  http://aws.amazon.com/apache2.0
+ * http://aws.amazon.com/apache2.0
  *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
@@ -45,6 +45,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -68,7 +69,7 @@ class UploadTask implements Callable<Boolean> {
     private final TransferDBUtil dbUtil;
     private final TransferStatusUpdater updater;
 
-    Map<Integer, UploadPartTaskMetadata> uploadPartTasks;
+    ConcurrentHashMap<Integer, UploadPartTaskMetadata> uploadPartTasks;
     private List<UploadPartRequest> requestList;
 
     public UploadTask(TransferRecord uploadInfo,
@@ -79,7 +80,7 @@ class UploadTask implements Callable<Boolean> {
         this.s3 = s3;
         this.dbUtil = dbUtil;
         this.updater = updater;
-        this.uploadPartTasks = new HashMap<Integer, UploadPartTaskMetadata>();
+        this.uploadPartTasks = new ConcurrentHashMap<>();
     }
 
     /*
@@ -91,13 +92,13 @@ class UploadTask implements Callable<Boolean> {
             if (TransferNetworkLossHandler.getInstance() != null &&
                 !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                 LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                return false;	
-            }	
-        } catch (TransferUtilityException transferUtilityException) {	
-            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                return false;
+            }
+        } catch (TransferUtilityException transferUtilityException) {
+            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
         }
-        
+
         updater.updateState(upload.id, TransferState.IN_PROGRESS);
         if (upload.isMultipart == 1 && upload.partNumber == 0) {
             /*
@@ -130,7 +131,7 @@ class UploadTask implements Callable<Boolean> {
                 upload.multipartId = initiateMultipartUpload(putObjectRequest);
             } catch (final AmazonClientException ace) {
                 LOGGER.error("Error initiating multipart upload: " + upload.id
-                        + " due to " + ace.getMessage(), ace);
+                    + " due to " + ace.getMessage(), ace);
                 updater.throwError(upload.id, ace);
                 updater.updateState(upload.id, TransferState.FAILED);
                 return false;
@@ -144,14 +145,16 @@ class UploadTask implements Callable<Boolean> {
             bytesAlreadyTransferred = dbUtil.queryBytesTransferredByMainUploadId(upload.id);
             if (bytesAlreadyTransferred > 0) {
                 LOGGER.info(String.format("Resume transfer %d from %d bytes",
-                        upload.id, bytesAlreadyTransferred));
+                    upload.id, bytesAlreadyTransferred));
+                android.util.Log.d("UPLOAD PROGRESS", String.format("Resume transfer %d from %d bytes",
+                    upload.id, bytesAlreadyTransferred));
             }
         }
-        UploadTaskProgressListener uploadTaskProgressListener = new UploadTaskProgressListener(upload);
+        UploadTaskProgressListener uploadTaskProgressListener = new UploadTaskProgressListener(bytesAlreadyTransferred);
         updater.updateProgress(upload.id, bytesAlreadyTransferred, upload.bytesTotal, false);
 
         requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
-                upload.multipartId);
+            upload.multipartId);
         LOGGER.info("Multipart upload " + upload.id + " in " + requestList.size() + " parts.");
         for (final UploadPartRequest request : requestList) {
             TransferUtility.appendMultipartTransferServiceUserAgentString(request);
@@ -162,7 +165,7 @@ class UploadTask implements Callable<Boolean> {
             uploadPartTaskMetadata.state = TransferState.WAITING;
             uploadPartTasks.put(request.getPartNumber(), uploadPartTaskMetadata);
             uploadPartTaskMetadata.uploadPartTask = TransferThreadPool.submitTask(
-                    new UploadPartTask(uploadPartTaskMetadata, uploadTaskProgressListener, request, s3, dbUtil));
+                new UploadPartTask(uploadPartTaskMetadata, uploadTaskProgressListener, request, s3, dbUtil));
         }
 
         try {
@@ -182,11 +185,11 @@ class UploadTask implements Callable<Boolean> {
                     if (TransferNetworkLossHandler.getInstance() != null &&
                         !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                         LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                        return false;	
-                    }	
-                } catch (TransferUtilityException transferUtilityException) {	
-                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                        return false;
+                    }
+                } catch (TransferUtilityException transferUtilityException) {
+                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
                 }
             }
         } catch (final Exception e) {
@@ -216,7 +219,7 @@ class UploadTask implements Callable<Boolean> {
                 return false;
             }
 
-            // interrupted due to network. Set the TransferState to 
+            // interrupted due to network. Set the TransferState to
             // WAITING_FOR_NETWORK if the individual parts were waiting for network
             for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
                 if (TransferState.WAITING_FOR_NETWORK.equals(task.state)) {
@@ -230,11 +233,11 @@ class UploadTask implements Callable<Boolean> {
                 if (TransferNetworkLossHandler.getInstance() != null &&
                     !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                     LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                    return false;	
-                }	
-            } catch (TransferUtilityException transferUtilityException) {	
-                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                    return false;
+                }
+            } catch (TransferUtilityException transferUtilityException) {
+                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
             }
 
             // interrupted due to reasons other than network.
@@ -246,7 +249,7 @@ class UploadTask implements Callable<Boolean> {
 
             // in other cases, set the transfer to failed.
             LOGGER.error("Error encountered during multi-part upload: " + upload.id
-                    + " due to " + e.getMessage(), e);
+                + " due to " + e.getMessage(), e);
             updater.throwError(upload.id, e);
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -255,15 +258,15 @@ class UploadTask implements Callable<Boolean> {
         LOGGER.info("Completing the multi-part upload transfer for " + upload.id);
         try {
             completeMultiPartUpload(upload.id, upload.bucketName, upload.key,
-                    upload.multipartId);
+                upload.multipartId);
             updater.updateProgress(upload.id, upload.bytesTotal, upload.bytesTotal, true);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (final AmazonClientException ace) {
             LOGGER.error("Failed to complete multipart: " + upload.id
-                    + " due to " + ace.getMessage(), ace);
+                + " due to " + ace.getMessage(), ace);
             abortMultiPartUpload(upload.id, upload.bucketName, upload.key,
-                    upload.multipartId);
+                upload.multipartId);
             updater.throwError(upload.id, ace);
             updater.updateState(upload.id, TransferState.FAILED);
             return false;
@@ -316,7 +319,8 @@ class UploadTask implements Callable<Boolean> {
                      * WAITING_FOR_NETWORK till the network availability resumes.
                      */
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
-                    LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                    LOGGER
+                        .debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
                     ProgressEvent resetEvent = new ProgressEvent(0);
                     resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                     progressListener.progressChanged(new ProgressEvent(0));
@@ -350,10 +354,11 @@ class UploadTask implements Callable<Boolean> {
      *                      uniquely identifies this transfer
      */
     private void completeMultiPartUpload(int mainUploadId, String bucket,
-            String key, String multipartId) throws AmazonClientException, AmazonServiceException {
+                                         String key, String multipartId)
+        throws AmazonClientException, AmazonServiceException {
         final List<PartETag> partETags = dbUtil.queryPartETagsOfUpload(mainUploadId);
         final CompleteMultipartUploadRequest completeRequest = new CompleteMultipartUploadRequest(bucket,
-                key, multipartId, partETags);
+            key, multipartId, partETags);
         TransferUtility.appendMultipartTransferServiceUserAgentString(completeRequest);
         s3.completeMultipartUpload(completeRequest);
     }
@@ -363,10 +368,10 @@ class UploadTask implements Callable<Boolean> {
         try {
             // abort the multi part upload operation
             s3.abortMultipartUpload(
-                    new AbortMultipartUploadRequest(
-                            bucket,
-                            key,
-                            multipartId));
+                new AbortMultipartUploadRequest(
+                    bucket,
+                    key,
+                    multipartId));
             LOGGER.debug("Successfully aborted multipart upload: " + mainUploadId);
         } catch (final AmazonClientException e) {
             LOGGER.debug("Failed to abort the multipart upload: " + mainUploadId, e);
@@ -381,14 +386,14 @@ class UploadTask implements Callable<Boolean> {
      */
     private String initiateMultipartUpload(PutObjectRequest putObjectRequest) {
         InitiateMultipartUploadRequest initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
-                putObjectRequest.getBucketName(), putObjectRequest.getKey())
-                .withCannedACL(putObjectRequest.getCannedAcl())
-                .withObjectMetadata(putObjectRequest.getMetadata())
-                .withSSEAwsKeyManagementParams(
-                                putObjectRequest.getSSEAwsKeyManagementParams())
-                .withTagging(putObjectRequest.getTagging());
+            putObjectRequest.getBucketName(), putObjectRequest.getKey())
+            .withCannedACL(putObjectRequest.getCannedAcl())
+            .withObjectMetadata(putObjectRequest.getMetadata())
+            .withSSEAwsKeyManagementParams(
+                putObjectRequest.getSSEAwsKeyManagementParams())
+            .withTagging(putObjectRequest.getTagging());
         TransferUtility
-                .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
+            .appendMultipartTransferServiceUserAgentString(initiateMultipartUploadRequest);
         return s3.initiateMultipartUpload(initiateMultipartUploadRequest).getUploadId();
     }
 
@@ -402,7 +407,7 @@ class UploadTask implements Callable<Boolean> {
     private PutObjectRequest createPutObjectRequest(TransferRecord upload) {
         final File file = new File(upload.file);
         final PutObjectRequest putObjectRequest = new PutObjectRequest(upload.bucketName,
-                upload.key, file);
+            upload.key, file);
 
         final ObjectMetadata om = new ObjectMetadata();
         om.setContentLength(file.length());
@@ -466,7 +471,7 @@ class UploadTask implements Callable<Boolean> {
         }
         if (upload.sseKMSKey != null) {
             putObjectRequest
-                    .setSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(upload.sseKMSKey));
+                .setSSEAwsKeyManagementParams(new SSEAwsKeyManagementParams(upload.sseKMSKey));
         }
 
         putObjectRequest.setMetadata(om);
@@ -479,6 +484,7 @@ class UploadTask implements Callable<Boolean> {
      * Convenience methods for Canned ACL.
      */
     private static final Map<String, CannedAccessControlList> CANNED_ACL_MAP;
+
     static {
         CANNED_ACL_MAP = new HashMap<String, CannedAccessControlList>();
         for (final CannedAccessControlList cannedAcl : CannedAccessControlList.values()) {
@@ -497,9 +503,11 @@ class UploadTask implements Callable<Boolean> {
 
         // This variable tracks the previously reported total bytes transferred.
         private long prevTotalBytesTransferredOfAllParts;
+        private final long bytesAlreadyTransferred;
 
-        UploadTaskProgressListener(TransferRecord upload) {
-            this.prevTotalBytesTransferredOfAllParts = upload.bytesCurrent;
+        UploadTaskProgressListener(long bytesAlreadyTransferred) {
+            prevTotalBytesTransferredOfAllParts = bytesAlreadyTransferred;
+            this.bytesAlreadyTransferred = bytesAlreadyTransferred;
         }
 
         @Override
@@ -508,7 +516,7 @@ class UploadTask implements Callable<Boolean> {
         }
 
         public synchronized void onProgressChanged(final int partNum,
-            final long bytesTransferredSoFarForPartNum) {
+                                                   final long bytesTransferredSoFarForPartNum) {
             UploadPartTaskMetadata partNumTask = uploadPartTasks.get(partNum);
             if (partNumTask == null) {
                 LOGGER.info("Update received for unknown part. Ignoring.");
@@ -516,18 +524,17 @@ class UploadTask implements Callable<Boolean> {
             }
 
             partNumTask.bytesTransferredSoFar = bytesTransferredSoFarForPartNum;
-
-            // Compute the sum of bytesTransferredSoFar for all parts
-            long totalBytesTransferredOfAllParts = 0;
+            // Compute the sum of bytesTransferredSoFar for all parts and already completed parts
+            long totalBytesTransferredOfAllParts = bytesAlreadyTransferred;
             for (Map.Entry<Integer, UploadPartTaskMetadata> part : uploadPartTasks.entrySet()) {
                 totalBytesTransferredOfAllParts += part.getValue().bytesTransferredSoFar;
             }
-
             // Update the transfer record and the transfer listener
-            // when the accumulated total bytesTransferred (totalBytesTransferredOfAllParts) 
-            // exceeds the previously reported toal bytesTransferred 
+            // when the accumulated total bytesTransferred (totalBytesTransferredOfAllParts)
+            // exceeds the previously reported toal bytesTransferred
             // (prevTotalBytesTransferredOfAllParts).
-            if (totalBytesTransferredOfAllParts > prevTotalBytesTransferredOfAllParts) {
+            if (totalBytesTransferredOfAllParts > prevTotalBytesTransferredOfAllParts &&
+                totalBytesTransferredOfAllParts <= upload.bytesTotal) {
                 updater.updateProgress(UploadTask.this.upload.id,
                     totalBytesTransferredOfAllParts,
                     UploadTask.this.upload.bytesTotal,
