@@ -1,3 +1,20 @@
+## [Release 2.46.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.46.0)
+
+### Features
+- **aws-android-sdk-location:** update models to latest (#2890)
+- **aws-android-sdk-iot:** update models to latest (#2895)
+- **aws-android-sdk-core:** update models to latest (#2898)
+- **aws-android-sdk-rekognition:** update models to latest (#2899)
+- **aws-android-sdk-kms:** update models to latest (#2901)
+
+### Bug Fixes
+- Progress calculation for mulitpart upload #2905 (#2906)
+
+### Miscellaneous
+- Update notify_comments.yml (#2903)
+
+[See all changes between 2.45.0 and 2.46.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.45.0...release_v2.46.0)
+
 ## [Release 2.45.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.45.0)
 
 ### Features
