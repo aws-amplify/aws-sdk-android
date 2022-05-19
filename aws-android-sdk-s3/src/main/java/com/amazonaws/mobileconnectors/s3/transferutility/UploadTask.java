@@ -91,13 +91,13 @@ class UploadTask implements Callable<Boolean> {
             if (TransferNetworkLossHandler.getInstance() != null &&
                 !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                 LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                return false;	
-            }	
-        } catch (TransferUtilityException transferUtilityException) {	
-            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                return false;
+            }
+        } catch (TransferUtilityException transferUtilityException) {
+            LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
         }
-        
+
         updater.updateState(upload.id, TransferState.IN_PROGRESS);
         if (upload.isMultipart == 1 && upload.partNumber == 0) {
             /*
@@ -147,7 +147,7 @@ class UploadTask implements Callable<Boolean> {
                         upload.id, bytesAlreadyTransferred));
             }
         }
-        UploadTaskProgressListener uploadTaskProgressListener = new UploadTaskProgressListener(upload);
+        UploadTaskProgressListener uploadTaskProgressListener = new UploadTaskProgressListener(bytesAlreadyTransferred);
         updater.updateProgress(upload.id, bytesAlreadyTransferred, upload.bytesTotal, false);
 
         requestList = dbUtil.getNonCompletedPartRequestsFromDB(upload.id,
@@ -182,11 +182,11 @@ class UploadTask implements Callable<Boolean> {
                     if (TransferNetworkLossHandler.getInstance() != null &&
                         !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                         LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                        return false;	
-                    }	
-                } catch (TransferUtilityException transferUtilityException) {	
-                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                        updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                        return false;
+                    }
+                } catch (TransferUtilityException transferUtilityException) {
+                    LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
                 }
             }
         } catch (final Exception e) {
@@ -216,7 +216,7 @@ class UploadTask implements Callable<Boolean> {
                 return false;
             }
 
-            // interrupted due to network. Set the TransferState to 
+            // interrupted due to network. Set the TransferState to
             // WAITING_FOR_NETWORK if the individual parts were waiting for network
             for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
                 if (TransferState.WAITING_FOR_NETWORK.equals(task.state)) {
@@ -230,11 +230,11 @@ class UploadTask implements Callable<Boolean> {
                 if (TransferNetworkLossHandler.getInstance() != null &&
                     !TransferNetworkLossHandler.getInstance().isNetworkConnected()) {
                     LOGGER.info("Network not connected. Setting the state to WAITING_FOR_NETWORK.");
-                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);	
-                    return false;	
-                }	
-            } catch (TransferUtilityException transferUtilityException) {	
-                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");	
+                    updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
+                    return false;
+                }
+            } catch (TransferUtilityException transferUtilityException) {
+                LOGGER.error("TransferUtilityException: [" + transferUtilityException + "]");
             }
 
             // interrupted due to reasons other than network.
@@ -497,9 +497,11 @@ class UploadTask implements Callable<Boolean> {
 
         // This variable tracks the previously reported total bytes transferred.
         private long prevTotalBytesTransferredOfAllParts;
+        private final long bytesAlreadyTransferred;
 
-        UploadTaskProgressListener(TransferRecord upload) {
-            this.prevTotalBytesTransferredOfAllParts = upload.bytesCurrent;
+        UploadTaskProgressListener(long bytesAlreadyTransferred) {
+            prevTotalBytesTransferredOfAllParts = bytesAlreadyTransferred;
+            this.bytesAlreadyTransferred = bytesAlreadyTransferred;
         }
 
         @Override
@@ -508,7 +510,7 @@ class UploadTask implements Callable<Boolean> {
         }
 
         public synchronized void onProgressChanged(final int partNum,
-            final long bytesTransferredSoFarForPartNum) {
+                                                   final long bytesTransferredSoFarForPartNum) {
             UploadPartTaskMetadata partNumTask = uploadPartTasks.get(partNum);
             if (partNumTask == null) {
                 LOGGER.info("Update received for unknown part. Ignoring.");
@@ -516,18 +518,17 @@ class UploadTask implements Callable<Boolean> {
             }
 
             partNumTask.bytesTransferredSoFar = bytesTransferredSoFarForPartNum;
-
-            // Compute the sum of bytesTransferredSoFar for all parts
-            long totalBytesTransferredOfAllParts = 0;
+            // Compute the sum of bytesTransferredSoFar for all parts and already completed parts
+            long totalBytesTransferredOfAllParts = bytesAlreadyTransferred;
             for (Map.Entry<Integer, UploadPartTaskMetadata> part : uploadPartTasks.entrySet()) {
                 totalBytesTransferredOfAllParts += part.getValue().bytesTransferredSoFar;
             }
-
             // Update the transfer record and the transfer listener
-            // when the accumulated total bytesTransferred (totalBytesTransferredOfAllParts) 
-            // exceeds the previously reported toal bytesTransferred 
+            // when the accumulated total bytesTransferred (totalBytesTransferredOfAllParts)
+            // exceeds the previously reported toal bytesTransferred
             // (prevTotalBytesTransferredOfAllParts).
-            if (totalBytesTransferredOfAllParts > prevTotalBytesTransferredOfAllParts) {
+            if (totalBytesTransferredOfAllParts > prevTotalBytesTransferredOfAllParts &&
+                totalBytesTransferredOfAllParts <= upload.bytesTotal) {
                 updater.updateProgress(UploadTask.this.upload.id,
                     totalBytesTransferredOfAllParts,
                     UploadTask.this.upload.bytesTotal,
