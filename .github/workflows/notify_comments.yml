@@ -4,7 +4,7 @@ name: Notify Comments on PCR
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on comment events on pending response issues
+  # Triggers the workflow on comment events on closed, pending response issues and closing soon issues
   issue_comment:
     types: [created]
 
@@ -15,7 +15,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    if: ${{ !github.event.issue.pull_request && (contains(github.event.issue.labels.*.name, 'pending-response') || contains(github.event.issue.labels.*.name, 'closing-soon-if-no-response')) }}
+    if: ${{ !github.event.issue.pull_request && (github.event.issue.state == "closed" || contains(github.event.issue.labels.*.name, 'pending-response') || contains(github.event.issue.labels.*.name, 'closing-soon-if-no-response')) }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
