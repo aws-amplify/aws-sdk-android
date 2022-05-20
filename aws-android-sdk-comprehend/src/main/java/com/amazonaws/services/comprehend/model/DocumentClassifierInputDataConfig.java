@@ -23,7 +23,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For more information on how the input file is formatted, see
- * <a>how-document-classification-training-data</a>.
+ * <a>prep-classifier-data</a>.
  * </p>
  */
 public class DocumentClassifierInputDataConfig implements Serializable {

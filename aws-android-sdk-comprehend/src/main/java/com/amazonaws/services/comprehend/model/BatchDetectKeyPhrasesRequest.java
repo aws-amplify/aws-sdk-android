@@ -28,7 +28,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
+     * maximum of 25 documents. Each document must contain fewer than 5,000
      * bytes of UTF-8 encoded characters.
      * </p>
      */
@@ -49,14 +49,14 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
+     * maximum of 25 documents. Each document must contain fewer than 5,000
      * bytes of UTF-8 encoded characters.
      * </p>
      *
      * @return <p>
      *         A list containing the text of the input documents. The list can
      *         contain a maximum of 25 documents. Each document must contain
-     *         fewer that 5,000 bytes of UTF-8 encoded characters.
+     *         fewer than 5,000 bytes of UTF-8 encoded characters.
      *         </p>
      */
     public java.util.List<String> getTextList() {
@@ -66,14 +66,14 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
+     * maximum of 25 documents. Each document must contain fewer than 5,000
      * bytes of UTF-8 encoded characters.
      * </p>
      *
      * @param textList <p>
      *            A list containing the text of the input documents. The list
      *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
      *            </p>
      */
     public void setTextList(java.util.Collection<String> textList) {
@@ -88,7 +88,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
+     * maximum of 25 documents. Each document must contain fewer than 5,000
      * bytes of UTF-8 encoded characters.
      * </p>
      * <p>
@@ -98,7 +98,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * @param textList <p>
      *            A list containing the text of the input documents. The list
      *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -116,7 +116,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
+     * maximum of 25 documents. Each document must contain fewer than 5,000
      * bytes of UTF-8 encoded characters.
      * </p>
      * <p>
@@ -126,7 +126,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * @param textList <p>
      *            A list containing the text of the input documents. The list
      *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

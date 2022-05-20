@@ -19,7 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specifies information about the specified endpoint.
+ * Specifies information about the specified endpoint. For information about
+ * endpoints, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+ * >Managing endpoints</a>.
  * </p>
  */
 public class EndpointProperties implements Serializable {

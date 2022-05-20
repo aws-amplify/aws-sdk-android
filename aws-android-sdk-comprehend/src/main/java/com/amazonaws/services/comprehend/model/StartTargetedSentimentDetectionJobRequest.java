@@ -69,9 +69,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -370,18 +369,16 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend. All documents
-     *         must be in the same language.
+     *         The language of the input documents. Currently, English is the
+     *         only valid language.
      *         </p>
      * @see LanguageCode
      */
@@ -391,18 +388,16 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @see LanguageCode
      */
@@ -412,9 +407,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -424,9 +418,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -439,18 +432,16 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @see LanguageCode
      */
@@ -460,9 +451,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -472,9 +462,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
