@@ -1,3 +1,11 @@
+## [Release 2.46.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.46.1)
+
+### Miscellaneous
+- Update gson version (#2910)
+- Update notify_comments.yml (#2911)
+
+[See all changes between 2.46.0 and 2.46.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.46.0...release_v2.46.1)
+
 ## [Release 2.46.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.46.0)
 
 ### Features
