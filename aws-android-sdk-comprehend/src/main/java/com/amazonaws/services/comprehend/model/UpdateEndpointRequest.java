@@ -21,7 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates information about the specified endpoint.
+ * Updates information about the specified endpoint. For information about
+ * endpoints, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+ * >Managing endpoints</a>.
  * </p>
  */
 public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Serializable {

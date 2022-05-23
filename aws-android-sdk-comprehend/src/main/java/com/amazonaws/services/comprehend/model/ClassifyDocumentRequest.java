@@ -39,7 +39,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint.
+     * The Amazon Resource Number (ARN) of the endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,7 +109,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint.
+     * The Amazon Resource Number (ARN) of the endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,7 +122,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @return <p>
-     *         The Amazon Resource Number (ARN) of the endpoint.
+     *         The Amazon Resource Number (ARN) of the endpoint. For information
+     *         about endpoints, see <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *         >Managing endpoints</a>.
      *         </p>
      */
     public String getEndpointArn() {
@@ -125,7 +134,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint.
+     * The Amazon Resource Number (ARN) of the endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,7 +147,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
-     *            The Amazon Resource Number (ARN) of the endpoint.
+     *            The Amazon Resource Number (ARN) of the endpoint. For
+     *            information about endpoints, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *            >Managing endpoints</a>.
      *            </p>
      */
     public void setEndpointArn(String endpointArn) {
@@ -144,7 +159,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) of the endpoint.
+     * The Amazon Resource Number (ARN) of the endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,7 +175,10 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
-     *            The Amazon Resource Number (ARN) of the endpoint.
+     *            The Amazon Resource Number (ARN) of the endpoint. For
+     *            information about endpoints, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *            >Managing endpoints</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

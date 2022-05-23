@@ -39,7 +39,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,14 +110,16 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents.
+     *         The language of the input documents. Currently, English is the
+     *         only valid language.
      *         </p>
      * @see LanguageCode
      */
@@ -126,14 +129,16 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @see LanguageCode
      */
@@ -143,7 +148,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,7 +159,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -166,14 +173,16 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @see LanguageCode
      */
@@ -183,7 +192,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents.
+     * The language of the input documents. Currently, English is the only valid
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +203,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents.
+     *            The language of the input documents. Currently, English is the
+     *            only valid language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

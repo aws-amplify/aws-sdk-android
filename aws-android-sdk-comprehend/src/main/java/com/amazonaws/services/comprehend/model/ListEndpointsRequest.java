@@ -21,7 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a list of all existing endpoints that you've created.
+ * Gets a list of all existing endpoints that you've created. For information
+ * about endpoints, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+ * >Managing endpoints</a>.
  * </p>
  */
 public class ListEndpointsRequest extends AmazonWebServiceRequest implements Serializable {

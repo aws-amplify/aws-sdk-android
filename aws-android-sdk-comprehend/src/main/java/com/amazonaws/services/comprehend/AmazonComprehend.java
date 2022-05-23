@@ -314,7 +314,10 @@ public interface AmazonComprehend {
     /**
      * <p>
      * Creates a model-specific endpoint for synchronous inference for a
-     * previously trained custom model
+     * previously trained custom model For information about endpoints, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * 
      * @param createEndpointRequest
@@ -411,7 +414,10 @@ public interface AmazonComprehend {
     /**
      * <p>
      * Deletes a model-specific endpoint for a previously-trained custom model.
-     * All endpoints must be deleted in order for the model to be deleted.
+     * All endpoints must be deleted in order for the model to be deleted. For
+     * information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * 
      * @param deleteEndpointRequest
@@ -575,7 +581,10 @@ public interface AmazonComprehend {
     /**
      * <p>
      * Gets the properties associated with a specific endpoint. Use this
-     * operation to get the status of an endpoint.
+     * operation to get the status of an endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * 
      * @param describeEndpointRequest
@@ -1117,7 +1126,10 @@ public interface AmazonComprehend {
 
     /**
      * <p>
-     * Gets a list of all existing endpoints that you've created.
+     * Gets a list of all existing endpoints that you've created. For
+     * information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * 
      * @param listEndpointsRequest
@@ -1844,7 +1856,7 @@ public interface AmazonComprehend {
      * Stops a sentiment detection job in progress.
      * </p>
      * <p>
-     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * If the job state is <code>IN_PROGRESS</code>, the job is marked for
      * termination and put into the <code>STOP_REQUESTED</code> state. If the
      * job completes before it can be stopped, it is put into the
      * <code>COMPLETED</code> state; otherwise the job is be stopped and put
@@ -1884,7 +1896,7 @@ public interface AmazonComprehend {
      * Stops a targeted sentiment detection job in progress.
      * </p>
      * <p>
-     * If the job state is <code>IN_PROGRESS</code> the job is marked for
+     * If the job state is <code>IN_PROGRESS</code>, the job is marked for
      * termination and put into the <code>STOP_REQUESTED</code> state. If the
      * job completes before it can be stopped, it is put into the
      * <code>COMPLETED</code> state; otherwise the job is be stopped and put
@@ -2038,7 +2050,10 @@ public interface AmazonComprehend {
 
     /**
      * <p>
-     * Updates information about the specified endpoint.
+     * Updates information about the specified endpoint. For information about
+     * endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * 
      * @param updateEndpointRequest

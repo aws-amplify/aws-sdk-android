@@ -67,6 +67,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * request.
      * </p>
      * <p>
+     * For information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
@@ -320,6 +325,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * request.
      * </p>
      * <p>
+     * For information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
@@ -337,6 +347,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *         of your custom model, and it ignores any language code that you
      *         provide in your request.
      *         </p>
+     *         <p>
+     *         For information about endpoints, see <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *         >Managing endpoints</a>.
+     *         </p>
      */
     public String getEndpointArn() {
         return endpointArn;
@@ -353,6 +368,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * If you specify an endpoint, Amazon Comprehend uses the language of your
      * custom model, and it ignores any language code that you provide in your
      * request.
+     * </p>
+     * <p>
+     * For information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -373,6 +393,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            language of your custom model, and it ignores any language
      *            code that you provide in your request.
      *            </p>
+     *            <p>
+     *            For information about endpoints, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *            >Managing endpoints</a>.
+     *            </p>
      */
     public void setEndpointArn(String endpointArn) {
         this.endpointArn = endpointArn;
@@ -389,6 +414,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * If you specify an endpoint, Amazon Comprehend uses the language of your
      * custom model, and it ignores any language code that you provide in your
      * request.
+     * </p>
+     * <p>
+     * For information about endpoints, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     * >Managing endpoints</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -411,6 +441,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            If you specify an endpoint, Amazon Comprehend uses the
      *            language of your custom model, and it ignores any language
      *            code that you provide in your request.
+     *            </p>
+     *            <p>
+     *            For information about endpoints, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+     *            >Managing endpoints</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

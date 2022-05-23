@@ -22,7 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a model-specific endpoint for synchronous inference for a previously
- * trained custom model
+ * trained custom model For information about endpoints, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/manage-endpoints.html"
+ * >Managing endpoints</a>.
  * </p>
  */
 public class CreateEndpointRequest extends AmazonWebServiceRequest implements Serializable {
