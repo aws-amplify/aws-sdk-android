@@ -33,7 +33,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -126,7 +126,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -158,7 +158,7 @@ public class AccountTakeoverActionType implements Serializable {
      *
      * @return <p>
      *         The action to take in response to the account takeover action.
-     *         Valid values are:
+     *         Valid values are as follows:
      *         </p>
      *         <ul>
      *         <li>
@@ -193,7 +193,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -225,7 +225,7 @@ public class AccountTakeoverActionType implements Serializable {
      *
      * @param eventAction <p>
      *            The action to take in response to the account takeover action.
-     *            Valid values are:
+     *            Valid values are as follows:
      *            </p>
      *            <ul>
      *            <li>
@@ -261,7 +261,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -296,7 +296,7 @@ public class AccountTakeoverActionType implements Serializable {
      *
      * @param eventAction <p>
      *            The action to take in response to the account takeover action.
-     *            Valid values are:
+     *            Valid values are as follows:
      *            </p>
      *            <ul>
      *            <li>
@@ -335,7 +335,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -367,7 +367,7 @@ public class AccountTakeoverActionType implements Serializable {
      *
      * @param eventAction <p>
      *            The action to take in response to the account takeover action.
-     *            Valid values are:
+     *            Valid values are as follows:
      *            </p>
      *            <ul>
      *            <li>
@@ -403,7 +403,7 @@ public class AccountTakeoverActionType implements Serializable {
     /**
      * <p>
      * The action to take in response to the account takeover action. Valid
-     * values are:
+     * values are as follows:
      * </p>
      * <ul>
      * <li>
@@ -438,7 +438,7 @@ public class AccountTakeoverActionType implements Serializable {
      *
      * @param eventAction <p>
      *            The action to take in response to the account takeover action.
-     *            Valid values are:
+     *            Valid values are as follows:
      *            </p>
      *            <ul>
      *            <li>

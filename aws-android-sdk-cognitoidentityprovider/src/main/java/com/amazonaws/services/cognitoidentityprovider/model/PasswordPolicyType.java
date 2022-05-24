@@ -75,8 +75,8 @@ public class PasswordPolicyType implements Serializable {
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you can no longer set the deprecated
-     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * you can no longer set a value for the legacy
+     * <code>UnusedAccountValidityDays</code> parameter in that user pool.
      * </p>
      * </note>
      * <p>
@@ -430,8 +430,8 @@ public class PasswordPolicyType implements Serializable {
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you can no longer set the deprecated
-     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * you can no longer set a value for the legacy
+     * <code>UnusedAccountValidityDays</code> parameter in that user pool.
      * </p>
      * </note>
      * <p>
@@ -446,8 +446,9 @@ public class PasswordPolicyType implements Serializable {
      *         <note>
      *         <p>
      *         When you set <code>TemporaryPasswordValidityDays</code> for a
-     *         user pool, you can no longer set the deprecated
-     *         <code>UnusedAccountValidityDays</code> value for that user pool.
+     *         user pool, you can no longer set a value for the legacy
+     *         <code>UnusedAccountValidityDays</code> parameter in that user
+     *         pool.
      *         </p>
      *         </note>
      */
@@ -464,8 +465,8 @@ public class PasswordPolicyType implements Serializable {
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you can no longer set the deprecated
-     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * you can no longer set a value for the legacy
+     * <code>UnusedAccountValidityDays</code> parameter in that user pool.
      * </p>
      * </note>
      * <p>
@@ -480,8 +481,8 @@ public class PasswordPolicyType implements Serializable {
      *            <note>
      *            <p>
      *            When you set <code>TemporaryPasswordValidityDays</code> for a
-     *            user pool, you can no longer set the deprecated
-     *            <code>UnusedAccountValidityDays</code> value for that user
+     *            user pool, you can no longer set a value for the legacy
+     *            <code>UnusedAccountValidityDays</code> parameter in that user
      *            pool.
      *            </p>
      *            </note>
@@ -499,8 +500,8 @@ public class PasswordPolicyType implements Serializable {
      * <note>
      * <p>
      * When you set <code>TemporaryPasswordValidityDays</code> for a user pool,
-     * you can no longer set the deprecated
-     * <code>UnusedAccountValidityDays</code> value for that user pool.
+     * you can no longer set a value for the legacy
+     * <code>UnusedAccountValidityDays</code> parameter in that user pool.
      * </p>
      * </note>
      * <p>
@@ -518,8 +519,8 @@ public class PasswordPolicyType implements Serializable {
      *            <note>
      *            <p>
      *            When you set <code>TemporaryPasswordValidityDays</code> for a
-     *            user pool, you can no longer set the deprecated
-     *            <code>UnusedAccountValidityDays</code> value for that user
+     *            user pool, you can no longer set a value for the legacy
+     *            <code>UnusedAccountValidityDays</code> parameter in that user
      *            pool.
      *            </p>
      *            </note>

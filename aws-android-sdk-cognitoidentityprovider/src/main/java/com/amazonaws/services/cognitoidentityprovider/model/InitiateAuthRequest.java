@@ -21,7 +21,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Initiates the authentication flow.
+ * Initiates sign-in for a user in the Amazon Cognito user directory. You can't
+ * sign in a user with a federated IdP with <code>InitiateAuth</code>. For more
+ * information, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html"
+ * > Adding user pool sign-in through a third party</a>.
  * </p>
  * <note>
  * <p>
@@ -99,10 +103,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -276,8 +280,8 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>InitiateAuth</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>InitiateAuth</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
@@ -341,10 +345,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -408,9 +412,9 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *         <li>
      *         <p>
      *         <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow;
-     *         USERNAME and PASSWORD are passed directly. If a user migration
+     *         user name and password are passed directly. If a user migration
      *         Lambda trigger is set, this flow will invoke the user migration
-     *         Lambda if it doesn't find the USERNAME in the user pool.
+     *         Lambda if it doesn't find the user name in the user pool.
      *         </p>
      *         </li>
      *         </ul>
@@ -473,10 +477,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -540,10 +544,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow;
-     *            USERNAME and PASSWORD are passed directly. If a user migration
-     *            Lambda trigger is set, this flow will invoke the user
-     *            migration Lambda if it doesn't find the USERNAME in the user
-     *            pool.
+     *            user name and password are passed directly. If a user
+     *            migration Lambda trigger is set, this flow will invoke the
+     *            user migration Lambda if it doesn't find the user name in the
+     *            user pool.
      *            </p>
      *            </li>
      *            </ul>
@@ -606,10 +610,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -676,10 +680,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow;
-     *            USERNAME and PASSWORD are passed directly. If a user migration
-     *            Lambda trigger is set, this flow will invoke the user
-     *            migration Lambda if it doesn't find the USERNAME in the user
-     *            pool.
+     *            user name and password are passed directly. If a user
+     *            migration Lambda trigger is set, this flow will invoke the
+     *            user migration Lambda if it doesn't find the user name in the
+     *            user pool.
      *            </p>
      *            </li>
      *            </ul>
@@ -745,10 +749,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -812,10 +816,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow;
-     *            USERNAME and PASSWORD are passed directly. If a user migration
-     *            Lambda trigger is set, this flow will invoke the user
-     *            migration Lambda if it doesn't find the USERNAME in the user
-     *            pool.
+     *            user name and password are passed directly. If a user
+     *            migration Lambda trigger is set, this flow will invoke the
+     *            user migration Lambda if it doesn't find the user name in the
+     *            user pool.
      *            </p>
      *            </li>
      *            </ul>
@@ -878,10 +882,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * <li>
      * <p>
-     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; USERNAME
-     * and PASSWORD are passed directly. If a user migration Lambda trigger is
+     * <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow; user name
+     * and password are passed directly. If a user migration Lambda trigger is
      * set, this flow will invoke the user migration Lambda if it doesn't find
-     * the USERNAME in the user pool.
+     * the user name in the user pool.
      * </p>
      * </li>
      * </ul>
@@ -948,10 +952,10 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
      *            <li>
      *            <p>
      *            <code>USER_PASSWORD_AUTH</code>: Non-SRP authentication flow;
-     *            USERNAME and PASSWORD are passed directly. If a user migration
-     *            Lambda trigger is set, this flow will invoke the user
-     *            migration Lambda if it doesn't find the USERNAME in the user
-     *            pool.
+     *            user name and password are passed directly. If a user
+     *            migration Lambda trigger is set, this flow will invoke the
+     *            user migration Lambda if it doesn't find the user name in the
+     *            user pool.
      *            </p>
      *            </li>
      *            </ul>
@@ -2124,13 +2128,13 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>InitiateAuth</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>InitiateAuth</code> calls.
      * </p>
      *
      * @return <p>
-     *         The Amazon Pinpoint analytics metadata for collecting metrics for
-     *         <code>InitiateAuth</code> calls.
+     *         The Amazon Pinpoint analytics metadata that contributes to your
+     *         metrics for <code>InitiateAuth</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -2139,13 +2143,13 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>InitiateAuth</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>InitiateAuth</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>InitiateAuth</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>InitiateAuth</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -2154,16 +2158,16 @@ public class InitiateAuthRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>InitiateAuth</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>InitiateAuth</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>InitiateAuth</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>InitiateAuth</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

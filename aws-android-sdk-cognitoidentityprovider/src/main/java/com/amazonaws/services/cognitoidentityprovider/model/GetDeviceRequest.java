@@ -38,7 +38,8 @@ public class GetDeviceRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * information you want to request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -105,14 +106,16 @@ public class GetDeviceRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * information you want to request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         device information you want to request.
      *         </p>
      */
     public String getAccessToken() {
@@ -121,14 +124,16 @@ public class GetDeviceRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * information you want to request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose device information you want to request.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -137,7 +142,8 @@ public class GetDeviceRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * information you want to request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -147,7 +153,8 @@ public class GetDeviceRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose device information you want to request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -107,8 +107,8 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ForgotPassword</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ForgotPassword</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
@@ -415,13 +415,13 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ForgotPassword</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ForgotPassword</code> calls.
      * </p>
      *
      * @return <p>
-     *         The Amazon Pinpoint analytics metadata for collecting metrics for
-     *         <code>ForgotPassword</code> calls.
+     *         The Amazon Pinpoint analytics metadata that contributes to your
+     *         metrics for <code>ForgotPassword</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -430,13 +430,13 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ForgotPassword</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ForgotPassword</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>ForgotPassword</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>ForgotPassword</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -445,16 +445,16 @@ public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ForgotPassword</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ForgotPassword</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>ForgotPassword</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>ForgotPassword</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

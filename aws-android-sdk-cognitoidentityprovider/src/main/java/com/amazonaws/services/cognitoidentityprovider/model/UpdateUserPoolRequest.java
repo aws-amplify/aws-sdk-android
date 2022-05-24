@@ -141,8 +141,13 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
     private String smsAuthenticationMessage;
 
     /**
+     * <p/>
+     */
+    private UserAttributeUpdateSettingsType userAttributeUpdateSettings;
+
+    /**
      * <p>
-     * Can be one of the following values:
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -764,8 +769,43 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p/>
+     *
+     * @return <p/>
+     */
+    public UserAttributeUpdateSettingsType getUserAttributeUpdateSettings() {
+        return userAttributeUpdateSettings;
+    }
+
+    /**
+     * <p/>
+     *
+     * @param userAttributeUpdateSettings <p/>
+     */
+    public void setUserAttributeUpdateSettings(
+            UserAttributeUpdateSettingsType userAttributeUpdateSettings) {
+        this.userAttributeUpdateSettings = userAttributeUpdateSettings;
+    }
+
+    /**
+     * <p/>
      * <p>
-     * Can be one of the following values:
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userAttributeUpdateSettings <p/>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateUserPoolRequest withUserAttributeUpdateSettings(
+            UserAttributeUpdateSettingsType userAttributeUpdateSettings) {
+        this.userAttributeUpdateSettings = userAttributeUpdateSettings;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -796,7 +836,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @return <p>
-     *         Can be one of the following values:
+     *         Possible values include:
      *         </p>
      *         <ul>
      *         <li>
@@ -830,7 +870,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Can be one of the following values:
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -861,7 +901,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            Can be one of the following values:
+     *            Possible values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -895,7 +935,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Can be one of the following values:
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -929,7 +969,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            Can be one of the following values:
+     *            Possible values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -966,7 +1006,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Can be one of the following values:
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -997,7 +1037,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            Can be one of the following values:
+     *            Possible values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -1031,7 +1071,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Can be one of the following values:
+     * Possible values include:
      * </p>
      * <ul>
      * <li>
@@ -1065,7 +1105,7 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            Can be one of the following values:
+     *            Possible values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -1602,6 +1642,8 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
             sb.append("VerificationMessageTemplate: " + getVerificationMessageTemplate() + ",");
         if (getSmsAuthenticationMessage() != null)
             sb.append("SmsAuthenticationMessage: " + getSmsAuthenticationMessage() + ",");
+        if (getUserAttributeUpdateSettings() != null)
+            sb.append("UserAttributeUpdateSettings: " + getUserAttributeUpdateSettings() + ",");
         if (getMfaConfiguration() != null)
             sb.append("MfaConfiguration: " + getMfaConfiguration() + ",");
         if (getDeviceConfiguration() != null)
@@ -1655,6 +1697,10 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
                 * hashCode
                 + ((getSmsAuthenticationMessage() == null) ? 0 : getSmsAuthenticationMessage()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUserAttributeUpdateSettings() == null) ? 0
+                        : getUserAttributeUpdateSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getMfaConfiguration() == null) ? 0 : getMfaConfiguration().hashCode());
         hashCode = prime * hashCode
@@ -1736,6 +1782,13 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getSmsAuthenticationMessage() != null
                 && other.getSmsAuthenticationMessage().equals(this.getSmsAuthenticationMessage()) == false)
+            return false;
+        if (other.getUserAttributeUpdateSettings() == null
+                ^ this.getUserAttributeUpdateSettings() == null)
+            return false;
+        if (other.getUserAttributeUpdateSettings() != null
+                && other.getUserAttributeUpdateSettings().equals(
+                        this.getUserAttributeUpdateSettings()) == false)
             return false;
         if (other.getMfaConfiguration() == null ^ this.getMfaConfiguration() == null)
             return false;

@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Respresents the response from the server regarding the request to reset a
+ * Represents the response from the server regarding the request to reset a
  * password.
  * </p>
  */

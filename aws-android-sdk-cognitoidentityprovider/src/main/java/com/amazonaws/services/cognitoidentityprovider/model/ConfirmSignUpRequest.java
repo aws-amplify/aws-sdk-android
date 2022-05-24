@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Confirms registration of a user and handles the existing alias from a
- * previous user.
+ * Confirms registration of a new user.
  * </p>
  */
 public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Serializable {

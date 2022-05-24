@@ -50,7 +50,8 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token for the user.
+     * A valid access token that Amazon Cognito issued to the user whose MFA
+     * preference you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,14 +154,16 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token for the user.
+     * A valid access token that Amazon Cognito issued to the user whose MFA
+     * preference you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token for the user.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         MFA preference you want to set.
      *         </p>
      */
     public String getAccessToken() {
@@ -169,14 +172,16 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token for the user.
+     * A valid access token that Amazon Cognito issued to the user whose MFA
+     * preference you want to set.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token for the user.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose MFA preference you want to set.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -185,7 +190,8 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token for the user.
+     * A valid access token that Amazon Cognito issued to the user whose MFA
+     * preference you want to set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -195,7 +201,8 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token for the user.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose MFA preference you want to set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
