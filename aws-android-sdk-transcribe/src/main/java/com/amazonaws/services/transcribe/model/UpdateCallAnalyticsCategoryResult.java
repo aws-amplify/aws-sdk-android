@@ -20,24 +20,22 @@ import java.io.Serializable;
 public class UpdateCallAnalyticsCategoryResult implements Serializable {
     /**
      * <p>
-     * The attributes describing the analytics category. You can see information
-     * such as the rules that you've used to update the category and when the
-     * category was originally created.
+     * Provides you with the properties of the Call Analytics category you
+     * specified in your <code>UpdateCallAnalyticsCategory</code> request.
      * </p>
      */
     private CategoryProperties categoryProperties;
 
     /**
      * <p>
-     * The attributes describing the analytics category. You can see information
-     * such as the rules that you've used to update the category and when the
-     * category was originally created.
+     * Provides you with the properties of the Call Analytics category you
+     * specified in your <code>UpdateCallAnalyticsCategory</code> request.
      * </p>
      *
      * @return <p>
-     *         The attributes describing the analytics category. You can see
-     *         information such as the rules that you've used to update the
-     *         category and when the category was originally created.
+     *         Provides you with the properties of the Call Analytics category
+     *         you specified in your <code>UpdateCallAnalyticsCategory</code>
+     *         request.
      *         </p>
      */
     public CategoryProperties getCategoryProperties() {
@@ -46,15 +44,14 @@ public class UpdateCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * The attributes describing the analytics category. You can see information
-     * such as the rules that you've used to update the category and when the
-     * category was originally created.
+     * Provides you with the properties of the Call Analytics category you
+     * specified in your <code>UpdateCallAnalyticsCategory</code> request.
      * </p>
      *
      * @param categoryProperties <p>
-     *            The attributes describing the analytics category. You can see
-     *            information such as the rules that you've used to update the
-     *            category and when the category was originally created.
+     *            Provides you with the properties of the Call Analytics
+     *            category you specified in your
+     *            <code>UpdateCallAnalyticsCategory</code> request.
      *            </p>
      */
     public void setCategoryProperties(CategoryProperties categoryProperties) {
@@ -63,18 +60,17 @@ public class UpdateCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * The attributes describing the analytics category. You can see information
-     * such as the rules that you've used to update the category and when the
-     * category was originally created.
+     * Provides you with the properties of the Call Analytics category you
+     * specified in your <code>UpdateCallAnalyticsCategory</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param categoryProperties <p>
-     *            The attributes describing the analytics category. You can see
-     *            information such as the rules that you've used to update the
-     *            category and when the category was originally created.
+     *            Provides you with the properties of the Call Analytics
+     *            category you specified in your
+     *            <code>UpdateCallAnalyticsCategory</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

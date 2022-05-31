@@ -19,14 +19,19 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Settings for content redaction within a transcription job.
+ * Allows you to redact or flag specified personally identifiable information
+ * (PII) in your transcript. If you use <code>ContentRedaction</code>, you must
+ * also include the sub-parameters: <code>PiiEntityTypes</code>,
+ * <code>RedactionOutput</code>, and <code>RedactionType</code>.
  * </p>
  */
 public class ContentRedaction implements Serializable {
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,16 +41,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,24 +60,29 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The types of personally identifiable information (PII) you want to redact
-     * in your transcript.
+     * Specify which types of personally identifiable information (PII) you want
+     * to redact in your transcript. You can include as many types as you'd
+     * like, or you can select <code>ALL</code>.
      * </p>
      */
     private java.util.List<String> piiEntityTypes;
 
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PII
      *
      * @return <p>
-     *         Request parameter that defines the entities to be redacted. The
-     *         only accepted value is <code>PII</code>.
+     *         Specify the category of information you want to redact;
+     *         <code>PII</code> (personally identifiable information) is the
+     *         only valid value. You can use <code>PiiEntityTypes</code> to
+     *         choose which types of PII you want to redact.
      *         </p>
      * @see RedactionType
      */
@@ -82,16 +92,20 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PII
      *
      * @param redactionType <p>
-     *            Request parameter that defines the entities to be redacted.
-     *            The only accepted value is <code>PII</code>.
+     *            Specify the category of information you want to redact;
+     *            <code>PII</code> (personally identifiable information) is the
+     *            only valid value. You can use <code>PiiEntityTypes</code> to
+     *            choose which types of PII you want to redact.
      *            </p>
      * @see RedactionType
      */
@@ -101,8 +115,10 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -112,8 +128,10 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>PII
      *
      * @param redactionType <p>
-     *            Request parameter that defines the entities to be redacted.
-     *            The only accepted value is <code>PII</code>.
+     *            Specify the category of information you want to redact;
+     *            <code>PII</code> (personally identifiable information) is the
+     *            only valid value. You can use <code>PiiEntityTypes</code> to
+     *            choose which types of PII you want to redact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,16 +144,20 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PII
      *
      * @param redactionType <p>
-     *            Request parameter that defines the entities to be redacted.
-     *            The only accepted value is <code>PII</code>.
+     *            Specify the category of information you want to redact;
+     *            <code>PII</code> (personally identifiable information) is the
+     *            only valid value. You can use <code>PiiEntityTypes</code> to
+     *            choose which types of PII you want to redact.
      *            </p>
      * @see RedactionType
      */
@@ -145,8 +167,10 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter that defines the entities to be redacted. The only
-     * accepted value is <code>PII</code>.
+     * Specify the category of information you want to redact; <code>PII</code>
+     * (personally identifiable information) is the only valid value. You can
+     * use <code>PiiEntityTypes</code> to choose which types of PII you want to
+     * redact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -156,8 +180,10 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>PII
      *
      * @param redactionType <p>
-     *            Request parameter that defines the entities to be redacted.
-     *            The only accepted value is <code>PII</code>.
+     *            Specify the category of information you want to redact;
+     *            <code>PII</code> (personally identifiable information) is the
+     *            only valid value. You can use <code>PiiEntityTypes</code> to
+     *            choose which types of PII you want to redact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -170,32 +196,33 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @return <p>
-     *         The output transcript file stored in either the default S3 bucket
-     *         or in a bucket you specify.
+     *         Specify if you want only a redacted transcript, or if you want a
+     *         redacted and an unredacted transcript.
      *         </p>
      *         <p>
-     *         When you choose <code>redacted</code> Amazon Transcribe outputs
-     *         only the redacted transcript.
+     *         When you choose <code>redacted</code> Amazon Transcribe creates
+     *         only a redacted transcript.
      *         </p>
      *         <p>
      *         When you choose <code>redacted_and_unredacted</code> Amazon
-     *         Transcribe outputs both the redacted and unredacted transcripts.
+     *         Transcribe creates a redacted and an unredacted transcript (as
+     *         two separate files).
      *         </p>
      * @see RedactionOutput
      */
@@ -205,33 +232,33 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            The output transcript file stored in either the default S3
-     *            bucket or in a bucket you specify.
+     *            Specify if you want only a redacted transcript, or if you want
+     *            a redacted and an unredacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs only the redacted transcript.
+     *            creates only a redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs both the redacted and unredacted
-     *            transcripts.
+     *            Transcribe creates a redacted and an unredacted transcript (as
+     *            two separate files).
      *            </p>
      * @see RedactionOutput
      */
@@ -241,16 +268,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -260,17 +287,17 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            The output transcript file stored in either the default S3
-     *            bucket or in a bucket you specify.
+     *            Specify if you want only a redacted transcript, or if you want
+     *            a redacted and an unredacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs only the redacted transcript.
+     *            creates only a redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs both the redacted and unredacted
-     *            transcripts.
+     *            Transcribe creates a redacted and an unredacted transcript (as
+     *            two separate files).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -283,33 +310,33 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            The output transcript file stored in either the default S3
-     *            bucket or in a bucket you specify.
+     *            Specify if you want only a redacted transcript, or if you want
+     *            a redacted and an unredacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs only the redacted transcript.
+     *            creates only a redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs both the redacted and unredacted
-     *            transcripts.
+     *            Transcribe creates a redacted and an unredacted transcript (as
+     *            two separate files).
      *            </p>
      * @see RedactionOutput
      */
@@ -319,16 +346,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The output transcript file stored in either the default S3 bucket or in a
-     * bucket you specify.
+     * Specify if you want only a redacted transcript, or if you want a redacted
+     * and an unredacted transcript.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * When you choose <code>redacted</code> Amazon Transcribe creates only a
      * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs both the redacted and unredacted transcripts.
+     * creates a redacted and an unredacted transcript (as two separate files).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -338,17 +365,17 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            The output transcript file stored in either the default S3
-     *            bucket or in a bucket you specify.
+     *            Specify if you want only a redacted transcript, or if you want
+     *            a redacted and an unredacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs only the redacted transcript.
+     *            creates only a redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs both the redacted and unredacted
-     *            transcripts.
+     *            Transcribe creates a redacted and an unredacted transcript (as
+     *            two separate files).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -361,13 +388,15 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The types of personally identifiable information (PII) you want to redact
-     * in your transcript.
+     * Specify which types of personally identifiable information (PII) you want
+     * to redact in your transcript. You can include as many types as you'd
+     * like, or you can select <code>ALL</code>.
      * </p>
      *
      * @return <p>
-     *         The types of personally identifiable information (PII) you want
-     *         to redact in your transcript.
+     *         Specify which types of personally identifiable information (PII)
+     *         you want to redact in your transcript. You can include as many
+     *         types as you'd like, or you can select <code>ALL</code>.
      *         </p>
      */
     public java.util.List<String> getPiiEntityTypes() {
@@ -376,13 +405,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The types of personally identifiable information (PII) you want to redact
-     * in your transcript.
+     * Specify which types of personally identifiable information (PII) you want
+     * to redact in your transcript. You can include as many types as you'd
+     * like, or you can select <code>ALL</code>.
      * </p>
      *
      * @param piiEntityTypes <p>
-     *            The types of personally identifiable information (PII) you
-     *            want to redact in your transcript.
+     *            Specify which types of personally identifiable information
+     *            (PII) you want to redact in your transcript. You can include
+     *            as many types as you'd like, or you can select
+     *            <code>ALL</code>.
      *            </p>
      */
     public void setPiiEntityTypes(java.util.Collection<String> piiEntityTypes) {
@@ -396,16 +428,19 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The types of personally identifiable information (PII) you want to redact
-     * in your transcript.
+     * Specify which types of personally identifiable information (PII) you want
+     * to redact in your transcript. You can include as many types as you'd
+     * like, or you can select <code>ALL</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param piiEntityTypes <p>
-     *            The types of personally identifiable information (PII) you
-     *            want to redact in your transcript.
+     *            Specify which types of personally identifiable information
+     *            (PII) you want to redact in your transcript. You can include
+     *            as many types as you'd like, or you can select
+     *            <code>ALL</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -422,16 +457,19 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * The types of personally identifiable information (PII) you want to redact
-     * in your transcript.
+     * Specify which types of personally identifiable information (PII) you want
+     * to redact in your transcript. You can include as many types as you'd
+     * like, or you can select <code>ALL</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param piiEntityTypes <p>
-     *            The types of personally identifiable information (PII) you
-     *            want to redact in your transcript.
+     *            Specify which types of personally identifiable information
+     *            (PII) you want to redact in your transcript. You can include
+     *            as many types as you'd like, or you can select
+     *            <code>ALL</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,17 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates an existing vocabulary with new values. The
- * <code>UpdateVocabulary</code> operation overwrites all of the existing
- * information with the values that you provide in the request.
+ * Updates an existing custom vocabulary with new values. This operation
+ * overwrites all existing information with your new values; you cannot append
+ * new terms onto an existing vocabulary.
  * </p>
  */
 public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case sensitive. If you
-     * try to update a vocabulary with the same name as a previous vocabulary
-     * you will receive a <code>ConflictException</code> error.
+     * The name of the custom vocabulary you want to update. Vocabulary names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,10 +41,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,35 +69,41 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings containing the vocabulary entries.
+     * Use this parameter if you want to update your vocabulary by including all
+     * desired terms, as comma-separated values, within your request. The other
+     * option for updating your vocabulary is to save your entries in a text
+     * file and upload them to an Amazon S3 bucket, then specify the location of
+     * your file using the <code>VocabularyFileUri</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you include <code>Phrases</code> in your request, you cannot
+     * use <code>VocabularyFileUri</code>; you must choose one or the other.
+     * </p>
+     * <p>
+     * Each language has a character set that contains all allowed characters
+     * for that specific language. If you use unsupported characters, your
+     * vocabulary filter request fails. Refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     * >Character Sets for Custom Vocabularies</a> to get the character set for
+     * your language.
      * </p>
      */
     private java.util.List<String> phrases;
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is:
+     * The Amazon S3 location of the text file that contains your custom
+     * vocabulary. The URI must be located in the same Amazon Web Services
+     * Region as the resource you're calling.
      * </p>
      * <p>
-     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     * Here's an example URI path:
+     * <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      * </p>
      * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     * </p>
-     * <p>
-     * For more information about S3 object names, see <a href=
-     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     * </p>
-     * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     * >Custom Vocabularies</a>.
+     * Note that if you include <code>VocabularyFileUri</code> in your request,
+     * you cannot use the <code>Phrases</code> flag; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,9 +114,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case sensitive. If you
-     * try to update a vocabulary with the same name as a previous vocabulary
-     * you will receive a <code>ConflictException</code> error.
+     * The name of the custom vocabulary you want to update. Vocabulary names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -108,10 +123,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary to update. The name is case sensitive.
-     *         If you try to update a vocabulary with the same name as a
-     *         previous vocabulary you will receive a
-     *         <code>ConflictException</code> error.
+     *         The name of the custom vocabulary you want to update. Vocabulary
+     *         names are case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -120,9 +133,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case sensitive. If you
-     * try to update a vocabulary with the same name as a previous vocabulary
-     * you will receive a <code>ConflictException</code> error.
+     * The name of the custom vocabulary you want to update. Vocabulary names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,10 +142,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary to update. The name is case
-     *            sensitive. If you try to update a vocabulary with the same
-     *            name as a previous vocabulary you will receive a
-     *            <code>ConflictException</code> error.
+     *            The name of the custom vocabulary you want to update.
+     *            Vocabulary names are case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -142,9 +152,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case sensitive. If you
-     * try to update a vocabulary with the same name as a previous vocabulary
-     * you will receive a <code>ConflictException</code> error.
+     * The name of the custom vocabulary you want to update. Vocabulary names
+     * are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -155,10 +164,8 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary to update. The name is case
-     *            sensitive. If you try to update a vocabulary with the same
-     *            name as a previous vocabulary you will receive a
-     *            <code>ConflictException</code> error.
+     *            The name of the custom vocabulary you want to update.
+     *            Vocabulary names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -170,10 +177,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,10 +202,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code of the vocabulary entries. For a list of
-     *         languages and their corresponding language codes, see <a href=
+     *         The language code that represents the language of the entries in
+     *         the custom vocabulary you want to update. Each vocabulary must
+     *         contain terms in only one language.
+     *         </p>
+     *         <p>
+     *         A custom vocabulary can only be used to transcribe files in the
+     *         same language as the vocabulary. For example, if you create a
+     *         vocabulary using US English (<code>en-US</code>), you can only
+     *         apply this vocabulary to files that contain English audio.
+     *         </p>
+     *         <p>
+     *         For a list of supported languages and their associated language
+     *         codes, refer to the <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *         >Supported languages</a>.
+     *         >Supported languages</a> table.
      *         </p>
      * @see LanguageCode
      */
@@ -197,10 +226,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -211,10 +251,22 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries. For a list of
-     *            languages and their corresponding language codes, see <a href=
+     *            The language code that represents the language of the entries
+     *            in the custom vocabulary you want to update. Each vocabulary
+     *            must contain terms in only one language.
+     *            </p>
+     *            <p>
+     *            A custom vocabulary can only be used to transcribe files in
+     *            the same language as the vocabulary. For example, if you
+     *            create a vocabulary using US English (<code>en-US</code>), you
+     *            can only apply this vocabulary to files that contain English
+     *            audio.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a>.
+     *            >Supported languages</a> table.
      *            </p>
      * @see LanguageCode
      */
@@ -224,10 +276,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -241,10 +304,22 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries. For a list of
-     *            languages and their corresponding language codes, see <a href=
+     *            The language code that represents the language of the entries
+     *            in the custom vocabulary you want to update. Each vocabulary
+     *            must contain terms in only one language.
+     *            </p>
+     *            <p>
+     *            A custom vocabulary can only be used to transcribe files in
+     *            the same language as the vocabulary. For example, if you
+     *            create a vocabulary using US English (<code>en-US</code>), you
+     *            can only apply this vocabulary to files that contain English
+     *            audio.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a>.
+     *            >Supported languages</a> table.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -257,10 +332,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -271,10 +357,22 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries. For a list of
-     *            languages and their corresponding language codes, see <a href=
+     *            The language code that represents the language of the entries
+     *            in the custom vocabulary you want to update. Each vocabulary
+     *            must contain terms in only one language.
+     *            </p>
+     *            <p>
+     *            A custom vocabulary can only be used to transcribe files in
+     *            the same language as the vocabulary. For example, if you
+     *            create a vocabulary using US English (<code>en-US</code>), you
+     *            can only apply this vocabulary to files that contain English
+     *            audio.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a>.
+     *            >Supported languages</a> table.
      *            </p>
      * @see LanguageCode
      */
@@ -284,10 +382,21 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a href=
+     * The language code that represents the language of the entries in the
+     * custom vocabulary you want to update. Each vocabulary must contain terms
+     * in only one language.
+     * </p>
+     * <p>
+     * A custom vocabulary can only be used to transcribe files in the same
+     * language as the vocabulary. For example, if you create a vocabulary using
+     * US English (<code>en-US</code>), you can only apply this vocabulary to
+     * files that contain English audio.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a>.
+     * >Supported languages</a> table.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -301,10 +410,22 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries. For a list of
-     *            languages and their corresponding language codes, see <a href=
+     *            The language code that represents the language of the entries
+     *            in the custom vocabulary you want to update. Each vocabulary
+     *            must contain terms in only one language.
+     *            </p>
+     *            <p>
+     *            A custom vocabulary can only be used to transcribe files in
+     *            the same language as the vocabulary. For example, if you
+     *            create a vocabulary using US English (<code>en-US</code>), you
+     *            can only apply this vocabulary to files that contain English
+     *            audio.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a>.
+     *            >Supported languages</a> table.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -317,11 +438,46 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings containing the vocabulary entries.
+     * Use this parameter if you want to update your vocabulary by including all
+     * desired terms, as comma-separated values, within your request. The other
+     * option for updating your vocabulary is to save your entries in a text
+     * file and upload them to an Amazon S3 bucket, then specify the location of
+     * your file using the <code>VocabularyFileUri</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you include <code>Phrases</code> in your request, you cannot
+     * use <code>VocabularyFileUri</code>; you must choose one or the other.
+     * </p>
+     * <p>
+     * Each language has a character set that contains all allowed characters
+     * for that specific language. If you use unsupported characters, your
+     * vocabulary filter request fails. Refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     * >Character Sets for Custom Vocabularies</a> to get the character set for
+     * your language.
      * </p>
      *
      * @return <p>
-     *         An array of strings containing the vocabulary entries.
+     *         Use this parameter if you want to update your vocabulary by
+     *         including all desired terms, as comma-separated values, within
+     *         your request. The other option for updating your vocabulary is to
+     *         save your entries in a text file and upload them to an Amazon S3
+     *         bucket, then specify the location of your file using the
+     *         <code>VocabularyFileUri</code> parameter.
+     *         </p>
+     *         <p>
+     *         Note that if you include <code>Phrases</code> in your request,
+     *         you cannot use <code>VocabularyFileUri</code>; you must choose
+     *         one or the other.
+     *         </p>
+     *         <p>
+     *         Each language has a character set that contains all allowed
+     *         characters for that specific language. If you use unsupported
+     *         characters, your vocabulary filter request fails. Refer to <a
+     *         href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     *         >Character Sets for Custom Vocabularies</a> to get the character
+     *         set for your language.
      *         </p>
      */
     public java.util.List<String> getPhrases() {
@@ -330,11 +486,46 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings containing the vocabulary entries.
+     * Use this parameter if you want to update your vocabulary by including all
+     * desired terms, as comma-separated values, within your request. The other
+     * option for updating your vocabulary is to save your entries in a text
+     * file and upload them to an Amazon S3 bucket, then specify the location of
+     * your file using the <code>VocabularyFileUri</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you include <code>Phrases</code> in your request, you cannot
+     * use <code>VocabularyFileUri</code>; you must choose one or the other.
+     * </p>
+     * <p>
+     * Each language has a character set that contains all allowed characters
+     * for that specific language. If you use unsupported characters, your
+     * vocabulary filter request fails. Refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     * >Character Sets for Custom Vocabularies</a> to get the character set for
+     * your language.
      * </p>
      *
      * @param phrases <p>
-     *            An array of strings containing the vocabulary entries.
+     *            Use this parameter if you want to update your vocabulary by
+     *            including all desired terms, as comma-separated values, within
+     *            your request. The other option for updating your vocabulary is
+     *            to save your entries in a text file and upload them to an
+     *            Amazon S3 bucket, then specify the location of your file using
+     *            the <code>VocabularyFileUri</code> parameter.
+     *            </p>
+     *            <p>
+     *            Note that if you include <code>Phrases</code> in your request,
+     *            you cannot use <code>VocabularyFileUri</code>; you must choose
+     *            one or the other.
+     *            </p>
+     *            <p>
+     *            Each language has a character set that contains all allowed
+     *            characters for that specific language. If you use unsupported
+     *            characters, your vocabulary filter request fails. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     *            >Character Sets for Custom Vocabularies</a> to get the
+     *            character set for your language.
      *            </p>
      */
     public void setPhrases(java.util.Collection<String> phrases) {
@@ -348,14 +539,49 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings containing the vocabulary entries.
+     * Use this parameter if you want to update your vocabulary by including all
+     * desired terms, as comma-separated values, within your request. The other
+     * option for updating your vocabulary is to save your entries in a text
+     * file and upload them to an Amazon S3 bucket, then specify the location of
+     * your file using the <code>VocabularyFileUri</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you include <code>Phrases</code> in your request, you cannot
+     * use <code>VocabularyFileUri</code>; you must choose one or the other.
+     * </p>
+     * <p>
+     * Each language has a character set that contains all allowed characters
+     * for that specific language. If you use unsupported characters, your
+     * vocabulary filter request fails. Refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     * >Character Sets for Custom Vocabularies</a> to get the character set for
+     * your language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param phrases <p>
-     *            An array of strings containing the vocabulary entries.
+     *            Use this parameter if you want to update your vocabulary by
+     *            including all desired terms, as comma-separated values, within
+     *            your request. The other option for updating your vocabulary is
+     *            to save your entries in a text file and upload them to an
+     *            Amazon S3 bucket, then specify the location of your file using
+     *            the <code>VocabularyFileUri</code> parameter.
+     *            </p>
+     *            <p>
+     *            Note that if you include <code>Phrases</code> in your request,
+     *            you cannot use <code>VocabularyFileUri</code>; you must choose
+     *            one or the other.
+     *            </p>
+     *            <p>
+     *            Each language has a character set that contains all allowed
+     *            characters for that specific language. If you use unsupported
+     *            characters, your vocabulary filter request fails. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     *            >Character Sets for Custom Vocabularies</a> to get the
+     *            character set for your language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -372,14 +598,49 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings containing the vocabulary entries.
+     * Use this parameter if you want to update your vocabulary by including all
+     * desired terms, as comma-separated values, within your request. The other
+     * option for updating your vocabulary is to save your entries in a text
+     * file and upload them to an Amazon S3 bucket, then specify the location of
+     * your file using the <code>VocabularyFileUri</code> parameter.
+     * </p>
+     * <p>
+     * Note that if you include <code>Phrases</code> in your request, you cannot
+     * use <code>VocabularyFileUri</code>; you must choose one or the other.
+     * </p>
+     * <p>
+     * Each language has a character set that contains all allowed characters
+     * for that specific language. If you use unsupported characters, your
+     * vocabulary filter request fails. Refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     * >Character Sets for Custom Vocabularies</a> to get the character set for
+     * your language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param phrases <p>
-     *            An array of strings containing the vocabulary entries.
+     *            Use this parameter if you want to update your vocabulary by
+     *            including all desired terms, as comma-separated values, within
+     *            your request. The other option for updating your vocabulary is
+     *            to save your entries in a text file and upload them to an
+     *            Amazon S3 bucket, then specify the location of your file using
+     *            the <code>VocabularyFileUri</code> parameter.
+     *            </p>
+     *            <p>
+     *            Note that if you include <code>Phrases</code> in your request,
+     *            you cannot use <code>VocabularyFileUri</code>; you must choose
+     *            one or the other.
+     *            </p>
+     *            <p>
+     *            Each language has a character set that contains all allowed
+     *            characters for that specific language. If you use unsupported
+     *            characters, your vocabulary filter request fails. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
+     *            >Character Sets for Custom Vocabularies</a> to get the
+     *            character set for your language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -391,28 +652,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is:
+     * The Amazon S3 location of the text file that contains your custom
+     * vocabulary. The URI must be located in the same Amazon Web Services
+     * Region as the resource you're calling.
      * </p>
      * <p>
-     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     * Here's an example URI path:
+     * <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      * </p>
      * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     * </p>
-     * <p>
-     * For more information about S3 object names, see <a href=
-     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     * </p>
-     * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     * >Custom Vocabularies</a>.
+     * Note that if you include <code>VocabularyFileUri</code> in your request,
+     * you cannot use the <code>Phrases</code> flag; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -420,28 +671,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 location of the text file that contains the definition of
-     *         the custom vocabulary. The URI must be in the same region as the
-     *         API endpoint that you are calling. The general form is:
+     *         The Amazon S3 location of the text file that contains your custom
+     *         vocabulary. The URI must be located in the same Amazon Web
+     *         Services Region as the resource you're calling.
      *         </p>
      *         <p>
-     *         <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     *         Here's an example URI path:
+     *         <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      *         </p>
      *         <p>
-     *         For example:
-     *         </p>
-     *         <p>
-     *         <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     *         </p>
-     *         <p>
-     *         For more information about S3 object names, see <a href=
-     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     *         </p>
-     *         <p>
-     *         For more information about custom vocabularies, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     *         >Custom Vocabularies</a>.
+     *         Note that if you include <code>VocabularyFileUri</code> in your
+     *         request, you cannot use the <code>Phrases</code> flag; you must
+     *         choose one or the other.
      *         </p>
      */
     public String getVocabularyFileUri() {
@@ -450,28 +691,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is:
+     * The Amazon S3 location of the text file that contains your custom
+     * vocabulary. The URI must be located in the same Amazon Web Services
+     * Region as the resource you're calling.
      * </p>
      * <p>
-     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     * Here's an example URI path:
+     * <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      * </p>
      * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     * </p>
-     * <p>
-     * For more information about S3 object names, see <a href=
-     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     * </p>
-     * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     * >Custom Vocabularies</a>.
+     * Note that if you include <code>VocabularyFileUri</code> in your request,
+     * you cannot use the <code>Phrases</code> flag; you must choose one or the
+     * other.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -479,28 +710,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The S3 location of the text file that contains the definition
-     *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is:
+     *            The Amazon S3 location of the text file that contains your
+     *            custom vocabulary. The URI must be located in the same Amazon
+     *            Web Services Region as the resource you're calling.
      *            </p>
      *            <p>
-     *            <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     *            Here's an example URI path:
+     *            <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      *            </p>
      *            <p>
-     *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     *            </p>
-     *            <p>
-     *            For more information about S3 object names, see <a href=
-     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     *            </p>
-     *            <p>
-     *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     *            >Custom Vocabularies</a>.
+     *            Note that if you include <code>VocabularyFileUri</code> in
+     *            your request, you cannot use the <code>Phrases</code> flag;
+     *            you must choose one or the other.
      *            </p>
      */
     public void setVocabularyFileUri(String vocabularyFileUri) {
@@ -509,28 +730,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is:
+     * The Amazon S3 location of the text file that contains your custom
+     * vocabulary. The URI must be located in the same Amazon Web Services
+     * Region as the resource you're calling.
      * </p>
      * <p>
-     * <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     * Here's an example URI path:
+     * <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      * </p>
      * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     * </p>
-     * <p>
-     * For more information about S3 object names, see <a href=
-     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     * </p>
-     * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     * >Custom Vocabularies</a>.
+     * Note that if you include <code>VocabularyFileUri</code> in your request,
+     * you cannot use the <code>Phrases</code> flag; you must choose one or the
+     * other.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -541,28 +752,18 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The S3 location of the text file that contains the definition
-     *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is:
+     *            The Amazon S3 location of the text file that contains your
+     *            custom vocabulary. The URI must be located in the same Amazon
+     *            Web Services Region as the resource you're calling.
      *            </p>
      *            <p>
-     *            <code>https://s3.aws-region.amazonaws.com/bucket-name/keyprefix/objectkey</code>
+     *            Here's an example URI path:
+     *            <code>s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt</code>
      *            </p>
      *            <p>
-     *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/DOC-EXAMPLE-BUCKET/vocab.txt</code>
-     *            </p>
-     *            <p>
-     *            For more information about S3 object names, see <a href=
-     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
-     *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
-     *            </p>
-     *            <p>
-     *            For more information about custom vocabularies, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
-     *            >Custom Vocabularies</a>.
+     *            Note that if you include <code>VocabularyFileUri</code> in
+     *            your request, you cannot use the <code>Phrases</code> flag;
+     *            you must choose one or the other.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -20,7 +20,9 @@ import java.io.Serializable;
 public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -30,13 +32,12 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalVocabularies</code> operation returns a page of
-     * vocabularies at a time. You set the maximum number of vocabularies to
-     * return on a page with the <code>MaxResults</code> parameter. If there are
-     * more jobs in the list will fit on a page, Amazon Transcribe Medical
-     * returns the <code>NextPage</code> token. To return the next page of
-     * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,22 +48,26 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects that describe the vocabularies that match your search
-     * criteria.
+     * Provides information about the custom medical vocabularies that match the
+     * criteria specified in your request.
      * </p>
      */
     private java.util.List<VocabularyInfo> vocabularies;
 
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
-     *         The requested vocabulary state.
+     *         Lists all custom medical vocabularies that have the status
+     *         specified in your request. Vocabularies are ordered by creation
+     *         date, with the newest vocabulary first.
      *         </p>
      * @see VocabularyState
      */
@@ -72,14 +77,18 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
-     *            The requested vocabulary state.
+     *            Lists all custom medical vocabularies that have the status
+     *            specified in your request. Vocabularies are ordered by
+     *            creation date, with the newest vocabulary first.
      *            </p>
      * @see VocabularyState
      */
@@ -89,7 +98,9 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,7 +110,9 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
-     *            The requested vocabulary state.
+     *            Lists all custom medical vocabularies that have the status
+     *            specified in your request. Vocabularies are ordered by
+     *            creation date, with the newest vocabulary first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -112,14 +125,18 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
-     *            The requested vocabulary state.
+     *            Lists all custom medical vocabularies that have the status
+     *            specified in your request. Vocabularies are ordered by
+     *            creation date, with the newest vocabulary first.
      *            </p>
      * @see VocabularyState
      */
@@ -129,7 +146,9 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The requested vocabulary state.
+     * Lists all custom medical vocabularies that have the status specified in
+     * your request. Vocabularies are ordered by creation date, with the newest
+     * vocabulary first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +158,9 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
-     *            The requested vocabulary state.
+     *            Lists all custom medical vocabularies that have the status
+     *            specified in your request. Vocabularies are ordered by
+     *            creation date, with the newest vocabulary first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -152,13 +173,12 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalVocabularies</code> operation returns a page of
-     * vocabularies at a time. You set the maximum number of vocabularies to
-     * return on a page with the <code>MaxResults</code> parameter. If there are
-     * more jobs in the list will fit on a page, Amazon Transcribe Medical
-     * returns the <code>NextPage</code> token. To return the next page of
-     * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -166,14 +186,13 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The <code>ListMedicalVocabularies</code> operation returns a page
-     *         of vocabularies at a time. You set the maximum number of
-     *         vocabularies to return on a page with the <code>MaxResults</code>
-     *         parameter. If there are more jobs in the list will fit on a page,
-     *         Amazon Transcribe Medical returns the <code>NextPage</code>
-     *         token. To return the next page of vocabularies, include the token
-     *         in the next request to the <code>ListMedicalVocabularies</code>
-     *         operation.
+     *         If <code>NextToken</code> is present in your response, it
+     *         indicates that not all results are displayed. To view the next
+     *         set of results, copy the string associated with the
+     *         <code>NextToken</code> parameter in your results output, then run
+     *         your request again including <code>NextToken</code> with the
+     *         value of the copied string. Repeat as needed to view all your
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -182,13 +201,12 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalVocabularies</code> operation returns a page of
-     * vocabularies at a time. You set the maximum number of vocabularies to
-     * return on a page with the <code>MaxResults</code> parameter. If there are
-     * more jobs in the list will fit on a page, Amazon Transcribe Medical
-     * returns the <code>NextPage</code> token. To return the next page of
-     * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,14 +214,13 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListMedicalVocabularies</code> operation returns a
-     *            page of vocabularies at a time. You set the maximum number of
-     *            vocabularies to return on a page with the
-     *            <code>MaxResults</code> parameter. If there are more jobs in
-     *            the list will fit on a page, Amazon Transcribe Medical returns
-     *            the <code>NextPage</code> token. To return the next page of
-     *            vocabularies, include the token in the next request to the
-     *            <code>ListMedicalVocabularies</code> operation.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -212,13 +229,12 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalVocabularies</code> operation returns a page of
-     * vocabularies at a time. You set the maximum number of vocabularies to
-     * return on a page with the <code>MaxResults</code> parameter. If there are
-     * more jobs in the list will fit on a page, Amazon Transcribe Medical
-     * returns the <code>NextPage</code> token. To return the next page of
-     * vocabularies, include the token in the next request to the
-     * <code>ListMedicalVocabularies</code> operation.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -229,14 +245,13 @@ public class ListMedicalVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListMedicalVocabularies</code> operation returns a
-     *            page of vocabularies at a time. You set the maximum number of
-     *            vocabularies to return on a page with the
-     *            <code>MaxResults</code> parameter. If there are more jobs in
-     *            the list will fit on a page, Amazon Transcribe Medical returns
-     *            the <code>NextPage</code> token. To return the next page of
-     *            vocabularies, include the token in the next request to the
-     *            <code>ListMedicalVocabularies</code> operation.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -248,13 +263,13 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects that describe the vocabularies that match your search
-     * criteria.
+     * Provides information about the custom medical vocabularies that match the
+     * criteria specified in your request.
      * </p>
      *
      * @return <p>
-     *         A list of objects that describe the vocabularies that match your
-     *         search criteria.
+     *         Provides information about the custom medical vocabularies that
+     *         match the criteria specified in your request.
      *         </p>
      */
     public java.util.List<VocabularyInfo> getVocabularies() {
@@ -263,13 +278,13 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects that describe the vocabularies that match your search
-     * criteria.
+     * Provides information about the custom medical vocabularies that match the
+     * criteria specified in your request.
      * </p>
      *
      * @param vocabularies <p>
-     *            A list of objects that describe the vocabularies that match
-     *            your search criteria.
+     *            Provides information about the custom medical vocabularies
+     *            that match the criteria specified in your request.
      *            </p>
      */
     public void setVocabularies(java.util.Collection<VocabularyInfo> vocabularies) {
@@ -283,16 +298,16 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects that describe the vocabularies that match your search
-     * criteria.
+     * Provides information about the custom medical vocabularies that match the
+     * criteria specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param vocabularies <p>
-     *            A list of objects that describe the vocabularies that match
-     *            your search criteria.
+     *            Provides information about the custom medical vocabularies
+     *            that match the criteria specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -309,16 +324,16 @@ public class ListMedicalVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects that describe the vocabularies that match your search
-     * criteria.
+     * Provides information about the custom medical vocabularies that match the
+     * criteria specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param vocabularies <p>
-     *            A list of objects that describe the vocabularies that match
-     *            your search criteria.
+     *            Provides information about the custom medical vocabularies
+     *            that match the criteria specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

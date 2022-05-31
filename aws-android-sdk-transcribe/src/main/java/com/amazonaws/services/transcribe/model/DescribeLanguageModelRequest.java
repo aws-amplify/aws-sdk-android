@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides information about a specific custom language model in your Amazon
- * Web Services account.
+ * Provides information about the specified custom language model.
  * </p>
  * <p>
  * This operation also shows if the base language model you used to create your
@@ -32,14 +31,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * If you tried to create a new custom language model and the request wasn't
- * successful, you can use this operation to help identify the reason.
+ * successful, you can use <code>DescribeLanguageModel</code> to help identify
+ * the reason for this failure.
+ * </p>
+ * <p>
+ * To get a list of your custom language models, use the operation.
  * </p>
  */
 public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the custom language model you want described. Model names are
-     * case-sensitive.
+     * The name of the custom language model you want information about. Model
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,8 +53,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you want described. Model names are
-     * case-sensitive.
+     * The name of the custom language model you want information about. Model
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,8 +62,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the custom language model you want described. Model
-     *         names are case-sensitive.
+     *         The name of the custom language model you want information about.
+     *         Model names are case sensitive.
      *         </p>
      */
     public String getModelName() {
@@ -69,8 +72,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you want described. Model names are
-     * case-sensitive.
+     * The name of the custom language model you want information about. Model
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,8 +81,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the custom language model you want described.
-     *            Model names are case-sensitive.
+     *            The name of the custom language model you want information
+     *            about. Model names are case sensitive.
      *            </p>
      */
     public void setModelName(String modelName) {
@@ -88,8 +91,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the custom language model you want described. Model names are
-     * case-sensitive.
+     * The name of the custom language model you want information about. Model
+     * names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,8 +103,8 @@ public class DescribeLanguageModelRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the custom language model you want described.
-     *            Model names are case-sensitive.
+     *            The name of the custom language model you want information
+     *            about. Model names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

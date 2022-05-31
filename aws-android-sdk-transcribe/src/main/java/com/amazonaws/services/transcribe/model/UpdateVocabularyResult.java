@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary that was updated.
+     * The name of the updated custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +31,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,17 +45,22 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was updated.
+     * The date and time the specified vocabulary was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      */
     private java.util.Date lastModifiedTime;
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +70,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary that was updated.
+     * The name of the updated custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,7 +78,7 @@ public class UpdateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary that was updated.
+     *         The name of the updated custom vocabulary.
      *         </p>
      */
     public String getVocabularyName() {
@@ -82,7 +87,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary that was updated.
+     * The name of the updated custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,7 +95,7 @@ public class UpdateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that was updated.
+     *            The name of the updated custom vocabulary.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -99,7 +104,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary that was updated.
+     * The name of the updated custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,7 +115,7 @@ public class UpdateVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that was updated.
+     *            The name of the updated custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +127,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +138,7 @@ public class UpdateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code of the vocabulary entries.
+     *         The language code you selected for your custom vocabulary.
      *         </p>
      * @see LanguageCode
      */
@@ -143,7 +148,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,7 +159,7 @@ public class UpdateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your custom vocabulary.
      *            </p>
      * @see LanguageCode
      */
@@ -164,7 +169,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -178,7 +183,7 @@ public class UpdateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -191,7 +196,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -202,7 +207,7 @@ public class UpdateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your custom vocabulary.
      *            </p>
      * @see LanguageCode
      */
@@ -212,7 +217,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code you selected for your custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -226,7 +231,7 @@ public class UpdateVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code you selected for your custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -239,11 +244,23 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was updated.
+     * The date and time the specified vocabulary was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         The date and time that the vocabulary was updated.
+     *         The date and time the specified vocabulary was last updated.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM
+     *         UTC-7 on May 4, 2022.
      *         </p>
      */
     public java.util.Date getLastModifiedTime() {
@@ -252,11 +269,23 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was updated.
+     * The date and time the specified vocabulary was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was updated.
+     *            The date and time the specified vocabulary was last updated.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      */
     public void setLastModifiedTime(java.util.Date lastModifiedTime) {
@@ -265,14 +294,26 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was updated.
+     * The date and time the specified vocabulary was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was updated.
+     *            The date and time the specified vocabulary was last updated.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,19 +325,17 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
-     *         The processing state of the vocabulary. When the
-     *         <code>VocabularyState</code> field contains <code>READY</code>
-     *         the vocabulary is ready to be used in a
+     *         The processing state of your custom vocabulary. If the state is
+     *         <code>READY</code>, you can use the vocabulary in a
      *         <code>StartTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
@@ -307,19 +346,17 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your custom vocabulary. If the state
+     *            is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -330,10 +367,9 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -343,9 +379,8 @@ public class UpdateVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your custom vocabulary. If the state
+     *            is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -359,19 +394,17 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your custom vocabulary. If the state
+     *            is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -382,10 +415,9 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. When the
-     * <code>VocabularyState</code> field contains <code>READY</code> the
-     * vocabulary is ready to be used in a <code>StartTranscriptionJob</code>
-     * request.
+     * The processing state of your custom vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -395,9 +427,8 @@ public class UpdateVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. When the
-     *            <code>VocabularyState</code> field contains <code>READY</code>
-     *            the vocabulary is ready to be used in a
+     *            The processing state of your custom vocabulary. If the state
+     *            is <code>READY</code>, you can use the vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be

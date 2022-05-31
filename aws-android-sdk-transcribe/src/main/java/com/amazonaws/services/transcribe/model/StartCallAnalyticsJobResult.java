@@ -20,19 +20,21 @@ import java.io.Serializable;
 public class StartCallAnalyticsJobResult implements Serializable {
     /**
      * <p>
-     * An object containing the details of the asynchronous call analytics job.
+     * Provides detailed information about the current Call Analytics job,
+     * including job status and, if applicable, failure reason.
      * </p>
      */
     private CallAnalyticsJob callAnalyticsJob;
 
     /**
      * <p>
-     * An object containing the details of the asynchronous call analytics job.
+     * Provides detailed information about the current Call Analytics job,
+     * including job status and, if applicable, failure reason.
      * </p>
      *
      * @return <p>
-     *         An object containing the details of the asynchronous call
-     *         analytics job.
+     *         Provides detailed information about the current Call Analytics
+     *         job, including job status and, if applicable, failure reason.
      *         </p>
      */
     public CallAnalyticsJob getCallAnalyticsJob() {
@@ -41,12 +43,13 @@ public class StartCallAnalyticsJobResult implements Serializable {
 
     /**
      * <p>
-     * An object containing the details of the asynchronous call analytics job.
+     * Provides detailed information about the current Call Analytics job,
+     * including job status and, if applicable, failure reason.
      * </p>
      *
      * @param callAnalyticsJob <p>
-     *            An object containing the details of the asynchronous call
-     *            analytics job.
+     *            Provides detailed information about the current Call Analytics
+     *            job, including job status and, if applicable, failure reason.
      *            </p>
      */
     public void setCallAnalyticsJob(CallAnalyticsJob callAnalyticsJob) {
@@ -55,15 +58,16 @@ public class StartCallAnalyticsJobResult implements Serializable {
 
     /**
      * <p>
-     * An object containing the details of the asynchronous call analytics job.
+     * Provides detailed information about the current Call Analytics job,
+     * including job status and, if applicable, failure reason.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param callAnalyticsJob <p>
-     *            An object containing the details of the asynchronous call
-     *            analytics job.
+     *            Provides detailed information about the current Call Analytics
+     *            job, including job status and, if applicable, failure reason.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
