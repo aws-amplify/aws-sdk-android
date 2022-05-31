@@ -119,6 +119,13 @@ public class UpdateUserPoolRequestMarshaller implements
                 jsonWriter.name("SmsAuthenticationMessage");
                 jsonWriter.value(smsAuthenticationMessage);
             }
+            if (updateUserPoolRequest.getUserAttributeUpdateSettings() != null) {
+                UserAttributeUpdateSettingsType userAttributeUpdateSettings = updateUserPoolRequest
+                        .getUserAttributeUpdateSettings();
+                jsonWriter.name("UserAttributeUpdateSettings");
+                UserAttributeUpdateSettingsTypeJsonMarshaller.getInstance().marshall(
+                        userAttributeUpdateSettings, jsonWriter);
+            }
             if (updateUserPoolRequest.getMfaConfiguration() != null) {
                 String mfaConfiguration = updateUserPoolRequest.getMfaConfiguration();
                 jsonWriter.name("MfaConfiguration");

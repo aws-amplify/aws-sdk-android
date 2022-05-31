@@ -126,6 +126,11 @@ class UserPoolClientTypeJsonUnmarshaller implements
             } else if (name.equals("EnableTokenRevocation")) {
                 userPoolClientType.setEnableTokenRevocation(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EnablePropagateAdditionalUserContextData")) {
+                userPoolClientType
+                        .setEnablePropagateAdditionalUserContextData(BooleanJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

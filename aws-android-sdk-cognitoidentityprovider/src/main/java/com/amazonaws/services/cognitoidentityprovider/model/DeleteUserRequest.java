@@ -27,7 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteUserRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token from a request to delete a user.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * profile you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,14 +38,16 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The access token from a request to delete a user.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * profile you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token from a request to delete a user.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         user profile you want to delete.
      *         </p>
      */
     public String getAccessToken() {
@@ -53,14 +56,16 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The access token from a request to delete a user.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * profile you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token from a request to delete a user.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose user profile you want to delete.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -69,7 +74,8 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The access token from a request to delete a user.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * profile you want to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -79,7 +85,8 @@ public class DeleteUserRequest extends AmazonWebServiceRequest implements Serial
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token from a request to delete a user.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose user profile you want to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

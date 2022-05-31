@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class DescribeIdentityProviderResult implements Serializable {
     /**
      * <p>
-     * The identity provider that was deleted.
+     * The IdP that was deleted.
      * </p>
      */
     private IdentityProviderType identityProvider;
 
     /**
      * <p>
-     * The identity provider that was deleted.
+     * The IdP that was deleted.
      * </p>
      *
      * @return <p>
-     *         The identity provider that was deleted.
+     *         The IdP that was deleted.
      *         </p>
      */
     public IdentityProviderType getIdentityProvider() {
@@ -40,11 +40,11 @@ public class DescribeIdentityProviderResult implements Serializable {
 
     /**
      * <p>
-     * The identity provider that was deleted.
+     * The IdP that was deleted.
      * </p>
      *
      * @param identityProvider <p>
-     *            The identity provider that was deleted.
+     *            The IdP that was deleted.
      *            </p>
      */
     public void setIdentityProvider(IdentityProviderType identityProvider) {
@@ -53,14 +53,14 @@ public class DescribeIdentityProviderResult implements Serializable {
 
     /**
      * <p>
-     * The identity provider that was deleted.
+     * The IdP that was deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identityProvider <p>
-     *            The identity provider that was deleted.
+     *            The IdP that was deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
