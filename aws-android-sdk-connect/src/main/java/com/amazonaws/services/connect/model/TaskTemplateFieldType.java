@@ -19,20 +19,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Reference Type
+ * Task Template Field Type
  */
-public enum ReferenceType {
+public enum TaskTemplateFieldType {
 
+    NAME("NAME"),
+    DESCRIPTION("DESCRIPTION"),
+    SCHEDULED_TIME("SCHEDULED_TIME"),
+    QUICK_CONNECT("QUICK_CONNECT"),
     URL("URL"),
-    ATTACHMENT("ATTACHMENT"),
     NUMBER("NUMBER"),
-    STRING("STRING"),
-    DATE("DATE"),
+    TEXT("TEXT"),
+    TEXT_AREA("TEXT_AREA"),
+    DATE_TIME("DATE_TIME"),
+    BOOLEAN("BOOLEAN"),
+    SINGLE_SELECT("SINGLE_SELECT"),
     EMAIL("EMAIL");
 
     private String value;
 
-    private ReferenceType(String value) {
+    private TaskTemplateFieldType(String value) {
         this.value = value;
     }
 
@@ -41,14 +47,20 @@ public enum ReferenceType {
         return value;
     }
 
-    private static final Map<String, ReferenceType> enumMap;
+    private static final Map<String, TaskTemplateFieldType> enumMap;
     static {
-        enumMap = new HashMap<String, ReferenceType>();
+        enumMap = new HashMap<String, TaskTemplateFieldType>();
+        enumMap.put("NAME", NAME);
+        enumMap.put("DESCRIPTION", DESCRIPTION);
+        enumMap.put("SCHEDULED_TIME", SCHEDULED_TIME);
+        enumMap.put("QUICK_CONNECT", QUICK_CONNECT);
         enumMap.put("URL", URL);
-        enumMap.put("ATTACHMENT", ATTACHMENT);
         enumMap.put("NUMBER", NUMBER);
-        enumMap.put("STRING", STRING);
-        enumMap.put("DATE", DATE);
+        enumMap.put("TEXT", TEXT);
+        enumMap.put("TEXT_AREA", TEXT_AREA);
+        enumMap.put("DATE_TIME", DATE_TIME);
+        enumMap.put("BOOLEAN", BOOLEAN);
+        enumMap.put("SINGLE_SELECT", SINGLE_SELECT);
         enumMap.put("EMAIL", EMAIL);
     }
 
@@ -56,9 +68,9 @@ public enum ReferenceType {
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ReferenceType corresponding to the value
+     * @return TaskTemplateFieldType corresponding to the value
      */
-    public static ReferenceType fromValue(String value) {
+    public static TaskTemplateFieldType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

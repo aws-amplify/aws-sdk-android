@@ -20,13 +20,13 @@ import java.io.Serializable;
 /**
  * <p>
  * Information about a reference when the <code>referenceType</code> is
- * <code>ATTACHMENT</code>. Otherwise, null.
+ * <code>NUMBER</code>. Otherwise, null.
  * </p>
  */
-public class AttachmentReference implements Serializable {
+public class NumberReference implements Serializable {
     /**
      * <p>
-     * Identifier of the attachment reference.
+     * Identifier of the number reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +36,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * The location path of the attachment reference.
+     * A valid number.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,24 +46,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     */
-    private String status;
-
-    /**
-     * <p>
-     * Identifier of the attachment reference.
+     * Identifier of the number reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @return <p>
-     *         Identifier of the attachment reference.
+     *         Identifier of the number reference.
      *         </p>
      */
     public String getName() {
@@ -72,14 +62,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Identifier of the attachment reference.
+     * Identifier of the number reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param name <p>
-     *            Identifier of the attachment reference.
+     *            Identifier of the number reference.
      *            </p>
      */
     public void setName(String name) {
@@ -88,7 +78,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Identifier of the attachment reference.
+     * Identifier of the number reference.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -98,26 +88,26 @@ public class AttachmentReference implements Serializable {
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param name <p>
-     *            Identifier of the attachment reference.
+     *            Identifier of the number reference.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public AttachmentReference withName(String name) {
+    public NumberReference withName(String name) {
         this.name = name;
         return this;
     }
 
     /**
      * <p>
-     * The location path of the attachment reference.
+     * A valid number.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
-     *         The location path of the attachment reference.
+     *         A valid number.
      *         </p>
      */
     public String getValue() {
@@ -126,14 +116,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * The location path of the attachment reference.
+     * A valid number.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            The location path of the attachment reference.
+     *            A valid number.
      *            </p>
      */
     public void setValue(String value) {
@@ -142,7 +132,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * The location path of the attachment reference.
+     * A valid number.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,110 +142,13 @@ public class AttachmentReference implements Serializable {
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            The location path of the attachment reference.
+     *            A valid number.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public AttachmentReference withValue(String value) {
+    public NumberReference withValue(String value) {
         this.value = value;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     *
-     * @return <p>
-     *         Status of the attachment reference type.
-     *         </p>
-     * @see ReferenceStatus
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     *
-     * @param status <p>
-     *            Status of the attachment reference type.
-     *            </p>
-     * @see ReferenceStatus
-     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    /**
-     * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     *
-     * @param status <p>
-     *            Status of the attachment reference type.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see ReferenceStatus
-     */
-    public AttachmentReference withStatus(String status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     *
-     * @param status <p>
-     *            Status of the attachment reference type.
-     *            </p>
-     * @see ReferenceStatus
-     */
-    public void setStatus(ReferenceStatus status) {
-        this.status = status.toString();
-    }
-
-    /**
-     * <p>
-     * Status of the attachment reference type.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>APPROVED, REJECTED
-     *
-     * @param status <p>
-     *            Status of the attachment reference type.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see ReferenceStatus
-     */
-    public AttachmentReference withStatus(ReferenceStatus status) {
-        this.status = status.toString();
         return this;
     }
 
@@ -273,9 +166,7 @@ public class AttachmentReference implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getValue() != null)
-            sb.append("Value: " + getValue() + ",");
-        if (getStatus() != null)
-            sb.append("Status: " + getStatus());
+            sb.append("Value: " + getValue());
         sb.append("}");
         return sb.toString();
     }
@@ -287,7 +178,6 @@ public class AttachmentReference implements Serializable {
 
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getValue() == null) ? 0 : getValue().hashCode());
-        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -298,9 +188,9 @@ public class AttachmentReference implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof AttachmentReference == false)
+        if (obj instanceof NumberReference == false)
             return false;
-        AttachmentReference other = (AttachmentReference) obj;
+        NumberReference other = (NumberReference) obj;
 
         if (other.getName() == null ^ this.getName() == null)
             return false;
@@ -309,10 +199,6 @@ public class AttachmentReference implements Serializable {
         if (other.getValue() == null ^ this.getValue() == null)
             return false;
         if (other.getValue() != null && other.getValue().equals(this.getValue()) == false)
-            return false;
-        if (other.getStatus() == null ^ this.getStatus() == null)
-            return false;
-        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

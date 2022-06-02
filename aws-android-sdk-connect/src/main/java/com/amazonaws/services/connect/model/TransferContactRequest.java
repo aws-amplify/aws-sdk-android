@@ -21,21 +21,47 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
+ * Transfers contacts from one agent or queue to another agent or queue at any
+ * point after a contact is created. You can transfer a contact to another queue
+ * by providing the contact flow which orchestrates the contact to the
+ * destination queue. This gives you more control over contact handling and
+ * helps you adhere to the service level agreement (SLA) guaranteed to your
+ * customers.
  * </p>
  * <p>
- * Adds or updates user-defined contact information associated with the
- * specified contact. At least one field to be updated must be present in the
- * request.
+ * Note the following requirements:
  * </p>
- * <important>
+ * <ul>
+ * <li>
  * <p>
- * You can add or update user-defined contact information for both ongoing and
- * completed contacts.
+ * Transfer is supported for only <code>TASK</code> contacts.
  * </p>
- * </important>
+ * </li>
+ * <li>
+ * <p>
+ * Do not use both <code>QueueId</code> and <code>UserId</code> in the same
+ * call.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The following contact flow types are supported: Inbound contact flow,
+ * Transfer to agent flow, and Transfer to queue flow.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The <code>TransferContact</code> API can be called only on active contacts.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A contact cannot be transferred more than 11 times.
+ * </p>
+ * </li>
+ * </ul>
  */
-public class UpdateContactRequest extends AmazonWebServiceRequest implements Serializable {
+public class TransferContactRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
@@ -49,8 +75,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the contact. This is the identifier of the contact
-     * associated with the first interaction with your contact center.
+     * The identifier of the contact in this instance of Amazon Connect
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,31 +85,41 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the contact.
+     * The identifier for the queue.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
      */
-    private String name;
+    private String queueId;
 
     /**
      * <p>
-     * The description of the contact.
+     * The identifier for the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private String description;
+    private String userId;
 
     /**
      * <p>
-     * Well-formed data on contact, shown to agents on Contact Control Panel
-     * (CCP).
+     * The identifier of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
      */
-    private java.util.Map<String, Reference> references;
+    private String contactFlowId;
+
+    /**
+     * <p>
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     */
+    private String clientToken;
 
     /**
      * <p>
@@ -141,24 +176,21 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateContactRequest withInstanceId(String instanceId) {
+    public TransferContactRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The identifier of the contact. This is the identifier of the contact
-     * associated with the first interaction with your contact center.
+     * The identifier of the contact in this instance of Amazon Connect
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact. This is the identifier of the
-     *         contact associated with the first interaction with your contact
-     *         center.
+     *         The identifier of the contact in this instance of Amazon Connect
      *         </p>
      */
     public String getContactId() {
@@ -167,17 +199,15 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the contact. This is the identifier of the contact
-     * associated with the first interaction with your contact center.
+     * The identifier of the contact in this instance of Amazon Connect
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactId <p>
-     *            The identifier of the contact. This is the identifier of the
-     *            contact associated with the first interaction with your
-     *            contact center.
+     *            The identifier of the contact in this instance of Amazon
+     *            Connect
      *            </p>
      */
     public void setContactId(String contactId) {
@@ -186,8 +216,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the contact. This is the identifier of the contact
-     * associated with the first interaction with your contact center.
+     * The identifier of the contact in this instance of Amazon Connect
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -197,212 +226,227 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactId <p>
-     *            The identifier of the contact. This is the identifier of the
-     *            contact associated with the first interaction with your
-     *            contact center.
+     *            The identifier of the contact in this instance of Amazon
+     *            Connect
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateContactRequest withContactId(String contactId) {
+    public TransferContactRequest withContactId(String contactId) {
         this.contactId = contactId;
         return this;
     }
 
     /**
      * <p>
-     * The name of the contact.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
-     *
-     * @return <p>
-     *         The name of the contact.
-     *         </p>
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>
-     * The name of the contact.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
-     *
-     * @param name <p>
-     *            The name of the contact.
-     *            </p>
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * <p>
-     * The name of the contact.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 512<br/>
-     *
-     * @param name <p>
-     *            The name of the contact.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateContactRequest withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The description of the contact.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
-     *
-     * @return <p>
-     *         The description of the contact.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * The description of the contact.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
-     *
-     * @param description <p>
-     *            The description of the contact.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * The description of the contact.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
-     *
-     * @param description <p>
-     *            The description of the contact.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateContactRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Well-formed data on contact, shown to agents on Contact Control Panel
-     * (CCP).
+     * The identifier for the queue.
      * </p>
      *
      * @return <p>
-     *         Well-formed data on contact, shown to agents on Contact Control
-     *         Panel (CCP).
+     *         The identifier for the queue.
      *         </p>
      */
-    public java.util.Map<String, Reference> getReferences() {
-        return references;
+    public String getQueueId() {
+        return queueId;
     }
 
     /**
      * <p>
-     * Well-formed data on contact, shown to agents on Contact Control Panel
-     * (CCP).
+     * The identifier for the queue.
      * </p>
      *
-     * @param references <p>
-     *            Well-formed data on contact, shown to agents on Contact
-     *            Control Panel (CCP).
+     * @param queueId <p>
+     *            The identifier for the queue.
      *            </p>
      */
-    public void setReferences(java.util.Map<String, Reference> references) {
-        this.references = references;
+    public void setQueueId(String queueId) {
+        this.queueId = queueId;
     }
 
     /**
      * <p>
-     * Well-formed data on contact, shown to agents on Contact Control Panel
-     * (CCP).
+     * The identifier for the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param references <p>
-     *            Well-formed data on contact, shown to agents on Contact
-     *            Control Panel (CCP).
+     * @param queueId <p>
+     *            The identifier for the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateContactRequest withReferences(java.util.Map<String, Reference> references) {
-        this.references = references;
+    public TransferContactRequest withQueueId(String queueId) {
+        this.queueId = queueId;
         return this;
     }
 
     /**
      * <p>
-     * Well-formed data on contact, shown to agents on Contact Control Panel
-     * (CCP).
+     * The identifier for the user.
      * </p>
      * <p>
-     * The method adds a new key-value pair into References parameter, and
-     * returns a reference to this object so that method calls can be chained
-     * together.
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param key The key of the entry to be added into References.
-     * @param value The corresponding value of the entry to be added into
-     *            References.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
+     * @return <p>
+     *         The identifier for the user.
+     *         </p>
      */
-    public UpdateContactRequest addReferencesEntry(String key, Reference value) {
-        if (null == this.references) {
-            this.references = new java.util.HashMap<String, Reference>();
-        }
-        if (this.references.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.references.put(key, value);
-        return this;
+    public String getUserId() {
+        return userId;
     }
 
     /**
-     * Removes all the entries added into References.
+     * <p>
+     * The identifier for the user.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param userId <p>
+     *            The identifier for the user.
+     *            </p>
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * <p>
+     * The identifier for the user.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param userId <p>
+     *            The identifier for the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UpdateContactRequest clearReferencesEntries() {
-        this.references = null;
+    public TransferContactRequest withUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @return <p>
+     *         The identifier of the contact flow.
+     *         </p>
+     */
+    public String getContactFlowId() {
+        return contactFlowId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @param contactFlowId <p>
+     *            The identifier of the contact flow.
+     *            </p>
+     */
+    public void setContactFlowId(String contactFlowId) {
+        this.contactFlowId = contactFlowId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @param contactFlowId <p>
+     *            The identifier of the contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TransferContactRequest withContactFlowId(String contactFlowId) {
+        this.contactFlowId = contactFlowId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @return <p>
+     *         A unique, case-sensitive identifier that you provide to ensure
+     *         the idempotency of the request.
+     *         </p>
+     */
+    public String getClientToken() {
+        return clientToken;
+    }
+
+    /**
+     * <p>
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @param clientToken <p>
+     *            A unique, case-sensitive identifier that you provide to ensure
+     *            the idempotency of the request.
+     *            </p>
+     */
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
+    }
+
+    /**
+     * <p>
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 500<br/>
+     *
+     * @param clientToken <p>
+     *            A unique, case-sensitive identifier that you provide to ensure
+     *            the idempotency of the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TransferContactRequest withClientToken(String clientToken) {
+        this.clientToken = clientToken;
         return this;
     }
 
@@ -421,12 +465,14 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
             sb.append("InstanceId: " + getInstanceId() + ",");
         if (getContactId() != null)
             sb.append("ContactId: " + getContactId() + ",");
-        if (getName() != null)
-            sb.append("Name: " + getName() + ",");
-        if (getDescription() != null)
-            sb.append("Description: " + getDescription() + ",");
-        if (getReferences() != null)
-            sb.append("References: " + getReferences());
+        if (getQueueId() != null)
+            sb.append("QueueId: " + getQueueId() + ",");
+        if (getUserId() != null)
+            sb.append("UserId: " + getUserId() + ",");
+        if (getContactFlowId() != null)
+            sb.append("ContactFlowId: " + getContactFlowId() + ",");
+        if (getClientToken() != null)
+            sb.append("ClientToken: " + getClientToken());
         sb.append("}");
         return sb.toString();
     }
@@ -438,10 +484,12 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getContactId() == null) ? 0 : getContactId().hashCode());
-        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode + ((getQueueId() == null) ? 0 : getQueueId().hashCode());
+        hashCode = prime * hashCode + ((getUserId() == null) ? 0 : getUserId().hashCode());
         hashCode = prime * hashCode
-                + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode + ((getReferences() == null) ? 0 : getReferences().hashCode());
+                + ((getContactFlowId() == null) ? 0 : getContactFlowId().hashCode());
+        hashCode = prime * hashCode
+                + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
         return hashCode;
     }
 
@@ -452,9 +500,9 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof UpdateContactRequest == false)
+        if (obj instanceof TransferContactRequest == false)
             return false;
-        UpdateContactRequest other = (UpdateContactRequest) obj;
+        TransferContactRequest other = (TransferContactRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
@@ -466,19 +514,23 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
         if (other.getContactId() != null
                 && other.getContactId().equals(this.getContactId()) == false)
             return false;
-        if (other.getName() == null ^ this.getName() == null)
+        if (other.getQueueId() == null ^ this.getQueueId() == null)
             return false;
-        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+        if (other.getQueueId() != null && other.getQueueId().equals(this.getQueueId()) == false)
             return false;
-        if (other.getDescription() == null ^ this.getDescription() == null)
+        if (other.getUserId() == null ^ this.getUserId() == null)
             return false;
-        if (other.getDescription() != null
-                && other.getDescription().equals(this.getDescription()) == false)
+        if (other.getUserId() != null && other.getUserId().equals(this.getUserId()) == false)
             return false;
-        if (other.getReferences() == null ^ this.getReferences() == null)
+        if (other.getContactFlowId() == null ^ this.getContactFlowId() == null)
             return false;
-        if (other.getReferences() != null
-                && other.getReferences().equals(this.getReferences()) == false)
+        if (other.getContactFlowId() != null
+                && other.getContactFlowId().equals(this.getContactFlowId()) == false)
+            return false;
+        if (other.getClientToken() == null ^ this.getClientToken() == null)
+            return false;
+        if (other.getClientToken() != null
+                && other.getClientToken().equals(this.getClientToken()) == false)
             return false;
         return true;
     }

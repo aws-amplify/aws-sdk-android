@@ -19,20 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Reference Type
+ * Task Template Status
  */
-public enum ReferenceType {
+public enum TaskTemplateStatus {
 
-    URL("URL"),
-    ATTACHMENT("ATTACHMENT"),
-    NUMBER("NUMBER"),
-    STRING("STRING"),
-    DATE("DATE"),
-    EMAIL("EMAIL");
+    ACTIVE("ACTIVE"),
+    INACTIVE("INACTIVE");
 
     private String value;
 
-    private ReferenceType(String value) {
+    private TaskTemplateStatus(String value) {
         this.value = value;
     }
 
@@ -41,24 +37,20 @@ public enum ReferenceType {
         return value;
     }
 
-    private static final Map<String, ReferenceType> enumMap;
+    private static final Map<String, TaskTemplateStatus> enumMap;
     static {
-        enumMap = new HashMap<String, ReferenceType>();
-        enumMap.put("URL", URL);
-        enumMap.put("ATTACHMENT", ATTACHMENT);
-        enumMap.put("NUMBER", NUMBER);
-        enumMap.put("STRING", STRING);
-        enumMap.put("DATE", DATE);
-        enumMap.put("EMAIL", EMAIL);
+        enumMap = new HashMap<String, TaskTemplateStatus>();
+        enumMap.put("ACTIVE", ACTIVE);
+        enumMap.put("INACTIVE", INACTIVE);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ReferenceType corresponding to the value
+     * @return TaskTemplateStatus corresponding to the value
      */
-    public static ReferenceType fromValue(String value) {
+    public static TaskTemplateStatus fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
