@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---chimesdkmessaging
+---connect
 ## [Release 2.47.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.47.0)
 
 ### Features
