@@ -27,7 +27,7 @@ import java.io.Serializable;
 public class ReferenceSummary implements Serializable {
     /**
      * <p>
-     * Information about the URL reference if the <code>referenceType</code> is
+     * Information about the reference when the <code>referenceType</code> is
      * <code>URL</code>. Otherwise, null.
      * </p>
      */
@@ -35,20 +35,52 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the attachment reference if the
-     * <code>referenceType</code> is <code>ATTACHMENT</code>. Otherwise, null.
+     * Information about the reference when the <code>referenceType</code> is
+     * <code>ATTACHMENT</code>. Otherwise, null.
      * </p>
      */
     private AttachmentReference attachment;
 
     /**
      * <p>
-     * Information about the URL reference if the <code>referenceType</code> is
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>STRING</code>. Otherwise, null.
+     * </p>
+     */
+    private StringReference stringValue;
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>NUMBER</code>. Otherwise, null.
+     * </p>
+     */
+    private NumberReference number;
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>DATE</code>. Otherwise, null.
+     * </p>
+     */
+    private DateReference dateValue;
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>EMAIL</code>. Otherwise, null.
+     * </p>
+     */
+    private EmailReference email;
+
+    /**
+     * <p>
+     * Information about the reference when the <code>referenceType</code> is
      * <code>URL</code>. Otherwise, null.
      * </p>
      *
      * @return <p>
-     *         Information about the URL reference if the
+     *         Information about the reference when the
      *         <code>referenceType</code> is <code>URL</code>. Otherwise, null.
      *         </p>
      */
@@ -58,12 +90,12 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the URL reference if the <code>referenceType</code> is
+     * Information about the reference when the <code>referenceType</code> is
      * <code>URL</code>. Otherwise, null.
      * </p>
      *
      * @param url <p>
-     *            Information about the URL reference if the
+     *            Information about the reference when the
      *            <code>referenceType</code> is <code>URL</code>. Otherwise,
      *            null.
      *            </p>
@@ -74,7 +106,7 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the URL reference if the <code>referenceType</code> is
+     * Information about the reference when the <code>referenceType</code> is
      * <code>URL</code>. Otherwise, null.
      * </p>
      * <p>
@@ -82,7 +114,7 @@ public class ReferenceSummary implements Serializable {
      * together.
      *
      * @param url <p>
-     *            Information about the URL reference if the
+     *            Information about the reference when the
      *            <code>referenceType</code> is <code>URL</code>. Otherwise,
      *            null.
      *            </p>
@@ -96,12 +128,12 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the attachment reference if the
-     * <code>referenceType</code> is <code>ATTACHMENT</code>. Otherwise, null.
+     * Information about the reference when the <code>referenceType</code> is
+     * <code>ATTACHMENT</code>. Otherwise, null.
      * </p>
      *
      * @return <p>
-     *         Information about the attachment reference if the
+     *         Information about the reference when the
      *         <code>referenceType</code> is <code>ATTACHMENT</code>. Otherwise,
      *         null.
      *         </p>
@@ -112,12 +144,12 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the attachment reference if the
-     * <code>referenceType</code> is <code>ATTACHMENT</code>. Otherwise, null.
+     * Information about the reference when the <code>referenceType</code> is
+     * <code>ATTACHMENT</code>. Otherwise, null.
      * </p>
      *
      * @param attachment <p>
-     *            Information about the attachment reference if the
+     *            Information about the reference when the
      *            <code>referenceType</code> is <code>ATTACHMENT</code>.
      *            Otherwise, null.
      *            </p>
@@ -128,15 +160,15 @@ public class ReferenceSummary implements Serializable {
 
     /**
      * <p>
-     * Information about the attachment reference if the
-     * <code>referenceType</code> is <code>ATTACHMENT</code>. Otherwise, null.
+     * Information about the reference when the <code>referenceType</code> is
+     * <code>ATTACHMENT</code>. Otherwise, null.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attachment <p>
-     *            Information about the attachment reference if the
+     *            Information about the reference when the
      *            <code>referenceType</code> is <code>ATTACHMENT</code>.
      *            Otherwise, null.
      *            </p>
@@ -145,6 +177,218 @@ public class ReferenceSummary implements Serializable {
      */
     public ReferenceSummary withAttachment(AttachmentReference attachment) {
         this.attachment = attachment;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>STRING</code>. Otherwise, null.
+     * </p>
+     *
+     * @return <p>
+     *         Information about a reference when the <code>referenceType</code>
+     *         is <code>STRING</code>. Otherwise, null.
+     *         </p>
+     */
+    public StringReference getString() {
+        return stringValue;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>STRING</code>. Otherwise, null.
+     * </p>
+     *
+     * @param stringValue <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>STRING</code>. Otherwise,
+     *            null.
+     *            </p>
+     */
+    public void setString(StringReference stringValue) {
+        this.stringValue = stringValue;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>STRING</code>. Otherwise, null.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param stringValue <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>STRING</code>. Otherwise,
+     *            null.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReferenceSummary withString(StringReference stringValue) {
+        this.stringValue = stringValue;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>NUMBER</code>. Otherwise, null.
+     * </p>
+     *
+     * @return <p>
+     *         Information about a reference when the <code>referenceType</code>
+     *         is <code>NUMBER</code>. Otherwise, null.
+     *         </p>
+     */
+    public NumberReference getNumber() {
+        return number;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>NUMBER</code>. Otherwise, null.
+     * </p>
+     *
+     * @param number <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>NUMBER</code>. Otherwise,
+     *            null.
+     *            </p>
+     */
+    public void setNumber(NumberReference number) {
+        this.number = number;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>NUMBER</code>. Otherwise, null.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param number <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>NUMBER</code>. Otherwise,
+     *            null.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReferenceSummary withNumber(NumberReference number) {
+        this.number = number;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>DATE</code>. Otherwise, null.
+     * </p>
+     *
+     * @return <p>
+     *         Information about a reference when the <code>referenceType</code>
+     *         is <code>DATE</code>. Otherwise, null.
+     *         </p>
+     */
+    public DateReference getDate() {
+        return dateValue;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>DATE</code>. Otherwise, null.
+     * </p>
+     *
+     * @param dateValue <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>DATE</code>. Otherwise,
+     *            null.
+     *            </p>
+     */
+    public void setDate(DateReference dateValue) {
+        this.dateValue = dateValue;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>DATE</code>. Otherwise, null.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dateValue <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>DATE</code>. Otherwise,
+     *            null.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReferenceSummary withDate(DateReference dateValue) {
+        this.dateValue = dateValue;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>EMAIL</code>. Otherwise, null.
+     * </p>
+     *
+     * @return <p>
+     *         Information about a reference when the <code>referenceType</code>
+     *         is <code>EMAIL</code>. Otherwise, null.
+     *         </p>
+     */
+    public EmailReference getEmail() {
+        return email;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>EMAIL</code>. Otherwise, null.
+     * </p>
+     *
+     * @param email <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>EMAIL</code>. Otherwise,
+     *            null.
+     *            </p>
+     */
+    public void setEmail(EmailReference email) {
+        this.email = email;
+    }
+
+    /**
+     * <p>
+     * Information about a reference when the <code>referenceType</code> is
+     * <code>EMAIL</code>. Otherwise, null.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param email <p>
+     *            Information about a reference when the
+     *            <code>referenceType</code> is <code>EMAIL</code>. Otherwise,
+     *            null.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReferenceSummary withEmail(EmailReference email) {
+        this.email = email;
         return this;
     }
 
@@ -162,7 +406,15 @@ public class ReferenceSummary implements Serializable {
         if (getUrl() != null)
             sb.append("Url: " + getUrl() + ",");
         if (getAttachment() != null)
-            sb.append("Attachment: " + getAttachment());
+            sb.append("Attachment: " + getAttachment() + ",");
+        if (getString() != null)
+            sb.append("String: " + getString() + ",");
+        if (getNumber() != null)
+            sb.append("Number: " + getNumber() + ",");
+        if (getDate() != null)
+            sb.append("Date: " + getDate() + ",");
+        if (getEmail() != null)
+            sb.append("Email: " + getEmail());
         sb.append("}");
         return sb.toString();
     }
@@ -174,6 +426,10 @@ public class ReferenceSummary implements Serializable {
 
         hashCode = prime * hashCode + ((getUrl() == null) ? 0 : getUrl().hashCode());
         hashCode = prime * hashCode + ((getAttachment() == null) ? 0 : getAttachment().hashCode());
+        hashCode = prime * hashCode + ((getString() == null) ? 0 : getString().hashCode());
+        hashCode = prime * hashCode + ((getNumber() == null) ? 0 : getNumber().hashCode());
+        hashCode = prime * hashCode + ((getDate() == null) ? 0 : getDate().hashCode());
+        hashCode = prime * hashCode + ((getEmail() == null) ? 0 : getEmail().hashCode());
         return hashCode;
     }
 
@@ -196,6 +452,22 @@ public class ReferenceSummary implements Serializable {
             return false;
         if (other.getAttachment() != null
                 && other.getAttachment().equals(this.getAttachment()) == false)
+            return false;
+        if (other.getString() == null ^ this.getString() == null)
+            return false;
+        if (other.getString() != null && other.getString().equals(this.getString()) == false)
+            return false;
+        if (other.getNumber() == null ^ this.getNumber() == null)
+            return false;
+        if (other.getNumber() != null && other.getNumber().equals(this.getNumber()) == false)
+            return false;
+        if (other.getDate() == null ^ this.getDate() == null)
+            return false;
+        if (other.getDate() != null && other.getDate().equals(this.getDate()) == false)
+            return false;
+        if (other.getEmail() == null ^ this.getEmail() == null)
+            return false;
+        if (other.getEmail() != null && other.getEmail().equals(this.getEmail()) == false)
             return false;
         return true;
     }
