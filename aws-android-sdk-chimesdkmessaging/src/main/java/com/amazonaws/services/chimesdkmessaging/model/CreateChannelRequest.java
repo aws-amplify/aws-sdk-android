@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -126,6 +126,31 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      */
     private String chimeBearer;
+
+    /**
+     * <p>
+     * The ID of the channel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[A-Za-z0-9]([A-Za-z0-9\:\-\_\.\@]{0,62}[A-Za-z0-9])?<br/>
+     */
+    private String channelId;
+
+    /**
+     * <p>
+     * The ARNs of the channel members in the request.
+     * </p>
+     */
+    private java.util.List<String> memberArns;
+
+    /**
+     * <p>
+     * The ARNs of the channel moderators in the request.
+     * </p>
+     */
+    private java.util.List<String> moderatorArns;
 
     /**
      * <p>
@@ -764,6 +789,211 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * The ID of the channel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[A-Za-z0-9]([A-Za-z0-9\:\-\_\.\@]{0,62}[A-Za-z0-9])?<br/>
+     *
+     * @return <p>
+     *         The ID of the channel in the request.
+     *         </p>
+     */
+    public String getChannelId() {
+        return channelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the channel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[A-Za-z0-9]([A-Za-z0-9\:\-\_\.\@]{0,62}[A-Za-z0-9])?<br/>
+     *
+     * @param channelId <p>
+     *            The ID of the channel in the request.
+     *            </p>
+     */
+    public void setChannelId(String channelId) {
+        this.channelId = channelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the channel in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[A-Za-z0-9]([A-Za-z0-9\:\-\_\.\@]{0,62}[A-Za-z0-9])?<br/>
+     *
+     * @param channelId <p>
+     *            The ID of the channel in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withChannelId(String channelId) {
+        this.channelId = channelId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel members in the request.
+     * </p>
+     *
+     * @return <p>
+     *         The ARNs of the channel members in the request.
+     *         </p>
+     */
+    public java.util.List<String> getMemberArns() {
+        return memberArns;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel members in the request.
+     * </p>
+     *
+     * @param memberArns <p>
+     *            The ARNs of the channel members in the request.
+     *            </p>
+     */
+    public void setMemberArns(java.util.Collection<String> memberArns) {
+        if (memberArns == null) {
+            this.memberArns = null;
+            return;
+        }
+
+        this.memberArns = new java.util.ArrayList<String>(memberArns);
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel members in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param memberArns <p>
+     *            The ARNs of the channel members in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withMemberArns(String... memberArns) {
+        if (getMemberArns() == null) {
+            this.memberArns = new java.util.ArrayList<String>(memberArns.length);
+        }
+        for (String value : memberArns) {
+            this.memberArns.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel members in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param memberArns <p>
+     *            The ARNs of the channel members in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withMemberArns(java.util.Collection<String> memberArns) {
+        setMemberArns(memberArns);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel moderators in the request.
+     * </p>
+     *
+     * @return <p>
+     *         The ARNs of the channel moderators in the request.
+     *         </p>
+     */
+    public java.util.List<String> getModeratorArns() {
+        return moderatorArns;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel moderators in the request.
+     * </p>
+     *
+     * @param moderatorArns <p>
+     *            The ARNs of the channel moderators in the request.
+     *            </p>
+     */
+    public void setModeratorArns(java.util.Collection<String> moderatorArns) {
+        if (moderatorArns == null) {
+            this.moderatorArns = null;
+            return;
+        }
+
+        this.moderatorArns = new java.util.ArrayList<String>(moderatorArns);
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel moderators in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param moderatorArns <p>
+     *            The ARNs of the channel moderators in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withModeratorArns(String... moderatorArns) {
+        if (getModeratorArns() == null) {
+            this.moderatorArns = new java.util.ArrayList<String>(moderatorArns.length);
+        }
+        for (String value : moderatorArns) {
+            this.moderatorArns.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARNs of the channel moderators in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param moderatorArns <p>
+     *            The ARNs of the channel moderators in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withModeratorArns(java.util.Collection<String> moderatorArns) {
+        setModeratorArns(moderatorArns);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -789,7 +1019,13 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
         if (getChimeBearer() != null)
-            sb.append("ChimeBearer: " + getChimeBearer());
+            sb.append("ChimeBearer: " + getChimeBearer() + ",");
+        if (getChannelId() != null)
+            sb.append("ChannelId: " + getChannelId() + ",");
+        if (getMemberArns() != null)
+            sb.append("MemberArns: " + getMemberArns() + ",");
+        if (getModeratorArns() != null)
+            sb.append("ModeratorArns: " + getModeratorArns());
         sb.append("}");
         return sb.toString();
     }
@@ -810,6 +1046,10 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
+        hashCode = prime * hashCode + ((getChannelId() == null) ? 0 : getChannelId().hashCode());
+        hashCode = prime * hashCode + ((getMemberArns() == null) ? 0 : getMemberArns().hashCode());
+        hashCode = prime * hashCode
+                + ((getModeratorArns() == null) ? 0 : getModeratorArns().hashCode());
         return hashCode;
     }
 
@@ -858,6 +1098,21 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getChimeBearer() != null
                 && other.getChimeBearer().equals(this.getChimeBearer()) == false)
+            return false;
+        if (other.getChannelId() == null ^ this.getChannelId() == null)
+            return false;
+        if (other.getChannelId() != null
+                && other.getChannelId().equals(this.getChannelId()) == false)
+            return false;
+        if (other.getMemberArns() == null ^ this.getMemberArns() == null)
+            return false;
+        if (other.getMemberArns() != null
+                && other.getMemberArns().equals(this.getMemberArns()) == false)
+            return false;
+        if (other.getModeratorArns() == null ^ this.getModeratorArns() == null)
+            return false;
+        if (other.getModeratorArns() != null
+                && other.getModeratorArns().equals(this.getModeratorArns()) == false)
             return false;
         return true;
     }
