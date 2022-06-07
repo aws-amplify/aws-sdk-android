@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A container for information about an identity provider.
+ * A container for information about an IdP.
  * </p>
  */
 public class IdentityProviderType implements Serializable {
@@ -36,7 +36,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +47,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,8 +58,8 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details. The following list describes the provider
-     * detail keys for each identity provider type.
+     * The IdP details. The following list describes the provider detail keys
+     * for each IdP type.
      * </p>
      * <ul>
      * <li>
@@ -135,6 +135,10 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * private_key
      * </p>
+     * <p>
+     * <i>You can submit a private_key when you add or update an IdP. Describe
+     * operations don't return the private key.</i>
+     * </p>
      * </li>
      * <li>
      * <p>
@@ -175,33 +179,44 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * authorize_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * The following keys are only present if Amazon Cognito didn't discover
+     * them at the <code>oidc_issuer</code> URL.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * authorize_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * token_url <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * token_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * attributes_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * attributes_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * jwks_uri
      * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
-     * attributes_url_add_attributes <i>a read-only property that is set
-     * automatically</i>
+     * Amazon Cognito sets the value of the following keys automatically. They
+     * are read-only.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * </li>
@@ -217,7 +232,7 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -228,29 +243,28 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A mapping of identity provider attributes to standard and custom user
-     * pool attributes.
+     * A mapping of IdP attributes to standard and custom user pool attributes.
      * </p>
      */
     private java.util.Map<String, String> attributeMapping;
 
     /**
      * <p>
-     * A list of identity provider identifiers.
+     * A list of IdP identifiers.
      * </p>
      */
     private java.util.List<String> idpIdentifiers;
 
     /**
      * <p>
-     * The date the identity provider was last modified.
+     * The date the IdP was last modified.
      * </p>
      */
     private java.util.Date lastModifiedDate;
 
     /**
      * <p>
-     * The date the identity provider was created.
+     * The date the IdP was created.
      * </p>
      */
     private java.util.Date creationDate;
@@ -314,7 +328,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -322,7 +336,7 @@ public class IdentityProviderType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The identity provider name.
+     *         The IdP name.
      *         </p>
      */
     public String getProviderName() {
@@ -331,7 +345,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -339,7 +353,7 @@ public class IdentityProviderType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      */
     public void setProviderName(String providerName) {
@@ -348,7 +362,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -359,7 +373,7 @@ public class IdentityProviderType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -371,7 +385,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -379,7 +393,7 @@ public class IdentityProviderType implements Serializable {
      * SignInWithApple, OIDC
      *
      * @return <p>
-     *         The identity provider type.
+     *         The IdP type.
      *         </p>
      * @see IdentityProviderTypeType
      */
@@ -389,7 +403,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -397,7 +411,7 @@ public class IdentityProviderType implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @see IdentityProviderTypeType
      */
@@ -407,7 +421,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -418,7 +432,7 @@ public class IdentityProviderType implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -431,7 +445,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -439,7 +453,7 @@ public class IdentityProviderType implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @see IdentityProviderTypeType
      */
@@ -449,7 +463,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -460,7 +474,7 @@ public class IdentityProviderType implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -473,8 +487,8 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details. The following list describes the provider
-     * detail keys for each identity provider type.
+     * The IdP details. The following list describes the provider detail keys
+     * for each IdP type.
      * </p>
      * <ul>
      * <li>
@@ -550,6 +564,10 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * private_key
      * </p>
+     * <p>
+     * <i>You can submit a private_key when you add or update an IdP. Describe
+     * operations don't return the private key.</i>
+     * </p>
      * </li>
      * <li>
      * <p>
@@ -590,33 +608,44 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * authorize_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * The following keys are only present if Amazon Cognito didn't discover
+     * them at the <code>oidc_issuer</code> URL.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * authorize_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * token_url <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * token_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * attributes_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * attributes_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * jwks_uri
      * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
-     * attributes_url_add_attributes <i>a read-only property that is set
-     * automatically</i>
+     * Amazon Cognito sets the value of the following keys automatically. They
+     * are read-only.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * </li>
@@ -632,7 +661,7 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -640,8 +669,8 @@ public class IdentityProviderType implements Serializable {
      * </ul>
      *
      * @return <p>
-     *         The identity provider details. The following list describes the
-     *         provider detail keys for each identity provider type.
+     *         The IdP details. The following list describes the provider detail
+     *         keys for each IdP type.
      *         </p>
      *         <ul>
      *         <li>
@@ -717,6 +746,10 @@ public class IdentityProviderType implements Serializable {
      *         <p>
      *         private_key
      *         </p>
+     *         <p>
+     *         <i>You can submit a private_key when you add or update an IdP.
+     *         Describe operations don't return the private key.</i>
+     *         </p>
      *         </li>
      *         <li>
      *         <p>
@@ -757,33 +790,44 @@ public class IdentityProviderType implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         authorize_url <i>if not available from discovery URL specified by
-     *         oidc_issuer key</i>
+     *         The following keys are only present if Amazon Cognito didn't
+     *         discover them at the <code>oidc_issuer</code> URL.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         authorize_url
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         token_url <i>if not available from discovery URL specified by
-     *         oidc_issuer key</i>
+     *         token_url
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         attributes_url <i>if not available from discovery URL specified
-     *         by oidc_issuer key</i>
+     *         attributes_url
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         jwks_uri <i>if not available from discovery URL specified by
-     *         oidc_issuer key</i>
+     *         jwks_uri
      *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         <li>
      *         <p>
-     *         attributes_url_add_attributes <i>a read-only property that is set
-     *         automatically</i>
+     *         Amazon Cognito sets the value of the following keys
+     *         automatically. They are read-only.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         attributes_url_add_attributes
+     *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         </ul>
      *         </li>
@@ -799,7 +843,7 @@ public class IdentityProviderType implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         IDPSignOut <i>optional</i>
+     *         IDPSignout <i>optional</i>
      *         </p>
      *         </li>
      *         </ul>
@@ -812,8 +856,8 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details. The following list describes the provider
-     * detail keys for each identity provider type.
+     * The IdP details. The following list describes the provider detail keys
+     * for each IdP type.
      * </p>
      * <ul>
      * <li>
@@ -889,6 +933,10 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * private_key
      * </p>
+     * <p>
+     * <i>You can submit a private_key when you add or update an IdP. Describe
+     * operations don't return the private key.</i>
+     * </p>
      * </li>
      * <li>
      * <p>
@@ -929,33 +977,44 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * authorize_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * The following keys are only present if Amazon Cognito didn't discover
+     * them at the <code>oidc_issuer</code> URL.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * authorize_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * token_url <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * token_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * attributes_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * attributes_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * jwks_uri
      * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
-     * attributes_url_add_attributes <i>a read-only property that is set
-     * automatically</i>
+     * Amazon Cognito sets the value of the following keys automatically. They
+     * are read-only.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * </li>
@@ -971,7 +1030,7 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -979,8 +1038,8 @@ public class IdentityProviderType implements Serializable {
      * </ul>
      *
      * @param providerDetails <p>
-     *            The identity provider details. The following list describes
-     *            the provider detail keys for each identity provider type.
+     *            The IdP details. The following list describes the provider
+     *            detail keys for each IdP type.
      *            </p>
      *            <ul>
      *            <li>
@@ -1056,6 +1115,10 @@ public class IdentityProviderType implements Serializable {
      *            <p>
      *            private_key
      *            </p>
+     *            <p>
+     *            <i>You can submit a private_key when you add or update an IdP.
+     *            Describe operations don't return the private key.</i>
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
@@ -1096,33 +1159,44 @@ public class IdentityProviderType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            authorize_url <i>if not available from discovery URL specified
-     *            by oidc_issuer key</i>
+     *            The following keys are only present if Amazon Cognito didn't
+     *            discover them at the <code>oidc_issuer</code> URL.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            authorize_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            token_url <i>if not available from discovery URL specified by
-     *            oidc_issuer key</i>
+     *            token_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            attributes_url <i>if not available from discovery URL
-     *            specified by oidc_issuer key</i>
+     *            attributes_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            jwks_uri <i>if not available from discovery URL specified by
-     *            oidc_issuer key</i>
+     *            jwks_uri
      *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
-     *            attributes_url_add_attributes <i>a read-only property that is
-     *            set automatically</i>
+     *            Amazon Cognito sets the value of the following keys
+     *            automatically. They are read-only.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            attributes_url_add_attributes
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      *            </li>
@@ -1138,7 +1212,7 @@ public class IdentityProviderType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignOut <i>optional</i>
+     *            IDPSignout <i>optional</i>
      *            </p>
      *            </li>
      *            </ul>
@@ -1151,8 +1225,8 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details. The following list describes the provider
-     * detail keys for each identity provider type.
+     * The IdP details. The following list describes the provider detail keys
+     * for each IdP type.
      * </p>
      * <ul>
      * <li>
@@ -1228,6 +1302,10 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * private_key
      * </p>
+     * <p>
+     * <i>You can submit a private_key when you add or update an IdP. Describe
+     * operations don't return the private key.</i>
+     * </p>
      * </li>
      * <li>
      * <p>
@@ -1268,33 +1346,44 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * authorize_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * The following keys are only present if Amazon Cognito didn't discover
+     * them at the <code>oidc_issuer</code> URL.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * authorize_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * token_url <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * token_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * attributes_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * attributes_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * jwks_uri
      * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
-     * attributes_url_add_attributes <i>a read-only property that is set
-     * automatically</i>
+     * Amazon Cognito sets the value of the following keys automatically. They
+     * are read-only.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * </li>
@@ -1310,7 +1399,7 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -1321,8 +1410,8 @@ public class IdentityProviderType implements Serializable {
      * together.
      *
      * @param providerDetails <p>
-     *            The identity provider details. The following list describes
-     *            the provider detail keys for each identity provider type.
+     *            The IdP details. The following list describes the provider
+     *            detail keys for each IdP type.
      *            </p>
      *            <ul>
      *            <li>
@@ -1398,6 +1487,10 @@ public class IdentityProviderType implements Serializable {
      *            <p>
      *            private_key
      *            </p>
+     *            <p>
+     *            <i>You can submit a private_key when you add or update an IdP.
+     *            Describe operations don't return the private key.</i>
+     *            </p>
      *            </li>
      *            <li>
      *            <p>
@@ -1438,33 +1531,44 @@ public class IdentityProviderType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            authorize_url <i>if not available from discovery URL specified
-     *            by oidc_issuer key</i>
+     *            The following keys are only present if Amazon Cognito didn't
+     *            discover them at the <code>oidc_issuer</code> URL.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            authorize_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            token_url <i>if not available from discovery URL specified by
-     *            oidc_issuer key</i>
+     *            token_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            attributes_url <i>if not available from discovery URL
-     *            specified by oidc_issuer key</i>
+     *            attributes_url
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            jwks_uri <i>if not available from discovery URL specified by
-     *            oidc_issuer key</i>
+     *            jwks_uri
      *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
-     *            attributes_url_add_attributes <i>a read-only property that is
-     *            set automatically</i>
+     *            Amazon Cognito sets the value of the following keys
+     *            automatically. They are read-only.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            attributes_url_add_attributes
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      *            </li>
@@ -1480,7 +1584,7 @@ public class IdentityProviderType implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            IDPSignOut <i>optional</i>
+     *            IDPSignout <i>optional</i>
      *            </p>
      *            </li>
      *            </ul>
@@ -1496,8 +1600,8 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The identity provider details. The following list describes the provider
-     * detail keys for each identity provider type.
+     * The IdP details. The following list describes the provider detail keys
+     * for each IdP type.
      * </p>
      * <ul>
      * <li>
@@ -1573,6 +1677,10 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * private_key
      * </p>
+     * <p>
+     * <i>You can submit a private_key when you add or update an IdP. Describe
+     * operations don't return the private key.</i>
+     * </p>
      * </li>
      * <li>
      * <p>
@@ -1613,33 +1721,44 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * authorize_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * The following keys are only present if Amazon Cognito didn't discover
+     * them at the <code>oidc_issuer</code> URL.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * authorize_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * token_url <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * token_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * attributes_url <i>if not available from discovery URL specified by
-     * oidc_issuer key</i>
+     * attributes_url
      * </p>
      * </li>
      * <li>
      * <p>
-     * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
-     * key</i>
+     * jwks_uri
      * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>
-     * attributes_url_add_attributes <i>a read-only property that is set
-     * automatically</i>
+     * Amazon Cognito sets the value of the following keys automatically. They
+     * are read-only.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * attributes_url_add_attributes
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * </li>
@@ -1655,7 +1774,7 @@ public class IdentityProviderType implements Serializable {
      * </li>
      * <li>
      * <p>
-     * IDPSignOut <i>optional</i>
+     * IDPSignout <i>optional</i>
      * </p>
      * </li>
      * </ul>
@@ -1696,13 +1815,12 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A mapping of identity provider attributes to standard and custom user
-     * pool attributes.
+     * A mapping of IdP attributes to standard and custom user pool attributes.
      * </p>
      *
      * @return <p>
-     *         A mapping of identity provider attributes to standard and custom
-     *         user pool attributes.
+     *         A mapping of IdP attributes to standard and custom user pool
+     *         attributes.
      *         </p>
      */
     public java.util.Map<String, String> getAttributeMapping() {
@@ -1711,13 +1829,12 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A mapping of identity provider attributes to standard and custom user
-     * pool attributes.
+     * A mapping of IdP attributes to standard and custom user pool attributes.
      * </p>
      *
      * @param attributeMapping <p>
-     *            A mapping of identity provider attributes to standard and
-     *            custom user pool attributes.
+     *            A mapping of IdP attributes to standard and custom user pool
+     *            attributes.
      *            </p>
      */
     public void setAttributeMapping(java.util.Map<String, String> attributeMapping) {
@@ -1726,16 +1843,15 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A mapping of identity provider attributes to standard and custom user
-     * pool attributes.
+     * A mapping of IdP attributes to standard and custom user pool attributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributeMapping <p>
-     *            A mapping of identity provider attributes to standard and
-     *            custom user pool attributes.
+     *            A mapping of IdP attributes to standard and custom user pool
+     *            attributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1747,8 +1863,7 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A mapping of identity provider attributes to standard and custom user
-     * pool attributes.
+     * A mapping of IdP attributes to standard and custom user pool attributes.
      * </p>
      * <p>
      * The method adds a new key-value pair into AttributeMapping parameter, and
@@ -1785,11 +1900,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider identifiers.
+     * A list of IdP identifiers.
      * </p>
      *
      * @return <p>
-     *         A list of identity provider identifiers.
+     *         A list of IdP identifiers.
      *         </p>
      */
     public java.util.List<String> getIdpIdentifiers() {
@@ -1798,11 +1913,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider identifiers.
+     * A list of IdP identifiers.
      * </p>
      *
      * @param idpIdentifiers <p>
-     *            A list of identity provider identifiers.
+     *            A list of IdP identifiers.
      *            </p>
      */
     public void setIdpIdentifiers(java.util.Collection<String> idpIdentifiers) {
@@ -1816,14 +1931,14 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider identifiers.
+     * A list of IdP identifiers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param idpIdentifiers <p>
-     *            A list of identity provider identifiers.
+     *            A list of IdP identifiers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1840,14 +1955,14 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider identifiers.
+     * A list of IdP identifiers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param idpIdentifiers <p>
-     *            A list of identity provider identifiers.
+     *            A list of IdP identifiers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1859,11 +1974,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was last modified.
+     * The date the IdP was last modified.
      * </p>
      *
      * @return <p>
-     *         The date the identity provider was last modified.
+     *         The date the IdP was last modified.
      *         </p>
      */
     public java.util.Date getLastModifiedDate() {
@@ -1872,11 +1987,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was last modified.
+     * The date the IdP was last modified.
      * </p>
      *
      * @param lastModifiedDate <p>
-     *            The date the identity provider was last modified.
+     *            The date the IdP was last modified.
      *            </p>
      */
     public void setLastModifiedDate(java.util.Date lastModifiedDate) {
@@ -1885,14 +2000,14 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was last modified.
+     * The date the IdP was last modified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedDate <p>
-     *            The date the identity provider was last modified.
+     *            The date the IdP was last modified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1904,11 +2019,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was created.
+     * The date the IdP was created.
      * </p>
      *
      * @return <p>
-     *         The date the identity provider was created.
+     *         The date the IdP was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -1917,11 +2032,11 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was created.
+     * The date the IdP was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date the identity provider was created.
+     *            The date the IdP was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -1930,14 +2045,14 @@ public class IdentityProviderType implements Serializable {
 
     /**
      * <p>
-     * The date the identity provider was created.
+     * The date the IdP was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date the identity provider was created.
+     *            The date the IdP was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

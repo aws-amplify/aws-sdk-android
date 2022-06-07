@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The user type.
+ * A user profile in a Amazon Cognito user pool.
  * </p>
  */
 public class UserType implements Serializable {
@@ -75,6 +75,11 @@ public class UserType implements Serializable {
      * <li>
      * <p>
      * CONFIRMED - User has been confirmed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      * </p>
      * </li>
      * <li>
@@ -411,6 +416,11 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * ARCHIVED - User is no longer active.
      * </p>
      * </li>
@@ -450,6 +460,11 @@ public class UserType implements Serializable {
      *         <li>
      *         <p>
      *         CONFIRMED - User has been confirmed.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      *         </p>
      *         </li>
      *         <li>
@@ -500,6 +515,11 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * ARCHIVED - User is no longer active.
      * </p>
      * </li>
@@ -539,6 +559,11 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      *            </p>
      *            </li>
      *            <li>
@@ -589,6 +614,11 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * ARCHIVED - User is no longer active.
      * </p>
      * </li>
@@ -631,6 +661,11 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      *            </p>
      *            </li>
      *            <li>
@@ -684,6 +719,11 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * ARCHIVED - User is no longer active.
      * </p>
      * </li>
@@ -723,6 +763,11 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      *            </p>
      *            </li>
      *            <li>
@@ -773,6 +818,11 @@ public class UserType implements Serializable {
      * </li>
      * <li>
      * <p>
+     * EXTERNAL_PROVIDER - User signed in with a third-party IdP.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * ARCHIVED - User is no longer active.
      * </p>
      * </li>
@@ -815,6 +865,11 @@ public class UserType implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EXTERNAL_PROVIDER - User signed in with a third-party IdP.
      *            </p>
      *            </li>
      *            <li>

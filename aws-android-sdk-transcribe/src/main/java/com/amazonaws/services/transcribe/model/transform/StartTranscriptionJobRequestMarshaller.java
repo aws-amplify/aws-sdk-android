@@ -149,6 +149,12 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("IdentifyLanguage");
                 jsonWriter.value(identifyLanguage);
             }
+            if (startTranscriptionJobRequest.getIdentifyMultipleLanguages() != null) {
+                Boolean identifyMultipleLanguages = startTranscriptionJobRequest
+                        .getIdentifyMultipleLanguages();
+                jsonWriter.name("IdentifyMultipleLanguages");
+                jsonWriter.value(identifyMultipleLanguages);
+            }
             if (startTranscriptionJobRequest.getLanguageOptions() != null) {
                 java.util.List<String> languageOptions = startTranscriptionJobRequest
                         .getLanguageOptions();

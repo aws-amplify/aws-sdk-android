@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists information about all identity providers for a user pool.
+ * Lists information about all IdPs for a user pool.
  * </p>
  */
 public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of identity providers to return.
+     * The maximum number of IdPs to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,14 +116,14 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of identity providers to return.
+     * The maximum number of IdPs to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @return <p>
-     *         The maximum number of identity providers to return.
+     *         The maximum number of IdPs to return.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -132,14 +132,14 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of identity providers to return.
+     * The maximum number of IdPs to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of identity providers to return.
+     *            The maximum number of IdPs to return.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -148,7 +148,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of identity providers to return.
+     * The maximum number of IdPs to return.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +158,7 @@ public class ListIdentityProvidersRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of identity providers to return.
+     *            The maximum number of IdPs to return.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

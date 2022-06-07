@@ -21,16 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a transcription job, along with any related information. To use this
- * operation, specify the name of the job you want to delete using
- * <code>TranscriptionJobName</code>.
+ * Deletes a transcription job. To use this operation, specify the name of the
+ * job you want to delete using <code>TranscriptionJobName</code>. Job names are
+ * case sensitive.
  * </p>
  */
 public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the transcription job you want to delete. Job names are
-     * case-sensitive.
+     * The name of the transcription job you want to delete. Job names are case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,8 +41,8 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the transcription job you want to delete. Job names are
-     * case-sensitive.
+     * The name of the transcription job you want to delete. Job names are case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,7 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The name of the transcription job you want to delete. Job names
-     *         are case-sensitive.
+     *         are case sensitive.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -60,8 +60,8 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the transcription job you want to delete. Job names are
-     * case-sensitive.
+     * The name of the transcription job you want to delete. Job names are case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +70,7 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
      *
      * @param transcriptionJobName <p>
      *            The name of the transcription job you want to delete. Job
-     *            names are case-sensitive.
+     *            names are case sensitive.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -79,8 +79,8 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the transcription job you want to delete. Job names are
-     * case-sensitive.
+     * The name of the transcription job you want to delete. Job names are case
+     * sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -92,7 +92,7 @@ public class DeleteTranscriptionJobRequest extends AmazonWebServiceRequest imple
      *
      * @param transcriptionJobName <p>
      *            The name of the transcription job you want to delete. Job
-     *            names are case-sensitive.
+     *            names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

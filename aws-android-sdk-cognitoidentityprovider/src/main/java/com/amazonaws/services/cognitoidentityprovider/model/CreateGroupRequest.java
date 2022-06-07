@@ -78,8 +78,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * A non-negative integer value that specifies the precedence of this group
      * relative to the other groups that a user can belong to in the user pool.
      * Zero is the highest precedence value. Groups with lower
-     * <code>Precedence</code> values take precedence over groups with higher
-     * ornull <code>Precedence</code> values. If a user belongs to two or more
+     * <code>Precedence</code> values take precedence over groups with higher or
+     * null <code>Precedence</code> values. If a user belongs to two or more
      * groups, it is the group with the lowest precedence value whose role ARN
      * is given in the user's tokens for the <code>cognito:roles</code> and
      * <code>cognito:preferred_role</code> claims.
@@ -93,7 +93,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * <code>cognito:preferred_role</code> claim isn't set in users' tokens.
      * </p>
      * <p>
-     * The default <code>Precedence</code> value is null.
+     * The default <code>Precedence</code> value is null. The maximum
+     * <code>Precedence</code> value is <code>2^31-1</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -337,8 +338,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * A non-negative integer value that specifies the precedence of this group
      * relative to the other groups that a user can belong to in the user pool.
      * Zero is the highest precedence value. Groups with lower
-     * <code>Precedence</code> values take precedence over groups with higher
-     * ornull <code>Precedence</code> values. If a user belongs to two or more
+     * <code>Precedence</code> values take precedence over groups with higher or
+     * null <code>Precedence</code> values. If a user belongs to two or more
      * groups, it is the group with the lowest precedence value whose role ARN
      * is given in the user's tokens for the <code>cognito:roles</code> and
      * <code>cognito:preferred_role</code> claims.
@@ -352,7 +353,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * <code>cognito:preferred_role</code> claim isn't set in users' tokens.
      * </p>
      * <p>
-     * The default <code>Precedence</code> value is null.
+     * The default <code>Precedence</code> value is null. The maximum
+     * <code>Precedence</code> value is <code>2^31-1</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,7 +365,7 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *         this group relative to the other groups that a user can belong to
      *         in the user pool. Zero is the highest precedence value. Groups
      *         with lower <code>Precedence</code> values take precedence over
-     *         groups with higher ornull <code>Precedence</code> values. If a
+     *         groups with higher or null <code>Precedence</code> values. If a
      *         user belongs to two or more groups, it is the group with the
      *         lowest precedence value whose role ARN is given in the user's
      *         tokens for the <code>cognito:roles</code> and
@@ -380,7 +382,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *         tokens.
      *         </p>
      *         <p>
-     *         The default <code>Precedence</code> value is null.
+     *         The default <code>Precedence</code> value is null. The maximum
+     *         <code>Precedence</code> value is <code>2^31-1</code>.
      *         </p>
      */
     public Integer getPrecedence() {
@@ -392,8 +395,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * A non-negative integer value that specifies the precedence of this group
      * relative to the other groups that a user can belong to in the user pool.
      * Zero is the highest precedence value. Groups with lower
-     * <code>Precedence</code> values take precedence over groups with higher
-     * ornull <code>Precedence</code> values. If a user belongs to two or more
+     * <code>Precedence</code> values take precedence over groups with higher or
+     * null <code>Precedence</code> values. If a user belongs to two or more
      * groups, it is the group with the lowest precedence value whose role ARN
      * is given in the user's tokens for the <code>cognito:roles</code> and
      * <code>cognito:preferred_role</code> claims.
@@ -407,7 +410,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * <code>cognito:preferred_role</code> claim isn't set in users' tokens.
      * </p>
      * <p>
-     * The default <code>Precedence</code> value is null.
+     * The default <code>Precedence</code> value is null. The maximum
+     * <code>Precedence</code> value is <code>2^31-1</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -418,7 +422,7 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *            this group relative to the other groups that a user can belong
      *            to in the user pool. Zero is the highest precedence value.
      *            Groups with lower <code>Precedence</code> values take
-     *            precedence over groups with higher ornull
+     *            precedence over groups with higher or null
      *            <code>Precedence</code> values. If a user belongs to two or
      *            more groups, it is the group with the lowest precedence value
      *            whose role ARN is given in the user's tokens for the
@@ -436,7 +440,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *            tokens.
      *            </p>
      *            <p>
-     *            The default <code>Precedence</code> value is null.
+     *            The default <code>Precedence</code> value is null. The maximum
+     *            <code>Precedence</code> value is <code>2^31-1</code>.
      *            </p>
      */
     public void setPrecedence(Integer precedence) {
@@ -448,8 +453,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * A non-negative integer value that specifies the precedence of this group
      * relative to the other groups that a user can belong to in the user pool.
      * Zero is the highest precedence value. Groups with lower
-     * <code>Precedence</code> values take precedence over groups with higher
-     * ornull <code>Precedence</code> values. If a user belongs to two or more
+     * <code>Precedence</code> values take precedence over groups with higher or
+     * null <code>Precedence</code> values. If a user belongs to two or more
      * groups, it is the group with the lowest precedence value whose role ARN
      * is given in the user's tokens for the <code>cognito:roles</code> and
      * <code>cognito:preferred_role</code> claims.
@@ -463,7 +468,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      * <code>cognito:preferred_role</code> claim isn't set in users' tokens.
      * </p>
      * <p>
-     * The default <code>Precedence</code> value is null.
+     * The default <code>Precedence</code> value is null. The maximum
+     * <code>Precedence</code> value is <code>2^31-1</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -477,7 +483,7 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *            this group relative to the other groups that a user can belong
      *            to in the user pool. Zero is the highest precedence value.
      *            Groups with lower <code>Precedence</code> values take
-     *            precedence over groups with higher ornull
+     *            precedence over groups with higher or null
      *            <code>Precedence</code> values. If a user belongs to two or
      *            more groups, it is the group with the lowest precedence value
      *            whose role ARN is given in the user's tokens for the
@@ -495,7 +501,8 @@ public class CreateGroupRequest extends AmazonWebServiceRequest implements Seria
      *            tokens.
      *            </p>
      *            <p>
-     *            The default <code>Precedence</code> value is null.
+     *            The default <code>Precedence</code> value is null. The maximum
+     *            <code>Precedence</code> value is <code>2^31-1</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

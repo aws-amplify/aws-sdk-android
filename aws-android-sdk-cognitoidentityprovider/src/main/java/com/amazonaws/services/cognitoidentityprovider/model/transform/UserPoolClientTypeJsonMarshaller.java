@@ -195,6 +195,12 @@ class UserPoolClientTypeJsonMarshaller {
             jsonWriter.name("EnableTokenRevocation");
             jsonWriter.value(enableTokenRevocation);
         }
+        if (userPoolClientType.getEnablePropagateAdditionalUserContextData() != null) {
+            Boolean enablePropagateAdditionalUserContextData = userPoolClientType
+                    .getEnablePropagateAdditionalUserContextData();
+            jsonWriter.name("EnablePropagateAdditionalUserContextData");
+            jsonWriter.value(enablePropagateAdditionalUserContextData);
+        }
         jsonWriter.endObject();
     }
 

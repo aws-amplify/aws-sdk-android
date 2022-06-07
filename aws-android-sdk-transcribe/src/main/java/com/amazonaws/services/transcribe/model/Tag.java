@@ -19,18 +19,25 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A key:value pair that adds metadata to a resource used by Amazon Transcribe.
- * For example, a tag with the key:value pair ‘Department’:’Sales’ might be
- * added to a resource to indicate its use by your organization's sales
- * department.
+ * Adds metadata, in the form of a key:value pair, to the specified resource.
+ * </p>
+ * <p>
+ * For example, you could add the tag <code>Department:Sales</code> to a
+ * resource to indicate that it pertains to your organization's sales
+ * department. You can also use tags for tag-based access control.
+ * </p>
+ * <p>
+ * To learn more about tagging, see <a
+ * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html">Tagging
+ * resources</a>.
  * </p>
  */
 public class Tag implements Serializable {
     /**
      * <p>
      * The first part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the key is
-     * 'Department'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the key is 'Department'.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,8 +48,13 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The second part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the value
-     * is 'Sales'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the value is 'Sales'.
+     * </p>
+     * <p>
+     * Note that you can set the value of a tag to an empty string, but you
+     * can't set the value of a tag to null. Omitting the tag value is the same
+     * as using an empty string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,8 +65,8 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The first part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the key is
-     * 'Department'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the key is 'Department'.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +75,7 @@ public class Tag implements Serializable {
      * @return <p>
      *         The first part of a key:value pair that forms a tag associated
      *         with a given resource. For example, in the tag
-     *         ‘Department’:’Sales’, the key is 'Department'.
+     *         <code>Department:Sales</code>, the key is 'Department'.
      *         </p>
      */
     public String getKey() {
@@ -73,8 +85,8 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The first part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the key is
-     * 'Department'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the key is 'Department'.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +95,7 @@ public class Tag implements Serializable {
      * @param key <p>
      *            The first part of a key:value pair that forms a tag associated
      *            with a given resource. For example, in the tag
-     *            ‘Department’:’Sales’, the key is 'Department'.
+     *            <code>Department:Sales</code>, the key is 'Department'.
      *            </p>
      */
     public void setKey(String key) {
@@ -93,8 +105,8 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The first part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the key is
-     * 'Department'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the key is 'Department'.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +118,7 @@ public class Tag implements Serializable {
      * @param key <p>
      *            The first part of a key:value pair that forms a tag associated
      *            with a given resource. For example, in the tag
-     *            ‘Department’:’Sales’, the key is 'Department'.
+     *            <code>Department:Sales</code>, the key is 'Department'.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,8 +131,13 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The second part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the value
-     * is 'Sales'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the value is 'Sales'.
+     * </p>
+     * <p>
+     * Note that you can set the value of a tag to an empty string, but you
+     * can't set the value of a tag to null. Omitting the tag value is the same
+     * as using an empty string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -129,7 +146,12 @@ public class Tag implements Serializable {
      * @return <p>
      *         The second part of a key:value pair that forms a tag associated
      *         with a given resource. For example, in the tag
-     *         ‘Department’:’Sales’, the value is 'Sales'.
+     *         <code>Department:Sales</code>, the value is 'Sales'.
+     *         </p>
+     *         <p>
+     *         Note that you can set the value of a tag to an empty string, but
+     *         you can't set the value of a tag to null. Omitting the tag value
+     *         is the same as using an empty string.
      *         </p>
      */
     public String getValue() {
@@ -139,8 +161,13 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The second part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the value
-     * is 'Sales'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the value is 'Sales'.
+     * </p>
+     * <p>
+     * Note that you can set the value of a tag to an empty string, but you
+     * can't set the value of a tag to null. Omitting the tag value is the same
+     * as using an empty string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -149,7 +176,12 @@ public class Tag implements Serializable {
      * @param value <p>
      *            The second part of a key:value pair that forms a tag
      *            associated with a given resource. For example, in the tag
-     *            ‘Department’:’Sales’, the value is 'Sales'.
+     *            <code>Department:Sales</code>, the value is 'Sales'.
+     *            </p>
+     *            <p>
+     *            Note that you can set the value of a tag to an empty string,
+     *            but you can't set the value of a tag to null. Omitting the tag
+     *            value is the same as using an empty string.
      *            </p>
      */
     public void setValue(String value) {
@@ -159,8 +191,13 @@ public class Tag implements Serializable {
     /**
      * <p>
      * The second part of a key:value pair that forms a tag associated with a
-     * given resource. For example, in the tag ‘Department’:’Sales’, the value
-     * is 'Sales'.
+     * given resource. For example, in the tag <code>Department:Sales</code>,
+     * the value is 'Sales'.
+     * </p>
+     * <p>
+     * Note that you can set the value of a tag to an empty string, but you
+     * can't set the value of a tag to null. Omitting the tag value is the same
+     * as using an empty string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -172,7 +209,12 @@ public class Tag implements Serializable {
      * @param value <p>
      *            The second part of a key:value pair that forms a tag
      *            associated with a given resource. For example, in the tag
-     *            ‘Department’:’Sales’, the value is 'Sales'.
+     *            <code>Department:Sales</code>, the value is 'Sales'.
+     *            </p>
+     *            <p>
+     *            Note that you can set the value of a tag to an empty string,
+     *            but you can't set the value of a tag to null. Omitting the tag
+     *            value is the same as using an empty string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
