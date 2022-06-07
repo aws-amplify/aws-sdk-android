@@ -21,15 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves information about a call analytics category.
+ * Provides information about the specified Call Analytics category.
+ * </p>
+ * <p>
+ * To get a list of your Call Analytics categories, use the operation.
  * </p>
  */
 public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name of the category you want information about. Category names are
-     * case sensitive.
+     * The name of the Call Analytics category you want information about.
+     * Category names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,8 +43,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name of the category you want information about. Category names are
-     * case sensitive.
+     * The name of the Call Analytics category you want information about.
+     * Category names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,8 +52,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the category you want information about. Category
-     *         names are case sensitive.
+     *         The name of the Call Analytics category you want information
+     *         about. Category names are case sensitive.
      *         </p>
      */
     public String getCategoryName() {
@@ -59,8 +62,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name of the category you want information about. Category names are
-     * case sensitive.
+     * The name of the Call Analytics category you want information about.
+     * Category names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +71,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the category you want information about. Category
-     *            names are case sensitive.
+     *            The name of the Call Analytics category you want information
+     *            about. Category names are case sensitive.
      *            </p>
      */
     public void setCategoryName(String categoryName) {
@@ -78,8 +81,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The name of the category you want information about. Category names are
-     * case sensitive.
+     * The name of the Call Analytics category you want information about.
+     * Category names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,8 +93,8 @@ public class GetCallAnalyticsCategoryRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the category you want information about. Category
-     *            names are case sensitive.
+     *            The name of the Call Analytics category you want information
+     *            about. Category names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

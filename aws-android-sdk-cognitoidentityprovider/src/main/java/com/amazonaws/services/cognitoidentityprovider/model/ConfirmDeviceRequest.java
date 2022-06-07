@@ -28,7 +28,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * you want to confirm.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,14 +67,16 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * you want to confirm.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         device you want to confirm.
      *         </p>
      */
     public String getAccessToken() {
@@ -82,14 +85,16 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * you want to confirm.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose device you want to confirm.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -98,7 +103,8 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose device
+     * you want to confirm.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -108,7 +114,8 @@ public class ConfirmDeviceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose device you want to confirm.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,13 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides summary information about a transcription job.
+ * Provides detailed information about a specific medical transcription job.
  * </p>
  */
 public class MedicalTranscriptionJobSummary implements Serializable {
     /**
      * <p>
-     * The name of a medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,28 +37,50 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the medical transcription job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date creationTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job began processing.
+     * The date and time your medical transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date startTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date completionTime;
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +94,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,17 +111,31 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,10 +145,7 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,10 +155,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,7 +168,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,7 +179,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The name of a medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +188,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of a medical transcription job.
+     *         The name of the medical transcription job. Job names are case
+     *         sensitive and must be unique within an Amazon Web Services
+     *         account.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -154,7 +199,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The name of a medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -162,7 +208,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name of a medical transcription job.
+     *            The name of the medical transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -171,7 +219,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The name of a medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,7 +231,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name of a medical transcription job.
+     *            The name of the medical transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -195,12 +246,26 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the medical transcription job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the medical transcription job was
-     *         created.
+     *         The date and time the specified medical transcription job request
+     *         was made.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCreationTime() {
@@ -209,12 +274,26 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the medical transcription job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the medical transcription job was
-     *            created.
+     *            The date and time the specified medical transcription job
+     *            request was made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
@@ -223,15 +302,29 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the medical transcription job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the medical transcription job was
-     *            created.
+     *            The date and time the specified medical transcription job
+     *            request was made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -243,11 +336,25 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job began processing.
+     * The date and time your medical transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job began processing.
+     *         The date and time your medical transcription job began
+     *         processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -256,11 +363,25 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job began processing.
+     * The date and time your medical transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job began processing.
+     *            The date and time your medical transcription job began
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -269,14 +390,28 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job began processing.
+     * The date and time your medical transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job began processing.
+     *            The date and time your medical transcription job began
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -288,11 +423,26 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job was completed.
+     *         The date and time the specified medical transcription job
+     *         finished processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *         transcription job that started processing at 12:33 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCompletionTime() {
@@ -301,11 +451,26 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified medical transcription job
+     *            finished processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCompletionTime(java.util.Date completionTime) {
@@ -314,14 +479,29 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified medical transcription job
+     *            finished processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -333,7 +513,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -344,7 +526,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language of the transcript in the source audio file.
+     *         The language code used to create your medical transcription. US
+     *         English (<code>en-US</code>) is the only supported language for
+     *         medical transcriptions.
      *         </p>
      * @see LanguageCode
      */
@@ -354,7 +538,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -365,7 +551,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language of the transcript in the source audio file.
+     *            The language code used to create your medical transcription.
+     *            US English (<code>en-US</code>) is the only supported language
+     *            for medical transcriptions.
      *            </p>
      * @see LanguageCode
      */
@@ -375,7 +563,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -389,7 +579,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language of the transcript in the source audio file.
+     *            The language code used to create your medical transcription.
+     *            US English (<code>en-US</code>) is the only supported language
+     *            for medical transcriptions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -402,7 +594,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -413,7 +607,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language of the transcript in the source audio file.
+     *            The language code used to create your medical transcription.
+     *            US English (<code>en-US</code>) is the only supported language
+     *            for medical transcriptions.
      *            </p>
      * @see LanguageCode
      */
@@ -423,7 +619,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language of the transcript in the source audio file.
+     * The language code used to create your medical transcription. US English (
+     * <code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -437,7 +635,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language of the transcript in the source audio file.
+     *            The language code used to create your medical transcription.
+     *            US English (<code>en-US</code>) is the only supported language
+     *            for medical transcriptions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -450,14 +650,28 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The status of the medical transcription job.
+     *         Provides the status of your medical transcription job.
+     *         </p>
+     *         <p>
+     *         If the status is <code>COMPLETED</code>, the job is finished and
+     *         you can find the results at the location specified in
+     *         <code>TranscriptFileUri</code>. If the status is
+     *         <code>FAILED</code>, <code>FailureReason</code> provides details
+     *         on why your transcription job failed.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -467,14 +681,28 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the medical transcription job.
+     *            Provides the status of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -484,7 +712,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -494,7 +729,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the medical transcription job.
+     *            Provides the status of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -507,14 +749,28 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the medical transcription job.
+     *            Provides the status of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -524,7 +780,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the medical transcription job.
+     * Provides the status of your medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -534,7 +797,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the medical transcription job.
+     *            Provides the status of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -548,13 +818,19 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      *
      * @return <p>
-     *         If the <code>TranscriptionJobStatus</code> field is
-     *         <code>FAILED</code>, a description of the error.
+     *         If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *         <code>FailureReason</code> contains information about why the
+     *         transcription job failed. See also: <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *         >Common Errors</a>.
      *         </p>
      */
     public String getFailureReason() {
@@ -563,13 +839,19 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, a description of the error.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job failed. See also: <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a>.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -578,16 +860,22 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, a description of the error.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job failed. See also: <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -599,18 +887,41 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @return <p>
-     *         Indicates the location of the transcription job's output. This
-     *         field must be the path of an S3 bucket; if you don't already have
-     *         an S3 bucket, one is created based on the path you add.
+     *         Indicates where the specified medical transcription output is
+     *         stored.
+     *         </p>
+     *         <p>
+     *         If the value is <code>CUSTOMER_BUCKET</code>, the location is the
+     *         Amazon S3 bucket you specified using the
+     *         <code>OutputBucketName</code> parameter in your request. If you
+     *         also included <code>OutputKey</code> in your request, your output
+     *         is located in the path you specified in your request.
+     *         </p>
+     *         <p>
+     *         If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *         service-managed Amazon S3 bucket. To access a transcript stored
+     *         in a service-managed bucket, use the URI shown in the
+     *         <code>TranscriptFileUri</code> field.
      *         </p>
      * @see OutputLocationType
      */
@@ -620,18 +931,41 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output. This
-     *            field must be the path of an S3 bucket; if you don't already
-     *            have an S3 bucket, one is created based on the path you add.
+     *            Indicates where the specified medical transcription output is
+     *            stored.
+     *            </p>
+     *            <p>
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
+     *            </p>
+     *            <p>
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> field.
      *            </p>
      * @see OutputLocationType
      */
@@ -641,9 +975,20 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -653,9 +998,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output. This
-     *            field must be the path of an S3 bucket; if you don't already
-     *            have an S3 bucket, one is created based on the path you add.
+     *            Indicates where the specified medical transcription output is
+     *            stored.
+     *            </p>
+     *            <p>
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
+     *            </p>
+     *            <p>
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -668,18 +1025,41 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output. This
-     *            field must be the path of an S3 bucket; if you don't already
-     *            have an S3 bucket, one is created based on the path you add.
+     *            Indicates where the specified medical transcription output is
+     *            stored.
+     *            </p>
+     *            <p>
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
+     *            </p>
+     *            <p>
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> field.
      *            </p>
      * @see OutputLocationType
      */
@@ -689,9 +1069,20 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output. This field must
-     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
-     * is created based on the path you add.
+     * Indicates where the specified medical transcription output is stored.
+     * </p>
+     * <p>
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
+     * </p>
+     * <p>
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -701,9 +1092,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output. This
-     *            field must be the path of an S3 bucket; if you don't already
-     *            have an S3 bucket, one is created based on the path you add.
+     *            Indicates where the specified medical transcription output is
+     *            stored.
+     *            </p>
+     *            <p>
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
+     *            </p>
+     *            <p>
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -717,20 +1120,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @return <p>
-     *         The medical specialty of the transcription job. Refer to <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *         >Transcribing a medical conversation</a>for a list of supported
-     *         specialties.
+     *         Provides the medical specialty represented in your media.
      *         </p>
      * @see Specialty
      */
@@ -740,21 +1137,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job. Refer to <a
-     *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Provides the medical specialty represented in your media.
      *            </p>
      * @see Specialty
      */
@@ -764,10 +1154,7 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -777,11 +1164,7 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job. Refer to <a
-     *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Provides the medical specialty represented in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -794,21 +1177,14 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job. Refer to <a
-     *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Provides the medical specialty represented in your media.
      *            </p>
      * @see Specialty
      */
@@ -818,10 +1194,7 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Provides the medical specialty represented in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -831,11 +1204,7 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job. Refer to <a
-     *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Provides the medical specialty represented in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -848,20 +1217,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @return <p>
-     *         Shows the type of information you've configured Amazon Transcribe
-     *         Medical to identify in a transcription job. If the value is
-     *         <code>PHI</code>, you've configured the transcription job to
-     *         identify personal health information (PHI).
+     *         Labels all personal health information (PHI) identified in your
+     *         transcript. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *         >Identifying personal health information (PHI) in a
+     *         transcription</a>.
      *         </p>
      * @see MedicalContentIdentificationType
      */
@@ -871,20 +1241,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of information you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the transcription
-     *            job to identify personal health information (PHI).
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -894,10 +1265,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -907,10 +1278,11 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of information you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the transcription
-     *            job to identify personal health information (PHI).
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -924,20 +1296,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of information you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the transcription
-     *            job to identify personal health information (PHI).
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -948,10 +1321,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Shows the type of information you've configured Amazon Transcribe Medical
-     * to identify in a transcription job. If the value is <code>PHI</code>,
-     * you've configured the transcription job to identify personal health
-     * information (PHI).
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -961,10 +1334,11 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of information you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the transcription
-     *            job to identify personal health information (PHI).
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -978,14 +1352,17 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @return <p>
-     *         The speech of the clinician in the input audio.
+     *         Indicates whether the input media is a dictation or a
+     *         conversation, as specified in the
+     *         <code>StartMedicalTranscriptionJob</code> request.
      *         </p>
      * @see Type
      */
@@ -995,14 +1372,17 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of the clinician in the input audio.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see Type
      */
@@ -1012,7 +1392,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1022,7 +1403,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of the clinician in the input audio.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1035,14 +1418,17 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of the clinician in the input audio.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see Type
      */
@@ -1052,7 +1438,8 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The speech of the clinician in the input audio.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1062,7 +1449,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of the clinician in the input audio.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,15 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Signs out users from all devices. It also invalidates all refresh tokens
- * issued to a user. The user's current access and ID tokens remain valid until
- * their expiry. Access and Id tokens expire one hour after they're issued.
+ * Signs out users from all devices. It also invalidates all refresh tokens that
+ * Amazon Cognito has issued to a user. The user's current access and ID tokens
+ * remain valid until their expiry. By default, access and ID tokens expire one
+ * hour after Amazon Cognito issues them. A user can still use a hosted UI
+ * cookie to retrieve new tokens for the duration of the cookie validity period
+ * of 1 hour.
  * </p>
  */
 public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to sign out.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,14 +43,16 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to sign out.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         A valid access token that Amazon Cognito issued to the user who
+     *         you want to sign out.
      *         </p>
      */
     public String getAccessToken() {
@@ -55,14 +61,16 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to sign out.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            who you want to sign out.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -71,7 +79,8 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to sign out.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -81,7 +90,8 @@ public class GlobalSignOutRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            who you want to sign out.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

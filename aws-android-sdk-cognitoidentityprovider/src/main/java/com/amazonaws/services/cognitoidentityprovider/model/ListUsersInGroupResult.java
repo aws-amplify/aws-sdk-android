@@ -27,8 +27,8 @@ public class ListUsersInGroupResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * An identifier that you can use in a later request to return the next set
+     * of items in the list.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -113,8 +113,8 @@ public class ListUsersInGroupResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * An identifier that you can use in a later request to return the next set
+     * of items in the list.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,9 +122,8 @@ public class ListUsersInGroupResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         An identifier that was returned from the previous call to this
-     *         operation, which can be used to return the next set of items in
-     *         the list.
+     *         An identifier that you can use in a later request to return the
+     *         next set of items in the list.
      *         </p>
      */
     public String getNextToken() {
@@ -133,8 +132,8 @@ public class ListUsersInGroupResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * An identifier that you can use in a later request to return the next set
+     * of items in the list.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -142,9 +141,8 @@ public class ListUsersInGroupResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
-     *            An identifier that was returned from the previous call to this
-     *            operation, which can be used to return the next set of items
-     *            in the list.
+     *            An identifier that you can use in a later request to return
+     *            the next set of items in the list.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -153,8 +151,8 @@ public class ListUsersInGroupResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * An identifier that you can use in a later request to return the next set
+     * of items in the list.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,9 +163,8 @@ public class ListUsersInGroupResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
-     *            An identifier that was returned from the previous call to this
-     *            operation, which can be used to return the next set of items
-     *            in the list.
+     *            An identifier that you can use in a later request to return
+     *            the next set of items in the list.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

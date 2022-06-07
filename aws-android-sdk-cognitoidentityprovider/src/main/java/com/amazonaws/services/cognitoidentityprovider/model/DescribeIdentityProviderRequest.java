@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about a specific identity provider.
+ * Gets information about a specific IdP.
  * </p>
  */
 public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest implements
@@ -39,7 +39,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,7 +107,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -115,7 +115,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The identity provider name.
+     *         The IdP name.
      *         </p>
      */
     public String getProviderName() {
@@ -124,7 +124,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -132,7 +132,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      */
     public void setProviderName(String providerName) {
@@ -141,7 +141,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,7 +152,7 @@ public class DescribeIdentityProviderRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

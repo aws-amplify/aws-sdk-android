@@ -21,19 +21,30 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists all tags associated with a given transcription job, vocabulary, or
- * resource.
+ * Lists all tags associated with the specified transcription job, vocabulary,
+ * model, or resource.
+ * </p>
+ * <p>
+ * To learn more about using tags with Amazon Transcribe, refer to <a
+ * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html">Tagging
+ * resources</a>.
  * </p>
  */
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Lists all tags associated with a given Amazon Resource Name (ARN). ARNs
-     * have the format
+     * Returns a list of all tags associated with the specified Amazon Resource
+     * Name (ARN). ARNs have the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -49,12 +60,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Lists all tags associated with a given Amazon Resource Name (ARN). ARNs
-     * have the format
+     * Returns a list of all tags associated with the specified Amazon Resource
+     * Name (ARN). ARNs have the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -67,12 +84,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         Lists all tags associated with a given Amazon Resource Name
-     *         (ARN). ARNs have the format
+     *         Returns a list of all tags associated with the specified Amazon
+     *         Resource Name (ARN). ARNs have the format
      *         <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *         (for example,
-     *         <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *         ). Valid values for <code>resource-type</code> are:
+     *         .
+     *         </p>
+     *         <p>
+     *         For example,
+     *         <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *         .
+     *         </p>
+     *         <p>
+     *         Valid values for <code>resource-type</code> are:
      *         <code>transcription-job</code>,
      *         <code>medical-transcription-job</code>, <code>vocabulary</code>,
      *         <code>medical-vocabulary</code>, <code>vocabulary-filter</code>,
@@ -85,12 +108,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Lists all tags associated with a given Amazon Resource Name (ARN). ARNs
-     * have the format
+     * Returns a list of all tags associated with the specified Amazon Resource
+     * Name (ARN). ARNs have the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -103,12 +132,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            Lists all tags associated with a given Amazon Resource Name
-     *            (ARN). ARNs have the format
+     *            Returns a list of all tags associated with the specified
+     *            Amazon Resource Name (ARN). ARNs have the format
      *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            (for example,
-     *            <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *            ). Valid values for <code>resource-type</code> are:
+     *            .
+     *            </p>
+     *            <p>
+     *            For example,
+     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            .
+     *            </p>
+     *            <p>
+     *            Valid values for <code>resource-type</code> are:
      *            <code>transcription-job</code>,
      *            <code>medical-transcription-job</code>,
      *            <code>vocabulary</code>, <code>medical-vocabulary</code>,
@@ -122,12 +157,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Lists all tags associated with a given Amazon Resource Name (ARN). ARNs
-     * have the format
+     * Returns a list of all tags associated with the specified Amazon Resource
+     * Name (ARN). ARNs have the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -143,12 +184,18 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            Lists all tags associated with a given Amazon Resource Name
-     *            (ARN). ARNs have the format
+     *            Returns a list of all tags associated with the specified
+     *            Amazon Resource Name (ARN). ARNs have the format
      *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            (for example,
-     *            <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *            ). Valid values for <code>resource-type</code> are:
+     *            .
+     *            </p>
+     *            <p>
+     *            For example,
+     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            .
+     *            </p>
+     *            <p>
+     *            Valid values for <code>resource-type</code> are:
      *            <code>transcription-job</code>,
      *            <code>medical-transcription-job</code>,
      *            <code>vocabulary</code>, <code>medical-vocabulary</code>,

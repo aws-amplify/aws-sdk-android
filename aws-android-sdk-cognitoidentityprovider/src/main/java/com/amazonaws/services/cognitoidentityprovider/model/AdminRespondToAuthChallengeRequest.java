@@ -124,11 +124,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * </li>
      * <li>
      * <p>
-     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
-     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
-     * app client is configured with client secret).
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret). To set any required attributes that
+     * Amazon Cognito returned as <code>requiredAttributes</code> in the
+     * <code>AdminInitiateAuth</code> response, add a
+     * <code>userAttributes.<i>attributename</i> </code> parameter. This
+     * parameter can also set values for writable attributes that aren't
+     * required by your user pool.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't
+     * modify a required attribute that already has a value. In
+     * <code>AdminRespondToAuthChallenge</code>, set a value for any keys that
+     * Amazon Cognito returned in the <code>requiredAttributes</code> parameter,
+     * then use the <code>AdminUpdateUserAttributes</code> API operation to
+     * modify the value of any additional attributes.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
@@ -173,9 +187,10 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      */
     private ContextDataType contextData;
@@ -554,11 +569,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * </li>
      * <li>
      * <p>
-     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
-     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
-     * app client is configured with client secret).
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret). To set any required attributes that
+     * Amazon Cognito returned as <code>requiredAttributes</code> in the
+     * <code>AdminInitiateAuth</code> response, add a
+     * <code>userAttributes.<i>attributename</i> </code> parameter. This
+     * parameter can also set values for writable attributes that aren't
+     * required by your user pool.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't
+     * modify a required attribute that already has a value. In
+     * <code>AdminRespondToAuthChallenge</code>, set a value for any keys that
+     * Amazon Cognito returned in the <code>requiredAttributes</code> parameter,
+     * then use the <code>AdminUpdateUserAttributes</code> API operation to
+     * modify the value of any additional attributes.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
@@ -612,11 +641,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *         <li>
      *         <p>
      *         <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
-     *         any other required attributes, <code>USERNAME</code>,
-     *         <code>SECRET_HASH</code> (if app client is configured with client
-     *         secret).
+     *         <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     *         configured with client secret). To set any required attributes
+     *         that Amazon Cognito returned as <code>requiredAttributes</code>
+     *         in the <code>AdminInitiateAuth</code> response, add a
+     *         <code>userAttributes.<i>attributename</i> </code> parameter. This
+     *         parameter can also set values for writable attributes that aren't
+     *         required by your user pool.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you
+     *         can't modify a required attribute that already has a value. In
+     *         <code>AdminRespondToAuthChallenge</code>, set a value for any
+     *         keys that Amazon Cognito returned in the
+     *         <code>requiredAttributes</code> parameter, then use the
+     *         <code>AdminUpdateUserAttributes</code> API operation to modify
+     *         the value of any additional attributes.
+     *         </p>
+     *         </note></li>
      *         <li>
      *         <p>
      *         <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you
@@ -675,11 +718,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * </li>
      * <li>
      * <p>
-     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
-     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
-     * app client is configured with client secret).
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret). To set any required attributes that
+     * Amazon Cognito returned as <code>requiredAttributes</code> in the
+     * <code>AdminInitiateAuth</code> response, add a
+     * <code>userAttributes.<i>attributename</i> </code> parameter. This
+     * parameter can also set values for writable attributes that aren't
+     * required by your user pool.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't
+     * modify a required attribute that already has a value. In
+     * <code>AdminRespondToAuthChallenge</code>, set a value for any keys that
+     * Amazon Cognito returned in the <code>requiredAttributes</code> parameter,
+     * then use the <code>AdminUpdateUserAttributes</code> API operation to
+     * modify the value of any additional attributes.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
@@ -735,11 +792,26 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *            <li>
      *            <p>
      *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
-     *            any other required attributes, <code>USERNAME</code>,
-     *            <code>SECRET_HASH</code> (if app client is configured with
-     *            client secret).
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret). To set any required
+     *            attributes that Amazon Cognito returned as
+     *            <code>requiredAttributes</code> in the
+     *            <code>AdminInitiateAuth</code> response, add a
+     *            <code>userAttributes.<i>attributename</i> </code> parameter.
+     *            This parameter can also set values for writable attributes
+     *            that aren't required by your user pool.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            In a <code>NEW_PASSWORD_REQUIRED</code> challenge response,
+     *            you can't modify a required attribute that already has a
+     *            value. In <code>AdminRespondToAuthChallenge</code>, set a
+     *            value for any keys that Amazon Cognito returned in the
+     *            <code>requiredAttributes</code> parameter, then use the
+     *            <code>AdminUpdateUserAttributes</code> API operation to modify
+     *            the value of any additional attributes.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
@@ -798,11 +870,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * </li>
      * <li>
      * <p>
-     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
-     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
-     * app client is configured with client secret).
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret). To set any required attributes that
+     * Amazon Cognito returned as <code>requiredAttributes</code> in the
+     * <code>AdminInitiateAuth</code> response, add a
+     * <code>userAttributes.<i>attributename</i> </code> parameter. This
+     * parameter can also set values for writable attributes that aren't
+     * required by your user pool.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't
+     * modify a required attribute that already has a value. In
+     * <code>AdminRespondToAuthChallenge</code>, set a value for any keys that
+     * Amazon Cognito returned in the <code>requiredAttributes</code> parameter,
+     * then use the <code>AdminUpdateUserAttributes</code> API operation to
+     * modify the value of any additional attributes.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
@@ -861,11 +947,26 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *            <li>
      *            <p>
      *            <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
-     *            any other required attributes, <code>USERNAME</code>,
-     *            <code>SECRET_HASH</code> (if app client is configured with
-     *            client secret).
+     *            <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client
+     *            is configured with client secret). To set any required
+     *            attributes that Amazon Cognito returned as
+     *            <code>requiredAttributes</code> in the
+     *            <code>AdminInitiateAuth</code> response, add a
+     *            <code>userAttributes.<i>attributename</i> </code> parameter.
+     *            This parameter can also set values for writable attributes
+     *            that aren't required by your user pool.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            In a <code>NEW_PASSWORD_REQUIRED</code> challenge response,
+     *            you can't modify a required attribute that already has a
+     *            value. In <code>AdminRespondToAuthChallenge</code>, set a
+     *            value for any keys that Amazon Cognito returned in the
+     *            <code>requiredAttributes</code> parameter, then use the
+     *            <code>AdminUpdateUserAttributes</code> API operation to modify
+     *            the value of any additional attributes.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
@@ -928,11 +1029,25 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * </li>
      * <li>
      * <p>
-     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
-     * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
-     * app client is configured with client secret).
+     * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>,
+     * <code>USERNAME</code>, <code>SECRET_HASH</code> (if app client is
+     * configured with client secret). To set any required attributes that
+     * Amazon Cognito returned as <code>requiredAttributes</code> in the
+     * <code>AdminInitiateAuth</code> response, add a
+     * <code>userAttributes.<i>attributename</i> </code> parameter. This
+     * parameter can also set values for writable attributes that aren't
+     * required by your user pool.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * In a <code>NEW_PASSWORD_REQUIRED</code> challenge response, you can't
+     * modify a required attribute that already has a value. In
+     * <code>AdminRespondToAuthChallenge</code>, set a value for any keys that
+     * Amazon Cognito returned in the <code>requiredAttributes</code> parameter,
+     * then use the <code>AdminUpdateUserAttributes</code> API operation to
+     * modify the value of any additional attributes.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you must use
@@ -1124,15 +1239,18 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      *
      * @return <p>
-     *         Contextual data such as the user's device fingerprint, IP
-     *         address, or location used for evaluating the risk of an
-     *         unexpected event by Amazon Cognito advanced security.
+     *         Contextual data about your user session, such as the device
+     *         fingerprint, IP address, or location. Amazon Cognito advanced
+     *         security evaluates the risk of an authentication event based on
+     *         the context that your app generates and passes to Amazon Cognito
+     *         when it makes API requests.
      *         </p>
      */
     public ContextDataType getContextData() {
@@ -1141,15 +1259,18 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      *
      * @param contextData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
-     *            unexpected event by Amazon Cognito advanced security.
+     *            Contextual data about your user session, such as the device
+     *            fingerprint, IP address, or location. Amazon Cognito advanced
+     *            security evaluates the risk of an authentication event based
+     *            on the context that your app generates and passes to Amazon
+     *            Cognito when it makes API requests.
      *            </p>
      */
     public void setContextData(ContextDataType contextData) {
@@ -1158,18 +1279,21 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contextData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
-     *            unexpected event by Amazon Cognito advanced security.
+     *            Contextual data about your user session, such as the device
+     *            fingerprint, IP address, or location. Amazon Cognito advanced
+     *            security evaluates the risk of an authentication event based
+     *            on the context that your app generates and passes to Amazon
+     *            Cognito when it makes API requests.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

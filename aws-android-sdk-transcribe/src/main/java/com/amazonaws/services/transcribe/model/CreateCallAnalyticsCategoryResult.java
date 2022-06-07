@@ -20,39 +20,21 @@ import java.io.Serializable;
 public class CreateCallAnalyticsCategoryResult implements Serializable {
     /**
      * <p>
-     * If your audio matches one of your categories, this field contains data on
-     * that category and its associated rules. This parameter shows which
-     * category is flagged (<code>CategoryName</code>) along with metadata for
-     * the rules that match your audio. Metadata includes the rule filter (such
-     * as <code>InterruptionFilter</code>, <code>NonTalkTimeFilter</code>,
-     * <code>SentimentFilter</code>, and <code>TranscriptFilter</code>) and
-     * where in your audio (<code>StartTime</code> and <code>EndTime</code>) the
-     * rule has a match.
+     * Provides you with the properties of your new category, including its
+     * associated rules.
      * </p>
      */
     private CategoryProperties categoryProperties;
 
     /**
      * <p>
-     * If your audio matches one of your categories, this field contains data on
-     * that category and its associated rules. This parameter shows which
-     * category is flagged (<code>CategoryName</code>) along with metadata for
-     * the rules that match your audio. Metadata includes the rule filter (such
-     * as <code>InterruptionFilter</code>, <code>NonTalkTimeFilter</code>,
-     * <code>SentimentFilter</code>, and <code>TranscriptFilter</code>) and
-     * where in your audio (<code>StartTime</code> and <code>EndTime</code>) the
-     * rule has a match.
+     * Provides you with the properties of your new category, including its
+     * associated rules.
      * </p>
      *
      * @return <p>
-     *         If your audio matches one of your categories, this field contains
-     *         data on that category and its associated rules. This parameter
-     *         shows which category is flagged (<code>CategoryName</code>) along
-     *         with metadata for the rules that match your audio. Metadata
-     *         includes the rule filter (such as <code>InterruptionFilter</code>, <code>NonTalkTimeFilter</code>, <code>SentimentFilter</code>,
-     *         and <code>TranscriptFilter</code>) and where in your audio (
-     *         <code>StartTime</code> and <code>EndTime</code>) the rule has a
-     *         match.
+     *         Provides you with the properties of your new category, including
+     *         its associated rules.
      *         </p>
      */
     public CategoryProperties getCategoryProperties() {
@@ -61,27 +43,13 @@ public class CreateCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * If your audio matches one of your categories, this field contains data on
-     * that category and its associated rules. This parameter shows which
-     * category is flagged (<code>CategoryName</code>) along with metadata for
-     * the rules that match your audio. Metadata includes the rule filter (such
-     * as <code>InterruptionFilter</code>, <code>NonTalkTimeFilter</code>,
-     * <code>SentimentFilter</code>, and <code>TranscriptFilter</code>) and
-     * where in your audio (<code>StartTime</code> and <code>EndTime</code>) the
-     * rule has a match.
+     * Provides you with the properties of your new category, including its
+     * associated rules.
      * </p>
      *
      * @param categoryProperties <p>
-     *            If your audio matches one of your categories, this field
-     *            contains data on that category and its associated rules. This
-     *            parameter shows which category is flagged (
-     *            <code>CategoryName</code>) along with metadata for the rules
-     *            that match your audio. Metadata includes the rule filter (such
-     *            as <code>InterruptionFilter</code>,
-     *            <code>NonTalkTimeFilter</code>, <code>SentimentFilter</code>,
-     *            and <code>TranscriptFilter</code>) and where in your audio (
-     *            <code>StartTime</code> and <code>EndTime</code>) the rule has
-     *            a match.
+     *            Provides you with the properties of your new category,
+     *            including its associated rules.
      *            </p>
      */
     public void setCategoryProperties(CategoryProperties categoryProperties) {
@@ -90,30 +58,16 @@ public class CreateCallAnalyticsCategoryResult implements Serializable {
 
     /**
      * <p>
-     * If your audio matches one of your categories, this field contains data on
-     * that category and its associated rules. This parameter shows which
-     * category is flagged (<code>CategoryName</code>) along with metadata for
-     * the rules that match your audio. Metadata includes the rule filter (such
-     * as <code>InterruptionFilter</code>, <code>NonTalkTimeFilter</code>,
-     * <code>SentimentFilter</code>, and <code>TranscriptFilter</code>) and
-     * where in your audio (<code>StartTime</code> and <code>EndTime</code>) the
-     * rule has a match.
+     * Provides you with the properties of your new category, including its
+     * associated rules.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param categoryProperties <p>
-     *            If your audio matches one of your categories, this field
-     *            contains data on that category and its associated rules. This
-     *            parameter shows which category is flagged (
-     *            <code>CategoryName</code>) along with metadata for the rules
-     *            that match your audio. Metadata includes the rule filter (such
-     *            as <code>InterruptionFilter</code>,
-     *            <code>NonTalkTimeFilter</code>, <code>SentimentFilter</code>,
-     *            and <code>TranscriptFilter</code>) and where in your audio (
-     *            <code>StartTime</code> and <code>EndTime</code>) the rule has
-     *            a match.
+     *            Provides you with the properties of your new category,
+     *            including its associated rules.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,13 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides a summary of information about a transcription job.
+ * Provides detailed information about a specific transcription job.
  * </p>
  */
 public class TranscriptionJobSummary implements Serializable {
     /**
      * <p>
-     * The name of the transcription job.
+     * The name of the transcription job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,28 +37,46 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified transcription job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date creationTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time your transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date startTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified transcription job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date completionTime;
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,9 +90,15 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,27 +108,32 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,32 +150,62 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The object used to call your custom language model to your transcription
-     * job.
+     * Provides the name of the custom language model that was included in the
+     * specified transcription job.
+     * </p>
+     * <p>
+     * Only use <code>ModelSettings</code> with the
+     * <code>LanguageModelName</code> sub-parameter if you're <b>not</b> using
+     * automatic language identification (
+     * <code/>). If using <code>LanguageIdSettings</code> in your request, this
+     * parameter contains a <code>LanguageModelName</code> sub-parameter.
      * </p>
      */
     private ModelSettings modelSettings;
 
     /**
      * <p>
-     * Whether automatic language identification was enabled for a transcription
-     * job.
+     * Indicates whether automatic language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      */
     private Boolean identifyLanguage;
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language it identified in the source audio. A higher score indicates that
-     * Amazon Transcribe is more confident in the language it identified.
+     * Indicates whether automatic multi-language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
+     * </p>
+     */
+    private Boolean identifyMultipleLanguages;
+
+    /**
+     * <p>
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      */
     private Float identifiedLanguageScore;
 
     /**
      * <p>
-     * The name of the transcription job.
+     * The language codes used to create your transcription job. This parameter
+     * is used with multi-language identification. For single-language
+     * identification, the singular version of this parameter,
+     * <code>LanguageCode</code>, is present.
+     * </p>
+     */
+    private java.util.List<LanguageCodeItem> languageCodes;
+
+    /**
+     * <p>
+     * The name of the transcription job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,7 +213,8 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the transcription job.
+     *         The name of the transcription job. Job names are case sensitive
+     *         and must be unique within an Amazon Web Services account.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -162,7 +223,8 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the transcription job.
+     * The name of the transcription job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +232,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the transcription job.
+     *            The name of the transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -179,7 +243,8 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the transcription job.
+     * The name of the transcription job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -190,7 +255,9 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the transcription job.
+     *            The name of the transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -202,11 +269,25 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified transcription job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job was created.
+     *         The date and time the specified transcription job request was
+     *         made.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCreationTime() {
@@ -215,11 +296,25 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified transcription job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the job was created.
+     *            The date and time the specified transcription job request was
+     *            made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
@@ -228,14 +323,28 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified transcription job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the job was created.
+     *            The date and time the specified transcription job request was
+     *            made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -247,11 +356,24 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time your transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job started processing.
+     *         The date and time your transcription job began processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -260,11 +382,24 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time your transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job started processing.
+     *            The date and time your transcription job began processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -273,14 +408,27 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time your transcription job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job started processing.
+     *            The date and time your transcription job began processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -292,11 +440,25 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified transcription job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job was completed.
+     *         The date and time the specified transcription job finished
+     *         processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *         transcription job that started processing at 12:33 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCompletionTime() {
@@ -305,11 +467,25 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified transcription job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified transcription job finished
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCompletionTime(java.util.Date completionTime) {
@@ -318,14 +494,28 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified transcription job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified transcription job finished
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -337,7 +527,7 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -348,7 +538,7 @@ public class TranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code for the input speech.
+     *         The language code used to create your transcription.
      *         </p>
      * @see LanguageCode
      */
@@ -358,7 +548,7 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -369,7 +559,7 @@ public class TranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the input speech.
+     *            The language code used to create your transcription.
      *            </p>
      * @see LanguageCode
      */
@@ -379,7 +569,7 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -393,7 +583,7 @@ public class TranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the input speech.
+     *            The language code used to create your transcription.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -406,7 +596,7 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -417,7 +607,7 @@ public class TranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the input speech.
+     *            The language code used to create your transcription.
      *            </p>
      * @see LanguageCode
      */
@@ -427,7 +617,7 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The language code for the input speech.
+     * The language code used to create your transcription.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -441,7 +631,7 @@ public class TranscriptionJobSummary implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the input speech.
+     *            The language code used to create your transcription.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -454,18 +644,31 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The status of the transcription job. When the status is
-     *         <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     *         operation to get the results of the transcription.
+     *         Provides the status of your transcription job.
+     *         </p>
+     *         <p>
+     *         If the status is <code>COMPLETED</code>, the job is finished and
+     *         you can find the results at the location specified in
+     *         <code>TranscriptFileUri</code> (or
+     *         <code>RedactedTranscriptFileUri</code>, if you requested
+     *         transcript redaction). If the status is <code>FAILED</code>,
+     *         <code>FailureReason</code> provides details on why your
+     *         transcription job failed.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -475,19 +678,31 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the transcription job. When the status is
-     *            <code>COMPLETED</code>, use the
-     *            <code>GetTranscriptionJob</code> operation to get the results
-     *            of the transcription.
+     *            Provides the status of your transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -497,9 +712,15 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -509,10 +730,16 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the transcription job. When the status is
-     *            <code>COMPLETED</code>, use the
-     *            <code>GetTranscriptionJob</code> operation to get the results
-     *            of the transcription.
+     *            Provides the status of your transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -525,19 +752,31 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the transcription job. When the status is
-     *            <code>COMPLETED</code>, use the
-     *            <code>GetTranscriptionJob</code> operation to get the results
-     *            of the transcription.
+     *            Provides the status of your transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -547,9 +786,15 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The status of the transcription job. When the status is
-     * <code>COMPLETED</code>, use the <code>GetTranscriptionJob</code>
-     * operation to get the results of the transcription.
+     * Provides the status of your transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -559,10 +804,16 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The status of the transcription job. When the status is
-     *            <code>COMPLETED</code>, use the
-     *            <code>GetTranscriptionJob</code> operation to get the results
-     *            of the transcription.
+     *            Provides the status of your transcription job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -576,13 +827,19 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      *
      * @return <p>
-     *         If the <code>TranscriptionJobStatus</code> field is
-     *         <code>FAILED</code>, a description of the error.
+     *         If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *         <code>FailureReason</code> contains information about why the
+     *         transcription job failed. See also: <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *         >Common Errors</a>.
      *         </p>
      */
     public String getFailureReason() {
@@ -591,13 +848,19 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, a description of the error.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job failed. See also: <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a>.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -606,16 +869,22 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * a description of the error.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job failed. See also: <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     * >Common Errors</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, a description of the error.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job failed. See also: <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
+     *            >Common Errors</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -627,38 +896,42 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @return <p>
-     *         Indicates the location of the output of the transcription job.
+     *         Indicates where the specified transcription output is stored.
      *         </p>
      *         <p>
-     *         If the value is <code>CUSTOMER_BUCKET</code> then the location is
-     *         the S3 bucket specified in the <code>outputBucketName</code>
-     *         field when the transcription job was started with the
-     *         <code>StartTranscriptionJob</code> operation.
+     *         If the value is <code>CUSTOMER_BUCKET</code>, the location is the
+     *         Amazon S3 bucket you specified using the
+     *         <code>OutputBucketName</code> parameter in your request. If you
+     *         also included <code>OutputKey</code> in your request, your output
+     *         is located in the path you specified in your request.
      *         </p>
      *         <p>
-     *         If the value is <code>SERVICE_BUCKET</code> then the output is
-     *         stored by Amazon Transcribe and can be retrieved using the URI in
-     *         the <code>GetTranscriptionJob</code> response's
-     *         <code>TranscriptFileUri</code> field.
+     *         If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *         service-managed Amazon S3 bucket. To access a transcript stored
+     *         in a service-managed bucket, use the URI shown in the
+     *         <code>TranscriptFileUri</code> or
+     *         <code>RedactedTranscriptFileUri</code> field.
      *         </p>
      * @see OutputLocationType
      */
@@ -668,39 +941,42 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the output of the transcription job.
+     *            Indicates where the specified transcription output is stored.
      *            </p>
      *            <p>
-     *            If the value is <code>CUSTOMER_BUCKET</code> then the location
-     *            is the S3 bucket specified in the
-     *            <code>outputBucketName</code> field when the transcription job
-     *            was started with the <code>StartTranscriptionJob</code>
-     *            operation.
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
      *            </p>
      *            <p>
-     *            If the value is <code>SERVICE_BUCKET</code> then the output is
-     *            stored by Amazon Transcribe and can be retrieved using the URI
-     *            in the <code>GetTranscriptionJob</code> response's
-     *            <code>TranscriptFileUri</code> field.
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> or
+     *            <code>RedactedTranscriptFileUri</code> field.
      *            </p>
      * @see OutputLocationType
      */
@@ -710,19 +986,21 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -732,20 +1010,21 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the output of the transcription job.
+     *            Indicates where the specified transcription output is stored.
      *            </p>
      *            <p>
-     *            If the value is <code>CUSTOMER_BUCKET</code> then the location
-     *            is the S3 bucket specified in the
-     *            <code>outputBucketName</code> field when the transcription job
-     *            was started with the <code>StartTranscriptionJob</code>
-     *            operation.
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
      *            </p>
      *            <p>
-     *            If the value is <code>SERVICE_BUCKET</code> then the output is
-     *            stored by Amazon Transcribe and can be retrieved using the URI
-     *            in the <code>GetTranscriptionJob</code> response's
-     *            <code>TranscriptFileUri</code> field.
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> or
+     *            <code>RedactedTranscriptFileUri</code> field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -758,39 +1037,42 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the output of the transcription job.
+     *            Indicates where the specified transcription output is stored.
      *            </p>
      *            <p>
-     *            If the value is <code>CUSTOMER_BUCKET</code> then the location
-     *            is the S3 bucket specified in the
-     *            <code>outputBucketName</code> field when the transcription job
-     *            was started with the <code>StartTranscriptionJob</code>
-     *            operation.
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
      *            </p>
      *            <p>
-     *            If the value is <code>SERVICE_BUCKET</code> then the output is
-     *            stored by Amazon Transcribe and can be retrieved using the URI
-     *            in the <code>GetTranscriptionJob</code> response's
-     *            <code>TranscriptFileUri</code> field.
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> or
+     *            <code>RedactedTranscriptFileUri</code> field.
      *            </p>
      * @see OutputLocationType
      */
@@ -800,19 +1082,21 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the output of the transcription job.
+     * Indicates where the specified transcription output is stored.
      * </p>
      * <p>
-     * If the value is <code>CUSTOMER_BUCKET</code> then the location is the S3
-     * bucket specified in the <code>outputBucketName</code> field when the
-     * transcription job was started with the <code>StartTranscriptionJob</code>
-     * operation.
+     * If the value is <code>CUSTOMER_BUCKET</code>, the location is the Amazon
+     * S3 bucket you specified using the <code>OutputBucketName</code> parameter
+     * in your request. If you also included <code>OutputKey</code> in your
+     * request, your output is located in the path you specified in your
+     * request.
      * </p>
      * <p>
-     * If the value is <code>SERVICE_BUCKET</code> then the output is stored by
-     * Amazon Transcribe and can be retrieved using the URI in the
-     * <code>GetTranscriptionJob</code> response's
-     * <code>TranscriptFileUri</code> field.
+     * If the value is <code>SERVICE_BUCKET</code>, the location is a
+     * service-managed Amazon S3 bucket. To access a transcript stored in a
+     * service-managed bucket, use the URI shown in the
+     * <code>TranscriptFileUri</code> or <code>RedactedTranscriptFileUri</code>
+     * field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -822,20 +1106,21 @@ public class TranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the output of the transcription job.
+     *            Indicates where the specified transcription output is stored.
      *            </p>
      *            <p>
-     *            If the value is <code>CUSTOMER_BUCKET</code> then the location
-     *            is the S3 bucket specified in the
-     *            <code>outputBucketName</code> field when the transcription job
-     *            was started with the <code>StartTranscriptionJob</code>
-     *            operation.
+     *            If the value is <code>CUSTOMER_BUCKET</code>, the location is
+     *            the Amazon S3 bucket you specified using the
+     *            <code>OutputBucketName</code> parameter in your request. If
+     *            you also included <code>OutputKey</code> in your request, your
+     *            output is located in the path you specified in your request.
      *            </p>
      *            <p>
-     *            If the value is <code>SERVICE_BUCKET</code> then the output is
-     *            stored by Amazon Transcribe and can be retrieved using the URI
-     *            in the <code>GetTranscriptionJob</code> response's
-     *            <code>TranscriptFileUri</code> field.
+     *            If the value is <code>SERVICE_BUCKET</code>, the location is a
+     *            service-managed Amazon S3 bucket. To access a transcript
+     *            stored in a service-managed bucket, use the URI shown in the
+     *            <code>TranscriptFileUri</code> or
+     *            <code>RedactedTranscriptFileUri</code> field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -893,13 +1178,28 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The object used to call your custom language model to your transcription
-     * job.
+     * Provides the name of the custom language model that was included in the
+     * specified transcription job.
+     * </p>
+     * <p>
+     * Only use <code>ModelSettings</code> with the
+     * <code>LanguageModelName</code> sub-parameter if you're <b>not</b> using
+     * automatic language identification (
+     * <code/>). If using <code>LanguageIdSettings</code> in your request, this
+     * parameter contains a <code>LanguageModelName</code> sub-parameter.
      * </p>
      *
      * @return <p>
-     *         The object used to call your custom language model to your
-     *         transcription job.
+     *         Provides the name of the custom language model that was included
+     *         in the specified transcription job.
+     *         </p>
+     *         <p>
+     *         Only use <code>ModelSettings</code> with the
+     *         <code>LanguageModelName</code> sub-parameter if you're <b>not</b>
+     *         using automatic language identification (
+     *         <code/>). If using <code>LanguageIdSettings</code> in your
+     *         request, this parameter contains a <code>LanguageModelName</code>
+     *         sub-parameter.
      *         </p>
      */
     public ModelSettings getModelSettings() {
@@ -908,13 +1208,28 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The object used to call your custom language model to your transcription
-     * job.
+     * Provides the name of the custom language model that was included in the
+     * specified transcription job.
+     * </p>
+     * <p>
+     * Only use <code>ModelSettings</code> with the
+     * <code>LanguageModelName</code> sub-parameter if you're <b>not</b> using
+     * automatic language identification (
+     * <code/>). If using <code>LanguageIdSettings</code> in your request, this
+     * parameter contains a <code>LanguageModelName</code> sub-parameter.
      * </p>
      *
      * @param modelSettings <p>
-     *            The object used to call your custom language model to your
-     *            transcription job.
+     *            Provides the name of the custom language model that was
+     *            included in the specified transcription job.
+     *            </p>
+     *            <p>
+     *            Only use <code>ModelSettings</code> with the
+     *            <code>LanguageModelName</code> sub-parameter if you're
+     *            <b>not</b> using automatic language identification (
+     *            <code/>). If using <code>LanguageIdSettings</code> in your
+     *            request, this parameter contains a
+     *            <code>LanguageModelName</code> sub-parameter.
      *            </p>
      */
     public void setModelSettings(ModelSettings modelSettings) {
@@ -923,16 +1238,31 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The object used to call your custom language model to your transcription
-     * job.
+     * Provides the name of the custom language model that was included in the
+     * specified transcription job.
+     * </p>
+     * <p>
+     * Only use <code>ModelSettings</code> with the
+     * <code>LanguageModelName</code> sub-parameter if you're <b>not</b> using
+     * automatic language identification (
+     * <code/>). If using <code>LanguageIdSettings</code> in your request, this
+     * parameter contains a <code>LanguageModelName</code> sub-parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param modelSettings <p>
-     *            The object used to call your custom language model to your
-     *            transcription job.
+     *            Provides the name of the custom language model that was
+     *            included in the specified transcription job.
+     *            </p>
+     *            <p>
+     *            Only use <code>ModelSettings</code> with the
+     *            <code>LanguageModelName</code> sub-parameter if you're
+     *            <b>not</b> using automatic language identification (
+     *            <code/>). If using <code>LanguageIdSettings</code> in your
+     *            request, this parameter contains a
+     *            <code>LanguageModelName</code> sub-parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -944,13 +1274,13 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Whether automatic language identification was enabled for a transcription
-     * job.
+     * Indicates whether automatic language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      *
      * @return <p>
-     *         Whether automatic language identification was enabled for a
-     *         transcription job.
+     *         Indicates whether automatic language identification was enabled (
+     *         <code>TRUE</code>) for the specified transcription job.
      *         </p>
      */
     public Boolean isIdentifyLanguage() {
@@ -959,13 +1289,13 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Whether automatic language identification was enabled for a transcription
-     * job.
+     * Indicates whether automatic language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      *
      * @return <p>
-     *         Whether automatic language identification was enabled for a
-     *         transcription job.
+     *         Indicates whether automatic language identification was enabled (
+     *         <code>TRUE</code>) for the specified transcription job.
      *         </p>
      */
     public Boolean getIdentifyLanguage() {
@@ -974,13 +1304,14 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Whether automatic language identification was enabled for a transcription
-     * job.
+     * Indicates whether automatic language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      *
      * @param identifyLanguage <p>
-     *            Whether automatic language identification was enabled for a
-     *            transcription job.
+     *            Indicates whether automatic language identification was
+     *            enabled (<code>TRUE</code>) for the specified transcription
+     *            job.
      *            </p>
      */
     public void setIdentifyLanguage(Boolean identifyLanguage) {
@@ -989,16 +1320,17 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Whether automatic language identification was enabled for a transcription
-     * job.
+     * Indicates whether automatic language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identifyLanguage <p>
-     *            Whether automatic language identification was enabled for a
-     *            transcription job.
+     *            Indicates whether automatic language identification was
+     *            enabled (<code>TRUE</code>) for the specified transcription
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1010,16 +1342,91 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language it identified in the source audio. A higher score indicates that
-     * Amazon Transcribe is more confident in the language it identified.
+     * Indicates whether automatic multi-language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
      * </p>
      *
      * @return <p>
-     *         A value between zero and one that Amazon Transcribe assigned to
-     *         the language it identified in the source audio. A higher score
-     *         indicates that Amazon Transcribe is more confident in the
-     *         language it identified.
+     *         Indicates whether automatic multi-language identification was
+     *         enabled (<code>TRUE</code>) for the specified transcription job.
+     *         </p>
+     */
+    public Boolean isIdentifyMultipleLanguages() {
+        return identifyMultipleLanguages;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic multi-language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether automatic multi-language identification was
+     *         enabled (<code>TRUE</code>) for the specified transcription job.
+     *         </p>
+     */
+    public Boolean getIdentifyMultipleLanguages() {
+        return identifyMultipleLanguages;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic multi-language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
+     * </p>
+     *
+     * @param identifyMultipleLanguages <p>
+     *            Indicates whether automatic multi-language identification was
+     *            enabled (<code>TRUE</code>) for the specified transcription
+     *            job.
+     *            </p>
+     */
+    public void setIdentifyMultipleLanguages(Boolean identifyMultipleLanguages) {
+        this.identifyMultipleLanguages = identifyMultipleLanguages;
+    }
+
+    /**
+     * <p>
+     * Indicates whether automatic multi-language identification was enabled (
+     * <code>TRUE</code>) for the specified transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param identifyMultipleLanguages <p>
+     *            Indicates whether automatic multi-language identification was
+     *            enabled (<code>TRUE</code>) for the specified transcription
+     *            job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withIdentifyMultipleLanguages(Boolean identifyMultipleLanguages) {
+        this.identifyMultipleLanguages = identifyMultipleLanguages;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
+     * </p>
+     *
+     * @return <p>
+     *         The confidence score associated with the language identified in
+     *         your media file.
+     *         </p>
+     *         <p>
+     *         Confidence scores are values between 0 and 1; a larger value
+     *         indicates a higher probability that the identified language
+     *         correctly matches the language spoken in your media.
      *         </p>
      */
     public Float getIdentifiedLanguageScore() {
@@ -1028,16 +1435,23 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language it identified in the source audio. A higher score indicates that
-     * Amazon Transcribe is more confident in the language it identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      *
      * @param identifiedLanguageScore <p>
-     *            A value between zero and one that Amazon Transcribe assigned
-     *            to the language it identified in the source audio. A higher
-     *            score indicates that Amazon Transcribe is more confident in
-     *            the language it identified.
+     *            The confidence score associated with the language identified
+     *            in your media file.
+     *            </p>
+     *            <p>
+     *            Confidence scores are values between 0 and 1; a larger value
+     *            indicates a higher probability that the identified language
+     *            correctly matches the language spoken in your media.
      *            </p>
      */
     public void setIdentifiedLanguageScore(Float identifiedLanguageScore) {
@@ -1046,25 +1460,131 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language it identified in the source audio. A higher score indicates that
-     * Amazon Transcribe is more confident in the language it identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identifiedLanguageScore <p>
-     *            A value between zero and one that Amazon Transcribe assigned
-     *            to the language it identified in the source audio. A higher
-     *            score indicates that Amazon Transcribe is more confident in
-     *            the language it identified.
+     *            The confidence score associated with the language identified
+     *            in your media file.
+     *            </p>
+     *            <p>
+     *            Confidence scores are values between 0 and 1; a larger value
+     *            indicates a higher probability that the identified language
+     *            correctly matches the language spoken in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public TranscriptionJobSummary withIdentifiedLanguageScore(Float identifiedLanguageScore) {
         this.identifiedLanguageScore = identifiedLanguageScore;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language codes used to create your transcription job. This parameter
+     * is used with multi-language identification. For single-language
+     * identification, the singular version of this parameter,
+     * <code>LanguageCode</code>, is present.
+     * </p>
+     *
+     * @return <p>
+     *         The language codes used to create your transcription job. This
+     *         parameter is used with multi-language identification. For
+     *         single-language identification, the singular version of this
+     *         parameter, <code>LanguageCode</code>, is present.
+     *         </p>
+     */
+    public java.util.List<LanguageCodeItem> getLanguageCodes() {
+        return languageCodes;
+    }
+
+    /**
+     * <p>
+     * The language codes used to create your transcription job. This parameter
+     * is used with multi-language identification. For single-language
+     * identification, the singular version of this parameter,
+     * <code>LanguageCode</code>, is present.
+     * </p>
+     *
+     * @param languageCodes <p>
+     *            The language codes used to create your transcription job. This
+     *            parameter is used with multi-language identification. For
+     *            single-language identification, the singular version of this
+     *            parameter, <code>LanguageCode</code>, is present.
+     *            </p>
+     */
+    public void setLanguageCodes(java.util.Collection<LanguageCodeItem> languageCodes) {
+        if (languageCodes == null) {
+            this.languageCodes = null;
+            return;
+        }
+
+        this.languageCodes = new java.util.ArrayList<LanguageCodeItem>(languageCodes);
+    }
+
+    /**
+     * <p>
+     * The language codes used to create your transcription job. This parameter
+     * is used with multi-language identification. For single-language
+     * identification, the singular version of this parameter,
+     * <code>LanguageCode</code>, is present.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param languageCodes <p>
+     *            The language codes used to create your transcription job. This
+     *            parameter is used with multi-language identification. For
+     *            single-language identification, the singular version of this
+     *            parameter, <code>LanguageCode</code>, is present.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withLanguageCodes(LanguageCodeItem... languageCodes) {
+        if (getLanguageCodes() == null) {
+            this.languageCodes = new java.util.ArrayList<LanguageCodeItem>(languageCodes.length);
+        }
+        for (LanguageCodeItem value : languageCodes) {
+            this.languageCodes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language codes used to create your transcription job. This parameter
+     * is used with multi-language identification. For single-language
+     * identification, the singular version of this parameter,
+     * <code>LanguageCode</code>, is present.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param languageCodes <p>
+     *            The language codes used to create your transcription job. This
+     *            parameter is used with multi-language identification. For
+     *            single-language identification, the singular version of this
+     *            parameter, <code>LanguageCode</code>, is present.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withLanguageCodes(
+            java.util.Collection<LanguageCodeItem> languageCodes) {
+        setLanguageCodes(languageCodes);
         return this;
     }
 
@@ -1101,8 +1621,12 @@ public class TranscriptionJobSummary implements Serializable {
             sb.append("ModelSettings: " + getModelSettings() + ",");
         if (getIdentifyLanguage() != null)
             sb.append("IdentifyLanguage: " + getIdentifyLanguage() + ",");
+        if (getIdentifyMultipleLanguages() != null)
+            sb.append("IdentifyMultipleLanguages: " + getIdentifyMultipleLanguages() + ",");
         if (getIdentifiedLanguageScore() != null)
-            sb.append("IdentifiedLanguageScore: " + getIdentifiedLanguageScore());
+            sb.append("IdentifiedLanguageScore: " + getIdentifiedLanguageScore() + ",");
+        if (getLanguageCodes() != null)
+            sb.append("LanguageCodes: " + getLanguageCodes());
         sb.append("}");
         return sb.toString();
     }
@@ -1137,8 +1661,14 @@ public class TranscriptionJobSummary implements Serializable {
                 + ((getIdentifyLanguage() == null) ? 0 : getIdentifyLanguage().hashCode());
         hashCode = prime
                 * hashCode
+                + ((getIdentifyMultipleLanguages() == null) ? 0 : getIdentifyMultipleLanguages()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
                 + ((getIdentifiedLanguageScore() == null) ? 0 : getIdentifiedLanguageScore()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLanguageCodes() == null) ? 0 : getLanguageCodes().hashCode());
         return hashCode;
     }
 
@@ -1208,10 +1738,21 @@ public class TranscriptionJobSummary implements Serializable {
         if (other.getIdentifyLanguage() != null
                 && other.getIdentifyLanguage().equals(this.getIdentifyLanguage()) == false)
             return false;
+        if (other.getIdentifyMultipleLanguages() == null
+                ^ this.getIdentifyMultipleLanguages() == null)
+            return false;
+        if (other.getIdentifyMultipleLanguages() != null
+                && other.getIdentifyMultipleLanguages().equals(this.getIdentifyMultipleLanguages()) == false)
+            return false;
         if (other.getIdentifiedLanguageScore() == null ^ this.getIdentifiedLanguageScore() == null)
             return false;
         if (other.getIdentifiedLanguageScore() != null
                 && other.getIdentifiedLanguageScore().equals(this.getIdentifiedLanguageScore()) == false)
+            return false;
+        if (other.getLanguageCodes() == null ^ this.getLanguageCodes() == null)
+            return false;
+        if (other.getLanguageCodes() != null
+                && other.getLanguageCodes().equals(this.getLanguageCodes()) == false)
             return false;
         return true;
     }

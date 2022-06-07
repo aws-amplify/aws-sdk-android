@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A container for information about an identity provider for a user pool.
+ * A container for information about an IdP for a user pool.
  * </p>
  */
 public class ProviderUserIdentifierType implements Serializable {
