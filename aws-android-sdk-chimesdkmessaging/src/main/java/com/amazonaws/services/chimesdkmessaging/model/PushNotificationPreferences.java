@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class PushNotificationPreferences implements Serializable {
     /**
      * <p>
      * The simple JSON object used to send a subset of a push notification to
-     * the requsted member.
+     * the requested member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -182,7 +182,7 @@ public class PushNotificationPreferences implements Serializable {
     /**
      * <p>
      * The simple JSON object used to send a subset of a push notification to
-     * the requsted member.
+     * the requested member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -191,7 +191,7 @@ public class PushNotificationPreferences implements Serializable {
      *
      * @return <p>
      *         The simple JSON object used to send a subset of a push
-     *         notification to the requsted member.
+     *         notification to the requested member.
      *         </p>
      */
     public String getFilterRule() {
@@ -201,7 +201,7 @@ public class PushNotificationPreferences implements Serializable {
     /**
      * <p>
      * The simple JSON object used to send a subset of a push notification to
-     * the requsted member.
+     * the requested member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,7 +210,7 @@ public class PushNotificationPreferences implements Serializable {
      *
      * @param filterRule <p>
      *            The simple JSON object used to send a subset of a push
-     *            notification to the requsted member.
+     *            notification to the requested member.
      *            </p>
      */
     public void setFilterRule(String filterRule) {
@@ -220,7 +220,7 @@ public class PushNotificationPreferences implements Serializable {
     /**
      * <p>
      * The simple JSON object used to send a subset of a push notification to
-     * the requsted member.
+     * the requested member.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -232,7 +232,7 @@ public class PushNotificationPreferences implements Serializable {
      *
      * @param filterRule <p>
      *            The simple JSON object used to send a subset of a push
-     *            notification to the requsted member.
+     *            notification to the requested member.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
