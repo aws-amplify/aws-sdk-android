@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the user attribute verification code for the specified attribute name.
+ * Generates a user attribute verification code for the specified attribute
+ * name. Sends a message to a user with a code that they must return in a
+ * VerifyUserAttribute request.
  * </p>
  * <note>
  * <p>
@@ -52,8 +54,8 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
         Serializable {
     /**
      * <p>
-     * The access token returned by the server response to get the user
-     * attribute verification code.
+     * A non-expired access token for the user whose attribute verification code
+     * you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,16 +130,16 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The access token returned by the server response to get the user
-     * attribute verification code.
+     * A non-expired access token for the user whose attribute verification code
+     * you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token returned by the server response to get the user
-     *         attribute verification code.
+     *         A non-expired access token for the user whose attribute
+     *         verification code you want to generate.
      *         </p>
      */
     public String getAccessToken() {
@@ -146,16 +148,16 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The access token returned by the server response to get the user
-     * attribute verification code.
+     * A non-expired access token for the user whose attribute verification code
+     * you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token returned by the server response to get the
-     *            user attribute verification code.
+     *            A non-expired access token for the user whose attribute
+     *            verification code you want to generate.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -164,8 +166,8 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The access token returned by the server response to get the user
-     * attribute verification code.
+     * A non-expired access token for the user whose attribute verification code
+     * you want to generate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -175,8 +177,8 @@ public class GetUserAttributeVerificationCodeRequest extends AmazonWebServiceReq
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token returned by the server response to get the
-     *            user attribute verification code.
+     *            A non-expired access token for the user whose attribute
+     *            verification code you want to generate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

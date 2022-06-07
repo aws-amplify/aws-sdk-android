@@ -27,6 +27,11 @@ class UserContextDataTypeJsonMarshaller {
     public void marshall(UserContextDataType userContextDataType, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (userContextDataType.getIpAddress() != null) {
+            String ipAddress = userContextDataType.getIpAddress();
+            jsonWriter.name("IpAddress");
+            jsonWriter.value(ipAddress);
+        }
         if (userContextDataType.getEncodedData() != null) {
             String encodedData = userContextDataType.getEncodedData();
             jsonWriter.name("EncodedData");

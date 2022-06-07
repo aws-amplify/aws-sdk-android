@@ -93,6 +93,11 @@ class UserPoolTypeJsonUnmarshaller implements Unmarshaller<UserPoolType, JsonUnm
             } else if (name.equals("SmsAuthenticationMessage")) {
                 userPoolType.setSmsAuthenticationMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UserAttributeUpdateSettings")) {
+                userPoolType
+                        .setUserAttributeUpdateSettings(UserAttributeUpdateSettingsTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("MfaConfiguration")) {
                 userPoolType.setMfaConfiguration(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

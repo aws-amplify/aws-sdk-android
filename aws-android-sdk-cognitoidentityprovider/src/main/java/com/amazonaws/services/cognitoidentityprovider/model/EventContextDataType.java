@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class EventContextDataType implements Serializable {
     /**
      * <p>
-     * The user's IP address.
+     * The source IP address of your user's device.
      * </p>
      */
     private String ipAddress;
@@ -60,11 +60,11 @@ public class EventContextDataType implements Serializable {
 
     /**
      * <p>
-     * The user's IP address.
+     * The source IP address of your user's device.
      * </p>
      *
      * @return <p>
-     *         The user's IP address.
+     *         The source IP address of your user's device.
      *         </p>
      */
     public String getIpAddress() {
@@ -73,11 +73,11 @@ public class EventContextDataType implements Serializable {
 
     /**
      * <p>
-     * The user's IP address.
+     * The source IP address of your user's device.
      * </p>
      *
      * @param ipAddress <p>
-     *            The user's IP address.
+     *            The source IP address of your user's device.
      *            </p>
      */
     public void setIpAddress(String ipAddress) {
@@ -86,14 +86,14 @@ public class EventContextDataType implements Serializable {
 
     /**
      * <p>
-     * The user's IP address.
+     * The source IP address of your user's device.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ipAddress <p>
-     *            The user's IP address.
+     *            The source IP address of your user's device.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

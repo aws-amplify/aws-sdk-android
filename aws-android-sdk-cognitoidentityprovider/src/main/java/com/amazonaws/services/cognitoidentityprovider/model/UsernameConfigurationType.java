@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class UsernameConfigurationType implements Serializable {
     /**
      * <p>
-     * Specifies whether username case sensitivity will be applied for all users
-     * in the user pool through Amazon Cognito APIs.
+     * Specifies whether user name case sensitivity will be applied for all
+     * users in the user pool through Amazon Cognito APIs.
      * </p>
      * <p>
      * Valid values include:
@@ -56,8 +56,8 @@ public class UsernameConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether username case sensitivity will be applied for all users
-     * in the user pool through Amazon Cognito APIs.
+     * Specifies whether user name case sensitivity will be applied for all
+     * users in the user pool through Amazon Cognito APIs.
      * </p>
      * <p>
      * Valid values include:
@@ -84,7 +84,7 @@ public class UsernameConfigurationType implements Serializable {
      * </dl>
      *
      * @return <p>
-     *         Specifies whether username case sensitivity will be applied for
+     *         Specifies whether user name case sensitivity will be applied for
      *         all users in the user pool through Amazon Cognito APIs.
      *         </p>
      *         <p>
@@ -119,8 +119,8 @@ public class UsernameConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether username case sensitivity will be applied for all users
-     * in the user pool through Amazon Cognito APIs.
+     * Specifies whether user name case sensitivity will be applied for all
+     * users in the user pool through Amazon Cognito APIs.
      * </p>
      * <p>
      * Valid values include:
@@ -147,7 +147,7 @@ public class UsernameConfigurationType implements Serializable {
      * </dl>
      *
      * @return <p>
-     *         Specifies whether username case sensitivity will be applied for
+     *         Specifies whether user name case sensitivity will be applied for
      *         all users in the user pool through Amazon Cognito APIs.
      *         </p>
      *         <p>
@@ -182,8 +182,8 @@ public class UsernameConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether username case sensitivity will be applied for all users
-     * in the user pool through Amazon Cognito APIs.
+     * Specifies whether user name case sensitivity will be applied for all
+     * users in the user pool through Amazon Cognito APIs.
      * </p>
      * <p>
      * Valid values include:
@@ -210,7 +210,7 @@ public class UsernameConfigurationType implements Serializable {
      * </dl>
      *
      * @param caseSensitive <p>
-     *            Specifies whether username case sensitivity will be applied
+     *            Specifies whether user name case sensitivity will be applied
      *            for all users in the user pool through Amazon Cognito APIs.
      *            </p>
      *            <p>
@@ -245,8 +245,8 @@ public class UsernameConfigurationType implements Serializable {
 
     /**
      * <p>
-     * Specifies whether username case sensitivity will be applied for all users
-     * in the user pool through Amazon Cognito APIs.
+     * Specifies whether user name case sensitivity will be applied for all
+     * users in the user pool through Amazon Cognito APIs.
      * </p>
      * <p>
      * Valid values include:
@@ -276,7 +276,7 @@ public class UsernameConfigurationType implements Serializable {
      * together.
      *
      * @param caseSensitive <p>
-     *            Specifies whether username case sensitivity will be applied
+     *            Specifies whether user name case sensitivity will be applied
      *            for all users in the user pool through Amazon Cognito APIs.
      *            </p>
      *            <p>

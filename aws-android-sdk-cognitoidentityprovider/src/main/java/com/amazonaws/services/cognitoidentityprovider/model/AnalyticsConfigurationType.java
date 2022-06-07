@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The Amazon Pinpoint analytics configuration for collecting metrics for a user
- * pool.
+ * The Amazon Pinpoint analytics configuration necessary to collect metrics for
+ * a user pool.
  * </p>
  * <note>
  * <p>
@@ -46,8 +46,8 @@ public class AnalyticsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
      * the Amazon Pinpoint project to integrate with the chosen user pool
-     * Client. Amazon Cognito publishes events to the Amazon Pinpointproject
-     * declared by the app ARN.
+     * Client. Amazon Cognito publishes events to the Amazon Pinpoint project
+     * that the app ARN declares.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,8 +81,8 @@ public class AnalyticsConfigurationType implements Serializable {
 
     /**
      * <p>
-     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will
-     * include user data in the events it publishes to Amazon Pinpoint
+     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito
+     * includes user data in the events that it publishes to Amazon Pinpoint
      * analytics.
      * </p>
      */
@@ -146,8 +146,8 @@ public class AnalyticsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
      * the Amazon Pinpoint project to integrate with the chosen user pool
-     * Client. Amazon Cognito publishes events to the Amazon Pinpointproject
-     * declared by the app ARN.
+     * Client. Amazon Cognito publishes events to the Amazon Pinpoint project
+     * that the app ARN declares.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,7 +160,7 @@ public class AnalyticsConfigurationType implements Serializable {
      *         The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You
      *         can use the Amazon Pinpoint project to integrate with the chosen
      *         user pool Client. Amazon Cognito publishes events to the Amazon
-     *         Pinpointproject declared by the app ARN.
+     *         Pinpoint project that the app ARN declares.
      *         </p>
      */
     public String getApplicationArn() {
@@ -171,8 +171,8 @@ public class AnalyticsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
      * the Amazon Pinpoint project to integrate with the chosen user pool
-     * Client. Amazon Cognito publishes events to the Amazon Pinpointproject
-     * declared by the app ARN.
+     * Client. Amazon Cognito publishes events to the Amazon Pinpoint project
+     * that the app ARN declares.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,7 +185,7 @@ public class AnalyticsConfigurationType implements Serializable {
      *            The Amazon Resource Name (ARN) of an Amazon Pinpoint project.
      *            You can use the Amazon Pinpoint project to integrate with the
      *            chosen user pool Client. Amazon Cognito publishes events to
-     *            the Amazon Pinpointproject declared by the app ARN.
+     *            the Amazon Pinpoint project that the app ARN declares.
      *            </p>
      */
     public void setApplicationArn(String applicationArn) {
@@ -196,8 +196,8 @@ public class AnalyticsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
      * the Amazon Pinpoint project to integrate with the chosen user pool
-     * Client. Amazon Cognito publishes events to the Amazon Pinpointproject
-     * declared by the app ARN.
+     * Client. Amazon Cognito publishes events to the Amazon Pinpoint project
+     * that the app ARN declares.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,7 +213,7 @@ public class AnalyticsConfigurationType implements Serializable {
      *            The Amazon Resource Name (ARN) of an Amazon Pinpoint project.
      *            You can use the Amazon Pinpoint project to integrate with the
      *            chosen user pool Client. Amazon Cognito publishes events to
-     *            the Amazon Pinpointproject declared by the app ARN.
+     *            the Amazon Pinpoint project that the app ARN declares.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -341,14 +341,14 @@ public class AnalyticsConfigurationType implements Serializable {
 
     /**
      * <p>
-     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will
-     * include user data in the events it publishes to Amazon Pinpoint
+     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito
+     * includes user data in the events that it publishes to Amazon Pinpoint
      * analytics.
      * </p>
      *
      * @return <p>
      *         If <code>UserDataShared</code> is <code>true</code>, Amazon
-     *         Cognito will include user data in the events it publishes to
+     *         Cognito includes user data in the events that it publishes to
      *         Amazon Pinpoint analytics.
      *         </p>
      */
@@ -358,14 +358,14 @@ public class AnalyticsConfigurationType implements Serializable {
 
     /**
      * <p>
-     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will
-     * include user data in the events it publishes to Amazon Pinpoint
+     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito
+     * includes user data in the events that it publishes to Amazon Pinpoint
      * analytics.
      * </p>
      *
      * @return <p>
      *         If <code>UserDataShared</code> is <code>true</code>, Amazon
-     *         Cognito will include user data in the events it publishes to
+     *         Cognito includes user data in the events that it publishes to
      *         Amazon Pinpoint analytics.
      *         </p>
      */
@@ -375,14 +375,14 @@ public class AnalyticsConfigurationType implements Serializable {
 
     /**
      * <p>
-     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will
-     * include user data in the events it publishes to Amazon Pinpoint
+     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito
+     * includes user data in the events that it publishes to Amazon Pinpoint
      * analytics.
      * </p>
      *
      * @param userDataShared <p>
      *            If <code>UserDataShared</code> is <code>true</code>, Amazon
-     *            Cognito will include user data in the events it publishes to
+     *            Cognito includes user data in the events that it publishes to
      *            Amazon Pinpoint analytics.
      *            </p>
      */
@@ -392,8 +392,8 @@ public class AnalyticsConfigurationType implements Serializable {
 
     /**
      * <p>
-     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito will
-     * include user data in the events it publishes to Amazon Pinpoint
+     * If <code>UserDataShared</code> is <code>true</code>, Amazon Cognito
+     * includes user data in the events that it publishes to Amazon Pinpoint
      * analytics.
      * </p>
      * <p>
@@ -402,7 +402,7 @@ public class AnalyticsConfigurationType implements Serializable {
      *
      * @param userDataShared <p>
      *            If <code>UserDataShared</code> is <code>true</code>, Amazon
-     *            Cognito will include user data in the events it publishes to
+     *            Cognito includes user data in the events that it publishes to
      *            Amazon Pinpoint analytics.
      *            </p>
      * @return A reference to this updated object so that method calls can be

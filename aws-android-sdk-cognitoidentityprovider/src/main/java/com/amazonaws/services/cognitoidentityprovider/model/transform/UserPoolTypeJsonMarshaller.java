@@ -135,6 +135,13 @@ class UserPoolTypeJsonMarshaller {
             jsonWriter.name("SmsAuthenticationMessage");
             jsonWriter.value(smsAuthenticationMessage);
         }
+        if (userPoolType.getUserAttributeUpdateSettings() != null) {
+            UserAttributeUpdateSettingsType userAttributeUpdateSettings = userPoolType
+                    .getUserAttributeUpdateSettings();
+            jsonWriter.name("UserAttributeUpdateSettings");
+            UserAttributeUpdateSettingsTypeJsonMarshaller.getInstance().marshall(
+                    userAttributeUpdateSettings, jsonWriter);
+        }
         if (userPoolType.getMfaConfiguration() != null) {
             String mfaConfiguration = userPoolType.getMfaConfiguration();
             jsonWriter.name("MfaConfiguration");

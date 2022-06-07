@@ -21,40 +21,41 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO UserContextDataType
+ * JSON unmarshaller for POJO UserAttributeUpdateSettingsType
  */
-class UserContextDataTypeJsonUnmarshaller implements
-        Unmarshaller<UserContextDataType, JsonUnmarshallerContext> {
+class UserAttributeUpdateSettingsTypeJsonUnmarshaller implements
+        Unmarshaller<UserAttributeUpdateSettingsType, JsonUnmarshallerContext> {
 
-    public UserContextDataType unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public UserAttributeUpdateSettingsType unmarshall(JsonUnmarshallerContext context)
+            throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        UserContextDataType userContextDataType = new UserContextDataType();
+        UserAttributeUpdateSettingsType userAttributeUpdateSettingsType = new UserAttributeUpdateSettingsType();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("IpAddress")) {
-                userContextDataType.setIpAddress(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("EncodedData")) {
-                userContextDataType.setEncodedData(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+            if (name.equals("AttributesRequireVerificationBeforeUpdate")) {
+                userAttributeUpdateSettingsType
+                        .setAttributesRequireVerificationBeforeUpdate(new ListUnmarshaller<String>(
+                                StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return userContextDataType;
+        return userAttributeUpdateSettingsType;
     }
 
-    private static UserContextDataTypeJsonUnmarshaller instance;
+    private static UserAttributeUpdateSettingsTypeJsonUnmarshaller instance;
 
-    public static UserContextDataTypeJsonUnmarshaller getInstance() {
+    public static UserAttributeUpdateSettingsTypeJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new UserContextDataTypeJsonUnmarshaller();
+            instance = new UserAttributeUpdateSettingsTypeJsonUnmarshaller();
         return instance;
     }
 }
