@@ -225,6 +225,12 @@ public class UpdateUserPoolClientRequestMarshaller implements
                 jsonWriter.name("EnableTokenRevocation");
                 jsonWriter.value(enableTokenRevocation);
             }
+            if (updateUserPoolClientRequest.getEnablePropagateAdditionalUserContextData() != null) {
+                Boolean enablePropagateAdditionalUserContextData = updateUserPoolClientRequest
+                        .getEnablePropagateAdditionalUserContextData();
+                jsonWriter.name("EnablePropagateAdditionalUserContextData");
+                jsonWriter.value(enablePropagateAdditionalUserContextData);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

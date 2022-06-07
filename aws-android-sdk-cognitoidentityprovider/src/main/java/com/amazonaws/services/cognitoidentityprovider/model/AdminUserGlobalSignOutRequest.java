@@ -21,10 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Signs out users from all devices, as an administrator. It also invalidates
- * all refresh tokens issued to a user. The user's current access and Id tokens
- * remain valid until their expiry. Access and Id tokens expire one hour after
- * they're issued.
+ * Signs out a user from all devices. You must sign
+ * <code>AdminUserGlobalSignOut</code> requests with Amazon Web Services
+ * credentials. It also invalidates all refresh tokens that Amazon Cognito has
+ * issued to a user. The user's current access and ID tokens remain valid until
+ * they expire. By default, access and ID tokens expire one hour after they're
+ * issued. A user can still use a hosted UI cookie to retrieve new tokens for
+ * the duration of the cookie validity period of 1 hour.
  * </p>
  * <p>
  * Calling this action requires developer credentials.

@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class GetIdentityProviderByIdentifierResult implements Serializable {
     /**
      * <p>
-     * The identity provider object.
+     * The IdP object.
      * </p>
      */
     private IdentityProviderType identityProvider;
 
     /**
      * <p>
-     * The identity provider object.
+     * The IdP object.
      * </p>
      *
      * @return <p>
-     *         The identity provider object.
+     *         The IdP object.
      *         </p>
      */
     public IdentityProviderType getIdentityProvider() {
@@ -40,11 +40,11 @@ public class GetIdentityProviderByIdentifierResult implements Serializable {
 
     /**
      * <p>
-     * The identity provider object.
+     * The IdP object.
      * </p>
      *
      * @param identityProvider <p>
-     *            The identity provider object.
+     *            The IdP object.
      *            </p>
      */
     public void setIdentityProvider(IdentityProviderType identityProvider) {
@@ -53,14 +53,14 @@ public class GetIdentityProviderByIdentifierResult implements Serializable {
 
     /**
      * <p>
-     * The identity provider object.
+     * The IdP object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identityProvider <p>
-     *            The identity provider object.
+     *            The IdP object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

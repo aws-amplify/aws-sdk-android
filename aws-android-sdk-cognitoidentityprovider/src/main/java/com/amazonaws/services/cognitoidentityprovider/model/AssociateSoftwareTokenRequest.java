@@ -21,24 +21,38 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a unique generated shared secret key code for the user account. The
- * request takes an access token or a session string, but not both.
+ * Begins setup of time-based one-time password multi-factor authentication
+ * (TOTP MFA) for a user, with a unique private key that Amazon Cognito
+ * generates and returns in the API response. You can authorize an
+ * <code>AssociateSoftwareToken</code> request with either the user's access
+ * token, or a session string from a challenge response that you received from
+ * Amazon Cognito.
  * </p>
  * <note>
  * <p>
- * Calling AssociateSoftwareToken immediately disassociates the existing
- * software token from the user account. If the user doesn't subsequently verify
- * the software token, their account is set up to authenticate without MFA. If
- * MFA config is set to Optional at the user pool level, the user can then log
- * in without MFA. However, if MFA is set to Required for the user pool, the
- * user is asked to set up a new software token MFA during sign-in.
+ * Amazon Cognito disassociates an existing software token when you verify the
+ * new token in a <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html"
+ * > VerifySoftwareToken</a> API request. If you don't verify the software token
+ * and your user pool doesn't require MFA, the user can then authenticate with
+ * user name and password credentials alone. If your user pool requires TOTP
+ * MFA, Amazon Cognito generates an <code>MFA_SETUP</code> or
+ * <code>SOFTWARE_TOKEN_SETUP</code> challenge each time your user signs.
+ * Complete setup with <code>AssociateSoftwareToken</code> and
+ * <code>VerifySoftwareToken</code>.
+ * </p>
+ * <p>
+ * After you set up software token MFA for your user, Amazon Cognito generates a
+ * <code>SOFTWARE_TOKEN_MFA</code> challenge when they authenticate. Respond to
+ * this challenge with your user's TOTP.
  * </p>
  * </note>
  */
 public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * software token you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,14 +74,16 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * software token you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         software token you want to generate.
      *         </p>
      */
     public String getAccessToken() {
@@ -76,14 +92,16 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * software token you want to generate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose software token you want to generate.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -92,7 +110,8 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * software token you want to generate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,7 +121,8 @@ public class AssociateSoftwareTokenRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose software token you want to generate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

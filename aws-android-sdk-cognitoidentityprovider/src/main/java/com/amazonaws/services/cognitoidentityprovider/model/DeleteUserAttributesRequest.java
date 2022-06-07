@@ -39,7 +39,8 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token used in the request to delete user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * attributes you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,14 +168,16 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token used in the request to delete user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * attributes you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token used in the request to delete user attributes.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         attributes you want to delete.
      *         </p>
      */
     public String getAccessToken() {
@@ -183,15 +186,16 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token used in the request to delete user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * attributes you want to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token used in the request to delete user
-     *            attributes.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose attributes you want to delete.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -200,7 +204,8 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The access token used in the request to delete user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * attributes you want to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -210,8 +215,8 @@ public class DeleteUserAttributesRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token used in the request to delete user
-     *            attributes.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose attributes you want to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

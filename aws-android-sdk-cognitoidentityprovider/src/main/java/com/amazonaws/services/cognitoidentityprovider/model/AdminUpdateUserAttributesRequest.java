@@ -93,6 +93,25 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      * For custom attributes, you must prepend the <code>custom:</code> prefix
      * to the attribute name.
      * </p>
+     * <p>
+     * If your user pool requires verification before Amazon Cognito updates an
+     * attribute value that you specify in this request, Amazon Cognito doesn’t
+     * immediately update the value of that attribute. After your user receives
+     * and responds to a verification message to verify the new value, Amazon
+     * Cognito updates the attribute value. Your user can sign in and receive
+     * messages with the original attribute value until they verify the new
+     * value.
+     * </p>
+     * <p>
+     * To update the value of an attribute that requires verification in the
+     * same API request, include the <code>email_verified</code> or
+     * <code>phone_number_verified</code> attribute, with a value of
+     * <code>true</code>. If you set the <code>email_verified</code> or
+     * <code>phone_number_verified</code> value for an <code>email</code> or
+     * <code>phone_number</code> attribute that requires verification to
+     * <code>true</code>, Amazon Cognito doesn’t send a verification message to
+     * your user.
+     * </p>
      */
     private java.util.List<AttributeType> userAttributes;
 
@@ -280,6 +299,25 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      * For custom attributes, you must prepend the <code>custom:</code> prefix
      * to the attribute name.
      * </p>
+     * <p>
+     * If your user pool requires verification before Amazon Cognito updates an
+     * attribute value that you specify in this request, Amazon Cognito doesn’t
+     * immediately update the value of that attribute. After your user receives
+     * and responds to a verification message to verify the new value, Amazon
+     * Cognito updates the attribute value. Your user can sign in and receive
+     * messages with the original attribute value until they verify the new
+     * value.
+     * </p>
+     * <p>
+     * To update the value of an attribute that requires verification in the
+     * same API request, include the <code>email_verified</code> or
+     * <code>phone_number_verified</code> attribute, with a value of
+     * <code>true</code>. If you set the <code>email_verified</code> or
+     * <code>phone_number_verified</code> value for an <code>email</code> or
+     * <code>phone_number</code> attribute that requires verification to
+     * <code>true</code>, Amazon Cognito doesn’t send a verification message to
+     * your user.
+     * </p>
      *
      * @return <p>
      *         An array of name-value pairs representing user attributes.
@@ -287,6 +325,26 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      *         <p>
      *         For custom attributes, you must prepend the <code>custom:</code>
      *         prefix to the attribute name.
+     *         </p>
+     *         <p>
+     *         If your user pool requires verification before Amazon Cognito
+     *         updates an attribute value that you specify in this request,
+     *         Amazon Cognito doesn’t immediately update the value of that
+     *         attribute. After your user receives and responds to a
+     *         verification message to verify the new value, Amazon Cognito
+     *         updates the attribute value. Your user can sign in and receive
+     *         messages with the original attribute value until they verify the
+     *         new value.
+     *         </p>
+     *         <p>
+     *         To update the value of an attribute that requires verification in
+     *         the same API request, include the <code>email_verified</code> or
+     *         <code>phone_number_verified</code> attribute, with a value of
+     *         <code>true</code>. If you set the <code>email_verified</code> or
+     *         <code>phone_number_verified</code> value for an
+     *         <code>email</code> or <code>phone_number</code> attribute that
+     *         requires verification to <code>true</code>, Amazon Cognito
+     *         doesn’t send a verification message to your user.
      *         </p>
      */
     public java.util.List<AttributeType> getUserAttributes() {
@@ -301,6 +359,25 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      * For custom attributes, you must prepend the <code>custom:</code> prefix
      * to the attribute name.
      * </p>
+     * <p>
+     * If your user pool requires verification before Amazon Cognito updates an
+     * attribute value that you specify in this request, Amazon Cognito doesn’t
+     * immediately update the value of that attribute. After your user receives
+     * and responds to a verification message to verify the new value, Amazon
+     * Cognito updates the attribute value. Your user can sign in and receive
+     * messages with the original attribute value until they verify the new
+     * value.
+     * </p>
+     * <p>
+     * To update the value of an attribute that requires verification in the
+     * same API request, include the <code>email_verified</code> or
+     * <code>phone_number_verified</code> attribute, with a value of
+     * <code>true</code>. If you set the <code>email_verified</code> or
+     * <code>phone_number_verified</code> value for an <code>email</code> or
+     * <code>phone_number</code> attribute that requires verification to
+     * <code>true</code>, Amazon Cognito doesn’t send a verification message to
+     * your user.
+     * </p>
      *
      * @param userAttributes <p>
      *            An array of name-value pairs representing user attributes.
@@ -308,6 +385,27 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      *            <p>
      *            For custom attributes, you must prepend the
      *            <code>custom:</code> prefix to the attribute name.
+     *            </p>
+     *            <p>
+     *            If your user pool requires verification before Amazon Cognito
+     *            updates an attribute value that you specify in this request,
+     *            Amazon Cognito doesn’t immediately update the value of that
+     *            attribute. After your user receives and responds to a
+     *            verification message to verify the new value, Amazon Cognito
+     *            updates the attribute value. Your user can sign in and receive
+     *            messages with the original attribute value until they verify
+     *            the new value.
+     *            </p>
+     *            <p>
+     *            To update the value of an attribute that requires verification
+     *            in the same API request, include the
+     *            <code>email_verified</code> or
+     *            <code>phone_number_verified</code> attribute, with a value of
+     *            <code>true</code>. If you set the <code>email_verified</code>
+     *            or <code>phone_number_verified</code> value for an
+     *            <code>email</code> or <code>phone_number</code> attribute that
+     *            requires verification to <code>true</code>, Amazon Cognito
+     *            doesn’t send a verification message to your user.
      *            </p>
      */
     public void setUserAttributes(java.util.Collection<AttributeType> userAttributes) {
@@ -328,6 +426,25 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      * to the attribute name.
      * </p>
      * <p>
+     * If your user pool requires verification before Amazon Cognito updates an
+     * attribute value that you specify in this request, Amazon Cognito doesn’t
+     * immediately update the value of that attribute. After your user receives
+     * and responds to a verification message to verify the new value, Amazon
+     * Cognito updates the attribute value. Your user can sign in and receive
+     * messages with the original attribute value until they verify the new
+     * value.
+     * </p>
+     * <p>
+     * To update the value of an attribute that requires verification in the
+     * same API request, include the <code>email_verified</code> or
+     * <code>phone_number_verified</code> attribute, with a value of
+     * <code>true</code>. If you set the <code>email_verified</code> or
+     * <code>phone_number_verified</code> value for an <code>email</code> or
+     * <code>phone_number</code> attribute that requires verification to
+     * <code>true</code>, Amazon Cognito doesn’t send a verification message to
+     * your user.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -337,6 +454,27 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      *            <p>
      *            For custom attributes, you must prepend the
      *            <code>custom:</code> prefix to the attribute name.
+     *            </p>
+     *            <p>
+     *            If your user pool requires verification before Amazon Cognito
+     *            updates an attribute value that you specify in this request,
+     *            Amazon Cognito doesn’t immediately update the value of that
+     *            attribute. After your user receives and responds to a
+     *            verification message to verify the new value, Amazon Cognito
+     *            updates the attribute value. Your user can sign in and receive
+     *            messages with the original attribute value until they verify
+     *            the new value.
+     *            </p>
+     *            <p>
+     *            To update the value of an attribute that requires verification
+     *            in the same API request, include the
+     *            <code>email_verified</code> or
+     *            <code>phone_number_verified</code> attribute, with a value of
+     *            <code>true</code>. If you set the <code>email_verified</code>
+     *            or <code>phone_number_verified</code> value for an
+     *            <code>email</code> or <code>phone_number</code> attribute that
+     *            requires verification to <code>true</code>, Amazon Cognito
+     *            doesn’t send a verification message to your user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -360,6 +498,25 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      * to the attribute name.
      * </p>
      * <p>
+     * If your user pool requires verification before Amazon Cognito updates an
+     * attribute value that you specify in this request, Amazon Cognito doesn’t
+     * immediately update the value of that attribute. After your user receives
+     * and responds to a verification message to verify the new value, Amazon
+     * Cognito updates the attribute value. Your user can sign in and receive
+     * messages with the original attribute value until they verify the new
+     * value.
+     * </p>
+     * <p>
+     * To update the value of an attribute that requires verification in the
+     * same API request, include the <code>email_verified</code> or
+     * <code>phone_number_verified</code> attribute, with a value of
+     * <code>true</code>. If you set the <code>email_verified</code> or
+     * <code>phone_number_verified</code> value for an <code>email</code> or
+     * <code>phone_number</code> attribute that requires verification to
+     * <code>true</code>, Amazon Cognito doesn’t send a verification message to
+     * your user.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -369,6 +526,27 @@ public class AdminUpdateUserAttributesRequest extends AmazonWebServiceRequest im
      *            <p>
      *            For custom attributes, you must prepend the
      *            <code>custom:</code> prefix to the attribute name.
+     *            </p>
+     *            <p>
+     *            If your user pool requires verification before Amazon Cognito
+     *            updates an attribute value that you specify in this request,
+     *            Amazon Cognito doesn’t immediately update the value of that
+     *            attribute. After your user receives and responds to a
+     *            verification message to verify the new value, Amazon Cognito
+     *            updates the attribute value. Your user can sign in and receive
+     *            messages with the original attribute value until they verify
+     *            the new value.
+     *            </p>
+     *            <p>
+     *            To update the value of an attribute that requires verification
+     *            in the same API request, include the
+     *            <code>email_verified</code> or
+     *            <code>phone_number_verified</code> attribute, with a value of
+     *            <code>true</code>. If you set the <code>email_verified</code>
+     *            or <code>phone_number_verified</code> value for an
+     *            <code>email</code> or <code>phone_number</code> attribute that
+     *            requires verification to <code>true</code>, Amazon Cognito
+     *            doesn’t send a verification message to your user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

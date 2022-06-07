@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class AuthenticationResultType implements Serializable {
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to authenticate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,14 +77,16 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to authenticate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token.
+     *         A valid access token that Amazon Cognito issued to the user who
+     *         you want to authenticate.
      *         </p>
      */
     public String getAccessToken() {
@@ -92,14 +95,16 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to authenticate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            who you want to authenticate.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -108,7 +113,8 @@ public class AuthenticationResultType implements Serializable {
 
     /**
      * <p>
-     * The access token.
+     * A valid access token that Amazon Cognito issued to the user who you want
+     * to authenticate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +124,8 @@ public class AuthenticationResultType implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            who you want to authenticate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
