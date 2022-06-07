@@ -244,7 +244,7 @@ public class NotificationDetails {
                 }
 
                 notificationDetails.setFrom(from);
-                notificationDetails.setTargetClass(PinpointNotificationReceiver.class);
+                notificationDetails.setTargetClass(PinpointNotificationActivity.class);
                 notificationDetails.setIntentAction(intentAction);
                 notificationDetails.setNotificationChannelId(notificationChannelId);
             }
@@ -277,7 +277,7 @@ public class NotificationDetails {
                         notificationDetails.setFrom(localFrom);
                         notificationDetails.setBundle(localBundle);
                     }
-                    notificationDetails.setTargetClass(PinpointNotificationReceiver.class);
+                    notificationDetails.setTargetClass(PinpointNotificationActivity.class);
                     notificationDetails.setIntentAction(intentAction);
                 } catch (JSONException e) {
                     log.error("Unable to parse JSON message: " + e, e);

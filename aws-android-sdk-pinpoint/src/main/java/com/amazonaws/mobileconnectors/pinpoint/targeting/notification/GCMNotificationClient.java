@@ -58,12 +58,11 @@ final class GCMNotificationClient extends NotificationClientBase {
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.GCM_INTENT_ACTION,
                             targetClass), flags);
         } else {
-            contentIntent = PendingIntent.getBroadcast(pinpointContext.getApplicationContext(), requestId,
+            contentIntent = PendingIntent.getActivity(pinpointContext.getApplicationContext(), requestId,
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.FCM_INTENT_ACTION,
                             targetClass), flags);
-            PinpointNotificationReceiver.setNotificationClient(this);
+            PinpointNotificationActivity.setNotificationClient(this);
         }
         return contentIntent;
-
     }
 }

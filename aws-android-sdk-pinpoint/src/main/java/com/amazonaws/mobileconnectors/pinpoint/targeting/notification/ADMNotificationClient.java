@@ -56,9 +56,10 @@ final class ADMNotificationClient extends NotificationClientBase {
                 flags |= PendingIntent.FLAG_IMMUTABLE;
             }
 
-            contentIntent = PendingIntent.getService(pinpointContext.getApplicationContext(), requestId,
+            contentIntent = PendingIntent.getActivity(pinpointContext.getApplicationContext(), requestId,
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.ADM_INTENT_ACTION,
                             targetClass), flags);
+            PinpointNotificationActivity.setNotificationClient(this);
         }
         return contentIntent;
 
