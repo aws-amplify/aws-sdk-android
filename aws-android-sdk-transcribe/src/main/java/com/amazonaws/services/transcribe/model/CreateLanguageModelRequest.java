@@ -21,18 +21,62 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new custom language model. When creating a new language model, you
- * must specify if you want a Wideband (audio sample rates over 16,000 Hz) or
- * Narrowband (audio sample rates under 16,000 Hz) base model. You then include
- * the S3 URI location of your training and tuning files, the language for the
- * model, a unique name, and any tags you want associated with your model.
+ * Creates a new custom language model.
+ * </p>
+ * <p>
+ * When creating a new language model, you must specify:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * If you want a Wideband (audio sample rates over 16,000 Hz) or Narrowband
+ * (audio sample rates under 16,000 Hz) base model
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The location of your training and tuning files (this must be an Amazon S3
+ * URI)
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The language of your model
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A unique name for your model
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html"
+ * >Custom language models</a>.
  * </p>
  */
 public class CreateLanguageModelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,13 +103,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of your new custom language model.
+     * A unique name, chosen by you, for your custom language model.
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a language
-     * model with the same name as a previous language model, you get a
-     * <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new
+     * language model with the same name as an existing language model, you get
+     * a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,34 +120,81 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
-     * S3 locations of your training (<code>S3Uri</code>) and tuning (
-     * <code>TuningDataS3Uri</code>) data.
+     * Contains the Amazon S3 location of the training data you want to use to
+     * create a new custom language model, and permissions to access this
+     * location.
+     * </p>
+     * <p>
+     * When using <code>InputDataConfig</code>, you must include these
+     * sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of
+     * your training data, and <code>DataAccessRoleArn</code>, which is the
+     * Amazon Resource Name (ARN) of the role that has permission to access your
+     * specified Amazon S3 location. You can optionally include
+     * <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your
+     * tuning data. If you specify different Amazon S3 locations for training
+     * and tuning data, the ARN you use must have permissions to access both
+     * locations.
      * </p>
      */
     private InputDataConfig inputDataConfig;
 
     /**
      * <p>
-     * Optionally add tags, each in the form of a key:value pair, to your new
-     * language model. See also: .
+     * Adds one or more custom tags, each in the form of a key:value pair, to a
+     * new custom language model at the time you create this new model.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
-     *         The language of your custom language model; note that the
-     *         language code you select must match the language of your training
-     *         and tuning data.
+     *         The language code that represents the language of your model.
+     *         Each language model must contain terms in only one language, and
+     *         the language you select for your model must match the language of
+     *         your training and tuning data.
+     *         </p>
+     *         <p>
+     *         For a list of supported languages and their associated language
+     *         codes, refer to the <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *         >Supported languages</a> table. Note that U.S. English (
+     *         <code>en-US</code>) is the only language supported with Amazon
+     *         Transcribe Medical.
+     *         </p>
+     *         <p>
+     *         A custom language model can only be used to transcribe files in
+     *         the same language as the model. For example, if you create a
+     *         language model using US English (<code>en-US</code>), you can
+     *         only apply this model to files that contain English audio.
      *         </p>
      * @see CLMLanguageCode
      */
@@ -113,17 +204,48 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of your custom language model; note that the
-     *            language code you select must match the language of your
-     *            training and tuning data.
+     *            The language code that represents the language of your model.
+     *            Each language model must contain terms in only one language,
+     *            and the language you select for your model must match the
+     *            language of your training and tuning data.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table. Note that U.S. English (
+     *            <code>en-US</code>) is the only language supported with Amazon
+     *            Transcribe Medical.
+     *            </p>
+     *            <p>
+     *            A custom language model can only be used to transcribe files
+     *            in the same language as the model. For example, if you create
+     *            a language model using US English (<code>en-US</code>), you
+     *            can only apply this model to files that contain English audio.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -133,8 +255,24 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -144,9 +282,24 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of your custom language model; note that the
-     *            language code you select must match the language of your
-     *            training and tuning data.
+     *            The language code that represents the language of your model.
+     *            Each language model must contain terms in only one language,
+     *            and the language you select for your model must match the
+     *            language of your training and tuning data.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table. Note that U.S. English (
+     *            <code>en-US</code>) is the only language supported with Amazon
+     *            Transcribe Medical.
+     *            </p>
+     *            <p>
+     *            A custom language model can only be used to transcribe files
+     *            in the same language as the model. For example, if you create
+     *            a language model using US English (<code>en-US</code>), you
+     *            can only apply this model to files that contain English audio.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -159,17 +312,48 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of your custom language model; note that the
-     *            language code you select must match the language of your
-     *            training and tuning data.
+     *            The language code that represents the language of your model.
+     *            Each language model must contain terms in only one language,
+     *            and the language you select for your model must match the
+     *            language of your training and tuning data.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table. Note that U.S. English (
+     *            <code>en-US</code>) is the only language supported with Amazon
+     *            Transcribe Medical.
+     *            </p>
+     *            <p>
+     *            A custom language model can only be used to transcribe files
+     *            in the same language as the model. For example, if you create
+     *            a language model using US English (<code>en-US</code>), you
+     *            can only apply this model to files that contain English audio.
      *            </p>
      * @see CLMLanguageCode
      */
@@ -179,8 +363,24 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The language of your custom language model; note that the language code
-     * you select must match the language of your training and tuning data.
+     * The language code that represents the language of your model. Each
+     * language model must contain terms in only one language, and the language
+     * you select for your model must match the language of your training and
+     * tuning data.
+     * </p>
+     * <p>
+     * For a list of supported languages and their associated language codes,
+     * refer to the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table. Note that U.S. English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
+     * </p>
+     * <p>
+     * A custom language model can only be used to transcribe files in the same
+     * language as the model. For example, if you create a language model using
+     * US English (<code>en-US</code>), you can only apply this model to files
+     * that contain English audio.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -190,9 +390,24 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
-     *            The language of your custom language model; note that the
-     *            language code you select must match the language of your
-     *            training and tuning data.
+     *            The language code that represents the language of your model.
+     *            Each language model must contain terms in only one language,
+     *            and the language you select for your model must match the
+     *            language of your training and tuning data.
+     *            </p>
+     *            <p>
+     *            For a list of supported languages and their associated
+     *            language codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table. Note that U.S. English (
+     *            <code>en-US</code>) is the only language supported with Amazon
+     *            Transcribe Medical.
+     *            </p>
+     *            <p>
+     *            A custom language model can only be used to transcribe files
+     *            in the same language as the model. For example, if you create
+     *            a language model using US English (<code>en-US</code>), you
+     *            can only apply this model to files that contain English audio.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -377,13 +592,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of your new custom language model.
+     * A unique name, chosen by you, for your custom language model.
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a language
-     * model with the same name as a previous language model, you get a
-     * <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new
+     * language model with the same name as an existing language model, you get
+     * a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -391,13 +606,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of your new custom language model.
+     *         A unique name, chosen by you, for your custom language model.
      *         </p>
      *         <p>
      *         This name is case sensitive, cannot contain spaces, and must be
      *         unique within an Amazon Web Services account. If you try to
-     *         create a language model with the same name as a previous language
-     *         model, you get a <code>ConflictException</code> error.
+     *         create a new language model with the same name as an existing
+     *         language model, you get a <code>ConflictException</code> error.
      *         </p>
      */
     public String getModelName() {
@@ -406,13 +621,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of your new custom language model.
+     * A unique name, chosen by you, for your custom language model.
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a language
-     * model with the same name as a previous language model, you get a
-     * <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new
+     * language model with the same name as an existing language model, you get
+     * a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -420,12 +635,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of your new custom language model.
+     *            A unique name, chosen by you, for your custom language model.
      *            </p>
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a language model with the same name as a previous
+     *            create a new language model with the same name as an existing
      *            language model, you get a <code>ConflictException</code>
      *            error.
      *            </p>
@@ -436,13 +651,13 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of your new custom language model.
+     * A unique name, chosen by you, for your custom language model.
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a language
-     * model with the same name as a previous language model, you get a
-     * <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new
+     * language model with the same name as an existing language model, you get
+     * a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -453,12 +668,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of your new custom language model.
+     *            A unique name, chosen by you, for your custom language model.
      *            </p>
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a language model with the same name as a previous
+     *            create a new language model with the same name as an existing
      *            language model, you get a <code>ConflictException</code>
      *            error.
      *            </p>
@@ -472,15 +687,38 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
-     * S3 locations of your training (<code>S3Uri</code>) and tuning (
-     * <code>TuningDataS3Uri</code>) data.
+     * Contains the Amazon S3 location of the training data you want to use to
+     * create a new custom language model, and permissions to access this
+     * location.
+     * </p>
+     * <p>
+     * When using <code>InputDataConfig</code>, you must include these
+     * sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of
+     * your training data, and <code>DataAccessRoleArn</code>, which is the
+     * Amazon Resource Name (ARN) of the role that has permission to access your
+     * specified Amazon S3 location. You can optionally include
+     * <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your
+     * tuning data. If you specify different Amazon S3 locations for training
+     * and tuning data, the ARN you use must have permissions to access both
+     * locations.
      * </p>
      *
      * @return <p>
-     *         Contains your data access role ARN (Amazon Resource Name) and the
-     *         Amazon S3 locations of your training (<code>S3Uri</code>) and
-     *         tuning (<code>TuningDataS3Uri</code>) data.
+     *         Contains the Amazon S3 location of the training data you want to
+     *         use to create a new custom language model, and permissions to
+     *         access this location.
+     *         </p>
+     *         <p>
+     *         When using <code>InputDataConfig</code>, you must include these
+     *         sub-parameters: <code>S3Uri</code>, which is the Amazon S3
+     *         location of your training data, and
+     *         <code>DataAccessRoleArn</code>, which is the Amazon Resource Name
+     *         (ARN) of the role that has permission to access your specified
+     *         Amazon S3 location. You can optionally include
+     *         <code>TuningDataS3Uri</code>, which is the Amazon S3 location of
+     *         your tuning data. If you specify different Amazon S3 locations
+     *         for training and tuning data, the ARN you use must have
+     *         permissions to access both locations.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -489,15 +727,38 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
-     * S3 locations of your training (<code>S3Uri</code>) and tuning (
-     * <code>TuningDataS3Uri</code>) data.
+     * Contains the Amazon S3 location of the training data you want to use to
+     * create a new custom language model, and permissions to access this
+     * location.
+     * </p>
+     * <p>
+     * When using <code>InputDataConfig</code>, you must include these
+     * sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of
+     * your training data, and <code>DataAccessRoleArn</code>, which is the
+     * Amazon Resource Name (ARN) of the role that has permission to access your
+     * specified Amazon S3 location. You can optionally include
+     * <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your
+     * tuning data. If you specify different Amazon S3 locations for training
+     * and tuning data, the ARN you use must have permissions to access both
+     * locations.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            Contains your data access role ARN (Amazon Resource Name) and
-     *            the Amazon S3 locations of your training (<code>S3Uri</code>)
-     *            and tuning (<code>TuningDataS3Uri</code>) data.
+     *            Contains the Amazon S3 location of the training data you want
+     *            to use to create a new custom language model, and permissions
+     *            to access this location.
+     *            </p>
+     *            <p>
+     *            When using <code>InputDataConfig</code>, you must include
+     *            these sub-parameters: <code>S3Uri</code>, which is the Amazon
+     *            S3 location of your training data, and
+     *            <code>DataAccessRoleArn</code>, which is the Amazon Resource
+     *            Name (ARN) of the role that has permission to access your
+     *            specified Amazon S3 location. You can optionally include
+     *            <code>TuningDataS3Uri</code>, which is the Amazon S3 location
+     *            of your tuning data. If you specify different Amazon S3
+     *            locations for training and tuning data, the ARN you use must
+     *            have permissions to access both locations.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -506,18 +767,41 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Contains your data access role ARN (Amazon Resource Name) and the Amazon
-     * S3 locations of your training (<code>S3Uri</code>) and tuning (
-     * <code>TuningDataS3Uri</code>) data.
+     * Contains the Amazon S3 location of the training data you want to use to
+     * create a new custom language model, and permissions to access this
+     * location.
+     * </p>
+     * <p>
+     * When using <code>InputDataConfig</code>, you must include these
+     * sub-parameters: <code>S3Uri</code>, which is the Amazon S3 location of
+     * your training data, and <code>DataAccessRoleArn</code>, which is the
+     * Amazon Resource Name (ARN) of the role that has permission to access your
+     * specified Amazon S3 location. You can optionally include
+     * <code>TuningDataS3Uri</code>, which is the Amazon S3 location of your
+     * tuning data. If you specify different Amazon S3 locations for training
+     * and tuning data, the ARN you use must have permissions to access both
+     * locations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            Contains your data access role ARN (Amazon Resource Name) and
-     *            the Amazon S3 locations of your training (<code>S3Uri</code>)
-     *            and tuning (<code>TuningDataS3Uri</code>) data.
+     *            Contains the Amazon S3 location of the training data you want
+     *            to use to create a new custom language model, and permissions
+     *            to access this location.
+     *            </p>
+     *            <p>
+     *            When using <code>InputDataConfig</code>, you must include
+     *            these sub-parameters: <code>S3Uri</code>, which is the Amazon
+     *            S3 location of your training data, and
+     *            <code>DataAccessRoleArn</code>, which is the Amazon Resource
+     *            Name (ARN) of the role that has permission to access your
+     *            specified Amazon S3 location. You can optionally include
+     *            <code>TuningDataS3Uri</code>, which is the Amazon S3 location
+     *            of your tuning data. If you specify different Amazon S3
+     *            locations for training and tuning data, the ARN you use must
+     *            have permissions to access both locations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -529,13 +813,25 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Optionally add tags, each in the form of a key:value pair, to your new
-     * language model. See also: .
+     * Adds one or more custom tags, each in the form of a key:value pair, to a
+     * new custom language model at the time you create this new model.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      *
      * @return <p>
-     *         Optionally add tags, each in the form of a key:value pair, to
-     *         your new language model. See also: .
+     *         Adds one or more custom tags, each in the form of a key:value
+     *         pair, to a new custom language model at the time you create this
+     *         new model.
+     *         </p>
+     *         <p>
+     *         To learn more about using tags with Amazon Transcribe, refer to
+     *         <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *         >Tagging resources</a>.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -544,13 +840,25 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Optionally add tags, each in the form of a key:value pair, to your new
-     * language model. See also: .
+     * Adds one or more custom tags, each in the form of a key:value pair, to a
+     * new custom language model at the time you create this new model.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      *
      * @param tags <p>
-     *            Optionally add tags, each in the form of a key:value pair, to
-     *            your new language model. See also: .
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to a new custom language model at the time you create
+     *            this new model.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -564,16 +872,28 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Optionally add tags, each in the form of a key:value pair, to your new
-     * language model. See also: .
+     * Adds one or more custom tags, each in the form of a key:value pair, to a
+     * new custom language model at the time you create this new model.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Optionally add tags, each in the form of a key:value pair, to
-     *            your new language model. See also: .
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to a new custom language model at the time you create
+     *            this new model.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -590,16 +910,28 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Optionally add tags, each in the form of a key:value pair, to your new
-     * language model. See also: .
+     * Adds one or more custom tags, each in the form of a key:value pair, to a
+     * new custom language model at the time you create this new model.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Optionally add tags, each in the form of a key:value pair, to
-     *            your new language model. See also: .
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to a new custom language model at the time you create
+     *            this new model.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

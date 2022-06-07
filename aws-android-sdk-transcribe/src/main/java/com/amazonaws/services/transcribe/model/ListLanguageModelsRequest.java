@@ -21,18 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides more information about the custom language models you've created.
- * You can use the information in this list to find a specific custom language
- * model. You can then use the operation to get more information about it.
+ * Provides a list of custom language models that match the specified criteria.
+ * If no criteria are specified, all language models are returned.
+ * </p>
+ * <p>
+ * To get detailed information about a specific custom language model, use the
+ * operation.
  * </p>
  */
 public class ListLanguageModelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,8 +45,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, the custom language model names returned contain the
-     * substring you've specified.
+     * Returns only the custom language models that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,8 +57,11 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When included, fetches the next set of jobs if the result of the previous
-     * request was truncated.
+     * If your <code>ListLanguageModels</code> request returns more results than
+     * can be displayed, <code>NextToken</code> is displayed in the response
+     * with an associated string. To get the next page of results, copy this
+     * string and repeat your request, including <code>NextToken</code> with the
+     * value of the copied string. Repeat as needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,10 +72,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The maximum number of language models to return in each page of results.
-     * If there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of custom language models to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,21 +85,20 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         When specified, returns only custom language models with the
-     *         specified status. Language models are ordered by creation date,
-     *         with the newest models first. If you don't specify a status,
-     *         Amazon Transcribe returns all custom language models ordered by
-     *         date.
+     *         Returns only custom language models with the specified status.
+     *         Language models are ordered by creation date, with the newest
+     *         model first. If you don't include <code>StatusEquals</code>, all
+     *         custom language models are returned.
      *         </p>
      * @see ModelStatus
      */
@@ -103,21 +108,20 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param statusEquals <p>
-     *            When specified, returns only custom language models with the
-     *            specified status. Language models are ordered by creation
-     *            date, with the newest models first. If you don't specify a
-     *            status, Amazon Transcribe returns all custom language models
-     *            ordered by date.
+     *            Returns only custom language models with the specified status.
+     *            Language models are ordered by creation date, with the newest
+     *            model first. If you don't include <code>StatusEquals</code>,
+     *            all custom language models are returned.
      *            </p>
      * @see ModelStatus
      */
@@ -127,10 +131,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -140,11 +144,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param statusEquals <p>
-     *            When specified, returns only custom language models with the
-     *            specified status. Language models are ordered by creation
-     *            date, with the newest models first. If you don't specify a
-     *            status, Amazon Transcribe returns all custom language models
-     *            ordered by date.
+     *            Returns only custom language models with the specified status.
+     *            Language models are ordered by creation date, with the newest
+     *            model first. If you don't include <code>StatusEquals</code>,
+     *            all custom language models are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -157,21 +160,20 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param statusEquals <p>
-     *            When specified, returns only custom language models with the
-     *            specified status. Language models are ordered by creation
-     *            date, with the newest models first. If you don't specify a
-     *            status, Amazon Transcribe returns all custom language models
-     *            ordered by date.
+     *            Returns only custom language models with the specified status.
+     *            Language models are ordered by creation date, with the newest
+     *            model first. If you don't include <code>StatusEquals</code>,
+     *            all custom language models are returned.
      *            </p>
      * @see ModelStatus
      */
@@ -181,10 +183,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, returns only custom language models with the specified
-     * status. Language models are ordered by creation date, with the newest
-     * models first. If you don't specify a status, Amazon Transcribe returns
-     * all custom language models ordered by date.
+     * Returns only custom language models with the specified status. Language
+     * models are ordered by creation date, with the newest model first. If you
+     * don't include <code>StatusEquals</code>, all custom language models are
+     * returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -194,11 +196,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Allowed Values: </b>IN_PROGRESS, FAILED, COMPLETED
      *
      * @param statusEquals <p>
-     *            When specified, returns only custom language models with the
-     *            specified status. Language models are ordered by creation
-     *            date, with the newest models first. If you don't specify a
-     *            status, Amazon Transcribe returns all custom language models
-     *            ordered by date.
+     *            Returns only custom language models with the specified status.
+     *            Language models are ordered by creation date, with the newest
+     *            model first. If you don't include <code>StatusEquals</code>,
+     *            all custom language models are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -211,8 +212,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, the custom language model names returned contain the
-     * substring you've specified.
+     * Returns only the custom language models that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,8 +221,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         When specified, the custom language model names returned contain
-     *         the substring you've specified.
+     *         Returns only the custom language models that contain the
+     *         specified string. The search is not case sensitive.
      *         </p>
      */
     public String getNameContains() {
@@ -230,8 +231,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, the custom language model names returned contain the
-     * substring you've specified.
+     * Returns only the custom language models that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,8 +240,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param nameContains <p>
-     *            When specified, the custom language model names returned
-     *            contain the substring you've specified.
+     *            Returns only the custom language models that contain the
+     *            specified string. The search is not case sensitive.
      *            </p>
      */
     public void setNameContains(String nameContains) {
@@ -249,8 +250,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When specified, the custom language model names returned contain the
-     * substring you've specified.
+     * Returns only the custom language models that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -261,8 +262,8 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param nameContains <p>
-     *            When specified, the custom language model names returned
-     *            contain the substring you've specified.
+     *            Returns only the custom language models that contain the
+     *            specified string. The search is not case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -274,8 +275,11 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When included, fetches the next set of jobs if the result of the previous
-     * request was truncated.
+     * If your <code>ListLanguageModels</code> request returns more results than
+     * can be displayed, <code>NextToken</code> is displayed in the response
+     * with an associated string. To get the next page of results, copy this
+     * string and repeat your request, including <code>NextToken</code> with the
+     * value of the copied string. Repeat as needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -283,8 +287,12 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         When included, fetches the next set of jobs if the result of the
-     *         previous request was truncated.
+     *         If your <code>ListLanguageModels</code> request returns more
+     *         results than can be displayed, <code>NextToken</code> is
+     *         displayed in the response with an associated string. To get the
+     *         next page of results, copy this string and repeat your request,
+     *         including <code>NextToken</code> with the value of the copied
+     *         string. Repeat as needed to view all your results.
      *         </p>
      */
     public String getNextToken() {
@@ -293,8 +301,11 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When included, fetches the next set of jobs if the result of the previous
-     * request was truncated.
+     * If your <code>ListLanguageModels</code> request returns more results than
+     * can be displayed, <code>NextToken</code> is displayed in the response
+     * with an associated string. To get the next page of results, copy this
+     * string and repeat your request, including <code>NextToken</code> with the
+     * value of the copied string. Repeat as needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,8 +313,12 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            When included, fetches the next set of jobs if the result of
-     *            the previous request was truncated.
+     *            If your <code>ListLanguageModels</code> request returns more
+     *            results than can be displayed, <code>NextToken</code> is
+     *            displayed in the response with an associated string. To get
+     *            the next page of results, copy this string and repeat your
+     *            request, including <code>NextToken</code> with the value of
+     *            the copied string. Repeat as needed to view all your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -312,8 +327,11 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * When included, fetches the next set of jobs if the result of the previous
-     * request was truncated.
+     * If your <code>ListLanguageModels</code> request returns more results than
+     * can be displayed, <code>NextToken</code> is displayed in the response
+     * with an associated string. To get the next page of results, copy this
+     * string and repeat your request, including <code>NextToken</code> with the
+     * value of the copied string. Repeat as needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -324,8 +342,12 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            When included, fetches the next set of jobs if the result of
-     *            the previous request was truncated.
+     *            If your <code>ListLanguageModels</code> request returns more
+     *            results than can be displayed, <code>NextToken</code> is
+     *            displayed in the response with an associated string. To get
+     *            the next page of results, copy this string and repeat your
+     *            request, including <code>NextToken</code> with the value of
+     *            the copied string. Repeat as needed to view all your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -337,20 +359,20 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The maximum number of language models to return in each page of results.
-     * If there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of custom language models to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of language models to return in each page of
-     *         results. If there are fewer results than the value you specify,
-     *         only the actual results are returned. If you do not specify a
-     *         value, the default of 5 is used.
+     *         The maximum number of custom language models to return in each
+     *         page of results. If there are fewer results than the value you
+     *         specify, only the actual results are returned. If you don't
+     *         specify a value, a default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -359,20 +381,20 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The maximum number of language models to return in each page of results.
-     * If there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of custom language models to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of language models to return in each page
-     *            of results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of custom language models to return in each
+     *            page of results. If there are fewer results than the value you
+     *            specify, only the actual results are returned. If you don't
+     *            specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -381,10 +403,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The maximum number of language models to return in each page of results.
-     * If there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of custom language models to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -394,10 +416,10 @@ public class ListLanguageModelsRequest extends AmazonWebServiceRequest implement
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of language models to return in each page
-     *            of results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of custom language models to return in each
+     *            page of results. If there are fewer results than the value you
+     *            specify, only the actual results are returned. If you don't
+     *            specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

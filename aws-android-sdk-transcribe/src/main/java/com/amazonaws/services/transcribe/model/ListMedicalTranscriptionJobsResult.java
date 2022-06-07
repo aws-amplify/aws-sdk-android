@@ -20,7 +20,9 @@ import java.io.Serializable;
 public class ListMedicalTranscriptionJobsResult implements Serializable {
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -30,13 +32,12 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalTranscriptionJobs</code> operation returns a page of
-     * jobs at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If the number of jobs exceeds what can
-     * fit on a page, Amazon Transcribe Medical returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * <code>ListMedicalTranscriptionJobs</code> operation to return in the next
-     * page of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,21 +48,25 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      */
     private java.util.List<MedicalTranscriptionJobSummary> medicalTranscriptionJobSummaries;
 
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The requested status of the medical transcription jobs returned.
+     *         Lists all medical transcription jobs that have the status
+     *         specified in your request. Jobs are ordered by creation date,
+     *         with the newest job first.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -71,15 +76,18 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the medical transcription jobs
-     *            returned.
+     *            Lists all medical transcription jobs that have the status
+     *            specified in your request. Jobs are ordered by creation date,
+     *            with the newest job first.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -89,7 +97,9 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,8 +109,9 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the medical transcription jobs
-     *            returned.
+     *            Lists all medical transcription jobs that have the status
+     *            specified in your request. Jobs are ordered by creation date,
+     *            with the newest job first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -113,15 +124,18 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the medical transcription jobs
-     *            returned.
+     *            Lists all medical transcription jobs that have the status
+     *            specified in your request. Jobs are ordered by creation date,
+     *            with the newest job first.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -131,7 +145,9 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the medical transcription jobs returned.
+     * Lists all medical transcription jobs that have the status specified in
+     * your request. Jobs are ordered by creation date, with the newest job
+     * first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,8 +157,9 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the medical transcription jobs
-     *            returned.
+     *            Lists all medical transcription jobs that have the status
+     *            specified in your request. Jobs are ordered by creation date,
+     *            with the newest job first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,13 +172,12 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalTranscriptionJobs</code> operation returns a page of
-     * jobs at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If the number of jobs exceeds what can
-     * fit on a page, Amazon Transcribe Medical returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * <code>ListMedicalTranscriptionJobs</code> operation to return in the next
-     * page of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,13 +185,13 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The <code>ListMedicalTranscriptionJobs</code> operation returns a
-     *         page of jobs at a time. The maximum size of the page is set by
-     *         the <code>MaxResults</code> parameter. If the number of jobs
-     *         exceeds what can fit on a page, Amazon Transcribe Medical returns
-     *         the <code>NextPage</code> token. Include the token in the next
-     *         request to the <code>ListMedicalTranscriptionJobs</code>
-     *         operation to return in the next page of jobs.
+     *         If <code>NextToken</code> is present in your response, it
+     *         indicates that not all results are displayed. To view the next
+     *         set of results, copy the string associated with the
+     *         <code>NextToken</code> parameter in your results output, then run
+     *         your request again including <code>NextToken</code> with the
+     *         value of the copied string. Repeat as needed to view all your
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -184,13 +200,12 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalTranscriptionJobs</code> operation returns a page of
-     * jobs at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If the number of jobs exceeds what can
-     * fit on a page, Amazon Transcribe Medical returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * <code>ListMedicalTranscriptionJobs</code> operation to return in the next
-     * page of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -198,14 +213,13 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListMedicalTranscriptionJobs</code> operation
-     *            returns a page of jobs at a time. The maximum size of the page
-     *            is set by the <code>MaxResults</code> parameter. If the number
-     *            of jobs exceeds what can fit on a page, Amazon Transcribe
-     *            Medical returns the <code>NextPage</code> token. Include the
-     *            token in the next request to the
-     *            <code>ListMedicalTranscriptionJobs</code> operation to return
-     *            in the next page of jobs.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -214,13 +228,12 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListMedicalTranscriptionJobs</code> operation returns a page of
-     * jobs at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If the number of jobs exceeds what can
-     * fit on a page, Amazon Transcribe Medical returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * <code>ListMedicalTranscriptionJobs</code> operation to return in the next
-     * page of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,14 +244,13 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListMedicalTranscriptionJobs</code> operation
-     *            returns a page of jobs at a time. The maximum size of the page
-     *            is set by the <code>MaxResults</code> parameter. If the number
-     *            of jobs exceeds what can fit on a page, Amazon Transcribe
-     *            Medical returns the <code>NextPage</code> token. Include the
-     *            token in the next request to the
-     *            <code>ListMedicalTranscriptionJobs</code> operation to return
-     *            in the next page of jobs.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -250,12 +262,11 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      *
      * @return <p>
-     *         A list of objects containing summary information for a
-     *         transcription job.
+     *         Provides a summary of information about each result.
      *         </p>
      */
     public java.util.List<MedicalTranscriptionJobSummary> getMedicalTranscriptionJobSummaries() {
@@ -264,12 +275,11 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      *
      * @param medicalTranscriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      */
     public void setMedicalTranscriptionJobSummaries(
@@ -285,15 +295,14 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param medicalTranscriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -312,15 +321,14 @@ public class ListMedicalTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param medicalTranscriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -23,13 +23,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a custom medical vocabulary. To use this operation, specify the name
  * of the vocabulary you want to delete using <code>VocabularyName</code>.
+ * Vocabulary names are case sensitive.
  * </p>
  */
 public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary that you want to delete. Vocabulary names are
-     * case-sensitive.
+     * The name of the custom medical vocabulary you want to delete. Vocabulary
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,8 +41,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the vocabulary that you want to delete. Vocabulary names are
-     * case-sensitive.
+     * The name of the custom medical vocabulary you want to delete. Vocabulary
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,8 +50,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary that you want to delete. Vocabulary
-     *         names are case-sensitive.
+     *         The name of the custom medical vocabulary you want to delete.
+     *         Vocabulary names are case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -59,8 +60,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the vocabulary that you want to delete. Vocabulary names are
-     * case-sensitive.
+     * The name of the custom medical vocabulary you want to delete. Vocabulary
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +69,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that you want to delete. Vocabulary
-     *            names are case-sensitive.
+     *            The name of the custom medical vocabulary you want to delete.
+     *            Vocabulary names are case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -78,8 +79,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the vocabulary that you want to delete. Vocabulary names are
-     * case-sensitive.
+     * The name of the custom medical vocabulary you want to delete. Vocabulary
+     * names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,8 +91,8 @@ public class DeleteMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary that you want to delete. Vocabulary
-     *            names are case-sensitive.
+     *            The name of the custom medical vocabulary you want to delete.
+     *            Vocabulary names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

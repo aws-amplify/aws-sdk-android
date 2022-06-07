@@ -19,23 +19,30 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Generate subtitles for your batch transcription job. Note that your subtitle
- * files are placed in the same location as your transcription output.
+ * Generate subtitles for your media file with your transcription request.
+ * </p>
+ * <p>
+ * You can choose a start index of 0 or 1, and you can specify either WebVTT or
+ * SubRip (or both) as your output format.
+ * </p>
+ * <p>
+ * Note that your subtitle files are placed in the same location as your
+ * transcription output.
  * </p>
  */
 public class Subtitles implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both
-     * <code>srt</code> and <code>vtt</code> formats, two output files are
-     * generated.
+     * WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>) formats, two
+     * output files are generated.
      * </p>
      */
     private java.util.List<String> formats;
 
     /**
      * <p>
-     * Defines the starting value that is assigned to the first subtitle
+     * Specify the starting value that is assigned to the first subtitle
      * segment.
      * </p>
      * <p>
@@ -53,14 +60,14 @@ public class Subtitles implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both
-     * <code>srt</code> and <code>vtt</code> formats, two output files are
-     * generated.
+     * WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>) formats, two
+     * output files are generated.
      * </p>
      *
      * @return <p>
      *         Specify the output format for your subtitle file; if you select
-     *         both <code>srt</code> and <code>vtt</code> formats, two output
-     *         files are generated.
+     *         both WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>)
+     *         formats, two output files are generated.
      *         </p>
      */
     public java.util.List<String> getFormats() {
@@ -70,14 +77,14 @@ public class Subtitles implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both
-     * <code>srt</code> and <code>vtt</code> formats, two output files are
-     * generated.
+     * WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>) formats, two
+     * output files are generated.
      * </p>
      *
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
-     *            select both <code>srt</code> and <code>vtt</code> formats, two
-     *            output files are generated.
+     *            select both WebVTT (<code>vtt</code>) and SubRip (
+     *            <code>srt</code>) formats, two output files are generated.
      *            </p>
      */
     public void setFormats(java.util.Collection<String> formats) {
@@ -92,8 +99,8 @@ public class Subtitles implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both
-     * <code>srt</code> and <code>vtt</code> formats, two output files are
-     * generated.
+     * WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>) formats, two
+     * output files are generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -101,8 +108,8 @@ public class Subtitles implements Serializable {
      *
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
-     *            select both <code>srt</code> and <code>vtt</code> formats, two
-     *            output files are generated.
+     *            select both WebVTT (<code>vtt</code>) and SubRip (
+     *            <code>srt</code>) formats, two output files are generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,8 +127,8 @@ public class Subtitles implements Serializable {
     /**
      * <p>
      * Specify the output format for your subtitle file; if you select both
-     * <code>srt</code> and <code>vtt</code> formats, two output files are
-     * generated.
+     * WebVTT (<code>vtt</code>) and SubRip (<code>srt</code>) formats, two
+     * output files are generated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,8 +136,8 @@ public class Subtitles implements Serializable {
      *
      * @param formats <p>
      *            Specify the output format for your subtitle file; if you
-     *            select both <code>srt</code> and <code>vtt</code> formats, two
-     *            output files are generated.
+     *            select both WebVTT (<code>vtt</code>) and SubRip (
+     *            <code>srt</code>) formats, two output files are generated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -142,7 +149,7 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Defines the starting value that is assigned to the first subtitle
+     * Specify the starting value that is assigned to the first subtitle
      * segment.
      * </p>
      * <p>
@@ -156,7 +163,7 @@ public class Subtitles implements Serializable {
      * <b>Range: </b>0 - 1<br/>
      *
      * @return <p>
-     *         Defines the starting value that is assigned to the first subtitle
+     *         Specify the starting value that is assigned to the first subtitle
      *         segment.
      *         </p>
      *         <p>
@@ -173,7 +180,7 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Defines the starting value that is assigned to the first subtitle
+     * Specify the starting value that is assigned to the first subtitle
      * segment.
      * </p>
      * <p>
@@ -187,7 +194,7 @@ public class Subtitles implements Serializable {
      * <b>Range: </b>0 - 1<br/>
      *
      * @param outputStartIndex <p>
-     *            Defines the starting value that is assigned to the first
+     *            Specify the starting value that is assigned to the first
      *            subtitle segment.
      *            </p>
      *            <p>
@@ -204,7 +211,7 @@ public class Subtitles implements Serializable {
 
     /**
      * <p>
-     * Defines the starting value that is assigned to the first subtitle
+     * Specify the starting value that is assigned to the first subtitle
      * segment.
      * </p>
      * <p>
@@ -221,7 +228,7 @@ public class Subtitles implements Serializable {
      * <b>Range: </b>0 - 1<br/>
      *
      * @param outputStartIndex <p>
-     *            Defines the starting value that is assigned to the first
+     *            Specify the starting value that is assigned to the first
      *            subtitle segment.
      *            </p>
      *            <p>

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
-     * Lists all tags associated with the given Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) specified in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -34,14 +34,14 @@ public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
      * Lists all tags associated with the given transcription job, vocabulary,
-     * or resource.
+     * model, or resource.
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * Lists all tags associated with the given Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) specified in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,8 +51,7 @@ public class ListTagsForResourceResult implements Serializable {
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         Lists all tags associated with the given Amazon Resource Name
-     *         (ARN).
+     *         The Amazon Resource Name (ARN) specified in your request.
      *         </p>
      */
     public String getResourceArn() {
@@ -61,7 +60,7 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * Lists all tags associated with the given Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) specified in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,8 +70,7 @@ public class ListTagsForResourceResult implements Serializable {
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            Lists all tags associated with the given Amazon Resource Name
-     *            (ARN).
+     *            The Amazon Resource Name (ARN) specified in your request.
      *            </p>
      */
     public void setResourceArn(String resourceArn) {
@@ -81,7 +79,7 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * Lists all tags associated with the given Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,8 +92,7 @@ public class ListTagsForResourceResult implements Serializable {
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            Lists all tags associated with the given Amazon Resource Name
-     *            (ARN).
+     *            The Amazon Resource Name (ARN) specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,12 +105,12 @@ public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
      * Lists all tags associated with the given transcription job, vocabulary,
-     * or resource.
+     * model, or resource.
      * </p>
      *
      * @return <p>
      *         Lists all tags associated with the given transcription job,
-     *         vocabulary, or resource.
+     *         vocabulary, model, or resource.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -123,12 +120,12 @@ public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
      * Lists all tags associated with the given transcription job, vocabulary,
-     * or resource.
+     * model, or resource.
      * </p>
      *
      * @param tags <p>
      *            Lists all tags associated with the given transcription job,
-     *            vocabulary, or resource.
+     *            vocabulary, model, or resource.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -143,7 +140,7 @@ public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
      * Lists all tags associated with the given transcription job, vocabulary,
-     * or resource.
+     * model, or resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +148,7 @@ public class ListTagsForResourceResult implements Serializable {
      *
      * @param tags <p>
      *            Lists all tags associated with the given transcription job,
-     *            vocabulary, or resource.
+     *            vocabulary, model, or resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,7 +166,7 @@ public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
      * Lists all tags associated with the given transcription job, vocabulary,
-     * or resource.
+     * model, or resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -177,7 +174,7 @@ public class ListTagsForResourceResult implements Serializable {
      *
      * @param tags <p>
      *            Lists all tags associated with the given transcription job,
-     *            vocabulary, or resource.
+     *            vocabulary, model, or resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
