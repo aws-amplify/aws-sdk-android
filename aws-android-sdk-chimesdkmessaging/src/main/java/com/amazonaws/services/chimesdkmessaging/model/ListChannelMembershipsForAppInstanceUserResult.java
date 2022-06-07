@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,7 @@ import java.io.Serializable;
 public class ListChannelMembershipsForAppInstanceUserResult implements Serializable {
     /**
      * <p>
-     * The token passed by previous API calls until all requested users are
-     * returned.
+     * The information for the requested channel memberships.
      * </p>
      */
     private java.util.List<ChannelMembershipForAppInstanceUserSummary> channelMemberships;
@@ -40,13 +39,11 @@ public class ListChannelMembershipsForAppInstanceUserResult implements Serializa
 
     /**
      * <p>
-     * The token passed by previous API calls until all requested users are
-     * returned.
+     * The information for the requested channel memberships.
      * </p>
      *
      * @return <p>
-     *         The token passed by previous API calls until all requested users
-     *         are returned.
+     *         The information for the requested channel memberships.
      *         </p>
      */
     public java.util.List<ChannelMembershipForAppInstanceUserSummary> getChannelMemberships() {
@@ -55,13 +52,11 @@ public class ListChannelMembershipsForAppInstanceUserResult implements Serializa
 
     /**
      * <p>
-     * The token passed by previous API calls until all requested users are
-     * returned.
+     * The information for the requested channel memberships.
      * </p>
      *
      * @param channelMemberships <p>
-     *            The token passed by previous API calls until all requested
-     *            users are returned.
+     *            The information for the requested channel memberships.
      *            </p>
      */
     public void setChannelMemberships(
@@ -77,16 +72,14 @@ public class ListChannelMembershipsForAppInstanceUserResult implements Serializa
 
     /**
      * <p>
-     * The token passed by previous API calls until all requested users are
-     * returned.
+     * The information for the requested channel memberships.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelMemberships <p>
-     *            The token passed by previous API calls until all requested
-     *            users are returned.
+     *            The information for the requested channel memberships.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,16 +98,14 @@ public class ListChannelMembershipsForAppInstanceUserResult implements Serializa
 
     /**
      * <p>
-     * The token passed by previous API calls until all requested users are
-     * returned.
+     * The information for the requested channel memberships.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelMemberships <p>
-     *            The token passed by previous API calls until all requested
-     *            users are returned.
+     *            The information for the requested channel memberships.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
