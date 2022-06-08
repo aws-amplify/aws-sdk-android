@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,8 +40,8 @@ import com.amazonaws.services.chimesdkmessaging.model.transform.*;
  * to send and receive messages in custom messaging applications. These APIs
  * depend on the frameworks provided by the Amazon Chime SDK Identity APIs. For
  * more information about the messaging APIs, see <a href=
- * "https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging"
- * >Amazon Chime SDK messaging</a>
+ * "https://docs.aws.amazon.com/chime/latest/APIReference/API_Operations_Amazon_Chime_SDK_Messaging.html"
+ * >Amazon Chime SDK messaging</a>.
  * </p>
  */
 public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implements
@@ -2750,6 +2750,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      *         ChimeSDK Messaging.
      * @throws BadRequestException
      * @throws ForbiddenException
+     * @throws ConflictException
      * @throws UnauthorizedClientException
      * @throws ThrottledClientException
      * @throws ServiceUnavailableException
@@ -2782,6 +2783,60 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<RedactChannelMessageResult, JsonUnmarshallerContext> unmarshaller = new RedactChannelMessageResultJsonUnmarshaller();
             JsonResponseHandler<RedactChannelMessageResult> responseHandler = new JsonResponseHandler<RedactChannelMessageResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Allows an <code>AppInstanceUser</code> to search the channels that they
+     * belong to. The <code>AppInstanceUser</code> can search by membership or
+     * external ID. An <code>AppInstanceAdmin</code> can search across all
+     * channels within the <code>AppInstance</code>.
+     * </p>
+     * 
+     * @param searchChannelsRequest
+     * @return searchChannelsResult The response from the SearchChannels service
+     *         method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public SearchChannelsResult searchChannels(SearchChannelsRequest searchChannelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchChannelsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchChannelsRequest> request = null;
+        Response<SearchChannelsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchChannelsRequestMarshaller().marshall(searchChannelsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchChannelsResult, JsonUnmarshallerContext> unmarshaller = new SearchChannelsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchChannelsResult> responseHandler = new JsonResponseHandler<SearchChannelsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

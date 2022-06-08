@@ -191,6 +191,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The settings for updates to user attributes. These settings include the
+     * property <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     * user-pool setting that tells Amazon Cognito how to handle changes to the
+     * value of your users' email address and phone number attributes. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     * > Verifying updates to to email addresses and phone numbers</a>.
+     * </p>
+     */
+    private UserAttributeUpdateSettingsType userAttributeUpdateSettings;
+
+    /**
+     * <p>
      * The device configuration.
      * </p>
      */
@@ -1222,6 +1235,94 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The settings for updates to user attributes. These settings include the
+     * property <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     * user-pool setting that tells Amazon Cognito how to handle changes to the
+     * value of your users' email address and phone number attributes. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     * > Verifying updates to to email addresses and phone numbers</a>.
+     * </p>
+     *
+     * @return <p>
+     *         The settings for updates to user attributes. These settings
+     *         include the property
+     *         <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     *         user-pool setting that tells Amazon Cognito how to handle changes
+     *         to the value of your users' email address and phone number
+     *         attributes. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     *         > Verifying updates to to email addresses and phone numbers</a>.
+     *         </p>
+     */
+    public UserAttributeUpdateSettingsType getUserAttributeUpdateSettings() {
+        return userAttributeUpdateSettings;
+    }
+
+    /**
+     * <p>
+     * The settings for updates to user attributes. These settings include the
+     * property <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     * user-pool setting that tells Amazon Cognito how to handle changes to the
+     * value of your users' email address and phone number attributes. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     * > Verifying updates to to email addresses and phone numbers</a>.
+     * </p>
+     *
+     * @param userAttributeUpdateSettings <p>
+     *            The settings for updates to user attributes. These settings
+     *            include the property
+     *            <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     *            user-pool setting that tells Amazon Cognito how to handle
+     *            changes to the value of your users' email address and phone
+     *            number attributes. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     *            > Verifying updates to to email addresses and phone
+     *            numbers</a>.
+     *            </p>
+     */
+    public void setUserAttributeUpdateSettings(
+            UserAttributeUpdateSettingsType userAttributeUpdateSettings) {
+        this.userAttributeUpdateSettings = userAttributeUpdateSettings;
+    }
+
+    /**
+     * <p>
+     * The settings for updates to user attributes. These settings include the
+     * property <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     * user-pool setting that tells Amazon Cognito how to handle changes to the
+     * value of your users' email address and phone number attributes. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     * > Verifying updates to to email addresses and phone numbers</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userAttributeUpdateSettings <p>
+     *            The settings for updates to user attributes. These settings
+     *            include the property
+     *            <code>AttributesRequireVerificationBeforeUpdate</code>, a
+     *            user-pool setting that tells Amazon Cognito how to handle
+     *            changes to the value of your users' email address and phone
+     *            number attributes. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
+     *            > Verifying updates to to email addresses and phone
+     *            numbers</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolRequest withUserAttributeUpdateSettings(
+            UserAttributeUpdateSettingsType userAttributeUpdateSettings) {
+        this.userAttributeUpdateSettings = userAttributeUpdateSettings;
+        return this;
+    }
+
+    /**
+     * <p>
      * The device configuration.
      * </p>
      *
@@ -1885,6 +1986,8 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
             sb.append("SmsAuthenticationMessage: " + getSmsAuthenticationMessage() + ",");
         if (getMfaConfiguration() != null)
             sb.append("MfaConfiguration: " + getMfaConfiguration() + ",");
+        if (getUserAttributeUpdateSettings() != null)
+            sb.append("UserAttributeUpdateSettings: " + getUserAttributeUpdateSettings() + ",");
         if (getDeviceConfiguration() != null)
             sb.append("DeviceConfiguration: " + getDeviceConfiguration() + ",");
         if (getEmailConfiguration() != null)
@@ -1946,6 +2049,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getMfaConfiguration() == null) ? 0 : getMfaConfiguration().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUserAttributeUpdateSettings() == null) ? 0
+                        : getUserAttributeUpdateSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getDeviceConfiguration() == null) ? 0 : getDeviceConfiguration().hashCode());
         hashCode = prime * hashCode
@@ -2043,6 +2150,13 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getMfaConfiguration() != null
                 && other.getMfaConfiguration().equals(this.getMfaConfiguration()) == false)
+            return false;
+        if (other.getUserAttributeUpdateSettings() == null
+                ^ this.getUserAttributeUpdateSettings() == null)
+            return false;
+        if (other.getUserAttributeUpdateSettings() != null
+                && other.getUserAttributeUpdateSettings().equals(
+                        this.getUserAttributeUpdateSettings()) == false)
             return false;
         if (other.getDeviceConfiguration() == null ^ this.getDeviceConfiguration() == null)
             return false;

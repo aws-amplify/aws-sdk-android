@@ -19,14 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The data structure that contains the information for a medical transcription
- * job.
+ * Provides detailed information about a medical transcription job.
+ * </p>
+ * <p>
+ * To view the status of the specified medical transcription job, check the
+ * <code>TranscriptionJobStatus</code> field. If the status is
+ * <code>COMPLETED</code>, the job is finished and you can find the results at
+ * the location specified in <code>TranscriptFileUri</code>. If the status is
+ * <code>FAILED</code>, <code>FailureReason</code> provides details on why your
+ * transcription job failed.
  * </p>
  */
 public class MedicalTranscriptionJob implements Serializable {
     /**
      * <p>
-     * The name for a given medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,7 +45,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,10 +62,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,13 +78,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the source audio containing medical
-     * information.
-     * </p>
-     * <p>
-     * If you don't specify the sample rate, Amazon Transcribe Medical
-     * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,45 +98,67 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      */
     private Media media;
 
     /**
      * <p>
-     * An object that contains the <code>MedicalTranscript</code>. The
-     * <code>MedicalTranscript</code> contains the
-     * <code>TranscriptFileUri</code>.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      */
     private MedicalTranscript transcript;
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time the specified medical transcription job began
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date startTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date creationTime;
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date completionTime;
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * this field contains information about why the job failed.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job request failed.
      * </p>
      * <p>
      * The <code>FailureReason</code> field contains one of the following
@@ -137,53 +167,64 @@ public class MedicalTranscriptionJob implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>- The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * - The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>- The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
+     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * - The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>- The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <a href=
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>-
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -192,17 +233,19 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Object that contains object.
+     * Specify additional optional settings in your request, including channel
+     * identification, alternative transcriptions, and speaker labeling; allows
+     * you to apply custom vocabularies to your medical transcription job.
      * </p>
      */
     private MedicalTranscriptionSetting settings;
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -212,11 +255,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,12 +265,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -241,14 +276,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A key:value pair assigned to a given medical transcription job.
+     * The tags, each in the form of a key:value pair, assigned to the specified
+     * medical transcription job.
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * The name for a given medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -256,7 +293,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name for a given medical transcription job.
+     *         The name of the medical transcription job. Job names are case
+     *         sensitive and must be unique within an Amazon Web Services
+     *         account.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -265,7 +304,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The name for a given medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -273,7 +313,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name for a given medical transcription job.
+     *            The name of the medical transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -282,7 +324,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The name for a given medical transcription job.
+     * The name of the medical transcription job. Job names are case sensitive
+     * and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -293,7 +336,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param medicalTranscriptionJobName <p>
-     *            The name for a given medical transcription job.
+     *            The name of the medical transcription job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -306,14 +351,28 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The completion status of a medical transcription job.
+     *         Provides the status of the specified medical transcription job.
+     *         </p>
+     *         <p>
+     *         If the status is <code>COMPLETED</code>, the job is finished and
+     *         you can find the results at the location specified in
+     *         <code>TranscriptFileUri</code>. If the status is
+     *         <code>FAILED</code>, <code>FailureReason</code> provides details
+     *         on why your transcription job failed.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -323,14 +382,29 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The completion status of a medical transcription job.
+     *            Provides the status of the specified medical transcription
+     *            job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -340,7 +414,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -350,7 +431,15 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The completion status of a medical transcription job.
+     *            Provides the status of the specified medical transcription
+     *            job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -363,14 +452,29 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The completion status of a medical transcription job.
+     *            Provides the status of the specified medical transcription
+     *            job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -380,7 +484,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The completion status of a medical transcription job.
+     * Provides the status of the specified medical transcription job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code>. If the status is <code>FAILED</code>,
+     * <code>FailureReason</code> provides details on why your transcription job
+     * failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -390,7 +501,15 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param transcriptionJobStatus <p>
-     *            The completion status of a medical transcription job.
+     *            Provides the status of the specified medical transcription
+     *            job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code>. If the status is
+     *            <code>FAILED</code>, <code>FailureReason</code> provides
+     *            details on why your transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -404,10 +523,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -418,10 +536,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code for the language spoken in the source audio
-     *         file. US English (en-US) is the only supported language for
-     *         medical transcriptions. Any other value you enter for language
-     *         code results in a <code>BadRequestException</code> error.
+     *         The language code used to create your medical transcription job.
+     *         US English (<code>en-US</code>) is the only supported language
+     *         for medical transcriptions.
      *         </p>
      * @see LanguageCode
      */
@@ -431,10 +548,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -445,10 +561,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the language spoken in the source audio
-     *            file. US English (en-US) is the only supported language for
-     *            medical transcriptions. Any other value you enter for language
-     *            code results in a <code>BadRequestException</code> error.
+     *            The language code used to create your medical transcription
+     *            job. US English (<code>en-US</code>) is the only supported
+     *            language for medical transcriptions.
      *            </p>
      * @see LanguageCode
      */
@@ -458,10 +573,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -475,10 +589,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the language spoken in the source audio
-     *            file. US English (en-US) is the only supported language for
-     *            medical transcriptions. Any other value you enter for language
-     *            code results in a <code>BadRequestException</code> error.
+     *            The language code used to create your medical transcription
+     *            job. US English (<code>en-US</code>) is the only supported
+     *            language for medical transcriptions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -491,10 +604,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -505,10 +617,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the language spoken in the source audio
-     *            file. US English (en-US) is the only supported language for
-     *            medical transcriptions. Any other value you enter for language
-     *            code results in a <code>BadRequestException</code> error.
+     *            The language code used to create your medical transcription
+     *            job. US English (<code>en-US</code>) is the only supported
+     *            language for medical transcriptions.
      *            </p>
      * @see LanguageCode
      */
@@ -518,10 +629,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The language code for the language spoken in the source audio file. US
-     * English (en-US) is the only supported language for medical
-     * transcriptions. Any other value you enter for language code results in a
-     * <code>BadRequestException</code> error.
+     * The language code used to create your medical transcription job. US
+     * English (<code>en-US</code>) is the only supported language for medical
+     * transcriptions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -535,10 +645,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code for the language spoken in the source audio
-     *            file. US English (en-US) is the only supported language for
-     *            medical transcriptions. Any other value you enter for language
-     *            code results in a <code>BadRequestException</code> error.
+     *            The language code used to create your medical transcription
+     *            job. US English (<code>en-US</code>) is the only supported
+     *            language for medical transcriptions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -551,26 +660,15 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the source audio containing medical
-     * information.
-     * </p>
-     * <p>
-     * If you don't specify the sample rate, Amazon Transcribe Medical
-     * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the source audio containing medical
-     *         information.
-     *         </p>
-     *         <p>
-     *         If you don't specify the sample rate, Amazon Transcribe Medical
-     *         determines it for you. If you choose to specify the sample rate,
-     *         it must match the rate detected by Amazon Transcribe Medical.
+     *         The sample rate, in Hertz, of the audio track in your input media
+     *         file.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -579,27 +677,15 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the source audio containing medical
-     * information.
-     * </p>
-     * <p>
-     * If you don't specify the sample rate, Amazon Transcribe Medical
-     * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the source audio containing
-     *            medical information.
-     *            </p>
-     *            <p>
-     *            If you don't specify the sample rate, Amazon Transcribe
-     *            Medical determines it for you. If you choose to specify the
-     *            sample rate, it must match the rate detected by Amazon
-     *            Transcribe Medical.
+     *            The sample rate, in Hertz, of the audio track in your input
+     *            media file.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -608,13 +694,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the source audio containing medical
-     * information.
-     * </p>
-     * <p>
-     * If you don't specify the sample rate, Amazon Transcribe Medical
-     * determines it for you. If you choose to specify the sample rate, it must
-     * match the rate detected by Amazon Transcribe Medical.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -624,14 +704,8 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the source audio containing
-     *            medical information.
-     *            </p>
-     *            <p>
-     *            If you don't specify the sample rate, Amazon Transcribe
-     *            Medical determines it for you. If you choose to specify the
-     *            sample rate, it must match the rate detected by Amazon
-     *            Transcribe Medical.
+     *            The sample rate, in Hertz, of the audio track in your input
+     *            media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -740,11 +814,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      *
      * @return <p>
-     *         Describes the input media file in a transcription request.
+     *         Describes the Amazon S3 location of the media file you want to
+     *         use in your request.
      *         </p>
      */
     public Media getMedia() {
@@ -753,11 +829,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      *
      * @param media <p>
-     *            Describes the input media file in a transcription request.
+     *            Describes the Amazon S3 location of the media file you want to
+     *            use in your request.
      *            </p>
      */
     public void setMedia(Media media) {
@@ -766,14 +844,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param media <p>
-     *            Describes the input media file in a transcription request.
+     *            Describes the Amazon S3 location of the media file you want to
+     *            use in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -785,15 +865,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that contains the <code>MedicalTranscript</code>. The
-     * <code>MedicalTranscript</code> contains the
-     * <code>TranscriptFileUri</code>.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      *
      * @return <p>
-     *         An object that contains the <code>MedicalTranscript</code>. The
-     *         <code>MedicalTranscript</code> contains the
-     *         <code>TranscriptFileUri</code>.
+     *         Provides you with the Amazon S3 URI you can use to access your
+     *         transcript.
      *         </p>
      */
     public MedicalTranscript getTranscript() {
@@ -802,15 +880,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that contains the <code>MedicalTranscript</code>. The
-     * <code>MedicalTranscript</code> contains the
-     * <code>TranscriptFileUri</code>.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      *
      * @param transcript <p>
-     *            An object that contains the <code>MedicalTranscript</code>.
-     *            The <code>MedicalTranscript</code> contains the
-     *            <code>TranscriptFileUri</code>.
+     *            Provides you with the Amazon S3 URI you can use to access your
+     *            transcript.
      *            </p>
      */
     public void setTranscript(MedicalTranscript transcript) {
@@ -819,18 +895,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * An object that contains the <code>MedicalTranscript</code>. The
-     * <code>MedicalTranscript</code> contains the
-     * <code>TranscriptFileUri</code>.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcript <p>
-     *            An object that contains the <code>MedicalTranscript</code>.
-     *            The <code>MedicalTranscript</code> contains the
-     *            <code>TranscriptFileUri</code>.
+     *            Provides you with the Amazon S3 URI you can use to access your
+     *            transcript.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -842,11 +916,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time the specified medical transcription job began
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job started processing.
+     *         The date and time the specified medical transcription job began
+     *         processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -855,11 +944,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time the specified medical transcription job began
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job started processing.
+     *            The date and time the specified medical transcription job
+     *            began processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -868,14 +972,29 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job started processing.
+     * The date and time the specified medical transcription job began
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            A timestamp that shows when the job started processing.
+     *            The date and time the specified medical transcription job
+     *            began processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -887,11 +1006,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job was created.
+     *         The date and time the specified medical transcription job request
+     *         was made.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCreationTime() {
@@ -900,11 +1034,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the job was created.
+     *            The date and time the specified medical transcription job
+     *            request was made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
@@ -913,14 +1062,29 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was created.
+     * The date and time the specified medical transcription job request was
+     * made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the job was created.
+     *            The date and time the specified medical transcription job
+     *            request was made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -932,11 +1096,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the job was completed.
+     *         The date and time the specified medical transcription job
+     *         finished processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *         transcription job that started processing at 12:33 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCompletionTime() {
@@ -945,11 +1124,26 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified medical transcription job
+     *            finished processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCompletionTime(java.util.Date completionTime) {
@@ -958,14 +1152,29 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the job was completed.
+     * The date and time the specified medical transcription job finished
+     * processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the job was completed.
+     *            The date and time the specified medical transcription job
+     *            finished processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -977,8 +1186,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * this field contains information about why the job failed.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job request failed.
      * </p>
      * <p>
      * The <code>FailureReason</code> field contains one of the following
@@ -987,61 +1197,72 @@ public class MedicalTranscriptionJob implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>- The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * - The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>- The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
+     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * - The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>- The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <a href=
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>-
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         If the <code>TranscriptionJobStatus</code> field is
-     *         <code>FAILED</code>, this field contains information about why
-     *         the job failed.
+     *         If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *         <code>FailureReason</code> contains information about why the
+     *         transcription job request failed.
      *         </p>
      *         <p>
      *         The <code>FailureReason</code> field contains one of the
@@ -1050,57 +1271,68 @@ public class MedicalTranscriptionJob implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>Unsupported media format</code>- The media format specified
-     *         in the <code>MediaFormat</code> field of the request isn't valid.
-     *         See the description of the <code>MediaFormat</code> field for a
-     *         list of valid values.
+     *         <code>Unsupported media format</code>.
+     *         </p>
+     *         <p>
+     *         The media format specified in <code>MediaFormat</code> isn't
+     *         valid. Refer to <b>MediaFormat</b> for a list of supported
+     *         formats.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>The media format provided does not match the detected media format</code>
-     *         - The media format of the audio file doesn't match the format
-     *         specified in the <code>MediaFormat</code> field in the request.
-     *         Check the media format of your media file and make sure the two
-     *         values match.
+     *         .
+     *         </p>
+     *         <p>
+     *         The media format specified in <code>MediaFormat</code> doesn't
+     *         match the format of the input file. Check the media format of
+     *         your media file and correct the specified value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Invalid sample rate for audio file</code>- The sample rate
-     *         specified in the <code>MediaSampleRateHertz</code> of the request
-     *         isn't valid. The sample rate must be between 8,000 and 48,000
+     *         <code>Invalid sample rate for audio file</code>.
+     *         </p>
+     *         <p>
+     *         The sample rate specified in <code>MediaSampleRateHertz</code>
+     *         isn't valid. The sample rate must be between 16,000 and 48,000
      *         Hertz.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>The sample rate provided does not match the detected sample rate</code>
-     *         - The sample rate in the audio file doesn't match the sample rate
-     *         specified in the <code>MediaSampleRateHertz</code> field in the
-     *         request. Check the sample rate of your media file and make sure
-     *         that the two values match.
+     *         .
+     *         </p>
+     *         <p>
+     *         The sample rate specified in <code>MediaSampleRateHertz</code>
+     *         doesn't match the sample rate detected in your input media file.
+     *         Check the sample rate of your media file and correct the
+     *         specified value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Invalid file size: file size too large</code>- The size of
-     *         your audio file is larger than what Amazon Transcribe Medical can
-     *         process. For more information, see <a href=
+     *         <code>Invalid file size: file size too large</code>.
+     *         </p>
+     *         <p>
+     *         The size of your media file is larger than what Amazon Transcribe
+     *         can process. For more information, refer to <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *         >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *         Guide</i>.
+     *         >Guidelines and quotas</a>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>Invalid number of channels: number of channels too large</code>
-     *         - Your audio contains more channels than Amazon Transcribe
-     *         Medical is configured to process. To request additional channels,
-     *         see <a href=
-     *         "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     *         >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *         <i>Amazon Web Services General Reference</i>.
+     *         .
+     *         </p>
+     *         <p>
+     *         Your audio contains more channels than Amazon Transcribe is able
+     *         to process. For more information, refer to <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *         >Guidelines and quotas</a>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1111,8 +1343,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * this field contains information about why the job failed.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job request failed.
      * </p>
      * <p>
      * The <code>FailureReason</code> field contains one of the following
@@ -1121,61 +1354,72 @@ public class MedicalTranscriptionJob implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>- The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * - The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>- The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
+     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * - The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>- The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <a href=
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>-
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job request failed.
      *            </p>
      *            <p>
      *            The <code>FailureReason</code> field contains one of the
@@ -1184,57 +1428,69 @@ public class MedicalTranscriptionJob implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Unsupported media format</code>- The media format
-     *            specified in the <code>MediaFormat</code> field of the request
-     *            isn't valid. See the description of the
-     *            <code>MediaFormat</code> field for a list of valid values.
+     *            <code>Unsupported media format</code>.
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> isn't
+     *            valid. Refer to <b>MediaFormat</b> for a list of supported
+     *            formats.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The media format provided does not match the detected media format</code>
-     *            - The media format of the audio file doesn't match the format
-     *            specified in the <code>MediaFormat</code> field in the
-     *            request. Check the media format of your media file and make
-     *            sure the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> doesn't
+     *            match the format of the input file. Check the media format of
+     *            your media file and correct the specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid sample rate for audio file</code>- The sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> of the
-     *            request isn't valid. The sample rate must be between 8,000 and
-     *            48,000 Hertz.
+     *            <code>Invalid sample rate for audio file</code>.
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            isn't valid. The sample rate must be between 16,000 and 48,000
+     *            Hertz.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The sample rate provided does not match the detected sample rate</code>
-     *            - The sample rate in the audio file doesn't match the sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> field
-     *            in the request. Check the sample rate of your media file and
-     *            make sure that the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            doesn't match the sample rate detected in your input media
+     *            file. Check the sample rate of your media file and correct the
+     *            specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid file size: file size too large</code>- The size
-     *            of your audio file is larger than what Amazon Transcribe
-     *            Medical can process. For more information, see <a href=
+     *            <code>Invalid file size: file size too large</code>.
+     *            </p>
+     *            <p>
+     *            The size of your media file is larger than what Amazon
+     *            Transcribe can process. For more information, refer to <a
+     *            href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *            Guide</i>.
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Invalid number of channels: number of channels too large</code>
-     *            - Your audio contains more channels than Amazon Transcribe
-     *            Medical is configured to process. To request additional
-     *            channels, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     *            >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *            <i>Amazon Web Services General Reference</i>.
+     *            .
+     *            </p>
+     *            <p>
+     *            Your audio contains more channels than Amazon Transcribe is
+     *            able to process. For more information, refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1245,8 +1501,9 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>TranscriptionJobStatus</code> field is <code>FAILED</code>,
-     * this field contains information about why the job failed.
+     * If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the
+     * transcription job request failed.
      * </p>
      * <p>
      * The <code>FailureReason</code> field contains one of the following
@@ -1255,53 +1512,64 @@ public class MedicalTranscriptionJob implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>- The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * - The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>- The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
+     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * - The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>- The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <a href=
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical Guide</i>.
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>-
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     * >Amazon Transcribe Medical Endpoints and Quotas</a> in the <i>Amazon Web
-     * Services General Reference</i>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -1310,9 +1578,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * together.
      *
      * @param failureReason <p>
-     *            If the <code>TranscriptionJobStatus</code> field is
-     *            <code>FAILED</code>, this field contains information about why
-     *            the job failed.
+     *            If <code>TranscriptionJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            transcription job request failed.
      *            </p>
      *            <p>
      *            The <code>FailureReason</code> field contains one of the
@@ -1321,57 +1589,69 @@ public class MedicalTranscriptionJob implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Unsupported media format</code>- The media format
-     *            specified in the <code>MediaFormat</code> field of the request
-     *            isn't valid. See the description of the
-     *            <code>MediaFormat</code> field for a list of valid values.
+     *            <code>Unsupported media format</code>.
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> isn't
+     *            valid. Refer to <b>MediaFormat</b> for a list of supported
+     *            formats.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The media format provided does not match the detected media format</code>
-     *            - The media format of the audio file doesn't match the format
-     *            specified in the <code>MediaFormat</code> field in the
-     *            request. Check the media format of your media file and make
-     *            sure the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> doesn't
+     *            match the format of the input file. Check the media format of
+     *            your media file and correct the specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid sample rate for audio file</code>- The sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> of the
-     *            request isn't valid. The sample rate must be between 8,000 and
-     *            48,000 Hertz.
+     *            <code>Invalid sample rate for audio file</code>.
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            isn't valid. The sample rate must be between 16,000 and 48,000
+     *            Hertz.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The sample rate provided does not match the detected sample rate</code>
-     *            - The sample rate in the audio file doesn't match the sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> field
-     *            in the request. Check the sample rate of your media file and
-     *            make sure that the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            doesn't match the sample rate detected in your input media
+     *            file. Check the sample rate of your media file and correct the
+     *            specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid file size: file size too large</code>- The size
-     *            of your audio file is larger than what Amazon Transcribe
-     *            Medical can process. For more information, see <a href=
+     *            <code>Invalid file size: file size too large</code>.
+     *            </p>
+     *            <p>
+     *            The size of your media file is larger than what Amazon
+     *            Transcribe can process. For more information, refer to <a
+     *            href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and Quotas</a> in the <i>Amazon Transcribe Medical
-     *            Guide</i>.
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Invalid number of channels: number of channels too large</code>
-     *            - Your audio contains more channels than Amazon Transcribe
-     *            Medical is configured to process. To request additional
-     *            channels, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe-medical.html"
-     *            >Amazon Transcribe Medical Endpoints and Quotas</a> in the
-     *            <i>Amazon Web Services General Reference</i>.
+     *            .
+     *            </p>
+     *            <p>
+     *            Your audio contains more channels than Amazon Transcribe is
+     *            able to process. For more information, refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1385,11 +1665,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Object that contains object.
+     * Specify additional optional settings in your request, including channel
+     * identification, alternative transcriptions, and speaker labeling; allows
+     * you to apply custom vocabularies to your medical transcription job.
      * </p>
      *
      * @return <p>
-     *         Object that contains object.
+     *         Specify additional optional settings in your request, including
+     *         channel identification, alternative transcriptions, and speaker
+     *         labeling; allows you to apply custom vocabularies to your medical
+     *         transcription job.
      *         </p>
      */
     public MedicalTranscriptionSetting getSettings() {
@@ -1398,11 +1683,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Object that contains object.
+     * Specify additional optional settings in your request, including channel
+     * identification, alternative transcriptions, and speaker labeling; allows
+     * you to apply custom vocabularies to your medical transcription job.
      * </p>
      *
      * @param settings <p>
-     *            Object that contains object.
+     *            Specify additional optional settings in your request,
+     *            including channel identification, alternative transcriptions,
+     *            and speaker labeling; allows you to apply custom vocabularies
+     *            to your medical transcription job.
      *            </p>
      */
     public void setSettings(MedicalTranscriptionSetting settings) {
@@ -1411,14 +1701,19 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Object that contains object.
+     * Specify additional optional settings in your request, including channel
+     * identification, alternative transcriptions, and speaker labeling; allows
+     * you to apply custom vocabularies to your medical transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Object that contains object.
+     *            Specify additional optional settings in your request,
+     *            including channel identification, alternative transcriptions,
+     *            and speaker labeling; allows you to apply custom vocabularies
+     *            to your medical transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1430,20 +1725,21 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @return <p>
-     *         Shows the type of content that you've configured Amazon
-     *         Transcribe Medical to identify in a transcription job. If the
-     *         value is <code>PHI</code>, you've configured the job to identify
-     *         personal health information (PHI) in the transcription output.
+     *         Labels all personal health information (PHI) identified in your
+     *         transcript. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *         >Identifying personal health information (PHI) in a
+     *         transcription</a>.
      *         </p>
      * @see MedicalContentIdentificationType
      */
@@ -1453,21 +1749,21 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of content that you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the job to
-     *            identify personal health information (PHI) in the
-     *            transcription output.
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -1477,10 +1773,10 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1490,11 +1786,11 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of content that you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the job to
-     *            identify personal health information (PHI) in the
-     *            transcription output.
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1507,21 +1803,21 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of content that you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the job to
-     *            identify personal health information (PHI) in the
-     *            transcription output.
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -1532,10 +1828,10 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Shows the type of content that you've configured Amazon Transcribe
-     * Medical to identify in a transcription job. If the value is
-     * <code>PHI</code>, you've configured the job to identify personal health
-     * information (PHI) in the transcription output.
+     * Labels all personal health information (PHI) identified in your
+     * transcript. For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     * >Identifying personal health information (PHI) in a transcription</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1545,11 +1841,11 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Shows the type of content that you've configured Amazon
-     *            Transcribe Medical to identify in a transcription job. If the
-     *            value is <code>PHI</code>, you've configured the job to
-     *            identify personal health information (PHI) in the
-     *            transcription output.
+     *            Labels all personal health information (PHI) identified in
+     *            your transcript. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
+     *            >Identifying personal health information (PHI) in a
+     *            transcription</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1563,22 +1859,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @return <p>
-     *         The medical specialty of any clinicians providing a dictation or
-     *         having a conversation. Refer to <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *         >Transcribing a medical conversation</a>for a list of supported
-     *         specialties.
+     *         Describes the medical specialty represented in your media.
      *         </p>
      * @see Specialty
      */
@@ -1588,22 +1876,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of any clinicians providing a dictation
-     *            or having a conversation. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Describes the medical specialty represented in your media.
      *            </p>
      * @see Specialty
      */
@@ -1613,11 +1893,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1627,11 +1903,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of any clinicians providing a dictation
-     *            or having a conversation. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Describes the medical specialty represented in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1644,22 +1916,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of any clinicians providing a dictation
-     *            or having a conversation. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Describes the medical specialty represented in your media.
      *            </p>
      * @see Specialty
      */
@@ -1669,11 +1933,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of any clinicians providing a dictation or having a
-     * conversation. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     * >Transcribing a medical conversation</a>for a list of supported
-     * specialties.
+     * Describes the medical specialty represented in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1683,11 +1943,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of any clinicians providing a dictation
-     *            or having a conversation. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
-     *            >Transcribing a medical conversation</a>for a list of
-     *            supported specialties.
+     *            Describes the medical specialty represented in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1700,25 +1956,17 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @return <p>
-     *         The type of speech in the transcription job.
-     *         <code>CONVERSATION</code> is generally used for patient-physician
-     *         dialogues. <code>DICTATION</code> is the setting for physicians
-     *         speaking their notes after seeing a patient. For more
-     *         information, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     *         >What is Amazon Transcribe Medical?</a>.
+     *         Indicates whether the input media is a dictation or a
+     *         conversation, as specified in the
+     *         <code>StartMedicalTranscriptionJob</code> request.
      *         </p>
      * @see Type
      */
@@ -1728,25 +1976,17 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The type of speech in the transcription job.
-     *            <code>CONVERSATION</code> is generally used for
-     *            patient-physician dialogues. <code>DICTATION</code> is the
-     *            setting for physicians speaking their notes after seeing a
-     *            patient. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     *            >What is Amazon Transcribe Medical?</a>.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see Type
      */
@@ -1756,12 +1996,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1771,13 +2007,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The type of speech in the transcription job.
-     *            <code>CONVERSATION</code> is generally used for
-     *            patient-physician dialogues. <code>DICTATION</code> is the
-     *            setting for physicians speaking their notes after seeing a
-     *            patient. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     *            >What is Amazon Transcribe Medical?</a>.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1790,25 +2022,17 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The type of speech in the transcription job.
-     *            <code>CONVERSATION</code> is generally used for
-     *            patient-physician dialogues. <code>DICTATION</code> is the
-     *            setting for physicians speaking their notes after seeing a
-     *            patient. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     *            >What is Amazon Transcribe Medical?</a>.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see Type
      */
@@ -1818,12 +2042,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The type of speech in the transcription job. <code>CONVERSATION</code> is
-     * generally used for patient-physician dialogues. <code>DICTATION</code> is
-     * the setting for physicians speaking their notes after seeing a patient.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     * >What is Amazon Transcribe Medical?</a>.
+     * Indicates whether the input media is a dictation or a conversation, as
+     * specified in the <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1833,13 +2053,9 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The type of speech in the transcription job.
-     *            <code>CONVERSATION</code> is generally used for
-     *            patient-physician dialogues. <code>DICTATION</code> is the
-     *            setting for physicians speaking their notes after seeing a
-     *            patient. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html"
-     *            >What is Amazon Transcribe Medical?</a>.
+     *            Indicates whether the input media is a dictation or a
+     *            conversation, as specified in the
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1852,11 +2068,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A key:value pair assigned to a given medical transcription job.
+     * The tags, each in the form of a key:value pair, assigned to the specified
+     * medical transcription job.
      * </p>
      *
      * @return <p>
-     *         A key:value pair assigned to a given medical transcription job.
+     *         The tags, each in the form of a key:value pair, assigned to the
+     *         specified medical transcription job.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -1865,12 +2083,13 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A key:value pair assigned to a given medical transcription job.
+     * The tags, each in the form of a key:value pair, assigned to the specified
+     * medical transcription job.
      * </p>
      *
      * @param tags <p>
-     *            A key:value pair assigned to a given medical transcription
-     *            job.
+     *            The tags, each in the form of a key:value pair, assigned to
+     *            the specified medical transcription job.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -1884,15 +2103,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A key:value pair assigned to a given medical transcription job.
+     * The tags, each in the form of a key:value pair, assigned to the specified
+     * medical transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            A key:value pair assigned to a given medical transcription
-     *            job.
+     *            The tags, each in the form of a key:value pair, assigned to
+     *            the specified medical transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1909,15 +2129,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * A key:value pair assigned to a given medical transcription job.
+     * The tags, each in the form of a key:value pair, assigned to the specified
+     * medical transcription job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            A key:value pair assigned to a given medical transcription
-     *            job.
+     *            The tags, each in the form of a key:value pair, assigned to
+     *            the specified medical transcription job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

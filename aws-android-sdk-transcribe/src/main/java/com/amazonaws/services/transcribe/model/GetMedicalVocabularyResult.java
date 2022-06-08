@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class GetMedicalVocabularyResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary returned by Amazon Transcribe Medical.
+     * The name of the custom medical vocabulary you requested information
+     * about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +32,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,9 +48,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,30 +60,33 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was last modified with a text file
-     * different from the one that was previously used.
+     * The date and time the specified custom medical vocabulary was last
+     * modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      */
     private java.util.Date lastModifiedTime;
 
     /**
      * <p>
-     * If your request returns a <code>VocabularyState</code> that is
-     * <code>FAILED</code>, the <code>FailureReason</code> field contains
-     * information about why the request failed.
-     * </p>
-     * <p>
-     * For more information, refer to the <a href=
+     * If <code>VocabularyState</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the medical
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     * >Common Errors</a> section.
+     * >Common Errors</a>.
      * </p>
      */
     private String failureReason;
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the specified medical vocabulary is stored; use
+     * this URI to view or download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +97,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary returned by Amazon Transcribe Medical.
+     * The name of the custom medical vocabulary you requested information
+     * about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,7 +106,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary returned by Amazon Transcribe Medical.
+     *         The name of the custom medical vocabulary you requested
+     *         information about.
      *         </p>
      */
     public String getVocabularyName() {
@@ -108,7 +116,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary returned by Amazon Transcribe Medical.
+     * The name of the custom medical vocabulary you requested information
+     * about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,8 +125,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary returned by Amazon Transcribe
-     *            Medical.
+     *            The name of the custom medical vocabulary you requested
+     *            information about.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -126,7 +135,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary returned by Amazon Transcribe Medical.
+     * The name of the custom medical vocabulary you requested information
+     * about.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -137,8 +147,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary returned by Amazon Transcribe
-     *            Medical.
+     *            The name of the custom medical vocabulary you requested
+     *            information about.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -150,7 +160,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -161,7 +173,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The valid language code for your vocabulary entries.
+     *         The language code you selected for your medical vocabulary. US
+     *         English (<code>en-US</code>) is the only language supported with
+     *         Amazon Transcribe Medical.
      *         </p>
      * @see LanguageCode
      */
@@ -171,7 +185,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -182,7 +198,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The valid language code for your vocabulary entries.
+     *            The language code you selected for your medical vocabulary. US
+     *            English (<code>en-US</code>) is the only language supported
+     *            with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -192,7 +210,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -206,7 +226,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The valid language code for your vocabulary entries.
+     *            The language code you selected for your medical vocabulary. US
+     *            English (<code>en-US</code>) is the only language supported
+     *            with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -219,7 +241,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -230,7 +254,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The valid language code for your vocabulary entries.
+     *            The language code you selected for your medical vocabulary. US
+     *            English (<code>en-US</code>) is the only language supported
+     *            with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -240,7 +266,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The valid language code for your vocabulary entries.
+     * The language code you selected for your medical vocabulary. US English (
+     * <code>en-US</code>) is the only language supported with Amazon Transcribe
+     * Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -254,7 +282,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The valid language code for your vocabulary entries.
+     *            The language code you selected for your medical vocabulary. US
+     *            English (<code>en-US</code>) is the only language supported
+     *            with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -267,19 +297,18 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
-     *         The processing state of the vocabulary. If the
-     *         <code>VocabularyState</code> is <code>READY</code> then you can
-     *         use it in the <code>StartMedicalTranscriptionJob</code>
-     *         operation.
+     *         The processing state of your custom medical vocabulary. If the
+     *         state is <code>READY</code>, you can use the vocabulary in a
+     *         <code>StartMedicalTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
      */
@@ -289,19 +318,18 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. If the
-     *            <code>VocabularyState</code> is <code>READY</code> then you
-     *            can use it in the <code>StartMedicalTranscriptionJob</code>
-     *            operation.
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
      */
@@ -311,9 +339,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -323,10 +351,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. If the
-     *            <code>VocabularyState</code> is <code>READY</code> then you
-     *            can use it in the <code>StartMedicalTranscriptionJob</code>
-     *            operation.
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -339,19 +366,18 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. If the
-     *            <code>VocabularyState</code> is <code>READY</code> then you
-     *            can use it in the <code>StartMedicalTranscriptionJob</code>
-     *            operation.
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
      */
@@ -361,9 +387,9 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The processing state of the vocabulary. If the
-     * <code>VocabularyState</code> is <code>READY</code> then you can use it in
-     * the <code>StartMedicalTranscriptionJob</code> operation.
+     * The processing state of your custom medical vocabulary. If the state is
+     * <code>READY</code>, you can use the vocabulary in a
+     * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -373,10 +399,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param vocabularyState <p>
-     *            The processing state of the vocabulary. If the
-     *            <code>VocabularyState</code> is <code>READY</code> then you
-     *            can use it in the <code>StartMedicalTranscriptionJob</code>
-     *            operation.
+     *            The processing state of your custom medical vocabulary. If the
+     *            state is <code>READY</code>, you can use the vocabulary in a
+     *            <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -389,13 +414,25 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was last modified with a text file
-     * different from the one that was previously used.
+     * The date and time the specified custom medical vocabulary was last
+     * modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         The date and time that the vocabulary was last modified with a
-     *         text file different from the one that was previously used.
+     *         The date and time the specified custom medical vocabulary was
+     *         last modified.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM
+     *         UTC-7 on May 4, 2022.
      *         </p>
      */
     public java.util.Date getLastModifiedTime() {
@@ -404,13 +441,25 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was last modified with a text file
-     * different from the one that was previously used.
+     * The date and time the specified custom medical vocabulary was last
+     * modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was last modified with a
-     *            text file different from the one that was previously used.
+     *            The date and time the specified custom medical vocabulary was
+     *            last modified.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      */
     public void setLastModifiedTime(java.util.Date lastModifiedTime) {
@@ -419,16 +468,28 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the vocabulary was last modified with a text file
-     * different from the one that was previously used.
+     * The date and time the specified custom medical vocabulary was last
+     * modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the vocabulary was last modified with a
-     *            text file different from the one that was previously used.
+     *            The date and time the specified custom medical vocabulary was
+     *            last modified.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -440,25 +501,19 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If your request returns a <code>VocabularyState</code> that is
-     * <code>FAILED</code>, the <code>FailureReason</code> field contains
-     * information about why the request failed.
-     * </p>
-     * <p>
-     * For more information, refer to the <a href=
+     * If <code>VocabularyState</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the medical
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     * >Common Errors</a> section.
+     * >Common Errors</a>.
      * </p>
      *
      * @return <p>
-     *         If your request returns a <code>VocabularyState</code> that is
-     *         <code>FAILED</code>, the <code>FailureReason</code> field
-     *         contains information about why the request failed.
-     *         </p>
-     *         <p>
-     *         For more information, refer to the <a href=
+     *         If <code>VocabularyState</code> is <code>FAILED</code>,
+     *         <code>FailureReason</code> contains information about why the
+     *         medical vocabulary request failed. See also: <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     *         >Common Errors</a> section.
+     *         >Common Errors</a>.
      *         </p>
      */
     public String getFailureReason() {
@@ -467,25 +522,19 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If your request returns a <code>VocabularyState</code> that is
-     * <code>FAILED</code>, the <code>FailureReason</code> field contains
-     * information about why the request failed.
-     * </p>
-     * <p>
-     * For more information, refer to the <a href=
+     * If <code>VocabularyState</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the medical
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     * >Common Errors</a> section.
+     * >Common Errors</a>.
      * </p>
      *
      * @param failureReason <p>
-     *            If your request returns a <code>VocabularyState</code> that is
-     *            <code>FAILED</code>, the <code>FailureReason</code> field
-     *            contains information about why the request failed.
-     *            </p>
-     *            <p>
-     *            For more information, refer to the <a href=
+     *            If <code>VocabularyState</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            medical vocabulary request failed. See also: <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     *            >Common Errors</a> section.
+     *            >Common Errors</a>.
      *            </p>
      */
     public void setFailureReason(String failureReason) {
@@ -494,28 +543,22 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * If your request returns a <code>VocabularyState</code> that is
-     * <code>FAILED</code>, the <code>FailureReason</code> field contains
-     * information about why the request failed.
-     * </p>
-     * <p>
-     * For more information, refer to the <a href=
+     * If <code>VocabularyState</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the medical
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     * >Common Errors</a> section.
+     * >Common Errors</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failureReason <p>
-     *            If your request returns a <code>VocabularyState</code> that is
-     *            <code>FAILED</code>, the <code>FailureReason</code> field
-     *            contains information about why the request failed.
-     *            </p>
-     *            <p>
-     *            For more information, refer to the <a href=
+     *            If <code>VocabularyState</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            medical vocabulary request failed. See also: <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
-     *            >Common Errors</a> section.
+     *            >Common Errors</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -527,8 +570,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the specified medical vocabulary is stored; use
+     * this URI to view or download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -536,8 +579,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 location where the vocabulary is stored; use this URI to
-     *         view or download the vocabulary.
+     *         The S3 location where the specified medical vocabulary is stored;
+     *         use this URI to view or download the vocabulary.
      *         </p>
      */
     public String getDownloadUri() {
@@ -546,8 +589,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the specified medical vocabulary is stored; use
+     * this URI to view or download the vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -555,8 +598,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the vocabulary is stored; use this URI
-     *            to view or download the vocabulary.
+     *            The S3 location where the specified medical vocabulary is
+     *            stored; use this URI to view or download the vocabulary.
      *            </p>
      */
     public void setDownloadUri(String downloadUri) {
@@ -565,8 +608,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the specified medical vocabulary is stored; use
+     * this URI to view or download the vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -577,8 +620,8 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the vocabulary is stored; use this URI
-     *            to view or download the vocabulary.
+     *            The S3 location where the specified medical vocabulary is
+     *            stored; use this URI to view or download the vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

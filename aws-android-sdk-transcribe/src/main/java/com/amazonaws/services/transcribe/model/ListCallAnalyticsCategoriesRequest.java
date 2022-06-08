@@ -21,17 +21,24 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides more information about the call analytics categories that you've
- * created. You can use the information in this list to find a specific
- * category. You can then use the operation to get more information about it.
+ * Provides a list of Call Analytics categories, including all rules that make
+ * up each category.
+ * </p>
+ * <p>
+ * To get detailed information about a specific Call Analytics category, use the
+ * operation.
  * </p>
  */
 public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * When included, <code>NextToken</code>fetches the next set of categories
-     * if the result of the previous request was truncated.
+     * If your <code>ListCallAnalyticsCategories</code> request returns more
+     * results than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,10 +49,10 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The maximum number of categories to return in each page of results. If
-     * there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of Call Analytics categories to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,8 +62,12 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * When included, <code>NextToken</code>fetches the next set of categories
-     * if the result of the previous request was truncated.
+     * If your <code>ListCallAnalyticsCategories</code> request returns more
+     * results than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,8 +75,12 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         When included, <code>NextToken</code>fetches the next set of
-     *         categories if the result of the previous request was truncated.
+     *         If your <code>ListCallAnalyticsCategories</code> request returns
+     *         more results than can be displayed, <code>NextToken</code> is
+     *         displayed in the response with an associated string. To get the
+     *         next page of results, copy this string and repeat your request,
+     *         including <code>NextToken</code> with the value of the copied
+     *         string. Repeat as needed to view all your results.
      *         </p>
      */
     public String getNextToken() {
@@ -74,8 +89,12 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * When included, <code>NextToken</code>fetches the next set of categories
-     * if the result of the previous request was truncated.
+     * If your <code>ListCallAnalyticsCategories</code> request returns more
+     * results than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,9 +102,13 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            When included, <code>NextToken</code>fetches the next set of
-     *            categories if the result of the previous request was
-     *            truncated.
+     *            If your <code>ListCallAnalyticsCategories</code> request
+     *            returns more results than can be displayed,
+     *            <code>NextToken</code> is displayed in the response with an
+     *            associated string. To get the next page of results, copy this
+     *            string and repeat your request, including
+     *            <code>NextToken</code> with the value of the copied string.
+     *            Repeat as needed to view all your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -94,8 +117,12 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * When included, <code>NextToken</code>fetches the next set of categories
-     * if the result of the previous request was truncated.
+     * If your <code>ListCallAnalyticsCategories</code> request returns more
+     * results than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,9 +133,13 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            When included, <code>NextToken</code>fetches the next set of
-     *            categories if the result of the previous request was
-     *            truncated.
+     *            If your <code>ListCallAnalyticsCategories</code> request
+     *            returns more results than can be displayed,
+     *            <code>NextToken</code> is displayed in the response with an
+     *            associated string. To get the next page of results, copy this
+     *            string and repeat your request, including
+     *            <code>NextToken</code> with the value of the copied string.
+     *            Repeat as needed to view all your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,20 +151,20 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The maximum number of categories to return in each page of results. If
-     * there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of Call Analytics categories to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of categories to return in each page of
-     *         results. If there are fewer results than the value you specify,
-     *         only the actual results are returned. If you do not specify a
-     *         value, the default of 5 is used.
+     *         The maximum number of Call Analytics categories to return in each
+     *         page of results. If there are fewer results than the value you
+     *         specify, only the actual results are returned. If you don't
+     *         specify a value, a default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -142,20 +173,20 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The maximum number of categories to return in each page of results. If
-     * there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of Call Analytics categories to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of categories to return in each page of
-     *            results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of Call Analytics categories to return in
+     *            each page of results. If there are fewer results than the
+     *            value you specify, only the actual results are returned. If
+     *            you don't specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -164,10 +195,10 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The maximum number of categories to return in each page of results. If
-     * there are fewer results than the value you specify, only the actual
-     * results are returned. If you do not specify a value, the default of 5 is
-     * used.
+     * The maximum number of Call Analytics categories to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -177,10 +208,10 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of categories to return in each page of
-     *            results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of Call Analytics categories to return in
+     *            each page of results. If there are fewer results than the
+     *            value you specify, only the actual results are returned. If
+     *            you don't specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

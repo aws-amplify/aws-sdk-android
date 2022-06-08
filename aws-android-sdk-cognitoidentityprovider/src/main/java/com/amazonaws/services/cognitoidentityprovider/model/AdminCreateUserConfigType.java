@@ -34,11 +34,11 @@ public class AdminCreateUserConfigType implements Serializable {
 
     /**
      * <p>
-     * The user account expiration limit, in days, after which the account is no
-     * longer usable. To reset the account after that time limit, you must call
-     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for
-     * the <code>MessageAction</code> parameter. The default value for this
-     * parameter is 7.
+     * The user account expiration limit, in days, after which a new account
+     * that hasn't signed in is no longer usable. To reset the account after
+     * that time limit, you must call <code>AdminCreateUser</code> again,
+     * specifying <code>"RESEND"</code> for the <code>MessageAction</code>
+     * parameter. The default value for this parameter is 7.
      * </p>
      * <note>
      * <p>
@@ -142,11 +142,11 @@ public class AdminCreateUserConfigType implements Serializable {
 
     /**
      * <p>
-     * The user account expiration limit, in days, after which the account is no
-     * longer usable. To reset the account after that time limit, you must call
-     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for
-     * the <code>MessageAction</code> parameter. The default value for this
-     * parameter is 7.
+     * The user account expiration limit, in days, after which a new account
+     * that hasn't signed in is no longer usable. To reset the account after
+     * that time limit, you must call <code>AdminCreateUser</code> again,
+     * specifying <code>"RESEND"</code> for the <code>MessageAction</code>
+     * parameter. The default value for this parameter is 7.
      * </p>
      * <note>
      * <p>
@@ -161,12 +161,12 @@ public class AdminCreateUserConfigType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @return <p>
-     *         The user account expiration limit, in days, after which the
-     *         account is no longer usable. To reset the account after that time
-     *         limit, you must call <code>AdminCreateUser</code> again,
-     *         specifying <code>"RESEND"</code> for the
-     *         <code>MessageAction</code> parameter. The default value for this
-     *         parameter is 7.
+     *         The user account expiration limit, in days, after which a new
+     *         account that hasn't signed in is no longer usable. To reset the
+     *         account after that time limit, you must call
+     *         <code>AdminCreateUser</code> again, specifying
+     *         <code>"RESEND"</code> for the <code>MessageAction</code>
+     *         parameter. The default value for this parameter is 7.
      *         </p>
      *         <note>
      *         <p>
@@ -183,11 +183,11 @@ public class AdminCreateUserConfigType implements Serializable {
 
     /**
      * <p>
-     * The user account expiration limit, in days, after which the account is no
-     * longer usable. To reset the account after that time limit, you must call
-     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for
-     * the <code>MessageAction</code> parameter. The default value for this
-     * parameter is 7.
+     * The user account expiration limit, in days, after which a new account
+     * that hasn't signed in is no longer usable. To reset the account after
+     * that time limit, you must call <code>AdminCreateUser</code> again,
+     * specifying <code>"RESEND"</code> for the <code>MessageAction</code>
+     * parameter. The default value for this parameter is 7.
      * </p>
      * <note>
      * <p>
@@ -202,12 +202,12 @@ public class AdminCreateUserConfigType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @param unusedAccountValidityDays <p>
-     *            The user account expiration limit, in days, after which the
-     *            account is no longer usable. To reset the account after that
-     *            time limit, you must call <code>AdminCreateUser</code> again,
-     *            specifying <code>"RESEND"</code> for the
-     *            <code>MessageAction</code> parameter. The default value for
-     *            this parameter is 7.
+     *            The user account expiration limit, in days, after which a new
+     *            account that hasn't signed in is no longer usable. To reset
+     *            the account after that time limit, you must call
+     *            <code>AdminCreateUser</code> again, specifying
+     *            <code>"RESEND"</code> for the <code>MessageAction</code>
+     *            parameter. The default value for this parameter is 7.
      *            </p>
      *            <note>
      *            <p>
@@ -225,11 +225,11 @@ public class AdminCreateUserConfigType implements Serializable {
 
     /**
      * <p>
-     * The user account expiration limit, in days, after which the account is no
-     * longer usable. To reset the account after that time limit, you must call
-     * <code>AdminCreateUser</code> again, specifying <code>"RESEND"</code> for
-     * the <code>MessageAction</code> parameter. The default value for this
-     * parameter is 7.
+     * The user account expiration limit, in days, after which a new account
+     * that hasn't signed in is no longer usable. To reset the account after
+     * that time limit, you must call <code>AdminCreateUser</code> again,
+     * specifying <code>"RESEND"</code> for the <code>MessageAction</code>
+     * parameter. The default value for this parameter is 7.
      * </p>
      * <note>
      * <p>
@@ -247,12 +247,12 @@ public class AdminCreateUserConfigType implements Serializable {
      * <b>Range: </b>0 - 365<br/>
      *
      * @param unusedAccountValidityDays <p>
-     *            The user account expiration limit, in days, after which the
-     *            account is no longer usable. To reset the account after that
-     *            time limit, you must call <code>AdminCreateUser</code> again,
-     *            specifying <code>"RESEND"</code> for the
-     *            <code>MessageAction</code> parameter. The default value for
-     *            this parameter is 7.
+     *            The user account expiration limit, in days, after which a new
+     *            account that hasn't signed in is no longer usable. To reset
+     *            the account after that time limit, you must call
+     *            <code>AdminCreateUser</code> again, specifying
+     *            <code>"RESEND"</code> for the <code>MessageAction</code>
+     *            parameter. The default value for this parameter is 7.
      *            </p>
      *            <note>
      *            <p>

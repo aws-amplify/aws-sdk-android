@@ -20,18 +20,21 @@ import java.io.Serializable;
 public class GetTranscriptionJobResult implements Serializable {
     /**
      * <p>
-     * An object that contains the results of the transcription job.
+     * Provides detailed information about the specified transcription job,
+     * including job status and, if applicable, failure reason.
      * </p>
      */
     private TranscriptionJob transcriptionJob;
 
     /**
      * <p>
-     * An object that contains the results of the transcription job.
+     * Provides detailed information about the specified transcription job,
+     * including job status and, if applicable, failure reason.
      * </p>
      *
      * @return <p>
-     *         An object that contains the results of the transcription job.
+     *         Provides detailed information about the specified transcription
+     *         job, including job status and, if applicable, failure reason.
      *         </p>
      */
     public TranscriptionJob getTranscriptionJob() {
@@ -40,11 +43,14 @@ public class GetTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * An object that contains the results of the transcription job.
+     * Provides detailed information about the specified transcription job,
+     * including job status and, if applicable, failure reason.
      * </p>
      *
      * @param transcriptionJob <p>
-     *            An object that contains the results of the transcription job.
+     *            Provides detailed information about the specified
+     *            transcription job, including job status and, if applicable,
+     *            failure reason.
      *            </p>
      */
     public void setTranscriptionJob(TranscriptionJob transcriptionJob) {
@@ -53,14 +59,17 @@ public class GetTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * An object that contains the results of the transcription job.
+     * Provides detailed information about the specified transcription job,
+     * including job status and, if applicable, failure reason.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcriptionJob <p>
-     *            An object that contains the results of the transcription job.
+     *            Provides detailed information about the specified
+     *            transcription job, including job status and, if applicable,
+     *            failure reason.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListIdentityProvidersResult implements Serializable {
     /**
      * <p>
-     * A list of identity provider objects.
+     * A list of IdP objects.
      * </p>
      */
     private java.util.List<ProviderDescription> providers;
@@ -38,11 +38,11 @@ public class ListIdentityProvidersResult implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider objects.
+     * A list of IdP objects.
      * </p>
      *
      * @return <p>
-     *         A list of identity provider objects.
+     *         A list of IdP objects.
      *         </p>
      */
     public java.util.List<ProviderDescription> getProviders() {
@@ -51,11 +51,11 @@ public class ListIdentityProvidersResult implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider objects.
+     * A list of IdP objects.
      * </p>
      *
      * @param providers <p>
-     *            A list of identity provider objects.
+     *            A list of IdP objects.
      *            </p>
      */
     public void setProviders(java.util.Collection<ProviderDescription> providers) {
@@ -69,14 +69,14 @@ public class ListIdentityProvidersResult implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider objects.
+     * A list of IdP objects.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param providers <p>
-     *            A list of identity provider objects.
+     *            A list of IdP objects.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -93,14 +93,14 @@ public class ListIdentityProvidersResult implements Serializable {
 
     /**
      * <p>
-     * A list of identity provider objects.
+     * A list of IdP objects.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param providers <p>
-     *            A list of identity provider objects.
+     *            A list of IdP objects.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

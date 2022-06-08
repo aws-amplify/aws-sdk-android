@@ -27,7 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ForgetDeviceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token for the forgotten device request.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * registered device you want to forget.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,14 +49,16 @@ public class ForgetDeviceRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The access token for the forgotten device request.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * registered device you want to forget.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token for the forgotten device request.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         registered device you want to forget.
      *         </p>
      */
     public String getAccessToken() {
@@ -64,14 +67,16 @@ public class ForgetDeviceRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The access token for the forgotten device request.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * registered device you want to forget.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token for the forgotten device request.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose registered device you want to forget.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -80,7 +85,8 @@ public class ForgetDeviceRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * The access token for the forgotten device request.
+     * A valid access token that Amazon Cognito issued to the user whose
+     * registered device you want to forget.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +96,8 @@ public class ForgetDeviceRequest extends AmazonWebServiceRequest implements Seri
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token for the forgotten device request.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose registered device you want to forget.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
