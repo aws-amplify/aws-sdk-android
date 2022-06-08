@@ -818,7 +818,7 @@ abstract class NotificationClientBase {
         try {
             pinpointContext.getApplicationContext().startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            log.error("Couldn't find an app to open ACTION_VIEW Intent.");
+            log.error("Couldn't find an app to open ACTION_VIEW Intent.", e);
         }
     }
 
