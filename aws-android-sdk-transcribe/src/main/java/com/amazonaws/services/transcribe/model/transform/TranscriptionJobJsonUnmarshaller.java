@@ -85,6 +85,9 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("IdentifyLanguage")) {
                 transcriptionJob.setIdentifyLanguage(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("IdentifyMultipleLanguages")) {
+                transcriptionJob.setIdentifyMultipleLanguages(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LanguageOptions")) {
                 transcriptionJob.setLanguageOptions(new ListUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
@@ -93,6 +96,11 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("IdentifiedLanguageScore")) {
                 transcriptionJob.setIdentifiedLanguageScore(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LanguageCodes")) {
+                transcriptionJob.setLanguageCodes(new ListUnmarshaller<LanguageCodeItem>(
+                        LanguageCodeItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Tags")) {
                 transcriptionJob.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller
                         .getInstance()

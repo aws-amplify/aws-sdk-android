@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Respresents the response from the server regarding the request to reset a
- * password.
+ * The response from Amazon Cognito to a request to reset a password.
  * </p>
  */
 public class ForgotPasswordResult implements Serializable {

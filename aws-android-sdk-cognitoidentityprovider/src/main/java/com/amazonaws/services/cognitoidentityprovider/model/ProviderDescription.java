@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A container for identity provider details.
+ * A container for IdP details.
  * </p>
  */
 public class ProviderDescription implements Serializable {
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +36,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +69,7 @@ public class ProviderDescription implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The identity provider name.
+     *         The IdP name.
      *         </p>
      */
     public String getProviderName() {
@@ -78,7 +78,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,7 @@ public class ProviderDescription implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      */
     public void setProviderName(String providerName) {
@@ -95,7 +95,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +106,7 @@ public class ProviderDescription implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -118,7 +118,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -126,7 +126,7 @@ public class ProviderDescription implements Serializable {
      * SignInWithApple, OIDC
      *
      * @return <p>
-     *         The identity provider type.
+     *         The IdP type.
      *         </p>
      * @see IdentityProviderTypeType
      */
@@ -136,7 +136,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +144,7 @@ public class ProviderDescription implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @see IdentityProviderTypeType
      */
@@ -154,7 +154,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,7 +165,7 @@ public class ProviderDescription implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,7 +178,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -186,7 +186,7 @@ public class ProviderDescription implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @see IdentityProviderTypeType
      */
@@ -196,7 +196,7 @@ public class ProviderDescription implements Serializable {
 
     /**
      * <p>
-     * The identity provider type.
+     * The IdP type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -207,7 +207,7 @@ public class ProviderDescription implements Serializable {
      * SignInWithApple, OIDC
      *
      * @param providerType <p>
-     *            The identity provider type.
+     *            The IdP type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

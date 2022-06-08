@@ -36,7 +36,10 @@ class UserContextDataTypeJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("EncodedData")) {
+            if (name.equals("IpAddress")) {
+                userContextDataType.setIpAddress(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EncodedData")) {
                 userContextDataType.setEncodedData(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {

@@ -21,22 +21,34 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves information about a call analytics job.
+ * Provides information about the specified Call Analytics job.
  * </p>
  * <p>
- * To view the job's status, refer to the <code>CallAnalyticsJobStatus</code>
- * field. If the status is <code>COMPLETED</code>, the job is finished. You can
- * then find your transcript at the URI specified in the
- * <code>TranscriptFileUri</code> field. If you enabled personally identifiable
- * information (PII) redaction, the redacted transcript appears in the
- * <code>RedactedTranscriptFileUri</code> field.
+ * To view the job's status, refer to <code>CallAnalyticsJobStatus</code>. If
+ * the status is <code>COMPLETED</code>, the job is finished. You can find your
+ * completed transcript at the URI specified in <code>TranscriptFileUri</code>.
+ * If the status is <code>FAILED</code>, <code>FailureReason</code> provides
+ * details on why your transcription job failed.
+ * </p>
+ * <p>
+ * If you enabled personally identifiable information (PII) redaction, the
+ * redacted transcript appears at the location specified in
+ * <code>RedactedTranscriptFileUri</code>.
+ * </p>
+ * <p>
+ * If you chose to redact the audio in your media file, you can find your
+ * redacted media file at the location specified in
+ * <code>RedactedMediaFileUri</code>.
+ * </p>
+ * <p>
+ * To get a list of your Call Analytics jobs, use the operation.
  * </p>
  */
 public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the analytics job you want information about. This value is
-     * case sensitive.
+     * The name of the Call Analytics job you want information about. Job names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,8 +59,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the analytics job you want information about. This value is
-     * case sensitive.
+     * The name of the Call Analytics job you want information about. Job names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,8 +68,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the analytics job you want information about. This
-     *         value is case sensitive.
+     *         The name of the Call Analytics job you want information about.
+     *         Job names are case sensitive.
      *         </p>
      */
     public String getCallAnalyticsJobName() {
@@ -66,8 +78,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the analytics job you want information about. This value is
-     * case sensitive.
+     * The name of the Call Analytics job you want information about. Job names
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,8 +87,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the analytics job you want information about. This
-     *            value is case sensitive.
+     *            The name of the Call Analytics job you want information about.
+     *            Job names are case sensitive.
      *            </p>
      */
     public void setCallAnalyticsJobName(String callAnalyticsJobName) {
@@ -85,8 +97,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the analytics job you want information about. This value is
-     * case sensitive.
+     * The name of the Call Analytics job you want information about. Job names
+     * are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -97,8 +109,8 @@ public class GetCallAnalyticsJobRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the analytics job you want information about. This
-     *            value is case sensitive.
+     *            The name of the Call Analytics job you want information about.
+     *            Job names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

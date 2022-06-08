@@ -19,14 +19,31 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an asynchronous analytics job that was created with the
- * <code>StartAnalyticsJob</code> operation.
+ * Provides detailed information about a Call Analytics job.
+ * </p>
+ * <p>
+ * To view the job's status, refer to <code>CallAnalyticsJobStatus</code>. If
+ * the status is <code>COMPLETED</code>, the job is finished. You can find your
+ * completed transcript at the URI specified in <code>TranscriptFileUri</code>.
+ * If the status is <code>FAILED</code>, <code>FailureReason</code> provides
+ * details on why your transcription job failed.
+ * </p>
+ * <p>
+ * If you enabled personally identifiable information (PII) redaction, the
+ * redacted transcript appears at the location specified in
+ * <code>RedactedTranscriptFileUri</code>.
+ * </p>
+ * <p>
+ * If you chose to redact the audio in your media file, you can find your
+ * redacted media file at the location specified in the
+ * <code>RedactedMediaFileUri</code> field of your response.
  * </p>
  */
 public class CallAnalyticsJob implements Serializable {
     /**
      * <p>
-     * The name of the call analytics job.
+     * The name of the Call Analytics job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,7 +54,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,17 +72,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +97,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the input audio.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,9 +107,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,97 +117,130 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      */
     private Media media;
 
     /**
      * <p>
-     * Identifies the location of a transcription.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      */
     private Transcript transcript;
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job started processing.
+     * The date and time the specified Call Analytics job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date startTime;
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was created.
+     * The date and time the specified Call Analytics job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date creationTime;
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was completed.
+     * The date and time the specified Call Analytics job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      */
     private java.util.Date completionTime;
 
     /**
      * <p>
-     * If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the Call
+     * Analytics job request failed.
      * </p>
      * <p>
-     * The <code>FailureReason</code> field can contain one of the following
+     * The <code>FailureReason</code> field contains one of the following
      * values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>: The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * : The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>: The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
      * valid. The sample rate must be between 8,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * : The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>: The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <i>Guidelines and Quotas</i> in the Amazon
-     * Transcribe Medical Guide.
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>:
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see Amazon
-     * Transcribe Medical Endpoints and Quotas in the <a
-     * href="https://docs.aws.amazon.com/general/latest/gr/Welcome.html">Amazon
-     * Web Services General Reference</a>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -192,10 +249,20 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) that you use to access the analytics
-     * job. ARNs have the format
-     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * .
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files. If the role
+     * you specify doesn’t have the appropriate permissions to access the
+     * specified Amazon S3 location, your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -208,33 +275,42 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language that it identified in the source audio. This value appears only
-     * when you don't provide a single language code. Larger values indicate
-     * that Amazon Transcribe has higher confidence in the language that it
-     * identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      */
     private Float identifiedLanguageScore;
 
     /**
      * <p>
-     * Provides information about the settings used to run a transcription job.
+     * Allows additional optional settings in your request, including content
+     * redaction; allows you to apply custom language models, vocabulary
+     * filters, and custom vocabularies to your Call Analytics job.
      * </p>
      */
     private CallAnalyticsJobSettings settings;
 
     /**
      * <p>
-     * Shows numeric values to indicate the channel assigned to the agent's
-     * audio and the channel assigned to the customer's audio.
+     * Allows you to specify which speaker is on which channel in your Call
+     * Analytics job request. For example, if your agent is the first
+     * participant to speak, you would set <code>ChannelId</code> to
+     * <code>0</code> (to indicate the first channel) and
+     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
+     * the agent speaking).
      * </p>
      */
     private java.util.List<ChannelDefinition> channelDefinitions;
 
     /**
      * <p>
-     * The name of the call analytics job.
+     * The name of the Call Analytics job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -242,7 +318,8 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the call analytics job.
+     *         The name of the Call Analytics job. Job names are case sensitive
+     *         and must be unique within an Amazon Web Services account.
      *         </p>
      */
     public String getCallAnalyticsJobName() {
@@ -251,7 +328,8 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The name of the call analytics job.
+     * The name of the Call Analytics job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -259,7 +337,9 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the call analytics job.
+     *            The name of the Call Analytics job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      */
     public void setCallAnalyticsJobName(String callAnalyticsJobName) {
@@ -268,7 +348,8 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The name of the call analytics job.
+     * The name of the Call Analytics job. Job names are case sensitive and must
+     * be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -279,7 +360,9 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param callAnalyticsJobName <p>
-     *            The name of the call analytics job.
+     *            The name of the Call Analytics job. Job names are case
+     *            sensitive and must be unique within an Amazon Web Services
+     *            account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -291,14 +374,31 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The status of the analytics job.
+     *         Provides the status of the specified Call Analytics job.
+     *         </p>
+     *         <p>
+     *         If the status is <code>COMPLETED</code>, the job is finished and
+     *         you can find the results at the location specified in
+     *         <code>TranscriptFileUri</code> (or
+     *         <code>RedactedTranscriptFileUri</code>, if you requested
+     *         transcript redaction). If the status is <code>FAILED</code>,
+     *         <code>FailureReason</code> provides details on why your
+     *         transcription job failed.
      *         </p>
      * @see CallAnalyticsJobStatus
      */
@@ -308,14 +408,31 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param callAnalyticsJobStatus <p>
-     *            The status of the analytics job.
+     *            Provides the status of the specified Call Analytics job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @see CallAnalyticsJobStatus
      */
@@ -325,7 +442,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -335,7 +460,16 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param callAnalyticsJobStatus <p>
-     *            The status of the analytics job.
+     *            Provides the status of the specified Call Analytics job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -348,14 +482,31 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param callAnalyticsJobStatus <p>
-     *            The status of the analytics job.
+     *            Provides the status of the specified Call Analytics job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @see CallAnalyticsJobStatus
      */
@@ -365,7 +516,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The status of the analytics job.
+     * Provides the status of the specified Call Analytics job.
+     * </p>
+     * <p>
+     * If the status is <code>COMPLETED</code>, the job is finished and you can
+     * find the results at the location specified in
+     * <code>TranscriptFileUri</code> (or <code>RedactedTranscriptFileUri</code>
+     * , if you requested transcript redaction). If the status is
+     * <code>FAILED</code>, <code>FailureReason</code> provides details on why
+     * your transcription job failed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -375,7 +534,16 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param callAnalyticsJobStatus <p>
-     *            The status of the analytics job.
+     *            Provides the status of the specified Call Analytics job.
+     *            </p>
+     *            <p>
+     *            If the status is <code>COMPLETED</code>, the job is finished
+     *            and you can find the results at the location specified in
+     *            <code>TranscriptFileUri</code> (or
+     *            <code>RedactedTranscriptFileUri</code>, if you requested
+     *            transcript redaction). If the status is <code>FAILED</code>,
+     *            <code>FailureReason</code> provides details on why your
+     *            transcription job failed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -388,17 +556,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -409,18 +578,18 @@ public class CallAnalyticsJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         If you know the language spoken between the customer and the
-     *         agent, specify a language code for this field.
+     *         The language code used to create your Call Analytics job. For a
+     *         list of supported languages and their associated language codes,
+     *         refer to the <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *         >Supported languages</a> table.
      *         </p>
      *         <p>
-     *         If you don't know the language, you can leave this field blank,
-     *         and Amazon Transcribe will use machine learning to automatically
-     *         identify the language. To improve the accuracy of language
-     *         identification, you can provide an array containing the possible
-     *         language codes for the language spoken in your audio. Refer to <a
-     *         href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *         >Supported languages</a> for additional information.
+     *         If you don't know the language spoken in your media file, you can
+     *         omit this field and let Amazon Transcribe automatically identify
+     *         the language of your media. To improve the accuracy of language
+     *         identification, you can include several language codes and Amazon
+     *         Transcribe chooses the closest match for your transcription.
      *         </p>
      * @see LanguageCode
      */
@@ -430,17 +599,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -451,18 +621,19 @@ public class CallAnalyticsJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            If you know the language spoken between the customer and the
-     *            agent, specify a language code for this field.
+     *            The language code used to create your Call Analytics job. For
+     *            a list of supported languages and their associated language
+     *            codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language, you can leave this field
-     *            blank, and Amazon Transcribe will use machine learning to
-     *            automatically identify the language. To improve the accuracy
-     *            of language identification, you can provide an array
-     *            containing the possible language codes for the language spoken
-     *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> for additional information.
+     *            If you don't know the language spoken in your media file, you
+     *            can omit this field and let Amazon Transcribe automatically
+     *            identify the language of your media. To improve the accuracy
+     *            of language identification, you can include several language
+     *            codes and Amazon Transcribe chooses the closest match for your
+     *            transcription.
      *            </p>
      * @see LanguageCode
      */
@@ -472,17 +643,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -496,18 +668,19 @@ public class CallAnalyticsJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            If you know the language spoken between the customer and the
-     *            agent, specify a language code for this field.
+     *            The language code used to create your Call Analytics job. For
+     *            a list of supported languages and their associated language
+     *            codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language, you can leave this field
-     *            blank, and Amazon Transcribe will use machine learning to
-     *            automatically identify the language. To improve the accuracy
-     *            of language identification, you can provide an array
-     *            containing the possible language codes for the language spoken
-     *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> for additional information.
+     *            If you don't know the language spoken in your media file, you
+     *            can omit this field and let Amazon Transcribe automatically
+     *            identify the language of your media. To improve the accuracy
+     *            of language identification, you can include several language
+     *            codes and Amazon Transcribe chooses the closest match for your
+     *            transcription.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -520,17 +693,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -541,18 +715,19 @@ public class CallAnalyticsJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            If you know the language spoken between the customer and the
-     *            agent, specify a language code for this field.
+     *            The language code used to create your Call Analytics job. For
+     *            a list of supported languages and their associated language
+     *            codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language, you can leave this field
-     *            blank, and Amazon Transcribe will use machine learning to
-     *            automatically identify the language. To improve the accuracy
-     *            of language identification, you can provide an array
-     *            containing the possible language codes for the language spoken
-     *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> for additional information.
+     *            If you don't know the language spoken in your media file, you
+     *            can omit this field and let Amazon Transcribe automatically
+     *            identify the language of your media. To improve the accuracy
+     *            of language identification, you can include several language
+     *            codes and Amazon Transcribe chooses the closest match for your
+     *            transcription.
      *            </p>
      * @see LanguageCode
      */
@@ -562,17 +737,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If you know the language spoken between the customer and the agent,
-     * specify a language code for this field.
+     * The language code used to create your Call Analytics job. For a list of
+     * supported languages and their associated language codes, refer to the <a
+     * href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language, you can leave this field blank, and
-     * Amazon Transcribe will use machine learning to automatically identify the
-     * language. To improve the accuracy of language identification, you can
-     * provide an array containing the possible language codes for the language
-     * spoken in your audio. Refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> for additional information.
+     * If you don't know the language spoken in your media file, you can omit
+     * this field and let Amazon Transcribe automatically identify the language
+     * of your media. To improve the accuracy of language identification, you
+     * can include several language codes and Amazon Transcribe chooses the
+     * closest match for your transcription.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -586,18 +762,19 @@ public class CallAnalyticsJob implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            If you know the language spoken between the customer and the
-     *            agent, specify a language code for this field.
+     *            The language code used to create your Call Analytics job. For
+     *            a list of supported languages and their associated language
+     *            codes, refer to the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
+     *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language, you can leave this field
-     *            blank, and Amazon Transcribe will use machine learning to
-     *            automatically identify the language. To improve the accuracy
-     *            of language identification, you can provide an array
-     *            containing the possible language codes for the language spoken
-     *            in your audio. Refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     *            >Supported languages</a> for additional information.
+     *            If you don't know the language spoken in your media file, you
+     *            can omit this field and let Amazon Transcribe automatically
+     *            identify the language of your media. To improve the accuracy
+     *            of language identification, you can include several language
+     *            codes and Amazon Transcribe chooses the closest match for your
+     *            transcription.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -610,14 +787,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the input audio.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the input audio.
+     *         The sample rate, in Hertz, of the audio track in your input media
+     *         file.
      *         </p>
      */
     public Integer getMediaSampleRateHertz() {
@@ -626,14 +804,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the input audio.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the input audio.
+     *            The sample rate, in Hertz, of the audio track in your input
+     *            media file.
      *            </p>
      */
     public void setMediaSampleRateHertz(Integer mediaSampleRateHertz) {
@@ -642,7 +821,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the input audio.
+     * The sample rate, in Hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -652,7 +831,8 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the input audio.
+     *            The sample rate, in Hertz, of the audio track in your input
+     *            media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -664,18 +844,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @return <p>
-     *         The format of the input audio file. Note: for call analytics
-     *         jobs, only the following media formats are supported: MP3, MP4,
-     *         WAV, FLAC, OGG, and WebM.
+     *         The format of the input media file.
      *         </p>
      * @see MediaFormat
      */
@@ -685,18 +861,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
-     *            The format of the input audio file. Note: for call analytics
-     *            jobs, only the following media formats are supported: MP3,
-     *            MP4, WAV, FLAC, OGG, and WebM.
+     *            The format of the input media file.
      *            </p>
      * @see MediaFormat
      */
@@ -706,9 +878,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -718,9 +888,7 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
-     *            The format of the input audio file. Note: for call analytics
-     *            jobs, only the following media formats are supported: MP3,
-     *            MP4, WAV, FLAC, OGG, and WebM.
+     *            The format of the input media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -733,18 +901,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
-     *            The format of the input audio file. Note: for call analytics
-     *            jobs, only the following media formats are supported: MP3,
-     *            MP4, WAV, FLAC, OGG, and WebM.
+     *            The format of the input media file.
      *            </p>
      * @see MediaFormat
      */
@@ -754,9 +918,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The format of the input audio file. Note: for call analytics jobs, only
-     * the following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and
-     * WebM.
+     * The format of the input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -766,9 +928,7 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
-     *            The format of the input audio file. Note: for call analytics
-     *            jobs, only the following media formats are supported: MP3,
-     *            MP4, WAV, FLAC, OGG, and WebM.
+     *            The format of the input media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -781,11 +941,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      *
      * @return <p>
-     *         Describes the input media file in a transcription request.
+     *         Describes the Amazon S3 location of the media file you want to
+     *         use in your request.
      *         </p>
      */
     public Media getMedia() {
@@ -794,11 +956,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      *
      * @param media <p>
-     *            Describes the input media file in a transcription request.
+     *            Describes the Amazon S3 location of the media file you want to
+     *            use in your request.
      *            </p>
      */
     public void setMedia(Media media) {
@@ -807,14 +971,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the input media file in a transcription request.
+     * Describes the Amazon S3 location of the media file you want to use in
+     * your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param media <p>
-     *            Describes the input media file in a transcription request.
+     *            Describes the Amazon S3 location of the media file you want to
+     *            use in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -826,11 +992,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Identifies the location of a transcription.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      *
      * @return <p>
-     *         Identifies the location of a transcription.
+     *         Provides you with the Amazon S3 URI you can use to access your
+     *         transcript.
      *         </p>
      */
     public Transcript getTranscript() {
@@ -839,11 +1007,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Identifies the location of a transcription.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      *
      * @param transcript <p>
-     *            Identifies the location of a transcription.
+     *            Provides you with the Amazon S3 URI you can use to access your
+     *            transcript.
      *            </p>
      */
     public void setTranscript(Transcript transcript) {
@@ -852,14 +1022,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Identifies the location of a transcription.
+     * Provides you with the Amazon S3 URI you can use to access your
+     * transcript.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcript <p>
-     *            Identifies the location of a transcription.
+     *            Provides you with the Amazon S3 URI you can use to access your
+     *            transcript.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -871,11 +1043,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job started processing.
+     * The date and time the specified Call Analytics job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the analytics job started processing.
+     *         The date and time the specified Call Analytics job began
+     *         processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getStartTime() {
@@ -884,12 +1070,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job started processing.
+     * The date and time the specified Call Analytics job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param startTime <p>
-     *            A timestamp that shows when the analytics job started
+     *            The date and time the specified Call Analytics job began
      *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setStartTime(java.util.Date startTime) {
@@ -898,15 +1097,28 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job started processing.
+     * The date and time the specified Call Analytics job began processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.789000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            A timestamp that shows when the analytics job started
+     *            The date and time the specified Call Analytics job began
      *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.789000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -918,11 +1130,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was created.
+     * The date and time the specified Call Analytics job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the analytics job was created.
+     *         The date and time the specified Call Analytics job request was
+     *         made.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *         transcription job that started processing at 12:32 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCreationTime() {
@@ -931,11 +1157,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was created.
+     * The date and time the specified Call Analytics job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the analytics job was created.
+     *            The date and time the specified Call Analytics job request was
+     *            made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCreationTime(java.util.Date creationTime) {
@@ -944,14 +1184,28 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was created.
+     * The date and time the specified Call Analytics job request was made.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents a transcription
+     * job that started processing at 12:32 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationTime <p>
-     *            A timestamp that shows when the analytics job was created.
+     *            The date and time the specified Call Analytics job request was
+     *            made.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents a
+     *            transcription job that started processing at 12:32 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -963,11 +1217,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was completed.
+     * The date and time the specified Call Analytics job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the analytics job was completed.
+     *         The date and time the specified Call Analytics job finished
+     *         processing.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *         transcription job that started processing at 12:33 PM UTC-7 on
+     *         May 4, 2022.
      *         </p>
      */
     public java.util.Date getCompletionTime() {
@@ -976,11 +1244,25 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was completed.
+     * The date and time the specified Call Analytics job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the analytics job was completed.
+     *            The date and time the specified Call Analytics job finished
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      */
     public void setCompletionTime(java.util.Date completionTime) {
@@ -989,14 +1271,28 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the analytics job was completed.
+     * The date and time the specified Call Analytics job finished processing.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:33:13.922000-07:00</code> represents a transcription
+     * job that started processing at 12:33 PM UTC-7 on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param completionTime <p>
-     *            A timestamp that shows when the analytics job was completed.
+     *            The date and time the specified Call Analytics job finished
+     *            processing.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:33:13.922000-07:00</code> represents a
+     *            transcription job that started processing at 12:33 PM UTC-7 on
+     *            May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1008,96 +1304,116 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the Call
+     * Analytics job request failed.
      * </p>
      * <p>
-     * The <code>FailureReason</code> field can contain one of the following
+     * The <code>FailureReason</code> field contains one of the following
      * values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>: The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * : The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>: The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
      * valid. The sample rate must be between 8,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * : The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>: The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <i>Guidelines and Quotas</i> in the Amazon
-     * Transcribe Medical Guide.
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>:
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see Amazon
-     * Transcribe Medical Endpoints and Quotas in the <a
-     * href="https://docs.aws.amazon.com/general/latest/gr/Welcome.html">Amazon
-     * Web Services General Reference</a>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>,
-     *         this field contains information about why the job failed.
+     *         If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     *         <code>FailureReason</code> contains information about why the
+     *         Call Analytics job request failed.
      *         </p>
      *         <p>
-     *         The <code>FailureReason</code> field can contain one of the
+     *         The <code>FailureReason</code> field contains one of the
      *         following values:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>Unsupported media format</code>: The media format specified
-     *         in the <code>MediaFormat</code> field of the request isn't valid.
-     *         See the description of the <code>MediaFormat</code> field for a
-     *         list of valid values.
+     *         <code>Unsupported media format</code>.
+     *         </p>
+     *         <p>
+     *         The media format specified in <code>MediaFormat</code> isn't
+     *         valid. Refer to <b>MediaFormat</b> for a list of supported
+     *         formats.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>The media format provided does not match the detected media format</code>
-     *         : The media format of the audio file doesn't match the format
-     *         specified in the <code>MediaFormat</code> field in the request.
-     *         Check the media format of your media file and make sure the two
-     *         values match.
+     *         .
+     *         </p>
+     *         <p>
+     *         The media format specified in <code>MediaFormat</code> doesn't
+     *         match the format of the input file. Check the media format of
+     *         your media file and correct the specified value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Invalid sample rate for audio file</code>: The sample rate
-     *         specified in the <code>MediaSampleRateHertz</code> of the request
+     *         <code>Invalid sample rate for audio file</code>.
+     *         </p>
+     *         <p>
+     *         The sample rate specified in <code>MediaSampleRateHertz</code>
      *         isn't valid. The sample rate must be between 8,000 and 48,000
      *         Hertz.
      *         </p>
@@ -1105,29 +1421,36 @@ public class CallAnalyticsJob implements Serializable {
      *         <li>
      *         <p>
      *         <code>The sample rate provided does not match the detected sample rate</code>
-     *         : The sample rate in the audio file doesn't match the sample rate
-     *         specified in the <code>MediaSampleRateHertz</code> field in the
-     *         request. Check the sample rate of your media file and make sure
-     *         that the two values match.
+     *         .
+     *         </p>
+     *         <p>
+     *         The sample rate specified in <code>MediaSampleRateHertz</code>
+     *         doesn't match the sample rate detected in your input media file.
+     *         Check the sample rate of your media file and correct the
+     *         specified value.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Invalid file size: file size too large</code>: The size of
-     *         your audio file is larger than what Amazon Transcribe Medical can
-     *         process. For more information, see <i>Guidelines and Quotas</i>
-     *         in the Amazon Transcribe Medical Guide.
+     *         <code>Invalid file size: file size too large</code>.
+     *         </p>
+     *         <p>
+     *         The size of your media file is larger than what Amazon Transcribe
+     *         can process. For more information, refer to <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *         >Guidelines and quotas</a>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <code>Invalid number of channels: number of channels too large</code>
-     *         : Your audio contains more channels than Amazon Transcribe
-     *         Medical is configured to process. To request additional channels,
-     *         see Amazon Transcribe Medical Endpoints and Quotas in the <a
-     *         href=
-     *         "https://docs.aws.amazon.com/general/latest/gr/Welcome.html">
-     *         Amazon Web Services General Reference</a>.
+     *         .
+     *         </p>
+     *         <p>
+     *         Your audio contains more channels than Amazon Transcribe is able
+     *         to process. For more information, refer to <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *         >Guidelines and quotas</a>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1138,126 +1461,154 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the Call
+     * Analytics job request failed.
      * </p>
      * <p>
-     * The <code>FailureReason</code> field can contain one of the following
+     * The <code>FailureReason</code> field contains one of the following
      * values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>: The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * : The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>: The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
      * valid. The sample rate must be between 8,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * : The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>: The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <i>Guidelines and Quotas</i> in the Amazon
-     * Transcribe Medical Guide.
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>:
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see Amazon
-     * Transcribe Medical Endpoints and Quotas in the <a
-     * href="https://docs.aws.amazon.com/general/latest/gr/Welcome.html">Amazon
-     * Web Services General Reference</a>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
      *
      * @param failureReason <p>
-     *            If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>,
-     *            this field contains information about why the job failed.
+     *            If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            Call Analytics job request failed.
      *            </p>
      *            <p>
-     *            The <code>FailureReason</code> field can contain one of the
+     *            The <code>FailureReason</code> field contains one of the
      *            following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Unsupported media format</code>: The media format
-     *            specified in the <code>MediaFormat</code> field of the request
-     *            isn't valid. See the description of the
-     *            <code>MediaFormat</code> field for a list of valid values.
+     *            <code>Unsupported media format</code>.
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> isn't
+     *            valid. Refer to <b>MediaFormat</b> for a list of supported
+     *            formats.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The media format provided does not match the detected media format</code>
-     *            : The media format of the audio file doesn't match the format
-     *            specified in the <code>MediaFormat</code> field in the
-     *            request. Check the media format of your media file and make
-     *            sure the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> doesn't
+     *            match the format of the input file. Check the media format of
+     *            your media file and correct the specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid sample rate for audio file</code>: The sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> of the
-     *            request isn't valid. The sample rate must be between 8,000 and
-     *            48,000 Hertz.
+     *            <code>Invalid sample rate for audio file</code>.
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            isn't valid. The sample rate must be between 8,000 and 48,000
+     *            Hertz.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The sample rate provided does not match the detected sample rate</code>
-     *            : The sample rate in the audio file doesn't match the sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> field
-     *            in the request. Check the sample rate of your media file and
-     *            make sure that the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            doesn't match the sample rate detected in your input media
+     *            file. Check the sample rate of your media file and correct the
+     *            specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid file size: file size too large</code>: The size
-     *            of your audio file is larger than what Amazon Transcribe
-     *            Medical can process. For more information, see <i>Guidelines
-     *            and Quotas</i> in the Amazon Transcribe Medical Guide.
+     *            <code>Invalid file size: file size too large</code>.
+     *            </p>
+     *            <p>
+     *            The size of your media file is larger than what Amazon
+     *            Transcribe can process. For more information, refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Invalid number of channels: number of channels too large</code>
-     *            : Your audio contains more channels than Amazon Transcribe
-     *            Medical is configured to process. To request additional
-     *            channels, see Amazon Transcribe Medical Endpoints and Quotas
-     *            in the <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/Welcome.html"
-     *            >Amazon Web Services General Reference</a>.
+     *            .
+     *            </p>
+     *            <p>
+     *            Your audio contains more channels than Amazon Transcribe is
+     *            able to process. For more information, refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1268,62 +1619,75 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>, this field
-     * contains information about why the job failed.
+     * If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     * <code>FailureReason</code> contains information about why the Call
+     * Analytics job request failed.
      * </p>
      * <p>
-     * The <code>FailureReason</code> field can contain one of the following
+     * The <code>FailureReason</code> field contains one of the following
      * values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>Unsupported media format</code>: The media format specified in the
-     * <code>MediaFormat</code> field of the request isn't valid. See the
-     * description of the <code>MediaFormat</code> field for a list of valid
-     * values.
+     * <code>Unsupported media format</code>.
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> isn't valid. Refer
+     * to <b>MediaFormat</b> for a list of supported formats.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The media format provided does not match the detected media format</code>
-     * : The media format of the audio file doesn't match the format specified
-     * in the <code>MediaFormat</code> field in the request. Check the media
-     * format of your media file and make sure the two values match.
+     * .
+     * </p>
+     * <p>
+     * The media format specified in <code>MediaFormat</code> doesn't match the
+     * format of the input file. Check the media format of your media file and
+     * correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid sample rate for audio file</code>: The sample rate
-     * specified in the <code>MediaSampleRateHertz</code> of the request isn't
+     * <code>Invalid sample rate for audio file</code>.
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
      * valid. The sample rate must be between 8,000 and 48,000 Hertz.
      * </p>
      * </li>
      * <li>
      * <p>
      * <code>The sample rate provided does not match the detected sample rate</code>
-     * : The sample rate in the audio file doesn't match the sample rate
-     * specified in the <code>MediaSampleRateHertz</code> field in the request.
-     * Check the sample rate of your media file and make sure that the two
-     * values match.
+     * .
+     * </p>
+     * <p>
+     * The sample rate specified in <code>MediaSampleRateHertz</code> doesn't
+     * match the sample rate detected in your input media file. Check the sample
+     * rate of your media file and correct the specified value.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid file size: file size too large</code>: The size of your
-     * audio file is larger than what Amazon Transcribe Medical can process. For
-     * more information, see <i>Guidelines and Quotas</i> in the Amazon
-     * Transcribe Medical Guide.
+     * <code>Invalid file size: file size too large</code>.
+     * </p>
+     * <p>
+     * The size of your media file is larger than what Amazon Transcribe can
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Invalid number of channels: number of channels too large</code>:
-     * Your audio contains more channels than Amazon Transcribe Medical is
-     * configured to process. To request additional channels, see Amazon
-     * Transcribe Medical Endpoints and Quotas in the <a
-     * href="https://docs.aws.amazon.com/general/latest/gr/Welcome.html">Amazon
-     * Web Services General Reference</a>.
+     * <code>Invalid number of channels: number of channels too large</code>.
+     * </p>
+     * <p>
+     * Your audio contains more channels than Amazon Transcribe is able to
+     * process. For more information, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     * >Guidelines and quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -1332,65 +1696,80 @@ public class CallAnalyticsJob implements Serializable {
      * together.
      *
      * @param failureReason <p>
-     *            If the <code>AnalyticsJobStatus</code> is <code>FAILED</code>,
-     *            this field contains information about why the job failed.
+     *            If <code>CallAnalyticsJobStatus</code> is <code>FAILED</code>,
+     *            <code>FailureReason</code> contains information about why the
+     *            Call Analytics job request failed.
      *            </p>
      *            <p>
-     *            The <code>FailureReason</code> field can contain one of the
+     *            The <code>FailureReason</code> field contains one of the
      *            following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Unsupported media format</code>: The media format
-     *            specified in the <code>MediaFormat</code> field of the request
-     *            isn't valid. See the description of the
-     *            <code>MediaFormat</code> field for a list of valid values.
+     *            <code>Unsupported media format</code>.
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> isn't
+     *            valid. Refer to <b>MediaFormat</b> for a list of supported
+     *            formats.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The media format provided does not match the detected media format</code>
-     *            : The media format of the audio file doesn't match the format
-     *            specified in the <code>MediaFormat</code> field in the
-     *            request. Check the media format of your media file and make
-     *            sure the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The media format specified in <code>MediaFormat</code> doesn't
+     *            match the format of the input file. Check the media format of
+     *            your media file and correct the specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid sample rate for audio file</code>: The sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> of the
-     *            request isn't valid. The sample rate must be between 8,000 and
-     *            48,000 Hertz.
+     *            <code>Invalid sample rate for audio file</code>.
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            isn't valid. The sample rate must be between 8,000 and 48,000
+     *            Hertz.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>The sample rate provided does not match the detected sample rate</code>
-     *            : The sample rate in the audio file doesn't match the sample
-     *            rate specified in the <code>MediaSampleRateHertz</code> field
-     *            in the request. Check the sample rate of your media file and
-     *            make sure that the two values match.
+     *            .
+     *            </p>
+     *            <p>
+     *            The sample rate specified in <code>MediaSampleRateHertz</code>
+     *            doesn't match the sample rate detected in your input media
+     *            file. Check the sample rate of your media file and correct the
+     *            specified value.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Invalid file size: file size too large</code>: The size
-     *            of your audio file is larger than what Amazon Transcribe
-     *            Medical can process. For more information, see <i>Guidelines
-     *            and Quotas</i> in the Amazon Transcribe Medical Guide.
+     *            <code>Invalid file size: file size too large</code>.
+     *            </p>
+     *            <p>
+     *            The size of your media file is larger than what Amazon
+     *            Transcribe can process. For more information, refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>Invalid number of channels: number of channels too large</code>
-     *            : Your audio contains more channels than Amazon Transcribe
-     *            Medical is configured to process. To request additional
-     *            channels, see Amazon Transcribe Medical Endpoints and Quotas
-     *            in the <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/Welcome.html"
-     *            >Amazon Web Services General Reference</a>.
+     *            .
+     *            </p>
+     *            <p>
+     *            Your audio contains more channels than Amazon Transcribe is
+     *            able to process. For more information, refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
+     *            >Guidelines and quotas</a>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1404,10 +1783,20 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) that you use to access the analytics
-     * job. ARNs have the format
-     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * .
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files. If the role
+     * you specify doesn’t have the appropriate permissions to access the
+     * specified Amazon S3 location, your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1417,10 +1806,21 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Number (ARN) that you use to access the
-     *         analytics job. ARNs have the format
-     *         <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *         .
+     *         The Amazon Resource Name (ARN) of an IAM role that has
+     *         permissions to access the Amazon S3 bucket that contains your
+     *         input files. If the role you specify doesn’t have the appropriate
+     *         permissions to access the specified Amazon S3 location, your
+     *         request fails.
+     *         </p>
+     *         <p>
+     *         IAM role ARNs have the format
+     *         <code>arn:partition:iam::account:role/role-name-with-path</code>.
+     *         For example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *         >IAM ARNs</a>.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -1429,10 +1829,20 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) that you use to access the analytics
-     * job. ARNs have the format
-     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * .
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files. If the role
+     * you specify doesn’t have the appropriate permissions to access the
+     * specified Amazon S3 location, your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1442,10 +1852,22 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Number (ARN) that you use to access the
-     *            analytics job. ARNs have the format
-     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            .
+     *            The Amazon Resource Name (ARN) of an IAM role that has
+     *            permissions to access the Amazon S3 bucket that contains your
+     *            input files. If the role you specify doesn’t have the
+     *            appropriate permissions to access the specified Amazon S3
+     *            location, your request fails.
+     *            </p>
+     *            <p>
+     *            IAM role ARNs have the format
+     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
+     *            . For example:
+     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a>.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -1454,10 +1876,20 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Number (ARN) that you use to access the analytics
-     * job. ARNs have the format
-     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * .
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files. If the role
+     * you specify doesn’t have the appropriate permissions to access the
+     * specified Amazon S3 location, your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1470,10 +1902,22 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Number (ARN) that you use to access the
-     *            analytics job. ARNs have the format
-     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            .
+     *            The Amazon Resource Name (ARN) of an IAM role that has
+     *            permissions to access the Amazon S3 bucket that contains your
+     *            input files. If the role you specify doesn’t have the
+     *            appropriate permissions to access the specified Amazon S3
+     *            location, your request fails.
+     *            </p>
+     *            <p>
+     *            IAM role ARNs have the format
+     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
+     *            . For example:
+     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1485,19 +1929,23 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language that it identified in the source audio. This value appears only
-     * when you don't provide a single language code. Larger values indicate
-     * that Amazon Transcribe has higher confidence in the language that it
-     * identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      *
      * @return <p>
-     *         A value between zero and one that Amazon Transcribe assigned to
-     *         the language that it identified in the source audio. This value
-     *         appears only when you don't provide a single language code.
-     *         Larger values indicate that Amazon Transcribe has higher
-     *         confidence in the language that it identified.
+     *         The confidence score associated with the language identified in
+     *         your media file.
+     *         </p>
+     *         <p>
+     *         Confidence scores are values between 0 and 1; a larger value
+     *         indicates a higher probability that the identified language
+     *         correctly matches the language spoken in your media.
      *         </p>
      */
     public Float getIdentifiedLanguageScore() {
@@ -1506,19 +1954,23 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language that it identified in the source audio. This value appears only
-     * when you don't provide a single language code. Larger values indicate
-     * that Amazon Transcribe has higher confidence in the language that it
-     * identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      *
      * @param identifiedLanguageScore <p>
-     *            A value between zero and one that Amazon Transcribe assigned
-     *            to the language that it identified in the source audio. This
-     *            value appears only when you don't provide a single language
-     *            code. Larger values indicate that Amazon Transcribe has higher
-     *            confidence in the language that it identified.
+     *            The confidence score associated with the language identified
+     *            in your media file.
+     *            </p>
+     *            <p>
+     *            Confidence scores are values between 0 and 1; a larger value
+     *            indicates a higher probability that the identified language
+     *            correctly matches the language spoken in your media.
      *            </p>
      */
     public void setIdentifiedLanguageScore(Float identifiedLanguageScore) {
@@ -1527,22 +1979,26 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * A value between zero and one that Amazon Transcribe assigned to the
-     * language that it identified in the source audio. This value appears only
-     * when you don't provide a single language code. Larger values indicate
-     * that Amazon Transcribe has higher confidence in the language that it
-     * identified.
+     * The confidence score associated with the language identified in your
+     * media file.
+     * </p>
+     * <p>
+     * Confidence scores are values between 0 and 1; a larger value indicates a
+     * higher probability that the identified language correctly matches the
+     * language spoken in your media.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identifiedLanguageScore <p>
-     *            A value between zero and one that Amazon Transcribe assigned
-     *            to the language that it identified in the source audio. This
-     *            value appears only when you don't provide a single language
-     *            code. Larger values indicate that Amazon Transcribe has higher
-     *            confidence in the language that it identified.
+     *            The confidence score associated with the language identified
+     *            in your media file.
+     *            </p>
+     *            <p>
+     *            Confidence scores are values between 0 and 1; a larger value
+     *            indicates a higher probability that the identified language
+     *            correctly matches the language spoken in your media.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1554,12 +2010,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Provides information about the settings used to run a transcription job.
+     * Allows additional optional settings in your request, including content
+     * redaction; allows you to apply custom language models, vocabulary
+     * filters, and custom vocabularies to your Call Analytics job.
      * </p>
      *
      * @return <p>
-     *         Provides information about the settings used to run a
-     *         transcription job.
+     *         Allows additional optional settings in your request, including
+     *         content redaction; allows you to apply custom language models,
+     *         vocabulary filters, and custom vocabularies to your Call
+     *         Analytics job.
      *         </p>
      */
     public CallAnalyticsJobSettings getSettings() {
@@ -1568,12 +2028,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Provides information about the settings used to run a transcription job.
+     * Allows additional optional settings in your request, including content
+     * redaction; allows you to apply custom language models, vocabulary
+     * filters, and custom vocabularies to your Call Analytics job.
      * </p>
      *
      * @param settings <p>
-     *            Provides information about the settings used to run a
-     *            transcription job.
+     *            Allows additional optional settings in your request, including
+     *            content redaction; allows you to apply custom language models,
+     *            vocabulary filters, and custom vocabularies to your Call
+     *            Analytics job.
      *            </p>
      */
     public void setSettings(CallAnalyticsJobSettings settings) {
@@ -1582,15 +2046,19 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Provides information about the settings used to run a transcription job.
+     * Allows additional optional settings in your request, including content
+     * redaction; allows you to apply custom language models, vocabulary
+     * filters, and custom vocabularies to your Call Analytics job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Provides information about the settings used to run a
-     *            transcription job.
+     *            Allows additional optional settings in your request, including
+     *            content redaction; allows you to apply custom language models,
+     *            vocabulary filters, and custom vocabularies to your Call
+     *            Analytics job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1602,13 +2070,21 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Shows numeric values to indicate the channel assigned to the agent's
-     * audio and the channel assigned to the customer's audio.
+     * Allows you to specify which speaker is on which channel in your Call
+     * Analytics job request. For example, if your agent is the first
+     * participant to speak, you would set <code>ChannelId</code> to
+     * <code>0</code> (to indicate the first channel) and
+     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
+     * the agent speaking).
      * </p>
      *
      * @return <p>
-     *         Shows numeric values to indicate the channel assigned to the
-     *         agent's audio and the channel assigned to the customer's audio.
+     *         Allows you to specify which speaker is on which channel in your
+     *         Call Analytics job request. For example, if your agent is the
+     *         first participant to speak, you would set <code>ChannelId</code>
+     *         to <code>0</code> (to indicate the first channel) and
+     *         <code>ParticipantRole</code> to <code>AGENT</code> (to indicate
+     *         that it's the agent speaking).
      *         </p>
      */
     public java.util.List<ChannelDefinition> getChannelDefinitions() {
@@ -1617,14 +2093,21 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Shows numeric values to indicate the channel assigned to the agent's
-     * audio and the channel assigned to the customer's audio.
+     * Allows you to specify which speaker is on which channel in your Call
+     * Analytics job request. For example, if your agent is the first
+     * participant to speak, you would set <code>ChannelId</code> to
+     * <code>0</code> (to indicate the first channel) and
+     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
+     * the agent speaking).
      * </p>
      *
      * @param channelDefinitions <p>
-     *            Shows numeric values to indicate the channel assigned to the
-     *            agent's audio and the channel assigned to the customer's
-     *            audio.
+     *            Allows you to specify which speaker is on which channel in
+     *            your Call Analytics job request. For example, if your agent is
+     *            the first participant to speak, you would set
+     *            <code>ChannelId</code> to <code>0</code> (to indicate the
+     *            first channel) and <code>ParticipantRole</code> to
+     *            <code>AGENT</code> (to indicate that it's the agent speaking).
      *            </p>
      */
     public void setChannelDefinitions(java.util.Collection<ChannelDefinition> channelDefinitions) {
@@ -1638,17 +2121,24 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Shows numeric values to indicate the channel assigned to the agent's
-     * audio and the channel assigned to the customer's audio.
+     * Allows you to specify which speaker is on which channel in your Call
+     * Analytics job request. For example, if your agent is the first
+     * participant to speak, you would set <code>ChannelId</code> to
+     * <code>0</code> (to indicate the first channel) and
+     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
+     * the agent speaking).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelDefinitions <p>
-     *            Shows numeric values to indicate the channel assigned to the
-     *            agent's audio and the channel assigned to the customer's
-     *            audio.
+     *            Allows you to specify which speaker is on which channel in
+     *            your Call Analytics job request. For example, if your agent is
+     *            the first participant to speak, you would set
+     *            <code>ChannelId</code> to <code>0</code> (to indicate the
+     *            first channel) and <code>ParticipantRole</code> to
+     *            <code>AGENT</code> (to indicate that it's the agent speaking).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1666,17 +2156,24 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Shows numeric values to indicate the channel assigned to the agent's
-     * audio and the channel assigned to the customer's audio.
+     * Allows you to specify which speaker is on which channel in your Call
+     * Analytics job request. For example, if your agent is the first
+     * participant to speak, you would set <code>ChannelId</code> to
+     * <code>0</code> (to indicate the first channel) and
+     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
+     * the agent speaking).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelDefinitions <p>
-     *            Shows numeric values to indicate the channel assigned to the
-     *            agent's audio and the channel assigned to the customer's
-     *            audio.
+     *            Allows you to specify which speaker is on which channel in
+     *            your Call Analytics job request. For example, if your agent is
+     *            the first participant to speak, you would set
+     *            <code>ChannelId</code> to <code>0</code> (to indicate the
+     *            first channel) and <code>ParticipantRole</code> to
+     *            <code>AGENT</code> (to indicate that it's the agent speaking).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

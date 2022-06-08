@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an identity provider for a user pool.
+ * Deletes an IdP for a user pool.
  * </p>
  */
 public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,7 +106,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,7 +114,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The identity provider name.
+     *         The IdP name.
      *         </p>
      */
     public String getProviderName() {
@@ -123,7 +123,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +131,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      */
     public void setProviderName(String providerName) {
@@ -140,7 +140,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identity provider name.
+     * The IdP name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +151,7 @@ public class DeleteIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param providerName <p>
-     *            The identity provider name.
+     *            The IdP name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

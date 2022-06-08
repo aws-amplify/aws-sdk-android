@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class ListTranscriptionJobsResult implements Serializable {
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -30,13 +31,12 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListTranscriptionJobs</code> operation returns a page of jobs
-     * at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListTranscriptionJobs</code> operation to return in the next page
-     * of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,21 +47,24 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      */
     private java.util.List<TranscriptionJobSummary> transcriptionJobSummaries;
 
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @return <p>
-     *         The requested status of the jobs returned.
+     *         Lists all transcription jobs that have the status specified in
+     *         your request. Jobs are ordered by creation date, with the newest
+     *         job first.
      *         </p>
      * @see TranscriptionJobStatus
      */
@@ -71,14 +74,17 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the jobs returned.
+     *            Lists all transcription jobs that have the status specified in
+     *            your request. Jobs are ordered by creation date, with the
+     *            newest job first.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -88,7 +94,8 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -98,7 +105,9 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the jobs returned.
+     *            Lists all transcription jobs that have the status specified in
+     *            your request. Jobs are ordered by creation date, with the
+     *            newest job first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -111,14 +120,17 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the jobs returned.
+     *            Lists all transcription jobs that have the status specified in
+     *            your request. Jobs are ordered by creation date, with the
+     *            newest job first.
      *            </p>
      * @see TranscriptionJobStatus
      */
@@ -128,7 +140,8 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The requested status of the jobs returned.
+     * Lists all transcription jobs that have the status specified in your
+     * request. Jobs are ordered by creation date, with the newest job first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -138,7 +151,9 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
      *
      * @param status <p>
-     *            The requested status of the jobs returned.
+     *            Lists all transcription jobs that have the status specified in
+     *            your request. Jobs are ordered by creation date, with the
+     *            newest job first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,13 +166,12 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListTranscriptionJobs</code> operation returns a page of jobs
-     * at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListTranscriptionJobs</code> operation to return in the next page
-     * of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,13 +179,13 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The <code>ListTranscriptionJobs</code> operation returns a page
-     *         of jobs at a time. The maximum size of the page is set by the
-     *         <code>MaxResults</code> parameter. If there are more jobs in the
-     *         list than the page size, Amazon Transcribe returns the
-     *         <code>NextPage</code> token. Include the token in the next
-     *         request to the <code>ListTranscriptionJobs</code> operation to
-     *         return in the next page of jobs.
+     *         If <code>NextToken</code> is present in your response, it
+     *         indicates that not all results are displayed. To view the next
+     *         set of results, copy the string associated with the
+     *         <code>NextToken</code> parameter in your results output, then run
+     *         your request again including <code>NextToken</code> with the
+     *         value of the copied string. Repeat as needed to view all your
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -180,13 +194,12 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListTranscriptionJobs</code> operation returns a page of jobs
-     * at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListTranscriptionJobs</code> operation to return in the next page
-     * of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -194,13 +207,13 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListTranscriptionJobs</code> operation returns a
-     *            page of jobs at a time. The maximum size of the page is set by
-     *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListTranscriptionJobs</code> operation to
-     *            return in the next page of jobs.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -209,13 +222,12 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListTranscriptionJobs</code> operation returns a page of jobs
-     * at a time. The maximum size of the page is set by the
-     * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListTranscriptionJobs</code> operation to return in the next page
-     * of jobs.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -226,13 +238,13 @@ public class ListTranscriptionJobsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListTranscriptionJobs</code> operation returns a
-     *            page of jobs at a time. The maximum size of the page is set by
-     *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListTranscriptionJobs</code> operation to
-     *            return in the next page of jobs.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -244,12 +256,11 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      *
      * @return <p>
-     *         A list of objects containing summary information for a
-     *         transcription job.
+     *         Provides a summary of information about each result.
      *         </p>
      */
     public java.util.List<TranscriptionJobSummary> getTranscriptionJobSummaries() {
@@ -258,12 +269,11 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      *
      * @param transcriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      */
     public void setTranscriptionJobSummaries(
@@ -279,15 +289,14 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -306,15 +315,14 @@ public class ListTranscriptionJobsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing summary information for a transcription job.
+     * Provides a summary of information about each result.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param transcriptionJobSummaries <p>
-     *            A list of objects containing summary information for a
-     *            transcription job.
+     *            Provides a summary of information about each result.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

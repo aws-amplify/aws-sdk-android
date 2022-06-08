@@ -73,10 +73,19 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
             } else if (name.equals("IdentifyLanguage")) {
                 transcriptionJobSummary.setIdentifyLanguage(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("IdentifyMultipleLanguages")) {
+                transcriptionJobSummary.setIdentifyMultipleLanguages(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("IdentifiedLanguageScore")) {
                 transcriptionJobSummary.setIdentifiedLanguageScore(FloatJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LanguageCodes")) {
+                transcriptionJobSummary.setLanguageCodes(new ListUnmarshaller<LanguageCodeItem>(
+                        LanguageCodeItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

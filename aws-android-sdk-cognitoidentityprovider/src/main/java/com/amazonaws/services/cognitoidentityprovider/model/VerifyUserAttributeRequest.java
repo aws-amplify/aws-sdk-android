@@ -23,11 +23,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Verifies the specified user attributes in the user pool.
  * </p>
+ * <p>
+ * If your user pool requires verification before Amazon Cognito updates the
+ * attribute value, VerifyUserAttribute updates the affected attribute to its
+ * pending value. For more information, see <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html"
+ * > UserAttributeUpdateSettingsType</a>.
+ * </p>
  */
 public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access token of the request to verify user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * attributes you want to verify.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,14 +67,16 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The access token of the request to verify user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * attributes you want to verify.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access token of the request to verify user attributes.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         user attributes you want to verify.
      *         </p>
      */
     public String getAccessToken() {
@@ -75,14 +85,16 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The access token of the request to verify user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * attributes you want to verify.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token of the request to verify user attributes.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose user attributes you want to verify.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -91,7 +103,8 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The access token of the request to verify user attributes.
+     * A valid access token that Amazon Cognito issued to the user whose user
+     * attributes you want to verify.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -101,7 +114,8 @@ public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access token of the request to verify user attributes.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose user attributes you want to verify.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

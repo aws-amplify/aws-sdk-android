@@ -147,6 +147,13 @@ public class CreateUserPoolRequestMarshaller implements
                 jsonWriter.name("MfaConfiguration");
                 jsonWriter.value(mfaConfiguration);
             }
+            if (createUserPoolRequest.getUserAttributeUpdateSettings() != null) {
+                UserAttributeUpdateSettingsType userAttributeUpdateSettings = createUserPoolRequest
+                        .getUserAttributeUpdateSettings();
+                jsonWriter.name("UserAttributeUpdateSettings");
+                UserAttributeUpdateSettingsTypeJsonMarshaller.getInstance().marshall(
+                        userAttributeUpdateSettings, jsonWriter);
+            }
             if (createUserPoolRequest.getDeviceConfiguration() != null) {
                 DeviceConfigurationType deviceConfiguration = createUserPoolRequest
                         .getDeviceConfiguration();

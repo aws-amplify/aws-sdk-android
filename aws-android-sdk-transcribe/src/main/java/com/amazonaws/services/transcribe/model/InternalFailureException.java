@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * There was an internal error. Check the error message and try your request
- * again.
+ * There was an internal error. Check the error message, correct the issue, and
+ * try your request again.
  * </p>
  */
 public class InternalFailureException extends AmazonServiceException {

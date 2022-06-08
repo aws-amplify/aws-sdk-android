@@ -76,9 +76,10 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      */
     private UserContextDataType userContextData;
@@ -97,8 +98,8 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ResendConfirmationCode</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ResendConfirmationCode</code> calls.
      * </p>
      */
     private AnalyticsMetadataType analyticsMetadata;
@@ -284,15 +285,18 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      *
      * @return <p>
-     *         Contextual data such as the user's device fingerprint, IP
-     *         address, or location used for evaluating the risk of an
-     *         unexpected event by Amazon Cognito advanced security.
+     *         Contextual data about your user session, such as the device
+     *         fingerprint, IP address, or location. Amazon Cognito advanced
+     *         security evaluates the risk of an authentication event based on
+     *         the context that your app generates and passes to Amazon Cognito
+     *         when it makes API requests.
      *         </p>
      */
     public UserContextDataType getUserContextData() {
@@ -301,15 +305,18 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      *
      * @param userContextData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
-     *            unexpected event by Amazon Cognito advanced security.
+     *            Contextual data about your user session, such as the device
+     *            fingerprint, IP address, or location. Amazon Cognito advanced
+     *            security evaluates the risk of an authentication event based
+     *            on the context that your app generates and passes to Amazon
+     *            Cognito when it makes API requests.
      *            </p>
      */
     public void setUserContextData(UserContextDataType userContextData) {
@@ -318,18 +325,21 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Contextual data such as the user's device fingerprint, IP address, or
-     * location used for evaluating the risk of an unexpected event by Amazon
-     * Cognito advanced security.
+     * Contextual data about your user session, such as the device fingerprint,
+     * IP address, or location. Amazon Cognito advanced security evaluates the
+     * risk of an authentication event based on the context that your app
+     * generates and passes to Amazon Cognito when it makes API requests.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userContextData <p>
-     *            Contextual data such as the user's device fingerprint, IP
-     *            address, or location used for evaluating the risk of an
-     *            unexpected event by Amazon Cognito advanced security.
+     *            Contextual data about your user session, such as the device
+     *            fingerprint, IP address, or location. Amazon Cognito advanced
+     *            security evaluates the risk of an authentication event based
+     *            on the context that your app generates and passes to Amazon
+     *            Cognito when it makes API requests.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -404,13 +414,13 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ResendConfirmationCode</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ResendConfirmationCode</code> calls.
      * </p>
      *
      * @return <p>
-     *         The Amazon Pinpoint analytics metadata for collecting metrics for
-     *         <code>ResendConfirmationCode</code> calls.
+     *         The Amazon Pinpoint analytics metadata that contributes to your
+     *         metrics for <code>ResendConfirmationCode</code> calls.
      *         </p>
      */
     public AnalyticsMetadataType getAnalyticsMetadata() {
@@ -419,13 +429,13 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ResendConfirmationCode</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ResendConfirmationCode</code> calls.
      * </p>
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>ResendConfirmationCode</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>ResendConfirmationCode</code> calls.
      *            </p>
      */
     public void setAnalyticsMetadata(AnalyticsMetadataType analyticsMetadata) {
@@ -434,16 +444,16 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Pinpoint analytics metadata for collecting metrics for
-     * <code>ResendConfirmationCode</code> calls.
+     * The Amazon Pinpoint analytics metadata that contributes to your metrics
+     * for <code>ResendConfirmationCode</code> calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param analyticsMetadata <p>
-     *            The Amazon Pinpoint analytics metadata for collecting metrics
-     *            for <code>ResendConfirmationCode</code> calls.
+     *            The Amazon Pinpoint analytics metadata that contributes to
+     *            your metrics for <code>ResendConfirmationCode</code> calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

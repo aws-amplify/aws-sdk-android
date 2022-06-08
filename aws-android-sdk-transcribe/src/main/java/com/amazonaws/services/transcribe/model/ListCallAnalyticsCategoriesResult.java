@@ -20,11 +20,12 @@ import java.io.Serializable;
 public class ListCallAnalyticsCategoriesResult implements Serializable {
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the <code>MaxResults</code> parameter. If there are more
-     * categories in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of analytics categories.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,18 +36,20 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about analytics categories.
+     * Provides detailed information about your Call Analytics categories,
+     * including all the rules associated with each category.
      * </p>
      */
     private java.util.List<CategoryProperties> categories;
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the <code>MaxResults</code> parameter. If there are more
-     * categories in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of analytics categories.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,12 +57,13 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The operation returns a page of jobs at a time. The maximum size
-     *         of the list is set by the <code>MaxResults</code> parameter. If
-     *         there are more categories in the list than the page size, Amazon
-     *         Transcribe returns the <code>NextPage</code> token. Include the
-     *         token in the next request to the operation to return the next
-     *         page of analytics categories.
+     *         If <code>NextToken</code> is present in your response, it
+     *         indicates that not all results are displayed. To view the next
+     *         set of results, copy the string associated with the
+     *         <code>NextToken</code> parameter in your results output, then run
+     *         your request again including <code>NextToken</code> with the
+     *         value of the copied string. Repeat as needed to view all your
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -68,11 +72,12 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the <code>MaxResults</code> parameter. If there are more
-     * categories in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of analytics categories.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,12 +85,13 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The operation returns a page of jobs at a time. The maximum
-     *            size of the list is set by the <code>MaxResults</code>
-     *            parameter. If there are more categories in the list than the
-     *            page size, Amazon Transcribe returns the <code>NextPage</code>
-     *            token. Include the token in the next request to the operation
-     *            to return the next page of analytics categories.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -94,11 +100,12 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the <code>MaxResults</code> parameter. If there are more
-     * categories in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of analytics categories.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,12 +116,13 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The operation returns a page of jobs at a time. The maximum
-     *            size of the list is set by the <code>MaxResults</code>
-     *            parameter. If there are more categories in the list than the
-     *            page size, Amazon Transcribe returns the <code>NextPage</code>
-     *            token. Include the token in the next request to the operation
-     *            to return the next page of analytics categories.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,12 +134,14 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about analytics categories.
+     * Provides detailed information about your Call Analytics categories,
+     * including all the rules associated with each category.
      * </p>
      *
      * @return <p>
-     *         A list of objects containing information about analytics
-     *         categories.
+     *         Provides detailed information about your Call Analytics
+     *         categories, including all the rules associated with each
+     *         category.
      *         </p>
      */
     public java.util.List<CategoryProperties> getCategories() {
@@ -140,12 +150,14 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about analytics categories.
+     * Provides detailed information about your Call Analytics categories,
+     * including all the rules associated with each category.
      * </p>
      *
      * @param categories <p>
-     *            A list of objects containing information about analytics
-     *            categories.
+     *            Provides detailed information about your Call Analytics
+     *            categories, including all the rules associated with each
+     *            category.
      *            </p>
      */
     public void setCategories(java.util.Collection<CategoryProperties> categories) {
@@ -159,15 +171,17 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about analytics categories.
+     * Provides detailed information about your Call Analytics categories,
+     * including all the rules associated with each category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param categories <p>
-     *            A list of objects containing information about analytics
-     *            categories.
+     *            Provides detailed information about your Call Analytics
+     *            categories, including all the rules associated with each
+     *            category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -184,15 +198,17 @@ public class ListCallAnalyticsCategoriesResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about analytics categories.
+     * Provides detailed information about your Call Analytics categories,
+     * including all the rules associated with each category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param categories <p>
-     *            A list of objects containing information about analytics
-     *            categories.
+     *            Provides detailed information about your Call Analytics
+     *            categories, including all the rules associated with each
+     *            category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

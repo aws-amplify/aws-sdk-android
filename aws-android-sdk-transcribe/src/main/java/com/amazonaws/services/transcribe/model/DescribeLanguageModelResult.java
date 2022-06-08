@@ -20,21 +20,52 @@ import java.io.Serializable;
 public class DescribeLanguageModelResult implements Serializable {
     /**
      * <p>
-     * The name of the custom language model you requested more information
-     * about.
+     * Provides information about the specified custom language model.
+     * </p>
+     * <p>
+     * This parameter also shows if the base language model you used to create
+     * your custom language model has been updated. If Amazon Transcribe has
+     * updated the base model, you can create a new custom language model using
+     * the updated base model.
+     * </p>
+     * <p>
+     * If you tried to create a new custom language model and the request wasn't
+     * successful, you can use this <code>DescribeLanguageModel</code> to help
+     * identify the reason for this failure.
      * </p>
      */
     private LanguageModel languageModel;
 
     /**
      * <p>
-     * The name of the custom language model you requested more information
-     * about.
+     * Provides information about the specified custom language model.
+     * </p>
+     * <p>
+     * This parameter also shows if the base language model you used to create
+     * your custom language model has been updated. If Amazon Transcribe has
+     * updated the base model, you can create a new custom language model using
+     * the updated base model.
+     * </p>
+     * <p>
+     * If you tried to create a new custom language model and the request wasn't
+     * successful, you can use this <code>DescribeLanguageModel</code> to help
+     * identify the reason for this failure.
      * </p>
      *
      * @return <p>
-     *         The name of the custom language model you requested more
-     *         information about.
+     *         Provides information about the specified custom language model.
+     *         </p>
+     *         <p>
+     *         This parameter also shows if the base language model you used to
+     *         create your custom language model has been updated. If Amazon
+     *         Transcribe has updated the base model, you can create a new
+     *         custom language model using the updated base model.
+     *         </p>
+     *         <p>
+     *         If you tried to create a new custom language model and the
+     *         request wasn't successful, you can use this
+     *         <code>DescribeLanguageModel</code> to help identify the reason
+     *         for this failure.
      *         </p>
      */
     public LanguageModel getLanguageModel() {
@@ -43,13 +74,35 @@ public class DescribeLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name of the custom language model you requested more information
-     * about.
+     * Provides information about the specified custom language model.
+     * </p>
+     * <p>
+     * This parameter also shows if the base language model you used to create
+     * your custom language model has been updated. If Amazon Transcribe has
+     * updated the base model, you can create a new custom language model using
+     * the updated base model.
+     * </p>
+     * <p>
+     * If you tried to create a new custom language model and the request wasn't
+     * successful, you can use this <code>DescribeLanguageModel</code> to help
+     * identify the reason for this failure.
      * </p>
      *
      * @param languageModel <p>
-     *            The name of the custom language model you requested more
-     *            information about.
+     *            Provides information about the specified custom language
+     *            model.
+     *            </p>
+     *            <p>
+     *            This parameter also shows if the base language model you used
+     *            to create your custom language model has been updated. If
+     *            Amazon Transcribe has updated the base model, you can create a
+     *            new custom language model using the updated base model.
+     *            </p>
+     *            <p>
+     *            If you tried to create a new custom language model and the
+     *            request wasn't successful, you can use this
+     *            <code>DescribeLanguageModel</code> to help identify the reason
+     *            for this failure.
      *            </p>
      */
     public void setLanguageModel(LanguageModel languageModel) {
@@ -58,16 +111,38 @@ public class DescribeLanguageModelResult implements Serializable {
 
     /**
      * <p>
-     * The name of the custom language model you requested more information
-     * about.
+     * Provides information about the specified custom language model.
+     * </p>
+     * <p>
+     * This parameter also shows if the base language model you used to create
+     * your custom language model has been updated. If Amazon Transcribe has
+     * updated the base model, you can create a new custom language model using
+     * the updated base model.
+     * </p>
+     * <p>
+     * If you tried to create a new custom language model and the request wasn't
+     * successful, you can use this <code>DescribeLanguageModel</code> to help
+     * identify the reason for this failure.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param languageModel <p>
-     *            The name of the custom language model you requested more
-     *            information about.
+     *            Provides information about the specified custom language
+     *            model.
+     *            </p>
+     *            <p>
+     *            This parameter also shows if the base language model you used
+     *            to create your custom language model has been updated. If
+     *            Amazon Transcribe has updated the base model, you can create a
+     *            new custom language model using the updated base model.
+     *            </p>
+     *            <p>
+     *            If you tried to create a new custom language model and the
+     *            request wasn't successful, you can use this
+     *            <code>DescribeLanguageModel</code> to help identify the reason
+     *            for this failure.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

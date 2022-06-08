@@ -22,13 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Deletes a custom language model. To use this operation, specify the name of
- * the language model you want to delete using <code>ModelName</code>.
+ * the language model you want to delete using <code>ModelName</code>. Language
+ * model names are case sensitive.
  * </p>
  */
 public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the model you want to delete. Model names are case-sensitive.
+     * The name of the custom language model you want to delete. Model names are
+     * case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,7 +41,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the model you want to delete. Model names are case-sensitive.
+     * The name of the custom language model you want to delete. Model names are
+     * case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,8 +50,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the model you want to delete. Model names are
-     *         case-sensitive.
+     *         The name of the custom language model you want to delete. Model
+     *         names are case sensitive.
      *         </p>
      */
     public String getModelName() {
@@ -57,7 +60,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the model you want to delete. Model names are case-sensitive.
+     * The name of the custom language model you want to delete. Model names are
+     * case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,8 +69,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the model you want to delete. Model names are
-     *            case-sensitive.
+     *            The name of the custom language model you want to delete.
+     *            Model names are case sensitive.
      *            </p>
      */
     public void setModelName(String modelName) {
@@ -75,7 +79,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the model you want to delete. Model names are case-sensitive.
+     * The name of the custom language model you want to delete. Model names are
+     * case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,8 +91,8 @@ public class DeleteLanguageModelRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param modelName <p>
-     *            The name of the model you want to delete. Model names are
-     *            case-sensitive.
+     *            The name of the custom language model you want to delete.
+     *            Model names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
