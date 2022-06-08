@@ -32,7 +32,7 @@ public class DeviceSecretVerifierConfigType implements Serializable {
 
     /**
      * <p>
-     * The salt.
+     * The <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
      * </p>
      */
     private String salt;
@@ -84,11 +84,12 @@ public class DeviceSecretVerifierConfigType implements Serializable {
 
     /**
      * <p>
-     * The salt.
+     * The <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
      * </p>
      *
      * @return <p>
-     *         The salt.
+     *         The <a
+     *         href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
      *         </p>
      */
     public String getSalt() {
@@ -97,11 +98,13 @@ public class DeviceSecretVerifierConfigType implements Serializable {
 
     /**
      * <p>
-     * The salt.
+     * The <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
      * </p>
      *
      * @param salt <p>
-     *            The salt.
+     *            The <a
+     *            href="https://en.wikipedia.org/wiki/Salt_(cryptography)"
+     *            >salt</a>
      *            </p>
      */
     public void setSalt(String salt) {
@@ -110,14 +113,16 @@ public class DeviceSecretVerifierConfigType implements Serializable {
 
     /**
      * <p>
-     * The salt.
+     * The <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param salt <p>
-     *            The salt.
+     *            The <a
+     *            href="https://en.wikipedia.org/wiki/Salt_(cryptography)"
+     *            >salt</a>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

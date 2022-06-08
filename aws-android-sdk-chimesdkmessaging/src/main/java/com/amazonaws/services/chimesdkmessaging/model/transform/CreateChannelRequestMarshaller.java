@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -105,6 +105,33 @@ public class CreateChannelRequestMarshaller implements
                 for (Tag tagsItem : tags) {
                     if (tagsItem != null) {
                         TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createChannelRequest.getChannelId() != null) {
+                String channelId = createChannelRequest.getChannelId();
+                jsonWriter.name("ChannelId");
+                jsonWriter.value(channelId);
+            }
+            if (createChannelRequest.getMemberArns() != null) {
+                java.util.List<String> memberArns = createChannelRequest.getMemberArns();
+                jsonWriter.name("MemberArns");
+                jsonWriter.beginArray();
+                for (String memberArnsItem : memberArns) {
+                    if (memberArnsItem != null) {
+                        jsonWriter.value(memberArnsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createChannelRequest.getModeratorArns() != null) {
+                java.util.List<String> moderatorArns = createChannelRequest.getModeratorArns();
+                jsonWriter.name("ModeratorArns");
+                jsonWriter.beginArray();
+                for (String moderatorArnsItem : moderatorArns) {
+                    if (moderatorArnsItem != null) {
+                        jsonWriter.value(moderatorArnsItem);
                     }
                 }
                 jsonWriter.endArray();

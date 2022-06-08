@@ -21,15 +21,23 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets information about vocabulary filters.
+ * Provides a list of custom vocabulary filters that match the specified
+ * criteria. If no criteria are specified, all custom vocabularies are returned.
+ * </p>
+ * <p>
+ * To get detailed information about a specific custom vocabulary filter, use
+ * the operation.
  * </p>
  */
 public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * If the result of the previous request to
-     * <code>ListVocabularyFilters</code> was truncated, include the
-     * <code>NextToken</code> to fetch the next set of collections.
+     * If your <code>ListVocabularyFilters</code> request returns more results
+     * than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,9 +48,10 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of filters to return in each page of results. If there
-     * are fewer results than the value you specify, only the actual results are
-     * returned. If you do not specify a value, the default of 5 is used.
+     * The maximum number of custom vocabulary filters to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,8 +61,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Filters the response so that it only contains vocabulary filters whose
-     * name contains the specified string.
+     * Returns only the custom vocabulary filters that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,9 +73,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * If the result of the previous request to
-     * <code>ListVocabularyFilters</code> was truncated, include the
-     * <code>NextToken</code> to fetch the next set of collections.
+     * If your <code>ListVocabularyFilters</code> request returns more results
+     * than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,9 +86,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         If the result of the previous request to
-     *         <code>ListVocabularyFilters</code> was truncated, include the
-     *         <code>NextToken</code> to fetch the next set of collections.
+     *         If your <code>ListVocabularyFilters</code> request returns more
+     *         results than can be displayed, <code>NextToken</code> is
+     *         displayed in the response with an associated string. To get the
+     *         next page of results, copy this string and repeat your request,
+     *         including <code>NextToken</code> with the value of the copied
+     *         string. Repeat as needed to view all your results.
      *         </p>
      */
     public String getNextToken() {
@@ -85,9 +100,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * If the result of the previous request to
-     * <code>ListVocabularyFilters</code> was truncated, include the
-     * <code>NextToken</code> to fetch the next set of collections.
+     * If your <code>ListVocabularyFilters</code> request returns more results
+     * than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,9 +113,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            If the result of the previous request to
-     *            <code>ListVocabularyFilters</code> was truncated, include the
-     *            <code>NextToken</code> to fetch the next set of collections.
+     *            If your <code>ListVocabularyFilters</code> request returns
+     *            more results than can be displayed, <code>NextToken</code> is
+     *            displayed in the response with an associated string. To get
+     *            the next page of results, copy this string and repeat your
+     *            request, including <code>NextToken</code> with the value of
+     *            the copied string. Repeat as needed to view all your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -106,9 +127,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * If the result of the previous request to
-     * <code>ListVocabularyFilters</code> was truncated, include the
-     * <code>NextToken</code> to fetch the next set of collections.
+     * If your <code>ListVocabularyFilters</code> request returns more results
+     * than can be displayed, <code>NextToken</code> is displayed in the
+     * response with an associated string. To get the next page of results, copy
+     * this string and repeat your request, including <code>NextToken</code>
+     * with the value of the copied string. Repeat as needed to view all your
+     * results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -119,9 +143,12 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            If the result of the previous request to
-     *            <code>ListVocabularyFilters</code> was truncated, include the
-     *            <code>NextToken</code> to fetch the next set of collections.
+     *            If your <code>ListVocabularyFilters</code> request returns
+     *            more results than can be displayed, <code>NextToken</code> is
+     *            displayed in the response with an associated string. To get
+     *            the next page of results, copy this string and repeat your
+     *            request, including <code>NextToken</code> with the value of
+     *            the copied string. Repeat as needed to view all your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -133,19 +160,20 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of filters to return in each page of results. If there
-     * are fewer results than the value you specify, only the actual results are
-     * returned. If you do not specify a value, the default of 5 is used.
+     * The maximum number of custom vocabulary filters to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of filters to return in each page of results.
-     *         If there are fewer results than the value you specify, only the
-     *         actual results are returned. If you do not specify a value, the
-     *         default of 5 is used.
+     *         The maximum number of custom vocabulary filters to return in each
+     *         page of results. If there are fewer results than the value you
+     *         specify, only the actual results are returned. If you don't
+     *         specify a value, a default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -154,19 +182,20 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of filters to return in each page of results. If there
-     * are fewer results than the value you specify, only the actual results are
-     * returned. If you do not specify a value, the default of 5 is used.
+     * The maximum number of custom vocabulary filters to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of filters to return in each page of
-     *            results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of custom vocabulary filters to return in
+     *            each page of results. If there are fewer results than the
+     *            value you specify, only the actual results are returned. If
+     *            you don't specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -175,9 +204,10 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of filters to return in each page of results. If there
-     * are fewer results than the value you specify, only the actual results are
-     * returned. If you do not specify a value, the default of 5 is used.
+     * The maximum number of custom vocabulary filters to return in each page of
+     * results. If there are fewer results than the value you specify, only the
+     * actual results are returned. If you don't specify a value, a default of 5
+     * is used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,10 +217,10 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of filters to return in each page of
-     *            results. If there are fewer results than the value you
-     *            specify, only the actual results are returned. If you do not
-     *            specify a value, the default of 5 is used.
+     *            The maximum number of custom vocabulary filters to return in
+     *            each page of results. If there are fewer results than the
+     *            value you specify, only the actual results are returned. If
+     *            you don't specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -202,8 +232,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Filters the response so that it only contains vocabulary filters whose
-     * name contains the specified string.
+     * Returns only the custom vocabulary filters that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -211,8 +241,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         Filters the response so that it only contains vocabulary filters
-     *         whose name contains the specified string.
+     *         Returns only the custom vocabulary filters that contain the
+     *         specified string. The search is not case sensitive.
      *         </p>
      */
     public String getNameContains() {
@@ -221,8 +251,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Filters the response so that it only contains vocabulary filters whose
-     * name contains the specified string.
+     * Returns only the custom vocabulary filters that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -230,8 +260,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param nameContains <p>
-     *            Filters the response so that it only contains vocabulary
-     *            filters whose name contains the specified string.
+     *            Returns only the custom vocabulary filters that contain the
+     *            specified string. The search is not case sensitive.
      *            </p>
      */
     public void setNameContains(String nameContains) {
@@ -240,8 +270,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Filters the response so that it only contains vocabulary filters whose
-     * name contains the specified string.
+     * Returns only the custom vocabulary filters that contain the specified
+     * string. The search is not case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -252,8 +282,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param nameContains <p>
-     *            Filters the response so that it only contains vocabulary
-     *            filters whose name contains the specified string.
+     *            Returns only the custom vocabulary filters that contain the
+     *            specified string. The search is not case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

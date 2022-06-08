@@ -21,13 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the devices.
+ * Lists the sign-in devices that Amazon Cognito has registered to the current
+ * user.
  * </p>
  */
 public class ListDevicesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The access tokens for the request to list devices.
+     * A valid access token that Amazon Cognito issued to the user whose list of
+     * devices you want to view.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,14 +60,16 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The access tokens for the request to list devices.
+     * A valid access token that Amazon Cognito issued to the user whose list of
+     * devices you want to view.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @return <p>
-     *         The access tokens for the request to list devices.
+     *         A valid access token that Amazon Cognito issued to the user whose
+     *         list of devices you want to view.
      *         </p>
      */
     public String getAccessToken() {
@@ -74,14 +78,16 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The access tokens for the request to list devices.
+     * A valid access token that Amazon Cognito issued to the user whose list of
+     * devices you want to view.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access tokens for the request to list devices.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose list of devices you want to view.
      *            </p>
      */
     public void setAccessToken(String accessToken) {
@@ -90,7 +96,8 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The access tokens for the request to list devices.
+     * A valid access token that Amazon Cognito issued to the user whose list of
+     * devices you want to view.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,7 +107,8 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[A-Za-z0-9-_=.]+<br/>
      *
      * @param accessToken <p>
-     *            The access tokens for the request to list devices.
+     *            A valid access token that Amazon Cognito issued to the user
+     *            whose list of devices you want to view.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class GetVocabularyFilterResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary filter.
+     * The name of the custom vocabulary filter you requested information about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +31,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,16 +45,21 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the contents of the vocabulary filter were
-     * updated.
+     * The date and time the specified vocabulary filter was last modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      */
     private java.util.Date lastModifiedTime;
 
     /**
      * <p>
-     * The URI of the list of words in the vocabulary filter. You can use this
-     * URI to get the list of words.
+     * The Amazon S3 location where the vocabulary filter is stored; use this
+     * URI to view or download the vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +70,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary filter.
+     * The name of the custom vocabulary filter you requested information about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,7 +78,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary filter.
+     *         The name of the custom vocabulary filter you requested
+     *         information about.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -82,7 +88,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary filter.
+     * The name of the custom vocabulary filter you requested information about.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,7 +96,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter.
+     *            The name of the custom vocabulary filter you requested
+     *            information about.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -99,7 +106,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary filter.
+     * The name of the custom vocabulary filter you requested information about.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,7 +117,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter.
+     *            The name of the custom vocabulary filter you requested
+     *            information about.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +130,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +141,7 @@ public class GetVocabularyFilterResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code of the words in the vocabulary filter.
+     *         The language code you selected for your vocabulary filter.
      *         </p>
      * @see LanguageCode
      */
@@ -143,7 +151,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,7 +162,7 @@ public class GetVocabularyFilterResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the words in the vocabulary filter.
+     *            The language code you selected for your vocabulary filter.
      *            </p>
      * @see LanguageCode
      */
@@ -164,7 +172,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -178,7 +186,7 @@ public class GetVocabularyFilterResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the words in the vocabulary filter.
+     *            The language code you selected for your vocabulary filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -191,7 +199,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -202,7 +210,7 @@ public class GetVocabularyFilterResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the words in the vocabulary filter.
+     *            The language code you selected for your vocabulary filter.
      *            </p>
      * @see LanguageCode
      */
@@ -212,7 +220,7 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code of the words in the vocabulary filter.
+     * The language code you selected for your vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -226,7 +234,7 @@ public class GetVocabularyFilterResult implements Serializable {
      * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code of the words in the vocabulary filter.
+     *            The language code you selected for your vocabulary filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -239,13 +247,24 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the contents of the vocabulary filter were
-     * updated.
+     * The date and time the specified vocabulary filter was last modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         The date and time that the contents of the vocabulary filter were
-     *         updated.
+     *         The date and time the specified vocabulary filter was last
+     *         modified.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM
+     *         UTC-7 on May 4, 2022.
      *         </p>
      */
     public java.util.Date getLastModifiedTime() {
@@ -254,13 +273,24 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the contents of the vocabulary filter were
-     * updated.
+     * The date and time the specified vocabulary filter was last modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the contents of the vocabulary filter
-     *            were updated.
+     *            The date and time the specified vocabulary filter was last
+     *            modified.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      */
     public void setLastModifiedTime(java.util.Date lastModifiedTime) {
@@ -269,16 +299,27 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time that the contents of the vocabulary filter were
-     * updated.
+     * The date and time the specified vocabulary filter was last modified.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time that the contents of the vocabulary filter
-     *            were updated.
+     *            The date and time the specified vocabulary filter was last
+     *            modified.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -290,8 +331,8 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The URI of the list of words in the vocabulary filter. You can use this
-     * URI to get the list of words.
+     * The Amazon S3 location where the vocabulary filter is stored; use this
+     * URI to view or download the vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -299,8 +340,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The URI of the list of words in the vocabulary filter. You can
-     *         use this URI to get the list of words.
+     *         The Amazon S3 location where the vocabulary filter is stored; use
+     *         this URI to view or download the vocabulary filter.
      *         </p>
      */
     public String getDownloadUri() {
@@ -309,8 +350,8 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The URI of the list of words in the vocabulary filter. You can use this
-     * URI to get the list of words.
+     * The Amazon S3 location where the vocabulary filter is stored; use this
+     * URI to view or download the vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -318,8 +359,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The URI of the list of words in the vocabulary filter. You can
-     *            use this URI to get the list of words.
+     *            The Amazon S3 location where the vocabulary filter is stored;
+     *            use this URI to view or download the vocabulary filter.
      *            </p>
      */
     public void setDownloadUri(String downloadUri) {
@@ -328,8 +369,8 @@ public class GetVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The URI of the list of words in the vocabulary filter. You can use this
-     * URI to get the list of words.
+     * The Amazon S3 location where the vocabulary filter is stored; use this
+     * URI to view or download the vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,8 +381,8 @@ public class GetVocabularyFilterResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The URI of the list of words in the vocabulary filter. You can
-     *            use this URI to get the list of words.
+     *            The Amazon S3 location where the vocabulary filter is stored;
+     *            use this URI to view or download the vocabulary filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

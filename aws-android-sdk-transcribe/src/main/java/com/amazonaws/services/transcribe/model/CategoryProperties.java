@@ -19,14 +19,16 @@ import java.io.Serializable;
 
 /**
  * <p>
- * An object that contains the rules and additional information about a call
- * analytics category.
+ * Provides you with the properties of the Call Analytics category you specified
+ * in your request. This includes the list of rules that define the specified
+ * category.
  * </p>
  */
 public class CategoryProperties implements Serializable {
     /**
      * <p>
-     * The name of the call analytics category.
+     * The name of the Call Analytics category. Category names are case
+     * sensitive and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,29 +39,42 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The rules used to create a call analytics category.
+     * The rules used to define a Call Analytics category. Each category can
+     * have between 1 and 20 rules.
      * </p>
      */
     private java.util.List<Rule> rules;
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was created.
+     * The date and time the specified Call Analytics category was created.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      */
     private java.util.Date createTime;
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was most recently
-     * updated.
+     * The date and time the specified Call Analytics category was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45 PM UTC-7
+     * on May 5, 2022.
      * </p>
      */
     private java.util.Date lastUpdateTime;
 
     /**
      * <p>
-     * The name of the call analytics category.
+     * The name of the Call Analytics category. Category names are case
+     * sensitive and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +82,9 @@ public class CategoryProperties implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the call analytics category.
+     *         The name of the Call Analytics category. Category names are case
+     *         sensitive and must be unique within an Amazon Web Services
+     *         account.
      *         </p>
      */
     public String getCategoryName() {
@@ -76,7 +93,8 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The name of the call analytics category.
+     * The name of the Call Analytics category. Category names are case
+     * sensitive and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,7 +102,9 @@ public class CategoryProperties implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the call analytics category.
+     *            The name of the Call Analytics category. Category names are
+     *            case sensitive and must be unique within an Amazon Web
+     *            Services account.
      *            </p>
      */
     public void setCategoryName(String categoryName) {
@@ -93,7 +113,8 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The name of the call analytics category.
+     * The name of the Call Analytics category. Category names are case
+     * sensitive and must be unique within an Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,7 +125,9 @@ public class CategoryProperties implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the call analytics category.
+     *            The name of the Call Analytics category. Category names are
+     *            case sensitive and must be unique within an Amazon Web
+     *            Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -116,11 +139,13 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The rules used to create a call analytics category.
+     * The rules used to define a Call Analytics category. Each category can
+     * have between 1 and 20 rules.
      * </p>
      *
      * @return <p>
-     *         The rules used to create a call analytics category.
+     *         The rules used to define a Call Analytics category. Each category
+     *         can have between 1 and 20 rules.
      *         </p>
      */
     public java.util.List<Rule> getRules() {
@@ -129,11 +154,13 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The rules used to create a call analytics category.
+     * The rules used to define a Call Analytics category. Each category can
+     * have between 1 and 20 rules.
      * </p>
      *
      * @param rules <p>
-     *            The rules used to create a call analytics category.
+     *            The rules used to define a Call Analytics category. Each
+     *            category can have between 1 and 20 rules.
      *            </p>
      */
     public void setRules(java.util.Collection<Rule> rules) {
@@ -147,14 +174,16 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The rules used to create a call analytics category.
+     * The rules used to define a Call Analytics category. Each category can
+     * have between 1 and 20 rules.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param rules <p>
-     *            The rules used to create a call analytics category.
+     *            The rules used to define a Call Analytics category. Each
+     *            category can have between 1 and 20 rules.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -171,14 +200,16 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * The rules used to create a call analytics category.
+     * The rules used to define a Call Analytics category. Each category can
+     * have between 1 and 20 rules.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param rules <p>
-     *            The rules used to create a call analytics category.
+     *            The rules used to define a Call Analytics category. Each
+     *            category can have between 1 and 20 rules.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -190,12 +221,24 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was created.
+     * The date and time the specified Call Analytics category was created.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the call analytics category was
+     *         The date and time the specified Call Analytics category was
      *         created.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM
+     *         UTC-7 on May 4, 2022.
      *         </p>
      */
     public java.util.Date getCreateTime() {
@@ -204,12 +247,24 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was created.
+     * The date and time the specified Call Analytics category was created.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      *
      * @param createTime <p>
-     *            A timestamp that shows when the call analytics category was
+     *            The date and time the specified Call Analytics category was
      *            created.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      */
     public void setCreateTime(java.util.Date createTime) {
@@ -218,15 +273,27 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was created.
+     * The date and time the specified Call Analytics category was created.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32 PM UTC-7
+     * on May 4, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param createTime <p>
-     *            A timestamp that shows when the call analytics category was
+     *            The date and time the specified Call Analytics category was
      *            created.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-04T12:32:58.761000-07:00</code> represents 12:32
+     *            PM UTC-7 on May 4, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -238,13 +305,24 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was most recently
-     * updated.
+     * The date and time the specified Call Analytics category was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45 PM UTC-7
+     * on May 5, 2022.
      * </p>
      *
      * @return <p>
-     *         A timestamp that shows when the call analytics category was most
-     *         recently updated.
+     *         The date and time the specified Call Analytics category was last
+     *         updated.
+     *         </p>
+     *         <p>
+     *         Timestamps are in the format
+     *         <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *         <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45 PM
+     *         UTC-7 on May 5, 2022.
      *         </p>
      */
     public java.util.Date getLastUpdateTime() {
@@ -253,13 +331,24 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was most recently
-     * updated.
+     * The date and time the specified Call Analytics category was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45 PM UTC-7
+     * on May 5, 2022.
      * </p>
      *
      * @param lastUpdateTime <p>
-     *            A timestamp that shows when the call analytics category was
-     *            most recently updated.
+     *            The date and time the specified Call Analytics category was
+     *            last updated.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45
+     *            PM UTC-7 on May 5, 2022.
      *            </p>
      */
     public void setLastUpdateTime(java.util.Date lastUpdateTime) {
@@ -268,16 +357,27 @@ public class CategoryProperties implements Serializable {
 
     /**
      * <p>
-     * A timestamp that shows when the call analytics category was most recently
-     * updated.
+     * The date and time the specified Call Analytics category was last updated.
+     * </p>
+     * <p>
+     * Timestamps are in the format
+     * <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     * <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45 PM UTC-7
+     * on May 5, 2022.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastUpdateTime <p>
-     *            A timestamp that shows when the call analytics category was
-     *            most recently updated.
+     *            The date and time the specified Call Analytics category was
+     *            last updated.
+     *            </p>
+     *            <p>
+     *            Timestamps are in the format
+     *            <code>YYYY-MM-DD'T'HH:MM:SS.SSSSSS-UTC</code>. For example,
+     *            <code>2022-05-05T12:45:32.691000-07:00</code> represents 12:45
+     *            PM UTC-7 on May 5, 2022.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

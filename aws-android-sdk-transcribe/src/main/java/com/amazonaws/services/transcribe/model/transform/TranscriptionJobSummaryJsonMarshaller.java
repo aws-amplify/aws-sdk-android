@@ -82,10 +82,29 @@ class TranscriptionJobSummaryJsonMarshaller {
             jsonWriter.name("IdentifyLanguage");
             jsonWriter.value(identifyLanguage);
         }
+        if (transcriptionJobSummary.getIdentifyMultipleLanguages() != null) {
+            Boolean identifyMultipleLanguages = transcriptionJobSummary
+                    .getIdentifyMultipleLanguages();
+            jsonWriter.name("IdentifyMultipleLanguages");
+            jsonWriter.value(identifyMultipleLanguages);
+        }
         if (transcriptionJobSummary.getIdentifiedLanguageScore() != null) {
             Float identifiedLanguageScore = transcriptionJobSummary.getIdentifiedLanguageScore();
             jsonWriter.name("IdentifiedLanguageScore");
             jsonWriter.value(identifiedLanguageScore);
+        }
+        if (transcriptionJobSummary.getLanguageCodes() != null) {
+            java.util.List<LanguageCodeItem> languageCodes = transcriptionJobSummary
+                    .getLanguageCodes();
+            jsonWriter.name("LanguageCodes");
+            jsonWriter.beginArray();
+            for (LanguageCodeItem languageCodesItem : languageCodes) {
+                if (languageCodesItem != null) {
+                    LanguageCodeItemJsonMarshaller.getInstance().marshall(languageCodesItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

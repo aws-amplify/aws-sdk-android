@@ -20,11 +20,12 @@ import java.io.Serializable;
 public class ListLanguageModelsResult implements Serializable {
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the MaxResults parameter. If there are more language
-     * models in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of language models.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,18 +36,20 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about custom language models.
+     * Provides information about the custom language models that match the
+     * criteria specified in your request.
      * </p>
      */
     private java.util.List<LanguageModel> models;
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the MaxResults parameter. If there are more language
-     * models in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of language models.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,12 +57,13 @@ public class ListLanguageModelsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The operation returns a page of jobs at a time. The maximum size
-     *         of the list is set by the MaxResults parameter. If there are more
-     *         language models in the list than the page size, Amazon Transcribe
-     *         returns the <code>NextPage</code> token. Include the token in the
-     *         next request to the operation to return the next page of language
-     *         models.
+     *         If <code>NextToken</code> is present in your response, it
+     *         indicates that not all results are displayed. To view the next
+     *         set of results, copy the string associated with the
+     *         <code>NextToken</code> parameter in your results output, then run
+     *         your request again including <code>NextToken</code> with the
+     *         value of the copied string. Repeat as needed to view all your
+     *         results.
      *         </p>
      */
     public String getNextToken() {
@@ -68,11 +72,12 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the MaxResults parameter. If there are more language
-     * models in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of language models.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,12 +85,13 @@ public class ListLanguageModelsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The operation returns a page of jobs at a time. The maximum
-     *            size of the list is set by the MaxResults parameter. If there
-     *            are more language models in the list than the page size,
-     *            Amazon Transcribe returns the <code>NextPage</code> token.
-     *            Include the token in the next request to the operation to
-     *            return the next page of language models.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -94,11 +100,12 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * The operation returns a page of jobs at a time. The maximum size of the
-     * list is set by the MaxResults parameter. If there are more language
-     * models in the list than the page size, Amazon Transcribe returns the
-     * <code>NextPage</code> token. Include the token in the next request to the
-     * operation to return the next page of language models.
+     * If <code>NextToken</code> is present in your response, it indicates that
+     * not all results are displayed. To view the next set of results, copy the
+     * string associated with the <code>NextToken</code> parameter in your
+     * results output, then run your request again including
+     * <code>NextToken</code> with the value of the copied string. Repeat as
+     * needed to view all your results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,12 +116,13 @@ public class ListLanguageModelsResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The operation returns a page of jobs at a time. The maximum
-     *            size of the list is set by the MaxResults parameter. If there
-     *            are more language models in the list than the page size,
-     *            Amazon Transcribe returns the <code>NextPage</code> token.
-     *            Include the token in the next request to the operation to
-     *            return the next page of language models.
+     *            If <code>NextToken</code> is present in your response, it
+     *            indicates that not all results are displayed. To view the next
+     *            set of results, copy the string associated with the
+     *            <code>NextToken</code> parameter in your results output, then
+     *            run your request again including <code>NextToken</code> with
+     *            the value of the copied string. Repeat as needed to view all
+     *            your results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -126,12 +134,13 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about custom language models.
+     * Provides information about the custom language models that match the
+     * criteria specified in your request.
      * </p>
      *
      * @return <p>
-     *         A list of objects containing information about custom language
-     *         models.
+     *         Provides information about the custom language models that match
+     *         the criteria specified in your request.
      *         </p>
      */
     public java.util.List<LanguageModel> getModels() {
@@ -140,12 +149,13 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about custom language models.
+     * Provides information about the custom language models that match the
+     * criteria specified in your request.
      * </p>
      *
      * @param models <p>
-     *            A list of objects containing information about custom language
-     *            models.
+     *            Provides information about the custom language models that
+     *            match the criteria specified in your request.
      *            </p>
      */
     public void setModels(java.util.Collection<LanguageModel> models) {
@@ -159,15 +169,16 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about custom language models.
+     * Provides information about the custom language models that match the
+     * criteria specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param models <p>
-     *            A list of objects containing information about custom language
-     *            models.
+     *            Provides information about the custom language models that
+     *            match the criteria specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -184,15 +195,16 @@ public class ListLanguageModelsResult implements Serializable {
 
     /**
      * <p>
-     * A list of objects containing information about custom language models.
+     * Provides information about the custom language models that match the
+     * criteria specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param models <p>
-     *            A list of objects containing information about custom language
-     *            models.
+     *            Provides information about the custom language models that
+     *            match the criteria specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

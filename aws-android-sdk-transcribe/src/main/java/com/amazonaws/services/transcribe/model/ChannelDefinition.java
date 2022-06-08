@@ -19,14 +19,17 @@ import java.io.Serializable;
 
 /**
  * <p>
- * For a call analytics job, an object that indicates the audio channel that
- * belongs to the agent and the audio channel that belongs to the customer.
+ * Allows you to specify which speaker is on which channel. For example, if your
+ * agent is the first participant to speak, you would set <code>ChannelId</code>
+ * to <code>0</code> (to indicate the first channel) and
+ * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's the
+ * agent speaking).
  * </p>
  */
 public class ChannelDefinition implements Serializable {
     /**
      * <p>
-     * A value that indicates the audio channel.
+     * Specify the audio channel you want to define.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,8 +39,8 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,14 +50,14 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * A value that indicates the audio channel.
+     * Specify the audio channel you want to define.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 1<br/>
      *
      * @return <p>
-     *         A value that indicates the audio channel.
+     *         Specify the audio channel you want to define.
      *         </p>
      */
     public Integer getChannelId() {
@@ -63,14 +66,14 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * A value that indicates the audio channel.
+     * Specify the audio channel you want to define.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 1<br/>
      *
      * @param channelId <p>
-     *            A value that indicates the audio channel.
+     *            Specify the audio channel you want to define.
      *            </p>
      */
     public void setChannelId(Integer channelId) {
@@ -79,7 +82,7 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * A value that indicates the audio channel.
+     * Specify the audio channel you want to define.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -89,7 +92,7 @@ public class ChannelDefinition implements Serializable {
      * <b>Range: </b>0 - 1<br/>
      *
      * @param channelId <p>
-     *            A value that indicates the audio channel.
+     *            Specify the audio channel you want to define.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -101,16 +104,16 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @return <p>
-     *         Indicates whether the person speaking on the audio channel is the
-     *         agent or customer.
+     *         Specify the speaker you want to define. Omitting this parameter
+     *         is equivalent to specifying both participants.
      *         </p>
      * @see ParticipantRole
      */
@@ -120,16 +123,16 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Indicates whether the person speaking on the audio channel is
-     *            the agent or customer.
+     *            Specify the speaker you want to define. Omitting this
+     *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
      */
@@ -139,8 +142,8 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -150,8 +153,8 @@ public class ChannelDefinition implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Indicates whether the person speaking on the audio channel is
-     *            the agent or customer.
+     *            Specify the speaker you want to define. Omitting this
+     *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -164,16 +167,16 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Indicates whether the person speaking on the audio channel is
-     *            the agent or customer.
+     *            Specify the speaker you want to define. Omitting this
+     *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
      */
@@ -183,8 +186,8 @@ public class ChannelDefinition implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the person speaking on the audio channel is the agent
-     * or customer.
+     * Specify the speaker you want to define. Omitting this parameter is
+     * equivalent to specifying both participants.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -194,8 +197,8 @@ public class ChannelDefinition implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Indicates whether the person speaking on the audio channel is
-     *            the agent or customer.
+     *            Specify the speaker you want to define. Omitting this
+     *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

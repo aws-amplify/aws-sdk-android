@@ -21,19 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the call analytics category with new values. The
- * <code>UpdateCallAnalyticsCategory</code> operation overwrites all of the
- * existing information with the values that you provide in the request.
+ * Updates the specified Call Analytics category with new rules. Note that the
+ * <code>UpdateCallAnalyticsCategory</code> operation overwrites all existing
+ * rules contained in the specified category. You cannot append additional rules
+ * onto an existing category.
+ * </p>
+ * <p>
+ * To create a new category, see .
  * </p>
  */
 public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name of the analytics category to update. The name is case sensitive.
-     * If you try to update a call analytics category with the same name as a
-     * previous category you will receive a <code>ConflictException</code>
-     * error.
+     * The name of the Call Analytics category you want to update. Category
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,18 +46,17 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The rules used for the updated analytics category. The rules that you
-     * provide in this field replace the ones that are currently being used.
+     * The rules used for the updated Call Analytics category. The rules you
+     * provide in this field replace the ones that are currently being used in
+     * the specified category.
      * </p>
      */
     private java.util.List<Rule> rules;
 
     /**
      * <p>
-     * The name of the analytics category to update. The name is case sensitive.
-     * If you try to update a call analytics category with the same name as a
-     * previous category you will receive a <code>ConflictException</code>
-     * error.
+     * The name of the Call Analytics category you want to update. Category
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,10 +64,8 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the analytics category to update. The name is case
-     *         sensitive. If you try to update a call analytics category with
-     *         the same name as a previous category you will receive a
-     *         <code>ConflictException</code> error.
+     *         The name of the Call Analytics category you want to update.
+     *         Category names are case sensitive.
      *         </p>
      */
     public String getCategoryName() {
@@ -75,10 +74,8 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the analytics category to update. The name is case sensitive.
-     * If you try to update a call analytics category with the same name as a
-     * previous category you will receive a <code>ConflictException</code>
-     * error.
+     * The name of the Call Analytics category you want to update. Category
+     * names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,10 +83,8 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the analytics category to update. The name is case
-     *            sensitive. If you try to update a call analytics category with
-     *            the same name as a previous category you will receive a
-     *            <code>ConflictException</code> error.
+     *            The name of the Call Analytics category you want to update.
+     *            Category names are case sensitive.
      *            </p>
      */
     public void setCategoryName(String categoryName) {
@@ -98,10 +93,8 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the analytics category to update. The name is case sensitive.
-     * If you try to update a call analytics category with the same name as a
-     * previous category you will receive a <code>ConflictException</code>
-     * error.
+     * The name of the Call Analytics category you want to update. Category
+     * names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -112,10 +105,8 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param categoryName <p>
-     *            The name of the analytics category to update. The name is case
-     *            sensitive. If you try to update a call analytics category with
-     *            the same name as a previous category you will receive a
-     *            <code>ConflictException</code> error.
+     *            The name of the Call Analytics category you want to update.
+     *            Category names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -127,14 +118,15 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The rules used for the updated analytics category. The rules that you
-     * provide in this field replace the ones that are currently being used.
+     * The rules used for the updated Call Analytics category. The rules you
+     * provide in this field replace the ones that are currently being used in
+     * the specified category.
      * </p>
      *
      * @return <p>
-     *         The rules used for the updated analytics category. The rules that
+     *         The rules used for the updated Call Analytics category. The rules
      *         you provide in this field replace the ones that are currently
-     *         being used.
+     *         being used in the specified category.
      *         </p>
      */
     public java.util.List<Rule> getRules() {
@@ -143,14 +135,15 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The rules used for the updated analytics category. The rules that you
-     * provide in this field replace the ones that are currently being used.
+     * The rules used for the updated Call Analytics category. The rules you
+     * provide in this field replace the ones that are currently being used in
+     * the specified category.
      * </p>
      *
      * @param rules <p>
-     *            The rules used for the updated analytics category. The rules
-     *            that you provide in this field replace the ones that are
-     *            currently being used.
+     *            The rules used for the updated Call Analytics category. The
+     *            rules you provide in this field replace the ones that are
+     *            currently being used in the specified category.
      *            </p>
      */
     public void setRules(java.util.Collection<Rule> rules) {
@@ -164,17 +157,18 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The rules used for the updated analytics category. The rules that you
-     * provide in this field replace the ones that are currently being used.
+     * The rules used for the updated Call Analytics category. The rules you
+     * provide in this field replace the ones that are currently being used in
+     * the specified category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param rules <p>
-     *            The rules used for the updated analytics category. The rules
-     *            that you provide in this field replace the ones that are
-     *            currently being used.
+     *            The rules used for the updated Call Analytics category. The
+     *            rules you provide in this field replace the ones that are
+     *            currently being used in the specified category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -191,17 +185,18 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The rules used for the updated analytics category. The rules that you
-     * provide in this field replace the ones that are currently being used.
+     * The rules used for the updated Call Analytics category. The rules you
+     * provide in this field replace the ones that are currently being used in
+     * the specified category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param rules <p>
-     *            The rules used for the updated analytics category. The rules
-     *            that you provide in this field replace the ones that are
-     *            currently being used.
+     *            The rules used for the updated Call Analytics category. The
+     *            rules you provide in this field replace the ones that are
+     *            currently being used in the specified category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

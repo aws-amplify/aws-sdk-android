@@ -21,18 +21,30 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Tags an Amazon Transcribe resource with the given list of tags.
+ * Adds one or more custom tags, each in the form of a key:value pair, to the
+ * specified resource.
+ * </p>
+ * <p>
+ * To learn more about using tags with Amazon Transcribe, refer to <a
+ * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html">Tagging
+ * resources</a>.
  * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-     * to tag. ARNs have the format
+     * The Amazon Resource Name (ARN) of the resource you want to tag. ARNs have
+     * the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -48,19 +60,31 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The tags you are assigning to a given Amazon Transcribe resource.
+     * Adds one or more custom tags, each in the form of a key:value pair, to
+     * the specified resource.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-     * to tag. ARNs have the format
+     * The Amazon Resource Name (ARN) of the resource you want to tag. ARNs have
+     * the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -73,12 +97,18 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the Amazon Transcribe resource
-     *         you want to tag. ARNs have the format
+     *         The Amazon Resource Name (ARN) of the resource you want to tag.
+     *         ARNs have the format
      *         <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *         (for example,
-     *         <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *         ). Valid values for <code>resource-type</code> are:
+     *         .
+     *         </p>
+     *         <p>
+     *         For example,
+     *         <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *         .
+     *         </p>
+     *         <p>
+     *         Valid values for <code>resource-type</code> are:
      *         <code>transcription-job</code>,
      *         <code>medical-transcription-job</code>, <code>vocabulary</code>,
      *         <code>medical-vocabulary</code>, <code>vocabulary-filter</code>,
@@ -91,12 +121,18 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-     * to tag. ARNs have the format
+     * The Amazon Resource Name (ARN) of the resource you want to tag. ARNs have
+     * the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -109,12 +145,18 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the Amazon Transcribe
-     *            resource you want to tag. ARNs have the format
+     *            The Amazon Resource Name (ARN) of the resource you want to
+     *            tag. ARNs have the format
      *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            (for example,
-     *            <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *            ). Valid values for <code>resource-type</code> are:
+     *            .
+     *            </p>
+     *            <p>
+     *            For example,
+     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            .
+     *            </p>
+     *            <p>
+     *            Valid values for <code>resource-type</code> are:
      *            <code>transcription-job</code>,
      *            <code>medical-transcription-job</code>,
      *            <code>vocabulary</code>, <code>medical-vocabulary</code>,
@@ -128,12 +170,18 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
-     * to tag. ARNs have the format
+     * The Amazon Resource Name (ARN) of the resource you want to tag. ARNs have
+     * the format
      * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     * (for example,
-     * <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     * ). Valid values for <code>resource-type</code> are:
+     * .
+     * </p>
+     * <p>
+     * For example,
+     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * .
+     * </p>
+     * <p>
+     * Valid values for <code>resource-type</code> are:
      * <code>transcription-job</code>, <code>medical-transcription-job</code>,
      * <code>vocabulary</code>, <code>medical-vocabulary</code>,
      * <code>vocabulary-filter</code>, and <code>language-model</code>.
@@ -149,12 +197,18 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * {@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the Amazon Transcribe
-     *            resource you want to tag. ARNs have the format
+     *            The Amazon Resource Name (ARN) of the resource you want to
+     *            tag. ARNs have the format
      *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
-     *            (for example,
-     *            <code>arn:aws:transcribe:us-east-1:account-id:transcription-job/your-job-name</code>
-     *            ). Valid values for <code>resource-type</code> are:
+     *            .
+     *            </p>
+     *            <p>
+     *            For example,
+     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            .
+     *            </p>
+     *            <p>
+     *            Valid values for <code>resource-type</code> are:
      *            <code>transcription-job</code>,
      *            <code>medical-transcription-job</code>,
      *            <code>vocabulary</code>, <code>medical-vocabulary</code>,
@@ -171,11 +225,24 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The tags you are assigning to a given Amazon Transcribe resource.
+     * Adds one or more custom tags, each in the form of a key:value pair, to
+     * the specified resource.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      *
      * @return <p>
-     *         The tags you are assigning to a given Amazon Transcribe resource.
+     *         Adds one or more custom tags, each in the form of a key:value
+     *         pair, to the specified resource.
+     *         </p>
+     *         <p>
+     *         To learn more about using tags with Amazon Transcribe, refer to
+     *         <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *         >Tagging resources</a>.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -184,12 +251,24 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The tags you are assigning to a given Amazon Transcribe resource.
+     * Adds one or more custom tags, each in the form of a key:value pair, to
+     * the specified resource.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      *
      * @param tags <p>
-     *            The tags you are assigning to a given Amazon Transcribe
-     *            resource.
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to the specified resource.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -203,15 +282,27 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The tags you are assigning to a given Amazon Transcribe resource.
+     * Adds one or more custom tags, each in the form of a key:value pair, to
+     * the specified resource.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            The tags you are assigning to a given Amazon Transcribe
-     *            resource.
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to the specified resource.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -228,15 +319,27 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The tags you are assigning to a given Amazon Transcribe resource.
+     * Adds one or more custom tags, each in the form of a key:value pair, to
+     * the specified resource.
+     * </p>
+     * <p>
+     * To learn more about using tags with Amazon Transcribe, refer to <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     * >Tagging resources</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            The tags you are assigning to a given Amazon Transcribe
-     *            resource.
+     *            Adds one or more custom tags, each in the form of a key:value
+     *            pair, to the specified resource.
+     *            </p>
+     *            <p>
+     *            To learn more about using tags with Amazon Transcribe, refer
+     *            to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/tagging.html"
+     *            >Tagging resources</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

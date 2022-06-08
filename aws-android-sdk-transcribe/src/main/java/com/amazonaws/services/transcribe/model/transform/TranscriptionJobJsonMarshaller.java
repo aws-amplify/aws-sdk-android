@@ -108,6 +108,11 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("IdentifyLanguage");
             jsonWriter.value(identifyLanguage);
         }
+        if (transcriptionJob.getIdentifyMultipleLanguages() != null) {
+            Boolean identifyMultipleLanguages = transcriptionJob.getIdentifyMultipleLanguages();
+            jsonWriter.name("IdentifyMultipleLanguages");
+            jsonWriter.value(identifyMultipleLanguages);
+        }
         if (transcriptionJob.getLanguageOptions() != null) {
             java.util.List<String> languageOptions = transcriptionJob.getLanguageOptions();
             jsonWriter.name("LanguageOptions");
@@ -123,6 +128,18 @@ class TranscriptionJobJsonMarshaller {
             Float identifiedLanguageScore = transcriptionJob.getIdentifiedLanguageScore();
             jsonWriter.name("IdentifiedLanguageScore");
             jsonWriter.value(identifiedLanguageScore);
+        }
+        if (transcriptionJob.getLanguageCodes() != null) {
+            java.util.List<LanguageCodeItem> languageCodes = transcriptionJob.getLanguageCodes();
+            jsonWriter.name("LanguageCodes");
+            jsonWriter.beginArray();
+            for (LanguageCodeItem languageCodesItem : languageCodes) {
+                if (languageCodesItem != null) {
+                    LanguageCodeItemJsonMarshaller.getInstance().marshall(languageCodesItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         if (transcriptionJob.getTags() != null) {
             java.util.List<Tag> tags = transcriptionJob.getTags();

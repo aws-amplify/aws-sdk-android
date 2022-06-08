@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,8 @@ public class AppInstanceUserMembershipSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which a message was last read.
+     * The time at which an <code>AppInstanceUser</code> last marked a channel
+     * as read.
      * </p>
      */
     private java.util.Date readMarkerTimestamp;
@@ -139,11 +140,13 @@ public class AppInstanceUserMembershipSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which a message was last read.
+     * The time at which an <code>AppInstanceUser</code> last marked a channel
+     * as read.
      * </p>
      *
      * @return <p>
-     *         The time at which a message was last read.
+     *         The time at which an <code>AppInstanceUser</code> last marked a
+     *         channel as read.
      *         </p>
      */
     public java.util.Date getReadMarkerTimestamp() {
@@ -152,11 +155,13 @@ public class AppInstanceUserMembershipSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which a message was last read.
+     * The time at which an <code>AppInstanceUser</code> last marked a channel
+     * as read.
      * </p>
      *
      * @param readMarkerTimestamp <p>
-     *            The time at which a message was last read.
+     *            The time at which an <code>AppInstanceUser</code> last marked
+     *            a channel as read.
      *            </p>
      */
     public void setReadMarkerTimestamp(java.util.Date readMarkerTimestamp) {
@@ -165,14 +170,16 @@ public class AppInstanceUserMembershipSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which a message was last read.
+     * The time at which an <code>AppInstanceUser</code> last marked a channel
+     * as read.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param readMarkerTimestamp <p>
-     *            The time at which a message was last read.
+     *            The time at which an <code>AppInstanceUser</code> last marked
+     *            a channel as read.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

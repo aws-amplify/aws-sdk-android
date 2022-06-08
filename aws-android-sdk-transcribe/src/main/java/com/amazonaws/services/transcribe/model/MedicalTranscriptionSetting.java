@@ -19,33 +19,46 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Optional settings for the <a>StartMedicalTranscriptionJob</a> operation.
+ * Allows additional optional settings in your request, including channel
+ * identification, alternative transcriptions, and speaker labeling; allows you
+ * to apply custom vocabularies to your medical transcription job.
  * </p>
  */
 public class MedicalTranscriptionSetting implements Serializable {
     /**
      * <p>
-     * Determines whether the transcription job uses speaker recognition to
-     * identify different speakers in the input audio. Speaker recognition
-     * labels individual speakers in the audio file. If you set the
-     * <code>ShowSpeakerLabels</code> field to true, you must also set the
-     * maximum number of speaker labels in the <code>MaxSpeakerLabels</code>
-     * field.
+     * Enables speaker identification (diarization) in your transcription
+     * output. Speaker identification labels the speech from individual speakers
+     * in your media file.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you enable <code>ShowSpeakerLabels</code> in your request, you must
+     * also include <code>MaxSpeakerLabels</code>.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     * >Identifying speakers (diarization)</a>.
      * </p>
      */
     private Boolean showSpeakerLabels;
 
     /**
      * <p>
-     * The maximum number of speakers to identify in the input audio. If there
-     * are more speakers in the audio than this number, multiple speakers are
-     * identified as a single speaker. If you specify the
-     * <code>MaxSpeakerLabels</code> field, you must set the
+     * Specify the maximum number of speakers you want to identify in your
+     * media.
+     * </p>
+     * <p>
+     * Note that if your media contains more speakers than the specified number,
+     * multiple speakers will be identified as a single speaker.
+     * </p>
+     * <p>
+     * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
      * <code>ShowSpeakerLabels</code> field to true.
      * </p>
      * <p>
@@ -56,41 +69,68 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Instructs Amazon Transcribe Medical to process each audio channel
-     * separately and then merge the transcription output of each channel into a
-     * single transcription.
+     * Enables channel identification in multi-channel audio.
      * </p>
      * <p>
-     * Amazon Transcribe Medical also produces a transcription of each item
-     * detected on an audio channel, including the start time and end time of
-     * the item and alternative transcriptions of item. The alternative
-     * transcriptions also come with confidence scores provided by Amazon
-     * Transcribe Medical.
+     * Channel identification transcribes the audio on each channel
+     * independently, then appends the output for each channel into one
+     * transcript.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you have multi-channel audio and do not enable channel identification,
+     * your audio is transcribed in a continuous manner and your transcript does
+     * not separate the speech by channel.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     * >Transcribing multi-channel audio</a>.
      * </p>
      */
     private Boolean channelIdentification;
 
     /**
      * <p>
-     * Determines whether alternative transcripts are generated along with the
-     * transcript that has the highest confidence. If you set
-     * <code>ShowAlternatives</code> field to true, you must also set the
-     * maximum number of alternatives to return in the
-     * <code>MaxAlternatives</code> field.
+     * To include alternative transcriptions within your transcription output,
+     * include <code>ShowAlternatives</code> in your transcription request.
+     * </p>
+     * <p>
+     * If you include <code>ShowAlternatives</code>, you must also include
+     * <code>MaxAlternatives</code>, which is the maximum number of alternative
+     * transcriptions you want Amazon Transcribe Medical to generate.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      */
     private Boolean showAlternatives;
 
     /**
      * <p>
-     * The maximum number of alternatives that you tell the service to return.
-     * If you specify the <code>MaxAlternatives</code> field, you must set the
-     * <code>ShowAlternatives</code> field to true.
+     * Indicate the maximum number of alternative transcriptions you want Amazon
+     * Transcribe Medical to include in your transcript.
+     * </p>
+     * <p>
+     * If you select a number greater than the number of alternative
+     * transcriptions generated by Amazon Transcribe Medical, only the actual
+     * number of alternative transcriptions are included.
+     * </p>
+     * <p>
+     * If you include <code>MaxAlternatives</code> in your request, you must
+     * also include <code>ShowAlternatives</code> with a value of
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,8 +140,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary to use when processing a medical transcription
-     * job.
+     * The name of the custom vocabulary you want to use when processing your
+     * medical transcription job. Vocabulary names are case sensitive.
+     * </p>
+     * <p>
+     * The language of the specified vocabulary must match the language code you
+     * specify in your transcription request. If the languages don't match, the
+     * vocabulary isn't applied. There are no errors or warnings associated with
+     * a language mismatch. US English (<code>en-US</code>) is the only valid
+     * language for Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -112,32 +159,43 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job uses speaker recognition to
-     * identify different speakers in the input audio. Speaker recognition
-     * labels individual speakers in the audio file. If you set the
-     * <code>ShowSpeakerLabels</code> field to true, you must also set the
-     * maximum number of speaker labels in the <code>MaxSpeakerLabels</code>
-     * field.
+     * Enables speaker identification (diarization) in your transcription
+     * output. Speaker identification labels the speech from individual speakers
+     * in your media file.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you enable <code>ShowSpeakerLabels</code> in your request, you must
+     * also include <code>MaxSpeakerLabels</code>.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     * >Identifying speakers (diarization)</a>.
      * </p>
      *
      * @return <p>
-     *         Determines whether the transcription job uses speaker recognition
-     *         to identify different speakers in the input audio. Speaker
-     *         recognition labels individual speakers in the audio file. If you
-     *         set the <code>ShowSpeakerLabels</code> field to true, you must
-     *         also set the maximum number of speaker labels in the
-     *         <code>MaxSpeakerLabels</code> field.
+     *         Enables speaker identification (diarization) in your
+     *         transcription output. Speaker identification labels the speech
+     *         from individual speakers in your media file.
      *         </p>
      *         <p>
-     *         You can't set both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. If you
-     *         set both, your request returns a <code>BadRequestException</code>
-     *         .
+     *         If you enable <code>ShowSpeakerLabels</code> in your request, you
+     *         must also include <code>MaxSpeakerLabels</code>.
+     *         </p>
+     *         <p>
+     *         You can't include both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. Including
+     *         both parameters returns a <code>BadRequestException</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     *         >Identifying speakers (diarization)</a>.
      *         </p>
      */
     public Boolean isShowSpeakerLabels() {
@@ -146,32 +204,43 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job uses speaker recognition to
-     * identify different speakers in the input audio. Speaker recognition
-     * labels individual speakers in the audio file. If you set the
-     * <code>ShowSpeakerLabels</code> field to true, you must also set the
-     * maximum number of speaker labels in the <code>MaxSpeakerLabels</code>
-     * field.
+     * Enables speaker identification (diarization) in your transcription
+     * output. Speaker identification labels the speech from individual speakers
+     * in your media file.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you enable <code>ShowSpeakerLabels</code> in your request, you must
+     * also include <code>MaxSpeakerLabels</code>.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     * >Identifying speakers (diarization)</a>.
      * </p>
      *
      * @return <p>
-     *         Determines whether the transcription job uses speaker recognition
-     *         to identify different speakers in the input audio. Speaker
-     *         recognition labels individual speakers in the audio file. If you
-     *         set the <code>ShowSpeakerLabels</code> field to true, you must
-     *         also set the maximum number of speaker labels in the
-     *         <code>MaxSpeakerLabels</code> field.
+     *         Enables speaker identification (diarization) in your
+     *         transcription output. Speaker identification labels the speech
+     *         from individual speakers in your media file.
      *         </p>
      *         <p>
-     *         You can't set both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. If you
-     *         set both, your request returns a <code>BadRequestException</code>
-     *         .
+     *         If you enable <code>ShowSpeakerLabels</code> in your request, you
+     *         must also include <code>MaxSpeakerLabels</code>.
+     *         </p>
+     *         <p>
+     *         You can't include both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. Including
+     *         both parameters returns a <code>BadRequestException</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     *         >Identifying speakers (diarization)</a>.
      *         </p>
      */
     public Boolean getShowSpeakerLabels() {
@@ -180,32 +249,44 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job uses speaker recognition to
-     * identify different speakers in the input audio. Speaker recognition
-     * labels individual speakers in the audio file. If you set the
-     * <code>ShowSpeakerLabels</code> field to true, you must also set the
-     * maximum number of speaker labels in the <code>MaxSpeakerLabels</code>
-     * field.
+     * Enables speaker identification (diarization) in your transcription
+     * output. Speaker identification labels the speech from individual speakers
+     * in your media file.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you enable <code>ShowSpeakerLabels</code> in your request, you must
+     * also include <code>MaxSpeakerLabels</code>.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     * >Identifying speakers (diarization)</a>.
      * </p>
      *
      * @param showSpeakerLabels <p>
-     *            Determines whether the transcription job uses speaker
-     *            recognition to identify different speakers in the input audio.
-     *            Speaker recognition labels individual speakers in the audio
-     *            file. If you set the <code>ShowSpeakerLabels</code> field to
-     *            true, you must also set the maximum number of speaker labels
-     *            in the <code>MaxSpeakerLabels</code> field.
+     *            Enables speaker identification (diarization) in your
+     *            transcription output. Speaker identification labels the speech
+     *            from individual speakers in your media file.
      *            </p>
      *            <p>
-     *            You can't set both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request. If you
-     *            set both, your request returns a
+     *            If you enable <code>ShowSpeakerLabels</code> in your request,
+     *            you must also include <code>MaxSpeakerLabels</code>.
+     *            </p>
+     *            <p>
+     *            You can't include both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request.
+     *            Including both parameters returns a
      *            <code>BadRequestException</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     *            >Identifying speakers (diarization)</a>.
      *            </p>
      */
     public void setShowSpeakerLabels(Boolean showSpeakerLabels) {
@@ -214,35 +295,47 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether the transcription job uses speaker recognition to
-     * identify different speakers in the input audio. Speaker recognition
-     * labels individual speakers in the audio file. If you set the
-     * <code>ShowSpeakerLabels</code> field to true, you must also set the
-     * maximum number of speaker labels in the <code>MaxSpeakerLabels</code>
-     * field.
+     * Enables speaker identification (diarization) in your transcription
+     * output. Speaker identification labels the speech from individual speakers
+     * in your media file.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you enable <code>ShowSpeakerLabels</code> in your request, you must
+     * also include <code>MaxSpeakerLabels</code>.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     * >Identifying speakers (diarization)</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param showSpeakerLabels <p>
-     *            Determines whether the transcription job uses speaker
-     *            recognition to identify different speakers in the input audio.
-     *            Speaker recognition labels individual speakers in the audio
-     *            file. If you set the <code>ShowSpeakerLabels</code> field to
-     *            true, you must also set the maximum number of speaker labels
-     *            in the <code>MaxSpeakerLabels</code> field.
+     *            Enables speaker identification (diarization) in your
+     *            transcription output. Speaker identification labels the speech
+     *            from individual speakers in your media file.
      *            </p>
      *            <p>
-     *            You can't set both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request. If you
-     *            set both, your request returns a
+     *            If you enable <code>ShowSpeakerLabels</code> in your request,
+     *            you must also include <code>MaxSpeakerLabels</code>.
+     *            </p>
+     *            <p>
+     *            You can't include both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request.
+     *            Including both parameters returns a
      *            <code>BadRequestException</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+     *            >Identifying speakers (diarization)</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -254,10 +347,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of speakers to identify in the input audio. If there
-     * are more speakers in the audio than this number, multiple speakers are
-     * identified as a single speaker. If you specify the
-     * <code>MaxSpeakerLabels</code> field, you must set the
+     * Specify the maximum number of speakers you want to identify in your
+     * media.
+     * </p>
+     * <p>
+     * Note that if your media contains more speakers than the specified number,
+     * multiple speakers will be identified as a single speaker.
+     * </p>
+     * <p>
+     * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
      * <code>ShowSpeakerLabels</code> field to true.
      * </p>
      * <p>
@@ -265,11 +363,16 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @return <p>
-     *         The maximum number of speakers to identify in the input audio. If
-     *         there are more speakers in the audio than this number, multiple
-     *         speakers are identified as a single speaker. If you specify the
-     *         <code>MaxSpeakerLabels</code> field, you must set the
-     *         <code>ShowSpeakerLabels</code> field to true.
+     *         Specify the maximum number of speakers you want to identify in
+     *         your media.
+     *         </p>
+     *         <p>
+     *         Note that if your media contains more speakers than the specified
+     *         number, multiple speakers will be identified as a single speaker.
+     *         </p>
+     *         <p>
+     *         If you specify the <code>MaxSpeakerLabels</code> field, you must
+     *         set the <code>ShowSpeakerLabels</code> field to true.
      *         </p>
      */
     public Integer getMaxSpeakerLabels() {
@@ -278,10 +381,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of speakers to identify in the input audio. If there
-     * are more speakers in the audio than this number, multiple speakers are
-     * identified as a single speaker. If you specify the
-     * <code>MaxSpeakerLabels</code> field, you must set the
+     * Specify the maximum number of speakers you want to identify in your
+     * media.
+     * </p>
+     * <p>
+     * Note that if your media contains more speakers than the specified number,
+     * multiple speakers will be identified as a single speaker.
+     * </p>
+     * <p>
+     * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
      * <code>ShowSpeakerLabels</code> field to true.
      * </p>
      * <p>
@@ -289,11 +397,17 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxSpeakerLabels <p>
-     *            The maximum number of speakers to identify in the input audio.
-     *            If there are more speakers in the audio than this number,
-     *            multiple speakers are identified as a single speaker. If you
-     *            specify the <code>MaxSpeakerLabels</code> field, you must set
-     *            the <code>ShowSpeakerLabels</code> field to true.
+     *            Specify the maximum number of speakers you want to identify in
+     *            your media.
+     *            </p>
+     *            <p>
+     *            Note that if your media contains more speakers than the
+     *            specified number, multiple speakers will be identified as a
+     *            single speaker.
+     *            </p>
+     *            <p>
+     *            If you specify the <code>MaxSpeakerLabels</code> field, you
+     *            must set the <code>ShowSpeakerLabels</code> field to true.
      *            </p>
      */
     public void setMaxSpeakerLabels(Integer maxSpeakerLabels) {
@@ -302,10 +416,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of speakers to identify in the input audio. If there
-     * are more speakers in the audio than this number, multiple speakers are
-     * identified as a single speaker. If you specify the
-     * <code>MaxSpeakerLabels</code> field, you must set the
+     * Specify the maximum number of speakers you want to identify in your
+     * media.
+     * </p>
+     * <p>
+     * Note that if your media contains more speakers than the specified number,
+     * multiple speakers will be identified as a single speaker.
+     * </p>
+     * <p>
+     * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
      * <code>ShowSpeakerLabels</code> field to true.
      * </p>
      * <p>
@@ -316,11 +435,17 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxSpeakerLabels <p>
-     *            The maximum number of speakers to identify in the input audio.
-     *            If there are more speakers in the audio than this number,
-     *            multiple speakers are identified as a single speaker. If you
-     *            specify the <code>MaxSpeakerLabels</code> field, you must set
-     *            the <code>ShowSpeakerLabels</code> field to true.
+     *            Specify the maximum number of speakers you want to identify in
+     *            your media.
+     *            </p>
+     *            <p>
+     *            Note that if your media contains more speakers than the
+     *            specified number, multiple speakers will be identified as a
+     *            single speaker.
+     *            </p>
+     *            <p>
+     *            If you specify the <code>MaxSpeakerLabels</code> field, you
+     *            must set the <code>ShowSpeakerLabels</code> field to true.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -332,40 +457,51 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Instructs Amazon Transcribe Medical to process each audio channel
-     * separately and then merge the transcription output of each channel into a
-     * single transcription.
+     * Enables channel identification in multi-channel audio.
      * </p>
      * <p>
-     * Amazon Transcribe Medical also produces a transcription of each item
-     * detected on an audio channel, including the start time and end time of
-     * the item and alternative transcriptions of item. The alternative
-     * transcriptions also come with confidence scores provided by Amazon
-     * Transcribe Medical.
+     * Channel identification transcribes the audio on each channel
+     * independently, then appends the output for each channel into one
+     * transcript.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you have multi-channel audio and do not enable channel identification,
+     * your audio is transcribed in a continuous manner and your transcript does
+     * not separate the speech by channel.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     * >Transcribing multi-channel audio</a>.
      * </p>
      *
      * @return <p>
-     *         Instructs Amazon Transcribe Medical to process each audio channel
-     *         separately and then merge the transcription output of each
-     *         channel into a single transcription.
+     *         Enables channel identification in multi-channel audio.
      *         </p>
      *         <p>
-     *         Amazon Transcribe Medical also produces a transcription of each
-     *         item detected on an audio channel, including the start time and
-     *         end time of the item and alternative transcriptions of item. The
-     *         alternative transcriptions also come with confidence scores
-     *         provided by Amazon Transcribe Medical.
+     *         Channel identification transcribes the audio on each channel
+     *         independently, then appends the output for each channel into one
+     *         transcript.
      *         </p>
      *         <p>
-     *         You can't set both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. If you
-     *         set both, your request returns a <code>BadRequestException</code>
-     *         .
+     *         If you have multi-channel audio and do not enable channel
+     *         identification, your audio is transcribed in a continuous manner
+     *         and your transcript does not separate the speech by channel.
+     *         </p>
+     *         <p>
+     *         You can't include both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. Including
+     *         both parameters returns a <code>BadRequestException</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     *         >Transcribing multi-channel audio</a>.
      *         </p>
      */
     public Boolean isChannelIdentification() {
@@ -374,40 +510,51 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Instructs Amazon Transcribe Medical to process each audio channel
-     * separately and then merge the transcription output of each channel into a
-     * single transcription.
+     * Enables channel identification in multi-channel audio.
      * </p>
      * <p>
-     * Amazon Transcribe Medical also produces a transcription of each item
-     * detected on an audio channel, including the start time and end time of
-     * the item and alternative transcriptions of item. The alternative
-     * transcriptions also come with confidence scores provided by Amazon
-     * Transcribe Medical.
+     * Channel identification transcribes the audio on each channel
+     * independently, then appends the output for each channel into one
+     * transcript.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you have multi-channel audio and do not enable channel identification,
+     * your audio is transcribed in a continuous manner and your transcript does
+     * not separate the speech by channel.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     * >Transcribing multi-channel audio</a>.
      * </p>
      *
      * @return <p>
-     *         Instructs Amazon Transcribe Medical to process each audio channel
-     *         separately and then merge the transcription output of each
-     *         channel into a single transcription.
+     *         Enables channel identification in multi-channel audio.
      *         </p>
      *         <p>
-     *         Amazon Transcribe Medical also produces a transcription of each
-     *         item detected on an audio channel, including the start time and
-     *         end time of the item and alternative transcriptions of item. The
-     *         alternative transcriptions also come with confidence scores
-     *         provided by Amazon Transcribe Medical.
+     *         Channel identification transcribes the audio on each channel
+     *         independently, then appends the output for each channel into one
+     *         transcript.
      *         </p>
      *         <p>
-     *         You can't set both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. If you
-     *         set both, your request returns a <code>BadRequestException</code>
-     *         .
+     *         If you have multi-channel audio and do not enable channel
+     *         identification, your audio is transcribed in a continuous manner
+     *         and your transcript does not separate the speech by channel.
+     *         </p>
+     *         <p>
+     *         You can't include both <code>ShowSpeakerLabels</code> and
+     *         <code>ChannelIdentification</code> in the same request. Including
+     *         both parameters returns a <code>BadRequestException</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     *         >Transcribing multi-channel audio</a>.
      *         </p>
      */
     public Boolean getChannelIdentification() {
@@ -416,40 +563,53 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Instructs Amazon Transcribe Medical to process each audio channel
-     * separately and then merge the transcription output of each channel into a
-     * single transcription.
+     * Enables channel identification in multi-channel audio.
      * </p>
      * <p>
-     * Amazon Transcribe Medical also produces a transcription of each item
-     * detected on an audio channel, including the start time and end time of
-     * the item and alternative transcriptions of item. The alternative
-     * transcriptions also come with confidence scores provided by Amazon
-     * Transcribe Medical.
+     * Channel identification transcribes the audio on each channel
+     * independently, then appends the output for each channel into one
+     * transcript.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you have multi-channel audio and do not enable channel identification,
+     * your audio is transcribed in a continuous manner and your transcript does
+     * not separate the speech by channel.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     * >Transcribing multi-channel audio</a>.
      * </p>
      *
      * @param channelIdentification <p>
-     *            Instructs Amazon Transcribe Medical to process each audio
-     *            channel separately and then merge the transcription output of
-     *            each channel into a single transcription.
+     *            Enables channel identification in multi-channel audio.
      *            </p>
      *            <p>
-     *            Amazon Transcribe Medical also produces a transcription of
-     *            each item detected on an audio channel, including the start
-     *            time and end time of the item and alternative transcriptions
-     *            of item. The alternative transcriptions also come with
-     *            confidence scores provided by Amazon Transcribe Medical.
+     *            Channel identification transcribes the audio on each channel
+     *            independently, then appends the output for each channel into
+     *            one transcript.
      *            </p>
      *            <p>
-     *            You can't set both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request. If you
-     *            set both, your request returns a
+     *            If you have multi-channel audio and do not enable channel
+     *            identification, your audio is transcribed in a continuous
+     *            manner and your transcript does not separate the speech by
+     *            channel.
+     *            </p>
+     *            <p>
+     *            You can't include both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request.
+     *            Including both parameters returns a
      *            <code>BadRequestException</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     *            >Transcribing multi-channel audio</a>.
      *            </p>
      */
     public void setChannelIdentification(Boolean channelIdentification) {
@@ -458,43 +618,56 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Instructs Amazon Transcribe Medical to process each audio channel
-     * separately and then merge the transcription output of each channel into a
-     * single transcription.
+     * Enables channel identification in multi-channel audio.
      * </p>
      * <p>
-     * Amazon Transcribe Medical also produces a transcription of each item
-     * detected on an audio channel, including the start time and end time of
-     * the item and alternative transcriptions of item. The alternative
-     * transcriptions also come with confidence scores provided by Amazon
-     * Transcribe Medical.
+     * Channel identification transcribes the audio on each channel
+     * independently, then appends the output for each channel into one
+     * transcript.
      * </p>
      * <p>
-     * You can't set both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. If you set both,
-     * your request returns a <code>BadRequestException</code>.
+     * If you have multi-channel audio and do not enable channel identification,
+     * your audio is transcribed in a continuous manner and your transcript does
+     * not separate the speech by channel.
+     * </p>
+     * <p>
+     * You can't include both <code>ShowSpeakerLabels</code> and
+     * <code>ChannelIdentification</code> in the same request. Including both
+     * parameters returns a <code>BadRequestException</code>.
+     * </p>
+     * <p>
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     * >Transcribing multi-channel audio</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelIdentification <p>
-     *            Instructs Amazon Transcribe Medical to process each audio
-     *            channel separately and then merge the transcription output of
-     *            each channel into a single transcription.
+     *            Enables channel identification in multi-channel audio.
      *            </p>
      *            <p>
-     *            Amazon Transcribe Medical also produces a transcription of
-     *            each item detected on an audio channel, including the start
-     *            time and end time of the item and alternative transcriptions
-     *            of item. The alternative transcriptions also come with
-     *            confidence scores provided by Amazon Transcribe Medical.
+     *            Channel identification transcribes the audio on each channel
+     *            independently, then appends the output for each channel into
+     *            one transcript.
      *            </p>
      *            <p>
-     *            You can't set both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request. If you
-     *            set both, your request returns a
+     *            If you have multi-channel audio and do not enable channel
+     *            identification, your audio is transcribed in a continuous
+     *            manner and your transcript does not separate the speech by
+     *            channel.
+     *            </p>
+     *            <p>
+     *            You can't include both <code>ShowSpeakerLabels</code> and
+     *            <code>ChannelIdentification</code> in the same request.
+     *            Including both parameters returns a
      *            <code>BadRequestException</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
+     *            >Transcribing multi-channel audio</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -506,19 +679,35 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether alternative transcripts are generated along with the
-     * transcript that has the highest confidence. If you set
-     * <code>ShowAlternatives</code> field to true, you must also set the
-     * maximum number of alternatives to return in the
-     * <code>MaxAlternatives</code> field.
+     * To include alternative transcriptions within your transcription output,
+     * include <code>ShowAlternatives</code> in your transcription request.
+     * </p>
+     * <p>
+     * If you include <code>ShowAlternatives</code>, you must also include
+     * <code>MaxAlternatives</code>, which is the maximum number of alternative
+     * transcriptions you want Amazon Transcribe Medical to generate.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      *
      * @return <p>
-     *         Determines whether alternative transcripts are generated along
-     *         with the transcript that has the highest confidence. If you set
-     *         <code>ShowAlternatives</code> field to true, you must also set
-     *         the maximum number of alternatives to return in the
-     *         <code>MaxAlternatives</code> field.
+     *         To include alternative transcriptions within your transcription
+     *         output, include <code>ShowAlternatives</code> in your
+     *         transcription request.
+     *         </p>
+     *         <p>
+     *         If you include <code>ShowAlternatives</code>, you must also
+     *         include <code>MaxAlternatives</code>, which is the maximum number
+     *         of alternative transcriptions you want Amazon Transcribe Medical
+     *         to generate.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *         >Alternative transcriptions</a>.
      *         </p>
      */
     public Boolean isShowAlternatives() {
@@ -527,19 +716,35 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether alternative transcripts are generated along with the
-     * transcript that has the highest confidence. If you set
-     * <code>ShowAlternatives</code> field to true, you must also set the
-     * maximum number of alternatives to return in the
-     * <code>MaxAlternatives</code> field.
+     * To include alternative transcriptions within your transcription output,
+     * include <code>ShowAlternatives</code> in your transcription request.
+     * </p>
+     * <p>
+     * If you include <code>ShowAlternatives</code>, you must also include
+     * <code>MaxAlternatives</code>, which is the maximum number of alternative
+     * transcriptions you want Amazon Transcribe Medical to generate.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      *
      * @return <p>
-     *         Determines whether alternative transcripts are generated along
-     *         with the transcript that has the highest confidence. If you set
-     *         <code>ShowAlternatives</code> field to true, you must also set
-     *         the maximum number of alternatives to return in the
-     *         <code>MaxAlternatives</code> field.
+     *         To include alternative transcriptions within your transcription
+     *         output, include <code>ShowAlternatives</code> in your
+     *         transcription request.
+     *         </p>
+     *         <p>
+     *         If you include <code>ShowAlternatives</code>, you must also
+     *         include <code>MaxAlternatives</code>, which is the maximum number
+     *         of alternative transcriptions you want Amazon Transcribe Medical
+     *         to generate.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *         >Alternative transcriptions</a>.
      *         </p>
      */
     public Boolean getShowAlternatives() {
@@ -548,19 +753,35 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether alternative transcripts are generated along with the
-     * transcript that has the highest confidence. If you set
-     * <code>ShowAlternatives</code> field to true, you must also set the
-     * maximum number of alternatives to return in the
-     * <code>MaxAlternatives</code> field.
+     * To include alternative transcriptions within your transcription output,
+     * include <code>ShowAlternatives</code> in your transcription request.
+     * </p>
+     * <p>
+     * If you include <code>ShowAlternatives</code>, you must also include
+     * <code>MaxAlternatives</code>, which is the maximum number of alternative
+     * transcriptions you want Amazon Transcribe Medical to generate.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      *
      * @param showAlternatives <p>
-     *            Determines whether alternative transcripts are generated along
-     *            with the transcript that has the highest confidence. If you
-     *            set <code>ShowAlternatives</code> field to true, you must also
-     *            set the maximum number of alternatives to return in the
-     *            <code>MaxAlternatives</code> field.
+     *            To include alternative transcriptions within your
+     *            transcription output, include <code>ShowAlternatives</code> in
+     *            your transcription request.
+     *            </p>
+     *            <p>
+     *            If you include <code>ShowAlternatives</code>, you must also
+     *            include <code>MaxAlternatives</code>, which is the maximum
+     *            number of alternative transcriptions you want Amazon
+     *            Transcribe Medical to generate.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *            >Alternative transcriptions</a>.
      *            </p>
      */
     public void setShowAlternatives(Boolean showAlternatives) {
@@ -569,22 +790,38 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * Determines whether alternative transcripts are generated along with the
-     * transcript that has the highest confidence. If you set
-     * <code>ShowAlternatives</code> field to true, you must also set the
-     * maximum number of alternatives to return in the
-     * <code>MaxAlternatives</code> field.
+     * To include alternative transcriptions within your transcription output,
+     * include <code>ShowAlternatives</code> in your transcription request.
+     * </p>
+     * <p>
+     * If you include <code>ShowAlternatives</code>, you must also include
+     * <code>MaxAlternatives</code>, which is the maximum number of alternative
+     * transcriptions you want Amazon Transcribe Medical to generate.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param showAlternatives <p>
-     *            Determines whether alternative transcripts are generated along
-     *            with the transcript that has the highest confidence. If you
-     *            set <code>ShowAlternatives</code> field to true, you must also
-     *            set the maximum number of alternatives to return in the
-     *            <code>MaxAlternatives</code> field.
+     *            To include alternative transcriptions within your
+     *            transcription output, include <code>ShowAlternatives</code> in
+     *            your transcription request.
+     *            </p>
+     *            <p>
+     *            If you include <code>ShowAlternatives</code>, you must also
+     *            include <code>MaxAlternatives</code>, which is the maximum
+     *            number of alternative transcriptions you want Amazon
+     *            Transcribe Medical to generate.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *            >Alternative transcriptions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -596,18 +833,46 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of alternatives that you tell the service to return.
-     * If you specify the <code>MaxAlternatives</code> field, you must set the
-     * <code>ShowAlternatives</code> field to true.
+     * Indicate the maximum number of alternative transcriptions you want Amazon
+     * Transcribe Medical to include in your transcript.
+     * </p>
+     * <p>
+     * If you select a number greater than the number of alternative
+     * transcriptions generated by Amazon Transcribe Medical, only the actual
+     * number of alternative transcriptions are included.
+     * </p>
+     * <p>
+     * If you include <code>MaxAlternatives</code> in your request, you must
+     * also include <code>ShowAlternatives</code> with a value of
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>2 - 10<br/>
      *
      * @return <p>
-     *         The maximum number of alternatives that you tell the service to
-     *         return. If you specify the <code>MaxAlternatives</code> field,
-     *         you must set the <code>ShowAlternatives</code> field to true.
+     *         Indicate the maximum number of alternative transcriptions you
+     *         want Amazon Transcribe Medical to include in your transcript.
+     *         </p>
+     *         <p>
+     *         If you select a number greater than the number of alternative
+     *         transcriptions generated by Amazon Transcribe Medical, only the
+     *         actual number of alternative transcriptions are included.
+     *         </p>
+     *         <p>
+     *         If you include <code>MaxAlternatives</code> in your request, you
+     *         must also include <code>ShowAlternatives</code> with a value of
+     *         <code>true</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *         >Alternative transcriptions</a>.
      *         </p>
      */
     public Integer getMaxAlternatives() {
@@ -616,19 +881,46 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of alternatives that you tell the service to return.
-     * If you specify the <code>MaxAlternatives</code> field, you must set the
-     * <code>ShowAlternatives</code> field to true.
+     * Indicate the maximum number of alternative transcriptions you want Amazon
+     * Transcribe Medical to include in your transcript.
+     * </p>
+     * <p>
+     * If you select a number greater than the number of alternative
+     * transcriptions generated by Amazon Transcribe Medical, only the actual
+     * number of alternative transcriptions are included.
+     * </p>
+     * <p>
+     * If you include <code>MaxAlternatives</code> in your request, you must
+     * also include <code>ShowAlternatives</code> with a value of
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxAlternatives <p>
-     *            The maximum number of alternatives that you tell the service
-     *            to return. If you specify the <code>MaxAlternatives</code>
-     *            field, you must set the <code>ShowAlternatives</code> field to
-     *            true.
+     *            Indicate the maximum number of alternative transcriptions you
+     *            want Amazon Transcribe Medical to include in your transcript.
+     *            </p>
+     *            <p>
+     *            If you select a number greater than the number of alternative
+     *            transcriptions generated by Amazon Transcribe Medical, only
+     *            the actual number of alternative transcriptions are included.
+     *            </p>
+     *            <p>
+     *            If you include <code>MaxAlternatives</code> in your request,
+     *            you must also include <code>ShowAlternatives</code> with a
+     *            value of <code>true</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *            >Alternative transcriptions</a>.
      *            </p>
      */
     public void setMaxAlternatives(Integer maxAlternatives) {
@@ -637,9 +929,23 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The maximum number of alternatives that you tell the service to return.
-     * If you specify the <code>MaxAlternatives</code> field, you must set the
-     * <code>ShowAlternatives</code> field to true.
+     * Indicate the maximum number of alternative transcriptions you want Amazon
+     * Transcribe Medical to include in your transcript.
+     * </p>
+     * <p>
+     * If you select a number greater than the number of alternative
+     * transcriptions generated by Amazon Transcribe Medical, only the actual
+     * number of alternative transcriptions are included.
+     * </p>
+     * <p>
+     * If you include <code>MaxAlternatives</code> in your request, you must
+     * also include <code>ShowAlternatives</code> with a value of
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     * >Alternative transcriptions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -649,10 +955,23 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxAlternatives <p>
-     *            The maximum number of alternatives that you tell the service
-     *            to return. If you specify the <code>MaxAlternatives</code>
-     *            field, you must set the <code>ShowAlternatives</code> field to
-     *            true.
+     *            Indicate the maximum number of alternative transcriptions you
+     *            want Amazon Transcribe Medical to include in your transcript.
+     *            </p>
+     *            <p>
+     *            If you select a number greater than the number of alternative
+     *            transcriptions generated by Amazon Transcribe Medical, only
+     *            the actual number of alternative transcriptions are included.
+     *            </p>
+     *            <p>
+     *            If you include <code>MaxAlternatives</code> in your request,
+     *            you must also include <code>ShowAlternatives</code> with a
+     *            value of <code>true</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-alternatives.html"
+     *            >Alternative transcriptions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -664,8 +983,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary to use when processing a medical transcription
-     * job.
+     * The name of the custom vocabulary you want to use when processing your
+     * medical transcription job. Vocabulary names are case sensitive.
+     * </p>
+     * <p>
+     * The language of the specified vocabulary must match the language code you
+     * specify in your transcription request. If the languages don't match, the
+     * vocabulary isn't applied. There are no errors or warnings associated with
+     * a language mismatch. US English (<code>en-US</code>) is the only valid
+     * language for Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -673,8 +999,17 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary to use when processing a medical
-     *         transcription job.
+     *         The name of the custom vocabulary you want to use when processing
+     *         your medical transcription job. Vocabulary names are case
+     *         sensitive.
+     *         </p>
+     *         <p>
+     *         The language of the specified vocabulary must match the language
+     *         code you specify in your transcription request. If the languages
+     *         don't match, the vocabulary isn't applied. There are no errors or
+     *         warnings associated with a language mismatch. US English (
+     *         <code>en-US</code>) is the only valid language for Amazon
+     *         Transcribe Medical.
      *         </p>
      */
     public String getVocabularyName() {
@@ -683,8 +1018,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary to use when processing a medical transcription
-     * job.
+     * The name of the custom vocabulary you want to use when processing your
+     * medical transcription job. Vocabulary names are case sensitive.
+     * </p>
+     * <p>
+     * The language of the specified vocabulary must match the language code you
+     * specify in your transcription request. If the languages don't match, the
+     * vocabulary isn't applied. There are no errors or warnings associated with
+     * a language mismatch. US English (<code>en-US</code>) is the only valid
+     * language for Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -692,8 +1034,17 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary to use when processing a medical
-     *            transcription job.
+     *            The name of the custom vocabulary you want to use when
+     *            processing your medical transcription job. Vocabulary names
+     *            are case sensitive.
+     *            </p>
+     *            <p>
+     *            The language of the specified vocabulary must match the
+     *            language code you specify in your transcription request. If
+     *            the languages don't match, the vocabulary isn't applied. There
+     *            are no errors or warnings associated with a language mismatch.
+     *            US English (<code>en-US</code>) is the only valid language for
+     *            Amazon Transcribe Medical.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -702,8 +1053,15 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary to use when processing a medical transcription
-     * job.
+     * The name of the custom vocabulary you want to use when processing your
+     * medical transcription job. Vocabulary names are case sensitive.
+     * </p>
+     * <p>
+     * The language of the specified vocabulary must match the language code you
+     * specify in your transcription request. If the languages don't match, the
+     * vocabulary isn't applied. There are no errors or warnings associated with
+     * a language mismatch. US English (<code>en-US</code>) is the only valid
+     * language for Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -714,8 +1072,17 @@ public class MedicalTranscriptionSetting implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary to use when processing a medical
-     *            transcription job.
+     *            The name of the custom vocabulary you want to use when
+     *            processing your medical transcription job. Vocabulary names
+     *            are case sensitive.
+     *            </p>
+     *            <p>
+     *            The language of the specified vocabulary must match the
+     *            language code you specify in your transcription request. If
+     *            the languages don't match, the vocabulary isn't applied. There
+     *            are no errors or warnings associated with a language mismatch.
+     *            US English (<code>en-US</code>) is the only valid language for
+     *            Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

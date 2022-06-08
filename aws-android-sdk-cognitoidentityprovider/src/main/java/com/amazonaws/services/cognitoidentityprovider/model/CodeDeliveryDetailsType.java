@@ -19,20 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The code delivery details being returned from the server.
+ * The delivery details for an email or SMS message that Amazon Cognito sent for
+ * authentication or verification.
  * </p>
  */
 public class CodeDeliveryDetailsType implements Serializable {
     /**
      * <p>
-     * The destination for the code delivery details.
+     * The email address or phone number destination where Amazon Cognito sent
+     * the code.
      * </p>
      */
     private String destination;
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +44,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The attribute name.
+     * The name of the attribute that Amazon Cognito verifies with the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,11 +55,13 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The destination for the code delivery details.
+     * The email address or phone number destination where Amazon Cognito sent
+     * the code.
      * </p>
      *
      * @return <p>
-     *         The destination for the code delivery details.
+     *         The email address or phone number destination where Amazon
+     *         Cognito sent the code.
      *         </p>
      */
     public String getDestination() {
@@ -66,11 +70,13 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The destination for the code delivery details.
+     * The email address or phone number destination where Amazon Cognito sent
+     * the code.
      * </p>
      *
      * @param destination <p>
-     *            The destination for the code delivery details.
+     *            The email address or phone number destination where Amazon
+     *            Cognito sent the code.
      *            </p>
      */
     public void setDestination(String destination) {
@@ -79,14 +85,16 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The destination for the code delivery details.
+     * The email address or phone number destination where Amazon Cognito sent
+     * the code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param destination <p>
-     *            The destination for the code delivery details.
+     *            The email address or phone number destination where Amazon
+     *            Cognito sent the code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,14 +106,14 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @return <p>
-     *         The delivery medium (email message or phone number).
+     *         The method that Amazon Cognito used to send the code.
      *         </p>
      * @see DeliveryMediumType
      */
@@ -115,14 +123,14 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or phone number).
+     *            The method that Amazon Cognito used to send the code.
      *            </p>
      * @see DeliveryMediumType
      */
@@ -132,7 +140,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -142,7 +150,7 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or phone number).
+     *            The method that Amazon Cognito used to send the code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,14 +163,14 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or phone number).
+     *            The method that Amazon Cognito used to send the code.
      *            </p>
      * @see DeliveryMediumType
      */
@@ -172,7 +180,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The delivery medium (email message or phone number).
+     * The method that Amazon Cognito used to send the code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,7 +190,7 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Allowed Values: </b>SMS, EMAIL
      *
      * @param deliveryMedium <p>
-     *            The delivery medium (email message or phone number).
+     *            The method that Amazon Cognito used to send the code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -195,7 +203,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The attribute name.
+     * The name of the attribute that Amazon Cognito verifies with the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +211,8 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The attribute name.
+     *         The name of the attribute that Amazon Cognito verifies with the
+     *         code.
      *         </p>
      */
     public String getAttributeName() {
@@ -212,7 +221,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The attribute name.
+     * The name of the attribute that Amazon Cognito verifies with the code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,7 +229,8 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name.
+     *            The name of the attribute that Amazon Cognito verifies with
+     *            the code.
      *            </p>
      */
     public void setAttributeName(String attributeName) {
@@ -229,7 +239,7 @@ public class CodeDeliveryDetailsType implements Serializable {
 
     /**
      * <p>
-     * The attribute name.
+     * The name of the attribute that Amazon Cognito verifies with the code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,7 +250,8 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param attributeName <p>
-     *            The attribute name.
+     *            The name of the attribute that Amazon Cognito verifies with
+     *            the code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

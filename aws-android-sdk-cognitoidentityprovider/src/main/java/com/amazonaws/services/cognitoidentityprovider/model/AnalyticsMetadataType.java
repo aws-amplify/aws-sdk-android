@@ -23,15 +23,12 @@ import java.io.Serializable;
  * </p>
  * <p>
  * An endpoint uniquely identifies a mobile device, email address, or phone
- * number that can receive messages from Amazon Pinpoint analytics.
+ * number that can receive messages from Amazon Pinpoint analytics. For more
+ * information about Amazon Web Services Regions that can contain Amazon
+ * Pinpoint resources for use with Amazon Cognito user pools, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-pinpoint-integration.html"
+ * >Using Amazon Pinpoint analytics with Amazon Cognito user pools</a>.
  * </p>
- * <note>
- * <p>
- * Amazon Cognito user pools only support sending events to Amazon Pinpoint
- * projects in the US East (N. Virginia) us-east-1 Region, regardless of the
- * Region where the user pool resides.
- * </p>
- * </note>
  */
 public class AnalyticsMetadataType implements Serializable {
     /**

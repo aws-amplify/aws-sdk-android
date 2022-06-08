@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a medical transcription job, along with any related information. To
- * use this operation, specify the name of the job you want to delete using
- * <code>MedicalTranscriptionJobName</code>.
+ * Deletes a medical transcription job. To use this operation, specify the name
+ * of the job you want to delete using <code>MedicalTranscriptionJobName</code>.
+ * Job names are case sensitive.
  * </p>
  */
 public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceRequest implements
@@ -31,7 +31,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
     /**
      * <p>
      * The name of the medical transcription job you want to delete. Job names
-     * are case-sensitive.
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
     /**
      * <p>
      * The name of the medical transcription job you want to delete. Job names
-     * are case-sensitive.
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,7 +52,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
      *
      * @return <p>
      *         The name of the medical transcription job you want to delete. Job
-     *         names are case-sensitive.
+     *         names are case sensitive.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -62,7 +62,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
     /**
      * <p>
      * The name of the medical transcription job you want to delete. Job names
-     * are case-sensitive.
+     * are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +71,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
      *
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job you want to delete.
-     *            Job names are case-sensitive.
+     *            Job names are case sensitive.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -81,7 +81,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
     /**
      * <p>
      * The name of the medical transcription job you want to delete. Job names
-     * are case-sensitive.
+     * are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -93,7 +93,7 @@ public class DeleteMedicalTranscriptionJobRequest extends AmazonWebServiceReques
      *
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job you want to delete.
-     *            Job names are case-sensitive.
+     *            Job names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

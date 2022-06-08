@@ -20,18 +20,22 @@ import java.io.Serializable;
 public class StartMedicalTranscriptionJobResult implements Serializable {
     /**
      * <p>
-     * A batch job submitted to transcribe medical speech to text.
+     * Provides detailed information about the current medical transcription
+     * job, including job status and, if applicable, failure reason.
      * </p>
      */
     private MedicalTranscriptionJob medicalTranscriptionJob;
 
     /**
      * <p>
-     * A batch job submitted to transcribe medical speech to text.
+     * Provides detailed information about the current medical transcription
+     * job, including job status and, if applicable, failure reason.
      * </p>
      *
      * @return <p>
-     *         A batch job submitted to transcribe medical speech to text.
+     *         Provides detailed information about the current medical
+     *         transcription job, including job status and, if applicable,
+     *         failure reason.
      *         </p>
      */
     public MedicalTranscriptionJob getMedicalTranscriptionJob() {
@@ -40,11 +44,14 @@ public class StartMedicalTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * A batch job submitted to transcribe medical speech to text.
+     * Provides detailed information about the current medical transcription
+     * job, including job status and, if applicable, failure reason.
      * </p>
      *
      * @param medicalTranscriptionJob <p>
-     *            A batch job submitted to transcribe medical speech to text.
+     *            Provides detailed information about the current medical
+     *            transcription job, including job status and, if applicable,
+     *            failure reason.
      *            </p>
      */
     public void setMedicalTranscriptionJob(MedicalTranscriptionJob medicalTranscriptionJob) {
@@ -53,14 +60,17 @@ public class StartMedicalTranscriptionJobResult implements Serializable {
 
     /**
      * <p>
-     * A batch job submitted to transcribe medical speech to text.
+     * Provides detailed information about the current medical transcription
+     * job, including job status and, if applicable, failure reason.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param medicalTranscriptionJob <p>
-     *            A batch job submitted to transcribe medical speech to text.
+     *            Provides detailed information about the current medical
+     *            transcription job, including job status and, if applicable,
+     *            failure reason.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
