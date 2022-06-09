@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -812,8 +813,12 @@ abstract class NotificationClientBase {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(validatedUrl));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (intent.resolveActivity(pinpointContext.getApplicationContext().getPackageManager()) != null) {
+
+        // Querying packages now requires query manifest flag, so we instead try/catch the attempt
+        try {
             pinpointContext.getApplicationContext().startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            log.error("Couldn't find an app to open ACTION_VIEW Intent.", e);
         }
     }
 
