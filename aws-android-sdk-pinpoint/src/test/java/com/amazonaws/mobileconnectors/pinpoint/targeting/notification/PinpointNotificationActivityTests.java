@@ -25,7 +25,6 @@ public class PinpointNotificationActivityTests {
 
     @Before
     public void setup() {
-        PinpointNotificationActivity.setNotificationClient((NotificationClient) null);
         notificationClient = Mockito.mock(NotificationClient.class);
         activityController = Robolectric.buildActivity(PinpointNotificationActivity.class);
         PinpointNotificationActivity.setNotificationClient(notificationClient);
