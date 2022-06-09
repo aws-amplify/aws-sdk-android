@@ -257,7 +257,7 @@ public class NotificationDetails {
                     }
                     notificationDetails.setBundle(data);
                 }
-                notificationDetails.setTargetClass(serviceClass);
+                notificationDetails.setTargetClass(PinpointNotificationActivity.class);
                 notificationDetails.setIntentAction(intentAction);
             }
 
