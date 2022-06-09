@@ -1,3 +1,17 @@
+## [Release 2.48.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.48.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2916)
+- **aws-android-sdk-transcribe:** update models to latest (#2917)
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2922)
+
+### Miscellaneous
+- upgrade jmespath to version 1.6.1 (#2926)
+- Fix: API 30+ fix for opening Pinpoint push notification links (#2924)
+- Fix(pinpoint) 2762: Resolve Android 12 notification trampolining restrictions and ADM Push Notifications (#2925)
+
+[See all changes between 2.47.0 and 2.48.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.47.0...release_v2.48.0)
+
 ## [Release 2.47.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.47.0)
 
 ### Features
