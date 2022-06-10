@@ -218,12 +218,18 @@ class TransferStatusUpdater {
 
             // invoke TransferListener callback on main thread
             for (final TransferListener l : list) {
-                mainHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        l.onStateChanged(id, newState);
-                    }
-                });
+                // If instance is TransferStatusListener, post immediately.
+                // Posting to main thread can cause a missed status.
+                if (l instanceof TransferObserver.TransferStatusListener) {
+                    l.onStateChanged(id, newState);
+                } else {
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            l.onStateChanged(id, newState);
+                        }
+                    });
+                }
             }
 
             // remove all LISTENERS when the transfer is in a final state so

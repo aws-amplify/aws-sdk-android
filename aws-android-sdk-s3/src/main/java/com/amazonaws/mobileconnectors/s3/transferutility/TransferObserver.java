@@ -154,18 +154,22 @@ public class TransferObserver {
      * @param listener A TransferListener used to receive notification.
      */
     public void setTransferListener(TransferListener listener) {
-        if (listener != null) {
             synchronized (this) {
                 // Remove previous listener.
                 cleanTransferListener();
 
                 // One additional listener is attached so that the basic transfer
                 // info gets updated along side.
-                statusListener = new TransferStatusListener();
-                TransferStatusUpdater.registerListener(id, statusListener);
-                transferListener = listener;
-                TransferStatusUpdater.registerListener(id, transferListener);
-            }
+                if (statusListener == null) {
+                    statusListener = new TransferStatusListener();
+                    TransferStatusUpdater.registerListener(id, statusListener);
+                }
+
+                if (listener != null) {
+                    transferListener = listener;
+                    transferListener.onStateChanged(id, transferState);
+                    TransferStatusUpdater.registerListener(id, transferListener);
+                }
         }
     }
 
@@ -241,17 +245,17 @@ public class TransferObserver {
                 TransferStatusUpdater.unregisterListener(id, transferListener);
                 transferListener = null;
             }
-            if (statusListener != null) {
-                TransferStatusUpdater.unregisterListener(id, statusListener);
-                statusListener = null;
-            }
+//            if (statusListener != null) {
+//                TransferStatusUpdater.unregisterListener(id, statusListener);
+//                statusListener = null;
+//            }
         }
     }
 
     /**
      * A listener that can update the {@link TransferObserver}.
      */
-    private class TransferStatusListener implements TransferListener {
+    protected class TransferStatusListener implements TransferListener {
 
         @Override
         @SuppressWarnings("checkstyle:hiddenfield")
