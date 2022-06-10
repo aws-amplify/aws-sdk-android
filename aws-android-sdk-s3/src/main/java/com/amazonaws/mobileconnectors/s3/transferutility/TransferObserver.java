@@ -245,10 +245,10 @@ public class TransferObserver {
                 TransferStatusUpdater.unregisterListener(id, transferListener);
                 transferListener = null;
             }
-//            if (statusListener != null) {
-//                TransferStatusUpdater.unregisterListener(id, statusListener);
-//                statusListener = null;
-//            }
+            if (statusListener != null) {
+                TransferStatusUpdater.unregisterListener(id, statusListener);
+                statusListener = null;
+            }
         }
     }
 
