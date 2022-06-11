@@ -28,7 +28,7 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.validate.EncodingValidat
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.DeviceTokenRegisteredHandler;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.PinpointNotificationReceiver;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.notification.PinpointNotificationActivity;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.AmazonPinpointClient;
 import com.amazonaws.services.pinpoint.model.ChannelType;
@@ -87,7 +87,7 @@ public class PinpointManager {
             this.pinpointContext = new PinpointContext(analyticsServiceClient, targetingServiceClient, appContext, appId, SDK_INFO, config);
             this.notificationClient = NotificationClient.createClient(this.pinpointContext, channelType);
             this.pinpointContext.setNotificationClient(this.notificationClient);
-            PinpointNotificationReceiver.setNotificationClient(this.notificationClient);
+            PinpointNotificationActivity.setNotificationClient(this.notificationClient);
 
             if (config.getEnableEvents()) {
                 this.analyticsClient = new AnalyticsClient(this.pinpointContext);

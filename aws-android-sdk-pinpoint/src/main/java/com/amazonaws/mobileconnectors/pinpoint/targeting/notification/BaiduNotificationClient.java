@@ -48,10 +48,10 @@ final class BaiduNotificationClient extends NotificationClientBase {
                 flags |= PendingIntent.FLAG_IMMUTABLE;
             }
 
-            contentIntent = PendingIntent.getBroadcast(pinpointContext.getApplicationContext(), requestId,
+            contentIntent = PendingIntent.getActivity(pinpointContext.getApplicationContext(), requestId,
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.BAIDU_INTENT_ACTION,
                             targetClass), flags);
-            PinpointNotificationReceiver.setNotificationClient(this);
+            PinpointNotificationActivity.setNotificationClient(this);
         }
         return contentIntent;
     }
