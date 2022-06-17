@@ -1,3 +1,11 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---connect
 ## [Release 2.48.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.48.1)
 
 ### Miscellaneous
