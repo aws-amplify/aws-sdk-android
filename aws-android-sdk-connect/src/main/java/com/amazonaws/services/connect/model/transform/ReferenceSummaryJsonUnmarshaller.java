@@ -42,6 +42,18 @@ class ReferenceSummaryJsonUnmarshaller implements
             } else if (name.equals("Attachment")) {
                 referenceSummary.setAttachment(AttachmentReferenceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("String")) {
+                referenceSummary.setString(StringReferenceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Number")) {
+                referenceSummary.setNumber(NumberReferenceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Date")) {
+                referenceSummary.setDate(DateReferenceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Email")) {
+                referenceSummary.setEmail(EmailReferenceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

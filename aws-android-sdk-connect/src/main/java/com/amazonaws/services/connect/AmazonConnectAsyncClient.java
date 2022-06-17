@@ -2027,6 +2027,79 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Creates a new task template in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         CreateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateTaskTemplateResult> createTaskTemplateAsync(
+            final CreateTaskTemplateRequest createTaskTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateTaskTemplateResult>() {
+            public CreateTaskTemplateResult call() throws Exception {
+                return createTaskTemplate(createTaskTemplateRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new task template in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         CreateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateTaskTemplateResult> createTaskTemplateAsync(
+            final CreateTaskTemplateRequest createTaskTemplateRequest,
+            final AsyncHandler<CreateTaskTemplateRequest, CreateTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateTaskTemplateResult>() {
+            public CreateTaskTemplateResult call() throws Exception {
+                CreateTaskTemplateResult result = null;
+                try {
+                    result = createTaskTemplate(createTaskTemplateRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createTaskTemplateRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Creates a use case for an integration association.
      * </p>
      * 
@@ -2887,6 +2960,77 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteSecurityProfileRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes the task template.
+     * </p>
+     * 
+     * @param deleteTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteTaskTemplateResult> deleteTaskTemplateAsync(
+            final DeleteTaskTemplateRequest deleteTaskTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteTaskTemplateResult>() {
+            public DeleteTaskTemplateResult call() throws Exception {
+                return deleteTaskTemplate(deleteTaskTemplateRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes the task template.
+     * </p>
+     * 
+     * @param deleteTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteTaskTemplateResult> deleteTaskTemplateAsync(
+            final DeleteTaskTemplateRequest deleteTaskTemplateRequest,
+            final AsyncHandler<DeleteTaskTemplateRequest, DeleteTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteTaskTemplateResult>() {
+            public DeleteTaskTemplateResult call() throws Exception {
+                DeleteTaskTemplateResult result = null;
+                try {
+                    result = deleteTaskTemplate(deleteTaskTemplateRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteTaskTemplateRequest, result);
                 return result;
             }
         });
@@ -5422,6 +5566,79 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Gets the real-time active user data from the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param getCurrentUserDataRequest
+     * @return A Java Future object containing the response from the
+     *         GetCurrentUserData service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCurrentUserDataResult> getCurrentUserDataAsync(
+            final GetCurrentUserDataRequest getCurrentUserDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCurrentUserDataResult>() {
+            public GetCurrentUserDataResult call() throws Exception {
+                return getCurrentUserData(getCurrentUserDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets the real-time active user data from the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param getCurrentUserDataRequest
+     * @return A Java Future object containing the response from the
+     *         GetCurrentUserData service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCurrentUserDataResult> getCurrentUserDataAsync(
+            final GetCurrentUserDataRequest getCurrentUserDataRequest,
+            final AsyncHandler<GetCurrentUserDataRequest, GetCurrentUserDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCurrentUserDataResult>() {
+            public GetCurrentUserDataResult call() throws Exception {
+                GetCurrentUserDataResult result = null;
+                try {
+                    result = getCurrentUserData(getCurrentUserDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getCurrentUserDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Retrieves a token for federation.
      * </p>
      * <note>
@@ -5591,6 +5808,79 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(getMetricDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets details about a specific task template in the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param getTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         GetTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetTaskTemplateResult> getTaskTemplateAsync(
+            final GetTaskTemplateRequest getTaskTemplateRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<GetTaskTemplateResult>() {
+            public GetTaskTemplateResult call() throws Exception {
+                return getTaskTemplate(getTaskTemplateRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets details about a specific task template in the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param getTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         GetTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetTaskTemplateResult> getTaskTemplateAsync(
+            final GetTaskTemplateRequest getTaskTemplateRequest,
+            final AsyncHandler<GetTaskTemplateRequest, GetTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetTaskTemplateResult>() {
+            public GetTaskTemplateResult call() throws Exception {
+                GetTaskTemplateResult result = null;
+                try {
+                    result = getTaskTemplate(getTaskTemplateRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getTaskTemplateRequest, result);
                 return result;
             }
         });
@@ -7710,6 +8000,77 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Lists task templates for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listTaskTemplatesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTaskTemplates service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTaskTemplatesResult> listTaskTemplatesAsync(
+            final ListTaskTemplatesRequest listTaskTemplatesRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListTaskTemplatesResult>() {
+            public ListTaskTemplatesResult call() throws Exception {
+                return listTaskTemplates(listTaskTemplatesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Lists task templates for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listTaskTemplatesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTaskTemplates service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTaskTemplatesResult> listTaskTemplatesAsync(
+            final ListTaskTemplatesRequest listTaskTemplatesRequest,
+            final AsyncHandler<ListTaskTemplatesRequest, ListTaskTemplatesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTaskTemplatesResult>() {
+            public ListTaskTemplatesResult call() throws Exception {
+                ListTaskTemplatesResult result = null;
+                try {
+                    result = listTaskTemplates(listTaskTemplatesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTaskTemplatesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Lists the use cases for the integration association.
      * </p>
      * 
@@ -9351,8 +9712,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, hours of operation, and phone
-     * number.
+     * connects, contact flows, agent status, hours of operation, phone number,
+     * security profiles, and task templates.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -9393,8 +9754,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, hours of operation, and phone
-     * number.
+     * connects, contact flows, agent status, hours of operation, phone number,
+     * security profiles, and task templates.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -9432,6 +9793,157 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(tagResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Transfers contacts from one agent or queue to another agent or queue at
+     * any point after a contact is created. You can transfer a contact to
+     * another queue by providing the contact flow which orchestrates the
+     * contact to the destination queue. This gives you more control over
+     * contact handling and helps you adhere to the service level agreement
+     * (SLA) guaranteed to your customers.
+     * </p>
+     * <p>
+     * Note the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Transfer is supported for only <code>TASK</code> contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Do not use both <code>QueueId</code> and <code>UserId</code> in the same
+     * call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The following contact flow types are supported: Inbound contact flow,
+     * Transfer to agent flow, and Transfer to queue flow.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>TransferContact</code> API can be called only on active
+     * contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A contact cannot be transferred more than 11 times.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param transferContactRequest
+     * @return A Java Future object containing the response from the
+     *         TransferContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TransferContactResult> transferContactAsync(
+            final TransferContactRequest transferContactRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<TransferContactResult>() {
+            public TransferContactResult call() throws Exception {
+                return transferContact(transferContactRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Transfers contacts from one agent or queue to another agent or queue at
+     * any point after a contact is created. You can transfer a contact to
+     * another queue by providing the contact flow which orchestrates the
+     * contact to the destination queue. This gives you more control over
+     * contact handling and helps you adhere to the service level agreement
+     * (SLA) guaranteed to your customers.
+     * </p>
+     * <p>
+     * Note the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Transfer is supported for only <code>TASK</code> contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Do not use both <code>QueueId</code> and <code>UserId</code> in the same
+     * call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The following contact flow types are supported: Inbound contact flow,
+     * Transfer to agent flow, and Transfer to queue flow.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>TransferContact</code> API can be called only on active
+     * contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A contact cannot be transferred more than 11 times.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param transferContactRequest
+     * @return A Java Future object containing the response from the
+     *         TransferContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TransferContactResult> transferContactAsync(
+            final TransferContactRequest transferContactRequest,
+            final AsyncHandler<TransferContactRequest, TransferContactResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TransferContactResult>() {
+            public TransferContactResult call() throws Exception {
+                TransferContactResult result = null;
+                try {
+                    result = transferContact(transferContactRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(transferContactRequest, result);
                 return result;
             }
         });
@@ -11564,6 +12076,83 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(updateSecurityProfileRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates details about a specific task template in the specified Amazon
+     * Connect instance. This operation does not support partial updates.
+     * Instead it does a full update of template content.
+     * </p>
+     * 
+     * @param updateTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateTaskTemplateResult> updateTaskTemplateAsync(
+            final UpdateTaskTemplateRequest updateTaskTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateTaskTemplateResult>() {
+            public UpdateTaskTemplateResult call() throws Exception {
+                return updateTaskTemplate(updateTaskTemplateRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates details about a specific task template in the specified Amazon
+     * Connect instance. This operation does not support partial updates.
+     * Instead it does a full update of template content.
+     * </p>
+     * 
+     * @param updateTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateTaskTemplateResult> updateTaskTemplateAsync(
+            final UpdateTaskTemplateRequest updateTaskTemplateRequest,
+            final AsyncHandler<UpdateTaskTemplateRequest, UpdateTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateTaskTemplateResult>() {
+            public UpdateTaskTemplateResult call() throws Exception {
+                UpdateTaskTemplateResult result = null;
+                try {
+                    result = updateTaskTemplate(updateTaskTemplateRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateTaskTemplateRequest, result);
                 return result;
             }
         });
