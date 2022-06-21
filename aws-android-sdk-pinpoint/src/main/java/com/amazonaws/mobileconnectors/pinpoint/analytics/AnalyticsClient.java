@@ -15,12 +15,15 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
+import androidx.core.util.Consumer;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,6 +170,28 @@ public class AnalyticsClient implements JSONSerializable {
     public void submitEvents() {
         log.info("Submitting events.");
         eventRecorder.submitEvents();
+    }
+
+    /**
+     * Submit all recorded events and returns all the successfully submitted events.
+     * If the device is off line, this is a no-op. See
+     * {@link PinpointConfiguration}
+     * for customizing which Internet connection the SDK can submit on.
+     *
+     * @param onSuccess Callback to return successfully submitted events.
+     * @param onError Callback to return error.
+     */
+    public void submitEvents(
+        Consumer<List<AnalyticsEvent>> onSuccess,
+        Consumer<Exception> onError
+    ) {
+        log.info("Submitting events.");
+        try {
+            Future<List<AnalyticsEvent>> result = eventRecorder.submitEventsWithResult();
+            onSuccess.accept(result.get());
+        } catch (InterruptedException | ExecutionException exception) {
+            onError.accept(exception);
+        }
     }
 
     /**
