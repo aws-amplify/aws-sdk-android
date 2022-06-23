@@ -1,3 +1,10 @@
+## [Release 2.49.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.49.0)
+
+### Features
+- Add submitEvent API with callbacks (#2934)
+
+[See all changes between 2.48.1 and 2.49.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.48.1...release_v2.49.0)
+
 ## [Release 2.48.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.48.1)
 
 ### Miscellaneous
