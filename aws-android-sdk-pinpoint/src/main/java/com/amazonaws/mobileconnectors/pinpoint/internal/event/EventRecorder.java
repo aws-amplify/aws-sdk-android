@@ -26,7 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -250,6 +252,15 @@ public class EventRecorder {
         });
     }
 
+    public Future<List<AnalyticsEvent>> submitEventsWithResult() {
+        return submissionRunnableQueue.submit(new Callable<List<AnalyticsEvent>>() {
+            @Override
+            public List<AnalyticsEvent> call() throws Exception {
+                return processEvents();
+            }
+        });
+    }
+
     /**
      * Reads events of maximum of KEY_MAX_SUBMISSION_SIZE size.
      * The default max request size is DEFAULT_MAX_SUBMISSION_SIZE.
@@ -302,18 +313,18 @@ public class EventRecorder {
         return events;
     }
 
-    void processEvents() {
+    List<AnalyticsEvent> processEvents() {
         final long start = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
 
         Cursor cursor = null;
-
+        List<AnalyticsEvent> result = new ArrayList<>();
         try {
             cursor = dbUtil.queryAllEvents();
 
             if (!cursor.moveToFirst()) {
                 // if the cursor is empty there is nothing to do.
                 log.info("No events available to submit.");
-                return;
+                return result;
             }
 
             int submissions = 0;
@@ -336,6 +347,8 @@ public class EventRecorder {
                     submissions++;
                 }
 
+                //Add all successfully submitted events to result
+                result.addAll(getSuccessfullySyncedEvents(events, batchIdsAndSizeToDelete));
                 // Delete events from the local database. At this point batchIdsAndSizeToDelete
                 // reflects the set of events that can be deleted from the local database.
                 for (Integer id : batchIdsAndSizeToDelete.keySet()) {
@@ -351,12 +364,28 @@ public class EventRecorder {
             } while (cursor.moveToNext());
 
             log.info(String.format(Locale.US, "Time of attemptDelivery: %d",
-                    TimeUnit.NANOSECONDS.toMillis(System.nanoTime()) - start));
+                TimeUnit.NANOSECONDS.toMillis(System.nanoTime()) - start));
+        } catch (JSONException jsonException) {
+            log.error("Failed to parse to event object", jsonException);
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
         }
+        log.info(String.format("Submitted %s events", result.size()));
+        return result;
+    }
+
+    private List<AnalyticsEvent> getSuccessfullySyncedEvents(JSONArray events,
+                                                             HashMap<Integer, Integer> batchIdsAndSizeToDelete)
+        throws JSONException {
+        List<AnalyticsEvent> result = new ArrayList<>();
+        for (int i = 0; i<events.length(); i++) {
+            if (batchIdsAndSizeToDelete.containsKey(events.getJSONObject(i).getInt(DATABASE_ID_KEY))) {
+                result.add(AnalyticsEvent.translateToEvent(events.getJSONObject(i)));
+            }
+        }
+        return result;
     }
 
     private void submitEventsAndEndpoint(final JSONArray eventArray,
