@@ -1,3 +1,11 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---iot
 ## [Release 2.49.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.49.0)
 
 ### Features
