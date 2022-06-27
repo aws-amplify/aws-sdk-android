@@ -40,7 +40,7 @@ public class Tag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>0 - 256<br/>
      */
     private String value;
 
@@ -107,7 +107,7 @@ public class Tag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>0 - 256<br/>
      *
      * @return <p>
      *         The tag's value.
@@ -123,7 +123,7 @@ public class Tag implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>0 - 256<br/>
      *
      * @param value <p>
      *            The tag's value.
@@ -142,7 +142,7 @@ public class Tag implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
+     * <b>Length: </b>0 - 256<br/>
      *
      * @param value <p>
      *            The tag's value.
