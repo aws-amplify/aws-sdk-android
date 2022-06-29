@@ -52,7 +52,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specifies the format and S3 location of the input documents for the
+     * Specifies the format and location of the input documents for the
      * translation job.
      * </p>
      */
@@ -149,7 +149,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the request. This token is auto-generated when
+     * A unique identifier for the request. This token is generated for you when
      * using the Amazon Translate SDK.
      * </p>
      * <p>
@@ -162,7 +162,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * mask profane words and phrases. <code>StartTextTranslationJob</code> does
+     * not support the formality setting.
      * </p>
      */
     private TranslationSettings settings;
@@ -226,13 +227,13 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specifies the format and S3 location of the input documents for the
+     * Specifies the format and location of the input documents for the
      * translation job.
      * </p>
      *
      * @return <p>
-     *         Specifies the format and S3 location of the input documents for
-     *         the translation job.
+     *         Specifies the format and location of the input documents for the
+     *         translation job.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -241,13 +242,13 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specifies the format and S3 location of the input documents for the
+     * Specifies the format and location of the input documents for the
      * translation job.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            Specifies the format and S3 location of the input documents
-     *            for the translation job.
+     *            Specifies the format and location of the input documents for
+     *            the translation job.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -256,7 +257,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Specifies the format and S3 location of the input documents for the
+     * Specifies the format and location of the input documents for the
      * translation job.
      * </p>
      * <p>
@@ -264,8 +265,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param inputDataConfig <p>
-     *            Specifies the format and S3 location of the input documents
-     *            for the translation job.
+     *            Specifies the format and location of the input documents for
+     *            the translation job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -980,7 +981,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the request. This token is auto-generated when
+     * A unique identifier for the request. This token is generated for you when
      * using the Amazon Translate SDK.
      * </p>
      * <p>
@@ -989,8 +990,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[a-zA-Z0-9-]+$<br/>
      *
      * @return <p>
-     *         A unique identifier for the request. This token is auto-generated
-     *         when using the Amazon Translate SDK.
+     *         A unique identifier for the request. This token is generated for
+     *         you when using the Amazon Translate SDK.
      *         </p>
      */
     public String getClientToken() {
@@ -999,7 +1000,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the request. This token is auto-generated when
+     * A unique identifier for the request. This token is generated for you when
      * using the Amazon Translate SDK.
      * </p>
      * <p>
@@ -1008,8 +1009,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[a-zA-Z0-9-]+$<br/>
      *
      * @param clientToken <p>
-     *            A unique identifier for the request. This token is
-     *            auto-generated when using the Amazon Translate SDK.
+     *            A unique identifier for the request. This token is generated
+     *            for you when using the Amazon Translate SDK.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -1018,7 +1019,7 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the request. This token is auto-generated when
+     * A unique identifier for the request. This token is generated for you when
      * using the Amazon Translate SDK.
      * </p>
      * <p>
@@ -1030,8 +1031,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[a-zA-Z0-9-]+$<br/>
      *
      * @param clientToken <p>
-     *            A unique identifier for the request. This token is
-     *            auto-generated when using the Amazon Translate SDK.
+     *            A unique identifier for the request. This token is generated
+     *            for you when using the Amazon Translate SDK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1044,12 +1045,15 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * mask profane words and phrases. <code>StartTextTranslationJob</code> does
+     * not support the formality setting.
      * </p>
      *
      * @return <p>
      *         Settings to configure your translation output, including the
      *         option to mask profane words and phrases.
+     *         <code>StartTextTranslationJob</code> does not support the
+     *         formality setting.
      *         </p>
      */
     public TranslationSettings getSettings() {
@@ -1059,12 +1063,15 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * mask profane words and phrases. <code>StartTextTranslationJob</code> does
+     * not support the formality setting.
      * </p>
      *
      * @param settings <p>
      *            Settings to configure your translation output, including the
      *            option to mask profane words and phrases.
+     *            <code>StartTextTranslationJob</code> does not support the
+     *            formality setting.
      *            </p>
      */
     public void setSettings(TranslationSettings settings) {
@@ -1074,7 +1081,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * mask profane words and phrases. <code>StartTextTranslationJob</code> does
+     * not support the formality setting.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1083,6 +1091,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
      * @param settings <p>
      *            Settings to configure your translation output, including the
      *            option to mask profane words and phrases.
+     *            <code>StartTextTranslationJob</code> does not support the
+     *            formality setting.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

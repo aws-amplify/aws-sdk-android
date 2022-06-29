@@ -233,18 +233,17 @@ public interface AmazonTranslate {
 
     /**
      * <p>
-     * Creates or updates a custom terminology, depending on whether or not one
-     * already exists for the given terminology name. Importing a terminology
-     * with the same name as an existing one will merge the terminologies based
-     * on the chosen merge strategy. Currently, the only supported merge
-     * strategy is OVERWRITE, and so the imported terminology will overwrite an
-     * existing terminology of the same name.
+     * Creates or updates a custom terminology, depending on whether one already
+     * exists for the given terminology name. Importing a terminology with the
+     * same name as an existing one will merge the terminologies based on the
+     * chosen merge strategy. The only supported merge strategy is OVERWRITE,
+     * where the imported terminology overwrites the existing terminology of the
+     * same name.
      * </p>
      * <p>
      * If you import a terminology that overwrites an existing one, the new
-     * terminology take up to 10 minutes to fully propagate and be available for
-     * use in a translation due to cache policies with the DataPlane service
-     * that performs the translations.
+     * terminology takes up to 10 minutes to fully propagate. After that,
+     * translations have access to the new terminology.
      * </p>
      * 
      * @param importTerminologyRequest
@@ -263,6 +262,30 @@ public interface AmazonTranslate {
      *             request, or a server side issue.
      */
     ImportTerminologyResult importTerminology(ImportTerminologyRequest importTerminologyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides a list of languages (RFC-5646 codes and names) that Amazon
+     * Translate supports.
+     * </p>
+     * 
+     * @param listLanguagesRequest
+     * @return listLanguagesResult The response from the ListLanguages service
+     *         method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws UnsupportedDisplayLanguageCodeException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListLanguagesResult listLanguages(ListLanguagesRequest listLanguagesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

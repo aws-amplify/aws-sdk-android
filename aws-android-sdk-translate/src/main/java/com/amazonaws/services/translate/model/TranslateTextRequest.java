@@ -63,6 +63,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      * "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      * >Amazon Comprehend</a> to determine the source language.
      * </p>
+     * <note>
+     * <p>
+     * If you specify <code>auto</code>, you must send the
+     * <code>TranslateText</code> request in a region that supports Amazon
+     * Comprehend. Otherwise, the request returns an error indicating that
+     * autodetect is not supported.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
@@ -83,7 +91,8 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * set the formality level of the output text and the option to mask profane
+     * words and phrases.
      * </p>
      */
     private TranslationSettings settings;
@@ -269,6 +278,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      * "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      * >Amazon Comprehend</a> to determine the source language.
      * </p>
+     * <note>
+     * <p>
+     * If you specify <code>auto</code>, you must send the
+     * <code>TranslateText</code> request in a region that supports Amazon
+     * Comprehend. Otherwise, the request returns an error indicating that
+     * autodetect is not supported.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
@@ -286,6 +303,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      *         "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      *         >Amazon Comprehend</a> to determine the source language.
      *         </p>
+     *         <note>
+     *         <p>
+     *         If you specify <code>auto</code>, you must send the
+     *         <code>TranslateText</code> request in a region that supports
+     *         Amazon Comprehend. Otherwise, the request returns an error
+     *         indicating that autodetect is not supported.
+     *         </p>
+     *         </note>
      */
     public String getSourceLanguageCode() {
         return sourceLanguageCode;
@@ -305,6 +330,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      * "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      * >Amazon Comprehend</a> to determine the source language.
      * </p>
+     * <note>
+     * <p>
+     * If you specify <code>auto</code>, you must send the
+     * <code>TranslateText</code> request in a region that supports Amazon
+     * Comprehend. Otherwise, the request returns an error indicating that
+     * autodetect is not supported.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 5<br/>
@@ -322,6 +355,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      *            >Amazon Comprehend</a> to determine the source language.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you specify <code>auto</code>, you must send the
+     *            <code>TranslateText</code> request in a region that supports
+     *            Amazon Comprehend. Otherwise, the request returns an error
+     *            indicating that autodetect is not supported.
+     *            </p>
+     *            </note>
      */
     public void setSourceLanguageCode(String sourceLanguageCode) {
         this.sourceLanguageCode = sourceLanguageCode;
@@ -341,6 +382,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      * "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      * >Amazon Comprehend</a> to determine the source language.
      * </p>
+     * <note>
+     * <p>
+     * If you specify <code>auto</code>, you must send the
+     * <code>TranslateText</code> request in a region that supports Amazon
+     * Comprehend. Otherwise, the request returns an error indicating that
+     * autodetect is not supported.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -361,6 +410,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/comprehend-general.html"
      *            >Amazon Comprehend</a> to determine the source language.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you specify <code>auto</code>, you must send the
+     *            <code>TranslateText</code> request in a region that supports
+     *            Amazon Comprehend. Otherwise, the request returns an error
+     *            indicating that autodetect is not supported.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -434,11 +491,13 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * set the formality level of the output text and the option to mask profane
+     * words and phrases.
      * </p>
      *
      * @return <p>
      *         Settings to configure your translation output, including the
+     *         option to set the formality level of the output text and the
      *         option to mask profane words and phrases.
      *         </p>
      */
@@ -449,11 +508,13 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * set the formality level of the output text and the option to mask profane
+     * words and phrases.
      * </p>
      *
      * @param settings <p>
      *            Settings to configure your translation output, including the
+     *            option to set the formality level of the output text and the
      *            option to mask profane words and phrases.
      *            </p>
      */
@@ -464,7 +525,8 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * Settings to configure your translation output, including the option to
-     * mask profane words and phrases.
+     * set the formality level of the output text and the option to mask profane
+     * words and phrases.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -472,6 +534,7 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param settings <p>
      *            Settings to configure your translation output, including the
+     *            option to set the formality level of the output text and the
      *            option to mask profane words and phrases.
      *            </p>
      * @return A reference to this updated object so that method calls can be

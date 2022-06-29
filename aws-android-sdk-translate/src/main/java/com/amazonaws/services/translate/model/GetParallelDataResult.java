@@ -29,7 +29,7 @@ public class GetParallelDataResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent parallel data input file that
      * was successfully imported into Amazon Translate. The location is returned
-     * as a presigned URL that has a 30 minute expiration.
+     * as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -56,7 +56,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      */
     private ParallelDataDataLocation auxiliaryDataLocation;
@@ -66,7 +66,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to update a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      */
     private ParallelDataDataLocation latestUpdateAttemptAuxiliaryDataLocation;
@@ -124,7 +124,7 @@ public class GetParallelDataResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent parallel data input file that
      * was successfully imported into Amazon Translate. The location is returned
-     * as a presigned URL that has a 30 minute expiration.
+     * as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -147,7 +147,7 @@ public class GetParallelDataResult implements Serializable {
      * @return <p>
      *         The Amazon S3 location of the most recent parallel data input
      *         file that was successfully imported into Amazon Translate. The
-     *         location is returned as a presigned URL that has a 30 minute
+     *         location is returned as a presigned URL that has a 30-minute
      *         expiration.
      *         </p>
      *         <important>
@@ -176,7 +176,7 @@ public class GetParallelDataResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent parallel data input file that
      * was successfully imported into Amazon Translate. The location is returned
-     * as a presigned URL that has a 30 minute expiration.
+     * as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -199,7 +199,7 @@ public class GetParallelDataResult implements Serializable {
      * @param dataLocation <p>
      *            The Amazon S3 location of the most recent parallel data input
      *            file that was successfully imported into Amazon Translate. The
-     *            location is returned as a presigned URL that has a 30 minute
+     *            location is returned as a presigned URL that has a 30-minute
      *            expiration.
      *            </p>
      *            <important>
@@ -228,7 +228,7 @@ public class GetParallelDataResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent parallel data input file that
      * was successfully imported into Amazon Translate. The location is returned
-     * as a presigned URL that has a 30 minute expiration.
+     * as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -254,7 +254,7 @@ public class GetParallelDataResult implements Serializable {
      * @param dataLocation <p>
      *            The Amazon S3 location of the most recent parallel data input
      *            file that was successfully imported into Amazon Translate. The
-     *            location is returned as a presigned URL that has a 30 minute
+     *            location is returned as a presigned URL that has a 30-minute
      *            expiration.
      *            </p>
      *            <important>
@@ -287,7 +287,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @return <p>
@@ -295,7 +295,7 @@ public class GetParallelDataResult implements Serializable {
      *         warnings that were produced by your input file. This file was
      *         created when Amazon Translate attempted to create a parallel data
      *         resource. The location is returned as a presigned URL to that has
-     *         a 30 minute expiration.
+     *         a 30-minute expiration.
      *         </p>
      */
     public ParallelDataDataLocation getAuxiliaryDataLocation() {
@@ -307,7 +307,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @param auxiliaryDataLocation <p>
@@ -315,7 +315,7 @@ public class GetParallelDataResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to create a parallel
      *            data resource. The location is returned as a presigned URL to
-     *            that has a 30 minute expiration.
+     *            that has a 30-minute expiration.
      *            </p>
      */
     public void setAuxiliaryDataLocation(ParallelDataDataLocation auxiliaryDataLocation) {
@@ -327,7 +327,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -338,7 +338,7 @@ public class GetParallelDataResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to create a parallel
      *            data resource. The location is returned as a presigned URL to
-     *            that has a 30 minute expiration.
+     *            that has a 30-minute expiration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -354,7 +354,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to update a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @return <p>
@@ -362,7 +362,7 @@ public class GetParallelDataResult implements Serializable {
      *         warnings that were produced by your input file. This file was
      *         created when Amazon Translate attempted to update a parallel data
      *         resource. The location is returned as a presigned URL to that has
-     *         a 30 minute expiration.
+     *         a 30-minute expiration.
      *         </p>
      */
     public ParallelDataDataLocation getLatestUpdateAttemptAuxiliaryDataLocation() {
@@ -374,7 +374,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to update a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @param latestUpdateAttemptAuxiliaryDataLocation <p>
@@ -382,7 +382,7 @@ public class GetParallelDataResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to update a parallel
      *            data resource. The location is returned as a presigned URL to
-     *            that has a 30 minute expiration.
+     *            that has a 30-minute expiration.
      *            </p>
      */
     public void setLatestUpdateAttemptAuxiliaryDataLocation(
@@ -395,7 +395,7 @@ public class GetParallelDataResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to update a parallel data resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -406,7 +406,7 @@ public class GetParallelDataResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to update a parallel
      *            data resource. The location is returned as a presigned URL to
-     *            that has a 30 minute expiration.
+     *            that has a 30-minute expiration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

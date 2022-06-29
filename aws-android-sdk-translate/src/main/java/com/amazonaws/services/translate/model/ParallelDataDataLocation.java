@@ -38,7 +38,7 @@ public class ParallelDataDataLocation implements Serializable {
     /**
      * <p>
      * The Amazon S3 location of the parallel data input file. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -127,7 +127,7 @@ public class ParallelDataDataLocation implements Serializable {
     /**
      * <p>
      * The Amazon S3 location of the parallel data input file. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -153,7 +153,7 @@ public class ParallelDataDataLocation implements Serializable {
      *
      * @return <p>
      *         The Amazon S3 location of the parallel data input file. The
-     *         location is returned as a presigned URL to that has a 30 minute
+     *         location is returned as a presigned URL to that has a 30-minute
      *         expiration.
      *         </p>
      *         <important>
@@ -181,7 +181,7 @@ public class ParallelDataDataLocation implements Serializable {
     /**
      * <p>
      * The Amazon S3 location of the parallel data input file. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -207,8 +207,8 @@ public class ParallelDataDataLocation implements Serializable {
      *
      * @param location <p>
      *            The Amazon S3 location of the parallel data input file. The
-     *            location is returned as a presigned URL to that has a 30
-     *            minute expiration.
+     *            location is returned as a presigned URL to that has a
+     *            30-minute expiration.
      *            </p>
      *            <important>
      *            <p>
@@ -235,7 +235,7 @@ public class ParallelDataDataLocation implements Serializable {
     /**
      * <p>
      * The Amazon S3 location of the parallel data input file. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -264,8 +264,8 @@ public class ParallelDataDataLocation implements Serializable {
      *
      * @param location <p>
      *            The Amazon S3 location of the parallel data input file. The
-     *            location is returned as a presigned URL to that has a 30
-     *            minute expiration.
+     *            location is returned as a presigned URL to that has a
+     *            30-minute expiration.
      *            </p>
      *            <important>
      *            <p>

@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The value of the parameter is invalid. Review the value of the parameter you
- * are using to correct it, and then retry your operation.
+ * The value of the parameter is not valid. Review the value of the parameter
+ * you are using to correct it, and then retry your operation.
  * </p>
  */
 public class InvalidParameterValueException extends AmazonServiceException {

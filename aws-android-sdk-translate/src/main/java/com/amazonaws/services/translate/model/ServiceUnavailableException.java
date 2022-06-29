@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The Amazon Translate service is temporarily unavailable. Please wait a bit
- * and then retry your request.
+ * The Amazon Translate service is temporarily unavailable. Wait a bit and then
+ * retry your request.
  * </p>
  */
 public class ServiceUnavailableException extends AmazonServiceException {
