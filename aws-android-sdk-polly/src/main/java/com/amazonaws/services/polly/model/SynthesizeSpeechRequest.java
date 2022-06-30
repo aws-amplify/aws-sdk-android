@@ -184,7 +184,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      */
     private String voiceId;
 
@@ -1494,7 +1494,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -1524,7 +1524,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1557,7 +1557,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1590,7 +1590,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1623,7 +1623,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
