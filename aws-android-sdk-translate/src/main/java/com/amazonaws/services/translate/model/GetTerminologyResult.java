@@ -29,7 +29,7 @@ public class GetTerminologyResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent custom terminology input file
      * that was successfully imported into Amazon Translate. The location is
-     * returned as a presigned URL that has a 30 minute expiration.
+     * returned as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -56,7 +56,7 @@ public class GetTerminologyResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a terminology resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      */
     private TerminologyDataLocation auxiliaryDataLocation;
@@ -111,7 +111,7 @@ public class GetTerminologyResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent custom terminology input file
      * that was successfully imported into Amazon Translate. The location is
-     * returned as a presigned URL that has a 30 minute expiration.
+     * returned as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -134,7 +134,7 @@ public class GetTerminologyResult implements Serializable {
      * @return <p>
      *         The Amazon S3 location of the most recent custom terminology
      *         input file that was successfully imported into Amazon Translate.
-     *         The location is returned as a presigned URL that has a 30 minute
+     *         The location is returned as a presigned URL that has a 30-minute
      *         expiration.
      *         </p>
      *         <important>
@@ -163,7 +163,7 @@ public class GetTerminologyResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent custom terminology input file
      * that was successfully imported into Amazon Translate. The location is
-     * returned as a presigned URL that has a 30 minute expiration.
+     * returned as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -187,7 +187,7 @@ public class GetTerminologyResult implements Serializable {
      *            The Amazon S3 location of the most recent custom terminology
      *            input file that was successfully imported into Amazon
      *            Translate. The location is returned as a presigned URL that
-     *            has a 30 minute expiration.
+     *            has a 30-minute expiration.
      *            </p>
      *            <important>
      *            <p>
@@ -215,7 +215,7 @@ public class GetTerminologyResult implements Serializable {
      * <p>
      * The Amazon S3 location of the most recent custom terminology input file
      * that was successfully imported into Amazon Translate. The location is
-     * returned as a presigned URL that has a 30 minute expiration.
+     * returned as a presigned URL that has a 30-minute expiration.
      * </p>
      * <important>
      * <p>
@@ -242,7 +242,7 @@ public class GetTerminologyResult implements Serializable {
      *            The Amazon S3 location of the most recent custom terminology
      *            input file that was successfully imported into Amazon
      *            Translate. The location is returned as a presigned URL that
-     *            has a 30 minute expiration.
+     *            has a 30-minute expiration.
      *            </p>
      *            <important>
      *            <p>
@@ -275,7 +275,7 @@ public class GetTerminologyResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a terminology resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @return <p>
@@ -283,7 +283,7 @@ public class GetTerminologyResult implements Serializable {
      *         warnings that were produced by your input file. This file was
      *         created when Amazon Translate attempted to create a terminology
      *         resource. The location is returned as a presigned URL to that has
-     *         a 30 minute expiration.
+     *         a 30-minute expiration.
      *         </p>
      */
     public TerminologyDataLocation getAuxiliaryDataLocation() {
@@ -295,7 +295,7 @@ public class GetTerminologyResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a terminology resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      *
      * @param auxiliaryDataLocation <p>
@@ -303,7 +303,7 @@ public class GetTerminologyResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to create a
      *            terminology resource. The location is returned as a presigned
-     *            URL to that has a 30 minute expiration.
+     *            URL to that has a 30-minute expiration.
      *            </p>
      */
     public void setAuxiliaryDataLocation(TerminologyDataLocation auxiliaryDataLocation) {
@@ -315,7 +315,7 @@ public class GetTerminologyResult implements Serializable {
      * The Amazon S3 location of a file that provides any errors or warnings
      * that were produced by your input file. This file was created when Amazon
      * Translate attempted to create a terminology resource. The location is
-     * returned as a presigned URL to that has a 30 minute expiration.
+     * returned as a presigned URL to that has a 30-minute expiration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -326,7 +326,7 @@ public class GetTerminologyResult implements Serializable {
      *            warnings that were produced by your input file. This file was
      *            created when Amazon Translate attempted to create a
      *            terminology resource. The location is returned as a presigned
-     *            URL to that has a 30 minute expiration.
+     *            URL to that has a 30-minute expiration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
