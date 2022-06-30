@@ -1,3 +1,12 @@
+## [Release 2.50.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.50.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#2936)
+- **aws-android-sdk-translate:** update models to latest (#2940)
+- **aws-android-sdk-polly:** update models to latest (#2938)
+
+[See all changes between 2.49.0 and 2.50.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.49.0...release_v2.50.0)
+
 ## [Release 2.49.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.49.0)
 
 ### Features
