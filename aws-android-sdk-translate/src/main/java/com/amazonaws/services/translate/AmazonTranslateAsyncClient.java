@@ -696,18 +696,17 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Creates or updates a custom terminology, depending on whether or not one
-     * already exists for the given terminology name. Importing a terminology
-     * with the same name as an existing one will merge the terminologies based
-     * on the chosen merge strategy. Currently, the only supported merge
-     * strategy is OVERWRITE, and so the imported terminology will overwrite an
-     * existing terminology of the same name.
+     * Creates or updates a custom terminology, depending on whether one already
+     * exists for the given terminology name. Importing a terminology with the
+     * same name as an existing one will merge the terminologies based on the
+     * chosen merge strategy. The only supported merge strategy is OVERWRITE,
+     * where the imported terminology overwrites the existing terminology of the
+     * same name.
      * </p>
      * <p>
      * If you import a terminology that overwrites an existing one, the new
-     * terminology take up to 10 minutes to fully propagate and be available for
-     * use in a translation due to cache policies with the DataPlane service
-     * that performs the translations.
+     * terminology takes up to 10 minutes to fully propagate. After that,
+     * translations have access to the new terminology.
      * </p>
      * 
      * @param importTerminologyRequest
@@ -738,18 +737,17 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
-     * Creates or updates a custom terminology, depending on whether or not one
-     * already exists for the given terminology name. Importing a terminology
-     * with the same name as an existing one will merge the terminologies based
-     * on the chosen merge strategy. Currently, the only supported merge
-     * strategy is OVERWRITE, and so the imported terminology will overwrite an
-     * existing terminology of the same name.
+     * Creates or updates a custom terminology, depending on whether one already
+     * exists for the given terminology name. Importing a terminology with the
+     * same name as an existing one will merge the terminologies based on the
+     * chosen merge strategy. The only supported merge strategy is OVERWRITE,
+     * where the imported terminology overwrites the existing terminology of the
+     * same name.
      * </p>
      * <p>
      * If you import a terminology that overwrites an existing one, the new
-     * terminology take up to 10 minutes to fully propagate and be available for
-     * use in a translation due to cache policies with the DataPlane service
-     * that performs the translations.
+     * terminology takes up to 10 minutes to fully propagate. After that,
+     * translations have access to the new terminology.
      * </p>
      * 
      * @param importTerminologyRequest
@@ -782,6 +780,77 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(importTerminologyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of languages (RFC-5646 codes and names) that Amazon
+     * Translate supports.
+     * </p>
+     * 
+     * @param listLanguagesRequest
+     * @return A Java Future object containing the response from the
+     *         ListLanguages service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws UnsupportedDisplayLanguageCodeException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListLanguagesResult> listLanguagesAsync(
+            final ListLanguagesRequest listLanguagesRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListLanguagesResult>() {
+            public ListLanguagesResult call() throws Exception {
+                return listLanguages(listLanguagesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of languages (RFC-5646 codes and names) that Amazon
+     * Translate supports.
+     * </p>
+     * 
+     * @param listLanguagesRequest
+     * @return A Java Future object containing the response from the
+     *         ListLanguages service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws UnsupportedDisplayLanguageCodeException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListLanguagesResult> listLanguagesAsync(
+            final ListLanguagesRequest listLanguagesRequest,
+            final AsyncHandler<ListLanguagesRequest, ListLanguagesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListLanguagesResult>() {
+            public ListLanguagesResult call() throws Exception {
+                ListLanguagesResult result = null;
+                try {
+                    result = listLanguages(listLanguagesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listLanguagesRequest, result);
                 return result;
             }
         });

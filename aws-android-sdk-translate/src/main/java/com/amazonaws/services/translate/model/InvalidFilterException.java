@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The filter specified for the operation is invalid. Specify a different
+ * The filter specified for the operation is not valid. Specify a different
  * filter.
  * </p>
  */
