@@ -705,19 +705,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     JSONObject getHostedUIJSON(final AWSConfiguration awsConfig) {
         try {
             JSONObject hostedUIJSONFromJSON = getHostedUIJSONFromJSON(awsConfig);
-            if (hostedUIJSONFromJSON == null) {
-                return null;
-            }
-
             final String hostedUIString = mStore.get(HOSTED_UI_KEY);
             JSONObject hostedUIJSON = null;
             try {
                 hostedUIJSON = new JSONObject(hostedUIString);
             } catch (Exception e) {
                 Log.w(TAG,
-                        "Failed to parse HostedUI settings from store. Defaulting to awsconfiguration.json", e);
+                        "Failed to parse HostedUI settings from store", e);
             }
-            if (hostedUIJSON == null && hostedUIJSONFromJSON != null) {
+            if (hostedUIJSONFromJSON != null && (hostedUIJSON == null || hostedUIJSON.toString() != hostedUIJSONFromJSON.toString())) {
                 hostedUIJSON = new JSONObject(hostedUIJSONFromJSON.toString());
                 mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
             }
