@@ -49,14 +49,19 @@ public class TransferService extends Service {
     static TransferNetworkLossHandler transferNetworkLossHandler;
 
     /**
-     * A flag indicates whether the service is started the first time.
+     * A flag indicates whether or not the receiver has is started the first time.
      */
     boolean isReceiverNotRegistered = true;
 
     /**
+     * A flag that indicates whether or not the Foreground notification started
+     */
+    boolean hasNotificationShown = false;
+
+    /**
      * The identifier used for the notification.
      */
-    private int ongoingNotificationId = 1;
+    private int ongoingNotificationId = 3462;
 
     /**
      * This flag determines if the notification needs to be removed
@@ -137,7 +142,8 @@ public class TransferService extends Service {
          * b) An identifier for the ongoing notification c) Flag that determines if the notification
          * needs to be removed when the service is moved out of the foreground state.
          */
-        if (Build.VERSION.SDK_INT >= ANDROID_OREO) {
+        if (Build.VERSION.SDK_INT >= ANDROID_OREO && !hasNotificationShown) {
+            hasNotificationShown = true;
             try {
                 synchronized (this) {
                     final Notification userProvidedNotification = (Notification) intent.getParcelableExtra(INTENT_KEY_NOTIFICATION);
