@@ -49,7 +49,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String encryptionAlgorithm;
 
@@ -195,7 +195,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         The encryption algorithm that was used to encrypt the plaintext.
@@ -213,7 +213,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            The encryption algorithm that was used to encrypt the
@@ -235,7 +235,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            The encryption algorithm that was used to encrypt the
@@ -257,7 +257,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            The encryption algorithm that was used to encrypt the
@@ -279,7 +279,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            The encryption algorithm that was used to encrypt the
