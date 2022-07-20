@@ -245,7 +245,11 @@ public class Job implements Serializable {
     private java.util.Map<String, String> documentParameters;
 
     /**
-     * The new value for the isConcurrent property for this object.
+     * <p>
+     * Indicates whether a job is concurrent. Will be true when a job is rolling
+     * out new job executions or canceling previously created executions,
+     * otherwise false.
+     * </p>
      */
     private Boolean isConcurrent;
 
@@ -1817,41 +1821,71 @@ public class Job implements Serializable {
     }
 
     /**
-     * Returns the value of the isConcurrent property for this object.
+     * <p>
+     * Indicates whether a job is concurrent. Will be true when a job is rolling
+     * out new job executions or canceling previously created executions,
+     * otherwise false.
+     * </p>
      *
-     * @return The value of the isConcurrent property for this object.
+     * @return <p>
+     *         Indicates whether a job is concurrent. Will be true when a job is
+     *         rolling out new job executions or canceling previously created
+     *         executions, otherwise false.
+     *         </p>
      */
     public Boolean isIsConcurrent() {
         return isConcurrent;
     }
 
     /**
-     * Returns the value of the isConcurrent property for this object.
+     * <p>
+     * Indicates whether a job is concurrent. Will be true when a job is rolling
+     * out new job executions or canceling previously created executions,
+     * otherwise false.
+     * </p>
      *
-     * @return The value of the isConcurrent property for this object.
+     * @return <p>
+     *         Indicates whether a job is concurrent. Will be true when a job is
+     *         rolling out new job executions or canceling previously created
+     *         executions, otherwise false.
+     *         </p>
      */
     public Boolean getIsConcurrent() {
         return isConcurrent;
     }
 
     /**
-     * Sets the value of isConcurrent
+     * <p>
+     * Indicates whether a job is concurrent. Will be true when a job is rolling
+     * out new job executions or canceling previously created executions,
+     * otherwise false.
+     * </p>
      *
-     * @param isConcurrent The new value for the isConcurrent property for this
-     *            object.
+     * @param isConcurrent <p>
+     *            Indicates whether a job is concurrent. Will be true when a job
+     *            is rolling out new job executions or canceling previously
+     *            created executions, otherwise false.
+     *            </p>
      */
     public void setIsConcurrent(Boolean isConcurrent) {
         this.isConcurrent = isConcurrent;
     }
 
     /**
-     * Sets the value of the isConcurrent property for this object.
+     * <p>
+     * Indicates whether a job is concurrent. Will be true when a job is rolling
+     * out new job executions or canceling previously created executions,
+     * otherwise false.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param isConcurrent The new value for the isConcurrent property for this
-     *            object.
+     * @param isConcurrent <p>
+     *            Indicates whether a job is concurrent. Will be true when a job
+     *            is rolling out new job executions or canceling previously
+     *            created executions, otherwise false.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
