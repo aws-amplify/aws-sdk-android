@@ -251,8 +251,8 @@ class TransferStatusUpdater {
             if (!TransferState.isFinalState(record.state)) {
                 stopTransferService = false;
                 LOGGER.info("Transfers still pending, keeping TransferService running.");
+                break;
             }
-            break;
         }
         if (stopTransferService) {
             LOGGER.info("All transfers in final state. Stopping TransferService");
