@@ -713,6 +713,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 Log.w(TAG,
                         "Failed to parse HostedUI settings from store", e);
             }
+
+            // Since there is no file watcher to keep track of when config file changes, this logic is intended to always check if the config file is different from mstore cache and updates the later accordingly.
+            // If config file cannot be loaded, the mstore data still prevails.
             if (hostedUIJSONFromJSON != null && (hostedUIJSON == null || hostedUIJSON.toString() != hostedUIJSONFromJSON.toString())) {
                 hostedUIJSON = new JSONObject(hostedUIJSONFromJSON.toString());
                 mStore.set(HOSTED_UI_KEY, hostedUIJSON.toString());
