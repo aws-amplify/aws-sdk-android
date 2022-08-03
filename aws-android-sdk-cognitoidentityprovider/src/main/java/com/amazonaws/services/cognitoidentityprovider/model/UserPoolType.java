@@ -173,7 +173,7 @@ public class UserPoolType implements Serializable {
      * value of your users' email address and phone number attributes. For more
      * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     * > Verifying updates to to email addresses and phone numbers</a>.
+     * > Verifying updates to email addresses and phone numbers</a>.
      * </p>
      */
     private UserAttributeUpdateSettingsType userAttributeUpdateSettings;
@@ -210,8 +210,15 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The device configuration.
+     * The device-remembering configuration for a user pool. A null value
+     * indicates that you have deactivated device remembering in your user pool.
      * </p>
+     * <note>
+     * <p>
+     * When you provide a value for any <code>DeviceConfiguration</code> field,
+     * you activate the Amazon Cognito device-remembering feature.
+     * </p>
+     * </note>
      */
     private DeviceConfigurationType deviceConfiguration;
 
@@ -1369,7 +1376,7 @@ public class UserPoolType implements Serializable {
      * value of your users' email address and phone number attributes. For more
      * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     * > Verifying updates to to email addresses and phone numbers</a>.
+     * > Verifying updates to email addresses and phone numbers</a>.
      * </p>
      *
      * @return <p>
@@ -1380,7 +1387,7 @@ public class UserPoolType implements Serializable {
      *         to the value of your users' email address and phone number
      *         attributes. For more information, see <a href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     *         > Verifying updates to to email addresses and phone numbers</a>.
+     *         > Verifying updates to email addresses and phone numbers</a>.
      *         </p>
      */
     public UserAttributeUpdateSettingsType getUserAttributeUpdateSettings() {
@@ -1395,7 +1402,7 @@ public class UserPoolType implements Serializable {
      * value of your users' email address and phone number attributes. For more
      * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     * > Verifying updates to to email addresses and phone numbers</a>.
+     * > Verifying updates to email addresses and phone numbers</a>.
      * </p>
      *
      * @param userAttributeUpdateSettings <p>
@@ -1406,8 +1413,7 @@ public class UserPoolType implements Serializable {
      *            changes to the value of your users' email address and phone
      *            number attributes. For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     *            > Verifying updates to to email addresses and phone
-     *            numbers</a>.
+     *            > Verifying updates to email addresses and phone numbers</a>.
      *            </p>
      */
     public void setUserAttributeUpdateSettings(
@@ -1423,7 +1429,7 @@ public class UserPoolType implements Serializable {
      * value of your users' email address and phone number attributes. For more
      * information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     * > Verifying updates to to email addresses and phone numbers</a>.
+     * > Verifying updates to email addresses and phone numbers</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1437,8 +1443,7 @@ public class UserPoolType implements Serializable {
      *            changes to the value of your users' email address and phone
      *            number attributes. For more information, see <a href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html#user-pool-settings-verifications-verify-attribute-updates"
-     *            > Verifying updates to to email addresses and phone
-     *            numbers</a>.
+     *            > Verifying updates to email addresses and phone numbers</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1753,12 +1758,28 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The device configuration.
+     * The device-remembering configuration for a user pool. A null value
+     * indicates that you have deactivated device remembering in your user pool.
      * </p>
+     * <note>
+     * <p>
+     * When you provide a value for any <code>DeviceConfiguration</code> field,
+     * you activate the Amazon Cognito device-remembering feature.
+     * </p>
+     * </note>
      *
      * @return <p>
-     *         The device configuration.
+     *         The device-remembering configuration for a user pool. A null
+     *         value indicates that you have deactivated device remembering in
+     *         your user pool.
      *         </p>
+     *         <note>
+     *         <p>
+     *         When you provide a value for any <code>DeviceConfiguration</code>
+     *         field, you activate the Amazon Cognito device-remembering
+     *         feature.
+     *         </p>
+     *         </note>
      */
     public DeviceConfigurationType getDeviceConfiguration() {
         return deviceConfiguration;
@@ -1766,12 +1787,28 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The device configuration.
+     * The device-remembering configuration for a user pool. A null value
+     * indicates that you have deactivated device remembering in your user pool.
      * </p>
+     * <note>
+     * <p>
+     * When you provide a value for any <code>DeviceConfiguration</code> field,
+     * you activate the Amazon Cognito device-remembering feature.
+     * </p>
+     * </note>
      *
      * @param deviceConfiguration <p>
-     *            The device configuration.
+     *            The device-remembering configuration for a user pool. A null
+     *            value indicates that you have deactivated device remembering
+     *            in your user pool.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When you provide a value for any
+     *            <code>DeviceConfiguration</code> field, you activate the
+     *            Amazon Cognito device-remembering feature.
+     *            </p>
+     *            </note>
      */
     public void setDeviceConfiguration(DeviceConfigurationType deviceConfiguration) {
         this.deviceConfiguration = deviceConfiguration;
@@ -1779,15 +1816,31 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The device configuration.
+     * The device-remembering configuration for a user pool. A null value
+     * indicates that you have deactivated device remembering in your user pool.
      * </p>
+     * <note>
+     * <p>
+     * When you provide a value for any <code>DeviceConfiguration</code> field,
+     * you activate the Amazon Cognito device-remembering feature.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deviceConfiguration <p>
-     *            The device configuration.
+     *            The device-remembering configuration for a user pool. A null
+     *            value indicates that you have deactivated device remembering
+     *            in your user pool.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When you provide a value for any
+     *            <code>DeviceConfiguration</code> field, you activate the
+     *            Amazon Cognito device-remembering feature.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
