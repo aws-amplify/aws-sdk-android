@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a fleet provisioning template.
+ * Deletes a provisioning template.
  * </p>
  * <p>
  * Requires permission to access the <a href=
