@@ -1,3 +1,10 @@
+## [Release 2.50.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.50.1)
+
+### Miscellaneous
+- Fix: Prevent startForeground crash and TransferService stopping while transfers ongoing (#2961)
+
+[See all changes between 2.50.0 and 2.50.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.50.0...release_v2.50.1)
+
 ## [Release 2.50.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.50.0)
 
 ### Features
