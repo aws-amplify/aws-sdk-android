@@ -17,6 +17,7 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -246,17 +247,19 @@ class TransferStatusUpdater {
 
         // If all transfers in local map are completed,
         // stop TransferService to clear foreground notification
-        boolean stopTransferService = true;
-        for (TransferRecord record: transfers.values()) {
-            if (!TransferState.isFinalState(record.state)) {
-                stopTransferService = false;
-                LOGGER.info("Transfers still pending, keeping TransferService running.");
+        if (Build.VERSION.SDK_INT >= 26) {
+            boolean stopTransferService = true;
+            for (TransferRecord record : transfers.values()) {
+                if (!TransferState.isFinalState(record.state)) {
+                    stopTransferService = false;
+                    LOGGER.info("Transfers still pending, keeping TransferService running.");
+                    break;
+                }
             }
-            break;
-        }
-        if (stopTransferService) {
-            LOGGER.info("All transfers in final state. Stopping TransferService");
-            context.stopService(new Intent(context, TransferService.class));
+            if (stopTransferService) {
+                LOGGER.info("All transfers in final state. Stopping TransferService");
+                context.stopService(new Intent(context, TransferService.class));
+            }
         }
     }
 
