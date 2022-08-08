@@ -127,4 +127,10 @@ public enum TransferState {
                 + " transfer will be have state set to UNKNOWN.");
         return UNKNOWN;
     }
+
+    protected static boolean isFinalState(TransferState transferState) {
+        return TransferState.COMPLETED.equals(transferState) ||
+                TransferState.FAILED.equals(transferState) ||
+                TransferState.CANCELED.equals(transferState);
+    }
 }
