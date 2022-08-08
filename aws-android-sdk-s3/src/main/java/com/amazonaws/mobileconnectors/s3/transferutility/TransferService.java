@@ -49,14 +49,14 @@ public class TransferService extends Service {
     static TransferNetworkLossHandler transferNetworkLossHandler;
 
     /**
-     * A flag indicates whether the service is started the first time.
+     * A flag indicates whether or not the receiver has is started the first time.
      */
     boolean isReceiverNotRegistered = true;
 
     /**
      * The identifier used for the notification.
      */
-    private int ongoingNotificationId = 1;
+    private int ongoingNotificationId = 3462;
 
     /**
      * This flag determines if the notification needs to be removed
