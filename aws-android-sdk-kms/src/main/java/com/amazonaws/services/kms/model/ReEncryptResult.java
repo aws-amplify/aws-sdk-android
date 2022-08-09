@@ -60,7 +60,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String sourceEncryptionAlgorithm;
 
@@ -71,7 +71,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String destinationEncryptionAlgorithm;
 
@@ -274,7 +274,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         The encryption algorithm that was used to decrypt the ciphertext
@@ -294,7 +294,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to decrypt the
@@ -317,7 +317,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to decrypt the
@@ -340,7 +340,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to decrypt the
@@ -363,7 +363,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to decrypt the
@@ -386,7 +386,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         The encryption algorithm that was used to reencrypt the data.
@@ -404,7 +404,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to reencrypt the data.
@@ -425,7 +425,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to reencrypt the data.
@@ -446,7 +446,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to reencrypt the data.
@@ -468,7 +468,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            The encryption algorithm that was used to reencrypt the data.

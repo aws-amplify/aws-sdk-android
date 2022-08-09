@@ -32,9 +32,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To generate a data key, specify the symmetric encryption KMS key that will be
  * used to encrypt the data key. You cannot use an asymmetric KMS key to encrypt
  * data keys. To get the type of your KMS key, use the <a>DescribeKey</a>
- * operation. You must also specify the length of the data key. Use either the
+ * operation.
+ * </p>
+ * <p>
+ * You must also specify the length of the data key. Use either the
  * <code>KeySpec</code> or <code>NumberOfBytes</code> parameters (but not both).
  * For 128-bit and 256-bit data keys, use the <code>KeySpec</code> parameter.
+ * </p>
+ * <p>
+ * To generate an SM4 data key (China Regions only), specify a
+ * <code>KeySpec</code> value of <code>AES_128</code> or
+ * <code>NumberOfBytes</code> value of <code>128</code>. The symmetric
+ * encryption key used in China Regions to encrypt your data key is an SM4
+ * encryption key.
  * </p>
  * <p>
  * To get only an encrypted copy of the data key, use

@@ -45,7 +45,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * If you specify an asymmetric KMS key, you must also specify the encryption
- * algorithm. The algorithm must be compatible with the KMS key type.
+ * algorithm. The algorithm must be compatible with the KMS key spec.
  * </p>
  * <important>
  * <p>
@@ -130,6 +130,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * </li>
+ * <li>
+ * <p>
+ * <code>SM2PKE</code>: 1024 bytes (China Regions only)
+ * </p>
  * </li>
  * </ul>
  * <p>
@@ -291,7 +296,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String encryptionAlgorithm;
 
@@ -1049,7 +1054,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         Specifies the encryption algorithm that KMS will use to encrypt
@@ -1083,7 +1088,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1120,7 +1125,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1157,7 +1162,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1194,7 +1199,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to

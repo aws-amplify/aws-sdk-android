@@ -214,7 +214,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      */
     private String signingAlgorithm;
 
@@ -898,7 +899,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      *
      * @return <p>
      *         Specifies the signing algorithm to use when signing the message.
@@ -925,7 +927,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      *
      * @param signingAlgorithm <p>
      *            Specifies the signing algorithm to use when signing the
@@ -956,7 +959,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      *
      * @param signingAlgorithm <p>
      *            Specifies the signing algorithm to use when signing the
@@ -987,7 +991,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      *
      * @param signingAlgorithm <p>
      *            Specifies the signing algorithm to use when signing the
@@ -1018,7 +1023,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSASSA_PSS_SHA_256, RSASSA_PSS_SHA_384,
      * RSASSA_PSS_SHA_512, RSASSA_PKCS1_V1_5_SHA_256, RSASSA_PKCS1_V1_5_SHA_384,
-     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512
+     * RSASSA_PKCS1_V1_5_SHA_512, ECDSA_SHA_256, ECDSA_SHA_384, ECDSA_SHA_512,
+     * SM2DSA
      *
      * @param signingAlgorithm <p>
      *            Specifies the signing algorithm to use when signing the
