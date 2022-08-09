@@ -57,6 +57,11 @@ class ProvisioningTemplateSummaryJsonMarshaller {
             jsonWriter.name("enabled");
             jsonWriter.value(enabled);
         }
+        if (provisioningTemplateSummary.getType() != null) {
+            String type = provisioningTemplateSummary.getType();
+            jsonWriter.name("type");
+            jsonWriter.value(type);
+        }
         jsonWriter.endObject();
     }
 

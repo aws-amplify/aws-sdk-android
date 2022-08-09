@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * A list of fleet provisioning template versions.
+ * A list of provisioning template versions.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -33,7 +33,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
         Serializable {
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +69,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -78,7 +78,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -95,7 +95,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +106,7 @@ public class ListProvisioningTemplateVersionsRequest extends AmazonWebServiceReq
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
