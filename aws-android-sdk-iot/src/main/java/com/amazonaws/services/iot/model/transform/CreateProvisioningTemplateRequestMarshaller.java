@@ -105,6 +105,11 @@ public class CreateProvisioningTemplateRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createProvisioningTemplateRequest.getType() != null) {
+                String type = createProvisioningTemplateRequest.getType();
+                jsonWriter.name("type");
+                jsonWriter.value(type);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

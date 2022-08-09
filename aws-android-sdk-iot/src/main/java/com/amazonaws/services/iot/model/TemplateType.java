@@ -13,24 +13,22 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.kms.model;
+package com.amazonaws.services.iot.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Encryption Algorithm Spec
+ * Template Type
  */
-public enum EncryptionAlgorithmSpec {
+public enum TemplateType {
 
-    SYMMETRIC_DEFAULT("SYMMETRIC_DEFAULT"),
-    RSAES_OAEP_SHA_1("RSAES_OAEP_SHA_1"),
-    RSAES_OAEP_SHA_256("RSAES_OAEP_SHA_256"),
-    SM2PKE("SM2PKE");
+    FLEET_PROVISIONING("FLEET_PROVISIONING"),
+    JITP("JITP");
 
     private String value;
 
-    private EncryptionAlgorithmSpec(String value) {
+    private TemplateType(String value) {
         this.value = value;
     }
 
@@ -39,22 +37,20 @@ public enum EncryptionAlgorithmSpec {
         return value;
     }
 
-    private static final Map<String, EncryptionAlgorithmSpec> enumMap;
+    private static final Map<String, TemplateType> enumMap;
     static {
-        enumMap = new HashMap<String, EncryptionAlgorithmSpec>();
-        enumMap.put("SYMMETRIC_DEFAULT", SYMMETRIC_DEFAULT);
-        enumMap.put("RSAES_OAEP_SHA_1", RSAES_OAEP_SHA_1);
-        enumMap.put("RSAES_OAEP_SHA_256", RSAES_OAEP_SHA_256);
-        enumMap.put("SM2PKE", SM2PKE);
+        enumMap = new HashMap<String, TemplateType>();
+        enumMap.put("FLEET_PROVISIONING", FLEET_PROVISIONING);
+        enumMap.put("JITP", JITP);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return EncryptionAlgorithmSpec corresponding to the value
+     * @return TemplateType corresponding to the value
      */
-    public static EncryptionAlgorithmSpec fromValue(String value) {
+    public static TemplateType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

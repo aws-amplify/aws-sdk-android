@@ -54,6 +54,9 @@ class ProvisioningTemplateSummaryJsonUnmarshaller implements
             } else if (name.equals("enabled")) {
                 provisioningTemplateSummary.setEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("type")) {
+                provisioningTemplateSummary.setType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

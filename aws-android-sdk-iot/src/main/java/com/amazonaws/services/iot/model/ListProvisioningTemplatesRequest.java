@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the fleet provisioning templates in your Amazon Web Services account.
+ * Lists the provisioning templates in your Amazon Web Services account.
  * </p>
  * <p>
  * Requires permission to access the <a href=

@@ -95,6 +95,11 @@ class ProjectVersionDescriptionJsonMarshaller {
             jsonWriter.name("KmsKeyId");
             jsonWriter.value(kmsKeyId);
         }
+        if (projectVersionDescription.getMaxInferenceUnits() != null) {
+            Integer maxInferenceUnits = projectVersionDescription.getMaxInferenceUnits();
+            jsonWriter.name("MaxInferenceUnits");
+            jsonWriter.value(maxInferenceUnits);
+        }
         jsonWriter.endObject();
     }
 

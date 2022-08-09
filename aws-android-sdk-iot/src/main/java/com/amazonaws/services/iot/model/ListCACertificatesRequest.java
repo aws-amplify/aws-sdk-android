@@ -64,6 +64,17 @@ public class ListCACertificatesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
+     * The name of the provisioning template.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 36<br/>
+     * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
+     */
+    private String templateName;
+
+    /**
+     * <p>
      * The result page size.
      * </p>
      * <p>
@@ -232,6 +243,63 @@ public class ListCACertificatesRequest extends AmazonWebServiceRequest implement
     }
 
     /**
+     * <p>
+     * The name of the provisioning template.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 36<br/>
+     * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
+     *
+     * @return <p>
+     *         The name of the provisioning template.
+     *         </p>
+     */
+    public String getTemplateName() {
+        return templateName;
+    }
+
+    /**
+     * <p>
+     * The name of the provisioning template.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 36<br/>
+     * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
+     *
+     * @param templateName <p>
+     *            The name of the provisioning template.
+     *            </p>
+     */
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
+    /**
+     * <p>
+     * The name of the provisioning template.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 36<br/>
+     * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
+     *
+     * @param templateName <p>
+     *            The name of the provisioning template.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListCACertificatesRequest withTemplateName(String templateName) {
+        this.templateName = templateName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -247,7 +315,9 @@ public class ListCACertificatesRequest extends AmazonWebServiceRequest implement
         if (getMarker() != null)
             sb.append("marker: " + getMarker() + ",");
         if (getAscendingOrder() != null)
-            sb.append("ascendingOrder: " + getAscendingOrder());
+            sb.append("ascendingOrder: " + getAscendingOrder() + ",");
+        if (getTemplateName() != null)
+            sb.append("templateName: " + getTemplateName());
         sb.append("}");
         return sb.toString();
     }
@@ -261,6 +331,8 @@ public class ListCACertificatesRequest extends AmazonWebServiceRequest implement
         hashCode = prime * hashCode + ((getMarker() == null) ? 0 : getMarker().hashCode());
         hashCode = prime * hashCode
                 + ((getAscendingOrder() == null) ? 0 : getAscendingOrder().hashCode());
+        hashCode = prime * hashCode
+                + ((getTemplateName() == null) ? 0 : getTemplateName().hashCode());
         return hashCode;
     }
 
@@ -287,6 +359,11 @@ public class ListCACertificatesRequest extends AmazonWebServiceRequest implement
             return false;
         if (other.getAscendingOrder() != null
                 && other.getAscendingOrder().equals(this.getAscendingOrder()) == false)
+            return false;
+        if (other.getTemplateName() == null ^ this.getTemplateName() == null)
+            return false;
+        if (other.getTemplateName() != null
+                && other.getTemplateName().equals(this.getTemplateName()) == false)
             return false;
         return true;
     }

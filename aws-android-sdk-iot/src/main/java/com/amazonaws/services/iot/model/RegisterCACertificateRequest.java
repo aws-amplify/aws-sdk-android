@@ -21,13 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Registers a CA certificate with IoT. This CA certificate can then be used to
- * sign device certificates, which can be then registered with IoT. You can
- * register up to 10 CA certificates per Amazon Web Services account that have
- * the same subject field. This enables you to have up to 10 certificate
- * authorities sign your device certificates. If you have more than one CA
- * certificate registered, make sure you pass the CA certificate when you
- * register your device certificates with the <a>RegisterCertificate</a> action.
+ * Registers a CA certificate with Amazon Web Services IoT Core. There is no
+ * limit to the number of CA certificates you can register in your Amazon Web
+ * Services account. You can register up to 10 CA certificates with the same
+ * <code>CA subject field</code> per Amazon Web Services account.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -49,7 +46,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The private key verification certificate.
+     * The private key verification certificate. If <code>certificateMode</code>
+     * is <code>SNI_ONLY</code>, the <code>verificationCertificate</code> field
+     * must be empty. If <code>certificateMode</code> is <code>DEFAULT</code> or
+     * not provided, the <code>verificationCertificate</code> field must not be
+     * empty.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,6 +103,27 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * </note>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     */
+    private String certificateMode;
 
     /**
      * <p>
@@ -162,7 +184,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The private key verification certificate.
+     * The private key verification certificate. If <code>certificateMode</code>
+     * is <code>SNI_ONLY</code>, the <code>verificationCertificate</code> field
+     * must be empty. If <code>certificateMode</code> is <code>DEFAULT</code> or
+     * not provided, the <code>verificationCertificate</code> field must not be
+     * empty.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +196,12 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         The private key verification certificate.
+     *         The private key verification certificate. If
+     *         <code>certificateMode</code> is <code>SNI_ONLY</code>, the
+     *         <code>verificationCertificate</code> field must be empty. If
+     *         <code>certificateMode</code> is <code>DEFAULT</code> or not
+     *         provided, the <code>verificationCertificate</code> field must not
+     *         be empty.
      *         </p>
      */
     public String getVerificationCertificate() {
@@ -179,7 +210,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The private key verification certificate.
+     * The private key verification certificate. If <code>certificateMode</code>
+     * is <code>SNI_ONLY</code>, the <code>verificationCertificate</code> field
+     * must be empty. If <code>certificateMode</code> is <code>DEFAULT</code> or
+     * not provided, the <code>verificationCertificate</code> field must not be
+     * empty.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -187,7 +222,12 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param verificationCertificate <p>
-     *            The private key verification certificate.
+     *            The private key verification certificate. If
+     *            <code>certificateMode</code> is <code>SNI_ONLY</code>, the
+     *            <code>verificationCertificate</code> field must be empty. If
+     *            <code>certificateMode</code> is <code>DEFAULT</code> or not
+     *            provided, the <code>verificationCertificate</code> field must
+     *            not be empty.
      *            </p>
      */
     public void setVerificationCertificate(String verificationCertificate) {
@@ -196,7 +236,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The private key verification certificate.
+     * The private key verification certificate. If <code>certificateMode</code>
+     * is <code>SNI_ONLY</code>, the <code>verificationCertificate</code> field
+     * must be empty. If <code>certificateMode</code> is <code>DEFAULT</code> or
+     * not provided, the <code>verificationCertificate</code> field must not be
+     * empty.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -207,7 +251,12 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param verificationCertificate <p>
-     *            The private key verification certificate.
+     *            The private key verification certificate. If
+     *            <code>certificateMode</code> is <code>SNI_ONLY</code>, the
+     *            <code>verificationCertificate</code> field must be empty. If
+     *            <code>certificateMode</code> is <code>DEFAULT</code> or not
+     *            provided, the <code>verificationCertificate</code> field must
+     *            not be empty.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -597,6 +646,218 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @return <p>
+     *         Describes the certificate mode in which the Certificate Authority
+     *         (CA) will be registered. If the
+     *         <code>verificationCertificate</code> field is not provided, set
+     *         <code>certificateMode</code> to be <code>SNI_ONLY</code>. If the
+     *         <code>verificationCertificate</code> field is provided, set
+     *         <code>certificateMode</code> to be <code>DEFAULT</code>. When
+     *         <code>certificateMode</code> is not provided, it defaults to
+     *         <code>DEFAULT</code>. All the device certificates that are
+     *         registered using this CA will be registered in the same
+     *         certificate mode as the CA. For more information about
+     *         certificate mode for device certificates, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     *         > certificate mode</a>.
+     *         </p>
+     * @see CertificateMode
+     */
+    public String getCertificateMode() {
+        return certificateMode;
+    }
+
+    /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            Describes the certificate mode in which the Certificate
+     *            Authority (CA) will be registered. If the
+     *            <code>verificationCertificate</code> field is not provided,
+     *            set <code>certificateMode</code> to be <code>SNI_ONLY</code>.
+     *            If the <code>verificationCertificate</code> field is provided,
+     *            set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     *            When <code>certificateMode</code> is not provided, it defaults
+     *            to <code>DEFAULT</code>. All the device certificates that are
+     *            registered using this CA will be registered in the same
+     *            certificate mode as the CA. For more information about
+     *            certificate mode for device certificates, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     *            > certificate mode</a>.
+     *            </p>
+     * @see CertificateMode
+     */
+    public void setCertificateMode(String certificateMode) {
+        this.certificateMode = certificateMode;
+    }
+
+    /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            Describes the certificate mode in which the Certificate
+     *            Authority (CA) will be registered. If the
+     *            <code>verificationCertificate</code> field is not provided,
+     *            set <code>certificateMode</code> to be <code>SNI_ONLY</code>.
+     *            If the <code>verificationCertificate</code> field is provided,
+     *            set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     *            When <code>certificateMode</code> is not provided, it defaults
+     *            to <code>DEFAULT</code>. All the device certificates that are
+     *            registered using this CA will be registered in the same
+     *            certificate mode as the CA. For more information about
+     *            certificate mode for device certificates, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     *            > certificate mode</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateMode
+     */
+    public RegisterCACertificateRequest withCertificateMode(String certificateMode) {
+        this.certificateMode = certificateMode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            Describes the certificate mode in which the Certificate
+     *            Authority (CA) will be registered. If the
+     *            <code>verificationCertificate</code> field is not provided,
+     *            set <code>certificateMode</code> to be <code>SNI_ONLY</code>.
+     *            If the <code>verificationCertificate</code> field is provided,
+     *            set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     *            When <code>certificateMode</code> is not provided, it defaults
+     *            to <code>DEFAULT</code>. All the device certificates that are
+     *            registered using this CA will be registered in the same
+     *            certificate mode as the CA. For more information about
+     *            certificate mode for device certificates, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     *            > certificate mode</a>.
+     *            </p>
+     * @see CertificateMode
+     */
+    public void setCertificateMode(CertificateMode certificateMode) {
+        this.certificateMode = certificateMode.toString();
+    }
+
+    /**
+     * <p>
+     * Describes the certificate mode in which the Certificate Authority (CA)
+     * will be registered. If the <code>verificationCertificate</code> field is
+     * not provided, set <code>certificateMode</code> to be
+     * <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field
+     * is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     * When <code>certificateMode</code> is not provided, it defaults to
+     * <code>DEFAULT</code>. All the device certificates that are registered
+     * using this CA will be registered in the same certificate mode as the CA.
+     * For more information about certificate mode for device certificates, see
+     * <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     * > certificate mode</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            Describes the certificate mode in which the Certificate
+     *            Authority (CA) will be registered. If the
+     *            <code>verificationCertificate</code> field is not provided,
+     *            set <code>certificateMode</code> to be <code>SNI_ONLY</code>.
+     *            If the <code>verificationCertificate</code> field is provided,
+     *            set <code>certificateMode</code> to be <code>DEFAULT</code>.
+     *            When <code>certificateMode</code> is not provided, it defaults
+     *            to <code>DEFAULT</code>. All the device certificates that are
+     *            registered using this CA will be registered in the same
+     *            certificate mode as the CA. For more information about
+     *            certificate mode for device certificates, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"
+     *            > certificate mode</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateMode
+     */
+    public RegisterCACertificateRequest withCertificateMode(CertificateMode certificateMode) {
+        this.certificateMode = certificateMode.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -618,7 +879,9 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         if (getRegistrationConfig() != null)
             sb.append("registrationConfig: " + getRegistrationConfig() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getCertificateMode() != null)
+            sb.append("certificateMode: " + getCertificateMode());
         sb.append("}");
         return sb.toString();
     }
@@ -642,6 +905,8 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         hashCode = prime * hashCode
                 + ((getRegistrationConfig() == null) ? 0 : getRegistrationConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getCertificateMode() == null) ? 0 : getCertificateMode().hashCode());
         return hashCode;
     }
 
@@ -684,6 +949,11 @@ public class RegisterCACertificateRequest extends AmazonWebServiceRequest implem
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getCertificateMode() == null ^ this.getCertificateMode() == null)
+            return false;
+        if (other.getCertificateMode() != null
+                && other.getCertificateMode().equals(this.getCertificateMode()) == false)
             return false;
         return true;
     }

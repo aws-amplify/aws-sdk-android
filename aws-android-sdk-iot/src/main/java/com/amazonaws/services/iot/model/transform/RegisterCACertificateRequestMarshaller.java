@@ -98,6 +98,11 @@ public class RegisterCACertificateRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (registerCACertificateRequest.getCertificateMode() != null) {
+                String certificateMode = registerCACertificateRequest.getCertificateMode();
+                jsonWriter.name("certificateMode");
+                jsonWriter.value(certificateMode);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

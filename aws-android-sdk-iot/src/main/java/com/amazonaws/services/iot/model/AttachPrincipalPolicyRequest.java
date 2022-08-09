@@ -25,7 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * other credential).
  * </p>
  * <p>
- * <b>Note:</b> This action is deprecated. Please use <a>AttachPolicy</a>
+ * <b>Note:</b> This action is deprecated and works as expected for backward
+ * compatibility, but we won't add enhancements. Use <a>AttachPolicy</a>
  * instead.
  * </p>
  * <p>
