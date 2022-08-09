@@ -37,13 +37,14 @@ public class BatchPutGeofenceRequestEntry implements Serializable {
 
     /**
      * <p>
-     * Contains the polygon details to specify the position of the geofence.
+     * Contains the details of the position of the geofence. Can be either a
+     * polygon or a circle. Including both will return a validation error.
      * </p>
      * <note>
      * <p>
      * Each <a href=
      * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * > geofence polygon</a> can have a maximum of 1,000 vertices.
      * </p>
      * </note>
      */
@@ -114,25 +115,27 @@ public class BatchPutGeofenceRequestEntry implements Serializable {
 
     /**
      * <p>
-     * Contains the polygon details to specify the position of the geofence.
+     * Contains the details of the position of the geofence. Can be either a
+     * polygon or a circle. Including both will return a validation error.
      * </p>
      * <note>
      * <p>
      * Each <a href=
      * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * > geofence polygon</a> can have a maximum of 1,000 vertices.
      * </p>
      * </note>
      *
      * @return <p>
-     *         Contains the polygon details to specify the position of the
-     *         geofence.
+     *         Contains the details of the position of the geofence. Can be
+     *         either a polygon or a circle. Including both will return a
+     *         validation error.
      *         </p>
      *         <note>
      *         <p>
      *         Each <a href=
      *         "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     *         >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *         > geofence polygon</a> can have a maximum of 1,000 vertices.
      *         </p>
      *         </note>
      */
@@ -142,25 +145,27 @@ public class BatchPutGeofenceRequestEntry implements Serializable {
 
     /**
      * <p>
-     * Contains the polygon details to specify the position of the geofence.
+     * Contains the details of the position of the geofence. Can be either a
+     * polygon or a circle. Including both will return a validation error.
      * </p>
      * <note>
      * <p>
      * Each <a href=
      * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * > geofence polygon</a> can have a maximum of 1,000 vertices.
      * </p>
      * </note>
      *
      * @param geometry <p>
-     *            Contains the polygon details to specify the position of the
-     *            geofence.
+     *            Contains the details of the position of the geofence. Can be
+     *            either a polygon or a circle. Including both will return a
+     *            validation error.
      *            </p>
      *            <note>
      *            <p>
      *            Each <a href=
      *            "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     *            >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *            > geofence polygon</a> can have a maximum of 1,000 vertices.
      *            </p>
      *            </note>
      */
@@ -170,13 +175,14 @@ public class BatchPutGeofenceRequestEntry implements Serializable {
 
     /**
      * <p>
-     * Contains the polygon details to specify the position of the geofence.
+     * Contains the details of the position of the geofence. Can be either a
+     * polygon or a circle. Including both will return a validation error.
      * </p>
      * <note>
      * <p>
      * Each <a href=
      * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * > geofence polygon</a> can have a maximum of 1,000 vertices.
      * </p>
      * </note>
      * <p>
@@ -184,14 +190,15 @@ public class BatchPutGeofenceRequestEntry implements Serializable {
      * together.
      *
      * @param geometry <p>
-     *            Contains the polygon details to specify the position of the
-     *            geofence.
+     *            Contains the details of the position of the geofence. Can be
+     *            either a polygon or a circle. Including both will return a
+     *            validation error.
      *            </p>
      *            <note>
      *            <p>
      *            Each <a href=
      *            "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
-     *            >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *            > geofence polygon</a> can have a maximum of 1,000 vertices.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
