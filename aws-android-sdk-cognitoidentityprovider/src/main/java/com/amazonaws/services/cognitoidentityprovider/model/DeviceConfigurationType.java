@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The device tracking configuration for a user pool. A user pool with device
- * tracking deactivated returns a null value.
+ * The device-remembering configuration for a user pool. A null value indicates
+ * that you have deactivated device remembering in your user pool.
  * </p>
  * <note>
  * <p>
- * When you provide values for any DeviceConfiguration field, you activate
- * device tracking.
+ * When you provide a value for any <code>DeviceConfiguration</code> field, you
+ * activate the Amazon Cognito device-remembering feature.
  * </p>
  * </note>
  */
@@ -37,9 +37,9 @@ public class DeviceConfigurationType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Users that sign in with devices that have not been confirmed or
-     * remembered will still have to provide a second factor, whether or not
-     * ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.
+     * Regardless of the value of this field, users that sign in with new
+     * devices that have not been confirmed or remembered must provide a second
+     * factor if your user pool requires MFA.
      * </p>
      * </note>
      */
@@ -47,8 +47,13 @@ public class DeviceConfigurationType implements Serializable {
 
     /**
      * <p>
-     * When true, users can opt in to remembering their device. Your app code
-     * must use callback functions to return the user's choice.
+     * When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+     * who want to authenticate with their device can instead opt in to
+     * remembering their device. To collect a choice from your user, create an
+     * input prompt in your app and return the value that the user chooses in an
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     * >UpdateDeviceStatus</a> API request.
      * </p>
      */
     private Boolean deviceOnlyRememberedOnUserPrompt;
@@ -60,9 +65,9 @@ public class DeviceConfigurationType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Users that sign in with devices that have not been confirmed or
-     * remembered will still have to provide a second factor, whether or not
-     * ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.
+     * Regardless of the value of this field, users that sign in with new
+     * devices that have not been confirmed or remembered must provide a second
+     * factor if your user pool requires MFA.
      * </p>
      * </note>
      *
@@ -73,10 +78,9 @@ public class DeviceConfigurationType implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         Users that sign in with devices that have not been confirmed or
-     *         remembered will still have to provide a second factor, whether or
-     *         not ChallengeRequiredOnNewDevice is true, when your user pool
-     *         requires MFA.
+     *         Regardless of the value of this field, users that sign in with
+     *         new devices that have not been confirmed or remembered must
+     *         provide a second factor if your user pool requires MFA.
      *         </p>
      *         </note>
      */
@@ -91,9 +95,9 @@ public class DeviceConfigurationType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Users that sign in with devices that have not been confirmed or
-     * remembered will still have to provide a second factor, whether or not
-     * ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.
+     * Regardless of the value of this field, users that sign in with new
+     * devices that have not been confirmed or remembered must provide a second
+     * factor if your user pool requires MFA.
      * </p>
      * </note>
      *
@@ -104,10 +108,9 @@ public class DeviceConfigurationType implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         Users that sign in with devices that have not been confirmed or
-     *         remembered will still have to provide a second factor, whether or
-     *         not ChallengeRequiredOnNewDevice is true, when your user pool
-     *         requires MFA.
+     *         Regardless of the value of this field, users that sign in with
+     *         new devices that have not been confirmed or remembered must
+     *         provide a second factor if your user pool requires MFA.
      *         </p>
      *         </note>
      */
@@ -122,9 +125,9 @@ public class DeviceConfigurationType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Users that sign in with devices that have not been confirmed or
-     * remembered will still have to provide a second factor, whether or not
-     * ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.
+     * Regardless of the value of this field, users that sign in with new
+     * devices that have not been confirmed or remembered must provide a second
+     * factor if your user pool requires MFA.
      * </p>
      * </note>
      *
@@ -135,10 +138,9 @@ public class DeviceConfigurationType implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Users that sign in with devices that have not been confirmed
-     *            or remembered will still have to provide a second factor,
-     *            whether or not ChallengeRequiredOnNewDevice is true, when your
-     *            user pool requires MFA.
+     *            Regardless of the value of this field, users that sign in with
+     *            new devices that have not been confirmed or remembered must
+     *            provide a second factor if your user pool requires MFA.
      *            </p>
      *            </note>
      */
@@ -153,9 +155,9 @@ public class DeviceConfigurationType implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Users that sign in with devices that have not been confirmed or
-     * remembered will still have to provide a second factor, whether or not
-     * ChallengeRequiredOnNewDevice is true, when your user pool requires MFA.
+     * Regardless of the value of this field, users that sign in with new
+     * devices that have not been confirmed or remembered must provide a second
+     * factor if your user pool requires MFA.
      * </p>
      * </note>
      * <p>
@@ -169,10 +171,9 @@ public class DeviceConfigurationType implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Users that sign in with devices that have not been confirmed
-     *            or remembered will still have to provide a second factor,
-     *            whether or not ChallengeRequiredOnNewDevice is true, when your
-     *            user pool requires MFA.
+     *            Regardless of the value of this field, users that sign in with
+     *            new devices that have not been confirmed or remembered must
+     *            provide a second factor if your user pool requires MFA.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -186,13 +187,23 @@ public class DeviceConfigurationType implements Serializable {
 
     /**
      * <p>
-     * When true, users can opt in to remembering their device. Your app code
-     * must use callback functions to return the user's choice.
+     * When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+     * who want to authenticate with their device can instead opt in to
+     * remembering their device. To collect a choice from your user, create an
+     * input prompt in your app and return the value that the user chooses in an
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     * >UpdateDeviceStatus</a> API request.
      * </p>
      *
      * @return <p>
-     *         When true, users can opt in to remembering their device. Your app
-     *         code must use callback functions to return the user's choice.
+     *         When true, Amazon Cognito doesn't remember newly-confirmed
+     *         devices. Users who want to authenticate with their device can
+     *         instead opt in to remembering their device. To collect a choice
+     *         from your user, create an input prompt in your app and return the
+     *         value that the user chooses in an <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     *         >UpdateDeviceStatus</a> API request.
      *         </p>
      */
     public Boolean isDeviceOnlyRememberedOnUserPrompt() {
@@ -201,13 +212,23 @@ public class DeviceConfigurationType implements Serializable {
 
     /**
      * <p>
-     * When true, users can opt in to remembering their device. Your app code
-     * must use callback functions to return the user's choice.
+     * When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+     * who want to authenticate with their device can instead opt in to
+     * remembering their device. To collect a choice from your user, create an
+     * input prompt in your app and return the value that the user chooses in an
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     * >UpdateDeviceStatus</a> API request.
      * </p>
      *
      * @return <p>
-     *         When true, users can opt in to remembering their device. Your app
-     *         code must use callback functions to return the user's choice.
+     *         When true, Amazon Cognito doesn't remember newly-confirmed
+     *         devices. Users who want to authenticate with their device can
+     *         instead opt in to remembering their device. To collect a choice
+     *         from your user, create an input prompt in your app and return the
+     *         value that the user chooses in an <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     *         >UpdateDeviceStatus</a> API request.
      *         </p>
      */
     public Boolean getDeviceOnlyRememberedOnUserPrompt() {
@@ -216,14 +237,23 @@ public class DeviceConfigurationType implements Serializable {
 
     /**
      * <p>
-     * When true, users can opt in to remembering their device. Your app code
-     * must use callback functions to return the user's choice.
+     * When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+     * who want to authenticate with their device can instead opt in to
+     * remembering their device. To collect a choice from your user, create an
+     * input prompt in your app and return the value that the user chooses in an
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     * >UpdateDeviceStatus</a> API request.
      * </p>
      *
      * @param deviceOnlyRememberedOnUserPrompt <p>
-     *            When true, users can opt in to remembering their device. Your
-     *            app code must use callback functions to return the user's
-     *            choice.
+     *            When true, Amazon Cognito doesn't remember newly-confirmed
+     *            devices. Users who want to authenticate with their device can
+     *            instead opt in to remembering their device. To collect a
+     *            choice from your user, create an input prompt in your app and
+     *            return the value that the user chooses in an <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     *            >UpdateDeviceStatus</a> API request.
      *            </p>
      */
     public void setDeviceOnlyRememberedOnUserPrompt(Boolean deviceOnlyRememberedOnUserPrompt) {
@@ -232,17 +262,26 @@ public class DeviceConfigurationType implements Serializable {
 
     /**
      * <p>
-     * When true, users can opt in to remembering their device. Your app code
-     * must use callback functions to return the user's choice.
+     * When true, Amazon Cognito doesn't remember newly-confirmed devices. Users
+     * who want to authenticate with their device can instead opt in to
+     * remembering their device. To collect a choice from your user, create an
+     * input prompt in your app and return the value that the user chooses in an
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     * >UpdateDeviceStatus</a> API request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deviceOnlyRememberedOnUserPrompt <p>
-     *            When true, users can opt in to remembering their device. Your
-     *            app code must use callback functions to return the user's
-     *            choice.
+     *            When true, Amazon Cognito doesn't remember newly-confirmed
+     *            devices. Users who want to authenticate with their device can
+     *            instead opt in to remembering their device. To collect a
+     *            choice from your user, create an input prompt in your app and
+     *            return the value that the user chooses in an <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateDeviceStatus.html"
+     *            >UpdateDeviceStatus</a> API request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -183,9 +183,10 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Specifies locations in the frames where Amazon Rekognition checks for
-     * objects or people. You can specify up to 10 regions of interest. This is
-     * an optional parameter for label detection stream processors and should
-     * not be used to create a face search stream processor.
+     * objects or people. You can specify up to 10 regions of interest, and each
+     * region has either a polygon or a bounding box. This is an optional
+     * parameter for label detection stream processors and should not be used to
+     * create a face search stream processor.
      * </p>
      */
     private java.util.List<RegionOfInterest> regionsOfInterest;
@@ -910,17 +911,19 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Specifies locations in the frames where Amazon Rekognition checks for
-     * objects or people. You can specify up to 10 regions of interest. This is
-     * an optional parameter for label detection stream processors and should
-     * not be used to create a face search stream processor.
+     * objects or people. You can specify up to 10 regions of interest, and each
+     * region has either a polygon or a bounding box. This is an optional
+     * parameter for label detection stream processors and should not be used to
+     * create a face search stream processor.
      * </p>
      *
      * @return <p>
      *         Specifies locations in the frames where Amazon Rekognition checks
      *         for objects or people. You can specify up to 10 regions of
-     *         interest. This is an optional parameter for label detection
-     *         stream processors and should not be used to create a face search
-     *         stream processor.
+     *         interest, and each region has either a polygon or a bounding box.
+     *         This is an optional parameter for label detection stream
+     *         processors and should not be used to create a face search stream
+     *         processor.
      *         </p>
      */
     public java.util.List<RegionOfInterest> getRegionsOfInterest() {
@@ -930,17 +933,19 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Specifies locations in the frames where Amazon Rekognition checks for
-     * objects or people. You can specify up to 10 regions of interest. This is
-     * an optional parameter for label detection stream processors and should
-     * not be used to create a face search stream processor.
+     * objects or people. You can specify up to 10 regions of interest, and each
+     * region has either a polygon or a bounding box. This is an optional
+     * parameter for label detection stream processors and should not be used to
+     * create a face search stream processor.
      * </p>
      *
      * @param regionsOfInterest <p>
      *            Specifies locations in the frames where Amazon Rekognition
      *            checks for objects or people. You can specify up to 10 regions
-     *            of interest. This is an optional parameter for label detection
-     *            stream processors and should not be used to create a face
-     *            search stream processor.
+     *            of interest, and each region has either a polygon or a
+     *            bounding box. This is an optional parameter for label
+     *            detection stream processors and should not be used to create a
+     *            face search stream processor.
      *            </p>
      */
     public void setRegionsOfInterest(java.util.Collection<RegionOfInterest> regionsOfInterest) {
@@ -955,9 +960,10 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Specifies locations in the frames where Amazon Rekognition checks for
-     * objects or people. You can specify up to 10 regions of interest. This is
-     * an optional parameter for label detection stream processors and should
-     * not be used to create a face search stream processor.
+     * objects or people. You can specify up to 10 regions of interest, and each
+     * region has either a polygon or a bounding box. This is an optional
+     * parameter for label detection stream processors and should not be used to
+     * create a face search stream processor.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -966,9 +972,10 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * @param regionsOfInterest <p>
      *            Specifies locations in the frames where Amazon Rekognition
      *            checks for objects or people. You can specify up to 10 regions
-     *            of interest. This is an optional parameter for label detection
-     *            stream processors and should not be used to create a face
-     *            search stream processor.
+     *            of interest, and each region has either a polygon or a
+     *            bounding box. This is an optional parameter for label
+     *            detection stream processors and should not be used to create a
+     *            face search stream processor.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -987,9 +994,10 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Specifies locations in the frames where Amazon Rekognition checks for
-     * objects or people. You can specify up to 10 regions of interest. This is
-     * an optional parameter for label detection stream processors and should
-     * not be used to create a face search stream processor.
+     * objects or people. You can specify up to 10 regions of interest, and each
+     * region has either a polygon or a bounding box. This is an optional
+     * parameter for label detection stream processors and should not be used to
+     * create a face search stream processor.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -998,9 +1006,10 @@ public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implem
      * @param regionsOfInterest <p>
      *            Specifies locations in the frames where Amazon Rekognition
      *            checks for objects or people. You can specify up to 10 regions
-     *            of interest. This is an optional parameter for label detection
-     *            stream processors and should not be used to create a face
-     *            search stream processor.
+     *            of interest, and each region has either a polygon or a
+     *            bounding box. This is an optional parameter for label
+     *            detection stream processors and should not be used to create a
+     *            face search stream processor.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

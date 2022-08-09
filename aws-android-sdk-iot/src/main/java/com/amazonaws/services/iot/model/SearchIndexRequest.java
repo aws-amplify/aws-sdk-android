@@ -43,7 +43,10 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The search query string. For more information about the search query
+     * syntax, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * >Query syntax</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,14 +138,20 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The search query string. For more information about the search query
+     * syntax, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * >Query syntax</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The search query string.
+     *         The search query string. For more information about the search
+     *         query syntax, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *         >Query syntax</a>.
      *         </p>
      */
     public String getQueryString() {
@@ -151,14 +160,20 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The search query string. For more information about the search query
+     * syntax, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * >Query syntax</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The search query string.
+     *            The search query string. For more information about the search
+     *            query syntax, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *            >Query syntax</a>.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -167,7 +182,10 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The search query string.
+     * The search query string. For more information about the search query
+     * syntax, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     * >Query syntax</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -177,7 +195,10 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The search query string.
+     *            The search query string. For more information about the search
+     *            query syntax, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html"
+     *            >Query syntax</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

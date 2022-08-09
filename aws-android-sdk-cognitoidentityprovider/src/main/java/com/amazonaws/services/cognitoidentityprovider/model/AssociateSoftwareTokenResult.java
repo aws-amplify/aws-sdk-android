@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class AssociateSoftwareTokenResult implements Serializable {
     /**
      * <p>
-     * A unique generated shared secret code that is used in the time-based
-     * one-time password (TOTP) algorithm to generate a one-time code.
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,8 +44,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the time-based
-     * one-time password (TOTP) algorithm to generate a one-time code.
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,9 +53,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @return <p>
-     *         A unique generated shared secret code that is used in the
-     *         time-based one-time password (TOTP) algorithm to generate a
-     *         one-time code.
+     *         A unique generated shared secret code that is used in the TOTP
+     *         algorithm to generate a one-time code.
      *         </p>
      */
     public String getSecretCode() {
@@ -64,8 +63,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the time-based
-     * one-time password (TOTP) algorithm to generate a one-time code.
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one-time code.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,9 +72,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @param secretCode <p>
-     *            A unique generated shared secret code that is used in the
-     *            time-based one-time password (TOTP) algorithm to generate a
-     *            one-time code.
+     *            A unique generated shared secret code that is used in the TOTP
+     *            algorithm to generate a one-time code.
      *            </p>
      */
     public void setSecretCode(String secretCode) {
@@ -84,8 +82,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
 
     /**
      * <p>
-     * A unique generated shared secret code that is used in the time-based
-     * one-time password (TOTP) algorithm to generate a one-time code.
+     * A unique generated shared secret code that is used in the TOTP algorithm
+     * to generate a one-time code.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -96,9 +94,8 @@ public class AssociateSoftwareTokenResult implements Serializable {
      * <b>Pattern: </b>[A-Za-z0-9]+<br/>
      *
      * @param secretCode <p>
-     *            A unique generated shared secret code that is used in the
-     *            time-based one-time password (TOTP) algorithm to generate a
-     *            one-time code.
+     *            A unique generated shared secret code that is used in the TOTP
+     *            algorithm to generate a one-time code.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

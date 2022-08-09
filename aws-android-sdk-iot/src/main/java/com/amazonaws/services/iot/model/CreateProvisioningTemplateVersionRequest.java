@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new version of a fleet provisioning template.
+ * Creates a new version of a provisioning template.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -33,7 +33,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
         Serializable {
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +44,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +70,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -79,7 +79,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,7 +87,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -96,7 +96,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,7 +107,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,7 +119,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,7 +127,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         The JSON formatted contents of the fleet provisioning template.
+     *         The JSON formatted contents of the provisioning template.
      *         </p>
      */
     public String getTemplateBody() {
@@ -136,7 +136,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,8 +144,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning
-     *            template.
+     *            The JSON formatted contents of the provisioning template.
      *            </p>
      */
     public void setTemplateBody(String templateBody) {
@@ -154,7 +153,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,8 +164,7 @@ public class CreateProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning
-     *            template.
+     *            The JSON formatted contents of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

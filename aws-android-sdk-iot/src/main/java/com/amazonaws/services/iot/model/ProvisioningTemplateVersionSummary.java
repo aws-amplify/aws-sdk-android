@@ -32,14 +32,14 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created
+     * The date when the provisioning template version was created
      * </p>
      */
     private java.util.Date creationDate;
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      */
@@ -92,11 +92,11 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created
+     * The date when the provisioning template version was created
      * </p>
      *
      * @return <p>
-     *         The date when the fleet provisioning template version was created
+     *         The date when the provisioning template version was created
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -105,12 +105,11 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created
+     * The date when the provisioning template version was created
      * </p>
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template version was
-     *            created
+     *            The date when the provisioning template version was created
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -119,15 +118,14 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created
+     * The date when the provisioning template version was created
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template version was
-     *            created
+     *            The date when the provisioning template version was created
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -139,13 +137,13 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version, otherwise false.
+     *         True if the provisioning template version is the default version,
+     *         otherwise false.
      *         </p>
      */
     public Boolean isIsDefaultVersion() {
@@ -154,13 +152,13 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version, otherwise false.
+     *         True if the provisioning template version is the default version,
+     *         otherwise false.
      *         </p>
      */
     public Boolean getIsDefaultVersion() {
@@ -169,12 +167,12 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version, otherwise false.
      *            </p>
      */
@@ -184,7 +182,7 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      * <p>
@@ -192,7 +190,7 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
      * together.
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version, otherwise false.
      *            </p>
      * @return A reference to this updated object so that method calls can be

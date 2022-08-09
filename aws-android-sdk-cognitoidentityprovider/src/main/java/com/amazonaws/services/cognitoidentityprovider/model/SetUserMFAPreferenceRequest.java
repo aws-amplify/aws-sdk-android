@@ -43,7 +43,7 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The time-based one-time password software token MFA settings.
+     * The time-based one-time password (TOTP) software token MFA settings.
      * </p>
      */
     private SoftwareTokenMfaSettingsType softwareTokenMfaSettings;
@@ -108,11 +108,12 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The time-based one-time password software token MFA settings.
+     * The time-based one-time password (TOTP) software token MFA settings.
      * </p>
      *
      * @return <p>
-     *         The time-based one-time password software token MFA settings.
+     *         The time-based one-time password (TOTP) software token MFA
+     *         settings.
      *         </p>
      */
     public SoftwareTokenMfaSettingsType getSoftwareTokenMfaSettings() {
@@ -121,11 +122,12 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The time-based one-time password software token MFA settings.
+     * The time-based one-time password (TOTP) software token MFA settings.
      * </p>
      *
      * @param softwareTokenMfaSettings <p>
-     *            The time-based one-time password software token MFA settings.
+     *            The time-based one-time password (TOTP) software token MFA
+     *            settings.
      *            </p>
      */
     public void setSoftwareTokenMfaSettings(SoftwareTokenMfaSettingsType softwareTokenMfaSettings) {
@@ -134,14 +136,15 @@ public class SetUserMFAPreferenceRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The time-based one-time password software token MFA settings.
+     * The time-based one-time password (TOTP) software token MFA settings.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param softwareTokenMfaSettings <p>
-     *            The time-based one-time password software token MFA settings.
+     *            The time-based one-time password (TOTP) software token MFA
+     *            settings.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

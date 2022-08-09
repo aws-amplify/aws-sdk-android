@@ -73,6 +73,9 @@ public class DescribeProvisioningTemplateResultJsonUnmarshaller implements
                 describeProvisioningTemplateResult
                         .setPreProvisioningHook(ProvisioningHookJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("type")) {
+                describeProvisioningTemplateResult.setType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

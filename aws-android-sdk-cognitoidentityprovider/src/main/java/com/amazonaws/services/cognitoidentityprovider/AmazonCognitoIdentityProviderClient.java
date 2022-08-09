@@ -352,6 +352,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new DuplicateProviderExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new EnableSoftwareTokenMFAExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ExpiredCodeExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ForbiddenExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new GroupExistsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidEmailRoleAccessPolicyExceptionUnmarshaller());
@@ -2239,9 +2240,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Begins setup of time-based one-time password multi-factor authentication
-     * (TOTP MFA) for a user, with a unique private key that Amazon Cognito
-     * generates and returns in the API response. You can authorize an
+     * Begins setup of time-based one-time password (TOTP) multi-factor
+     * authentication (MFA) for a user, with a unique private key that Amazon
+     * Cognito generates and returns in the API response. You can authorize an
      * <code>AssociateSoftwareToken</code> request with either the user's access
      * token, or a session string from a challenge response that you received
      * from Amazon Cognito.
@@ -2276,6 +2277,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws ResourceNotFoundException
      * @throws InternalErrorException
      * @throws SoftwareTokenMFANotFoundException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2335,6 +2337,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2395,6 +2398,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2459,6 +2463,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2522,6 +2527,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws LimitExceededException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3131,6 +3137,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3182,6 +3189,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3759,6 +3767,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3851,6 +3860,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws CodeDeliveryFailureException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3961,6 +3971,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4232,6 +4243,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4323,6 +4335,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4437,6 +4450,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws PasswordResetRequiredException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4527,6 +4541,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InternalErrorException
      * @throws InvalidSmsRoleAccessPolicyException
      * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4584,6 +4599,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5157,6 +5173,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws CodeDeliveryFailureException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5252,6 +5269,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws AliasExistsException
      * @throws InternalErrorException
      * @throws SoftwareTokenMFANotFoundException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5307,6 +5325,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidParameterException
      * @throws UnsupportedOperationException
      * @throws UnsupportedTokenTypeException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5502,6 +5521,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5642,6 +5662,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5729,6 +5750,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws InvalidSmsRoleTrustRelationshipException
      * @throws InvalidEmailRoleAccessPolicyException
      * @throws CodeDeliveryFailureException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -6075,6 +6097,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -6335,6 +6358,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -6653,6 +6677,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws NotAuthorizedException
      * @throws SoftwareTokenMFANotFoundException
      * @throws CodeMismatchException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -6722,6 +6747,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
      * @throws AliasExistsException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

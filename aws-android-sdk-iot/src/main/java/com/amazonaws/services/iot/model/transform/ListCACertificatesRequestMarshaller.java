@@ -67,6 +67,10 @@ public class ListCACertificatesRequestMarshaller implements
             request.addParameter("isAscendingOrder",
                     StringUtils.fromBoolean(listCACertificatesRequest.getAscendingOrder()));
         }
+        if (listCACertificatesRequest.getTemplateName() != null) {
+            request.addParameter("templateName",
+                    StringUtils.fromString(listCACertificatesRequest.getTemplateName()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");
