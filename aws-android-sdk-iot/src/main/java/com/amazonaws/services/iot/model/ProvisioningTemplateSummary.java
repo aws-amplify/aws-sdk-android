@@ -19,20 +19,20 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A summary of information about a fleet provisioning template.
+ * A summary of information about a provisioning template.
  * </p>
  */
 public class ProvisioningTemplateSummary implements Serializable {
     /**
      * <p>
-     * The ARN of the fleet provisioning template.
+     * The ARN of the provisioning template.
      * </p>
      */
     private String templateArn;
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,14 +54,14 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was created.
+     * The date when the provisioning template summary was created.
      * </p>
      */
     private java.util.Date creationDate;
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was last modified.
+     * The date when the provisioning template summary was last modified.
      * </p>
      */
     private java.util.Date lastModifiedDate;
@@ -75,11 +75,26 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the fleet provisioning template.
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     */
+    private String type;
+
+    /**
+     * <p>
+     * The ARN of the provisioning template.
      * </p>
      *
      * @return <p>
-     *         The ARN of the fleet provisioning template.
+     *         The ARN of the provisioning template.
      *         </p>
      */
     public String getTemplateArn() {
@@ -88,11 +103,11 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the fleet provisioning template.
+     * The ARN of the provisioning template.
      * </p>
      *
      * @param templateArn <p>
-     *            The ARN of the fleet provisioning template.
+     *            The ARN of the provisioning template.
      *            </p>
      */
     public void setTemplateArn(String templateArn) {
@@ -101,14 +116,14 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The ARN of the fleet provisioning template.
+     * The ARN of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templateArn <p>
-     *            The ARN of the fleet provisioning template.
+     *            The ARN of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,7 +135,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,7 +143,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -137,7 +152,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +160,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -154,7 +169,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,7 +180,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -177,7 +192,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,7 +200,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @return <p>
-     *         The description of the fleet provisioning template.
+     *         The description of the provisioning template.
      *         </p>
      */
     public String getDescription() {
@@ -194,7 +209,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -202,7 +217,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      */
     public void setDescription(String description) {
@@ -211,7 +226,7 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,7 +237,7 @@ public class ProvisioningTemplateSummary implements Serializable {
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -234,12 +249,11 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was created.
+     * The date when the provisioning template summary was created.
      * </p>
      *
      * @return <p>
-     *         The date when the fleet provisioning template summary was
-     *         created.
+     *         The date when the provisioning template summary was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -248,12 +262,11 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was created.
+     * The date when the provisioning template summary was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template summary was
-     *            created.
+     *            The date when the provisioning template summary was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -262,15 +275,14 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was created.
+     * The date when the provisioning template summary was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template summary was
-     *            created.
+     *            The date when the provisioning template summary was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -282,11 +294,11 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was last modified.
+     * The date when the provisioning template summary was last modified.
      * </p>
      *
      * @return <p>
-     *         The date when the fleet provisioning template summary was last
+     *         The date when the provisioning template summary was last
      *         modified.
      *         </p>
      */
@@ -296,11 +308,11 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was last modified.
+     * The date when the provisioning template summary was last modified.
      * </p>
      *
      * @param lastModifiedDate <p>
-     *            The date when the fleet provisioning template summary was last
+     *            The date when the provisioning template summary was last
      *            modified.
      *            </p>
      */
@@ -310,14 +322,14 @@ public class ProvisioningTemplateSummary implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template summary was last modified.
+     * The date when the provisioning template summary was last modified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedDate <p>
-     *            The date when the fleet provisioning template summary was last
+     *            The date when the provisioning template summary was last
      *            modified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -389,6 +401,158 @@ public class ProvisioningTemplateSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @return <p>
+     *         The type you define in a provisioning template. You can create a
+     *         template with only one type. You can't change the template type
+     *         after its creation. The default value is
+     *         <code>FLEET_PROVISIONING</code>. For more information about
+     *         provisioning template, see: <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *         >Provisioning template</a>.
+     *         </p>
+     * @see TemplateType
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @see TemplateType
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TemplateType
+     */
+    public ProvisioningTemplateSummary withType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @see TemplateType
+     */
+    public void setType(TemplateType type) {
+        this.type = type.toString();
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TemplateType
+     */
+    public ProvisioningTemplateSummary withType(TemplateType type) {
+        this.type = type.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -410,7 +574,9 @@ public class ProvisioningTemplateSummary implements Serializable {
         if (getLastModifiedDate() != null)
             sb.append("lastModifiedDate: " + getLastModifiedDate() + ",");
         if (getEnabled() != null)
-            sb.append("enabled: " + getEnabled());
+            sb.append("enabled: " + getEnabled() + ",");
+        if (getType() != null)
+            sb.append("type: " + getType());
         sb.append("}");
         return sb.toString();
     }
@@ -431,6 +597,7 @@ public class ProvisioningTemplateSummary implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastModifiedDate() == null) ? 0 : getLastModifiedDate().hashCode());
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
+        hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         return hashCode;
     }
 
@@ -473,6 +640,10 @@ public class ProvisioningTemplateSummary implements Serializable {
         if (other.getEnabled() == null ^ this.getEnabled() == null)
             return false;
         if (other.getEnabled() != null && other.getEnabled().equals(this.getEnabled()) == false)
+            return false;
+        if (other.getType() == null ^ this.getType() == null)
+            return false;
+        if (other.getType() != null && other.getType().equals(this.getType()) == false)
             return false;
         return true;
     }

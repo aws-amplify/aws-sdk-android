@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates a fleet provisioning template.
+ * Updates a provisioning template.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -33,7 +33,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         Serializable {
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +44,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +55,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      */
     private Boolean enabled;
@@ -94,7 +94,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +102,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -111,7 +111,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,7 +119,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -128,7 +128,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +139,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,7 +151,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -159,7 +159,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @return <p>
-     *         The description of the fleet provisioning template.
+     *         The description of the provisioning template.
      *         </p>
      */
     public String getDescription() {
@@ -168,7 +168,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -176,7 +176,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      */
     public void setDescription(String description) {
@@ -185,7 +185,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -196,7 +196,7 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -208,11 +208,11 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @return <p>
-     *         True to enable the fleet provisioning template, otherwise false.
+     *         True to enable the provisioning template, otherwise false.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -221,11 +221,11 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @return <p>
-     *         True to enable the fleet provisioning template, otherwise false.
+     *         True to enable the provisioning template, otherwise false.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -234,12 +234,11 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @param enabled <p>
-     *            True to enable the fleet provisioning template, otherwise
-     *            false.
+     *            True to enable the provisioning template, otherwise false.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -248,15 +247,14 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            True to enable the fleet provisioning template, otherwise
-     *            false.
+     *            True to enable the provisioning template, otherwise false.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -37,6 +37,11 @@ class RegistrationConfigJsonMarshaller {
             jsonWriter.name("roleArn");
             jsonWriter.value(roleArn);
         }
+        if (registrationConfig.getTemplateName() != null) {
+            String templateName = registrationConfig.getTemplateName();
+            jsonWriter.name("templateName");
+            jsonWriter.value(templateName);
+        }
         jsonWriter.endObject();
     }
 

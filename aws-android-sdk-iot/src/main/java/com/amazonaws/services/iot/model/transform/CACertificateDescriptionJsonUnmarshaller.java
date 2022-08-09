@@ -71,6 +71,9 @@ class CACertificateDescriptionJsonUnmarshaller implements
                 cACertificateDescription.setValidity(CertificateValidityJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("certificateMode")) {
+                cACertificateDescription.setCertificateMode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -27,7 +27,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,14 +38,14 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The version of the fleet provisioning template.
+     * The version of the provisioning template.
      * </p>
      */
     private Integer versionId;
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      */
@@ -98,7 +98,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,7 +106,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -115,7 +115,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,7 +123,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -132,7 +132,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -143,7 +143,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,11 +155,11 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The version of the fleet provisioning template.
+     * The version of the provisioning template.
      * </p>
      *
      * @return <p>
-     *         The version of the fleet provisioning template.
+     *         The version of the provisioning template.
      *         </p>
      */
     public Integer getVersionId() {
@@ -168,11 +168,11 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The version of the fleet provisioning template.
+     * The version of the provisioning template.
      * </p>
      *
      * @param versionId <p>
-     *            The version of the fleet provisioning template.
+     *            The version of the provisioning template.
      *            </p>
      */
     public void setVersionId(Integer versionId) {
@@ -181,14 +181,14 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The version of the fleet provisioning template.
+     * The version of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versionId <p>
-     *            The version of the fleet provisioning template.
+     *            The version of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -200,13 +200,13 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version, otherwise false.
+     *         True if the provisioning template version is the default version,
+     *         otherwise false.
      *         </p>
      */
     public Boolean isIsDefaultVersion() {
@@ -215,13 +215,13 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version, otherwise false.
+     *         True if the provisioning template version is the default version,
+     *         otherwise false.
      *         </p>
      */
     public Boolean getIsDefaultVersion() {
@@ -230,12 +230,12 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version, otherwise false.
      *            </p>
      */
@@ -245,7 +245,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version,
+     * True if the provisioning template version is the default version,
      * otherwise false.
      * </p>
      * <p>
@@ -253,7 +253,7 @@ public class CreateProvisioningTemplateVersionResult implements Serializable {
      * together.
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version, otherwise false.
      *            </p>
      * @return A reference to this updated object so that method calls can be

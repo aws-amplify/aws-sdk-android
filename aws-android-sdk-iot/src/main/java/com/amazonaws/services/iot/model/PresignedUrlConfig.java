@@ -29,6 +29,15 @@ public class PresignedUrlConfig implements Serializable {
      * from the S3 bucket where the job data/updates are stored. The role must
      * also grant permission for IoT to download the files.
      * </p>
+     * <important>
+     * <p>
+     * For information about addressing the confused deputy problem, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     * >cross-service confused deputy prevention</a> in the <i>Amazon Web
+     * Services IoT Core developer guide</i>.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -53,6 +62,15 @@ public class PresignedUrlConfig implements Serializable {
      * from the S3 bucket where the job data/updates are stored. The role must
      * also grant permission for IoT to download the files.
      * </p>
+     * <important>
+     * <p>
+     * For information about addressing the confused deputy problem, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     * >cross-service confused deputy prevention</a> in the <i>Amazon Web
+     * Services IoT Core developer guide</i>.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -63,6 +81,15 @@ public class PresignedUrlConfig implements Serializable {
      *         The role must also grant permission for IoT to download the
      *         files.
      *         </p>
+     *         <important>
+     *         <p>
+     *         For information about addressing the confused deputy problem, see
+     *         <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     *         >cross-service confused deputy prevention</a> in the <i>Amazon
+     *         Web Services IoT Core developer guide</i>.
+     *         </p>
+     *         </important>
      */
     public String getRoleArn() {
         return roleArn;
@@ -74,6 +101,15 @@ public class PresignedUrlConfig implements Serializable {
      * from the S3 bucket where the job data/updates are stored. The role must
      * also grant permission for IoT to download the files.
      * </p>
+     * <important>
+     * <p>
+     * For information about addressing the confused deputy problem, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     * >cross-service confused deputy prevention</a> in the <i>Amazon Web
+     * Services IoT Core developer guide</i>.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
@@ -84,6 +120,15 @@ public class PresignedUrlConfig implements Serializable {
      *            are stored. The role must also grant permission for IoT to
      *            download the files.
      *            </p>
+     *            <important>
+     *            <p>
+     *            For information about addressing the confused deputy problem,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     *            >cross-service confused deputy prevention</a> in the <i>Amazon
+     *            Web Services IoT Core developer guide</i>.
+     *            </p>
+     *            </important>
      */
     public void setRoleArn(String roleArn) {
         this.roleArn = roleArn;
@@ -95,6 +140,15 @@ public class PresignedUrlConfig implements Serializable {
      * from the S3 bucket where the job data/updates are stored. The role must
      * also grant permission for IoT to download the files.
      * </p>
+     * <important>
+     * <p>
+     * For information about addressing the confused deputy problem, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     * >cross-service confused deputy prevention</a> in the <i>Amazon Web
+     * Services IoT Core developer guide</i>.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -108,6 +162,15 @@ public class PresignedUrlConfig implements Serializable {
      *            are stored. The role must also grant permission for IoT to
      *            download the files.
      *            </p>
+     *            <important>
+     *            <p>
+     *            For information about addressing the confused deputy problem,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html"
+     *            >cross-service confused deputy prevention</a> in the <i>Amazon
+     *            Web Services IoT Core developer guide</i>.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

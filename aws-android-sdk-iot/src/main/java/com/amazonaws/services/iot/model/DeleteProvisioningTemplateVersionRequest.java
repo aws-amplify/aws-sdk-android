@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a fleet provisioning template version.
+ * Deletes a provisioning template version.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -33,7 +33,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
         Serializable {
     /**
      * <p>
-     * The name of the fleet provisioning template version to delete.
+     * The name of the provisioning template version to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,14 +44,14 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The fleet provisioning template version ID to delete.
+     * The provisioning template version ID to delete.
      * </p>
      */
     private Integer versionId;
 
     /**
      * <p>
-     * The name of the fleet provisioning template version to delete.
+     * The name of the provisioning template version to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,7 +59,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template version to delete.
+     *         The name of the provisioning template version to delete.
      *         </p>
      */
     public String getTemplateName() {
@@ -68,7 +68,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The name of the fleet provisioning template version to delete.
+     * The name of the provisioning template version to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +76,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template version to delete.
+     *            The name of the provisioning template version to delete.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -85,7 +85,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The name of the fleet provisioning template version to delete.
+     * The name of the provisioning template version to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -96,7 +96,7 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template version to delete.
+     *            The name of the provisioning template version to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,11 +108,11 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The fleet provisioning template version ID to delete.
+     * The provisioning template version ID to delete.
      * </p>
      *
      * @return <p>
-     *         The fleet provisioning template version ID to delete.
+     *         The provisioning template version ID to delete.
      *         </p>
      */
     public Integer getVersionId() {
@@ -121,11 +121,11 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The fleet provisioning template version ID to delete.
+     * The provisioning template version ID to delete.
      * </p>
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID to delete.
+     *            The provisioning template version ID to delete.
      *            </p>
      */
     public void setVersionId(Integer versionId) {
@@ -134,14 +134,14 @@ public class DeleteProvisioningTemplateVersionRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The fleet provisioning template version ID to delete.
+     * The provisioning template version ID to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID to delete.
+     *            The provisioning template version ID to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
