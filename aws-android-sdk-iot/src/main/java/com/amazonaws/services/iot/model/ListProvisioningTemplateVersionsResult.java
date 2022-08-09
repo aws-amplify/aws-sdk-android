@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListProvisioningTemplateVersionsResult implements Serializable {
     /**
      * <p>
-     * The list of fleet provisioning template versions.
+     * The list of provisioning template versions.
      * </p>
      */
     private java.util.List<ProvisioningTemplateVersionSummary> versions;
@@ -34,11 +34,11 @@ public class ListProvisioningTemplateVersionsResult implements Serializable {
 
     /**
      * <p>
-     * The list of fleet provisioning template versions.
+     * The list of provisioning template versions.
      * </p>
      *
      * @return <p>
-     *         The list of fleet provisioning template versions.
+     *         The list of provisioning template versions.
      *         </p>
      */
     public java.util.List<ProvisioningTemplateVersionSummary> getVersions() {
@@ -47,11 +47,11 @@ public class ListProvisioningTemplateVersionsResult implements Serializable {
 
     /**
      * <p>
-     * The list of fleet provisioning template versions.
+     * The list of provisioning template versions.
      * </p>
      *
      * @param versions <p>
-     *            The list of fleet provisioning template versions.
+     *            The list of provisioning template versions.
      *            </p>
      */
     public void setVersions(java.util.Collection<ProvisioningTemplateVersionSummary> versions) {
@@ -65,14 +65,14 @@ public class ListProvisioningTemplateVersionsResult implements Serializable {
 
     /**
      * <p>
-     * The list of fleet provisioning template versions.
+     * The list of provisioning template versions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versions <p>
-     *            The list of fleet provisioning template versions.
+     *            The list of provisioning template versions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -91,14 +91,14 @@ public class ListProvisioningTemplateVersionsResult implements Serializable {
 
     /**
      * <p>
-     * The list of fleet provisioning template versions.
+     * The list of provisioning template versions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versions <p>
-     *            The list of fleet provisioning template versions.
+     *            The list of provisioning template versions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

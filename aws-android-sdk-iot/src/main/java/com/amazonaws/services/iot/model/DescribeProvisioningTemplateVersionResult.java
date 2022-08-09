@@ -20,21 +20,21 @@ import java.io.Serializable;
 public class DescribeProvisioningTemplateVersionResult implements Serializable {
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      */
     private Integer versionId;
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created.
+     * The date when the provisioning template version was created.
      * </p>
      */
     private java.util.Date creationDate;
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template version.
+     * The JSON formatted contents of the provisioning template version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,18 +45,18 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version.
+     * True if the provisioning template version is the default version.
      * </p>
      */
     private Boolean isDefaultVersion;
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      *
      * @return <p>
-     *         The fleet provisioning template version ID.
+     *         The provisioning template version ID.
      *         </p>
      */
     public Integer getVersionId() {
@@ -65,11 +65,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID.
+     *            The provisioning template version ID.
      *            </p>
      */
     public void setVersionId(Integer versionId) {
@@ -78,14 +78,14 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID.
+     *            The provisioning template version ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -97,12 +97,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created.
+     * The date when the provisioning template version was created.
      * </p>
      *
      * @return <p>
-     *         The date when the fleet provisioning template version was
-     *         created.
+     *         The date when the provisioning template version was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -111,12 +110,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created.
+     * The date when the provisioning template version was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template version was
-     *            created.
+     *            The date when the provisioning template version was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -125,15 +123,14 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The date when the fleet provisioning template version was created.
+     * The date when the provisioning template version was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The date when the fleet provisioning template version was
-     *            created.
+     *            The date when the provisioning template version was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -145,7 +142,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template version.
+     * The JSON formatted contents of the provisioning template version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,8 +150,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         The JSON formatted contents of the fleet provisioning template
-     *         version.
+     *         The JSON formatted contents of the provisioning template version.
      *         </p>
      */
     public String getTemplateBody() {
@@ -163,7 +159,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template version.
+     * The JSON formatted contents of the provisioning template version.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -171,7 +167,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning template
+     *            The JSON formatted contents of the provisioning template
      *            version.
      *            </p>
      */
@@ -181,7 +177,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template version.
+     * The JSON formatted contents of the provisioning template version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -192,7 +188,7 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning template
+     *            The JSON formatted contents of the provisioning template
      *            version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -205,12 +201,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version.
+     * True if the provisioning template version is the default version.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version.
+     *         True if the provisioning template version is the default version.
      *         </p>
      */
     public Boolean isIsDefaultVersion() {
@@ -219,12 +214,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version.
+     * True if the provisioning template version is the default version.
      * </p>
      *
      * @return <p>
-     *         True if the fleet provisioning template version is the default
-     *         version.
+     *         True if the provisioning template version is the default version.
      *         </p>
      */
     public Boolean getIsDefaultVersion() {
@@ -233,11 +227,11 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version.
+     * True if the provisioning template version is the default version.
      * </p>
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version.
      *            </p>
      */
@@ -247,14 +241,14 @@ public class DescribeProvisioningTemplateVersionResult implements Serializable {
 
     /**
      * <p>
-     * True if the fleet provisioning template version is the default version.
+     * True if the provisioning template version is the default version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param isDefaultVersion <p>
-     *            True if the fleet provisioning template version is the default
+     *            True if the provisioning template version is the default
      *            version.
      *            </p>
      * @return A reference to this updated object so that method calls can be

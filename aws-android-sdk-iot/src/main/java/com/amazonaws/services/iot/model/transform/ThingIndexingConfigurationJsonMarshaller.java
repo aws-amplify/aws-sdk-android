@@ -72,6 +72,11 @@ class ThingIndexingConfigurationJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (thingIndexingConfiguration.getFilter() != null) {
+            IndexingFilter filter = thingIndexingConfiguration.getFilter();
+            jsonWriter.name("filter");
+            IndexingFilterJsonMarshaller.getInstance().marshall(filter, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
