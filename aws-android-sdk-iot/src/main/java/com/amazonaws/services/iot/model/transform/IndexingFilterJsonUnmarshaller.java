@@ -21,43 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO RegistrationConfig
+ * JSON unmarshaller for POJO IndexingFilter
  */
-class RegistrationConfigJsonUnmarshaller implements
-        Unmarshaller<RegistrationConfig, JsonUnmarshallerContext> {
+class IndexingFilterJsonUnmarshaller implements
+        Unmarshaller<IndexingFilter, JsonUnmarshallerContext> {
 
-    public RegistrationConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public IndexingFilter unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        RegistrationConfig registrationConfig = new RegistrationConfig();
+        IndexingFilter indexingFilter = new IndexingFilter();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("templateBody")) {
-                registrationConfig.setTemplateBody(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("roleArn")) {
-                registrationConfig.setRoleArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("templateName")) {
-                registrationConfig.setTemplateName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+            if (name.equals("namedShadowNames")) {
+                indexingFilter.setNamedShadowNames(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return registrationConfig;
+        return indexingFilter;
     }
 
-    private static RegistrationConfigJsonUnmarshaller instance;
+    private static IndexingFilterJsonUnmarshaller instance;
 
-    public static RegistrationConfigJsonUnmarshaller getInstance() {
+    public static IndexingFilterJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new RegistrationConfigJsonUnmarshaller();
+            instance = new IndexingFilterJsonUnmarshaller();
         return instance;
     }
 }
