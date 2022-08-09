@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns information about a fleet provisioning template version.
+ * Returns information about a provisioning template version.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -44,7 +44,7 @@ public class DescribeProvisioningTemplateVersionRequest extends AmazonWebService
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      */
     private Integer versionId;
@@ -108,11 +108,11 @@ public class DescribeProvisioningTemplateVersionRequest extends AmazonWebService
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      *
      * @return <p>
-     *         The fleet provisioning template version ID.
+     *         The provisioning template version ID.
      *         </p>
      */
     public Integer getVersionId() {
@@ -121,11 +121,11 @@ public class DescribeProvisioningTemplateVersionRequest extends AmazonWebService
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID.
+     *            The provisioning template version ID.
      *            </p>
      */
     public void setVersionId(Integer versionId) {
@@ -134,14 +134,14 @@ public class DescribeProvisioningTemplateVersionRequest extends AmazonWebService
 
     /**
      * <p>
-     * The fleet provisioning template version ID.
+     * The provisioning template version ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versionId <p>
-     *            The fleet provisioning template version ID.
+     *            The provisioning template version ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

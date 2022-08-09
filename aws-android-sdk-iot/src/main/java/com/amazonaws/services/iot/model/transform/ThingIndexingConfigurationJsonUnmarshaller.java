@@ -62,6 +62,9 @@ class ThingIndexingConfigurationJsonUnmarshaller implements
                         FieldJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("filter")) {
+                thingIndexingConfiguration.setFilter(IndexingFilterJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
