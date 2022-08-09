@@ -20,21 +20,22 @@ import java.io.Serializable;
 public class GetUserPoolMfaConfigResult implements Serializable {
     /**
      * <p>
-     * The SMS text message multi-factor (MFA) configuration.
+     * The SMS text message multi-factor authentication (MFA) configuration.
      * </p>
      */
     private SmsMfaConfigType smsMfaConfiguration;
 
     /**
      * <p>
-     * The software token multi-factor (MFA) configuration.
+     * The software token multi-factor authentication (MFA) configuration.
      * </p>
      */
     private SoftwareTokenMfaConfigType softwareTokenMfaConfiguration;
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -62,11 +63,12 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The SMS text message multi-factor (MFA) configuration.
+     * The SMS text message multi-factor authentication (MFA) configuration.
      * </p>
      *
      * @return <p>
-     *         The SMS text message multi-factor (MFA) configuration.
+     *         The SMS text message multi-factor authentication (MFA)
+     *         configuration.
      *         </p>
      */
     public SmsMfaConfigType getSmsMfaConfiguration() {
@@ -75,11 +77,12 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The SMS text message multi-factor (MFA) configuration.
+     * The SMS text message multi-factor authentication (MFA) configuration.
      * </p>
      *
      * @param smsMfaConfiguration <p>
-     *            The SMS text message multi-factor (MFA) configuration.
+     *            The SMS text message multi-factor authentication (MFA)
+     *            configuration.
      *            </p>
      */
     public void setSmsMfaConfiguration(SmsMfaConfigType smsMfaConfiguration) {
@@ -88,14 +91,15 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The SMS text message multi-factor (MFA) configuration.
+     * The SMS text message multi-factor authentication (MFA) configuration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param smsMfaConfiguration <p>
-     *            The SMS text message multi-factor (MFA) configuration.
+     *            The SMS text message multi-factor authentication (MFA)
+     *            configuration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -107,11 +111,12 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The software token multi-factor (MFA) configuration.
+     * The software token multi-factor authentication (MFA) configuration.
      * </p>
      *
      * @return <p>
-     *         The software token multi-factor (MFA) configuration.
+     *         The software token multi-factor authentication (MFA)
+     *         configuration.
      *         </p>
      */
     public SoftwareTokenMfaConfigType getSoftwareTokenMfaConfiguration() {
@@ -120,11 +125,12 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The software token multi-factor (MFA) configuration.
+     * The software token multi-factor authentication (MFA) configuration.
      * </p>
      *
      * @param softwareTokenMfaConfiguration <p>
-     *            The software token multi-factor (MFA) configuration.
+     *            The software token multi-factor authentication (MFA)
+     *            configuration.
      *            </p>
      */
     public void setSoftwareTokenMfaConfiguration(
@@ -134,14 +140,15 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The software token multi-factor (MFA) configuration.
+     * The software token multi-factor authentication (MFA) configuration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param softwareTokenMfaConfiguration <p>
-     *            The software token multi-factor (MFA) configuration.
+     *            The software token multi-factor authentication (MFA)
+     *            configuration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -154,7 +161,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -179,7 +187,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @return <p>
-     *         The multi-factor (MFA) configuration. Valid values include:
+     *         The multi-factor authentication (MFA) configuration. Valid values
+     *         include:
      *         </p>
      *         <ul>
      *         <li>
@@ -207,7 +216,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -232,7 +242,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration. Valid values include:
+     *            The multi-factor authentication (MFA) configuration. Valid
+     *            values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -260,7 +271,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -288,7 +300,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration. Valid values include:
+     *            The multi-factor authentication (MFA) configuration. Valid
+     *            values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -319,7 +332,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -344,7 +358,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration. Valid values include:
+     *            The multi-factor authentication (MFA) configuration. Valid
+     *            values include:
      *            </p>
      *            <ul>
      *            <li>
@@ -372,7 +387,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
 
     /**
      * <p>
-     * The multi-factor (MFA) configuration. Valid values include:
+     * The multi-factor authentication (MFA) configuration. Valid values
+     * include:
      * </p>
      * <ul>
      * <li>
@@ -400,7 +416,8 @@ public class GetUserPoolMfaConfigResult implements Serializable {
      * <b>Allowed Values: </b>OFF, ON, OPTIONAL
      *
      * @param mfaConfiguration <p>
-     *            The multi-factor (MFA) configuration. Valid values include:
+     *            The multi-factor authentication (MFA) configuration. Valid
+     *            values include:
      *            </p>
      *            <ul>
      *            <li>

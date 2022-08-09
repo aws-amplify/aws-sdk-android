@@ -228,8 +228,9 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * A list of provider names for the IdPs that this client supports. The
      * following are supported: <code>COGNITO</code>, <code>Facebook</code>,
-     * <code>Google</code> <code>LoginWithAmazon</code>, and the names of your
-     * own SAML and OIDC providers.
+     * <code>Google</code>, <code>SignInWithApple</code>,
+     * <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC
+     * providers.
      * </p>
      */
     private java.util.List<String> supportedIdentityProviders;
@@ -1852,16 +1853,17 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * A list of provider names for the IdPs that this client supports. The
      * following are supported: <code>COGNITO</code>, <code>Facebook</code>,
-     * <code>Google</code> <code>LoginWithAmazon</code>, and the names of your
-     * own SAML and OIDC providers.
+     * <code>Google</code>, <code>SignInWithApple</code>,
+     * <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC
+     * providers.
      * </p>
      *
      * @return <p>
      *         A list of provider names for the IdPs that this client supports.
      *         The following are supported: <code>COGNITO</code>,
-     *         <code>Facebook</code>, <code>Google</code>
-     *         <code>LoginWithAmazon</code>, and the names of your own SAML and
-     *         OIDC providers.
+     *         <code>Facebook</code>, <code>Google</code>,
+     *         <code>SignInWithApple</code>, <code>LoginWithAmazon</code>, and
+     *         the names of your own SAML and OIDC providers.
      *         </p>
      */
     public java.util.List<String> getSupportedIdentityProviders() {
@@ -1872,16 +1874,17 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * A list of provider names for the IdPs that this client supports. The
      * following are supported: <code>COGNITO</code>, <code>Facebook</code>,
-     * <code>Google</code> <code>LoginWithAmazon</code>, and the names of your
-     * own SAML and OIDC providers.
+     * <code>Google</code>, <code>SignInWithApple</code>,
+     * <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC
+     * providers.
      * </p>
      *
      * @param supportedIdentityProviders <p>
      *            A list of provider names for the IdPs that this client
      *            supports. The following are supported: <code>COGNITO</code>,
-     *            <code>Facebook</code>, <code>Google</code>
-     *            <code>LoginWithAmazon</code>, and the names of your own SAML
-     *            and OIDC providers.
+     *            <code>Facebook</code>, <code>Google</code>,
+     *            <code>SignInWithApple</code>, <code>LoginWithAmazon</code>,
+     *            and the names of your own SAML and OIDC providers.
      *            </p>
      */
     public void setSupportedIdentityProviders(
@@ -1899,8 +1902,9 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * A list of provider names for the IdPs that this client supports. The
      * following are supported: <code>COGNITO</code>, <code>Facebook</code>,
-     * <code>Google</code> <code>LoginWithAmazon</code>, and the names of your
-     * own SAML and OIDC providers.
+     * <code>Google</code>, <code>SignInWithApple</code>,
+     * <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC
+     * providers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1909,9 +1913,9 @@ public class UserPoolClientType implements Serializable {
      * @param supportedIdentityProviders <p>
      *            A list of provider names for the IdPs that this client
      *            supports. The following are supported: <code>COGNITO</code>,
-     *            <code>Facebook</code>, <code>Google</code>
-     *            <code>LoginWithAmazon</code>, and the names of your own SAML
-     *            and OIDC providers.
+     *            <code>Facebook</code>, <code>Google</code>,
+     *            <code>SignInWithApple</code>, <code>LoginWithAmazon</code>,
+     *            and the names of your own SAML and OIDC providers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1931,8 +1935,9 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * A list of provider names for the IdPs that this client supports. The
      * following are supported: <code>COGNITO</code>, <code>Facebook</code>,
-     * <code>Google</code> <code>LoginWithAmazon</code>, and the names of your
-     * own SAML and OIDC providers.
+     * <code>Google</code>, <code>SignInWithApple</code>,
+     * <code>LoginWithAmazon</code>, and the names of your own SAML and OIDC
+     * providers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1941,9 +1946,9 @@ public class UserPoolClientType implements Serializable {
      * @param supportedIdentityProviders <p>
      *            A list of provider names for the IdPs that this client
      *            supports. The following are supported: <code>COGNITO</code>,
-     *            <code>Facebook</code>, <code>Google</code>
-     *            <code>LoginWithAmazon</code>, and the names of your own SAML
-     *            and OIDC providers.
+     *            <code>Facebook</code>, <code>Google</code>,
+     *            <code>SignInWithApple</code>, <code>LoginWithAmazon</code>,
+     *            and the names of your own SAML and OIDC providers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
