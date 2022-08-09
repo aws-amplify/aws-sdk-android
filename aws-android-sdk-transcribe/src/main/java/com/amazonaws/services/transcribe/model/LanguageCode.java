@@ -26,7 +26,6 @@ public enum LanguageCode {
     AfZA("af-ZA"),
     ArAE("ar-AE"),
     ArSA("ar-SA"),
-    CyGB("cy-GB"),
     DaDK("da-DK"),
     DeCH("de-CH"),
     DeDE("de-DE"),
@@ -42,8 +41,6 @@ public enum LanguageCode {
     FaIR("fa-IR"),
     FrCA("fr-CA"),
     FrFR("fr-FR"),
-    GaIE("ga-IE"),
-    GdGB("gd-GB"),
     HeIL("he-IL"),
     HiIN("hi-IN"),
     IdID("id-ID"),
@@ -81,7 +78,6 @@ public enum LanguageCode {
         enumMap.put("af-ZA", AfZA);
         enumMap.put("ar-AE", ArAE);
         enumMap.put("ar-SA", ArSA);
-        enumMap.put("cy-GB", CyGB);
         enumMap.put("da-DK", DaDK);
         enumMap.put("de-CH", DeCH);
         enumMap.put("de-DE", DeDE);
@@ -97,8 +93,6 @@ public enum LanguageCode {
         enumMap.put("fa-IR", FaIR);
         enumMap.put("fr-CA", FrCA);
         enumMap.put("fr-FR", FrFR);
-        enumMap.put("ga-IE", GaIE);
-        enumMap.put("gd-GB", GdGB);
         enumMap.put("he-IL", HeIL);
         enumMap.put("hi-IN", HiIN);
         enumMap.put("id-ID", IdID);
