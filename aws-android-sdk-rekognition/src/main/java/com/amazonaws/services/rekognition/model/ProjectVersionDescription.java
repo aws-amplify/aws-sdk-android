@@ -142,6 +142,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
+     * The maximum number of inference units Amazon Rekognition Custom Labels
+     * uses to auto-scale the model. For more information, see
+     * <a>StartProjectVersion</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     */
+    private Integer maxInferenceUnits;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the model version.
      * </p>
      * <p>
@@ -871,6 +883,72 @@ public class ProjectVersionDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The maximum number of inference units Amazon Rekognition Custom Labels
+     * uses to auto-scale the model. For more information, see
+     * <a>StartProjectVersion</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @return <p>
+     *         The maximum number of inference units Amazon Rekognition Custom
+     *         Labels uses to auto-scale the model. For more information, see
+     *         <a>StartProjectVersion</a>.
+     *         </p>
+     */
+    public Integer getMaxInferenceUnits() {
+        return maxInferenceUnits;
+    }
+
+    /**
+     * <p>
+     * The maximum number of inference units Amazon Rekognition Custom Labels
+     * uses to auto-scale the model. For more information, see
+     * <a>StartProjectVersion</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param maxInferenceUnits <p>
+     *            The maximum number of inference units Amazon Rekognition
+     *            Custom Labels uses to auto-scale the model. For more
+     *            information, see <a>StartProjectVersion</a>.
+     *            </p>
+     */
+    public void setMaxInferenceUnits(Integer maxInferenceUnits) {
+        this.maxInferenceUnits = maxInferenceUnits;
+    }
+
+    /**
+     * <p>
+     * The maximum number of inference units Amazon Rekognition Custom Labels
+     * uses to auto-scale the model. For more information, see
+     * <a>StartProjectVersion</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param maxInferenceUnits <p>
+     *            The maximum number of inference units Amazon Rekognition
+     *            Custom Labels uses to auto-scale the model. For more
+     *            information, see <a>StartProjectVersion</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withMaxInferenceUnits(Integer maxInferenceUnits) {
+        this.maxInferenceUnits = maxInferenceUnits;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -906,7 +984,9 @@ public class ProjectVersionDescription implements Serializable {
         if (getManifestSummary() != null)
             sb.append("ManifestSummary: " + getManifestSummary() + ",");
         if (getKmsKeyId() != null)
-            sb.append("KmsKeyId: " + getKmsKeyId());
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
+        if (getMaxInferenceUnits() != null)
+            sb.append("MaxInferenceUnits: " + getMaxInferenceUnits());
         sb.append("}");
         return sb.toString();
     }
@@ -942,6 +1022,8 @@ public class ProjectVersionDescription implements Serializable {
         hashCode = prime * hashCode
                 + ((getManifestSummary() == null) ? 0 : getManifestSummary().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getMaxInferenceUnits() == null) ? 0 : getMaxInferenceUnits().hashCode());
         return hashCode;
     }
 
@@ -1020,6 +1102,11 @@ public class ProjectVersionDescription implements Serializable {
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;
         if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
+        if (other.getMaxInferenceUnits() == null ^ this.getMaxInferenceUnits() == null)
+            return false;
+        if (other.getMaxInferenceUnits() != null
+                && other.getMaxInferenceUnits().equals(this.getMaxInferenceUnits()) == false)
             return false;
         return true;
     }
