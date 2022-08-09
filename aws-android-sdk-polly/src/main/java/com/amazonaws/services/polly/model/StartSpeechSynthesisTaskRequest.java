@@ -179,7 +179,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      */
     private String voiceId;
 
@@ -1270,7 +1270,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1294,7 +1294,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1321,7 +1321,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1348,7 +1348,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1375,7 +1375,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
