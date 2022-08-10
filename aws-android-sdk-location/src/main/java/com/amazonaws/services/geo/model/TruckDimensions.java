@@ -37,6 +37,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -54,6 +60,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 300 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -84,6 +96,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -101,6 +119,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -115,6 +139,12 @@ public class TruckDimensions implements Serializable {
      *         </p>
      *         </li>
      *         </ul>
+     *         <note>
+     *         <p>
+     *         For routes calculated with a HERE resource, this value must be
+     *         between 0 and 50 meters.
+     *         </p>
+     *         </note>
      */
     public Double getHeight() {
         return height;
@@ -131,6 +161,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -145,6 +181,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 50 meters.
+     *            </p>
+     *            </note>
      */
     public void setHeight(Double height) {
         this.height = height;
@@ -161,6 +203,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -178,6 +226,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 50 meters.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -197,6 +251,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 300 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -211,6 +271,12 @@ public class TruckDimensions implements Serializable {
      *         </p>
      *         </li>
      *         </ul>
+     *         <note>
+     *         <p>
+     *         For routes calculated with a HERE resource, this value must be
+     *         between 0 and 300 meters.
+     *         </p>
+     *         </note>
      */
     public Double getLength() {
         return length;
@@ -227,6 +293,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 300 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -241,6 +313,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 300 meters.
+     *            </p>
+     *            </note>
      */
     public void setLength(Double length) {
         this.length = length;
@@ -257,6 +335,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 300 meters.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -274,6 +358,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 300 meters.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -420,6 +510,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -434,6 +530,12 @@ public class TruckDimensions implements Serializable {
      *         </p>
      *         </li>
      *         </ul>
+     *         <note>
+     *         <p>
+     *         For routes calculated with a HERE resource, this value must be
+     *         between 0 and 50 meters.
+     *         </p>
+     *         </note>
      */
     public Double getWidth() {
         return width;
@@ -450,6 +552,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0.0 - <br/>
@@ -464,6 +572,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 50 meters.
+     *            </p>
+     *            </note>
      */
     public void setWidth(Double width) {
         this.width = width;
@@ -480,6 +594,12 @@ public class TruckDimensions implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * For routes calculated with a HERE resource, this value must be between 0
+     * and 50 meters.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -497,6 +617,12 @@ public class TruckDimensions implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            For routes calculated with a HERE resource, this value must be
+     *            between 0 and 50 meters.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

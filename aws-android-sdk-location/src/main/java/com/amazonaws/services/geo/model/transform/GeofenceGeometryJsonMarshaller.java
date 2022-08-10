@@ -27,6 +27,11 @@ class GeofenceGeometryJsonMarshaller {
     public void marshall(GeofenceGeometry geofenceGeometry, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (geofenceGeometry.getCircle() != null) {
+            Circle circle = geofenceGeometry.getCircle();
+            jsonWriter.name("Circle");
+            CircleJsonMarshaller.getInstance().marshall(circle, jsonWriter);
+        }
         if (geofenceGeometry.getPolygon() != null) {
             java.util.List<java.util.List<java.util.List<Double>>> polygon = geofenceGeometry
                     .getPolygon();

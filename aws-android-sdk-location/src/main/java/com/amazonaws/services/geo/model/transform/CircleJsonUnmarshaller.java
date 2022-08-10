@@ -21,47 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO GeofenceGeometry
+ * JSON unmarshaller for POJO Circle
  */
-class GeofenceGeometryJsonUnmarshaller implements
-        Unmarshaller<GeofenceGeometry, JsonUnmarshallerContext> {
+class CircleJsonUnmarshaller implements Unmarshaller<Circle, JsonUnmarshallerContext> {
 
-    public GeofenceGeometry unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public Circle unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        GeofenceGeometry geofenceGeometry = new GeofenceGeometry();
+        Circle circle = new Circle();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Circle")) {
-                geofenceGeometry.setCircle(CircleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Polygon")) {
-                geofenceGeometry
-                        .setPolygon(new ListUnmarshaller<java.util.List<java.util.List<Double>>>(
-                                new ListUnmarshaller<java.util.List<Double>>(
-                                        new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
-                                                .getInstance()
-                                        )
-                                )
+            if (name.equals("Center")) {
+                circle.setCenter(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Radius")) {
+                circle.setRadius(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return geofenceGeometry;
+        return circle;
     }
 
-    private static GeofenceGeometryJsonUnmarshaller instance;
+    private static CircleJsonUnmarshaller instance;
 
-    public static GeofenceGeometryJsonUnmarshaller getInstance() {
+    public static CircleJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new GeofenceGeometryJsonUnmarshaller();
+            instance = new CircleJsonUnmarshaller();
         return instance;
     }
 }
