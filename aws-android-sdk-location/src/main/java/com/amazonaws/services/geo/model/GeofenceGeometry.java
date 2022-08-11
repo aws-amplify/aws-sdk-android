@@ -21,6 +21,10 @@ import java.io.Serializable;
  * <p>
  * Contains the geofence geometry details.
  * </p>
+ * <p>
+ * A geofence geometry is made up of either a polygon or a circle. Can be either
+ * a polygon or a circle. Including both will return a validation error.
+ * </p>
  * <note>
  * <p>
  * Amazon Location doesn't currently support polygons with holes, multipolygons,
@@ -31,21 +35,10 @@ import java.io.Serializable;
 public class GeofenceGeometry implements Serializable {
     /**
      * <p>
-     * An array of 1 or more linear rings. A linear ring is an array of 4 or
-     * more vertices, where the first and last vertex are the same to form a
-     * closed boundary. Each vertex is a 2-dimensional point of the form:
-     * <code>[longitude, latitude]</code>.
-     * </p>
-     * <p>
-     * The first linear ring is an outer ring, describing the polygon's
-     * boundary. Subsequent linear rings may be inner or outer rings to describe
-     * holes and islands. Outer rings must list their vertices in
-     * counter-clockwise order around the ring's center, where the left side is
-     * the polygon's exterior. Inner rings must list their vertices in clockwise
-     * order, where the left side is the polygon's interior.
+     * A circle on the earth, as defined by a center point and a radius.
      * </p>
      */
-    private java.util.List<java.util.List<java.util.List<Double>>> polygon;
+    private Circle circle;
 
     /**
      * <p>
@@ -62,6 +55,77 @@ public class GeofenceGeometry implements Serializable {
      * the polygon's exterior. Inner rings must list their vertices in clockwise
      * order, where the left side is the polygon's interior.
      * </p>
+     * <p>
+     * A geofence polygon can consist of between 4 and 1,000 vertices.
+     * </p>
+     */
+    private java.util.List<java.util.List<java.util.List<Double>>> polygon;
+
+    /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     *
+     * @return <p>
+     *         A circle on the earth, as defined by a center point and a radius.
+     *         </p>
+     */
+    public Circle getCircle() {
+        return circle;
+    }
+
+    /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     *
+     * @param circle <p>
+     *            A circle on the earth, as defined by a center point and a
+     *            radius.
+     *            </p>
+     */
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
+
+    /**
+     * <p>
+     * A circle on the earth, as defined by a center point and a radius.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param circle <p>
+     *            A circle on the earth, as defined by a center point and a
+     *            radius.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GeofenceGeometry withCircle(Circle circle) {
+        this.circle = circle;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of 1 or more linear rings. A linear ring is an array of 4 or
+     * more vertices, where the first and last vertex are the same to form a
+     * closed boundary. Each vertex is a 2-dimensional point of the form:
+     * <code>[longitude, latitude]</code>.
+     * </p>
+     * <p>
+     * The first linear ring is an outer ring, describing the polygon's
+     * boundary. Subsequent linear rings may be inner or outer rings to describe
+     * holes and islands. Outer rings must list their vertices in
+     * counter-clockwise order around the ring's center, where the left side is
+     * the polygon's exterior. Inner rings must list their vertices in clockwise
+     * order, where the left side is the polygon's interior.
+     * </p>
+     * <p>
+     * A geofence polygon can consist of between 4 and 1,000 vertices.
+     * </p>
      *
      * @return <p>
      *         An array of 1 or more linear rings. A linear ring is an array of
@@ -77,6 +141,9 @@ public class GeofenceGeometry implements Serializable {
      *         left side is the polygon's exterior. Inner rings must list their
      *         vertices in clockwise order, where the left side is the polygon's
      *         interior.
+     *         </p>
+     *         <p>
+     *         A geofence polygon can consist of between 4 and 1,000 vertices.
      *         </p>
      */
     public java.util.List<java.util.List<java.util.List<Double>>> getPolygon() {
@@ -98,6 +165,9 @@ public class GeofenceGeometry implements Serializable {
      * the polygon's exterior. Inner rings must list their vertices in clockwise
      * order, where the left side is the polygon's interior.
      * </p>
+     * <p>
+     * A geofence polygon can consist of between 4 and 1,000 vertices.
+     * </p>
      *
      * @param polygon <p>
      *            An array of 1 or more linear rings. A linear ring is an array
@@ -113,6 +183,10 @@ public class GeofenceGeometry implements Serializable {
      *            ring's center, where the left side is the polygon's exterior.
      *            Inner rings must list their vertices in clockwise order, where
      *            the left side is the polygon's interior.
+     *            </p>
+     *            <p>
+     *            A geofence polygon can consist of between 4 and 1,000
+     *            vertices.
      *            </p>
      */
     public void setPolygon(java.util.Collection<java.util.List<java.util.List<Double>>> polygon) {
@@ -140,6 +214,9 @@ public class GeofenceGeometry implements Serializable {
      * order, where the left side is the polygon's interior.
      * </p>
      * <p>
+     * A geofence polygon can consist of between 4 and 1,000 vertices.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -157,6 +234,10 @@ public class GeofenceGeometry implements Serializable {
      *            ring's center, where the left side is the polygon's exterior.
      *            Inner rings must list their vertices in clockwise order, where
      *            the left side is the polygon's interior.
+     *            </p>
+     *            <p>
+     *            A geofence polygon can consist of between 4 and 1,000
+     *            vertices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -188,6 +269,9 @@ public class GeofenceGeometry implements Serializable {
      * order, where the left side is the polygon's interior.
      * </p>
      * <p>
+     * A geofence polygon can consist of between 4 and 1,000 vertices.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -205,6 +289,10 @@ public class GeofenceGeometry implements Serializable {
      *            ring's center, where the left side is the polygon's exterior.
      *            Inner rings must list their vertices in clockwise order, where
      *            the left side is the polygon's interior.
+     *            </p>
+     *            <p>
+     *            A geofence polygon can consist of between 4 and 1,000
+     *            vertices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -226,6 +314,8 @@ public class GeofenceGeometry implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getCircle() != null)
+            sb.append("Circle: " + getCircle() + ",");
         if (getPolygon() != null)
             sb.append("Polygon: " + getPolygon());
         sb.append("}");
@@ -237,6 +327,7 @@ public class GeofenceGeometry implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getCircle() == null) ? 0 : getCircle().hashCode());
         hashCode = prime * hashCode + ((getPolygon() == null) ? 0 : getPolygon().hashCode());
         return hashCode;
     }
@@ -252,6 +343,10 @@ public class GeofenceGeometry implements Serializable {
             return false;
         GeofenceGeometry other = (GeofenceGeometry) obj;
 
+        if (other.getCircle() == null ^ this.getCircle() == null)
+            return false;
+        if (other.getCircle() != null && other.getCircle().equals(this.getCircle()) == false)
+            return false;
         if (other.getPolygon() == null ^ this.getPolygon() == null)
             return false;
         if (other.getPolygon() != null && other.getPolygon().equals(this.getPolygon()) == false)

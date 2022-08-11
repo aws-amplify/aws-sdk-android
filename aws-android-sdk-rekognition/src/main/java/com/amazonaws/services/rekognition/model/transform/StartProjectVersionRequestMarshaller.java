@@ -73,6 +73,11 @@ public class StartProjectVersionRequestMarshaller implements
                 jsonWriter.name("MinInferenceUnits");
                 jsonWriter.value(minInferenceUnits);
             }
+            if (startProjectVersionRequest.getMaxInferenceUnits() != null) {
+                Integer maxInferenceUnits = startProjectVersionRequest.getMaxInferenceUnits();
+                jsonWriter.name("MaxInferenceUnits");
+                jsonWriter.value(maxInferenceUnits);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

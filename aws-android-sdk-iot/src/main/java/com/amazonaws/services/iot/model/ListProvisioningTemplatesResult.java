@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListProvisioningTemplatesResult implements Serializable {
     /**
      * <p>
-     * A list of fleet provisioning templates
+     * A list of provisioning templates
      * </p>
      */
     private java.util.List<ProvisioningTemplateSummary> templates;
@@ -34,11 +34,11 @@ public class ListProvisioningTemplatesResult implements Serializable {
 
     /**
      * <p>
-     * A list of fleet provisioning templates
+     * A list of provisioning templates
      * </p>
      *
      * @return <p>
-     *         A list of fleet provisioning templates
+     *         A list of provisioning templates
      *         </p>
      */
     public java.util.List<ProvisioningTemplateSummary> getTemplates() {
@@ -47,11 +47,11 @@ public class ListProvisioningTemplatesResult implements Serializable {
 
     /**
      * <p>
-     * A list of fleet provisioning templates
+     * A list of provisioning templates
      * </p>
      *
      * @param templates <p>
-     *            A list of fleet provisioning templates
+     *            A list of provisioning templates
      *            </p>
      */
     public void setTemplates(java.util.Collection<ProvisioningTemplateSummary> templates) {
@@ -65,14 +65,14 @@ public class ListProvisioningTemplatesResult implements Serializable {
 
     /**
      * <p>
-     * A list of fleet provisioning templates
+     * A list of provisioning templates
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templates <p>
-     *            A list of fleet provisioning templates
+     *            A list of provisioning templates
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -89,14 +89,14 @@ public class ListProvisioningTemplatesResult implements Serializable {
 
     /**
      * <p>
-     * A list of fleet provisioning templates
+     * A list of provisioning templates
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templates <p>
-     *            A list of fleet provisioning templates
+     *            A list of provisioning templates
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

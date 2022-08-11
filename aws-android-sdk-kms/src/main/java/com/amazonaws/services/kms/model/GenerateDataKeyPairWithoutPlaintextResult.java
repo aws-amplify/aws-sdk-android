@@ -61,7 +61,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      */
     private String keyPairSpec;
 
@@ -271,7 +271,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      *
      * @return <p>
      *         The type of data key pair that was generated.
@@ -289,7 +289,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      *
      * @param keyPairSpec <p>
      *            The type of data key pair that was generated.
@@ -310,7 +310,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      *
      * @param keyPairSpec <p>
      *            The type of data key pair that was generated.
@@ -331,7 +331,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      *
      * @param keyPairSpec <p>
      *            The type of data key pair that was generated.
@@ -352,7 +352,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
-     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SM2
      *
      * @param keyPairSpec <p>
      *            The type of data key pair that was generated.

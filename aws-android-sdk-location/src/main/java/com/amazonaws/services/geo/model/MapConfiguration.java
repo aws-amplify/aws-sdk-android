@@ -87,8 +87,9 @@ public class MapConfiguration implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>VectorHereBerlin</code> – The HERE Berlin map style is a high
-     * contrast detailed base map of the world that blends 3D and 2D rendering.
+     * <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is
+     * a high contrast detailed base map of the world that blends 3D and 2D
+     * rendering.
      * </p>
      * </li>
      * <li>
@@ -108,6 +109,13 @@ public class MapConfiguration implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -179,8 +187,9 @@ public class MapConfiguration implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>VectorHereBerlin</code> – The HERE Berlin map style is a high
-     * contrast detailed base map of the world that blends 3D and 2D rendering.
+     * <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is
+     * a high contrast detailed base map of the world that blends 3D and 2D
+     * rendering.
      * </p>
      * </li>
      * <li>
@@ -200,6 +209,13 @@ public class MapConfiguration implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -272,9 +288,9 @@ public class MapConfiguration implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>VectorHereBerlin</code> – The HERE Berlin map style is a
-     *         high contrast detailed base map of the world that blends 3D and
-     *         2D rendering.
+     *         <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map
+     *         style is a high contrast detailed base map of the world that
+     *         blends 3D and 2D rendering.
      *         </p>
      *         </li>
      *         <li>
@@ -294,6 +310,14 @@ public class MapConfiguration implements Serializable {
      *         </p>
      *         </li>
      *         </ul>
+     *         <note>
+     *         <p>
+     *         The <code>VectorHereContrast</code> style has been renamed from
+     *         <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has
+     *         been deprecated, but will continue to work in applications that
+     *         use it.
+     *         </p>
+     *         </note>
      */
     public String getStyle() {
         return style;
@@ -363,8 +387,9 @@ public class MapConfiguration implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>VectorHereBerlin</code> – The HERE Berlin map style is a high
-     * contrast detailed base map of the world that blends 3D and 2D rendering.
+     * <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is
+     * a high contrast detailed base map of the world that blends 3D and 2D
+     * rendering.
      * </p>
      * </li>
      * <li>
@@ -384,6 +409,13 @@ public class MapConfiguration implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -457,9 +489,9 @@ public class MapConfiguration implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>VectorHereBerlin</code> – The HERE Berlin map style is a
-     *            high contrast detailed base map of the world that blends 3D
-     *            and 2D rendering.
+     *            <code>VectorHereContrast</code> – The HERE Contrast (Berlin)
+     *            map style is a high contrast detailed base map of the world
+     *            that blends 3D and 2D rendering.
      *            </p>
      *            </li>
      *            <li>
@@ -480,6 +512,14 @@ public class MapConfiguration implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            The <code>VectorHereContrast</code> style has been renamed
+     *            from <code>VectorHereBerlin</code>.
+     *            <code>VectorHereBerlin</code> has been deprecated, but will
+     *            continue to work in applications that use it.
+     *            </p>
+     *            </note>
      */
     public void setStyle(String style) {
         this.style = style;
@@ -549,8 +589,9 @@ public class MapConfiguration implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>VectorHereBerlin</code> – The HERE Berlin map style is a high
-     * contrast detailed base map of the world that blends 3D and 2D rendering.
+     * <code>VectorHereContrast</code> – The HERE Contrast (Berlin) map style is
+     * a high contrast detailed base map of the world that blends 3D and 2D
+     * rendering.
      * </p>
      * </li>
      * <li>
@@ -570,6 +611,13 @@ public class MapConfiguration implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -646,9 +694,9 @@ public class MapConfiguration implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>VectorHereBerlin</code> – The HERE Berlin map style is a
-     *            high contrast detailed base map of the world that blends 3D
-     *            and 2D rendering.
+     *            <code>VectorHereContrast</code> – The HERE Contrast (Berlin)
+     *            map style is a high contrast detailed base map of the world
+     *            that blends 3D and 2D rendering.
      *            </p>
      *            </li>
      *            <li>
@@ -669,6 +717,14 @@ public class MapConfiguration implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <note>
+     *            <p>
+     *            The <code>VectorHereContrast</code> style has been renamed
+     *            from <code>VectorHereBerlin</code>.
+     *            <code>VectorHereBerlin</code> has been deprecated, but will
+     *            continue to work in applications that use it.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

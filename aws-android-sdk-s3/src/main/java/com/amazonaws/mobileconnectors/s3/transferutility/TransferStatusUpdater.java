@@ -244,23 +244,6 @@ class TransferStatusUpdater {
                 }
             }
         }
-
-        // If all transfers in local map are completed,
-        // stop TransferService to clear foreground notification
-        if (Build.VERSION.SDK_INT >= 26) {
-            boolean stopTransferService = true;
-            for (TransferRecord record : transfers.values()) {
-                if (!TransferState.isFinalState(record.state)) {
-                    stopTransferService = false;
-                    LOGGER.info("Transfers still pending, keeping TransferService running.");
-                    break;
-                }
-            }
-            if (stopTransferService) {
-                LOGGER.info("All transfers in final state. Stopping TransferService");
-                context.stopService(new Intent(context, TransferService.class));
-            }
-        }
     }
 
     /**

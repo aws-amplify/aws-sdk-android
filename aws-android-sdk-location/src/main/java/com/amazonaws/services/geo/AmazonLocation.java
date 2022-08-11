@@ -22,8 +22,7 @@ import com.amazonaws.services.geo.model.*;
 /**
  * Interface for accessing AWS Location service
  * <p>
- * Suite of geospatial services including Maps, Places, Routes, Tracking, and
- * Geofencing
+ * "Suite of geospatial services including Maps, Places, Routes, Tracking, and Geofencing"
  * </p>
  **/
 public interface AmazonLocation {
@@ -403,7 +402,12 @@ public interface AmazonLocation {
      * <code>Car</code>, or <code>TruckModeOptions</code> if traveling by
      * <code>Truck</code>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * If you specify <code>walking</code> for the travel mode and your data
+     * provider is Esri, the start and destination must be within 40km.
+     * </p>
+     * </note></li>
      * </ul>
      * 
      * @param calculateRouteRequest

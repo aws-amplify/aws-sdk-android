@@ -25,7 +25,8 @@ public enum EncryptionAlgorithmSpec {
 
     SYMMETRIC_DEFAULT("SYMMETRIC_DEFAULT"),
     RSAES_OAEP_SHA_1("RSAES_OAEP_SHA_1"),
-    RSAES_OAEP_SHA_256("RSAES_OAEP_SHA_256");
+    RSAES_OAEP_SHA_256("RSAES_OAEP_SHA_256"),
+    SM2PKE("SM2PKE");
 
     private String value;
 
@@ -44,6 +45,7 @@ public enum EncryptionAlgorithmSpec {
         enumMap.put("SYMMETRIC_DEFAULT", SYMMETRIC_DEFAULT);
         enumMap.put("RSAES_OAEP_SHA_1", RSAES_OAEP_SHA_1);
         enumMap.put("RSAES_OAEP_SHA_256", RSAES_OAEP_SHA_256);
+        enumMap.put("SM2PKE", SM2PKE);
     }
 
     /**

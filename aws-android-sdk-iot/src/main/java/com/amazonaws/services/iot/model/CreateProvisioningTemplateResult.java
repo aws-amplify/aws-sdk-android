@@ -27,7 +27,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +38,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The default version of the fleet provisioning template.
+     * The default version of the provisioning template.
      * </p>
      */
     private Integer defaultVersionId;
@@ -90,7 +90,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +98,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -107,7 +107,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -115,7 +115,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -124,7 +124,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -135,7 +135,7 @@ public class CreateProvisioningTemplateResult implements Serializable {
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -147,11 +147,11 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The default version of the fleet provisioning template.
+     * The default version of the provisioning template.
      * </p>
      *
      * @return <p>
-     *         The default version of the fleet provisioning template.
+     *         The default version of the provisioning template.
      *         </p>
      */
     public Integer getDefaultVersionId() {
@@ -160,11 +160,11 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The default version of the fleet provisioning template.
+     * The default version of the provisioning template.
      * </p>
      *
      * @param defaultVersionId <p>
-     *            The default version of the fleet provisioning template.
+     *            The default version of the provisioning template.
      *            </p>
      */
     public void setDefaultVersionId(Integer defaultVersionId) {
@@ -173,14 +173,14 @@ public class CreateProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The default version of the fleet provisioning template.
+     * The default version of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param defaultVersionId <p>
-     *            The default version of the fleet provisioning template.
+     *            The default version of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

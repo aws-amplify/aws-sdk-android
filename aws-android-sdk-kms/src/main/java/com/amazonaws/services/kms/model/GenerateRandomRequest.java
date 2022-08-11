@@ -24,6 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Returns a random byte string that is cryptographically secure.
  * </p>
  * <p>
+ * You must use the <code>NumberOfBytes</code> parameter to specify the length
+ * of the random byte string. There is no default value for string length.
+ * </p>
+ * <p>
  * By default, the random byte string is generated in KMS. To generate the byte
  * string in the CloudHSM cluster that is associated with a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
@@ -44,6 +48,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Management Service Cryptographic Details</a>.
  * </p>
  * <p>
+ * <b>Cross-account use</b>: Not applicable. <code>GenerateRandom</code> does
+ * not use any account-specific resources, such as KMS keys.
+ * </p>
+ * <p>
  * <b>Required permissions</b>: <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
  * >kms:GenerateRandom</a> (IAM policy)
@@ -52,7 +60,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GenerateRandomRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The length of the byte string.
+     * The length of the random byte string. This parameter is required.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,14 +84,14 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The length of the byte string.
+     * The length of the random byte string. This parameter is required.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @return <p>
-     *         The length of the byte string.
+     *         The length of the random byte string. This parameter is required.
      *         </p>
      */
     public Integer getNumberOfBytes() {
@@ -92,14 +100,15 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The length of the byte string.
+     * The length of the random byte string. This parameter is required.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            The length of the byte string.
+     *            The length of the random byte string. This parameter is
+     *            required.
      *            </p>
      */
     public void setNumberOfBytes(Integer numberOfBytes) {
@@ -108,7 +117,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The length of the byte string.
+     * The length of the random byte string. This parameter is required.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +127,8 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Range: </b>1 - 1024<br/>
      *
      * @param numberOfBytes <p>
-     *            The length of the byte string.
+     *            The length of the random byte string. This parameter is
+     *            required.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

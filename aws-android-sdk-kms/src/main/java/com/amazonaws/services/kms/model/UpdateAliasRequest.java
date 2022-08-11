@@ -123,8 +123,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Identifies the alias that is changing its KMS key. This value must begin
      * with <code>alias/</code> followed by the alias name, such as
-     * <code>alias/ExampleAlias</code>. You cannot use UpdateAlias to change the
-     * alias name.
+     * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
+     * to change the alias name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,8 +185,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Identifies the alias that is changing its KMS key. This value must begin
      * with <code>alias/</code> followed by the alias name, such as
-     * <code>alias/ExampleAlias</code>. You cannot use UpdateAlias to change the
-     * alias name.
+     * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
+     * to change the alias name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -197,7 +197,7 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *         Identifies the alias that is changing its KMS key. This value
      *         must begin with <code>alias/</code> followed by the alias name,
      *         such as <code>alias/ExampleAlias</code>. You cannot use
-     *         UpdateAlias to change the alias name.
+     *         <code>UpdateAlias</code> to change the alias name.
      *         </p>
      */
     public String getAliasName() {
@@ -208,8 +208,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Identifies the alias that is changing its KMS key. This value must begin
      * with <code>alias/</code> followed by the alias name, such as
-     * <code>alias/ExampleAlias</code>. You cannot use UpdateAlias to change the
-     * alias name.
+     * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
+     * to change the alias name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,7 +220,7 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            Identifies the alias that is changing its KMS key. This value
      *            must begin with <code>alias/</code> followed by the alias
      *            name, such as <code>alias/ExampleAlias</code>. You cannot use
-     *            UpdateAlias to change the alias name.
+     *            <code>UpdateAlias</code> to change the alias name.
      *            </p>
      */
     public void setAliasName(String aliasName) {
@@ -231,8 +231,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Identifies the alias that is changing its KMS key. This value must begin
      * with <code>alias/</code> followed by the alias name, such as
-     * <code>alias/ExampleAlias</code>. You cannot use UpdateAlias to change the
-     * alias name.
+     * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
+     * to change the alias name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -246,7 +246,7 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            Identifies the alias that is changing its KMS key. This value
      *            must begin with <code>alias/</code> followed by the alias
      *            name, such as <code>alias/ExampleAlias</code>. You cannot use
-     *            UpdateAlias to change the alias name.
+     *            <code>UpdateAlias</code> to change the alias name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

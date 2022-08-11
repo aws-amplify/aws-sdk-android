@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a fleet provisioning template.
+ * Creates a provisioning template.
  * </p>
  * <p>
  * Requires permission to access the <a href=
@@ -33,7 +33,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         Serializable {
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +44,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +55,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,15 +66,15 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      */
     private Boolean enabled;
 
     /**
      * <p>
-     * The role ARN for the role associated with the fleet provisioning
-     * template. This IoT role grants permission to provision a device.
+     * The role ARN for the role associated with the provisioning template. This
+     * IoT role grants permission to provision a device.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +91,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Metadata which can be used to manage the fleet provisioning template.
+     * Metadata which can be used to manage the provisioning template.
      * </p>
      * <note>
      * <p>
@@ -111,7 +111,22 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     */
+    private String type;
+
+    /**
+     * <p>
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,7 +134,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @return <p>
-     *         The name of the fleet provisioning template.
+     *         The name of the provisioning template.
      *         </p>
      */
     public String getTemplateName() {
@@ -128,7 +143,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,7 +151,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -145,7 +160,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The name of the fleet provisioning template.
+     * The name of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -156,7 +171,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>^[0-9A-Za-z_-]+$<br/>
      *
      * @param templateName <p>
-     *            The name of the fleet provisioning template.
+     *            The name of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,7 +183,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -176,7 +191,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @return <p>
-     *         The description of the fleet provisioning template.
+     *         The description of the provisioning template.
      *         </p>
      */
     public String getDescription() {
@@ -185,7 +200,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -193,7 +208,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      */
     public void setDescription(String description) {
@@ -202,7 +217,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The description of the fleet provisioning template.
+     * The description of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,7 +228,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[^\p{C}]*<br/>
      *
      * @param description <p>
-     *            The description of the fleet provisioning template.
+     *            The description of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -225,7 +240,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -233,7 +248,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         The JSON formatted contents of the fleet provisioning template.
+     *         The JSON formatted contents of the provisioning template.
      *         </p>
      */
     public String getTemplateBody() {
@@ -242,7 +257,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -250,8 +265,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning
-     *            template.
+     *            The JSON formatted contents of the provisioning template.
      *            </p>
      */
     public void setTemplateBody(String templateBody) {
@@ -260,7 +274,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The JSON formatted contents of the fleet provisioning template.
+     * The JSON formatted contents of the provisioning template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -271,8 +285,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param templateBody <p>
-     *            The JSON formatted contents of the fleet provisioning
-     *            template.
+     *            The JSON formatted contents of the provisioning template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,11 +297,11 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @return <p>
-     *         True to enable the fleet provisioning template, otherwise false.
+     *         True to enable the provisioning template, otherwise false.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -297,11 +310,11 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @return <p>
-     *         True to enable the fleet provisioning template, otherwise false.
+     *         True to enable the provisioning template, otherwise false.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -310,12 +323,11 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      *
      * @param enabled <p>
-     *            True to enable the fleet provisioning template, otherwise
-     *            false.
+     *            True to enable the provisioning template, otherwise false.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -324,15 +336,14 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * True to enable the fleet provisioning template, otherwise false.
+     * True to enable the provisioning template, otherwise false.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enabled <p>
-     *            True to enable the fleet provisioning template, otherwise
-     *            false.
+     *            True to enable the provisioning template, otherwise false.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -344,15 +355,15 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The role ARN for the role associated with the fleet provisioning
-     * template. This IoT role grants permission to provision a device.
+     * The role ARN for the role associated with the provisioning template. This
+     * IoT role grants permission to provision a device.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The role ARN for the role associated with the fleet provisioning
+     *         The role ARN for the role associated with the provisioning
      *         template. This IoT role grants permission to provision a device.
      *         </p>
      */
@@ -362,17 +373,17 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The role ARN for the role associated with the fleet provisioning
-     * template. This IoT role grants permission to provision a device.
+     * The role ARN for the role associated with the provisioning template. This
+     * IoT role grants permission to provision a device.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param provisioningRoleArn <p>
-     *            The role ARN for the role associated with the fleet
-     *            provisioning template. This IoT role grants permission to
-     *            provision a device.
+     *            The role ARN for the role associated with the provisioning
+     *            template. This IoT role grants permission to provision a
+     *            device.
      *            </p>
      */
     public void setProvisioningRoleArn(String provisioningRoleArn) {
@@ -381,8 +392,8 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The role ARN for the role associated with the fleet provisioning
-     * template. This IoT role grants permission to provision a device.
+     * The role ARN for the role associated with the provisioning template. This
+     * IoT role grants permission to provision a device.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -392,9 +403,9 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param provisioningRoleArn <p>
-     *            The role ARN for the role associated with the fleet
-     *            provisioning template. This IoT role grants permission to
-     *            provision a device.
+     *            The role ARN for the role associated with the provisioning
+     *            template. This IoT role grants permission to provision a
+     *            device.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -452,7 +463,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Metadata which can be used to manage the fleet provisioning template.
+     * Metadata which can be used to manage the provisioning template.
      * </p>
      * <note>
      * <p>
@@ -469,8 +480,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * </note>
      *
      * @return <p>
-     *         Metadata which can be used to manage the fleet provisioning
-     *         template.
+     *         Metadata which can be used to manage the provisioning template.
      *         </p>
      *         <note>
      *         <p>
@@ -493,7 +503,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Metadata which can be used to manage the fleet provisioning template.
+     * Metadata which can be used to manage the provisioning template.
      * </p>
      * <note>
      * <p>
@@ -510,7 +520,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * </note>
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the fleet provisioning
+     *            Metadata which can be used to manage the provisioning
      *            template.
      *            </p>
      *            <note>
@@ -539,7 +549,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Metadata which can be used to manage the fleet provisioning template.
+     * Metadata which can be used to manage the provisioning template.
      * </p>
      * <note>
      * <p>
@@ -559,7 +569,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * together.
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the fleet provisioning
+     *            Metadata which can be used to manage the provisioning
      *            template.
      *            </p>
      *            <note>
@@ -591,7 +601,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Metadata which can be used to manage the fleet provisioning template.
+     * Metadata which can be used to manage the provisioning template.
      * </p>
      * <note>
      * <p>
@@ -611,7 +621,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      * together.
      *
      * @param tags <p>
-     *            Metadata which can be used to manage the fleet provisioning
+     *            Metadata which can be used to manage the provisioning
      *            template.
      *            </p>
      *            <note>
@@ -633,6 +643,158 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
      */
     public CreateProvisioningTemplateRequest withTags(java.util.Collection<Tag> tags) {
         setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @return <p>
+     *         The type you define in a provisioning template. You can create a
+     *         template with only one type. You can't change the template type
+     *         after its creation. The default value is
+     *         <code>FLEET_PROVISIONING</code>. For more information about
+     *         provisioning template, see: <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *         >Provisioning template</a>.
+     *         </p>
+     * @see TemplateType
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @see TemplateType
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TemplateType
+     */
+    public CreateProvisioningTemplateRequest withType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @see TemplateType
+     */
+    public void setType(TemplateType type) {
+        this.type = type.toString();
+    }
+
+    /**
+     * <p>
+     * The type you define in a provisioning template. You can create a template
+     * with only one type. You can't change the template type after its
+     * creation. The default value is <code>FLEET_PROVISIONING</code>. For more
+     * information about provisioning template, see: <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     * >Provisioning template</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FLEET_PROVISIONING, JITP
+     *
+     * @param type <p>
+     *            The type you define in a provisioning template. You can create
+     *            a template with only one type. You can't change the template
+     *            type after its creation. The default value is
+     *            <code>FLEET_PROVISIONING</code>. For more information about
+     *            provisioning template, see: <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html"
+     *            >Provisioning template</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TemplateType
+     */
+    public CreateProvisioningTemplateRequest withType(TemplateType type) {
+        this.type = type.toString();
         return this;
     }
 
@@ -660,7 +822,9 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         if (getPreProvisioningHook() != null)
             sb.append("preProvisioningHook: " + getPreProvisioningHook() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getType() != null)
+            sb.append("type: " + getType());
         sb.append("}");
         return sb.toString();
     }
@@ -682,6 +846,7 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         hashCode = prime * hashCode
                 + ((getPreProvisioningHook() == null) ? 0 : getPreProvisioningHook().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         return hashCode;
     }
 
@@ -728,6 +893,10 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getType() == null ^ this.getType() == null)
+            return false;
+        if (other.getType() != null && other.getType().equals(this.getType()) == false)
             return false;
         return true;
     }

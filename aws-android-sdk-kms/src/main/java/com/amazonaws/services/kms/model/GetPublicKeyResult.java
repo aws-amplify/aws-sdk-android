@@ -64,7 +64,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      */
     private String customerMasterKeySpec;
 
@@ -76,7 +76,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      */
     private String keySpec;
 
@@ -312,7 +312,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @return <p>
      *         Instead, use the <code>KeySpec</code> field in the
@@ -345,7 +345,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -382,7 +382,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -419,7 +419,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -456,7 +456,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field in the
@@ -486,7 +486,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @return <p>
      *         The type of the of the public key that was downloaded.
@@ -505,7 +505,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -527,7 +527,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -549,7 +549,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
@@ -571,7 +571,7 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
