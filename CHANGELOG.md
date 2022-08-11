@@ -1,3 +1,20 @@
+## [Release 2.51.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.51.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#2968)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2966)
+- **aws-android-sdk-polly:** update models to latest (#2959)
+- **aws-android-sdk-rekognition:** update models to latest (#2957)
+- **aws-android-sdk-transcribe:** update models to latest (#2953)
+- **aws-android-sdk-kms:** update models to latest (#2948)
+- **aws-android-sdk-location:** update models to latest (#2975)
+
+### Miscellaneous
+- Remove behavior of stopping TransferService on transfers completed, since this could be unsafe (#2973)
+- Fix Javadocs jar file publishing using buildspec file. (#2971)
+
+[See all changes between 2.50.1 and 2.51.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.50.1...release_v2.51.0)
+
 ## [Release 2.50.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.50.1)
 
 ### Miscellaneous
