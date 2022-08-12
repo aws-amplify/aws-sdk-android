@@ -52,6 +52,17 @@ public class ListChannelMessagesResult implements Serializable {
 
     /**
      * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The ARN of the channel containing the requested messages.
      * </p>
      * <p>
@@ -253,6 +264,63 @@ public class ListChannelMessagesResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel in the response.
+     *         </p>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the response.
+     *            </p>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListChannelMessagesResult withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -268,7 +336,9 @@ public class ListChannelMessagesResult implements Serializable {
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getChannelMessages() != null)
-            sb.append("ChannelMessages: " + getChannelMessages());
+            sb.append("ChannelMessages: " + getChannelMessages() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -282,6 +352,8 @@ public class ListChannelMessagesResult implements Serializable {
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
                 + ((getChannelMessages() == null) ? 0 : getChannelMessages().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -310,6 +382,11 @@ public class ListChannelMessagesResult implements Serializable {
             return false;
         if (other.getChannelMessages() != null
                 && other.getChannelMessages().equals(this.getChannelMessages()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

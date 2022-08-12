@@ -50,6 +50,9 @@ class BatchChannelMembershipsJsonUnmarshaller implements
             } else if (name.equals("ChannelArn")) {
                 batchChannelMemberships.setChannelArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                batchChannelMemberships.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

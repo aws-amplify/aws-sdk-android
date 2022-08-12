@@ -17,25 +17,10 @@ package com.amazonaws.services.chimesdkmessaging.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
-/**
- * <p>
- * Immediately makes a channel and its memberships inaccessible and marks them
- * for deletion. This is an irreversible process.
- * </p>
- * <note>
- * <p>
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
- * </p>
- * </note>
- */
-public class DeleteChannelRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListSubChannelsResult implements Serializable {
     /**
      * <p>
-     * The ARN of the channel being deleted.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,31 +33,26 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The information about each sub-channel.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      */
-    private String chimeBearer;
+    private java.util.List<SubChannelSummary> subChannels;
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
-    private String subChannelId;
+    private String nextToken;
 
     /**
      * <p>
-     * The ARN of the channel being deleted.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,7 +62,7 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the channel being deleted.
+     *         The ARN of elastic channel.
      *         </p>
      */
     public String getChannelArn() {
@@ -91,7 +71,7 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the channel being deleted.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,7 +81,7 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel being deleted.
+     *            The ARN of elastic channel.
      *            </p>
      */
     public void setChannelArn(String channelArn) {
@@ -110,7 +90,7 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the channel being deleted.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,136 +103,150 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel being deleted.
+     *            The ARN of elastic channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelRequest withChannelArn(String channelArn) {
+    public ListSubChannelsResult withChannelArn(String channelArn) {
         this.channelArn = channelArn;
         return this;
     }
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The information about each sub-channel.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the user that makes the
-     *         API call.
+     *         The information about each sub-channel.
      *         </p>
      */
-    public String getChimeBearer() {
-        return chimeBearer;
+    public java.util.List<SubChannelSummary> getSubChannels() {
+        return subChannels;
     }
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The information about each sub-channel.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
-     * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     * @param subChannels <p>
+     *            The information about each sub-channel.
      *            </p>
      */
-    public void setChimeBearer(String chimeBearer) {
-        this.chimeBearer = chimeBearer;
+    public void setSubChannels(java.util.Collection<SubChannelSummary> subChannels) {
+        if (subChannels == null) {
+            this.subChannels = null;
+            return;
+        }
+
+        this.subChannels = new java.util.ArrayList<SubChannelSummary>(subChannels);
     }
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The information about each sub-channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
-     * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     * @param subChannels <p>
+     *            The information about each sub-channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelRequest withChimeBearer(String chimeBearer) {
-        this.chimeBearer = chimeBearer;
+    public ListSubChannelsResult withSubChannels(SubChannelSummary... subChannels) {
+        if (getSubChannels() == null) {
+            this.subChannels = new java.util.ArrayList<SubChannelSummary>(subChannels.length);
+        }
+        for (SubChannelSummary value : subChannels) {
+            this.subChannels.add(value);
+        }
         return this;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The information about each sub-channel.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param subChannels <p>
+     *            The information about each sub-channel.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListSubChannelsResult withSubChannels(java.util.Collection<SubChannelSummary> subChannels) {
+        setSubChannels(subChannels);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
-     *         The ID of the SubChannel in the request.
+     *         The token passed by previous API calls until all requested
+     *         sub-channels are returned.
      *         </p>
      */
-    public String getSubChannelId() {
-        return subChannelId;
+    public String getNextToken() {
+        return nextToken;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
-     * @param subChannelId <p>
-     *            The ID of the SubChannel in the request.
+     * @param nextToken <p>
+     *            The token passed by previous API calls until all requested
+     *            sub-channels are returned.
      *            </p>
      */
-    public void setSubChannelId(String subChannelId) {
-        this.subChannelId = subChannelId;
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
-     * @param subChannelId <p>
-     *            The ID of the SubChannel in the request.
+     * @param nextToken <p>
+     *            The token passed by previous API calls until all requested
+     *            sub-channels are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelRequest withSubChannelId(String subChannelId) {
-        this.subChannelId = subChannelId;
+    public ListSubChannelsResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -269,10 +263,10 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
         sb.append("{");
         if (getChannelArn() != null)
             sb.append("ChannelArn: " + getChannelArn() + ",");
-        if (getChimeBearer() != null)
-            sb.append("ChimeBearer: " + getChimeBearer() + ",");
-        if (getSubChannelId() != null)
-            sb.append("SubChannelId: " + getSubChannelId());
+        if (getSubChannels() != null)
+            sb.append("SubChannels: " + getSubChannels() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -284,9 +278,8 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
 
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
         hashCode = prime * hashCode
-                + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
-        hashCode = prime * hashCode
-                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
+                + ((getSubChannels() == null) ? 0 : getSubChannels().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -297,24 +290,24 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteChannelRequest == false)
+        if (obj instanceof ListSubChannelsResult == false)
             return false;
-        DeleteChannelRequest other = (DeleteChannelRequest) obj;
+        ListSubChannelsResult other = (ListSubChannelsResult) obj;
 
         if (other.getChannelArn() == null ^ this.getChannelArn() == null)
             return false;
         if (other.getChannelArn() != null
                 && other.getChannelArn().equals(this.getChannelArn()) == false)
             return false;
-        if (other.getChimeBearer() == null ^ this.getChimeBearer() == null)
+        if (other.getSubChannels() == null ^ this.getSubChannels() == null)
             return false;
-        if (other.getChimeBearer() != null
-                && other.getChimeBearer().equals(this.getChimeBearer()) == false)
+        if (other.getSubChannels() != null
+                && other.getSubChannels().equals(this.getSubChannels()) == false)
             return false;
-        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
-        if (other.getSubChannelId() != null
-                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

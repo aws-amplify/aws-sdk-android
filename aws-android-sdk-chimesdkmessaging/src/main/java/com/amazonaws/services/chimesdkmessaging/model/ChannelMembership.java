@@ -76,6 +76,17 @@ public class ChannelMembership implements Serializable {
 
     /**
      * <p>
+     * The ID of the SubChannel that a user belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The identifier of the member who invited another member.
      * </p>
      *
@@ -415,6 +426,63 @@ public class ChannelMembership implements Serializable {
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel that a user belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel that a user belongs to.
+     *         </p>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel that a user belongs to.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel that a user belongs to.
+     *            </p>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel that a user belongs to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel that a user belongs to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMembership withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -436,7 +504,9 @@ public class ChannelMembership implements Serializable {
         if (getCreatedTimestamp() != null)
             sb.append("CreatedTimestamp: " + getCreatedTimestamp() + ",");
         if (getLastUpdatedTimestamp() != null)
-            sb.append("LastUpdatedTimestamp: " + getLastUpdatedTimestamp());
+            sb.append("LastUpdatedTimestamp: " + getLastUpdatedTimestamp() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -454,6 +524,8 @@ public class ChannelMembership implements Serializable {
                 + ((getCreatedTimestamp() == null) ? 0 : getCreatedTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getLastUpdatedTimestamp() == null) ? 0 : getLastUpdatedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -495,6 +567,11 @@ public class ChannelMembership implements Serializable {
             return false;
         if (other.getLastUpdatedTimestamp() != null
                 && other.getLastUpdatedTimestamp().equals(this.getLastUpdatedTimestamp()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

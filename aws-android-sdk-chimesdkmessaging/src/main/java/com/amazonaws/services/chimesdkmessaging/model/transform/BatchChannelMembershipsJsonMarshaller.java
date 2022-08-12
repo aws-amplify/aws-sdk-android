@@ -53,6 +53,11 @@ class BatchChannelMembershipsJsonMarshaller {
             jsonWriter.name("ChannelArn");
             jsonWriter.value(channelArn);
         }
+        if (batchChannelMemberships.getSubChannelId() != null) {
+            String subChannelId = batchChannelMemberships.getSubChannelId();
+            jsonWriter.name("SubChannelId");
+            jsonWriter.value(subChannelId);
+        }
         jsonWriter.endObject();
     }
 

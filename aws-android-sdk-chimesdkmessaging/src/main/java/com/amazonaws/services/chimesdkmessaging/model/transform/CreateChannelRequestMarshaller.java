@@ -136,6 +136,13 @@ public class CreateChannelRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createChannelRequest.getElasticChannelConfiguration() != null) {
+                ElasticChannelConfiguration elasticChannelConfiguration = createChannelRequest
+                        .getElasticChannelConfiguration();
+                jsonWriter.name("ElasticChannelConfiguration");
+                ElasticChannelConfigurationJsonMarshaller.getInstance().marshall(
+                        elasticChannelConfiguration, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -43,6 +43,9 @@ public class SendChannelMessageResultJsonUnmarshaller implements
                 sendChannelMessageResult.setStatus(ChannelMessageStatusStructureJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                sendChannelMessageResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

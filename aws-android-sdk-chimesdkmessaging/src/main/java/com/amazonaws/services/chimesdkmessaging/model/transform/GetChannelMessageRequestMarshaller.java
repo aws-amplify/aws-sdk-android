@@ -69,6 +69,10 @@ public class GetChannelMessageRequestMarshaller implements
                 "{messageId}",
                 (getChannelMessageRequest.getMessageId() == null) ? "" : StringUtils
                         .fromString(getChannelMessageRequest.getMessageId()));
+        if (getChannelMessageRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(getChannelMessageRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/messages/{messageId}";
         encodedUriResourcePath = encodedUriResourcePath.replace(

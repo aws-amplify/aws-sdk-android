@@ -21,31 +21,31 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO AppInstanceUserMembershipSummary
+ * JSON unmarshaller for POJO ElasticChannelConfiguration
  */
-class AppInstanceUserMembershipSummaryJsonUnmarshaller implements
-        Unmarshaller<AppInstanceUserMembershipSummary, JsonUnmarshallerContext> {
+class ElasticChannelConfigurationJsonUnmarshaller implements
+        Unmarshaller<ElasticChannelConfiguration, JsonUnmarshallerContext> {
 
-    public AppInstanceUserMembershipSummary unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
+    public ElasticChannelConfiguration unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        AppInstanceUserMembershipSummary appInstanceUserMembershipSummary = new AppInstanceUserMembershipSummary();
+        ElasticChannelConfiguration elasticChannelConfiguration = new ElasticChannelConfiguration();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Type")) {
-                appInstanceUserMembershipSummary.setType(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ReadMarkerTimestamp")) {
-                appInstanceUserMembershipSummary.setReadMarkerTimestamp(DateJsonUnmarshaller
+            if (name.equals("MaximumSubChannels")) {
+                elasticChannelConfiguration.setMaximumSubChannels(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("SubChannelId")) {
-                appInstanceUserMembershipSummary.setSubChannelId(StringJsonUnmarshaller
+            } else if (name.equals("TargetMembershipsPerSubChannel")) {
+                elasticChannelConfiguration
+                        .setTargetMembershipsPerSubChannel(IntegerJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("MinimumMembershipPercentage")) {
+                elasticChannelConfiguration.setMinimumMembershipPercentage(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
             } else {
@@ -53,14 +53,14 @@ class AppInstanceUserMembershipSummaryJsonUnmarshaller implements
             }
         }
         reader.endObject();
-        return appInstanceUserMembershipSummary;
+        return elasticChannelConfiguration;
     }
 
-    private static AppInstanceUserMembershipSummaryJsonUnmarshaller instance;
+    private static ElasticChannelConfigurationJsonUnmarshaller instance;
 
-    public static AppInstanceUserMembershipSummaryJsonUnmarshaller getInstance() {
+    public static ElasticChannelConfigurationJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new AppInstanceUserMembershipSummaryJsonUnmarshaller();
+            instance = new ElasticChannelConfigurationJsonUnmarshaller();
         return instance;
     }
 }

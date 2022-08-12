@@ -102,6 +102,11 @@ class ChannelMessageJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (channelMessage.getSubChannelId() != null) {
+            String subChannelId = channelMessage.getSubChannelId();
+            jsonWriter.name("SubChannelId");
+            jsonWriter.value(subChannelId);
+        }
         jsonWriter.endObject();
     }
 

@@ -95,6 +95,11 @@ public class UpdateChannelMessageRequestMarshaller implements
                 jsonWriter.name("Metadata");
                 jsonWriter.value(metadata);
             }
+            if (updateChannelMessageRequest.getSubChannelId() != null) {
+                String subChannelId = updateChannelMessageRequest.getSubChannelId();
+                jsonWriter.name("SubChannelId");
+                jsonWriter.value(subChannelId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

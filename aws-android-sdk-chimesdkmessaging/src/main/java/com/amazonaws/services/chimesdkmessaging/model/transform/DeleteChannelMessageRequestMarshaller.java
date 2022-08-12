@@ -69,6 +69,10 @@ public class DeleteChannelMessageRequestMarshaller implements
                 "{messageId}",
                 (deleteChannelMessageRequest.getMessageId() == null) ? "" : StringUtils
                         .fromString(deleteChannelMessageRequest.getMessageId()));
+        if (deleteChannelMessageRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(deleteChannelMessageRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/messages/{messageId}";
         encodedUriResourcePath = encodedUriResourcePath.replace(

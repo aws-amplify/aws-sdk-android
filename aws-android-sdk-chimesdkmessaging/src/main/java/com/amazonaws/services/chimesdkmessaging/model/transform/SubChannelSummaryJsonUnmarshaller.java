@@ -21,41 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response RedactChannelMessageResult
+ * JSON unmarshaller for POJO SubChannelSummary
  */
-public class RedactChannelMessageResultJsonUnmarshaller implements
-        Unmarshaller<RedactChannelMessageResult, JsonUnmarshallerContext> {
+class SubChannelSummaryJsonUnmarshaller implements
+        Unmarshaller<SubChannelSummary, JsonUnmarshallerContext> {
 
-    public RedactChannelMessageResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        RedactChannelMessageResult redactChannelMessageResult = new RedactChannelMessageResult();
-
+    public SubChannelSummary unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        SubChannelSummary subChannelSummary = new SubChannelSummary();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("ChannelArn")) {
-                redactChannelMessageResult.setChannelArn(StringJsonUnmarshaller.getInstance()
+            if (name.equals("SubChannelId")) {
+                subChannelSummary.setSubChannelId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("MessageId")) {
-                redactChannelMessageResult.setMessageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("SubChannelId")) {
-                redactChannelMessageResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("MembershipCount")) {
+                subChannelSummary.setMembershipCount(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return redactChannelMessageResult;
+        return subChannelSummary;
     }
 
-    private static RedactChannelMessageResultJsonUnmarshaller instance;
+    private static SubChannelSummaryJsonUnmarshaller instance;
 
-    public static RedactChannelMessageResultJsonUnmarshaller getInstance() {
+    public static SubChannelSummaryJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new RedactChannelMessageResultJsonUnmarshaller();
+            instance = new SubChannelSummaryJsonUnmarshaller();
         return instance;
     }
 }
