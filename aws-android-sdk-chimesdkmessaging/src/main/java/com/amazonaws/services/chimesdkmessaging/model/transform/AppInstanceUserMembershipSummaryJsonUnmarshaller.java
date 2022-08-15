@@ -44,6 +44,10 @@ class AppInstanceUserMembershipSummaryJsonUnmarshaller implements
                 appInstanceUserMembershipSummary.setReadMarkerTimestamp(DateJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                appInstanceUserMembershipSummary.setSubChannelId(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -1,0 +1,27 @@
+version: 0.2
+env:
+  shell: /bin/sh
+  secrets-manager:
+    ORG_GRADLE_PROJECT_SONATYPE_NEXUS_USERNAME: awsmobilesdk/android/sonatype:username
+    ORG_GRADLE_PROJECT_SONATYPE_NEXUS_PASSWORD: awsmobilesdk/android/sonatype:password
+    ORG_GRADLE_PROJECT_signingPassword: awsmobilesdk/android/signing:password
+    ORG_GRADLE_PROJECT_signingKeyId: awsmobilesdk/android/signing:keyId
+    ORG_GRADLE_PROJECT_signingInMemoryKey: awsmobilesdk/android/signing:inMemoryKey
+phases:
+  build:
+    commands:
+      - echo 'Build phase starting.'
+      - |
+        JAVA_HOME=$JDK_8_HOME ./gradlew clean build
+        ./gradlew androidJavadocsJar
+        for task_name in $(./gradlew tasks --all | grep uploadArchives | cut -d " " -f 1); do
+          echo "Gradle task $task_name"
+          JAVA_HOME=$JDK_8_HOME ./gradlew $task_name;
+        done
+    finally:
+      - echo 'Build phase completed.'
+  post_build:
+    commands:
+      - echo 'Post-build phase starting'
+    finally:
+      - echo 'Post-build phase completed.'

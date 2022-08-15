@@ -1227,9 +1227,9 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Begins setup of time-based one-time password multi-factor authentication
-     * (TOTP MFA) for a user, with a unique private key that Amazon Cognito
-     * generates and returns in the API response. You can authorize an
+     * Begins setup of time-based one-time password (TOTP) multi-factor
+     * authentication (MFA) for a user, with a unique private key that Amazon
+     * Cognito generates and returns in the API response. You can authorize an
      * <code>AssociateSoftwareToken</code> request with either the user's access
      * token, or a session string from a challenge response that you received
      * from Amazon Cognito.
@@ -1264,6 +1264,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws ResourceNotFoundException
      * @throws InternalErrorException
      * @throws SoftwareTokenMFANotFoundException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1296,6 +1297,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1330,6 +1332,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1368,6 +1371,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1404,6 +1408,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws LimitExceededException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1735,6 +1740,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1765,6 +1771,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2057,6 +2064,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2128,6 +2136,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws CodeDeliveryFailureException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2186,6 +2195,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2323,6 +2333,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2388,6 +2399,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2448,6 +2460,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws PasswordResetRequiredException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2512,6 +2525,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InternalErrorException
      * @throws InvalidSmsRoleAccessPolicyException
      * @throws InvalidSmsRoleTrustRelationshipException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2543,6 +2557,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2850,6 +2865,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws CodeDeliveryFailureException
      * @throws UserNotFoundException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2918,6 +2934,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws AliasExistsException
      * @throws InternalErrorException
      * @throws SoftwareTokenMFANotFoundException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2946,6 +2963,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidParameterException
      * @throws UnsupportedOperationException
      * @throws UnsupportedTokenTypeException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3060,6 +3078,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3146,6 +3165,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3207,6 +3227,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws InvalidSmsRoleTrustRelationshipException
      * @throws InvalidEmailRoleAccessPolicyException
      * @throws CodeDeliveryFailureException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3392,6 +3413,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3544,6 +3566,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotFoundException
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3755,6 +3778,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws NotAuthorizedException
      * @throws SoftwareTokenMFANotFoundException
      * @throws CodeMismatchException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3797,6 +3821,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws UserNotConfirmedException
      * @throws InternalErrorException
      * @throws AliasExistsException
+     * @throws ForbiddenException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

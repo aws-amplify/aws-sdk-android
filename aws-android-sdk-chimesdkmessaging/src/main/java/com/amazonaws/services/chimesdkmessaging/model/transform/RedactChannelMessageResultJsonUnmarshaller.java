@@ -39,6 +39,9 @@ public class RedactChannelMessageResultJsonUnmarshaller implements
             } else if (name.equals("MessageId")) {
                 redactChannelMessageResult.setMessageId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                redactChannelMessageResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

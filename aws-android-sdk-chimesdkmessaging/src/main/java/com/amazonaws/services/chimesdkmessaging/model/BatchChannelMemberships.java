@@ -63,6 +63,17 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
+     * The ID of the SubChannel.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The identifier of the member who invited another member.
      * </p>
      *
@@ -341,6 +352,63 @@ public class BatchChannelMemberships implements Serializable {
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel.
+     *         </p>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel.
+     *            </p>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BatchChannelMemberships withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -358,7 +426,9 @@ public class BatchChannelMemberships implements Serializable {
         if (getMembers() != null)
             sb.append("Members: " + getMembers() + ",");
         if (getChannelArn() != null)
-            sb.append("ChannelArn: " + getChannelArn());
+            sb.append("ChannelArn: " + getChannelArn() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -372,6 +442,8 @@ public class BatchChannelMemberships implements Serializable {
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         hashCode = prime * hashCode + ((getMembers() == null) ? 0 : getMembers().hashCode());
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -403,6 +475,11 @@ public class BatchChannelMemberships implements Serializable {
             return false;
         if (other.getChannelArn() != null
                 && other.getChannelArn().equals(this.getChannelArn()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

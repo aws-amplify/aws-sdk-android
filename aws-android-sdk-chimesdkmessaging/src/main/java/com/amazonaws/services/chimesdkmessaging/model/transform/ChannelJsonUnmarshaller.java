@@ -65,6 +65,10 @@ class ChannelJsonUnmarshaller implements Unmarshaller<Channel, JsonUnmarshallerC
             } else if (name.equals("ChannelFlowArn")) {
                 channel.setChannelFlowArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ElasticChannelConfiguration")) {
+                channel.setElasticChannelConfiguration(ElasticChannelConfigurationJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

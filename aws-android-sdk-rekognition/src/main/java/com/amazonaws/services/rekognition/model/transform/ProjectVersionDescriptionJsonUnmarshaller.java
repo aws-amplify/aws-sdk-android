@@ -83,6 +83,10 @@ class ProjectVersionDescriptionJsonUnmarshaller implements
             } else if (name.equals("KmsKeyId")) {
                 projectVersionDescription.setKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("MaxInferenceUnits")) {
+                projectVersionDescription.setMaxInferenceUnits(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

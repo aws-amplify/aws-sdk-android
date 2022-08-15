@@ -223,7 +223,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      */
     private String customerMasterKeySpec;
 
@@ -235,7 +235,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      */
     private String keySpec;
 
@@ -1758,7 +1758,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @return <p>
      *         Instead, use the <code>KeySpec</code> field.
@@ -1789,7 +1789,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1824,7 +1824,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1859,7 +1859,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1894,7 +1894,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param customerMasterKeySpec <p>
      *            Instead, use the <code>KeySpec</code> field.
@@ -1923,7 +1923,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @return <p>
      *         Describes the type of key material in the KMS key.
@@ -1942,7 +1942,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -1964,7 +1964,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -1986,7 +1986,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.
@@ -2008,7 +2008,7 @@ public class KeyMetadata implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT,
-     * HMAC_224, HMAC_256, HMAC_384, HMAC_512
+     * HMAC_224, HMAC_256, HMAC_384, HMAC_512, SM2
      *
      * @param keySpec <p>
      *            Describes the type of key material in the KMS key.

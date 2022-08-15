@@ -45,6 +45,9 @@ public class ListChannelMessagesResultJsonUnmarshaller implements
                                 ChannelMessageSummaryJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                listChannelMessagesResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

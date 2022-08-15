@@ -40,7 +40,7 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains the geofence geometry details describing a polygon.
+     * Contains the geofence geometry details describing a polygon or a circle.
      * </p>
      */
     private GeofenceGeometry geometry;
@@ -209,11 +209,12 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains the geofence geometry details describing a polygon.
+     * Contains the geofence geometry details describing a polygon or a circle.
      * </p>
      *
      * @return <p>
-     *         Contains the geofence geometry details describing a polygon.
+     *         Contains the geofence geometry details describing a polygon or a
+     *         circle.
      *         </p>
      */
     public GeofenceGeometry getGeometry() {
@@ -222,11 +223,12 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains the geofence geometry details describing a polygon.
+     * Contains the geofence geometry details describing a polygon or a circle.
      * </p>
      *
      * @param geometry <p>
-     *            Contains the geofence geometry details describing a polygon.
+     *            Contains the geofence geometry details describing a polygon or
+     *            a circle.
      *            </p>
      */
     public void setGeometry(GeofenceGeometry geometry) {
@@ -235,14 +237,15 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains the geofence geometry details describing a polygon.
+     * Contains the geofence geometry details describing a polygon or a circle.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param geometry <p>
-     *            Contains the geofence geometry details describing a polygon.
+     *            Contains the geofence geometry details describing a polygon or
+     *            a circle.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

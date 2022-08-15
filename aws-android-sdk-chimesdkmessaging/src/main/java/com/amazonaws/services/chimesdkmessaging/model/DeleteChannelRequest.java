@@ -61,6 +61,17 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The ARN of the channel being deleted.
      * </p>
      * <p>
@@ -189,6 +200,63 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel in the request.
+     *         </p>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the request.
+     *            </p>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteChannelRequest withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -202,7 +270,9 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
         if (getChannelArn() != null)
             sb.append("ChannelArn: " + getChannelArn() + ",");
         if (getChimeBearer() != null)
-            sb.append("ChimeBearer: " + getChimeBearer());
+            sb.append("ChimeBearer: " + getChimeBearer() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -215,6 +285,8 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
         hashCode = prime * hashCode
                 + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -238,6 +310,11 @@ public class DeleteChannelRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getChimeBearer() != null
                 && other.getChimeBearer().equals(this.getChimeBearer()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

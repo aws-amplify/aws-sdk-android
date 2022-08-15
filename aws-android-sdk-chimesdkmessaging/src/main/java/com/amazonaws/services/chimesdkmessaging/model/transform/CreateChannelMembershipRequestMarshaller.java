@@ -88,6 +88,11 @@ public class CreateChannelMembershipRequestMarshaller implements
                 jsonWriter.name("Type");
                 jsonWriter.value(type);
             }
+            if (createChannelMembershipRequest.getSubChannelId() != null) {
+                String subChannelId = createChannelMembershipRequest.getSubChannelId();
+                jsonWriter.name("SubChannelId");
+                jsonWriter.value(subChannelId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

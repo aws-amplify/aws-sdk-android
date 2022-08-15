@@ -437,8 +437,10 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * @throws ServiceUnavailableException
      * @throws UnauthorizedClientException
      * @throws BadRequestException
+     * @throws NotFoundException
      * @throws ForbiddenException
      * @throws ThrottledClientException
+     * @throws ResourceLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -835,6 +837,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      *         CreateChannelMembership service method, as returned by Amazon
      *         ChimeSDK Messaging.
      * @throws BadRequestException
+     * @throws NotFoundException
      * @throws ForbiddenException
      * @throws UnauthorizedClientException
      * @throws ConflictException
@@ -2604,6 +2607,59 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<ListChannelsModeratedByAppInstanceUserResult, JsonUnmarshallerContext> unmarshaller = new ListChannelsModeratedByAppInstanceUserResultJsonUnmarshaller();
             JsonResponseHandler<ListChannelsModeratedByAppInstanceUserResult> responseHandler = new JsonResponseHandler<ListChannelsModeratedByAppInstanceUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all the SubChannels in an elastic channel when given a channel ID.
+     * Available only to the app instance admins and channel moderators of
+     * elastic channels.
+     * </p>
+     * 
+     * @param listSubChannelsRequest
+     * @return listSubChannelsResult The response from the ListSubChannels
+     *         service method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListSubChannelsResult listSubChannels(ListSubChannelsRequest listSubChannelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSubChannelsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSubChannelsRequest> request = null;
+        Response<ListSubChannelsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListSubChannelsRequestMarshaller().marshall(listSubChannelsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListSubChannelsResult, JsonUnmarshallerContext> unmarshaller = new ListSubChannelsResultJsonUnmarshaller();
+            JsonResponseHandler<ListSubChannelsResult> responseHandler = new JsonResponseHandler<ListSubChannelsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -76,6 +76,13 @@ class ChannelJsonMarshaller {
             jsonWriter.name("ChannelFlowArn");
             jsonWriter.value(channelFlowArn);
         }
+        if (channel.getElasticChannelConfiguration() != null) {
+            ElasticChannelConfiguration elasticChannelConfiguration = channel
+                    .getElasticChannelConfiguration();
+            jsonWriter.name("ElasticChannelConfiguration");
+            ElasticChannelConfigurationJsonMarshaller.getInstance().marshall(
+                    elasticChannelConfiguration, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

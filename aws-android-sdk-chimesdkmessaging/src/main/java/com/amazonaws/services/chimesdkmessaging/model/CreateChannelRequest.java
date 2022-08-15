@@ -154,6 +154,15 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million users, excluding
+     * moderators.
+     * </p>
+     */
+    private ElasticChannelConfiguration elasticChannelConfiguration;
+
+    /**
+     * <p>
      * The ARN of the channel request.
      * </p>
      * <p>
@@ -994,6 +1003,65 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million users, excluding
+     * moderators.
+     * </p>
+     *
+     * @return <p>
+     *         The attributes required to configure and create an elastic
+     *         channel. An elastic channel can support a maximum of 1-million
+     *         users, excluding moderators.
+     *         </p>
+     */
+    public ElasticChannelConfiguration getElasticChannelConfiguration() {
+        return elasticChannelConfiguration;
+    }
+
+    /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million users, excluding
+     * moderators.
+     * </p>
+     *
+     * @param elasticChannelConfiguration <p>
+     *            The attributes required to configure and create an elastic
+     *            channel. An elastic channel can support a maximum of 1-million
+     *            users, excluding moderators.
+     *            </p>
+     */
+    public void setElasticChannelConfiguration(
+            ElasticChannelConfiguration elasticChannelConfiguration) {
+        this.elasticChannelConfiguration = elasticChannelConfiguration;
+    }
+
+    /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million users, excluding
+     * moderators.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param elasticChannelConfiguration <p>
+     *            The attributes required to configure and create an elastic
+     *            channel. An elastic channel can support a maximum of 1-million
+     *            users, excluding moderators.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withElasticChannelConfiguration(
+            ElasticChannelConfiguration elasticChannelConfiguration) {
+        this.elasticChannelConfiguration = elasticChannelConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1025,7 +1093,9 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         if (getMemberArns() != null)
             sb.append("MemberArns: " + getMemberArns() + ",");
         if (getModeratorArns() != null)
-            sb.append("ModeratorArns: " + getModeratorArns());
+            sb.append("ModeratorArns: " + getModeratorArns() + ",");
+        if (getElasticChannelConfiguration() != null)
+            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -1050,6 +1120,10 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         hashCode = prime * hashCode + ((getMemberArns() == null) ? 0 : getMemberArns().hashCode());
         hashCode = prime * hashCode
                 + ((getModeratorArns() == null) ? 0 : getModeratorArns().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getElasticChannelConfiguration() == null) ? 0
+                        : getElasticChannelConfiguration().hashCode());
         return hashCode;
     }
 
@@ -1113,6 +1187,13 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getModeratorArns() != null
                 && other.getModeratorArns().equals(this.getModeratorArns()) == false)
+            return false;
+        if (other.getElasticChannelConfiguration() == null
+                ^ this.getElasticChannelConfiguration() == null)
+            return false;
+        if (other.getElasticChannelConfiguration() != null
+                && other.getElasticChannelConfiguration().equals(
+                        this.getElasticChannelConfiguration()) == false)
             return false;
         return true;
     }

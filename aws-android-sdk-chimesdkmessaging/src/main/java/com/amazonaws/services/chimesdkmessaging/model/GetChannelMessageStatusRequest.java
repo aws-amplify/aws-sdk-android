@@ -118,6 +118,23 @@ public class GetChannelMessageStatusRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <note>
+     * <p>
+     * Only required when getting message status in a SubChannel that the user
+     * belongs to.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The ARN of the channel
      * </p>
      * <p>
@@ -303,6 +320,99 @@ public class GetChannelMessageStatusRequest extends AmazonWebServiceRequest impl
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <note>
+     * <p>
+     * Only required when getting message status in a SubChannel that the user
+     * belongs to.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel in the request.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Only required when getting message status in a SubChannel that
+     *         the user belongs to.
+     *         </p>
+     *         </note>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <note>
+     * <p>
+     * Only required when getting message status in a SubChannel that the user
+     * belongs to.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the request.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Only required when getting message status in a SubChannel that
+     *            the user belongs to.
+     *            </p>
+     *            </note>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the request.
+     * </p>
+     * <note>
+     * <p>
+     * Only required when getting message status in a SubChannel that the user
+     * belongs to.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the request.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Only required when getting message status in a SubChannel that
+     *            the user belongs to.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetChannelMessageStatusRequest withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -318,7 +428,9 @@ public class GetChannelMessageStatusRequest extends AmazonWebServiceRequest impl
         if (getMessageId() != null)
             sb.append("MessageId: " + getMessageId() + ",");
         if (getChimeBearer() != null)
-            sb.append("ChimeBearer: " + getChimeBearer());
+            sb.append("ChimeBearer: " + getChimeBearer() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -332,6 +444,8 @@ public class GetChannelMessageStatusRequest extends AmazonWebServiceRequest impl
         hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
         hashCode = prime * hashCode
                 + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -360,6 +474,11 @@ public class GetChannelMessageStatusRequest extends AmazonWebServiceRequest impl
             return false;
         if (other.getChimeBearer() != null
                 && other.getChimeBearer().equals(this.getChimeBearer()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

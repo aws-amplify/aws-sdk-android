@@ -77,6 +77,10 @@ public class ListChannelMembershipsRequestMarshaller implements
             request.addParameter("next-token",
                     StringUtils.fromString(listChannelMembershipsRequest.getNextToken()));
         }
+        if (listChannelMembershipsRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(listChannelMembershipsRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/memberships";
         encodedUriResourcePath = encodedUriResourcePath.replace(

@@ -140,8 +140,10 @@ public interface AmazonChimeSDKMessaging {
      * @throws ServiceUnavailableException
      * @throws UnauthorizedClientException
      * @throws BadRequestException
+     * @throws NotFoundException
      * @throws ForbiddenException
      * @throws ThrottledClientException
+     * @throws ResourceLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -404,6 +406,7 @@ public interface AmazonChimeSDKMessaging {
      *         CreateChannelMembership service method, as returned by Amazon
      *         ChimeSDK Messaging.
      * @throws BadRequestException
+     * @throws NotFoundException
      * @throws ForbiddenException
      * @throws UnauthorizedClientException
      * @throws ConflictException
@@ -1436,6 +1439,33 @@ public interface AmazonChimeSDKMessaging {
      */
     ListChannelsModeratedByAppInstanceUserResult listChannelsModeratedByAppInstanceUser(
             ListChannelsModeratedByAppInstanceUserRequest listChannelsModeratedByAppInstanceUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all the SubChannels in an elastic channel when given a channel ID.
+     * Available only to the app instance admins and channel moderators of
+     * elastic channels.
+     * </p>
+     * 
+     * @param listSubChannelsRequest
+     * @return listSubChannelsResult The response from the ListSubChannels
+     *         service method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    ListSubChannelsResult listSubChannels(ListSubChannelsRequest listSubChannelsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

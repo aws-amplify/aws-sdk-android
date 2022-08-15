@@ -97,6 +97,11 @@ public class BatchCreateChannelMembershipRequestMarshaller
                 }
                 jsonWriter.endArray();
             }
+            if (batchCreateChannelMembershipRequest.getSubChannelId() != null) {
+                String subChannelId = batchCreateChannelMembershipRequest.getSubChannelId();
+                jsonWriter.name("SubChannelId");
+                jsonWriter.value(subChannelId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

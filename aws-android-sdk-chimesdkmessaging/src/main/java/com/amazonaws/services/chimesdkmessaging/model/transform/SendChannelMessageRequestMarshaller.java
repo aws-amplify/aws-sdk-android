@@ -126,6 +126,11 @@ public class SendChannelMessageRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (sendChannelMessageRequest.getSubChannelId() != null) {
+                String subChannelId = sendChannelMessageRequest.getSubChannelId();
+                jsonWriter.name("SubChannelId");
+                jsonWriter.value(subChannelId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

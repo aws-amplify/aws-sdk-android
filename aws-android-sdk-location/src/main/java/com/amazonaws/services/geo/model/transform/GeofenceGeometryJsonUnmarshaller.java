@@ -36,7 +36,10 @@ class GeofenceGeometryJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Polygon")) {
+            if (name.equals("Circle")) {
+                geofenceGeometry.setCircle(CircleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Polygon")) {
                 geofenceGeometry
                         .setPolygon(new ListUnmarshaller<java.util.List<java.util.List<Double>>>(
                                 new ListUnmarshaller<java.util.List<Double>>(

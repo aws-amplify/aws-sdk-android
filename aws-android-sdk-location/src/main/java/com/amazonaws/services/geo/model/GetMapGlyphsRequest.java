@@ -79,7 +79,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * <ul>
      * <li>
      * <p>
-     * VectorHereBerlin – <code>Fira GO Regular</code> |
+     * VectorHereContrast – <code>Fira GO Regular</code> |
      * <code>Fira GO Bold</code>
      * </p>
      * </li>
@@ -173,7 +173,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * <ul>
      * <li>
      * <p>
-     * VectorHereBerlin – <code>Fira GO Regular</code> |
+     * VectorHereContrast – <code>Fira GO Regular</code> |
      * <code>Fira GO Bold</code>
      * </p>
      * </li>
@@ -241,7 +241,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *         <ul>
      *         <li>
      *         <p>
-     *         VectorHereBerlin – <code>Fira GO Regular</code> |
+     *         VectorHereContrast – <code>Fira GO Regular</code> |
      *         <code>Fira GO Bold</code>
      *         </p>
      *         </li>
@@ -315,7 +315,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * <ul>
      * <li>
      * <p>
-     * VectorHereBerlin – <code>Fira GO Regular</code> |
+     * VectorHereContrast – <code>Fira GO Regular</code> |
      * <code>Fira GO Bold</code>
      * </p>
      * </li>
@@ -383,7 +383,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *            <ul>
      *            <li>
      *            <p>
-     *            VectorHereBerlin – <code>Fira GO Regular</code> |
+     *            VectorHereContrast – <code>Fira GO Regular</code> |
      *            <code>Fira GO Bold</code>
      *            </p>
      *            </li>
@@ -457,7 +457,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      * <ul>
      * <li>
      * <p>
-     * VectorHereBerlin – <code>Fira GO Regular</code> |
+     * VectorHereContrast – <code>Fira GO Regular</code> |
      * <code>Fira GO Bold</code>
      * </p>
      * </li>
@@ -528,7 +528,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *            <ul>
      *            <li>
      *            <p>
-     *            VectorHereBerlin – <code>Fira GO Regular</code> |
+     *            VectorHereContrast – <code>Fira GO Regular</code> |
      *            <code>Fira GO Bold</code>
      *            </p>
      *            </li>

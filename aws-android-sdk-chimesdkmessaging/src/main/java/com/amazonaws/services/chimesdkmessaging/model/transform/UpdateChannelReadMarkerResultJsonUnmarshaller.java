@@ -37,6 +37,9 @@ public class UpdateChannelReadMarkerResultJsonUnmarshaller implements
             if (name.equals("ChannelArn")) {
                 updateChannelReadMarkerResult.setChannelArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                updateChannelReadMarkerResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
