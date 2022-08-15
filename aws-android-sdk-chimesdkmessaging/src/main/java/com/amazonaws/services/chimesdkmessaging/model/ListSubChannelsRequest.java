@@ -21,20 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes a member from a channel.
+ * Lists all the SubChannels in an elastic channel when given a channel ID.
+ * Available only to the app instance admins and channel moderators of elastic
+ * channels.
  * </p>
- * <note>
- * <p>
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
- * </p>
- * </note>
  */
-public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListSubChannelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the channel from which you want to remove the user.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,21 +42,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member that you're removing
-     * from the channel.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
-     */
-    private String memberArn;
-
-    /**
-     * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The <code>AppInstanceUserArn</code> of the user making the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,23 +55,29 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The maximum number of sub-channels that you want to return.
      * </p>
-     * <note>
-     * <p>
-     * Only for use by moderators.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Range: </b>1 - 50<br/>
      */
-    private String subChannelId;
+    private Integer maxResults;
 
     /**
      * <p>
-     * The ARN of the channel from which you want to remove the user.
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,7 +87,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the channel from which you want to remove the user.
+     *         The ARN of elastic channel.
      *         </p>
      */
     public String getChannelArn() {
@@ -109,7 +96,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the channel from which you want to remove the user.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,7 +106,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel from which you want to remove the user.
+     *            The ARN of elastic channel.
      *            </p>
      */
     public void setChannelArn(String channelArn) {
@@ -128,7 +115,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the channel from which you want to remove the user.
+     * The ARN of elastic channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,20 +128,19 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel from which you want to remove the user.
+     *            The ARN of elastic channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelMembershipRequest withChannelArn(String channelArn) {
+    public ListSubChannelsRequest withChannelArn(String channelArn) {
         this.channelArn = channelArn;
         return this;
     }
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member that you're removing
-     * from the channel.
+     * The <code>AppInstanceUserArn</code> of the user making the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -164,76 +150,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the member that you're
-     *         removing from the channel.
-     *         </p>
-     */
-    public String getMemberArn() {
-        return memberArn;
-    }
-
-    /**
-     * <p>
-     * The <code>AppInstanceUserArn</code> of the member that you're removing
-     * from the channel.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
-     *
-     * @param memberArn <p>
-     *            The <code>AppInstanceUserArn</code> of the member that you're
-     *            removing from the channel.
-     *            </p>
-     */
-    public void setMemberArn(String memberArn) {
-        this.memberArn = memberArn;
-    }
-
-    /**
-     * <p>
-     * The <code>AppInstanceUserArn</code> of the member that you're removing
-     * from the channel.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
-     *
-     * @param memberArn <p>
-     *            The <code>AppInstanceUserArn</code> of the member that you're
-     *            removing from the channel.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DeleteChannelMembershipRequest withMemberArn(String memberArn) {
-        this.memberArn = memberArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>5 - 1600<br/>
-     * <b>Pattern:
-     * </b>arn:[a-z0-9-\.]{1,63}:[a-z0-9-\.]{0,63}:[a-z0-9-\.]{0,63}:
-     * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
-     *
-     * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the user that makes the
-     *         API call.
+     *         The <code>AppInstanceUserArn</code> of the user making the API
+     *         call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -242,7 +160,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The <code>AppInstanceUserArn</code> of the user making the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -252,8 +170,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The <code>AppInstanceUserArn</code> of the user making the API
+     *            call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -262,7 +180,7 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The <code>AppInstanceUserArn</code> of the user making the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -275,101 +193,131 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The <code>AppInstanceUserArn</code> of the user making the API
+     *            call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelMembershipRequest withChimeBearer(String chimeBearer) {
+    public ListSubChannelsRequest withChimeBearer(String chimeBearer) {
         this.chimeBearer = chimeBearer;
         return this;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The maximum number of sub-channels that you want to return.
      * </p>
-     * <note>
-     * <p>
-     * Only for use by moderators.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
      * @return <p>
-     *         The ID of the SubChannel in the request.
+     *         The maximum number of sub-channels that you want to return.
      *         </p>
-     *         <note>
-     *         <p>
-     *         Only for use by moderators.
-     *         </p>
-     *         </note>
      */
-    public String getSubChannelId() {
-        return subChannelId;
+    public Integer getMaxResults() {
+        return maxResults;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The maximum number of sub-channels that you want to return.
      * </p>
-     * <note>
-     * <p>
-     * Only for use by moderators.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param subChannelId <p>
-     *            The ID of the SubChannel in the request.
+     * @param maxResults <p>
+     *            The maximum number of sub-channels that you want to return.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Only for use by moderators.
-     *            </p>
-     *            </note>
      */
-    public void setSubChannelId(String subChannelId) {
-        this.subChannelId = subChannelId;
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
     }
 
     /**
      * <p>
-     * The ID of the SubChannel in the request.
+     * The maximum number of sub-channels that you want to return.
      * </p>
-     * <note>
-     * <p>
-     * Only for use by moderators.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     * <b>Range: </b>1 - 50<br/>
      *
-     * @param subChannelId <p>
-     *            The ID of the SubChannel in the request.
+     * @param maxResults <p>
+     *            The maximum number of sub-channels that you want to return.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Only for use by moderators.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteChannelMembershipRequest withSubChannelId(String subChannelId) {
-        this.subChannelId = subChannelId;
+    public ListSubChannelsRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
+     *
+     * @return <p>
+     *         The token passed by previous API calls until all requested
+     *         sub-channels are returned.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
+     *
+     * @param nextToken <p>
+     *            The token passed by previous API calls until all requested
+     *            sub-channels are returned.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token passed by previous API calls until all requested sub-channels
+     * are returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
+     *
+     * @param nextToken <p>
+     *            The token passed by previous API calls until all requested
+     *            sub-channels are returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListSubChannelsRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -386,12 +334,12 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
         sb.append("{");
         if (getChannelArn() != null)
             sb.append("ChannelArn: " + getChannelArn() + ",");
-        if (getMemberArn() != null)
-            sb.append("MemberArn: " + getMemberArn() + ",");
         if (getChimeBearer() != null)
             sb.append("ChimeBearer: " + getChimeBearer() + ",");
-        if (getSubChannelId() != null)
-            sb.append("SubChannelId: " + getSubChannelId());
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -402,11 +350,10 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
-        hashCode = prime * hashCode + ((getMemberArn() == null) ? 0 : getMemberArn().hashCode());
         hashCode = prime * hashCode
                 + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
-        hashCode = prime * hashCode
-                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -417,29 +364,29 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteChannelMembershipRequest == false)
+        if (obj instanceof ListSubChannelsRequest == false)
             return false;
-        DeleteChannelMembershipRequest other = (DeleteChannelMembershipRequest) obj;
+        ListSubChannelsRequest other = (ListSubChannelsRequest) obj;
 
         if (other.getChannelArn() == null ^ this.getChannelArn() == null)
             return false;
         if (other.getChannelArn() != null
                 && other.getChannelArn().equals(this.getChannelArn()) == false)
             return false;
-        if (other.getMemberArn() == null ^ this.getMemberArn() == null)
-            return false;
-        if (other.getMemberArn() != null
-                && other.getMemberArn().equals(this.getMemberArn()) == false)
-            return false;
         if (other.getChimeBearer() == null ^ this.getChimeBearer() == null)
             return false;
         if (other.getChimeBearer() != null
                 && other.getChimeBearer().equals(this.getChimeBearer()) == false)
             return false;
-        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;
-        if (other.getSubChannelId() != null
-                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

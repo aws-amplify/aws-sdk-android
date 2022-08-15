@@ -38,6 +38,11 @@ class AppInstanceUserMembershipSummaryJsonMarshaller {
             jsonWriter.name("ReadMarkerTimestamp");
             jsonWriter.value(readMarkerTimestamp);
         }
+        if (appInstanceUserMembershipSummary.getSubChannelId() != null) {
+            String subChannelId = appInstanceUserMembershipSummary.getSubChannelId();
+            jsonWriter.name("SubChannelId");
+            jsonWriter.value(subChannelId);
+        }
         jsonWriter.endObject();
     }
 

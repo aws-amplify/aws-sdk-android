@@ -69,6 +69,10 @@ public class DeleteChannelMembershipRequestMarshaller implements
                 "{memberArn}",
                 (deleteChannelMembershipRequest.getMemberArn() == null) ? "" : StringUtils
                         .fromString(deleteChannelMembershipRequest.getMemberArn()));
+        if (deleteChannelMembershipRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(deleteChannelMembershipRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/memberships/{memberArn}";
         encodedUriResourcePath = encodedUriResourcePath.replace(

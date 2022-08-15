@@ -65,6 +65,11 @@ class ChannelMessageCallbackJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (channelMessageCallback.getSubChannelId() != null) {
+            String subChannelId = channelMessageCallback.getSubChannelId();
+            jsonWriter.name("SubChannelId");
+            jsonWriter.value(subChannelId);
+        }
         jsonWriter.endObject();
     }
 

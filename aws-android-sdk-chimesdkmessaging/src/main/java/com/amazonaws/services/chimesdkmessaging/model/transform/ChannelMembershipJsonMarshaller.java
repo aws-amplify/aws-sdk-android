@@ -57,6 +57,11 @@ class ChannelMembershipJsonMarshaller {
             jsonWriter.name("LastUpdatedTimestamp");
             jsonWriter.value(lastUpdatedTimestamp);
         }
+        if (channelMembership.getSubChannelId() != null) {
+            String subChannelId = channelMembership.getSubChannelId();
+            jsonWriter.name("SubChannelId");
+            jsonWriter.value(subChannelId);
+        }
         jsonWriter.endObject();
     }
 

@@ -54,6 +54,9 @@ class ChannelMembershipJsonUnmarshaller implements
             } else if (name.equals("LastUpdatedTimestamp")) {
                 channelMembership.setLastUpdatedTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                channelMembership.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

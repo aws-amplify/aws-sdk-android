@@ -33,6 +33,17 @@ public class UpdateChannelReadMarkerResult implements Serializable {
 
     /**
      * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     */
+    private String subChannelId;
+
+    /**
+     * <p>
      * The ARN of the channel.
      * </p>
      * <p>
@@ -95,6 +106,63 @@ public class UpdateChannelReadMarkerResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @return <p>
+     *         The ID of the SubChannel in the response.
+     *         </p>
+     */
+    public String getSubChannelId() {
+        return subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the response.
+     *            </p>
+     */
+    public void setSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+    }
+
+    /**
+     * <p>
+     * The ID of the SubChannel in the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
+     *
+     * @param subChannelId <p>
+     *            The ID of the SubChannel in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateChannelReadMarkerResult withSubChannelId(String subChannelId) {
+        this.subChannelId = subChannelId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -106,7 +174,9 @@ public class UpdateChannelReadMarkerResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getChannelArn() != null)
-            sb.append("ChannelArn: " + getChannelArn());
+            sb.append("ChannelArn: " + getChannelArn() + ",");
+        if (getSubChannelId() != null)
+            sb.append("SubChannelId: " + getSubChannelId());
         sb.append("}");
         return sb.toString();
     }
@@ -117,6 +187,8 @@ public class UpdateChannelReadMarkerResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
         return hashCode;
     }
 
@@ -135,6 +207,11 @@ public class UpdateChannelReadMarkerResult implements Serializable {
             return false;
         if (other.getChannelArn() != null
                 && other.getChannelArn().equals(this.getChannelArn()) == false)
+            return false;
+        if (other.getSubChannelId() == null ^ this.getSubChannelId() == null)
+            return false;
+        if (other.getSubChannelId() != null
+                && other.getSubChannelId().equals(this.getSubChannelId()) == false)
             return false;
         return true;
     }

@@ -40,6 +40,9 @@ public class CreateChannelMembershipResultJsonUnmarshaller implements
             } else if (name.equals("Member")) {
                 createChannelMembershipResult.setMember(IdentityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                createChannelMembershipResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

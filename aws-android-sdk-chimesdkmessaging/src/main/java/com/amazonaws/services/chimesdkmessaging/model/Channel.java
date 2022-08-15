@@ -122,6 +122,14 @@ public class Channel implements Serializable {
 
     /**
      * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million members.
+     * </p>
+     */
+    private ElasticChannelConfiguration elasticChannelConfiguration;
+
+    /**
+     * <p>
      * The name of a channel.
      * </p>
      * <p>
@@ -743,6 +751,62 @@ public class Channel implements Serializable {
     }
 
     /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million members.
+     * </p>
+     *
+     * @return <p>
+     *         The attributes required to configure and create an elastic
+     *         channel. An elastic channel can support a maximum of 1-million
+     *         members.
+     *         </p>
+     */
+    public ElasticChannelConfiguration getElasticChannelConfiguration() {
+        return elasticChannelConfiguration;
+    }
+
+    /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million members.
+     * </p>
+     *
+     * @param elasticChannelConfiguration <p>
+     *            The attributes required to configure and create an elastic
+     *            channel. An elastic channel can support a maximum of 1-million
+     *            members.
+     *            </p>
+     */
+    public void setElasticChannelConfiguration(
+            ElasticChannelConfiguration elasticChannelConfiguration) {
+        this.elasticChannelConfiguration = elasticChannelConfiguration;
+    }
+
+    /**
+     * <p>
+     * The attributes required to configure and create an elastic channel. An
+     * elastic channel can support a maximum of 1-million members.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param elasticChannelConfiguration <p>
+     *            The attributes required to configure and create an elastic
+     *            channel. An elastic channel can support a maximum of 1-million
+     *            members.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Channel withElasticChannelConfiguration(
+            ElasticChannelConfiguration elasticChannelConfiguration) {
+        this.elasticChannelConfiguration = elasticChannelConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -772,7 +836,9 @@ public class Channel implements Serializable {
         if (getLastUpdatedTimestamp() != null)
             sb.append("LastUpdatedTimestamp: " + getLastUpdatedTimestamp() + ",");
         if (getChannelFlowArn() != null)
-            sb.append("ChannelFlowArn: " + getChannelFlowArn());
+            sb.append("ChannelFlowArn: " + getChannelFlowArn() + ",");
+        if (getElasticChannelConfiguration() != null)
+            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -796,6 +862,10 @@ public class Channel implements Serializable {
                 + ((getLastUpdatedTimestamp() == null) ? 0 : getLastUpdatedTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getChannelFlowArn() == null) ? 0 : getChannelFlowArn().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getElasticChannelConfiguration() == null) ? 0
+                        : getElasticChannelConfiguration().hashCode());
         return hashCode;
     }
 
@@ -855,6 +925,13 @@ public class Channel implements Serializable {
             return false;
         if (other.getChannelFlowArn() != null
                 && other.getChannelFlowArn().equals(this.getChannelFlowArn()) == false)
+            return false;
+        if (other.getElasticChannelConfiguration() == null
+                ^ this.getElasticChannelConfiguration() == null)
+            return false;
+        if (other.getElasticChannelConfiguration() != null
+                && other.getElasticChannelConfiguration().equals(
+                        this.getElasticChannelConfiguration()) == false)
             return false;
         return true;
     }

@@ -21,32 +21,28 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response ListChannelMessagesResult
+ * JSON unmarshaller for response ListSubChannelsResult
  */
-public class ListChannelMessagesResultJsonUnmarshaller implements
-        Unmarshaller<ListChannelMessagesResult, JsonUnmarshallerContext> {
+public class ListSubChannelsResultJsonUnmarshaller implements
+        Unmarshaller<ListSubChannelsResult, JsonUnmarshallerContext> {
 
-    public ListChannelMessagesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        ListChannelMessagesResult listChannelMessagesResult = new ListChannelMessagesResult();
+    public ListSubChannelsResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        ListSubChannelsResult listSubChannelsResult = new ListSubChannelsResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("ChannelArn")) {
-                listChannelMessagesResult.setChannelArn(StringJsonUnmarshaller.getInstance()
+                listSubChannelsResult.setChannelArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("NextToken")) {
-                listChannelMessagesResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ChannelMessages")) {
-                listChannelMessagesResult
-                        .setChannelMessages(new ListUnmarshaller<ChannelMessageSummary>(
-                                ChannelMessageSummaryJsonUnmarshaller.getInstance()
+            } else if (name.equals("SubChannels")) {
+                listSubChannelsResult.setSubChannels(new ListUnmarshaller<SubChannelSummary>(
+                        SubChannelSummaryJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("SubChannelId")) {
-                listChannelMessagesResult.setSubChannelId(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("NextToken")) {
+                listSubChannelsResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
@@ -54,14 +50,14 @@ public class ListChannelMessagesResultJsonUnmarshaller implements
         }
         reader.endObject();
 
-        return listChannelMessagesResult;
+        return listSubChannelsResult;
     }
 
-    private static ListChannelMessagesResultJsonUnmarshaller instance;
+    private static ListSubChannelsResultJsonUnmarshaller instance;
 
-    public static ListChannelMessagesResultJsonUnmarshaller getInstance() {
+    public static ListSubChannelsResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ListChannelMessagesResultJsonUnmarshaller();
+            instance = new ListSubChannelsResultJsonUnmarshaller();
         return instance;
     }
 }

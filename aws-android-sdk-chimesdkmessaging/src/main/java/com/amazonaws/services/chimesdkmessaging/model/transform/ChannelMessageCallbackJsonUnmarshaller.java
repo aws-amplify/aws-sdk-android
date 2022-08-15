@@ -56,6 +56,9 @@ class ChannelMessageCallbackJsonUnmarshaller implements
                                 MessageAttributeValueJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("SubChannelId")) {
+                channelMessageCallback.setSubChannelId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -40,54 +40,44 @@ import com.amazonaws.util.json.JsonUtils;
 import android.net.Uri;
 
 /**
- * JSON request marshaller for ListChannelMembershipsRequest
+ * JSON request marshaller for ListSubChannelsRequest
  */
-public class ListChannelMembershipsRequestMarshaller implements
-        Marshaller<Request<ListChannelMembershipsRequest>, ListChannelMembershipsRequest> {
+public class ListSubChannelsRequestMarshaller implements
+        Marshaller<Request<ListSubChannelsRequest>, ListSubChannelsRequest> {
 
-    public Request<ListChannelMembershipsRequest> marshall(
-            ListChannelMembershipsRequest listChannelMembershipsRequest) {
-        if (listChannelMembershipsRequest == null) {
+    public Request<ListSubChannelsRequest> marshall(ListSubChannelsRequest listSubChannelsRequest) {
+        if (listSubChannelsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(ListChannelMembershipsRequest)");
+                    "Invalid argument passed to marshall(ListSubChannelsRequest)");
         }
 
-        Request<ListChannelMembershipsRequest> request = new DefaultRequest<ListChannelMembershipsRequest>(
-                listChannelMembershipsRequest, "AmazonChimeSDKMessaging");
+        Request<ListSubChannelsRequest> request = new DefaultRequest<ListSubChannelsRequest>(
+                listSubChannelsRequest, "AmazonChimeSDKMessaging");
         request.setHttpMethod(HttpMethodName.GET);
 
-        if (listChannelMembershipsRequest.getChimeBearer() != null) {
+        if (listSubChannelsRequest.getChimeBearer() != null) {
             request.addHeader("x-amz-chime-bearer",
-                    StringUtils.fromString(listChannelMembershipsRequest.getChimeBearer()));
+                    StringUtils.fromString(listSubChannelsRequest.getChimeBearer()));
         }
-        String uriResourcePath = "/channels/{channelArn}/memberships";
+        String uriResourcePath = "/channels/{channelArn}/subchannels";
         uriResourcePath = uriResourcePath.replace(
                 "{channelArn}",
-                (listChannelMembershipsRequest.getChannelArn() == null) ? "" : StringUtils
-                        .fromString(listChannelMembershipsRequest.getChannelArn()));
-        if (listChannelMembershipsRequest.getType() != null) {
-            request.addParameter("type",
-                    StringUtils.fromString(listChannelMembershipsRequest.getType()));
-        }
-        if (listChannelMembershipsRequest.getMaxResults() != null) {
+                (listSubChannelsRequest.getChannelArn() == null) ? "" : StringUtils
+                        .fromString(listSubChannelsRequest.getChannelArn()));
+        if (listSubChannelsRequest.getMaxResults() != null) {
             request.addParameter("max-results",
-                    StringUtils.fromInteger(listChannelMembershipsRequest.getMaxResults()));
+                    StringUtils.fromInteger(listSubChannelsRequest.getMaxResults()));
         }
-        if (listChannelMembershipsRequest.getNextToken() != null) {
+        if (listSubChannelsRequest.getNextToken() != null) {
             request.addParameter("next-token",
-                    StringUtils.fromString(listChannelMembershipsRequest.getNextToken()));
-        }
-        if (listChannelMembershipsRequest.getSubChannelId() != null) {
-            request.addParameter("sub-channel-id",
-                    StringUtils.fromString(listChannelMembershipsRequest.getSubChannelId()));
+                    StringUtils.fromString(listSubChannelsRequest.getNextToken()));
         }
         request.setResourcePath(uriResourcePath);
-        String encodedUriResourcePath = "/channels/{channelArn}/memberships";
+        String encodedUriResourcePath = "/channels/{channelArn}/subchannels";
         encodedUriResourcePath = encodedUriResourcePath.replace(
                 "{channelArn}",
-                (listChannelMembershipsRequest.getChannelArn() == null) ? "" : Uri
-                        .encode(StringUtils.fromString(listChannelMembershipsRequest
-                                .getChannelArn())));
+                (listSubChannelsRequest.getChannelArn() == null) ? "" : Uri.encode(StringUtils
+                        .fromString(listSubChannelsRequest.getChannelArn())));
         request.setEncodedResourcePath(encodedUriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

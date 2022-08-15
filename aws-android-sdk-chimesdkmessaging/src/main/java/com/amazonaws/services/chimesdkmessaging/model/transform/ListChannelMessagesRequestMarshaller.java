@@ -85,6 +85,10 @@ public class ListChannelMessagesRequestMarshaller implements
             request.addParameter("next-token",
                     StringUtils.fromString(listChannelMessagesRequest.getNextToken()));
         }
+        if (listChannelMessagesRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(listChannelMessagesRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/messages";
         encodedUriResourcePath = encodedUriResourcePath.replace(

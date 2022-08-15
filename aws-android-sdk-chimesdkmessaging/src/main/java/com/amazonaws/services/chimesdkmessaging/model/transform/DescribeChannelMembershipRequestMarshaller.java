@@ -69,6 +69,10 @@ public class DescribeChannelMembershipRequestMarshaller implements
                 "{memberArn}",
                 (describeChannelMembershipRequest.getMemberArn() == null) ? "" : StringUtils
                         .fromString(describeChannelMembershipRequest.getMemberArn()));
+        if (describeChannelMembershipRequest.getSubChannelId() != null) {
+            request.addParameter("sub-channel-id",
+                    StringUtils.fromString(describeChannelMembershipRequest.getSubChannelId()));
+        }
         request.setResourcePath(uriResourcePath);
         String encodedUriResourcePath = "/channels/{channelArn}/memberships/{memberArn}";
         encodedUriResourcePath = encodedUriResourcePath.replace(
