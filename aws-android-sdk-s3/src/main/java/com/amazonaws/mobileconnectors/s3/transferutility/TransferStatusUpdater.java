@@ -16,6 +16,8 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -71,6 +73,11 @@ class TransferStatusUpdater {
     private final Handler mainHandler;
 
     /**
+     * Context required to stop TransferService on all transfers completed
+     */
+    private Context context;
+
+    /**
      * The Singleton instance.
      */
     private static TransferStatusUpdater transferStatusUpdater;
@@ -88,8 +95,9 @@ class TransferStatusUpdater {
      * The updater is made a singleton. Use #getInstance for getting
      * the object of the updater.
      */
-    TransferStatusUpdater(TransferDBUtil dbUtilInstance) {
+    TransferStatusUpdater(TransferDBUtil dbUtilInstance, Context context) {
         dbUtil = dbUtilInstance;
+        this.context = context;
         mainHandler = new Handler(Looper.getMainLooper());
         transfers = new ConcurrentHashMap<Integer, TransferRecord>();
     }
@@ -103,7 +111,7 @@ class TransferStatusUpdater {
     public static synchronized TransferStatusUpdater getInstance(Context context) {
         if (transferStatusUpdater == null) {
             dbUtil = new TransferDBUtil(context);
-            transferStatusUpdater = new TransferStatusUpdater(dbUtil);
+            transferStatusUpdater = new TransferStatusUpdater(dbUtil, context);
         }
         return transferStatusUpdater;
     }
@@ -212,32 +220,28 @@ class TransferStatusUpdater {
 
         synchronized (LISTENERS) {
             final List<TransferListener> list = LISTENERS.get(id);
-            if (list == null || list.isEmpty()) {
-                return;
-            }
-
-            // invoke TransferListener callback on main thread
-            for (final TransferListener l : list) {
-                // If instance is TransferStatusListener, post immediately.
-                // Posting to main thread can cause a missed status.
-                if (l instanceof TransferObserver.TransferStatusListener) {
-                    l.onStateChanged(id, newState);
-                } else {
-                    mainHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            l.onStateChanged(id, newState);
-                        }
-                    });
+            if (list != null && !list.isEmpty()) {
+                // invoke TransferListener callback on main thread
+                for (final TransferListener l : list) {
+                    // If instance is TransferStatusListener, post immediately.
+                    // Posting to main thread can cause a missed status.
+                    if (l instanceof TransferObserver.TransferStatusListener) {
+                        l.onStateChanged(id, newState);
+                    } else {
+                        mainHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                l.onStateChanged(id, newState);
+                            }
+                        });
+                    }
                 }
-            }
 
-            // remove all LISTENERS when the transfer is in a final state so
-            // as to release resources ASAP.
-            if (TransferState.COMPLETED.equals(newState) ||
-                TransferState.FAILED.equals(newState) ||
-                TransferState.CANCELED.equals(newState)) {
-                list.clear();
+                // remove all LISTENERS when the transfer is in a final state so
+                // as to release resources ASAP.
+                if (TransferState.isFinalState(newState)) {
+                    list.clear();
+                }
             }
         }
     }

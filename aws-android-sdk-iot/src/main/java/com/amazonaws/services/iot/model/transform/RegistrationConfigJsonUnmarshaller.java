@@ -42,6 +42,9 @@ class RegistrationConfigJsonUnmarshaller implements
             } else if (name.equals("roleArn")) {
                 registrationConfig.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("templateName")) {
+                registrationConfig.setTemplateName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

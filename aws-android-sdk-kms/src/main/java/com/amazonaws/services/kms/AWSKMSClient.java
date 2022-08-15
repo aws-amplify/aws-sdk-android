@@ -889,7 +889,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * This operation is part of the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >Custom Key Store feature</a> feature in KMS, which combines the
+     * >custom key store feature</a> feature in KMS, which combines the
      * convenience and extensive integration of KMS with the isolation and
      * control of a single-tenant key store.
      * </p>
@@ -1182,7 +1182,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * any parameters. The default value for <code>KeySpec</code>,
      * <code>SYMMETRIC_DEFAULT</code>, and the default value for
      * <code>KeyUsage</code>, <code>ENCRYPT_DECRYPT</code>, create a symmetric
-     * encryption KMS key.
+     * encryption KMS key. For technical details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-symmetric-default"
+     * > SYMMETRIC_DEFAULT key spec</a> in the <i>Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * If you need a key for basic encryption and decryption or you are creating
@@ -1205,14 +1208,14 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * properties after the KMS key is created.
      * </p>
      * <p>
-     * Asymmetric KMS keys contain an RSA key pair or an Elliptic Curve (ECC)
-     * key pair. The private key in an asymmetric KMS key never leaves KMS
-     * unencrypted. However, you can use the <a>GetPublicKey</a> operation to
-     * download the public key so it can be used outside of KMS. KMS keys with
-     * RSA key pairs can be used to encrypt or decrypt data or sign and verify
-     * messages (but not both). KMS keys with ECC key pairs can be used only to
-     * sign and verify messages. For information about asymmetric KMS keys, see
-     * <a href=
+     * Asymmetric KMS keys contain an RSA key pair, Elliptic Curve (ECC) key
+     * pair, or an SM2 key pair (China Regions only). The private key in an
+     * asymmetric KMS key never leaves KMS unencrypted. However, you can use the
+     * <a>GetPublicKey</a> operation to download the public key so it can be
+     * used outside of KMS. KMS keys with RSA or SM2 key pairs can be used to
+     * encrypt or decrypt data or sign and verify messages (but not both). KMS
+     * keys with ECC key pairs can be used only to sign and verify messages. For
+     * information about asymmetric KMS keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
      * >Asymmetric KMS keys</a> in the <i>Key Management Service Developer
      * Guide</i>.
@@ -1724,7 +1727,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * or keys in the cluster.
      * </p>
      * <p>
-     * The custom key store that you delete cannot contain any KMS <a href=
+     * The custom key store that you delete cannot contain any <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#kms_keys"
      * >KMS keys</a>. Before deleting the key store, verify that you will never
      * need to use any of the KMS keys in the key store for any <a href=
@@ -1755,7 +1758,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * This operation is part of the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >Custom Key Store feature</a> feature in KMS, which combines the
+     * >custom key store feature</a> feature in KMS, which combines the
      * convenience and extensive integration of KMS with the isolation and
      * control of a single-tenant key store.
      * </p>
@@ -1946,7 +1949,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * This operation is part of the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >Custom Key Store feature</a> feature in KMS, which combines the
+     * >custom key store feature</a> feature in KMS, which combines the
      * convenience and extensive integration of KMS with the isolation and
      * control of a single-tenant key store.
      * </p>
@@ -2105,7 +2108,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * prevent a KMS key from being automatically rotated. For details, see <a
      * href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works"
-     * >How Automatic Key Rotation Works</a> in <i>Key Management Service
+     * >How Automatic Key Rotation Works</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * </li>
@@ -2441,7 +2444,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * This operation is part of the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >Custom Key Store feature</a> feature in KMS, which combines the
+     * >custom key store feature</a> feature in KMS, which combines the
      * convenience and extensive integration of KMS with the isolation and
      * control of a single-tenant key store.
      * </p>
@@ -2758,7 +2761,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * If you specify an asymmetric KMS key, you must also specify the
      * encryption algorithm. The algorithm must be compatible with the KMS key
-     * type.
+     * spec.
      * </p>
      * <important>
      * <p>
@@ -2843,6 +2846,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * </li>
      * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SM2PKE</code>: 1024 bytes (China Regions only)
+     * </p>
      * </li>
      * </ul>
      * <p>
@@ -2944,10 +2952,20 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * To generate a data key, specify the symmetric encryption KMS key that
      * will be used to encrypt the data key. You cannot use an asymmetric KMS
      * key to encrypt data keys. To get the type of your KMS key, use the
-     * <a>DescribeKey</a> operation. You must also specify the length of the
-     * data key. Use either the <code>KeySpec</code> or
-     * <code>NumberOfBytes</code> parameters (but not both). For 128-bit and
-     * 256-bit data keys, use the <code>KeySpec</code> parameter.
+     * <a>DescribeKey</a> operation.
+     * </p>
+     * <p>
+     * You must also specify the length of the data key. Use either the
+     * <code>KeySpec</code> or <code>NumberOfBytes</code> parameters (but not
+     * both). For 128-bit and 256-bit data keys, use the <code>KeySpec</code>
+     * parameter.
+     * </p>
+     * <p>
+     * To generate an SM4 data key (China Regions only), specify a
+     * <code>KeySpec</code> value of <code>AES_128</code> or
+     * <code>NumberOfBytes</code> value of <code>128</code>. The symmetric
+     * encryption key used in China Regions to encrypt your data key is an SM4
+     * encryption key.
      * </p>
      * <p>
      * To get only an encrypted copy of the data key, use
@@ -3153,10 +3171,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * Use the <code>KeyPairSpec</code> parameter to choose an RSA or Elliptic
-     * Curve (ECC) data key pair. KMS recommends that your use ECC key pairs for
-     * signing, and use RSA key pairs for either encryption or signing, but not
-     * both. However, KMS cannot enforce any restrictions on the use of data key
-     * pairs outside of KMS.
+     * Curve (ECC) data key pair. In China Regions, you can also choose an SM2
+     * data key pair. KMS recommends that you use ECC key pairs for signing, and
+     * use RSA and SM2 key pairs for either encryption or signing, but not both.
+     * However, KMS cannot enforce any restrictions on the use of data key pairs
+     * outside of KMS.
      * </p>
      * <p>
      * If you are using the data key pair to encrypt data, or for any operation
@@ -3316,10 +3335,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * </p>
      * <p>
      * Use the <code>KeyPairSpec</code> parameter to choose an RSA or Elliptic
-     * Curve (ECC) data key pair. KMS recommends that your use ECC key pairs for
-     * signing, and use RSA key pairs for either encryption or signing, but not
-     * both. However, KMS cannot enforce any restrictions on the use of data key
-     * pairs outside of KMS.
+     * Curve (ECC) data key pair. In China Regions, you can also choose an SM2
+     * data key pair. KMS recommends that you use ECC key pairs for signing, and
+     * use RSA and SM2 key pairs for either encryption or signing, but not both.
+     * However, KMS cannot enforce any restrictions on the use of data key pairs
+     * outside of KMS.
      * </p>
      * <p>
      * <code>GenerateDataKeyPairWithoutPlaintext</code> returns a unique data
@@ -3694,6 +3714,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * Returns a random byte string that is cryptographically secure.
      * </p>
      * <p>
+     * You must use the <code>NumberOfBytes</code> parameter to specify the
+     * length of the random byte string. There is no default value for string
+     * length.
+     * </p>
+     * <p>
      * By default, the random byte string is generated in KMS. To generate the
      * byte string in the CloudHSM cluster that is associated with a <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
@@ -3713,6 +3738,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * For more information about entropy and random number generation, see <a
      * href="https://docs.aws.amazon.com/kms/latest/cryptographic-details/">Key
      * Management Service Cryptographic Details</a>.
+     * </p>
+     * <p>
+     * <b>Cross-account use</b>: Not applicable. <code>GenerateRandom</code>
+     * does not use any account-specific resources, such as KMS keys.
      * </p>
      * <p>
      * <b>Required permissions</b>: <a href=
@@ -4110,10 +4139,15 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * When you use the public key within KMS, you benefit from the
      * authentication, authorization, and logging that are part of every KMS
      * operation. You also reduce of risk of encrypting data that cannot be
-     * decrypted. These features are not effective outside of KMS. For details,
-     * see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/download-public-key.html#download-public-key-considerations"
-     * >Special Considerations for Downloading Public Keys</a>.
+     * decrypted. These features are not effective outside of KMS.
+     * </p>
+     * <p>
+     * To verify a signature outside of KMS with an SM2 public key (China
+     * Regions only), you must specify the distinguishing ID. By default, KMS
+     * uses <code>1234567812345678</code> as the distinguishing ID. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm-offline-verification"
+     * >Offline verification with SM2 key pairs</a>.
      * </p>
      * <p>
      * To help you use the public key safely outside of KMS,
@@ -6341,7 +6375,7 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * This operation is part of the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >Custom Key Store feature</a> feature in KMS, which combines the
+     * >custom key store feature</a> feature in KMS, which combines the
      * convenience and extensive integration of KMS with the isolation and
      * control of a single-tenant key store.
      * </p>
@@ -6702,12 +6736,17 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * You can also verify the digital signature by using the public key of the
      * KMS key outside of KMS. Use the <a>GetPublicKey</a> operation to download
      * the public key in the asymmetric KMS key and then use the public key to
-     * verify the signature outside of KMS. The advantage of using the
-     * <code>Verify</code> operation is that it is performed within KMS. As a
-     * result, it's easy to call, the operation is performed within the FIPS
-     * boundary, it is logged in CloudTrail, and you can use key policy and IAM
-     * policy to determine who is authorized to use the KMS key to verify
-     * signatures.
+     * verify the signature outside of KMS. To verify a signature outside of KMS
+     * with an SM2 public key, you must specify the distinguishing ID. By
+     * default, KMS uses <code>1234567812345678</code> as the distinguishing ID.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-sm-offline-verification"
+     * >Offline verification with SM2 key pairs</a> in <i>Key Management Service
+     * Developer Guide</i>. The advantage of using the <code>Verify</code>
+     * operation is that it is performed within KMS. As a result, it's easy to
+     * call, the operation is performed within the FIPS boundary, it is logged
+     * in CloudTrail, and you can use key policy and IAM policy to determine who
+     * is authorized to use the KMS key to verify signatures.
      * </p>
      * <p>
      * The KMS key that you use for this operation must be in a compatible key
@@ -6898,7 +6937,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * any parameters. The default value for <code>KeySpec</code>,
      * <code>SYMMETRIC_DEFAULT</code>, and the default value for
      * <code>KeyUsage</code>, <code>ENCRYPT_DECRYPT</code>, create a symmetric
-     * encryption KMS key.
+     * encryption KMS key. For technical details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/asymmetric-key-specs.html#key-spec-symmetric-default"
+     * > SYMMETRIC_DEFAULT key spec</a> in the <i>Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * If you need a key for basic encryption and decryption or you are creating
@@ -6921,14 +6963,14 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * properties after the KMS key is created.
      * </p>
      * <p>
-     * Asymmetric KMS keys contain an RSA key pair or an Elliptic Curve (ECC)
-     * key pair. The private key in an asymmetric KMS key never leaves KMS
-     * unencrypted. However, you can use the <a>GetPublicKey</a> operation to
-     * download the public key so it can be used outside of KMS. KMS keys with
-     * RSA key pairs can be used to encrypt or decrypt data or sign and verify
-     * messages (but not both). KMS keys with ECC key pairs can be used only to
-     * sign and verify messages. For information about asymmetric KMS keys, see
-     * <a href=
+     * Asymmetric KMS keys contain an RSA key pair, Elliptic Curve (ECC) key
+     * pair, or an SM2 key pair (China Regions only). The private key in an
+     * asymmetric KMS key never leaves KMS unencrypted. However, you can use the
+     * <a>GetPublicKey</a> operation to download the public key so it can be
+     * used outside of KMS. KMS keys with RSA or SM2 key pairs can be used to
+     * encrypt or decrypt data or sign and verify messages (but not both). KMS
+     * keys with ECC key pairs can be used only to sign and verify messages. For
+     * information about asymmetric KMS keys, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
      * >Asymmetric KMS keys</a> in the <i>Key Management Service Developer
      * Guide</i>.
@@ -7348,6 +7390,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * Returns a random byte string that is cryptographically secure.
      * </p>
      * <p>
+     * You must use the <code>NumberOfBytes</code> parameter to specify the
+     * length of the random byte string. There is no default value for string
+     * length.
+     * </p>
+     * <p>
      * By default, the random byte string is generated in KMS. To generate the
      * byte string in the CloudHSM cluster that is associated with a <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
@@ -7367,6 +7414,10 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * For more information about entropy and random number generation, see <a
      * href="https://docs.aws.amazon.com/kms/latest/cryptographic-details/">Key
      * Management Service Cryptographic Details</a>.
+     * </p>
+     * <p>
+     * <b>Cross-account use</b>: Not applicable. <code>GenerateRandom</code>
+     * does not use any account-specific resources, such as KMS keys.
      * </p>
      * <p>
      * <b>Required permissions</b>: <a href=

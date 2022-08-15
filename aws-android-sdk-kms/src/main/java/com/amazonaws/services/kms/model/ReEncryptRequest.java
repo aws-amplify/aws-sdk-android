@@ -356,7 +356,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String sourceEncryptionAlgorithm;
 
@@ -374,7 +374,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String destinationEncryptionAlgorithm;
 
@@ -1584,7 +1584,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         Specifies the encryption algorithm that KMS will use to decrypt
@@ -1625,7 +1625,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1669,7 +1669,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1713,7 +1713,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1757,7 +1757,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param sourceEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1798,7 +1798,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         Specifies the encryption algorithm that KMS will use to reecrypt
@@ -1830,7 +1830,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1865,7 +1865,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1900,7 +1900,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to
@@ -1936,7 +1936,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param destinationEncryptionAlgorithm <p>
      *            Specifies the encryption algorithm that KMS will use to

@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * Specifies a location within the frame that Rekognition checks for objects of
  * interest such as text, labels, or faces. It uses a <code>BoundingBox</code>
- * or object or <code>Polygon</code> to set a region of the screen.
+ * or <code>Polygon</code> to set a region of the screen.
  * </p>
  * <p>
  * A word, face, or label is included in the region if it is more than half in

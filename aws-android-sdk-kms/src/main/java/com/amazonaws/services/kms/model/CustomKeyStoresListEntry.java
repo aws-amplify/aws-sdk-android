@@ -203,7 +203,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      */
     private String connectionErrorCode;
 
@@ -883,7 +884,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      *
      * @return <p>
      *         Describes the connection error. This field appears in the
@@ -1095,7 +1097,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1311,7 +1314,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1527,7 +1531,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the
@@ -1743,7 +1748,8 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INVALID_CREDENTIALS, CLUSTER_NOT_FOUND,
      * NETWORK_ERRORS, INTERNAL_ERROR, INSUFFICIENT_CLOUDHSM_HSMS,
-     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND
+     * USER_LOCKED_OUT, USER_NOT_FOUND, USER_LOGGED_IN, SUBNET_NOT_FOUND,
+     * INSUFFICIENT_FREE_ADDRESSES_IN_SUBNET
      *
      * @param connectionErrorCode <p>
      *            Describes the connection error. This field appears in the

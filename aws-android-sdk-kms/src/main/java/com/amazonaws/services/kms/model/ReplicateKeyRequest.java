@@ -284,34 +284,38 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * A key policy document must conform to the following rules.
+     * A key policy document can include only the following characters:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Up to 32 kilobytes (32768 bytes)
+     * Printable ASCII characters from the space character (<code>\u0020</code>)
+     * through the end of the ASCII character range.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be UTF-8 encoded
+     * Printable characters in the Basic Latin and Latin-1 Supplement character
+     * set (through <code>\u00FF</code>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * The only Unicode characters that are permitted in a key policy document
-     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
-     * (U+000D), and characters in the range U+0020 to U+00FF.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The <code>Sid</code> element in a key policy statement can include
-     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
-     * policy document.)
+     * The tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and
+     * carriage return (<code>\u000D</code>) special characters
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For information about key policies, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     * >Key policies in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>. For help writing and formatting a JSON policy document, see
+     * the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>Identity and Access
+     * Management User Guide</i> </i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 131072<br/>
@@ -944,34 +948,38 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * A key policy document must conform to the following rules.
+     * A key policy document can include only the following characters:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Up to 32 kilobytes (32768 bytes)
+     * Printable ASCII characters from the space character (<code>\u0020</code>)
+     * through the end of the ASCII character range.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be UTF-8 encoded
+     * Printable characters in the Basic Latin and Latin-1 Supplement character
+     * set (through <code>\u00FF</code>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * The only Unicode characters that are permitted in a key policy document
-     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
-     * (U+000D), and characters in the range U+0020 to U+00FF.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The <code>Sid</code> element in a key policy statement can include
-     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
-     * policy document.)
+     * The tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and
+     * carriage return (<code>\u000D</code>) special characters
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For information about key policies, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     * >Key policies in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>. For help writing and formatting a JSON policy document, see
+     * the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>Identity and Access
+     * Management User Guide</i> </i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 131072<br/>
@@ -1022,35 +1030,39 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         </li>
      *         </ul>
      *         <p>
-     *         A key policy document must conform to the following rules.
+     *         A key policy document can include only the following characters:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Up to 32 kilobytes (32768 bytes)
+     *         Printable ASCII characters from the space character (
+     *         <code>\u0020</code>) through the end of the ASCII character
+     *         range.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Must be UTF-8 encoded
+     *         Printable characters in the Basic Latin and Latin-1 Supplement
+     *         character set (through <code>\u00FF</code>).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         The only Unicode characters that are permitted in a key policy
-     *         document are the horizontal tab (U+0009), linefeed (U+000A),
-     *         carriage return (U+000D), and characters in the range U+0020 to
-     *         U+00FF.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         The <code>Sid</code> element in a key policy statement can
-     *         include spaces. (Spaces are prohibited in the <code>Sid</code>
-     *         element of an IAM policy document.)
+     *         The tab (<code>\u0009</code>), line feed (<code>\u000A</code>),
+     *         and carriage return (<code>\u000D</code>) special characters
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         For information about key policies, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     *         >Key policies in KMS</a> in the <i>Key Management Service
+     *         Developer Guide</i>. For help writing and formatting a JSON
+     *         policy document, see the <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *         >IAM JSON Policy Reference</a> in the <i> <i>Identity and Access
+     *         Management User Guide</i> </i>.
+     *         </p>
      */
     public String getPolicy() {
         return policy;
@@ -1098,34 +1110,38 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * A key policy document must conform to the following rules.
+     * A key policy document can include only the following characters:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Up to 32 kilobytes (32768 bytes)
+     * Printable ASCII characters from the space character (<code>\u0020</code>)
+     * through the end of the ASCII character range.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be UTF-8 encoded
+     * Printable characters in the Basic Latin and Latin-1 Supplement character
+     * set (through <code>\u00FF</code>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * The only Unicode characters that are permitted in a key policy document
-     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
-     * (U+000D), and characters in the range U+0020 to U+00FF.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The <code>Sid</code> element in a key policy statement can include
-     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
-     * policy document.)
+     * The tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and
+     * carriage return (<code>\u000D</code>) special characters
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For information about key policies, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     * >Key policies in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>. For help writing and formatting a JSON policy document, see
+     * the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>Identity and Access
+     * Management User Guide</i> </i>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 131072<br/>
@@ -1177,35 +1193,41 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            </ul>
      *            <p>
-     *            A key policy document must conform to the following rules.
+     *            A key policy document can include only the following
+     *            characters:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Up to 32 kilobytes (32768 bytes)
+     *            Printable ASCII characters from the space character (
+     *            <code>\u0020</code>) through the end of the ASCII character
+     *            range.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Must be UTF-8 encoded
+     *            Printable characters in the Basic Latin and Latin-1 Supplement
+     *            character set (through <code>\u00FF</code>).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            The only Unicode characters that are permitted in a key policy
-     *            document are the horizontal tab (U+0009), linefeed (U+000A),
-     *            carriage return (U+000D), and characters in the range U+0020
-     *            to U+00FF.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The <code>Sid</code> element in a key policy statement can
-     *            include spaces. (Spaces are prohibited in the <code>Sid</code>
-     *            element of an IAM policy document.)
+     *            The tab (<code>\u0009</code>), line feed (<code>\u000A</code>
+     *            ), and carriage return (<code>\u000D</code>) special
+     *            characters
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For information about key policies, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     *            >Key policies in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>. For help writing and formatting a JSON
+     *            policy document, see the <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *            >IAM JSON Policy Reference</a> in the <i> <i>Identity and
+     *            Access Management User Guide</i> </i>.
+     *            </p>
      */
     public void setPolicy(String policy) {
         this.policy = policy;
@@ -1253,34 +1275,38 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * </li>
      * </ul>
      * <p>
-     * A key policy document must conform to the following rules.
+     * A key policy document can include only the following characters:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Up to 32 kilobytes (32768 bytes)
+     * Printable ASCII characters from the space character (<code>\u0020</code>)
+     * through the end of the ASCII character range.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be UTF-8 encoded
+     * Printable characters in the Basic Latin and Latin-1 Supplement character
+     * set (through <code>\u00FF</code>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * The only Unicode characters that are permitted in a key policy document
-     * are the horizontal tab (U+0009), linefeed (U+000A), carriage return
-     * (U+000D), and characters in the range U+0020 to U+00FF.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The <code>Sid</code> element in a key policy statement can include
-     * spaces. (Spaces are prohibited in the <code>Sid</code> element of an IAM
-     * policy document.)
+     * The tab (<code>\u0009</code>), line feed (<code>\u000A</code>), and
+     * carriage return (<code>\u000D</code>) special characters
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For information about key policies, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     * >Key policies in KMS</a> in the <i>Key Management Service Developer
+     * Guide</i>. For help writing and formatting a JSON policy document, see
+     * the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>Identity and Access
+     * Management User Guide</i> </i>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1335,35 +1361,41 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            </li>
      *            </ul>
      *            <p>
-     *            A key policy document must conform to the following rules.
+     *            A key policy document can include only the following
+     *            characters:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Up to 32 kilobytes (32768 bytes)
+     *            Printable ASCII characters from the space character (
+     *            <code>\u0020</code>) through the end of the ASCII character
+     *            range.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Must be UTF-8 encoded
+     *            Printable characters in the Basic Latin and Latin-1 Supplement
+     *            character set (through <code>\u00FF</code>).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            The only Unicode characters that are permitted in a key policy
-     *            document are the horizontal tab (U+0009), linefeed (U+000A),
-     *            carriage return (U+000D), and characters in the range U+0020
-     *            to U+00FF.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The <code>Sid</code> element in a key policy statement can
-     *            include spaces. (Spaces are prohibited in the <code>Sid</code>
-     *            element of an IAM policy document.)
+     *            The tab (<code>\u0009</code>), line feed (<code>\u000A</code>
+     *            ), and carriage return (<code>\u000D</code>) special
+     *            characters
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For information about key policies, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html"
+     *            >Key policies in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>. For help writing and formatting a JSON
+     *            policy document, see the <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *            >IAM JSON Policy Reference</a> in the <i> <i>Identity and
+     *            Access Management User Guide</i> </i>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -35,7 +35,8 @@ public enum CustomerMasterKeySpec {
     HMAC_224("HMAC_224"),
     HMAC_256("HMAC_256"),
     HMAC_384("HMAC_384"),
-    HMAC_512("HMAC_512");
+    HMAC_512("HMAC_512"),
+    SM2("SM2");
 
     private String value;
 
@@ -63,6 +64,7 @@ public enum CustomerMasterKeySpec {
         enumMap.put("HMAC_256", HMAC_256);
         enumMap.put("HMAC_384", HMAC_384);
         enumMap.put("HMAC_512", HMAC_512);
+        enumMap.put("SM2", SM2);
     }
 
     /**

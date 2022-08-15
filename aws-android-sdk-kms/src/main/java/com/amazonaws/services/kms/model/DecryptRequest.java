@@ -280,7 +280,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      */
     private String encryptionAlgorithm;
 
@@ -1097,7 +1097,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @return <p>
      *         Specifies the encryption algorithm that will be used to decrypt
@@ -1133,7 +1133,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that will be used to
@@ -1172,7 +1172,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that will be used to
@@ -1211,7 +1211,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that will be used to
@@ -1250,7 +1250,7 @@ public class DecryptRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
-     * RSAES_OAEP_SHA_256
+     * RSAES_OAEP_SHA_256, SM2PKE
      *
      * @param encryptionAlgorithm <p>
      *            Specifies the encryption algorithm that will be used to
