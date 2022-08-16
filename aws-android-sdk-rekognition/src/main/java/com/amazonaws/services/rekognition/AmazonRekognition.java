@@ -164,6 +164,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CopyProjectVersion.html"
+ * >CopyProjectVersion</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateDataset.html"
  * >CreateDataset</a>
  * </p>
@@ -194,6 +201,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProject.html"
  * >DeleteProject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProjectPolicy.html"
+ * >DeleteProjectPolicy</a>
  * </p>
  * </li>
  * <li>
@@ -250,6 +264,20 @@ import com.amazonaws.services.rekognition.model.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListDatasetLabels.html"
  * >ListDatasetLabels</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListProjectPolicies.html"
+ * >ListProjectPolicies</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PutProjectPolicy.html"
+ * >PutProjectPolicy</a>
  * </p>
  * </li>
  * <li>
@@ -437,6 +465,13 @@ import com.amazonaws.services.rekognition.model.*;
  * >StopStreamProcessor</a>
  * </p>
  * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_UpdateStreamProcessor.html"
+ * >UpdateStreamProcessor</a>
+ * </p>
+ * </li>
  * </ul>
  **/
 public interface AmazonRekognition {
@@ -603,6 +638,66 @@ public interface AmazonRekognition {
      *             request, or a server side issue.
      */
     CompareFacesResult compareFaces(CompareFacesRequest compareFacesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Copies a version of an Amazon Rekognition Custom Labels model from a
+     * source project to a destination project. The source and destination
+     * projects can be in different AWS accounts but must be in the same AWS
+     * Region. You can't copy a model to another AWS service.
+     * </p>
+     * <p>
+     * To copy a model version to a different AWS account, you need to create a
+     * resource-based policy known as a <i>project policy</i>. You attach the
+     * project policy to the source project by calling <a>PutProjectPolicy</a>.
+     * The project policy gives permission to copy the model version from a
+     * trusting AWS account to a trusted account.
+     * </p>
+     * <p>
+     * For more information creating and attaching a project policy, see
+     * Attaching a project policy (SDK) in the <i>Amazon Rekognition Custom
+     * Labels Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you are copying a model version to a project in the same AWS account,
+     * you don't need to create a project policy.
+     * </p>
+     * <note>
+     * <p>
+     * To copy a model, the destination project, source project, and source
+     * model version must already exist.
+     * </p>
+     * </note>
+     * <p>
+     * Copying a model version takes a while to complete. To get the current
+     * status, call <a>DescribeProjectVersions</a> and check the value of
+     * <code>Status</code> in the <a>ProjectVersionDescription</a> object. The
+     * copy operation has finished when the value of <code>Status</code> is
+     * <code>COPYING_COMPLETED</code>.
+     * </p>
+     * 
+     * @param copyProjectVersionRequest
+     * @return copyProjectVersionResult The response from the CopyProjectVersion
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CopyProjectVersionResult copyProjectVersion(CopyProjectVersionRequest copyProjectVersionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1018,7 +1113,9 @@ public interface AmazonRekognition {
      * <p>
      * <code>DeleteProject</code> is an asynchronous operation. To check if the
      * project is deleted, call <a>DescribeProjects</a>. The project is deleted
-     * when the project no longer appears in the response.
+     * when the project no longer appears in the response. Be aware that
+     * deleting a given project will also delete any
+     * <code>ProjectPolicies</code> associated with that project.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -1045,6 +1142,39 @@ public interface AmazonRekognition {
      */
     DeleteProjectResult deleteProject(DeleteProjectRequest deleteProjectRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an existing project policy.
+     * </p>
+     * <p>
+     * To get a list of project policies attached to a project, call
+     * <a>ListProjectPolicies</a>. To attach a project policy to a project, call
+     * <a>PutProjectPolicy</a>.
+     * </p>
+     * 
+     * @param deleteProjectPolicyRequest
+     * @return deleteProjectPolicyResult The response from the
+     *         DeleteProjectPolicy service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidPolicyRevisionIdException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteProjectPolicyResult deleteProjectPolicy(
+            DeleteProjectPolicyRequest deleteProjectPolicyRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -2738,6 +2868,38 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Gets a list of the project policies attached to a project.
+     * </p>
+     * <p>
+     * To attach a project policy to a project, call <a>PutProjectPolicy</a>. To
+     * remove a project policy from a project, call <a>DeleteProjectPolicy</a>.
+     * </p>
+     * 
+     * @param listProjectPoliciesRequest
+     * @return listProjectPoliciesResult The response from the
+     *         ListProjectPolicies service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidPaginationTokenException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListProjectPoliciesResult listProjectPolicies(
+            ListProjectPoliciesRequest listProjectPoliciesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of stream processors that you have created with
      * <a>CreateStreamProcessor</a>.
      * </p>
@@ -2795,6 +2957,59 @@ public interface AmazonRekognition {
     ListTagsForResourceResult listTagsForResource(
             ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Attaches a project policy to a Amazon Rekognition Custom Labels project
+     * in a trusting AWS account. A project policy specifies that a trusted AWS
+     * account can copy a model version from a trusting AWS account to a project
+     * in the trusted AWS account. To copy a model version you use the
+     * <a>CopyProjectVersion</a> operation.
+     * </p>
+     * <p>
+     * For more information about the format of a project policy document, see
+     * Attaching a project policy (SDK) in the <i>Amazon Rekognition Custom
+     * Labels Developer Guide</i>.
+     * </p>
+     * <p>
+     * The response from <code>PutProjectPolicy</code> is a revision ID for the
+     * project policy. You can attach multiple project policies to a project.
+     * You can also update an existing project policy by specifying the policy
+     * revision ID of the existing policy.
+     * </p>
+     * <p>
+     * To remove a project policy from a project, call
+     * <a>DeleteProjectPolicy</a>. To get a list of project policies attached to
+     * a project, call <a>ListProjectPolicies</a>.
+     * </p>
+     * <p>
+     * You copy a model version by calling <a>CopyProjectVersion</a>.
+     * </p>
+     * 
+     * @param putProjectPolicyRequest
+     * @return putProjectPolicyResult The response from the PutProjectPolicy
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws InvalidPolicyRevisionIdException
+     * @throws MalformedPolicyDocumentException
+     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ProvisionedThroughputExceededException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    PutProjectPolicyResult putProjectPolicy(PutProjectPolicyRequest putProjectPolicyRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

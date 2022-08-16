@@ -177,6 +177,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CopyProjectVersion.html"
+ * >CopyProjectVersion</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateDataset.html"
  * >CreateDataset</a>
  * </p>
@@ -207,6 +214,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProject.html"
  * >DeleteProject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteProjectPolicy.html"
+ * >DeleteProjectPolicy</a>
  * </p>
  * </li>
  * <li>
@@ -263,6 +277,20 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListDatasetLabels.html"
  * >ListDatasetLabels</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListProjectPolicies.html"
+ * >ListProjectPolicies</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_PutProjectPolicy.html"
+ * >PutProjectPolicy</a>
  * </p>
  * </li>
  * <li>
@@ -448,6 +476,13 @@ import com.amazonaws.services.rekognition.model.transform.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_StopStreamProcessor.html"
  * >StopStreamProcessor</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_UpdateStreamProcessor.html"
+ * >UpdateStreamProcessor</a>
  * </p>
  * </li>
  * </ul>
@@ -746,8 +781,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
         jsonErrorUnmarshallers.add(new InvalidImageFormatExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidPaginationTokenExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidPolicyRevisionIdExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidS3ObjectExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MalformedPolicyDocumentExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ProvisionedThroughputExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceAlreadyExistsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
@@ -896,6 +933,94 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<CompareFacesResult, JsonUnmarshallerContext> unmarshaller = new CompareFacesResultJsonUnmarshaller();
             JsonResponseHandler<CompareFacesResult> responseHandler = new JsonResponseHandler<CompareFacesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Copies a version of an Amazon Rekognition Custom Labels model from a
+     * source project to a destination project. The source and destination
+     * projects can be in different AWS accounts but must be in the same AWS
+     * Region. You can't copy a model to another AWS service.
+     * </p>
+     * <p>
+     * To copy a model version to a different AWS account, you need to create a
+     * resource-based policy known as a <i>project policy</i>. You attach the
+     * project policy to the source project by calling <a>PutProjectPolicy</a>.
+     * The project policy gives permission to copy the model version from a
+     * trusting AWS account to a trusted account.
+     * </p>
+     * <p>
+     * For more information creating and attaching a project policy, see
+     * Attaching a project policy (SDK) in the <i>Amazon Rekognition Custom
+     * Labels Developer Guide</i>.
+     * </p>
+     * <p>
+     * If you are copying a model version to a project in the same AWS account,
+     * you don't need to create a project policy.
+     * </p>
+     * <note>
+     * <p>
+     * To copy a model, the destination project, source project, and source
+     * model version must already exist.
+     * </p>
+     * </note>
+     * <p>
+     * Copying a model version takes a while to complete. To get the current
+     * status, call <a>DescribeProjectVersions</a> and check the value of
+     * <code>Status</code> in the <a>ProjectVersionDescription</a> object. The
+     * copy operation has finished when the value of <code>Status</code> is
+     * <code>COPYING_COMPLETED</code>.
+     * </p>
+     * 
+     * @param copyProjectVersionRequest
+     * @return copyProjectVersionResult The response from the CopyProjectVersion
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CopyProjectVersionResult copyProjectVersion(
+            CopyProjectVersionRequest copyProjectVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(copyProjectVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CopyProjectVersionRequest> request = null;
+        Response<CopyProjectVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CopyProjectVersionRequestMarshaller()
+                        .marshall(copyProjectVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CopyProjectVersionResult, JsonUnmarshallerContext> unmarshaller = new CopyProjectVersionResultJsonUnmarshaller();
+            JsonResponseHandler<CopyProjectVersionResult> responseHandler = new JsonResponseHandler<CopyProjectVersionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1530,7 +1655,9 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * <p>
      * <code>DeleteProject</code> is an asynchronous operation. To check if the
      * project is deleted, call <a>DescribeProjects</a>. The project is deleted
-     * when the project no longer appears in the response.
+     * when the project no longer appears in the response. Be aware that
+     * deleting a given project will also delete any
+     * <code>ProjectPolicies</code> associated with that project.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -1573,6 +1700,66 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<DeleteProjectResult, JsonUnmarshallerContext> unmarshaller = new DeleteProjectResultJsonUnmarshaller();
             JsonResponseHandler<DeleteProjectResult> responseHandler = new JsonResponseHandler<DeleteProjectResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an existing project policy.
+     * </p>
+     * <p>
+     * To get a list of project policies attached to a project, call
+     * <a>ListProjectPolicies</a>. To attach a project policy to a project, call
+     * <a>PutProjectPolicy</a>.
+     * </p>
+     * 
+     * @param deleteProjectPolicyRequest
+     * @return deleteProjectPolicyResult The response from the
+     *         DeleteProjectPolicy service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidPolicyRevisionIdException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteProjectPolicyResult deleteProjectPolicy(
+            DeleteProjectPolicyRequest deleteProjectPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteProjectPolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteProjectPolicyRequest> request = null;
+        Response<DeleteProjectPolicyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteProjectPolicyRequestMarshaller()
+                        .marshall(deleteProjectPolicyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteProjectPolicyResult, JsonUnmarshallerContext> unmarshaller = new DeleteProjectPolicyResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteProjectPolicyResult> responseHandler = new JsonResponseHandler<DeleteProjectPolicyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4026,6 +4213,65 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Gets a list of the project policies attached to a project.
+     * </p>
+     * <p>
+     * To attach a project policy to a project, call <a>PutProjectPolicy</a>. To
+     * remove a project policy from a project, call <a>DeleteProjectPolicy</a>.
+     * </p>
+     * 
+     * @param listProjectPoliciesRequest
+     * @return listProjectPoliciesResult The response from the
+     *         ListProjectPolicies service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidPaginationTokenException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListProjectPoliciesResult listProjectPolicies(
+            ListProjectPoliciesRequest listProjectPoliciesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listProjectPoliciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListProjectPoliciesRequest> request = null;
+        Response<ListProjectPoliciesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListProjectPoliciesRequestMarshaller()
+                        .marshall(listProjectPoliciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListProjectPoliciesResult, JsonUnmarshallerContext> unmarshaller = new ListProjectPoliciesResultJsonUnmarshaller();
+            JsonResponseHandler<ListProjectPoliciesResult> responseHandler = new JsonResponseHandler<ListProjectPoliciesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of stream processors that you have created with
      * <a>CreateStreamProcessor</a>.
      * </p>
@@ -4127,6 +4373,85 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
             JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Attaches a project policy to a Amazon Rekognition Custom Labels project
+     * in a trusting AWS account. A project policy specifies that a trusted AWS
+     * account can copy a model version from a trusting AWS account to a project
+     * in the trusted AWS account. To copy a model version you use the
+     * <a>CopyProjectVersion</a> operation.
+     * </p>
+     * <p>
+     * For more information about the format of a project policy document, see
+     * Attaching a project policy (SDK) in the <i>Amazon Rekognition Custom
+     * Labels Developer Guide</i>.
+     * </p>
+     * <p>
+     * The response from <code>PutProjectPolicy</code> is a revision ID for the
+     * project policy. You can attach multiple project policies to a project.
+     * You can also update an existing project policy by specifying the policy
+     * revision ID of the existing policy.
+     * </p>
+     * <p>
+     * To remove a project policy from a project, call
+     * <a>DeleteProjectPolicy</a>. To get a list of project policies attached to
+     * a project, call <a>ListProjectPolicies</a>.
+     * </p>
+     * <p>
+     * You copy a model version by calling <a>CopyProjectVersion</a>.
+     * </p>
+     * 
+     * @param putProjectPolicyRequest
+     * @return putProjectPolicyResult The response from the PutProjectPolicy
+     *         service method, as returned by Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws InvalidPolicyRevisionIdException
+     * @throws MalformedPolicyDocumentException
+     * @throws ResourceNotFoundException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ProvisionedThroughputExceededException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public PutProjectPolicyResult putProjectPolicy(PutProjectPolicyRequest putProjectPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putProjectPolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutProjectPolicyRequest> request = null;
+        Response<PutProjectPolicyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutProjectPolicyRequestMarshaller().marshall(putProjectPolicyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutProjectPolicyResult, JsonUnmarshallerContext> unmarshaller = new PutProjectPolicyResultJsonUnmarshaller();
+            JsonResponseHandler<PutProjectPolicyResult> responseHandler = new JsonResponseHandler<PutProjectPolicyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

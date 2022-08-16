@@ -100,6 +100,11 @@ class ProjectVersionDescriptionJsonMarshaller {
             jsonWriter.name("MaxInferenceUnits");
             jsonWriter.value(maxInferenceUnits);
         }
+        if (projectVersionDescription.getSourceProjectVersionArn() != null) {
+            String sourceProjectVersionArn = projectVersionDescription.getSourceProjectVersionArn();
+            jsonWriter.name("SourceProjectVersionArn");
+            jsonWriter.value(sourceProjectVersionArn);
+        }
         jsonWriter.endObject();
     }
 
