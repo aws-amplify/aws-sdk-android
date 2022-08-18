@@ -25,7 +25,9 @@ public enum EventType {
 
     SignIn("SignIn"),
     SignUp("SignUp"),
-    ForgotPassword("ForgotPassword");
+    ForgotPassword("ForgotPassword"),
+    PasswordChange("PasswordChange"),
+    ResendCode("ResendCode");
 
     private String value;
 
@@ -44,6 +46,8 @@ public enum EventType {
         enumMap.put("SignIn", SignIn);
         enumMap.put("SignUp", SignUp);
         enumMap.put("ForgotPassword", ForgotPassword);
+        enumMap.put("PasswordChange", PasswordChange);
+        enumMap.put("ResendCode", ResendCode);
     }
 
     /**
