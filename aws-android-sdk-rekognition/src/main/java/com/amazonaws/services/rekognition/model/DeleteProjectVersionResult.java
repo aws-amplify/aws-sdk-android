@@ -25,7 +25,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      */
     private String status;
 
@@ -36,7 +37,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @return <p>
      *         The status of the deletion operation.
@@ -54,7 +56,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The status of the deletion operation.
@@ -75,7 +78,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The status of the deletion operation.
@@ -96,7 +100,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The status of the deletion operation.
@@ -117,7 +122,8 @@ public class DeleteProjectVersionResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The status of the deletion operation.

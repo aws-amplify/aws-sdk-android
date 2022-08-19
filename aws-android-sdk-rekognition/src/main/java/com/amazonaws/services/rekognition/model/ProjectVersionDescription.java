@@ -61,7 +61,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      */
     private String status;
 
@@ -151,6 +152,21 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Range: </b>1 - <br/>
      */
     private Integer maxInferenceUnits;
+
+    /**
+     * <p>
+     * If the model version was copied from a different project,
+     * <code>SourceProjectVersionArn</code> contains the ARN of the source model
+     * version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     */
+    private String sourceProjectVersionArn;
 
     /**
      * <p>
@@ -327,7 +343,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @return <p>
      *         The current status of the model version.
@@ -345,7 +362,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -366,7 +384,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -387,7 +406,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -408,7 +428,8 @@ public class ProjectVersionDescription implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAINING_IN_PROGRESS, TRAINING_COMPLETED,
-     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING
+     * TRAINING_FAILED, STARTING, RUNNING, FAILED, STOPPING, STOPPED, DELETING,
+     * COPYING_IN_PROGRESS, COPYING_COMPLETED, COPYING_FAILED
      *
      * @param status <p>
      *            The current status of the model version.
@@ -949,6 +970,81 @@ public class ProjectVersionDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * If the model version was copied from a different project,
+     * <code>SourceProjectVersionArn</code> contains the ARN of the source model
+     * version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @return <p>
+     *         If the model version was copied from a different project,
+     *         <code>SourceProjectVersionArn</code> contains the ARN of the
+     *         source model version.
+     *         </p>
+     */
+    public String getSourceProjectVersionArn() {
+        return sourceProjectVersionArn;
+    }
+
+    /**
+     * <p>
+     * If the model version was copied from a different project,
+     * <code>SourceProjectVersionArn</code> contains the ARN of the source model
+     * version.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param sourceProjectVersionArn <p>
+     *            If the model version was copied from a different project,
+     *            <code>SourceProjectVersionArn</code> contains the ARN of the
+     *            source model version.
+     *            </p>
+     */
+    public void setSourceProjectVersionArn(String sourceProjectVersionArn) {
+        this.sourceProjectVersionArn = sourceProjectVersionArn;
+    }
+
+    /**
+     * <p>
+     * If the model version was copied from a different project,
+     * <code>SourceProjectVersionArn</code> contains the ARN of the source model
+     * version.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     *
+     * @param sourceProjectVersionArn <p>
+     *            If the model version was copied from a different project,
+     *            <code>SourceProjectVersionArn</code> contains the ARN of the
+     *            source model version.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withSourceProjectVersionArn(String sourceProjectVersionArn) {
+        this.sourceProjectVersionArn = sourceProjectVersionArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -986,7 +1082,9 @@ public class ProjectVersionDescription implements Serializable {
         if (getKmsKeyId() != null)
             sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getMaxInferenceUnits() != null)
-            sb.append("MaxInferenceUnits: " + getMaxInferenceUnits());
+            sb.append("MaxInferenceUnits: " + getMaxInferenceUnits() + ",");
+        if (getSourceProjectVersionArn() != null)
+            sb.append("SourceProjectVersionArn: " + getSourceProjectVersionArn());
         sb.append("}");
         return sb.toString();
     }
@@ -1024,6 +1122,10 @@ public class ProjectVersionDescription implements Serializable {
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getMaxInferenceUnits() == null) ? 0 : getMaxInferenceUnits().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getSourceProjectVersionArn() == null) ? 0 : getSourceProjectVersionArn()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1107,6 +1209,11 @@ public class ProjectVersionDescription implements Serializable {
             return false;
         if (other.getMaxInferenceUnits() != null
                 && other.getMaxInferenceUnits().equals(this.getMaxInferenceUnits()) == false)
+            return false;
+        if (other.getSourceProjectVersionArn() == null ^ this.getSourceProjectVersionArn() == null)
+            return false;
+        if (other.getSourceProjectVersionArn() != null
+                && other.getSourceProjectVersionArn().equals(this.getSourceProjectVersionArn()) == false)
             return false;
         return true;
     }
