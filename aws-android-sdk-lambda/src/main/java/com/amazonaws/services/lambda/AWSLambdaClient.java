@@ -535,7 +535,10 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * <p>
      * This operation requires permission for the <a href=
      * "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html"
-     * >lambda:InvokeFunction</a> action.
+     * >lambda:InvokeFunction</a> action. For details on how to set up
+     * permissions for cross-account invocations, see <a href=
+     * "https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html#permissions-resource-xaccountinvoke"
+     * >Granting function access to other accounts</a>.
      * </p>
      * 
      * @param invokeRequest

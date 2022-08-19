@@ -17,83 +17,62 @@ package com.amazonaws.services.rekognition.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
-/**
- * <p>
- * Deletes an Amazon Rekognition Custom Labels project. To delete a project you
- * must first delete all models associated with the project. To delete a model,
- * see <a>DeleteProjectVersion</a>.
- * </p>
- * <p>
- * <code>DeleteProject</code> is an asynchronous operation. To check if the
- * project is deleted, call <a>DescribeProjects</a>. The project is deleted when
- * the project no longer appears in the response. Be aware that deleting a given
- * project will also delete any <code>ProjectPolicies</code> associated with
- * that project.
- * </p>
- * <p>
- * This operation requires permissions to perform the
- * <code>rekognition:DeleteProject</code> action.
- * </p>
- */
-public class DeleteProjectRequest extends AmazonWebServiceRequest implements Serializable {
+public class CopyProjectVersionResult implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the project that you want to delete.
+     * The ARN of the copied model version in the destination project.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
      * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
-     * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      */
-    private String projectArn;
+    private String projectVersionArn;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the project that you want to delete.
+     * The ARN of the copied model version in the destination project.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
      * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
-     * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the project that you want to
-     *         delete.
+     *         The ARN of the copied model version in the destination project.
      *         </p>
      */
-    public String getProjectArn() {
-        return projectArn;
+    public String getProjectVersionArn() {
+        return projectVersionArn;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the project that you want to delete.
+     * The ARN of the copied model version in the destination project.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
      * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
-     * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
-     * @param projectArn <p>
-     *            The Amazon Resource Name (ARN) of the project that you want to
-     *            delete.
+     * @param projectVersionArn <p>
+     *            The ARN of the copied model version in the destination
+     *            project.
      *            </p>
      */
-    public void setProjectArn(String projectArn) {
-        this.projectArn = projectArn;
+    public void setProjectVersionArn(String projectVersionArn) {
+        this.projectVersionArn = projectVersionArn;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the project that you want to delete.
+     * The ARN of the copied model version in the destination project.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -103,17 +82,17 @@ public class DeleteProjectRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
      * </b>(^arn:[a-z\d-]+:rekognition:[a-z\d-]+:\d{12}:project\/[a-zA
-     * -Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
+     * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
-     * @param projectArn <p>
-     *            The Amazon Resource Name (ARN) of the project that you want to
-     *            delete.
+     * @param projectVersionArn <p>
+     *            The ARN of the copied model version in the destination
+     *            project.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteProjectRequest withProjectArn(String projectArn) {
-        this.projectArn = projectArn;
+    public CopyProjectVersionResult withProjectVersionArn(String projectVersionArn) {
+        this.projectVersionArn = projectVersionArn;
         return this;
     }
 
@@ -128,8 +107,8 @@ public class DeleteProjectRequest extends AmazonWebServiceRequest implements Ser
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getProjectArn() != null)
-            sb.append("ProjectArn: " + getProjectArn());
+        if (getProjectVersionArn() != null)
+            sb.append("ProjectVersionArn: " + getProjectVersionArn());
         sb.append("}");
         return sb.toString();
     }
@@ -139,7 +118,8 @@ public class DeleteProjectRequest extends AmazonWebServiceRequest implements Ser
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getProjectArn() == null) ? 0 : getProjectArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getProjectVersionArn() == null) ? 0 : getProjectVersionArn().hashCode());
         return hashCode;
     }
 
@@ -150,14 +130,14 @@ public class DeleteProjectRequest extends AmazonWebServiceRequest implements Ser
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteProjectRequest == false)
+        if (obj instanceof CopyProjectVersionResult == false)
             return false;
-        DeleteProjectRequest other = (DeleteProjectRequest) obj;
+        CopyProjectVersionResult other = (CopyProjectVersionResult) obj;
 
-        if (other.getProjectArn() == null ^ this.getProjectArn() == null)
+        if (other.getProjectVersionArn() == null ^ this.getProjectVersionArn() == null)
             return false;
-        if (other.getProjectArn() != null
-                && other.getProjectArn().equals(this.getProjectArn()) == false)
+        if (other.getProjectVersionArn() != null
+                && other.getProjectVersionArn().equals(this.getProjectVersionArn()) == false)
             return false;
         return true;
     }

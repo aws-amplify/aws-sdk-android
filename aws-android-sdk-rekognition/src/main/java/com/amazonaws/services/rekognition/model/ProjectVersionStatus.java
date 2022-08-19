@@ -31,7 +31,10 @@ public enum ProjectVersionStatus {
     FAILED("FAILED"),
     STOPPING("STOPPING"),
     STOPPED("STOPPED"),
-    DELETING("DELETING");
+    DELETING("DELETING"),
+    COPYING_IN_PROGRESS("COPYING_IN_PROGRESS"),
+    COPYING_COMPLETED("COPYING_COMPLETED"),
+    COPYING_FAILED("COPYING_FAILED");
 
     private String value;
 
@@ -56,6 +59,9 @@ public enum ProjectVersionStatus {
         enumMap.put("STOPPING", STOPPING);
         enumMap.put("STOPPED", STOPPED);
         enumMap.put("DELETING", DELETING);
+        enumMap.put("COPYING_IN_PROGRESS", COPYING_IN_PROGRESS);
+        enumMap.put("COPYING_COMPLETED", COPYING_COMPLETED);
+        enumMap.put("COPYING_FAILED", COPYING_FAILED);
     }
 
     /**
