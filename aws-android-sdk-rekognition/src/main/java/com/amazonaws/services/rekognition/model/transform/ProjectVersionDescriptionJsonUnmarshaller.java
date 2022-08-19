@@ -87,6 +87,10 @@ class ProjectVersionDescriptionJsonUnmarshaller implements
                 projectVersionDescription.setMaxInferenceUnits(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SourceProjectVersionArn")) {
+                projectVersionDescription.setSourceProjectVersionArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
