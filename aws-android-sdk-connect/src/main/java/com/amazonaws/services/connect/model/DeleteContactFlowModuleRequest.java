@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified contact flow module.
+ * Deletes the specified flow module.
  * </p>
  */
 public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -108,14 +108,14 @@ public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getContactFlowModuleId() {
@@ -124,14 +124,14 @@ public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setContactFlowModuleId(String contactFlowModuleId) {
@@ -140,7 +140,7 @@ public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -150,7 +150,7 @@ public class DeleteContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

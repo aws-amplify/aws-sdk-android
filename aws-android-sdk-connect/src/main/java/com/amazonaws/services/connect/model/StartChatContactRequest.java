@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Initiates a contact flow to start a new chat for the customer. Response of
- * this API provides a token required to obtain credentials from the <a href=
+ * Initiates a flow to start a new chat for the customer. Response of this API
+ * provides a token required to obtain credentials from the <a href=
  * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
  * >CreateParticipantConnection</a> API in the Amazon Connect Participant
  * Service.
@@ -78,12 +78,12 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the contact flow for initiating the chat. To see the
+     * The identifier of the flow for initiating the chat. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -98,8 +98,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes. They can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes. They can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -217,12 +217,12 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the contact flow for initiating the chat. To see the
+     * The identifier of the flow for initiating the chat. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -233,13 +233,12 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow for initiating the chat. To
-     *         see the ContactFlowId in the Amazon Connect console user
-     *         interface, on the navigation menu go to <b>Routing</b>,
-     *         <b>Contact Flows</b>. Choose the contact flow. On the contact
-     *         flow page, under the name of the contact flow, choose <b>Show
-     *         additional flow information</b>. The ContactFlowId is the last
-     *         part of the ARN, shown here in bold:
+     *         The identifier of the flow for initiating the chat. To see the
+     *         ContactFlowId in the Amazon Connect console user interface, on
+     *         the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *         Choose the flow. On the flow page, under the name of the flow,
+     *         choose <b>Show additional flow information</b>. The ContactFlowId
+     *         is the last part of the ARN, shown here in bold:
      *         </p>
      *         <p>
      *         arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -253,12 +252,12 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the contact flow for initiating the chat. To see the
+     * The identifier of the flow for initiating the chat. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -269,13 +268,13 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for initiating the chat. To
-     *            see the ContactFlowId in the Amazon Connect console user
-     *            interface, on the navigation menu go to <b>Routing</b>,
-     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
-     *            flow page, under the name of the contact flow, choose <b>Show
-     *            additional flow information</b>. The ContactFlowId is the last
-     *            part of the ARN, shown here in bold:
+     *            The identifier of the flow for initiating the chat. To see the
+     *            ContactFlowId in the Amazon Connect console user interface, on
+     *            the navigation menu go to <b>Routing</b>, <b>Contact
+     *            Flows</b>. Choose the flow. On the flow page, under the name
+     *            of the flow, choose <b>Show additional flow information</b>.
+     *            The ContactFlowId is the last part of the ARN, shown here in
+     *            bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -289,12 +288,12 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the contact flow for initiating the chat. To see the
+     * The identifier of the flow for initiating the chat. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -308,13 +307,13 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for initiating the chat. To
-     *            see the ContactFlowId in the Amazon Connect console user
-     *            interface, on the navigation menu go to <b>Routing</b>,
-     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
-     *            flow page, under the name of the contact flow, choose <b>Show
-     *            additional flow information</b>. The ContactFlowId is the last
-     *            part of the ARN, shown here in bold:
+     *            The identifier of the flow for initiating the chat. To see the
+     *            ContactFlowId in the Amazon Connect console user interface, on
+     *            the navigation menu go to <b>Routing</b>, <b>Contact
+     *            Flows</b>. Choose the flow. On the flow page, under the name
+     *            of the flow, choose <b>Show additional flow information</b>.
+     *            The ContactFlowId is the last part of the ARN, shown here in
+     *            bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -332,8 +331,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes. They can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes. They can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -344,7 +343,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         A custom key-value pair using an attribute map. The attributes
      *         are standard Amazon Connect attributes. They can be accessed in
-     *         contact flows just like any other contact attributes.
+     *         flows just like any other contact attributes.
      *         </p>
      *         <p>
      *         There can be up to 32,768 UTF-8 bytes across all key-value pairs
@@ -359,8 +358,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes. They can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes. They can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -371,7 +370,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
      *            are standard Amazon Connect attributes. They can be accessed
-     *            in contact flows just like any other contact attributes.
+     *            in flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -386,8 +385,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes. They can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes. They can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -401,7 +400,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
      *            are standard Amazon Connect attributes. They can be accessed
-     *            in contact flows just like any other contact attributes.
+     *            in flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -419,8 +418,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes. They can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes. They can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per

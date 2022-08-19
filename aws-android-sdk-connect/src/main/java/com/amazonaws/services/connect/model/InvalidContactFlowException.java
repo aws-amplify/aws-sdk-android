@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The contact flow is not valid.
+ * The flow is not valid.
  * </p>
  */
 public class InvalidContactFlowException extends AmazonServiceException {
@@ -27,7 +27,7 @@ public class InvalidContactFlowException extends AmazonServiceException {
 
     /**
      * <p>
-     * The problems with the contact flow. Please fix before trying again.
+     * The problems with the flow. Please fix before trying again.
      * </p>
      */
     private java.util.List<ProblemDetail> problems;
@@ -44,12 +44,11 @@ public class InvalidContactFlowException extends AmazonServiceException {
 
     /**
      * <p>
-     * The problems with the contact flow. Please fix before trying again.
+     * The problems with the flow. Please fix before trying again.
      * </p>
      *
      * @return <p>
-     *         The problems with the contact flow. Please fix before trying
-     *         again.
+     *         The problems with the flow. Please fix before trying again.
      *         </p>
      */
     public java.util.List<ProblemDetail> getProblems() {
@@ -58,12 +57,11 @@ public class InvalidContactFlowException extends AmazonServiceException {
 
     /**
      * <p>
-     * The problems with the contact flow. Please fix before trying again.
+     * The problems with the flow. Please fix before trying again.
      * </p>
      *
      * @param problems <p>
-     *            The problems with the contact flow. Please fix before trying
-     *            again.
+     *            The problems with the flow. Please fix before trying again.
      *            </p>
      */
     public void setProblems(java.util.Collection<ProblemDetail> problems) {

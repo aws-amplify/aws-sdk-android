@@ -60,6 +60,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -293,11 +294,13 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource.
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -307,11 +310,13 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -321,6 +326,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -328,7 +334,8 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -341,6 +348,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

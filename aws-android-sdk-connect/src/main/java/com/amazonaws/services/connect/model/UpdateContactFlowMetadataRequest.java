@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates metadata about specified contact flow.
+ * Updates metadata about specified flow.
  * </p>
  */
 public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest implements
@@ -39,7 +39,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * TThe name of the contact flow.
+     * TThe name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,14 +59,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      */
     private String description;
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,14 +136,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow.
+     *         The identifier of the flow.
      *         </p>
      */
     public String getContactFlowId() {
@@ -152,14 +152,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      */
     public void setContactFlowId(String contactFlowId) {
@@ -168,7 +168,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -178,7 +178,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -190,14 +190,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * TThe name of the contact flow.
+     * TThe name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         TThe name of the contact flow.
+     *         TThe name of the flow.
      *         </p>
      */
     public String getName() {
@@ -206,14 +206,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * TThe name of the contact flow.
+     * TThe name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            TThe name of the contact flow.
+     *            TThe name of the flow.
      *            </p>
      */
     public void setName(String name) {
@@ -222,7 +222,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * TThe name of the contact flow.
+     * TThe name of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -232,7 +232,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            TThe name of the contact flow.
+     *            TThe name of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -244,11 +244,11 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @return <p>
-     *         The description of the contact flow.
+     *         The description of the flow.
      *         </p>
      */
     public String getDescription() {
@@ -257,11 +257,11 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      */
     public void setDescription(String description) {
@@ -270,14 +270,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -289,14 +289,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The state of contact flow.
+     *         The state of flow.
      *         </p>
      * @see ContactFlowState
      */
@@ -306,14 +306,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowState <p>
-     *            The state of contact flow.
+     *            The state of flow.
      *            </p>
      * @see ContactFlowState
      */
@@ -323,7 +323,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -333,7 +333,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowState <p>
-     *            The state of contact flow.
+     *            The state of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -346,14 +346,14 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowState <p>
-     *            The state of contact flow.
+     *            The state of flow.
      *            </p>
      * @see ContactFlowState
      */
@@ -363,7 +363,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The state of contact flow.
+     * The state of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -373,7 +373,7 @@ public class UpdateContactFlowMetadataRequest extends AmazonWebServiceRequest im
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowState <p>
-     *            The state of contact flow.
+     *            The state of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

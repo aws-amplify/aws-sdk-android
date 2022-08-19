@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListContactFlowsResult implements Serializable {
     /**
      * <p>
-     * Information about the contact flows.
+     * Information about the flows.
      * </p>
      */
     private java.util.List<ContactFlowSummary> contactFlowSummaryList;
@@ -35,11 +35,11 @@ public class ListContactFlowsResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flows.
+     * Information about the flows.
      * </p>
      *
      * @return <p>
-     *         Information about the contact flows.
+     *         Information about the flows.
      *         </p>
      */
     public java.util.List<ContactFlowSummary> getContactFlowSummaryList() {
@@ -48,11 +48,11 @@ public class ListContactFlowsResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flows.
+     * Information about the flows.
      * </p>
      *
      * @param contactFlowSummaryList <p>
-     *            Information about the contact flows.
+     *            Information about the flows.
      *            </p>
      */
     public void setContactFlowSummaryList(
@@ -68,14 +68,14 @@ public class ListContactFlowsResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flows.
+     * Information about the flows.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowSummaryList <p>
-     *            Information about the contact flows.
+     *            Information about the flows.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,14 +94,14 @@ public class ListContactFlowsResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flows.
+     * Information about the flows.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowSummaryList <p>
-     *            Information about the contact flows.
+     *            Information about the flows.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

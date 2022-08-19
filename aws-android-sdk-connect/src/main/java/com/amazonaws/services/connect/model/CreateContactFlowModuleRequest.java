@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a contact flow module for the specified Amazon Connect instance.
+ * Creates a flow module for the specified Amazon Connect instance.
  * </p>
  */
 public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,7 +60,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,6 +71,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -148,7 +149,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,7 +157,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The name of the contact flow module.
+     *         The name of the flow module.
      *         </p>
      */
     public String getName() {
@@ -165,7 +166,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,7 +174,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      */
     public void setName(String name) {
@@ -182,7 +183,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +194,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -205,7 +206,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -213,7 +214,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The description of the contact flow module.
+     *         The description of the flow module.
      *         </p>
      */
     public String getDescription() {
@@ -222,7 +223,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -230,7 +231,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      */
     public void setDescription(String description) {
@@ -239,7 +240,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -250,7 +251,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -262,14 +263,14 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @return <p>
-     *         The content of the contact flow module.
+     *         The content of the flow module.
      *         </p>
      */
     public String getContent() {
@@ -278,14 +279,14 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      */
     public void setContent(String content) {
@@ -294,7 +295,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -304,7 +305,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -317,11 +318,13 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource.
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -331,11 +334,13 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -345,6 +350,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -352,7 +358,8 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -365,6 +372,7 @@ public class CreateContactFlowModuleRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

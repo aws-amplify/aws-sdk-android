@@ -48,7 +48,8 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,14 +176,16 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         The maximum number of results to return per page.
+     *         The maximum number of results to return per page. The default
+     *         MaxResult size is 100.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -191,14 +194,16 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     *            The maximum number of results to return per page. The default
+     *            MaxResult size is 100.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -207,7 +212,8 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -217,7 +223,8 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     *            The maximum number of results to return per page. The default
+     *            MaxResult size is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

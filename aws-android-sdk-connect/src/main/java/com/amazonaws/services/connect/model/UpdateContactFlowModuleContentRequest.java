@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates specified contact flow module for the specified Amazon Connect
- * instance.
+ * Updates specified flow module for the specified Amazon Connect instance.
  * </p>
  */
 public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceRequest implements
@@ -40,7 +39,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,7 +49,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,14 +119,14 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getContactFlowModuleId() {
@@ -136,14 +135,14 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setContactFlowModuleId(String contactFlowModuleId) {
@@ -152,7 +151,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -162,7 +161,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -174,14 +173,14 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @return <p>
-     *         The content of the contact flow module.
+     *         The content of the flow module.
      *         </p>
      */
     public String getContent() {
@@ -190,14 +189,14 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      */
     public void setContent(String content) {
@@ -206,7 +205,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -216,7 +215,7 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

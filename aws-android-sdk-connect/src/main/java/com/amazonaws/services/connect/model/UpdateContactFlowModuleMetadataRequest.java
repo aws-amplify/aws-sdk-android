@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates metadata about specified contact flow module.
+ * Updates metadata about specified flow module.
  * </p>
  */
 public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequest implements
@@ -39,7 +39,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,7 +60,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,7 +71,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,14 +141,14 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getContactFlowModuleId() {
@@ -157,14 +157,14 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setContactFlowModuleId(String contactFlowModuleId) {
@@ -173,7 +173,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -183,7 +183,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -195,7 +195,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +203,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The name of the contact flow module.
+     *         The name of the flow module.
      *         </p>
      */
     public String getName() {
@@ -212,7 +212,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,7 +220,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      */
     public void setName(String name) {
@@ -229,7 +229,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,7 +240,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -252,7 +252,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -260,7 +260,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The description of the contact flow module.
+     *         The description of the flow module.
      *         </p>
      */
     public String getDescription() {
@@ -269,7 +269,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -277,7 +277,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      */
     public void setDescription(String description) {
@@ -286,7 +286,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -297,7 +297,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -309,14 +309,14 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The state of contact flow module.
+     *         The state of flow module.
      *         </p>
      * @see ContactFlowModuleState
      */
@@ -326,14 +326,14 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The state of contact flow module.
+     *            The state of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -343,7 +343,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -353,7 +353,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The state of contact flow module.
+     *            The state of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -366,14 +366,14 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The state of contact flow module.
+     *            The state of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -383,7 +383,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The state of contact flow module.
+     * The state of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -393,7 +393,7 @@ public class UpdateContactFlowModuleMetadataRequest extends AmazonWebServiceRequ
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The state of contact flow module.
+     *            The state of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

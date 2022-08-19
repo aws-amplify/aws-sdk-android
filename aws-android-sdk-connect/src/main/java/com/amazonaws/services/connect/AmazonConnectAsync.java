@@ -50,7 +50,7 @@ import com.amazonaws.services.connect.model.*;
  * </p>
  * <note>
  * <p>
- * Working with contact flows? Check out the <a href=
+ * Working with flows? Check out the <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
  * >Amazon Connect Flow language</a>.
  * </p>
@@ -479,8 +479,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Associates a contact flow with a phone number claimed to your Amazon
-     * Connect instance.
+     * Associates a flow with a phone number claimed to your Amazon Connect
+     * instance.
      * </p>
      * 
      * @param associatePhoneNumberContactFlowRequest
@@ -506,8 +506,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Associates a contact flow with a phone number claimed to your Amazon
-     * Connect instance.
+     * Associates a flow with a phone number claimed to your Amazon Connect
+     * instance.
      * </p>
      * 
      * @param associatePhoneNumberContactFlowRequest
@@ -855,10 +855,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates a contact flow for the specified Amazon Connect instance.
+     * Creates a flow for the specified Amazon Connect instance.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -888,10 +888,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates a contact flow for the specified Amazon Connect instance.
+     * Creates a flow for the specified Amazon Connect instance.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -926,7 +926,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates a contact flow module for the specified Amazon Connect instance.
+     * Creates a flow module for the specified Amazon Connect instance.
      * </p>
      * 
      * @param createContactFlowModuleRequest
@@ -957,7 +957,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates a contact flow module for the specified Amazon Connect instance.
+     * Creates a flow module for the specified Amazon Connect instance.
      * </p>
      * 
      * @param createContactFlowModuleRequest
@@ -1456,6 +1456,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Creates a new task template in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         CreateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateTaskTemplateResult> createTaskTemplateAsync(
+            CreateTaskTemplateRequest createTaskTemplateRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new task template in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createTaskTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateTaskTemplateResult> createTaskTemplateAsync(
+            CreateTaskTemplateRequest createTaskTemplateRequest,
+            AsyncHandler<CreateTaskTemplateRequest, CreateTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a use case for an integration association.
      * </p>
      * 
@@ -1704,7 +1761,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Deletes a contact flow for the specified Amazon Connect instance.
+     * Deletes a flow for the specified Amazon Connect instance.
      * </p>
      * 
      * @param deleteContactFlowRequest
@@ -1729,7 +1786,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Deletes a contact flow for the specified Amazon Connect instance.
+     * Deletes a flow for the specified Amazon Connect instance.
      * </p>
      * 
      * @param deleteContactFlowRequest
@@ -1759,7 +1816,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Deletes the specified contact flow module.
+     * Deletes the specified flow module.
      * </p>
      * 
      * @param deleteContactFlowModuleRequest
@@ -1786,7 +1843,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Deletes the specified contact flow module.
+     * Deletes the specified flow module.
      * </p>
      * 
      * @param deleteContactFlowModuleRequest
@@ -2131,6 +2188,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> deleteSecurityProfileAsync(
             DeleteSecurityProfileRequest deleteSecurityProfileRequest,
             AsyncHandler<DeleteSecurityProfileRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the task template.
+     * </p>
+     * 
+     * @param deleteTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteTaskTemplateResult> deleteTaskTemplateAsync(
+            DeleteTaskTemplateRequest deleteTaskTemplateRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the task template.
+     * </p>
+     * 
+     * @param deleteTaskTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteTaskTemplateResult> deleteTaskTemplateAsync(
+            DeleteTaskTemplateRequest deleteTaskTemplateRequest,
+            AsyncHandler<DeleteTaskTemplateRequest, DeleteTaskTemplateResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2510,10 +2622,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Describes the specified contact flow.
+     * Describes the specified flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -2542,10 +2654,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Describes the specified contact flow.
+     * Describes the specified flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -2579,7 +2691,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Describes the specified contact flow module.
+     * Describes the specified flow module.
      * </p>
      * 
      * @param describeContactFlowModuleRequest
@@ -2606,7 +2718,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Describes the specified contact flow module.
+     * Describes the specified flow module.
      * </p>
      * 
      * @param describeContactFlowModuleRequest
@@ -3637,7 +3749,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Remove the Lambda function from the dropdown options available in the
-     * relevant contact flow blocks.
+     * relevant flow blocks.
      * </p>
      * 
      * @param disassociateLambdaFunctionRequest
@@ -3668,7 +3780,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Remove the Lambda function from the dropdown options available in the
-     * relevant contact flow blocks.
+     * relevant flow blocks.
      * </p>
      * 
      * @param disassociateLambdaFunctionRequest
@@ -3762,8 +3874,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Removes the contact flow association from a phone number claimed to your
-     * Amazon Connect instance, if a contact flow association exists.
+     * Removes the flow association from a phone number claimed to your Amazon
+     * Connect instance, if a flow association exists.
      * </p>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
@@ -3789,8 +3901,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Removes the contact flow association from a phone number claimed to your
-     * Amazon Connect instance, if a contact flow association exists.
+     * Removes the flow association from a phone number claimed to your Amazon
+     * Connect instance, if a flow association exists.
      * </p>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
@@ -4132,6 +4244,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Gets the real-time active user data from the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param getCurrentUserDataRequest
+     * @return A Java Future object containing the response from the
+     *         GetCurrentUserData service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetCurrentUserDataResult> getCurrentUserDataAsync(
+            GetCurrentUserDataRequest getCurrentUserDataRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the real-time active user data from the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param getCurrentUserDataRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetCurrentUserData service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetCurrentUserDataResult> getCurrentUserDataAsync(
+            GetCurrentUserDataRequest getCurrentUserDataRequest,
+            AsyncHandler<GetCurrentUserDataRequest, GetCurrentUserDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Retrieves a token for federation.
      * </p>
      * <note>
@@ -4270,6 +4439,62 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<GetMetricDataResult> getMetricDataAsync(GetMetricDataRequest getMetricDataRequest,
             AsyncHandler<GetMetricDataRequest, GetMetricDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets details about a specific task template in the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param getTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         GetTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetTaskTemplateResult> getTaskTemplateAsync(GetTaskTemplateRequest getTaskTemplateRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets details about a specific task template in the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param getTaskTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetTaskTemplate service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetTaskTemplateResult> getTaskTemplateAsync(
+            GetTaskTemplateRequest getTaskTemplateRequest,
+            AsyncHandler<GetTaskTemplateRequest, GetTaskTemplateResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4465,8 +4690,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Provides information about the contact flow modules for the specified
-     * Amazon Connect instance.
+     * Provides information about the flow modules for the specified Amazon
+     * Connect instance.
      * </p>
      * 
      * @param listContactFlowModulesRequest
@@ -4493,8 +4718,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Provides information about the contact flow modules for the specified
-     * Amazon Connect instance.
+     * Provides information about the flow modules for the specified Amazon
+     * Connect instance.
      * </p>
      * 
      * @param listContactFlowModulesRequest
@@ -4526,18 +4751,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Provides information about the contact flows for the specified Amazon
-     * Connect instance.
+     * Provides information about the flows for the specified Amazon Connect
+     * instance.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
-     * For more information about contact flows, see <a href=
+     * For more information about flows, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
-     * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * >Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listContactFlowsRequest
@@ -4562,18 +4787,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Provides information about the contact flows for the specified Amazon
-     * Connect instance.
+     * Provides information about the flows for the specified Amazon Connect
+     * instance.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
-     * For more information about contact flows, see <a href=
+     * For more information about flows, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
-     * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * >Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listContactFlowsRequest
@@ -5051,7 +5276,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Returns a paginated list of all Lambda functions that display in the
-     * dropdown options in the relevant contact flow blocks.
+     * dropdown options in the relevant flow blocks.
      * </p>
      * 
      * @param listLambdaFunctionsRequest
@@ -5082,7 +5307,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Returns a paginated list of all Lambda functions that display in the
-     * dropdown options in the relevant contact flow blocks.
+     * dropdown options in the relevant flow blocks.
      * </p>
      * 
      * @param listLambdaFunctionsRequest
@@ -5968,6 +6193,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Lists task templates for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listTaskTemplatesRequest
+     * @return A Java Future object containing the response from the
+     *         ListTaskTemplates service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListTaskTemplatesResult> listTaskTemplatesAsync(
+            ListTaskTemplatesRequest listTaskTemplatesRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Lists task templates for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listTaskTemplatesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListTaskTemplates service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListTaskTemplatesResult> listTaskTemplatesAsync(
+            ListTaskTemplatesRequest listTaskTemplatesRequest,
+            AsyncHandler<ListTaskTemplatesRequest, ListTaskTemplatesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Lists the use cases for the integration association.
      * </p>
      * 
@@ -6399,6 +6679,73 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Searches security profiles in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchSecurityProfilesRequest
+     * @return A Java Future object containing the response from the
+     *         SearchSecurityProfiles service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchSecurityProfilesResult> searchSecurityProfilesAsync(
+            SearchSecurityProfilesRequest searchSecurityProfilesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Searches security profiles in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchSecurityProfilesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SearchSecurityProfiles service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SearchSecurityProfilesResult> searchSecurityProfilesAsync(
+            SearchSecurityProfilesRequest searchSecurityProfilesRequest,
+            AsyncHandler<SearchSecurityProfilesRequest, SearchSecurityProfilesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Searches users in an Amazon Connect instance, with optional filtering.
      * </p>
      * 
@@ -6509,9 +6856,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to start a new chat for the customer. Response
-     * of this API provides a token required to obtain credentials from the <a
-     * href=
+     * Initiates a flow to start a new chat for the customer. Response of this
+     * API provides a token required to obtain credentials from the <a href=
      * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
      * >CreateParticipantConnection</a> API in the Amazon Connect Participant
      * Service.
@@ -6577,9 +6923,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to start a new chat for the customer. Response
-     * of this API provides a token required to obtain credentials from the <a
-     * href=
+     * Initiates a flow to start a new chat for the customer. Response of this
+     * API provides a token required to obtain credentials from the <a href=
      * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
      * >CreateParticipantConnection</a> API in the Amazon Connect Participant
      * Service.
@@ -6836,15 +7181,15 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Places an outbound call to a contact, and then initiates the contact
-     * flow. It performs the actions in the contact flow that's specified (in
+     * Places an outbound call to a contact, and then initiates the flow. It
+     * performs the actions in the flow that's specified (in
      * <code>ContactFlowId</code>).
      * </p>
      * <p>
      * Agents do not initiate the outbound API, which means that they do not
-     * dial the contact. If the contact flow places an outbound call to a
-     * contact, and then puts the contact in queue, the call is then routed to
-     * the agent, like any other inbound case.
+     * dial the contact. If the flow places an outbound call to a contact, and
+     * then puts the contact in queue, the call is then routed to the agent,
+     * like any other inbound case.
      * </p>
      * <p>
      * There is a 60-second dialing timeout for this operation. If the call is
@@ -6863,10 +7208,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Campaign calls are not allowed by default. Before you can make a call
      * with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a
-     * service quota increase request. For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
-     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * service quota increase request to the quota <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas"
+     * >Amazon Connect campaigns</a>.
      * </p>
      * </note>
      * 
@@ -6895,15 +7239,15 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Places an outbound call to a contact, and then initiates the contact
-     * flow. It performs the actions in the contact flow that's specified (in
+     * Places an outbound call to a contact, and then initiates the flow. It
+     * performs the actions in the flow that's specified (in
      * <code>ContactFlowId</code>).
      * </p>
      * <p>
      * Agents do not initiate the outbound API, which means that they do not
-     * dial the contact. If the contact flow places an outbound call to a
-     * contact, and then puts the contact in queue, the call is then routed to
-     * the agent, like any other inbound case.
+     * dial the contact. If the flow places an outbound call to a contact, and
+     * then puts the contact in queue, the call is then routed to the agent,
+     * like any other inbound case.
      * </p>
      * <p>
      * There is a 60-second dialing timeout for this operation. If the call is
@@ -6922,10 +7266,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Campaign calls are not allowed by default. Before you can make a call
      * with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a
-     * service quota increase request. For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
-     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * service quota increase request to the quota <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas"
+     * >Amazon Connect campaigns</a>.
      * </p>
      * </note>
      * 
@@ -6959,7 +7302,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to start a new task.
+     * Initiates a flow to start a new task.
      * </p>
      * 
      * @param startTaskContactRequest
@@ -6985,7 +7328,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to start a new task.
+     * Initiates a flow to start a new task.
      * </p>
      * 
      * @param startTaskContactRequest
@@ -7313,9 +7656,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, hours of operation, and phone
-     * number.
+     * Some of the supported resource types are agents, routing profiles,
+     * queues, quick connects, contact flows, agent statuses, hours of
+     * operation, phone numbers, security profiles, and task templates. For a
+     * complete list, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html"
+     * >Tagging resources in Amazon Connect</a>.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -7348,9 +7694,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, queues, quick
-     * connects, contact flows, agent status, hours of operation, and phone
-     * number.
+     * Some of the supported resource types are agents, routing profiles,
+     * queues, quick connects, contact flows, agent statuses, hours of
+     * operation, phone numbers, security profiles, and task templates. For a
+     * complete list, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html"
+     * >Tagging resources in Amazon Connect</a>.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -7382,6 +7731,140 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> tagResourceAsync(TagResourceRequest tagResourceRequest,
             AsyncHandler<TagResourceRequest, Void> asyncHandler) throws AmazonServiceException,
             AmazonClientException;
+
+    /**
+     * <p>
+     * Transfers contacts from one agent or queue to another agent or queue at
+     * any point after a contact is created. You can transfer a contact to
+     * another queue by providing the flow which orchestrates the contact to the
+     * destination queue. This gives you more control over contact handling and
+     * helps you adhere to the service level agreement (SLA) guaranteed to your
+     * customers.
+     * </p>
+     * <p>
+     * Note the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Transfer is supported for only <code>TASK</code> contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Do not use both <code>QueueId</code> and <code>UserId</code> in the same
+     * call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The following flow types are supported: Inbound flow, Transfer to agent
+     * flow, and Transfer to queue flow.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>TransferContact</code> API can be called only on active
+     * contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A contact cannot be transferred more than 11 times.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param transferContactRequest
+     * @return A Java Future object containing the response from the
+     *         TransferContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<TransferContactResult> transferContactAsync(TransferContactRequest transferContactRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Transfers contacts from one agent or queue to another agent or queue at
+     * any point after a contact is created. You can transfer a contact to
+     * another queue by providing the flow which orchestrates the contact to the
+     * destination queue. This gives you more control over contact handling and
+     * helps you adhere to the service level agreement (SLA) guaranteed to your
+     * customers.
+     * </p>
+     * <p>
+     * Note the following requirements:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Transfer is supported for only <code>TASK</code> contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Do not use both <code>QueueId</code> and <code>UserId</code> in the same
+     * call.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The following flow types are supported: Inbound flow, Transfer to agent
+     * flow, and Transfer to queue flow.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>TransferContact</code> API can be called only on active
+     * contacts.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A contact cannot be transferred more than 11 times.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param transferContactRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         TransferContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<TransferContactResult> transferContactAsync(
+            TransferContactRequest transferContactRequest,
+            AsyncHandler<TransferContactRequest, TransferContactResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
 
     /**
      * <p>
@@ -7595,20 +8078,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
-     * then deleted. For information about CTR retention and the maximum size of
-     * the CTR attributes section, see <a href=
+     * then deleted. For information about contact record retention and the
+     * maximum size of the contact record attributes section, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
-     * </p>
-     * <p>
-     * <b>Important:</b> You cannot use the operation to update attributes for
-     * contacts that occurred prior to the release of the API, which was
-     * September 12, 2018. You can update attributes only for contacts that
-     * started after the release of the API. If you attempt to update attributes
-     * for a contact that occurred prior to the release of the API, a 400 error
-     * is returned. This applies also to queued callbacks that were initiated
-     * prior to the release of the API but are still active in your instance.
      * </p>
      * 
      * @param updateContactAttributesRequest
@@ -7648,20 +8122,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
-     * then deleted. For information about CTR retention and the maximum size of
-     * the CTR attributes section, see <a href=
+     * then deleted. For information about contact record retention and the
+     * maximum size of the contact record attributes section, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
-     * </p>
-     * <p>
-     * <b>Important:</b> You cannot use the operation to update attributes for
-     * contacts that occurred prior to the release of the API, which was
-     * September 12, 2018. You can update attributes only for contacts that
-     * started after the release of the API. If you attempt to update attributes
-     * for a contact that occurred prior to the release of the API, a 400 error
-     * is returned. This applies also to queued callbacks that were initiated
-     * prior to the release of the API but are still active in your instance.
      * </p>
      * 
      * @param updateContactAttributesRequest
@@ -7691,10 +8156,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates the specified contact flow.
+     * Updates the specified flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -7723,10 +8188,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates the specified contact flow.
+     * Updates the specified flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -7760,7 +8225,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates metadata about specified contact flow.
+     * Updates metadata about specified flow.
      * </p>
      * 
      * @param updateContactFlowMetadataRequest
@@ -7787,7 +8252,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates metadata about specified contact flow.
+     * Updates metadata about specified flow.
      * </p>
      * 
      * @param updateContactFlowMetadataRequest
@@ -7819,8 +8284,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates specified contact flow module for the specified Amazon Connect
-     * instance.
+     * Updates specified flow module for the specified Amazon Connect instance.
      * </p>
      * 
      * @param updateContactFlowModuleContentRequest
@@ -7847,8 +8311,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates specified contact flow module for the specified Amazon Connect
-     * instance.
+     * Updates specified flow module for the specified Amazon Connect instance.
      * </p>
      * 
      * @param updateContactFlowModuleContentRequest
@@ -7880,7 +8343,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates metadata about specified contact flow module.
+     * Updates metadata about specified flow module.
      * </p>
      * 
      * @param updateContactFlowModuleMetadataRequest
@@ -7908,7 +8371,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Updates metadata about specified contact flow module.
+     * Updates metadata about specified flow module.
      * </p>
      * 
      * @param updateContactFlowModuleMetadataRequest
@@ -7941,10 +8404,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -7973,10 +8436,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
-     * You can also create and update contact flows using the <a href=
+     * You can also create and update flows using the <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
@@ -9071,6 +9534,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> updateSecurityProfileAsync(
             UpdateSecurityProfileRequest updateSecurityProfileRequest,
             AsyncHandler<UpdateSecurityProfileRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates details about a specific task template in the specified Amazon
+     * Connect instance. This operation does not support partial updates.
+     * Instead it does a full update of template content.
+     * </p>
+     * 
+     * @param updateTaskTemplateRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateTaskTemplateResult> updateTaskTemplateAsync(
+            UpdateTaskTemplateRequest updateTaskTemplateRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Updates details about a specific task template in the specified Amazon
+     * Connect instance. This operation does not support partial updates.
+     * Instead it does a full update of template content.
+     * </p>
+     * 
+     * @param updateTaskTemplateRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateTaskTemplate service method, as returned by Amazon Connect.
+     * @throws PropertyValidationException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateTaskTemplateResult> updateTaskTemplateAsync(
+            UpdateTaskTemplateRequest updateTaskTemplateRequest,
+            AsyncHandler<UpdateTaskTemplateRequest, UpdateTaskTemplateResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
