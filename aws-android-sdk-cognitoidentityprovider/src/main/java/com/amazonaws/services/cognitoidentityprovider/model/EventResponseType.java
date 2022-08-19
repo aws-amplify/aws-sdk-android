@@ -23,8 +23,9 @@ import java.util.Map;
  */
 public enum EventResponseType {
 
-    Success("Success"),
-    Failure("Failure");
+    Pass("Pass"),
+    Fail("Fail"),
+    InProgress("InProgress");
 
     private String value;
 
@@ -40,8 +41,9 @@ public enum EventResponseType {
     private static final Map<String, EventResponseType> enumMap;
     static {
         enumMap = new HashMap<String, EventResponseType>();
-        enumMap.put("Success", Success);
-        enumMap.put("Failure", Failure);
+        enumMap.put("Pass", Pass);
+        enumMap.put("Fail", Fail);
+        enumMap.put("InProgress", InProgress);
     }
 
     /**
