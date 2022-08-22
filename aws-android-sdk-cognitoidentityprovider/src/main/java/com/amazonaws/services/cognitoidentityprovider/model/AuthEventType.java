@@ -36,7 +36,8 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      */
     private String eventType;
 
@@ -53,7 +54,7 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      */
     private String eventResponse;
 
@@ -139,7 +140,8 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      *
      * @return <p>
      *         The event type.
@@ -156,7 +158,8 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      *
      * @param eventType <p>
      *            The event type.
@@ -176,7 +179,8 @@ public class AuthEventType implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      *
      * @param eventType <p>
      *            The event type.
@@ -196,7 +200,8 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      *
      * @param eventType <p>
      *            The event type.
@@ -216,7 +221,8 @@ public class AuthEventType implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword
+     * <b>Allowed Values: </b>SignIn, SignUp, ForgotPassword, PasswordChange,
+     * ResendCode
      *
      * @param eventType <p>
      *            The event type.
@@ -281,7 +287,7 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      *
      * @return <p>
      *         The event response.
@@ -298,7 +304,7 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      *
      * @param eventResponse <p>
      *            The event response.
@@ -318,7 +324,7 @@ public class AuthEventType implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      *
      * @param eventResponse <p>
      *            The event response.
@@ -338,7 +344,7 @@ public class AuthEventType implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      *
      * @param eventResponse <p>
      *            The event response.
@@ -358,7 +364,7 @@ public class AuthEventType implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Success, Failure
+     * <b>Allowed Values: </b>Pass, Fail, InProgress
      *
      * @param eventResponse <p>
      *            The event response.
