@@ -1,3 +1,17 @@
+## [Release 2.52.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.52.0)
+
+### Features
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2978)
+- **aws-android-sdk-rekognition:** update models to latest (#2980)
+- **aws-android-sdk-lambda:** update models to latest (#2982)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2984)
+
+### Miscellaneous
+- Update cache when awsconfig file changes (#2946)
+- Actually attach Javadocs jar files to build (#2988)
+
+[See all changes between 2.51.0 and 2.52.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.51.0...release_v2.52.0)
+
 ## [Release 2.51.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.51.0)
 
 ### Features
