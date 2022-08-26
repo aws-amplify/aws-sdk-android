@@ -17,11 +17,15 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'maven-publish'
 
-version = VERSION_NAME
+def getVersionName() {
+    return isSnapshotBuild() ? VERSION_NAME+"-SNAPSHOT" : VERSION_NAME
+}
+
+version = getVersionName()
 group = GROUP
 
-def isReleaseBuild() {
-    return VERSION_NAME.contains("SNAPSHOT") == false
+def isSnapshotBuild() {
+    return hasProperty('isSnapshot') && project.isSnapshot == "true"
 }
 
 def getReleaseRepositoryUrl() {
@@ -53,7 +57,7 @@ afterEvaluate { project ->
 
                     pom.groupId = GROUP
                     pom.artifactId = POM_ARTIFACT_ID
-                    pom.version = VERSION_NAME
+                    pom.version = getVersionName()
 
                     repository(url: getReleaseRepositoryUrl()) {
                         authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
@@ -97,14 +101,14 @@ afterEvaluate { project ->
                 mavenInstaller {
                     pom.groupId = GROUP
                     pom.artifactId = POM_ARTIFACT_ID
-                    pom.version = VERSION_NAME
+                    pom.version = getVersionName()
                 }
             }
         }
     }
 
     signing {
-        required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+        required { !isSnapshotBuild() && gradle.taskGraph.hasTask("uploadArchives") }
         if (project.hasProperty('signing.inMemoryKey')) {
             def signingKey = findProperty("signing.inMemoryKey").replace("\\n","\n")
             def signingPassword = findProperty("signing.password")
@@ -122,7 +126,7 @@ afterEvaluate { project ->
 
                 pom.groupId = GROUP
                 pom.artifactId = POM_ARTIFACT_ID
-                pom.version = VERSION_NAME
+                pom.version = getVersionName()
 
                 pom.project {
                     name POM_NAME
@@ -181,7 +185,7 @@ afterEvaluate { project ->
             repositories.mavenInstaller {
                 pom.groupId = GROUP
                 pom.artifactId = POM_ARTIFACT_ID
-                pom.version = VERSION_NAME
+                pom.version = getVersionName()
 
                 pom.project {
                     name POM_NAME
@@ -235,7 +239,7 @@ afterEvaluate { project ->
             library(MavenPublication) {
                 groupId GROUP
                 artifactId POM_ARTIFACT_ID
-                version VERSION_NAME
+                version getVersionName()
                 artifact("${buildDir}/outputs/aar/${artifactId}-release.aar")
                 pom.withXml {
                     def dependenciesNode = asNode().appendNode('dependencies')
