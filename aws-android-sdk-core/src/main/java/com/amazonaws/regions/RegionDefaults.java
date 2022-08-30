@@ -542,6 +542,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.ap-southeast-3.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-southeast-3.amazonaws.com", false, true);
 
+        // Support for Middle East(UAE) `me-central-1` region
+        region = new Region("me-central-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.me-central-1.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.me-central-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.me-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.me-central-1.amazonaws.com", false, true);
+
         return ret;
     }
 

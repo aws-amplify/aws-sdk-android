@@ -46,7 +46,7 @@ public class RegionUtilsTest {
     @Test
     public void testGetRegionsForService() {
         List<Region> regions = RegionUtils.getRegionsForService(ServiceAbbreviations.SimpleDB);
-        assertEquals(regions.size(), 10);
+        assertEquals(regions.size(), 11);
         boolean usEast1 = false;
         boolean usWest1 = false;
         for (Region curr : regions) {
