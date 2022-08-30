@@ -46,7 +46,6 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.SignInStateChangeListener;
 import com.amazonaws.mobile.auth.core.StartupAuthResultHandler;
@@ -1041,6 +1040,27 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     return new UserStateDetails(UserState.GUEST, details);
                 } else {
                     return new UserStateDetails(UserState.SIGNED_OUT, null);
+                }
+            }
+        }
+
+        if (getSignInMode().equals(SignInMode.HOSTED_UI)) {
+            if (!federationEnabled || cognitoIdentity == null) {
+                // Do nothing, you are signed-in by having the token
+                Log.d(TAG, String.format("_hostedUISignIn without federation: Putting provider and token in store"));
+
+                try {
+                    Tokens tokens = getHostedUITokens();
+                    String idToken = tokens.getIdToken().getTokenString();
+                    details.put(TOKEN_KEY, idToken);
+                    details.put(PROVIDER_KEY, userpoolsLoginKey);
+                    mStore.set(details);
+                    UserState userState = UserState.SIGNED_IN;
+                    final UserStateDetails userStateDetails = new UserStateDetails(userState, details);
+                    return userStateDetails;
+                } catch (Exception e) {
+                    UserState userState = UserState.SIGNED_OUT_USER_POOLS_TOKENS_INVALID;
+                    return new UserStateDetails(userState, null);
                 }
             }
         }
@@ -2052,6 +2072,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
             }
         };
+    }
+
+    @AnyThread
+    private Tokens getHostedUITokens() throws Exception {
+        final InternalCallback<Tokens> internalCallback = new InternalCallback<Tokens>();
+        return internalCallback.await(() -> _getHostedUITokens(internalCallback));
     }
 
     private void _getHostedUITokens(final Callback<Tokens> callback) {
