@@ -93,7 +93,10 @@ public enum Regions {
     AF_SOUTH_1("af-south-1"),
 
     /** ap-southeast-3. */
-    AP_SOUTHEAST_3("ap-southeast-3");
+    AP_SOUTHEAST_3("ap-southeast-3"),
+
+    /** me-central-1. */
+    ME_CENTRAL_1("me-central-1");
 
     /**
      * The default region that new customers in the US are encouraged to use

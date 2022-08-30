@@ -326,7 +326,19 @@ public enum Region {
      * bucket in this region.
      * </p>
      */
-    AP_Jakarta("ap-southeast-3");
+    AP_Jakarta("ap-southeast-3"),
+
+    /**
+     * The Middle East (UAE) Region. This region uses Amazon S3 servers
+     * located in UAE.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-me-central-1.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    ME_UAE("me-central-1");
 
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
