@@ -1,3 +1,13 @@
+## [Release 2.52.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.52.1)
+
+### Bug Fixes
+- **auth:** hostedUI - return success result if federation disabled (#2972)
+
+### Miscellaneous
+- Add support for DXB region (#2993)
+
+[See all changes between 2.52.0 and 2.52.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.52.0...release_v2.52.1)
+
 ## [Release 2.52.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.52.0)
 
 ### Features
