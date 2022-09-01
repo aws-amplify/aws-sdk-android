@@ -18,7 +18,7 @@ apply plugin: 'signing'
 apply plugin: 'maven-publish'
 
 def getVersionName() {
-    return isSnapshotBuild() ? VERSION_NAME+"-SNAPSHOT" : VERSION_NAME
+    return isSnapshotBuild() ? VERSION_NAME+".0-SNAPSHOT" : VERSION_NAME
 }
 
 version = getVersionName()
