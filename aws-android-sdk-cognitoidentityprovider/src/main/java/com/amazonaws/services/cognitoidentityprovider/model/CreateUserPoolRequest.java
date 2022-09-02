@@ -121,7 +121,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the SMS verification message.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -132,10 +134,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification message.
-     * <code>EmailVerificationMessage</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -148,10 +149,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification subject.
-     * <code>EmailVerificationSubject</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -820,7 +820,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the SMS verification message.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -828,7 +830,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @return <p>
-     *         A string representing the SMS verification message.
+     *         This parameter is no longer used. See <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *         >VerificationMessageTemplateType</a>.
      *         </p>
      */
     public String getSmsVerificationMessage() {
@@ -837,7 +841,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the SMS verification message.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -845,7 +851,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @param smsVerificationMessage <p>
-     *            A string representing the SMS verification message.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      */
     public void setSmsVerificationMessage(String smsVerificationMessage) {
@@ -854,7 +862,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the SMS verification message.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -865,7 +875,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>.*\{####\}.*<br/>
      *
      * @param smsVerificationMessage <p>
-     *            A string representing the SMS verification message.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -877,10 +889,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification message.
-     * <code>EmailVerificationMessage</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -890,10 +901,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * N}\p{P}\s*]*<br/>
      *
      * @return <p>
-     *         A string representing the email verification message.
-     *         <code>EmailVerificationMessage</code> is allowed only if <a href=
-     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *         >EmailSendingAccount</a> is DEVELOPER.
+     *         This parameter is no longer used. See <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *         >VerificationMessageTemplateType</a>.
      *         </p>
      */
     public String getEmailVerificationMessage() {
@@ -902,10 +912,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification message.
-     * <code>EmailVerificationMessage</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -915,11 +924,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * N}\p{P}\s*]*<br/>
      *
      * @param emailVerificationMessage <p>
-     *            A string representing the email verification message.
-     *            <code>EmailVerificationMessage</code> is allowed only if <a
-     *            href=
-     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *            >EmailSendingAccount</a> is DEVELOPER.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      */
     public void setEmailVerificationMessage(String emailVerificationMessage) {
@@ -928,10 +935,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification message.
-     * <code>EmailVerificationMessage</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -944,11 +950,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * N}\p{P}\s*]*<br/>
      *
      * @param emailVerificationMessage <p>
-     *            A string representing the email verification message.
-     *            <code>EmailVerificationMessage</code> is allowed only if <a
-     *            href=
-     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *            >EmailSendingAccount</a> is DEVELOPER.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -960,10 +964,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification subject.
-     * <code>EmailVerificationSubject</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -971,10 +974,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @return <p>
-     *         A string representing the email verification subject.
-     *         <code>EmailVerificationSubject</code> is allowed only if <a href=
-     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *         >EmailSendingAccount</a> is DEVELOPER.
+     *         This parameter is no longer used. See <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *         >VerificationMessageTemplateType</a>.
      *         </p>
      */
     public String getEmailVerificationSubject() {
@@ -983,10 +985,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification subject.
-     * <code>EmailVerificationSubject</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -994,11 +995,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param emailVerificationSubject <p>
-     *            A string representing the email verification subject.
-     *            <code>EmailVerificationSubject</code> is allowed only if <a
-     *            href=
-     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *            >EmailSendingAccount</a> is DEVELOPER.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      */
     public void setEmailVerificationSubject(String emailVerificationSubject) {
@@ -1007,10 +1006,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A string representing the email verification subject.
-     * <code>EmailVerificationSubject</code> is allowed only if <a href=
-     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     * >EmailSendingAccount</a> is DEVELOPER.
+     * This parameter is no longer used. See <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     * >VerificationMessageTemplateType</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1021,11 +1019,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param emailVerificationSubject <p>
-     *            A string representing the email verification subject.
-     *            <code>EmailVerificationSubject</code> is allowed only if <a
-     *            href=
-     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
-     *            >EmailSendingAccount</a> is DEVELOPER.
+     *            This parameter is no longer used. See <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerificationMessageTemplateType.html"
+     *            >VerificationMessageTemplateType</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
