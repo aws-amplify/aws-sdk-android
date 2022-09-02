@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---connect
+---cognitoidentityprovider
 ## [Release 2.52.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.52.1)
 
 ### Bug Fixes
