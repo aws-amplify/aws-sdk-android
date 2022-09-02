@@ -82,6 +82,16 @@ class RoutingProfileJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (routingProfile.getNumberOfAssociatedQueues() != null) {
+            Long numberOfAssociatedQueues = routingProfile.getNumberOfAssociatedQueues();
+            jsonWriter.name("NumberOfAssociatedQueues");
+            jsonWriter.value(numberOfAssociatedQueues);
+        }
+        if (routingProfile.getNumberOfAssociatedUsers() != null) {
+            Long numberOfAssociatedUsers = routingProfile.getNumberOfAssociatedUsers();
+            jsonWriter.name("NumberOfAssociatedUsers");
+            jsonWriter.value(numberOfAssociatedUsers);
+        }
         jsonWriter.endObject();
     }
 

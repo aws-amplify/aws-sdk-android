@@ -31,6 +31,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Contact information remains available in Amazon Connect for 24 months, and
  * then it is deleted.
  * </p>
+ * <p>
+ * Only data from November 12, 2021, and later is returned by this API.
+ * </p>
  * </important>
  */
 public class DescribeContactRequest extends AmazonWebServiceRequest implements Serializable {

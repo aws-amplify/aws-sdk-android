@@ -64,6 +64,12 @@ class RoutingProfileJsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("NumberOfAssociatedQueues")) {
+                routingProfile.setNumberOfAssociatedQueues(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("NumberOfAssociatedUsers")) {
+                routingProfile.setNumberOfAssociatedUsers(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

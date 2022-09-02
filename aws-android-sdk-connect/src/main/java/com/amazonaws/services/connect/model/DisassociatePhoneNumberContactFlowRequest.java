@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes the contact flow association from a phone number claimed to your
- * Amazon Connect instance, if a contact flow association exists.
+ * Removes the flow association from a phone number claimed to your Amazon
+ * Connect instance, if a flow association exists.
  * </p>
  */
 public class DisassociatePhoneNumberContactFlowRequest extends AmazonWebServiceRequest implements

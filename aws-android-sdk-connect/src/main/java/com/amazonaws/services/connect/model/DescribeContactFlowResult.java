@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class DescribeContactFlowResult implements Serializable {
     /**
      * <p>
-     * Information about the contact flow.
+     * Information about the flow.
      * </p>
      */
     private ContactFlow contactFlow;
 
     /**
      * <p>
-     * Information about the contact flow.
+     * Information about the flow.
      * </p>
      *
      * @return <p>
-     *         Information about the contact flow.
+     *         Information about the flow.
      *         </p>
      */
     public ContactFlow getContactFlow() {
@@ -40,11 +40,11 @@ public class DescribeContactFlowResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow.
+     * Information about the flow.
      * </p>
      *
      * @param contactFlow <p>
-     *            Information about the contact flow.
+     *            Information about the flow.
      *            </p>
      */
     public void setContactFlow(ContactFlow contactFlow) {
@@ -53,14 +53,14 @@ public class DescribeContactFlowResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow.
+     * Information about the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlow <p>
-     *            Information about the contact flow.
+     *            Information about the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

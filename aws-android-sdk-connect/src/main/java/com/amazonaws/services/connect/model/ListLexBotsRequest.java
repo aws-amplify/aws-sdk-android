@@ -24,8 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Returns a paginated list of all the Amazon Lex bots currently associated with
- * the instance.
+ * Returns a paginated list of all the Amazon Lex V1 bots currently associated
+ * with the instance. To return both Amazon Lex V1 and V2 bots, use the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListBots.html"
+ * >ListBots</a> API.
  * </p>
  */
 public class ListLexBotsRequest extends AmazonWebServiceRequest implements Serializable {

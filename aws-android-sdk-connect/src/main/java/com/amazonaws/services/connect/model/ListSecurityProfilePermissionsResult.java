@@ -20,7 +20,10 @@ import java.io.Serializable;
 public class ListSecurityProfilePermissionsResult implements Serializable {
     /**
      * <p>
-     * The permissions granted to the security profile.
+     * The permissions granted to the security profile. For a complete list of
+     * valid permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      */
     private java.util.List<String> permissions;
@@ -35,11 +38,17 @@ public class ListSecurityProfilePermissionsResult implements Serializable {
 
     /**
      * <p>
-     * The permissions granted to the security profile.
+     * The permissions granted to the security profile. For a complete list of
+     * valid permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      *
      * @return <p>
-     *         The permissions granted to the security profile.
+     *         The permissions granted to the security profile. For a complete
+     *         list of valid permissions, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *         >List of security profile permissions</a>.
      *         </p>
      */
     public java.util.List<String> getPermissions() {
@@ -48,11 +57,17 @@ public class ListSecurityProfilePermissionsResult implements Serializable {
 
     /**
      * <p>
-     * The permissions granted to the security profile.
+     * The permissions granted to the security profile. For a complete list of
+     * valid permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      *
      * @param permissions <p>
-     *            The permissions granted to the security profile.
+     *            The permissions granted to the security profile. For a
+     *            complete list of valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      */
     public void setPermissions(java.util.Collection<String> permissions) {
@@ -66,14 +81,20 @@ public class ListSecurityProfilePermissionsResult implements Serializable {
 
     /**
      * <p>
-     * The permissions granted to the security profile.
+     * The permissions granted to the security profile. For a complete list of
+     * valid permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param permissions <p>
-     *            The permissions granted to the security profile.
+     *            The permissions granted to the security profile. For a
+     *            complete list of valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -90,14 +111,20 @@ public class ListSecurityProfilePermissionsResult implements Serializable {
 
     /**
      * <p>
-     * The permissions granted to the security profile.
+     * The permissions granted to the security profile. For a complete list of
+     * valid permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param permissions <p>
-     *            The permissions granted to the security profile.
+     *            The permissions granted to the security profile. For a
+     *            complete list of valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

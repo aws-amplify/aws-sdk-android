@@ -85,10 +85,25 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The number of associated queues in routing profile.
+     * </p>
+     */
+    private Long numberOfAssociatedQueues;
+
+    /**
+     * <p>
+     * The number of associated users in routing profile.
+     * </p>
+     */
+    private Long numberOfAssociatedUsers;
 
     /**
      * <p>
@@ -482,11 +497,14 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
-     *         One or more tags.
+     *         The tags used to organize, track, or control access for this
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -495,11 +513,14 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -508,14 +529,17 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -527,7 +551,8 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -561,6 +586,96 @@ public class RoutingProfile implements Serializable {
     }
 
     /**
+     * <p>
+     * The number of associated queues in routing profile.
+     * </p>
+     *
+     * @return <p>
+     *         The number of associated queues in routing profile.
+     *         </p>
+     */
+    public Long getNumberOfAssociatedQueues() {
+        return numberOfAssociatedQueues;
+    }
+
+    /**
+     * <p>
+     * The number of associated queues in routing profile.
+     * </p>
+     *
+     * @param numberOfAssociatedQueues <p>
+     *            The number of associated queues in routing profile.
+     *            </p>
+     */
+    public void setNumberOfAssociatedQueues(Long numberOfAssociatedQueues) {
+        this.numberOfAssociatedQueues = numberOfAssociatedQueues;
+    }
+
+    /**
+     * <p>
+     * The number of associated queues in routing profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param numberOfAssociatedQueues <p>
+     *            The number of associated queues in routing profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RoutingProfile withNumberOfAssociatedQueues(Long numberOfAssociatedQueues) {
+        this.numberOfAssociatedQueues = numberOfAssociatedQueues;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The number of associated users in routing profile.
+     * </p>
+     *
+     * @return <p>
+     *         The number of associated users in routing profile.
+     *         </p>
+     */
+    public Long getNumberOfAssociatedUsers() {
+        return numberOfAssociatedUsers;
+    }
+
+    /**
+     * <p>
+     * The number of associated users in routing profile.
+     * </p>
+     *
+     * @param numberOfAssociatedUsers <p>
+     *            The number of associated users in routing profile.
+     *            </p>
+     */
+    public void setNumberOfAssociatedUsers(Long numberOfAssociatedUsers) {
+        this.numberOfAssociatedUsers = numberOfAssociatedUsers;
+    }
+
+    /**
+     * <p>
+     * The number of associated users in routing profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param numberOfAssociatedUsers <p>
+     *            The number of associated users in routing profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RoutingProfile withNumberOfAssociatedUsers(Long numberOfAssociatedUsers) {
+        this.numberOfAssociatedUsers = numberOfAssociatedUsers;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -586,7 +701,11 @@ public class RoutingProfile implements Serializable {
         if (getDefaultOutboundQueueId() != null)
             sb.append("DefaultOutboundQueueId: " + getDefaultOutboundQueueId() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getNumberOfAssociatedQueues() != null)
+            sb.append("NumberOfAssociatedQueues: " + getNumberOfAssociatedQueues() + ",");
+        if (getNumberOfAssociatedUsers() != null)
+            sb.append("NumberOfAssociatedUsers: " + getNumberOfAssociatedUsers());
         sb.append("}");
         return sb.toString();
     }
@@ -611,6 +730,14 @@ public class RoutingProfile implements Serializable {
                 + ((getDefaultOutboundQueueId() == null) ? 0 : getDefaultOutboundQueueId()
                         .hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNumberOfAssociatedQueues() == null) ? 0 : getNumberOfAssociatedQueues()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNumberOfAssociatedUsers() == null) ? 0 : getNumberOfAssociatedUsers()
+                        .hashCode());
         return hashCode;
     }
 
@@ -662,6 +789,17 @@ public class RoutingProfile implements Serializable {
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getNumberOfAssociatedQueues() == null
+                ^ this.getNumberOfAssociatedQueues() == null)
+            return false;
+        if (other.getNumberOfAssociatedQueues() != null
+                && other.getNumberOfAssociatedQueues().equals(this.getNumberOfAssociatedQueues()) == false)
+            return false;
+        if (other.getNumberOfAssociatedUsers() == null ^ this.getNumberOfAssociatedUsers() == null)
+            return false;
+        if (other.getNumberOfAssociatedUsers() != null
+                && other.getNumberOfAssociatedUsers().equals(this.getNumberOfAssociatedUsers()) == false)
             return false;
         return true;
     }

@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * The name of the contact flow.
+ * The name of the flow.
  * </p>
  * <p>
- * You can also create and update contact flows using the <a href=
+ * You can also create and update flows using the <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
  * >Amazon Connect Flow language</a>.
  * </p>
@@ -42,7 +42,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,7 +52,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      */
     private String description;
@@ -123,14 +123,14 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow.
+     *         The identifier of the flow.
      *         </p>
      */
     public String getContactFlowId() {
@@ -139,14 +139,14 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      */
     public void setContactFlowId(String contactFlowId) {
@@ -155,7 +155,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,7 +165,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -177,14 +177,14 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The name of the contact flow.
+     *         The name of the flow.
      *         </p>
      */
     public String getName() {
@@ -193,14 +193,14 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            The name of the flow.
      *            </p>
      */
     public void setName(String name) {
@@ -209,7 +209,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -219,7 +219,7 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            The name of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -231,11 +231,11 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @return <p>
-     *         The description of the contact flow.
+     *         The description of the flow.
      *         </p>
      */
     public String getDescription() {
@@ -244,11 +244,11 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      */
     public void setDescription(String description) {
@@ -257,14 +257,14 @@ public class UpdateContactFlowNameRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

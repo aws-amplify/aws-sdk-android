@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains summary information about a contact flow.
+ * Contains summary information about a flow.
  * </p>
  */
 public class ContactFlowModuleSummary implements Serializable {
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,14 +35,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow module.
+     * The Amazon Resource Name (ARN) of the flow module.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +53,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,14 +63,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getId() {
@@ -79,14 +79,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setId(String id) {
@@ -95,7 +95,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,7 +105,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,11 +117,11 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow module.
+     * The Amazon Resource Name (ARN) of the flow module.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the contact flow module.
+     *         The Amazon Resource Name (ARN) of the flow module.
      *         </p>
      */
     public String getArn() {
@@ -130,11 +130,11 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow module.
+     * The Amazon Resource Name (ARN) of the flow module.
      * </p>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the contact flow module.
+     *            The Amazon Resource Name (ARN) of the flow module.
      *            </p>
      */
     public void setArn(String arn) {
@@ -143,14 +143,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow module.
+     * The Amazon Resource Name (ARN) of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the contact flow module.
+     *            The Amazon Resource Name (ARN) of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -162,7 +162,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +170,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The name of the contact flow module.
+     *         The name of the flow module.
      *         </p>
      */
     public String getName() {
@@ -179,7 +179,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -187,7 +187,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      */
     public void setName(String name) {
@@ -196,7 +196,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -207,7 +207,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -219,14 +219,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The type of contact flow module.
+     *         The type of flow module.
      *         </p>
      * @see ContactFlowModuleState
      */
@@ -236,14 +236,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -253,7 +253,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -263,7 +263,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -276,14 +276,14 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -293,7 +293,7 @@ public class ContactFlowModuleSummary implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -303,7 +303,7 @@ public class ContactFlowModuleSummary implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

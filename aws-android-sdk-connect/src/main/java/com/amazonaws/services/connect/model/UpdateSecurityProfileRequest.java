@@ -40,7 +40,10 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The permissions granted to a security profile.
+     * The permissions granted to a security profile. For a list of valid
+     * permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      */
     private java.util.List<String> permissions;
@@ -119,11 +122,17 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The permissions granted to a security profile.
+     * The permissions granted to a security profile. For a list of valid
+     * permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      *
      * @return <p>
-     *         The permissions granted to a security profile.
+     *         The permissions granted to a security profile. For a list of
+     *         valid permissions, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *         >List of security profile permissions</a>.
      *         </p>
      */
     public java.util.List<String> getPermissions() {
@@ -132,11 +141,17 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The permissions granted to a security profile.
+     * The permissions granted to a security profile. For a list of valid
+     * permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      *
      * @param permissions <p>
-     *            The permissions granted to a security profile.
+     *            The permissions granted to a security profile. For a list of
+     *            valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      */
     public void setPermissions(java.util.Collection<String> permissions) {
@@ -150,14 +165,20 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The permissions granted to a security profile.
+     * The permissions granted to a security profile. For a list of valid
+     * permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param permissions <p>
-     *            The permissions granted to a security profile.
+     *            The permissions granted to a security profile. For a list of
+     *            valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -174,14 +195,20 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The permissions granted to a security profile.
+     * The permissions granted to a security profile. For a list of valid
+     * permissions, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     * >List of security profile permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param permissions <p>
-     *            The permissions granted to a security profile.
+     *            The permissions granted to a security profile. For a list of
+     *            valid permissions, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-list.html"
+     *            >List of security profile permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

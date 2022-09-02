@@ -80,7 +80,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * Well-formed data on contact, shown to agents on Contact Control Panel
      * (CCP).
      * </p>
      */
@@ -319,12 +319,12 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * Well-formed data on contact, shown to agents on Contact Control Panel
      * (CCP).
      * </p>
      *
      * @return <p>
-     *         A formatted URL that is shown to an agent in the Contact Control
+     *         Well-formed data on contact, shown to agents on Contact Control
      *         Panel (CCP).
      *         </p>
      */
@@ -334,12 +334,12 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * Well-formed data on contact, shown to agents on Contact Control Panel
      * (CCP).
      * </p>
      *
      * @param references <p>
-     *            A formatted URL that is shown to an agent in the Contact
+     *            Well-formed data on contact, shown to agents on Contact
      *            Control Panel (CCP).
      *            </p>
      */
@@ -349,7 +349,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * Well-formed data on contact, shown to agents on Contact Control Panel
      * (CCP).
      * </p>
      * <p>
@@ -357,7 +357,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
      * together.
      *
      * @param references <p>
-     *            A formatted URL that is shown to an agent in the Contact
+     *            Well-formed data on contact, shown to agents on Contact
      *            Control Panel (CCP).
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -370,7 +370,7 @@ public class UpdateContactRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * A formatted URL that is shown to an agent in the Contact Control Panel
+     * Well-formed data on contact, shown to agents on Contact Control Panel
      * (CCP).
      * </p>
      * <p>
