@@ -1,0 +1,22 @@
+name: AWS CodeBuild CI
+on:
+  push:
+    branches:
+      - sdhuka/add-snapshot-release
+
+permissions:
+  id-token: write
+
+jobs:
+  snapshot-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
+          aws-region: us-east-1
+        - name: Start Snapshot Release
+          uses: aws-actions/aws-codebuild-run-build@v1
+          with:
+            project-name: AndroidSDK-SnapshotRelease
