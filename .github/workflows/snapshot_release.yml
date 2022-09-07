@@ -1,4 +1,5 @@
-name: AWS CodeBuild CI
+name: Android SDK Snapshot Release
+
 on:
   push:
     branches:
@@ -16,7 +17,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
           aws-region: us-east-1
-        - name: Start Snapshot Release
-          uses: aws-actions/aws-codebuild-run-build@v1
-          with:
-            project-name: AndroidSDK-SnapshotRelease
+      - name: Start Snapshot Release
+        uses: aws-actions/aws-codebuild-run-build@v1
+        with:
+          project-name: AndroidSDK-SnapshotRelease
