@@ -535,6 +535,33 @@ public interface AmazonSNS {
 
     /**
      * <p>
+     * Retrieves the specified inline <code>DataProtectionPolicy</code> document
+     * that is stored in the specified Amazon SNS topic.
+     * </p>
+     * 
+     * @param getDataProtectionPolicyRequest
+     * @return getDataProtectionPolicyResult The response from the
+     *         GetDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    GetDataProtectionPolicyResult getDataProtectionPolicy(
+            GetDataProtectionPolicyRequest getDataProtectionPolicyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Retrieves the endpoint attributes for a device on one of the supported
      * push notification services, such as GCM (Firebase Cloud Messaging) and
      * APNS. For more information, see <a
@@ -1111,6 +1138,7 @@ public interface AmazonSNS {
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1186,6 +1214,7 @@ public interface AmazonSNS {
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1195,6 +1224,29 @@ public interface AmazonSNS {
      *             the data in the request, or a server side issue.
      */
     PublishBatchResult publishBatch(PublishBatchRequest publishBatchRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Adds or updates an inline policy document that is stored in the specified
+     * Amazon SNS topic.
+     * </p>
+     * 
+     * @param putDataProtectionPolicyRequest
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    void putDataProtectionPolicy(PutDataProtectionPolicyRequest putDataProtectionPolicyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2474,6 +2526,7 @@ public interface AmazonSNS {
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2657,6 +2710,7 @@ public interface AmazonSNS {
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

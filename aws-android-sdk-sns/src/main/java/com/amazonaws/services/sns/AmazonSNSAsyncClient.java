@@ -1393,6 +1393,81 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
 
     /**
      * <p>
+     * Retrieves the specified inline <code>DataProtectionPolicy</code> document
+     * that is stored in the specified Amazon SNS topic.
+     * </p>
+     * 
+     * @param getDataProtectionPolicyRequest
+     * @return A Java Future object containing the response from the
+     *         GetDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public Future<GetDataProtectionPolicyResult> getDataProtectionPolicyAsync(
+            final GetDataProtectionPolicyRequest getDataProtectionPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetDataProtectionPolicyResult>() {
+            public GetDataProtectionPolicyResult call() throws Exception {
+                return getDataProtectionPolicy(getDataProtectionPolicyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves the specified inline <code>DataProtectionPolicy</code> document
+     * that is stored in the specified Amazon SNS topic.
+     * </p>
+     * 
+     * @param getDataProtectionPolicyRequest
+     * @return A Java Future object containing the response from the
+     *         GetDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public Future<GetDataProtectionPolicyResult> getDataProtectionPolicyAsync(
+            final GetDataProtectionPolicyRequest getDataProtectionPolicyRequest,
+            final AsyncHandler<GetDataProtectionPolicyRequest, GetDataProtectionPolicyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetDataProtectionPolicyResult>() {
+            public GetDataProtectionPolicyResult call() throws Exception {
+                GetDataProtectionPolicyResult result = null;
+                try {
+                    result = getDataProtectionPolicy(getDataProtectionPolicyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getDataProtectionPolicyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Retrieves the endpoint attributes for a device on one of the supported
      * push notification services, such as GCM (Firebase Cloud Messaging) and
      * APNS. For more information, see <a
@@ -2840,6 +2915,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2912,6 +2988,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3003,6 +3080,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3086,6 +3164,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3108,6 +3187,82 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
                     throw ex;
                 }
                 asyncHandler.onSuccess(publishBatchRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds or updates an inline policy document that is stored in the specified
+     * Amazon SNS topic.
+     * </p>
+     * 
+     * @param putDataProtectionPolicyRequest
+     * @return A Java Future object containing the response from the
+     *         PutDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public Future<Void> putDataProtectionPolicyAsync(
+            final PutDataProtectionPolicyRequest putDataProtectionPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                putDataProtectionPolicy(putDataProtectionPolicyRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds or updates an inline policy document that is stored in the specified
+     * Amazon SNS topic.
+     * </p>
+     * 
+     * @param putDataProtectionPolicyRequest
+     * @return A Java Future object containing the response from the
+     *         PutDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public Future<Void> putDataProtectionPolicyAsync(
+            final PutDataProtectionPolicyRequest putDataProtectionPolicyRequest,
+            final AsyncHandler<PutDataProtectionPolicyRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    putDataProtectionPolicy(putDataProtectionPolicyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(putDataProtectionPolicyRequest, result);
                 return result;
             }
         });

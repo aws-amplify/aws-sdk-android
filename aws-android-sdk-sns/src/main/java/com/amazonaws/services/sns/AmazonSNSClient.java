@@ -1012,6 +1012,51 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
+     * Retrieves the specified inline <code>DataProtectionPolicy</code> document
+     * that is stored in the specified Amazon SNS topic.
+     * </p>
+     * 
+     * @param getDataProtectionPolicyRequest
+     * @return getDataProtectionPolicyResult The response from the
+     *         GetDataProtectionPolicy service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public GetDataProtectionPolicyResult getDataProtectionPolicy(
+            GetDataProtectionPolicyRequest getDataProtectionPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getDataProtectionPolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetDataProtectionPolicyRequest> request = null;
+        Response<GetDataProtectionPolicyResult> response = null;
+        try {
+            request = new GetDataProtectionPolicyRequestMarshaller()
+                    .marshall(getDataProtectionPolicyRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetDataProtectionPolicyResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
      * Retrieves the endpoint attributes for a device on one of the supported
      * push notification services, such as GCM (Firebase Cloud Messaging) and
      * APNS. For more information, see <a
@@ -1873,6 +1918,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1964,6 +2010,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1985,6 +2032,46 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new PublishBatchResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds or updates an inline policy document that is stored in the specified
+     * Amazon SNS topic.
+     * </p>
+     * 
+     * @param putDataProtectionPolicyRequest
+     * @throws InvalidParameterException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws AuthorizationErrorException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public void putDataProtectionPolicy(
+            PutDataProtectionPolicyRequest putDataProtectionPolicyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putDataProtectionPolicyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutDataProtectionPolicyRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new PutDataProtectionPolicyRequestMarshaller()
+                    .marshall(putDataProtectionPolicyRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
@@ -3519,6 +3606,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3707,6 +3795,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws KMSThrottlingException
      * @throws KMSAccessDeniedException
      * @throws InvalidSecurityException
+     * @throws ValidationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

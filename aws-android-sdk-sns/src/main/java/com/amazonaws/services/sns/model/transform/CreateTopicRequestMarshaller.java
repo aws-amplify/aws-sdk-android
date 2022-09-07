@@ -79,6 +79,11 @@ public class CreateTopicRequestMarshaller implements
             }
             prefix = tagsPrefix;
         }
+        if (createTopicRequest.getDataProtectionPolicy() != null) {
+            prefix = "DataProtectionPolicy";
+            String dataProtectionPolicy = createTopicRequest.getDataProtectionPolicy();
+            request.addParameter(prefix, StringUtils.fromString(dataProtectionPolicy));
+        }
 
         return request;
     }
