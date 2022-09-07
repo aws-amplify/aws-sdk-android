@@ -3,7 +3,7 @@ name: Android SDK Snapshot Release
 on:
   push:
     branches:
-      - sdhuka/add-snapshot-release
+      - main
 
 permissions:
   id-token: write
