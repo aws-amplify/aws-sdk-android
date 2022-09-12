@@ -93,6 +93,11 @@ public class AuthClient {
     private static final long REDIRECT_TIMEOUT_SECONDS = 10;
 
     /**
+     * Message returned for a bad request.
+     */
+    private static final String BAD_REQUEST_ERROR = "invalid_request";
+
+    /**
      * Android application context.
      */
     private final Context context;
@@ -450,10 +455,17 @@ public class AuthClient {
                             uri.getQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_ERROR);
 
                     if (errorText != null) {
+                        final String errorDescription = uri.getQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_ERROR_DESCRIPTION);
+                        final String errorMessage;
+                        if (errorText.equals(BAD_REQUEST_ERROR) && errorDescription != null) {
+                            errorMessage = errorDescription.trim();
+                        } else {
+                            errorMessage = errorText;
+                        }
                         returnCallback = new Runnable() {
                             @Override
                             public void run() {
-                                callback.onFailure(new AuthServiceException(errorText));
+                                callback.onFailure(new AuthServiceException(errorMessage));
                             }
                         };
                     } else {
