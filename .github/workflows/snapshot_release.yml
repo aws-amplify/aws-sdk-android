@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - add-snapshot-release
+      - sdhuka/add-snapshot-release
 
 permissions:
   id-token: write
