@@ -131,6 +131,9 @@ class UserPoolClientTypeJsonUnmarshaller implements
                         .setEnablePropagateAdditionalUserContextData(BooleanJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("AuthSessionValidity")) {
+                userPoolClientType.setAuthSessionValidity(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

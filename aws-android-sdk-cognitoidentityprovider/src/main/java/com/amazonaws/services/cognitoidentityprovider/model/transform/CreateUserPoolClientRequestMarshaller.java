@@ -231,6 +231,11 @@ public class CreateUserPoolClientRequestMarshaller implements
                 jsonWriter.name("EnablePropagateAdditionalUserContextData");
                 jsonWriter.value(enablePropagateAdditionalUserContextData);
             }
+            if (createUserPoolClientRequest.getAuthSessionValidity() != null) {
+                Integer authSessionValidity = createUserPoolClientRequest.getAuthSessionValidity();
+                jsonWriter.name("AuthSessionValidity");
+                jsonWriter.value(authSessionValidity);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
