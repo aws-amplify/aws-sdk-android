@@ -20,7 +20,7 @@ jobs:
           aws-region: us-east-1
         env:
           CODEBUILD_SOURCE_REPO_URL: https://github.com/aws-amplify/amplify-android.git
-          CODEBUILD_SOURCE_VERSION: refs/heads/main
+          CODEBUILD_SOURCE_VERSION: https://github.com/aws-amplify/amplify-android.git
       - name: Start Amplify Android Unit Test
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
