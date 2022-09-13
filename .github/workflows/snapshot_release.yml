@@ -22,9 +22,14 @@ jobs:
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
           project-name: AmplifyAndroid-UnitTest
+          env-vars-for-codebuild: |
+            sourceTypeOverride,
+            sourceLocationOverride,
+            sourceVersion
         env:
-          CODEBUILD_SOURCE_REPO_URL: https://github.com/aws-amplify/amplify-android.git
-          CODEBUILD_SOURCE_VERSION: refs/heads/main
+          sourceTypeOverride: GITHUB
+          sourceLocationOverride: https://github.com/aws-amplify/amplify-android.git
+          sourceVersion: refs/heads/main
       - name: Start Amplify Android Integration Test
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
