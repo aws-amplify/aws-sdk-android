@@ -1,6 +1,7 @@
 name: Android SDK Snapshot Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - add-snapshot-release
