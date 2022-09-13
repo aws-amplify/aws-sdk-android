@@ -1,10 +1,9 @@
 name: Android SDK Snapshot Release
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - sdhuka/add-snapshot-release
+      - main
 
 permissions:
   id-token: write
@@ -16,21 +15,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ secrets.AMPLIFY_ANDROID_CI_ROLE }}
+          role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
           aws-region: us-east-1
-      - name: Start Amplify Android Unit Test
+      - name: Start Snapshot Release
         uses: aws-actions/aws-codebuild-run-build@v1
         with:
-          project-name: AmplifyAndroid-UnitTest
-          env-vars-for-codebuild: |
-            sourceTypeOverride,
-            sourceLocationOverride,
-            sourceVersion
-        env:
-          sourceTypeOverride: GITHUB
-          sourceLocationOverride: https://github.com/aws-amplify/amplify-android.git
-          sourceVersion: refs/heads/main
-      - name: Start Amplify Android Integration Test
-        uses: aws-actions/aws-codebuild-run-build@v1
-        with:
-          project-name: AmplifyAndroid-IntegrationTest
+          project-name: AndroidSDK-SnapshotRelease
