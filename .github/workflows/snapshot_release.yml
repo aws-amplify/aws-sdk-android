@@ -3,7 +3,7 @@ name: Android SDK Snapshot Release
 on:
   push:
     branches:
-      - main
+      - add-snapshot-release
 
 permissions:
   id-token: write
@@ -12,12 +12,25 @@ jobs:
   snapshot-release:
     runs-on: ubuntu-latest
     steps:
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v1
+#        with:
+#          role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
+#          aws-region: us-east-1
+#      - name: Start Snapshot Release
+#        uses: aws-actions/aws-codebuild-run-build@v1
+#        with:
+#          project-name: AndroidSDK-SnapshotRelease
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
-          aws-region: us-east-1
-      - name: Start Snapshot Release
-        uses: aws-actions/aws-codebuild-run-build@v1
-        with:
-          project-name: AndroidSDK-SnapshotRelease
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: ${{ secrets.AMPLIFY_ANDROID_CI_ROLE }}
+            aws-region: us-east-1
+      - name: Start Amplify Android Unit Test
+          uses: aws-actions/aws-codebuild-run-build@v1
+          with:
+            project-name: AmplifyAndroid-UnitTest
+      - name: Start Amplify Android Integration Test
+          uses: aws-actions/aws-codebuild-run-build@v1
+          with:
+            project-name: AmplifyAndroid-IntegrationTest
