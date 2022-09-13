@@ -459,6 +459,19 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Amazon Cognito creates a session token for each API request in an
+     * authentication flow. <code>AuthSessionValidity</code> is the duration, in
+     * minutes, of that session token. Your user pool native user must respond
+     * to each authentication challenge before the session expires.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>3 - 15<br/>
+     */
+    private Integer authSessionValidity;
+
+    /**
+     * <p>
      * The user pool ID for the user pool where you want to create a user pool
      * client.
      * </p>
@@ -3822,6 +3835,81 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Amazon Cognito creates a session token for each API request in an
+     * authentication flow. <code>AuthSessionValidity</code> is the duration, in
+     * minutes, of that session token. Your user pool native user must respond
+     * to each authentication challenge before the session expires.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>3 - 15<br/>
+     *
+     * @return <p>
+     *         Amazon Cognito creates a session token for each API request in an
+     *         authentication flow. <code>AuthSessionValidity</code> is the
+     *         duration, in minutes, of that session token. Your user pool
+     *         native user must respond to each authentication challenge before
+     *         the session expires.
+     *         </p>
+     */
+    public Integer getAuthSessionValidity() {
+        return authSessionValidity;
+    }
+
+    /**
+     * <p>
+     * Amazon Cognito creates a session token for each API request in an
+     * authentication flow. <code>AuthSessionValidity</code> is the duration, in
+     * minutes, of that session token. Your user pool native user must respond
+     * to each authentication challenge before the session expires.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>3 - 15<br/>
+     *
+     * @param authSessionValidity <p>
+     *            Amazon Cognito creates a session token for each API request in
+     *            an authentication flow. <code>AuthSessionValidity</code> is
+     *            the duration, in minutes, of that session token. Your user
+     *            pool native user must respond to each authentication challenge
+     *            before the session expires.
+     *            </p>
+     */
+    public void setAuthSessionValidity(Integer authSessionValidity) {
+        this.authSessionValidity = authSessionValidity;
+    }
+
+    /**
+     * <p>
+     * Amazon Cognito creates a session token for each API request in an
+     * authentication flow. <code>AuthSessionValidity</code> is the duration, in
+     * minutes, of that session token. Your user pool native user must respond
+     * to each authentication challenge before the session expires.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>3 - 15<br/>
+     *
+     * @param authSessionValidity <p>
+     *            Amazon Cognito creates a session token for each API request in
+     *            an authentication flow. <code>AuthSessionValidity</code> is
+     *            the duration, in minutes, of that session token. Your user
+     *            pool native user must respond to each authentication challenge
+     *            before the session expires.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withAuthSessionValidity(Integer authSessionValidity) {
+        this.authSessionValidity = authSessionValidity;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -3875,7 +3963,9 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
             sb.append("EnableTokenRevocation: " + getEnableTokenRevocation() + ",");
         if (getEnablePropagateAdditionalUserContextData() != null)
             sb.append("EnablePropagateAdditionalUserContextData: "
-                    + getEnablePropagateAdditionalUserContextData());
+                    + getEnablePropagateAdditionalUserContextData() + ",");
+        if (getAuthSessionValidity() != null)
+            sb.append("AuthSessionValidity: " + getAuthSessionValidity());
         sb.append("}");
         return sb.toString();
     }
@@ -3935,6 +4025,8 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
                 * hashCode
                 + ((getEnablePropagateAdditionalUserContextData() == null) ? 0
                         : getEnablePropagateAdditionalUserContextData().hashCode());
+        hashCode = prime * hashCode
+                + ((getAuthSessionValidity() == null) ? 0 : getAuthSessionValidity().hashCode());
         return hashCode;
     }
 
@@ -4061,6 +4153,11 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (other.getEnablePropagateAdditionalUserContextData() != null
                 && other.getEnablePropagateAdditionalUserContextData().equals(
                         this.getEnablePropagateAdditionalUserContextData()) == false)
+            return false;
+        if (other.getAuthSessionValidity() == null ^ this.getAuthSessionValidity() == null)
+            return false;
+        if (other.getAuthSessionValidity() != null
+                && other.getAuthSessionValidity().equals(this.getAuthSessionValidity()) == false)
             return false;
         return true;
     }
