@@ -201,6 +201,11 @@ class UserPoolClientTypeJsonMarshaller {
             jsonWriter.name("EnablePropagateAdditionalUserContextData");
             jsonWriter.value(enablePropagateAdditionalUserContextData);
         }
+        if (userPoolClientType.getAuthSessionValidity() != null) {
+            Integer authSessionValidity = userPoolClientType.getAuthSessionValidity();
+            jsonWriter.name("AuthSessionValidity");
+            jsonWriter.value(authSessionValidity);
+        }
         jsonWriter.endObject();
     }
 
