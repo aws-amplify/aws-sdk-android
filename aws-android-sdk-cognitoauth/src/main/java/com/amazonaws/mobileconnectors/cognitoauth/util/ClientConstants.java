@@ -38,6 +38,7 @@ public abstract class ClientConstants {
     public static final String DOMAIN_QUERY_PARAM_CODE_CHALLENGE_METHOD_SHA256 = "S256";
     public static final String DOMAIN_QUERY_PARAM_CODE_VERIFIER = "code_verifier";
     public static final String DOMAIN_QUERY_PARAM_ERROR = "error";
+    public static final String DOMAIN_QUERY_PARAM_ERROR_DESCRIPTION = "error_description";
     public static final String DOMAIN_QUERY_PARAM_REDIRECT_URI = "redirect_uri";
     public static final String DOMAIN_QUERY_PARAM_LOGOUT_URI = "logout_uri";
     public static final String DOMAIN_QUERY_PARAM_RESPONSE_TYPE = "response_type";
