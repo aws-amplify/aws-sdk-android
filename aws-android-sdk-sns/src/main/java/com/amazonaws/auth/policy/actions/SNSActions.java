@@ -58,6 +58,9 @@ public enum SNSActions implements Action {
     /** Action for the DeleteTopic operation. */
     DeleteTopic("sns:DeleteTopic"),
 
+    /** Action for the GetDataProtectionPolicy operation. */
+    GetDataProtectionPolicy("sns:GetDataProtectionPolicy"),
+
     /** Action for the GetEndpointAttributes operation. */
     GetEndpointAttributes("sns:GetEndpointAttributes"),
 
@@ -111,6 +114,9 @@ public enum SNSActions implements Action {
 
     /** Action for the PublishBatch operation. */
     PublishBatch("sns:PublishBatch"),
+
+    /** Action for the PutDataProtectionPolicy operation. */
+    PutDataProtectionPolicy("sns:PutDataProtectionPolicy"),
 
     /** Action for the RemovePermission operation. */
     RemovePermission("sns:RemovePermission"),
