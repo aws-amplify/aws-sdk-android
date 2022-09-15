@@ -1,3 +1,14 @@
+## [Release 2.53.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.53.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2996)
+- **aws-android-sdk-sns:** update models to latest (#2999)
+
+### Bug Fixes
+- **cognitoauth:** forward lambda trigger exception for social sign in (#3002)
+
+[See all changes between 2.52.1 and 2.53.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.52.1...release_v2.53.0)
+
 ## [Release 2.52.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.52.1)
 
 ### Bug Fixes
