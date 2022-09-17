@@ -4,12 +4,14 @@ import sys
 import demjson
 import glob
 from utils import runcommand
+from gather_classpath import gather_classpath
 
 def getCommandline(dest, root, modules, packages, sourcefiles, subpackages,excludes, groups, otheroptions, otherargs):
 
 
     commandline = "javadoc " + \
                 " -d '{0}'".format(dest) + \
+                " -classpath '{0}'".format(gather_classpath()) + \
                 " -sourcepath  '{0}'".format(':'.join(map(lambda module: (root + "/" + module + "/src/main/java/"), modules)))  + \
                 " " + ' '.join(packages)  +  \
                 " " + ' '.join(map(lambda sourcefile:("'{0}'".format(sourcefile)), sourcefiles))  +  \
