@@ -69,6 +69,14 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The search criteria to be used to return users.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Username</code>, <code>Firstname</code>, and
+     * <code>Lastname</code> fields support "contains" queries with a minimum of
+     * 2 characters and a maximum of 25 characters. Any queries with character
+     * lengths outside of this range result in empty results.
+     * </p>
+     * </note>
      */
     private UserSearchCriteria searchCriteria;
 
@@ -301,10 +309,27 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The search criteria to be used to return users.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Username</code>, <code>Firstname</code>, and
+     * <code>Lastname</code> fields support "contains" queries with a minimum of
+     * 2 characters and a maximum of 25 characters. Any queries with character
+     * lengths outside of this range result in empty results.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The search criteria to be used to return users.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>Username</code>, <code>Firstname</code>, and
+     *         <code>Lastname</code> fields support "contains" queries with a
+     *         minimum of 2 characters and a maximum of 25 characters. Any
+     *         queries with character lengths outside of this range result in
+     *         empty results.
+     *         </p>
+     *         </note>
      */
     public UserSearchCriteria getSearchCriteria() {
         return searchCriteria;
@@ -314,10 +339,27 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The search criteria to be used to return users.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Username</code>, <code>Firstname</code>, and
+     * <code>Lastname</code> fields support "contains" queries with a minimum of
+     * 2 characters and a maximum of 25 characters. Any queries with character
+     * lengths outside of this range result in empty results.
+     * </p>
+     * </note>
      *
      * @param searchCriteria <p>
      *            The search criteria to be used to return users.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>Username</code>, <code>Firstname</code>, and
+     *            <code>Lastname</code> fields support "contains" queries with a
+     *            minimum of 2 characters and a maximum of 25 characters. Any
+     *            queries with character lengths outside of this range result in
+     *            empty results.
+     *            </p>
+     *            </note>
      */
     public void setSearchCriteria(UserSearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
@@ -327,6 +369,14 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The search criteria to be used to return users.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Username</code>, <code>Firstname</code>, and
+     * <code>Lastname</code> fields support "contains" queries with a minimum of
+     * 2 characters and a maximum of 25 characters. Any queries with character
+     * lengths outside of this range result in empty results.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -334,6 +384,15 @@ public class SearchUsersRequest extends AmazonWebServiceRequest implements Seria
      * @param searchCriteria <p>
      *            The search criteria to be used to return users.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>Username</code>, <code>Firstname</code>, and
+     *            <code>Lastname</code> fields support "contains" queries with a
+     *            minimum of 2 characters and a maximum of 25 characters. Any
+     *            queries with character lengths outside of this range result in
+     *            empty results.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

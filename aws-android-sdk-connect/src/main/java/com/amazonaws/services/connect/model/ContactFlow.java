@@ -19,20 +19,20 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about a contact flow.
+ * Contains information about a flow.
  * </p>
  */
 public class ContactFlow implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow.
+     * The Amazon Resource Name (ARN) of the flow.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +42,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,11 +52,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +67,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,32 +77,33 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      */
     private String description;
 
     /**
      * <p>
-     * The content of the contact flow.
+     * The content of the flow.
      * </p>
      */
     private String content;
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow.
+     * The Amazon Resource Name (ARN) of the flow.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the contact flow.
+     *         The Amazon Resource Name (ARN) of the flow.
      *         </p>
      */
     public String getArn() {
@@ -112,11 +112,11 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow.
+     * The Amazon Resource Name (ARN) of the flow.
      * </p>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the contact flow.
+     *            The Amazon Resource Name (ARN) of the flow.
      *            </p>
      */
     public void setArn(String arn) {
@@ -125,14 +125,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the contact flow.
+     * The Amazon Resource Name (ARN) of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN) of the contact flow.
+     *            The Amazon Resource Name (ARN) of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,14 +144,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow.
+     *         The identifier of the flow.
      *         </p>
      */
     public String getId() {
@@ -160,14 +160,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      */
     public void setId(String id) {
@@ -176,7 +176,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -186,7 +186,7 @@ public class ContactFlow implements Serializable {
      * <b>Length: </b> - 500<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -198,14 +198,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The name of the contact flow.
+     *         The name of the flow.
      *         </p>
      */
     public String getName() {
@@ -214,14 +214,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            The name of the flow.
      *            </p>
      */
     public void setName(String name) {
@@ -230,7 +230,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow.
+     * The name of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,7 +240,7 @@ public class ContactFlow implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
-     *            The name of the contact flow.
+     *            The name of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -252,11 +252,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -265,11 +264,11 @@ public class ContactFlow implements Serializable {
      * AGENT_TRANSFER, QUEUE_TRANSFER
      *
      * @return <p>
-     *         The type of the contact flow. For descriptions of the available
-     *         types, see <a href=
+     *         The type of the flow. For descriptions of the available types,
+     *         see <a href=
      *         "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     *         >Choose a Contact Flow Type</a> in the <i>Amazon Connect
-     *         Administrator Guide</i>.
+     *         >Choose a flow type</a> in the <i>Amazon Connect Administrator
+     *         Guide</i>.
      *         </p>
      * @see ContactFlowType
      */
@@ -279,11 +278,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -292,11 +290,11 @@ public class ContactFlow implements Serializable {
      * AGENT_TRANSFER, QUEUE_TRANSFER
      *
      * @param type <p>
-     *            The type of the contact flow. For descriptions of the
-     *            available types, see <a href=
+     *            The type of the flow. For descriptions of the available types,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     *            >Choose a Contact Flow Type</a> in the <i>Amazon Connect
-     *            Administrator Guide</i>.
+     *            >Choose a flow type</a> in the <i>Amazon Connect Administrator
+     *            Guide</i>.
      *            </p>
      * @see ContactFlowType
      */
@@ -306,11 +304,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -322,11 +319,11 @@ public class ContactFlow implements Serializable {
      * AGENT_TRANSFER, QUEUE_TRANSFER
      *
      * @param type <p>
-     *            The type of the contact flow. For descriptions of the
-     *            available types, see <a href=
+     *            The type of the flow. For descriptions of the available types,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     *            >Choose a Contact Flow Type</a> in the <i>Amazon Connect
-     *            Administrator Guide</i>.
+     *            >Choose a flow type</a> in the <i>Amazon Connect Administrator
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -339,11 +336,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -352,11 +348,11 @@ public class ContactFlow implements Serializable {
      * AGENT_TRANSFER, QUEUE_TRANSFER
      *
      * @param type <p>
-     *            The type of the contact flow. For descriptions of the
-     *            available types, see <a href=
+     *            The type of the flow. For descriptions of the available types,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     *            >Choose a Contact Flow Type</a> in the <i>Amazon Connect
-     *            Administrator Guide</i>.
+     *            >Choose a flow type</a> in the <i>Amazon Connect Administrator
+     *            Guide</i>.
      *            </p>
      * @see ContactFlowType
      */
@@ -366,11 +362,10 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of the contact flow. For descriptions of the available types,
-     * see <a href=
+     * The type of the flow. For descriptions of the available types, see <a
+     * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     * >Choose a Contact Flow Type</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * >Choose a flow type</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -382,11 +377,11 @@ public class ContactFlow implements Serializable {
      * AGENT_TRANSFER, QUEUE_TRANSFER
      *
      * @param type <p>
-     *            The type of the contact flow. For descriptions of the
-     *            available types, see <a href=
+     *            The type of the flow. For descriptions of the available types,
+     *            see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types"
-     *            >Choose a Contact Flow Type</a> in the <i>Amazon Connect
-     *            Administrator Guide</i>.
+     *            >Choose a flow type</a> in the <i>Amazon Connect Administrator
+     *            Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -399,14 +394,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The type of contact flow.
+     *         The type of flow.
      *         </p>
      * @see ContactFlowState
      */
@@ -416,14 +411,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @see ContactFlowState
      */
@@ -433,7 +428,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -443,7 +438,7 @@ public class ContactFlow implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -456,14 +451,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @see ContactFlowState
      */
@@ -473,7 +468,7 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -483,7 +478,7 @@ public class ContactFlow implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -496,11 +491,11 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @return <p>
-     *         The description of the contact flow.
+     *         The description of the flow.
      *         </p>
      */
     public String getDescription() {
@@ -509,11 +504,11 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      */
     public void setDescription(String description) {
@@ -522,14 +517,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow.
+     * The description of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param description <p>
-     *            The description of the contact flow.
+     *            The description of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -541,11 +536,11 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow.
+     * The content of the flow.
      * </p>
      *
      * @return <p>
-     *         The content of the contact flow.
+     *         The content of the flow.
      *         </p>
      */
     public String getContent() {
@@ -554,11 +549,11 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow.
+     * The content of the flow.
      * </p>
      *
      * @param content <p>
-     *            The content of the contact flow.
+     *            The content of the flow.
      *            </p>
      */
     public void setContent(String content) {
@@ -567,14 +562,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow.
+     * The content of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param content <p>
-     *            The content of the contact flow.
+     *            The content of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -586,11 +581,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
-     *         One or more tags.
+     *         The tags used to organize, track, or control access for this
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -599,11 +597,14 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -612,14 +613,17 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -631,7 +635,8 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

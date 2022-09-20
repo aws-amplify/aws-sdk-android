@@ -37,6 +37,26 @@ class ReferenceSummaryJsonMarshaller {
             jsonWriter.name("Attachment");
             AttachmentReferenceJsonMarshaller.getInstance().marshall(attachment, jsonWriter);
         }
+        if (referenceSummary.getString() != null) {
+            StringReference stringValue = referenceSummary.getString();
+            jsonWriter.name("String");
+            StringReferenceJsonMarshaller.getInstance().marshall(stringValue, jsonWriter);
+        }
+        if (referenceSummary.getNumber() != null) {
+            NumberReference number = referenceSummary.getNumber();
+            jsonWriter.name("Number");
+            NumberReferenceJsonMarshaller.getInstance().marshall(number, jsonWriter);
+        }
+        if (referenceSummary.getDate() != null) {
+            DateReference dateValue = referenceSummary.getDate();
+            jsonWriter.name("Date");
+            DateReferenceJsonMarshaller.getInstance().marshall(dateValue, jsonWriter);
+        }
+        if (referenceSummary.getEmail() != null) {
+            EmailReference email = referenceSummary.getEmail();
+            jsonWriter.name("Email");
+            EmailReferenceJsonMarshaller.getInstance().marshall(email, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

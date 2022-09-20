@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about a contact flow module.
+ * Contains information about a flow module.
  * </p>
  */
 public class ContactFlowModule implements Serializable {
@@ -32,7 +32,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +42,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +53,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +63,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,7 +74,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,7 +84,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,6 +95,7 @@ public class ContactFlowModule implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -146,14 +147,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getId() {
@@ -162,14 +163,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setId(String id) {
@@ -178,7 +179,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -188,7 +189,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -200,7 +201,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -208,7 +209,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The name of the contact flow module.
+     *         The name of the flow module.
      *         </p>
      */
     public String getName() {
@@ -217,7 +218,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -225,7 +226,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      */
     public void setName(String name) {
@@ -234,7 +235,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The name of the contact flow module.
+     * The name of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -245,7 +246,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param name <p>
-     *            The name of the contact flow module.
+     *            The name of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -257,14 +258,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @return <p>
-     *         The content of the contact flow module.
+     *         The content of the flow module.
      *         </p>
      */
     public String getContent() {
@@ -273,14 +274,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      */
     public void setContent(String content) {
@@ -289,7 +290,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The content of the contact flow module.
+     * The content of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -299,7 +300,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the contact flow module.
+     *            The content of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -311,7 +312,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -319,7 +320,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The description of the contact flow module.
+     *         The description of the flow module.
      *         </p>
      */
     public String getDescription() {
@@ -328,7 +329,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -336,7 +337,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      */
     public void setDescription(String description) {
@@ -345,7 +346,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The description of the contact flow module.
+     * The description of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -356,7 +357,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param description <p>
-     *            The description of the contact flow module.
+     *            The description of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -368,14 +369,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The type of contact flow module.
+     *         The type of flow module.
      *         </p>
      * @see ContactFlowModuleState
      */
@@ -385,14 +386,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -402,7 +403,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -412,7 +413,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -425,14 +426,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -442,7 +443,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The type of contact flow module.
+     * The type of flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -452,7 +453,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param state <p>
-     *            The type of contact flow module.
+     *            The type of flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -465,14 +466,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUBLISHED, SAVED
      *
      * @return <p>
-     *         The status of the contact flow module.
+     *         The status of the flow module.
      *         </p>
      * @see ContactFlowModuleStatus
      */
@@ -482,14 +483,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUBLISHED, SAVED
      *
      * @param status <p>
-     *            The status of the contact flow module.
+     *            The status of the flow module.
      *            </p>
      * @see ContactFlowModuleStatus
      */
@@ -499,7 +500,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -509,7 +510,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Allowed Values: </b>PUBLISHED, SAVED
      *
      * @param status <p>
-     *            The status of the contact flow module.
+     *            The status of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -522,14 +523,14 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUBLISHED, SAVED
      *
      * @param status <p>
-     *            The status of the contact flow module.
+     *            The status of the flow module.
      *            </p>
      * @see ContactFlowModuleStatus
      */
@@ -539,7 +540,7 @@ public class ContactFlowModule implements Serializable {
 
     /**
      * <p>
-     * The status of the contact flow module.
+     * The status of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -549,7 +550,7 @@ public class ContactFlowModule implements Serializable {
      * <b>Allowed Values: </b>PUBLISHED, SAVED
      *
      * @param status <p>
-     *            The status of the contact flow module.
+     *            The status of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -563,11 +564,13 @@ public class ContactFlowModule implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource.
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -577,11 +580,13 @@ public class ContactFlowModule implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -591,6 +596,7 @@ public class ContactFlowModule implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -598,7 +604,8 @@ public class ContactFlowModule implements Serializable {
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource.
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -611,6 +618,7 @@ public class ContactFlowModule implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListContactFlowModulesResult implements Serializable {
     /**
      * <p>
-     * Information about the contact flow module.
+     * Information about the flow module.
      * </p>
      */
     private java.util.List<ContactFlowModuleSummary> contactFlowModulesSummaryList;
@@ -35,11 +35,11 @@ public class ListContactFlowModulesResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow module.
+     * Information about the flow module.
      * </p>
      *
      * @return <p>
-     *         Information about the contact flow module.
+     *         Information about the flow module.
      *         </p>
      */
     public java.util.List<ContactFlowModuleSummary> getContactFlowModulesSummaryList() {
@@ -48,11 +48,11 @@ public class ListContactFlowModulesResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow module.
+     * Information about the flow module.
      * </p>
      *
      * @param contactFlowModulesSummaryList <p>
-     *            Information about the contact flow module.
+     *            Information about the flow module.
      *            </p>
      */
     public void setContactFlowModulesSummaryList(
@@ -68,14 +68,14 @@ public class ListContactFlowModulesResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow module.
+     * Information about the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowModulesSummaryList <p>
-     *            Information about the contact flow module.
+     *            Information about the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,14 +94,14 @@ public class ListContactFlowModulesResult implements Serializable {
 
     /**
      * <p>
-     * Information about the contact flow module.
+     * Information about the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowModulesSummaryList <p>
-     *            Information about the contact flow module.
+     *            Information about the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
