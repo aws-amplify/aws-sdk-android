@@ -24,7 +24,11 @@ import java.util.Map;
 public enum ReferenceType {
 
     URL("URL"),
-    ATTACHMENT("ATTACHMENT");
+    ATTACHMENT("ATTACHMENT"),
+    NUMBER("NUMBER"),
+    STRING("STRING"),
+    DATE("DATE"),
+    EMAIL("EMAIL");
 
     private String value;
 
@@ -42,6 +46,10 @@ public enum ReferenceType {
         enumMap = new HashMap<String, ReferenceType>();
         enumMap.put("URL", URL);
         enumMap.put("ATTACHMENT", ATTACHMENT);
+        enumMap.put("NUMBER", NUMBER);
+        enumMap.put("STRING", STRING);
+        enumMap.put("DATE", DATE);
+        enumMap.put("EMAIL", EMAIL);
     }
 
     /**

@@ -21,18 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides information about the contact flows for the specified Amazon Connect
+ * Provides information about the flows for the specified Amazon Connect
  * instance.
  * </p>
  * <p>
- * You can also create and update contact flows using the <a href=
+ * You can also create and update flows using the <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
  * >Amazon Connect Flow language</a>.
  * </p>
  * <p>
- * For more information about contact flows, see <a href=
+ * For more information about flows, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
- * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
+ * >Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
  * </p>
  */
 public class ListContactFlowsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -49,7 +49,7 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      */
     private java.util.List<String> contactFlowTypes;
@@ -65,7 +65,8 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,11 +136,11 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      *
      * @return <p>
-     *         The type of contact flow.
+     *         The type of flow.
      *         </p>
      */
     public java.util.List<String> getContactFlowTypes() {
@@ -148,11 +149,11 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      *
      * @param contactFlowTypes <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      */
     public void setContactFlowTypes(java.util.Collection<String> contactFlowTypes) {
@@ -166,14 +167,14 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowTypes <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -190,14 +191,14 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The type of contact flow.
+     * The type of flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param contactFlowTypes <p>
-     *            The type of contact flow.
+     *            The type of flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -267,14 +268,16 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         The maximum number of results to return per page.
+     *         The maximum number of results to return per page. The default
+     *         MaxResult size is 100.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -283,14 +286,16 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     *            The maximum number of results to return per page. The default
+     *            MaxResult size is 100.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -299,7 +304,8 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The maximum number of results to return per page. The default MaxResult
+     * size is 100.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -309,7 +315,8 @@ public class ListContactFlowsRequest extends AmazonWebServiceRequest implements 
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     *            The maximum number of results to return per page. The default
+     *            MaxResult size is 100.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

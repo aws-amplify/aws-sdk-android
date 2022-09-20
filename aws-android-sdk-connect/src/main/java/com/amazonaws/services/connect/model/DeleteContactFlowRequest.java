@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a contact flow for the specified Amazon Connect instance.
+ * Deletes a flow for the specified Amazon Connect instance.
  * </p>
  */
 public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -108,14 +108,14 @@ public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow.
+     *         The identifier of the flow.
      *         </p>
      */
     public String getContactFlowId() {
@@ -124,14 +124,14 @@ public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      */
     public void setContactFlowId(String contactFlowId) {
@@ -140,7 +140,7 @@ public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -150,7 +150,7 @@ public class DeleteContactFlowRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

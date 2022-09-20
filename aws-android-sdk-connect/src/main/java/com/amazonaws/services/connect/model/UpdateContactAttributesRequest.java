@@ -36,19 +36,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Contact attributes are available in Amazon Connect for 24 months, and are
- * then deleted. For information about CTR retention and the maximum size of the
- * CTR attributes section, see <a href=
+ * then deleted. For information about contact record retention and the maximum
+ * size of the contact record attributes section, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
  * >Feature specifications</a> in the <i>Amazon Connect Administrator Guide</i>.
- * </p>
- * <p>
- * <b>Important:</b> You cannot use the operation to update attributes for
- * contacts that occurred prior to the release of the API, which was September
- * 12, 2018. You can update attributes only for contacts that started after the
- * release of the API. If you attempt to update attributes for a contact that
- * occurred prior to the release of the API, a 400 error is returned. This
- * applies also to queued callbacks that were initiated prior to the release of
- * the API but are still active in your instance.
  * </p>
  */
 public class UpdateContactAttributesRequest extends AmazonWebServiceRequest implements Serializable {
@@ -76,8 +67,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The Amazon Connect attributes. These attributes can be accessed in
-     * contact flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in flows
+     * just like any other contact attributes.
      * </p>
      * <p>
      * You can have up to 32,768 UTF-8 bytes across all attributes for a
@@ -212,8 +203,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The Amazon Connect attributes. These attributes can be accessed in
-     * contact flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in flows
+     * just like any other contact attributes.
      * </p>
      * <p>
      * You can have up to 32,768 UTF-8 bytes across all attributes for a
@@ -223,7 +214,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         The Amazon Connect attributes. These attributes can be accessed
-     *         in contact flows just like any other contact attributes.
+     *         in flows just like any other contact attributes.
      *         </p>
      *         <p>
      *         You can have up to 32,768 UTF-8 bytes across all attributes for a
@@ -237,8 +228,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The Amazon Connect attributes. These attributes can be accessed in
-     * contact flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in flows
+     * just like any other contact attributes.
      * </p>
      * <p>
      * You can have up to 32,768 UTF-8 bytes across all attributes for a
@@ -248,8 +239,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *
      * @param attributes <p>
      *            The Amazon Connect attributes. These attributes can be
-     *            accessed in contact flows just like any other contact
-     *            attributes.
+     *            accessed in flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            You can have up to 32,768 UTF-8 bytes across all attributes
@@ -263,8 +253,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The Amazon Connect attributes. These attributes can be accessed in
-     * contact flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in flows
+     * just like any other contact attributes.
      * </p>
      * <p>
      * You can have up to 32,768 UTF-8 bytes across all attributes for a
@@ -277,8 +267,7 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      *
      * @param attributes <p>
      *            The Amazon Connect attributes. These attributes can be
-     *            accessed in contact flows just like any other contact
-     *            attributes.
+     *            accessed in flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            You can have up to 32,768 UTF-8 bytes across all attributes
@@ -295,8 +284,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The Amazon Connect attributes. These attributes can be accessed in
-     * contact flows just like any other contact attributes.
+     * The Amazon Connect attributes. These attributes can be accessed in flows
+     * just like any other contact attributes.
      * </p>
      * <p>
      * You can have up to 32,768 UTF-8 bytes across all attributes for a
