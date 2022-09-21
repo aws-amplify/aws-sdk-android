@@ -22,14 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Inspects text for named entities, and returns information about them. For
- * more information, about named entities, see <a>how-entities</a>.
+ * more information, about named entities, see <a
+ * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
+ * >Entities</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,16 +83,14 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         A UTF-8 text string. Each string must contain fewer that 5,000
-     *         bytes of UTF-8 encoded characters.
+     *         A UTF-8 text string. The maximum string size is 100 KB.
      *         </p>
      */
     public String getText() {
@@ -100,16 +99,14 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. Each string must contain fewer that 5,000
-     *            bytes of UTF-8 encoded characters.
+     *            A UTF-8 text string. The maximum string size is 100 KB.
      *            </p>
      */
     public void setText(String text) {
@@ -118,8 +115,7 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -129,8 +125,7 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. Each string must contain fewer that 5,000
-     *            bytes of UTF-8 encoded characters.
+     *            A UTF-8 text string. The maximum string size is 100 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

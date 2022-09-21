@@ -22,8 +22,9 @@ import java.io.Serializable;
  * The input properties for training a document classifier.
  * </p>
  * <p>
- * For more information on how the input file is formatted, see
- * <a>prep-classifier-data</a>.
+ * For more information on how the input file is formatted, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/prep-classifier-data.html"
+ * >Preparing training data</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class DocumentClassifierInputDataConfig implements Serializable {
@@ -89,10 +90,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
-     * same AWS Region as the API endpoint that you are calling. The URI can
-     * point to a single input file or it can provide the prefix for a
-     * collection of input files.
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -628,10 +628,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
-     * same AWS Region as the API endpoint that you are calling. The URI can
-     * point to a single input file or it can provide the prefix for a
-     * collection of input files.
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -639,10 +638,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @return <p>
-     *         The Amazon S3 URI for the input data. The Amazon S3 bucket must
-     *         be in the same AWS Region as the API endpoint that you are
-     *         calling. The URI can point to a single input file or it can
-     *         provide the prefix for a collection of input files.
+     *         This specifies the Amazon S3 location where the test annotations
+     *         for an entity recognizer are located. The URI must be in the same
+     *         AWS Region as the API endpoint that you are calling.
      *         </p>
      */
     public String getTestS3Uri() {
@@ -651,10 +649,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
-     * same AWS Region as the API endpoint that you are calling. The URI can
-     * point to a single input file or it can provide the prefix for a
-     * collection of input files.
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -662,10 +659,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param testS3Uri <p>
-     *            The Amazon S3 URI for the input data. The Amazon S3 bucket
-     *            must be in the same AWS Region as the API endpoint that you
-     *            are calling. The URI can point to a single input file or it
-     *            can provide the prefix for a collection of input files.
+     *            This specifies the Amazon S3 location where the test
+     *            annotations for an entity recognizer are located. The URI must
+     *            be in the same AWS Region as the API endpoint that you are
+     *            calling.
      *            </p>
      */
     public void setTestS3Uri(String testS3Uri) {
@@ -674,10 +671,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
-     * same AWS Region as the API endpoint that you are calling. The URI can
-     * point to a single input file or it can provide the prefix for a
-     * collection of input files.
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -688,10 +684,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param testS3Uri <p>
-     *            The Amazon S3 URI for the input data. The Amazon S3 bucket
-     *            must be in the same AWS Region as the API endpoint that you
-     *            are calling. The URI can point to a single input file or it
-     *            can provide the prefix for a collection of input files.
+     *            This specifies the Amazon S3 location where the test
+     *            annotations for an entity recognizer are located. The URI must
+     *            be in the same AWS Region as the API endpoint that you are
+     *            calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

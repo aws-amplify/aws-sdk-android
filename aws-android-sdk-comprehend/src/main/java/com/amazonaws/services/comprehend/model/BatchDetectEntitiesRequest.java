@@ -22,16 +22,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Inspects the text of a batch of documents for named entities and returns
- * information about them. For more information about named entities, see
- * <a>how-entities</a>
+ * information about them. For more information about named entities, see <a
+ * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html">
+ * Entities</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer than 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size of each document
+     * is 5 KB.
      * </p>
      */
     private java.util.List<String> textList;
@@ -50,15 +51,15 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer than 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size of each document
+     * is 5 KB.
      * </p>
      *
      * @return <p>
-     *         A list containing the text of the input documents. The list can
-     *         contain a maximum of 25 documents. Each document must contain
-     *         fewer than 5,000 bytes of UTF-8 encoded characters.
+     *         A list containing the UTF-8 encoded text of the input documents.
+     *         The list can contain a maximum of 25 documents. The maximum size
+     *         of each document is 5 KB.
      *         </p>
      */
     public java.util.List<String> getTextList() {
@@ -67,15 +68,15 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer than 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size of each document
+     * is 5 KB.
      * </p>
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size of each document is 5 KB.
      *            </p>
      */
     public void setTextList(java.util.Collection<String> textList) {
@@ -89,18 +90,18 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer than 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size of each document
+     * is 5 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size of each document is 5 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,18 +118,18 @@ public class BatchDetectEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer than 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size of each document
+     * is 5 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer than 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size of each document is 5 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

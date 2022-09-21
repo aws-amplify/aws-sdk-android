@@ -21,14 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Inspects the input text for entities that contain personally identifiable
- * information (PII) and returns information about them.
+ * Inspects the input text and returns a sentiment analysis for each entity
+ * identified in the text.
+ * </p>
+ * <p>
+ * For more information about targeted sentiment, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+ * >Targeted sentiment</a>.
  * </p>
  */
-public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements Serializable {
+public class DetectTargetedSentimentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A UTF-8 text string. The maximum string size is 100 KB.
+     * A UTF-8 text string. The maximum string length is 5 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,8 +43,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,14 +54,14 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A UTF-8 text string. The maximum string size is 100 KB.
+     * A UTF-8 text string. The maximum string length is 5 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         A UTF-8 text string. The maximum string size is 100 KB.
+     *         A UTF-8 text string. The maximum string length is 5 KB.
      *         </p>
      */
     public String getText() {
@@ -65,14 +70,14 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A UTF-8 text string. The maximum string size is 100 KB.
+     * A UTF-8 text string. The maximum string length is 5 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. The maximum string size is 100 KB.
+     *            A UTF-8 text string. The maximum string length is 5 KB.
      *            </p>
      */
     public void setText(String text) {
@@ -81,7 +86,7 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A UTF-8 text string. The maximum string size is 100 KB.
+     * A UTF-8 text string. The maximum string length is 5 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -91,20 +96,20 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. The maximum string size is 100 KB.
+     *            A UTF-8 text string. The maximum string length is 5 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DetectPiiEntitiesRequest withText(String text) {
+    public DetectTargetedSentimentRequest withText(String text) {
         this.text = text;
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -112,7 +117,7 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         The language of the input documents. Currently, English is the
-     *         only valid language.
+     *         only supported language.
      *         </p>
      * @see LanguageCode
      */
@@ -122,8 +127,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +136,7 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -141,8 +146,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,21 +158,21 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public DetectPiiEntitiesRequest withLanguageCode(String languageCode) {
+    public DetectTargetedSentimentRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,7 +180,7 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -185,8 +190,8 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -197,13 +202,13 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public DetectPiiEntitiesRequest withLanguageCode(LanguageCode languageCode) {
+    public DetectTargetedSentimentRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
@@ -245,9 +250,9 @@ public class DetectPiiEntitiesRequest extends AmazonWebServiceRequest implements
         if (obj == null)
             return false;
 
-        if (obj instanceof DetectPiiEntitiesRequest == false)
+        if (obj instanceof DetectTargetedSentimentRequest == false)
             return false;
-        DetectPiiEntitiesRequest other = (DetectPiiEntitiesRequest) obj;
+        DetectTargetedSentimentRequest other = (DetectTargetedSentimentRequest) obj;
 
         if (other.getText() == null ^ this.getText() == null)
             return false;

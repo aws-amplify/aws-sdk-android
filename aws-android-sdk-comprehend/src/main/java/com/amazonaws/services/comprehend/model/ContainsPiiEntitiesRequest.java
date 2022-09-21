@@ -29,9 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, returning personally identifiable information
-     * (PII) entity labels.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,18 +50,14 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, returning personally identifiable information
-     * (PII) entity labels.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         Creates a new document classification request to analyze a single
-     *         document in real-time, returning personally identifiable
-     *         information (PII) entity labels.
+     *         A UTF-8 text string. The maximum string size is 100 KB.
      *         </p>
      */
     public String getText() {
@@ -72,18 +66,14 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, returning personally identifiable information
-     * (PII) entity labels.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            Creates a new document classification request to analyze a
-     *            single document in real-time, returning personally
-     *            identifiable information (PII) entity labels.
+     *            A UTF-8 text string. The maximum string size is 100 KB.
      *            </p>
      */
     public void setText(String text) {
@@ -92,9 +82,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, returning personally identifiable information
-     * (PII) entity labels.
+     * A UTF-8 text string. The maximum string size is 100 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,9 +92,7 @@ public class ContainsPiiEntitiesRequest extends AmazonWebServiceRequest implemen
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            Creates a new document classification request to analyze a
-     *            single document in real-time, returning personally
-     *            identifiable information (PII) entity labels.
+     *            A UTF-8 text string. The maximum string size is 100 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

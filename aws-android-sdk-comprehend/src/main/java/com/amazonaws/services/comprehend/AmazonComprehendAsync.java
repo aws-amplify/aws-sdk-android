@@ -98,8 +98,10 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects the text of a batch of documents for named entities and returns
-     * information about them. For more information about named entities, see
-     * <a>how-entities</a>
+     * information about them. For more information about named entities, see <a
+     * href
+     * ="https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html">
+     * Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectEntitiesRequest
@@ -126,8 +128,10 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects the text of a batch of documents for named entities and returns
-     * information about them. For more information about named entities, see
-     * <a>how-entities</a>
+     * information about them. For more information about named entities, see <a
+     * href
+     * ="https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html">
+     * Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectEntitiesRequest
@@ -278,7 +282,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * <p>
      * Inspects the text of a batch of documents for the syntax and part of
      * speech of the words in the document and returns information about them.
-     * For more information, see <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectSyntaxRequest
@@ -306,7 +312,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * <p>
      * Inspects the text of a batch of documents for the syntax and part of
      * speech of the words in the document and returns information about them.
-     * For more information, see <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectSyntaxRequest
@@ -333,6 +341,75 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<BatchDetectSyntaxResult> batchDetectSyntaxAsync(
             BatchDetectSyntaxRequest batchDetectSyntaxRequest,
             AsyncHandler<BatchDetectSyntaxRequest, BatchDetectSyntaxResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects a batch of documents and returns a sentiment analysis for each
+     * entity identified in the documents.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param batchDetectTargetedSentimentRequest
+     * @return A Java Future object containing the response from the
+     *         BatchDetectTargetedSentiment service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws BatchSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<BatchDetectTargetedSentimentResult> batchDetectTargetedSentimentAsync(
+            BatchDetectTargetedSentimentRequest batchDetectTargetedSentimentRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects a batch of documents and returns a sentiment analysis for each
+     * entity identified in the documents.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param batchDetectTargetedSentimentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         BatchDetectTargetedSentiment service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws BatchSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<BatchDetectTargetedSentimentResult> batchDetectTargetedSentimentAsync(
+            BatchDetectTargetedSentimentRequest batchDetectTargetedSentimentRequest,
+            AsyncHandler<BatchDetectTargetedSentimentRequest, BatchDetectTargetedSentimentResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -459,8 +536,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * documents. To create a classifier, you provide a set of training
      * documents that labeled with the categories that you want to use. After
      * the classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories. For more information, see
-     * <a>how-document-classification</a>.
+     * documents into the categories. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Document Classification</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -493,8 +571,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * documents. To create a classifier, you provide a set of training
      * documents that labeled with the categories that you want to use. After
      * the classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories. For more information, see
-     * <a>how-document-classification</a>.
+     * documents into the categories. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Document Classification</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -1739,7 +1818,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects text for named entities, and returns information about them. For
-     * more information, about named entities, see <a>how-entities</a>.
+     * more information, about named entities, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
+     * >Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -1764,7 +1845,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects text for named entities, and returns information about them. For
-     * more information, about named entities, see <a>how-entities</a>.
+     * more information, about named entities, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
+     * >Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -1962,7 +2045,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects text for syntax and the part of speech of words in the document.
-     * For more information, <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectSyntaxRequest
@@ -1986,7 +2071,9 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     /**
      * <p>
      * Inspects text for syntax and the part of speech of words in the document.
-     * For more information, <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectSyntaxRequest
@@ -2010,6 +2097,73 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      */
     Future<DetectSyntaxResult> detectSyntaxAsync(DetectSyntaxRequest detectSyntaxRequest,
             AsyncHandler<DetectSyntaxRequest, DetectSyntaxResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects the input text and returns a sentiment analysis for each entity
+     * identified in the text.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param detectTargetedSentimentRequest
+     * @return A Java Future object containing the response from the
+     *         DetectTargetedSentiment service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DetectTargetedSentimentResult> detectTargetedSentimentAsync(
+            DetectTargetedSentimentRequest detectTargetedSentimentRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Inspects the input text and returns a sentiment analysis for each entity
+     * identified in the text.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param detectTargetedSentimentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DetectTargetedSentiment service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DetectTargetedSentimentResult> detectTargetedSentimentAsync(
+            DetectTargetedSentimentRequest detectTargetedSentimentRequest,
+            AsyncHandler<DetectTargetedSentimentRequest, DetectTargetedSentimentResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

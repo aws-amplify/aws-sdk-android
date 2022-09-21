@@ -56,22 +56,16 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity begins
-     * (the first character is at position 0). The offset returns the position
-     * of each UTF-8 code point in the string. A <i>code point</i> is the
-     * abstract character from a particular graphical representation. For
-     * example, a multi-byte UTF-8 character maps to a single code point.
+     * The zero-based offset from the beginning of the source text to the first
+     * character in the entity.
      * </p>
      */
     private Integer beginOffset;
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity ends.
-     * The offset returns the position of each UTF-8 code point in the string. A
-     * <i>code point</i> is the abstract character from a particular graphical
-     * representation. For example, a multi-byte UTF-8 character maps to a
-     * single code point.
+     * The zero-based offset from the beginning of the source text to the last
+     * character in the entity.
      * </p>
      */
     private Integer endOffset;
@@ -285,20 +279,13 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity begins
-     * (the first character is at position 0). The offset returns the position
-     * of each UTF-8 code point in the string. A <i>code point</i> is the
-     * abstract character from a particular graphical representation. For
-     * example, a multi-byte UTF-8 character maps to a single code point.
+     * The zero-based offset from the beginning of the source text to the first
+     * character in the entity.
      * </p>
      *
      * @return <p>
-     *         A character offset in the input text that shows where the entity
-     *         begins (the first character is at position 0). The offset returns
-     *         the position of each UTF-8 code point in the string. A <i>code
-     *         point</i> is the abstract character from a particular graphical
-     *         representation. For example, a multi-byte UTF-8 character maps to
-     *         a single code point.
+     *         The zero-based offset from the beginning of the source text to
+     *         the first character in the entity.
      *         </p>
      */
     public Integer getBeginOffset() {
@@ -307,20 +294,13 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity begins
-     * (the first character is at position 0). The offset returns the position
-     * of each UTF-8 code point in the string. A <i>code point</i> is the
-     * abstract character from a particular graphical representation. For
-     * example, a multi-byte UTF-8 character maps to a single code point.
+     * The zero-based offset from the beginning of the source text to the first
+     * character in the entity.
      * </p>
      *
      * @param beginOffset <p>
-     *            A character offset in the input text that shows where the
-     *            entity begins (the first character is at position 0). The
-     *            offset returns the position of each UTF-8 code point in the
-     *            string. A <i>code point</i> is the abstract character from a
-     *            particular graphical representation. For example, a multi-byte
-     *            UTF-8 character maps to a single code point.
+     *            The zero-based offset from the beginning of the source text to
+     *            the first character in the entity.
      *            </p>
      */
     public void setBeginOffset(Integer beginOffset) {
@@ -329,23 +309,16 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity begins
-     * (the first character is at position 0). The offset returns the position
-     * of each UTF-8 code point in the string. A <i>code point</i> is the
-     * abstract character from a particular graphical representation. For
-     * example, a multi-byte UTF-8 character maps to a single code point.
+     * The zero-based offset from the beginning of the source text to the first
+     * character in the entity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param beginOffset <p>
-     *            A character offset in the input text that shows where the
-     *            entity begins (the first character is at position 0). The
-     *            offset returns the position of each UTF-8 code point in the
-     *            string. A <i>code point</i> is the abstract character from a
-     *            particular graphical representation. For example, a multi-byte
-     *            UTF-8 character maps to a single code point.
+     *            The zero-based offset from the beginning of the source text to
+     *            the first character in the entity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -357,19 +330,13 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity ends.
-     * The offset returns the position of each UTF-8 code point in the string. A
-     * <i>code point</i> is the abstract character from a particular graphical
-     * representation. For example, a multi-byte UTF-8 character maps to a
-     * single code point.
+     * The zero-based offset from the beginning of the source text to the last
+     * character in the entity.
      * </p>
      *
      * @return <p>
-     *         A character offset in the input text that shows where the entity
-     *         ends. The offset returns the position of each UTF-8 code point in
-     *         the string. A <i>code point</i> is the abstract character from a
-     *         particular graphical representation. For example, a multi-byte
-     *         UTF-8 character maps to a single code point.
+     *         The zero-based offset from the beginning of the source text to
+     *         the last character in the entity.
      *         </p>
      */
     public Integer getEndOffset() {
@@ -378,20 +345,13 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity ends.
-     * The offset returns the position of each UTF-8 code point in the string. A
-     * <i>code point</i> is the abstract character from a particular graphical
-     * representation. For example, a multi-byte UTF-8 character maps to a
-     * single code point.
+     * The zero-based offset from the beginning of the source text to the last
+     * character in the entity.
      * </p>
      *
      * @param endOffset <p>
-     *            A character offset in the input text that shows where the
-     *            entity ends. The offset returns the position of each UTF-8
-     *            code point in the string. A <i>code point</i> is the abstract
-     *            character from a particular graphical representation. For
-     *            example, a multi-byte UTF-8 character maps to a single code
-     *            point.
+     *            The zero-based offset from the beginning of the source text to
+     *            the last character in the entity.
      *            </p>
      */
     public void setEndOffset(Integer endOffset) {
@@ -400,23 +360,16 @@ public class Entity implements Serializable {
 
     /**
      * <p>
-     * A character offset in the input text that shows where the entity ends.
-     * The offset returns the position of each UTF-8 code point in the string. A
-     * <i>code point</i> is the abstract character from a particular graphical
-     * representation. For example, a multi-byte UTF-8 character maps to a
-     * single code point.
+     * The zero-based offset from the beginning of the source text to the last
+     * character in the entity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endOffset <p>
-     *            A character offset in the input text that shows where the
-     *            entity ends. The offset returns the position of each UTF-8
-     *            code point in the string. A <i>code point</i> is the abstract
-     *            character from a particular graphical representation. For
-     *            example, a multi-byte UTF-8 character maps to a single code
-     *            point.
+     *            The zero-based offset from the beginning of the source text to
+     *            the last character in the entity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

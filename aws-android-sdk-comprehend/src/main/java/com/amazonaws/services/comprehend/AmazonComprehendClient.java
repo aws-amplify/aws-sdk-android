@@ -422,8 +422,10 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Inspects the text of a batch of documents for named entities and returns
-     * information about them. For more information about named entities, see
-     * <a>how-entities</a>
+     * information about them. For more information about named entities, see <a
+     * href
+     * ="https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html">
+     * Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectEntitiesRequest
@@ -586,7 +588,9 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * <p>
      * Inspects the text of a batch of documents for the syntax and part of
      * speech of the words in the document and returns information about them.
-     * For more information, see <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param batchDetectSyntaxRequest
@@ -625,6 +629,65 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<BatchDetectSyntaxResult, JsonUnmarshallerContext> unmarshaller = new BatchDetectSyntaxResultJsonUnmarshaller();
             JsonResponseHandler<BatchDetectSyntaxResult> responseHandler = new JsonResponseHandler<BatchDetectSyntaxResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Inspects a batch of documents and returns a sentiment analysis for each
+     * entity identified in the documents.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param batchDetectTargetedSentimentRequest
+     * @return batchDetectTargetedSentimentResult The response from the
+     *         BatchDetectTargetedSentiment service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws BatchSizeLimitExceededException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public BatchDetectTargetedSentimentResult batchDetectTargetedSentiment(
+            BatchDetectTargetedSentimentRequest batchDetectTargetedSentimentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchDetectTargetedSentimentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchDetectTargetedSentimentRequest> request = null;
+        Response<BatchDetectTargetedSentimentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchDetectTargetedSentimentRequestMarshaller()
+                        .marshall(batchDetectTargetedSentimentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchDetectTargetedSentimentResult, JsonUnmarshallerContext> unmarshaller = new BatchDetectTargetedSentimentResultJsonUnmarshaller();
+            JsonResponseHandler<BatchDetectTargetedSentimentResult> responseHandler = new JsonResponseHandler<BatchDetectTargetedSentimentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -747,8 +810,9 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * documents. To create a classifier, you provide a set of training
      * documents that labeled with the categories that you want to use. After
      * the classifier is trained you can use it to categorize a set of labeled
-     * documents into the categories. For more information, see
-     * <a>how-document-classification</a>.
+     * documents into the categories. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Document Classification</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param createDocumentClassifierRequest
@@ -1895,7 +1959,9 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Inspects text for named entities, and returns information about them. For
-     * more information, about named entities, see <a>how-entities</a>.
+     * more information, about named entities, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
+     * >Entities</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -2098,7 +2164,9 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Inspects text for syntax and the part of speech of words in the document.
-     * For more information, <a>how-syntax</a>.
+     * For more information, see <a
+     * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+     * >Syntax</a> in the Comprehend Developer Guide.
      * </p>
      * 
      * @param detectSyntaxRequest
@@ -2134,6 +2202,64 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<DetectSyntaxResult, JsonUnmarshallerContext> unmarshaller = new DetectSyntaxResultJsonUnmarshaller();
             JsonResponseHandler<DetectSyntaxResult> responseHandler = new JsonResponseHandler<DetectSyntaxResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Inspects the input text and returns a sentiment analysis for each entity
+     * identified in the text.
+     * </p>
+     * <p>
+     * For more information about targeted sentiment, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+     * >Targeted sentiment</a>.
+     * </p>
+     * 
+     * @param detectTargetedSentimentRequest
+     * @return detectTargetedSentimentResult The response from the
+     *         DetectTargetedSentiment service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DetectTargetedSentimentResult detectTargetedSentiment(
+            DetectTargetedSentimentRequest detectTargetedSentimentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(detectTargetedSentimentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DetectTargetedSentimentRequest> request = null;
+        Response<DetectTargetedSentimentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DetectTargetedSentimentRequestMarshaller()
+                        .marshall(detectTargetedSentimentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DetectTargetedSentimentResult, JsonUnmarshallerContext> unmarshaller = new DetectTargetedSentimentResultJsonUnmarshaller();
+            JsonResponseHandler<DetectTargetedSentimentResult> responseHandler = new JsonResponseHandler<DetectTargetedSentimentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
