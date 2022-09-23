@@ -306,12 +306,16 @@ abstract class NotificationClientBase {
                 notificationChannelClass = Class.forName("android.app.NotificationChannel"); //API Level 26
             }
             if (!buildMethodsByReflection()) {
+                // make sure that we don't try to use the notificationBuilderClass
+                notificationBuilderClass = null;
                 // fall back to creating the legacy notification.
                 return false;
             }
             return true;
         } catch (final ClassNotFoundException ex) {
             log.debug("Failed to get notification builder classes by reflection : " + ex.getMessage(), ex);
+            // make sure that we don't try to use the notificationBuilderClass
+            notificationBuilderClass = null;
             return false;
         }
     }
@@ -398,6 +402,9 @@ abstract class NotificationClientBase {
             return false;
         } catch (final NoSuchMethodException ex) {
             log.debug("Failed to get notification channel method getId by reflection. : " + ex.getMessage(), ex);
+            return false;
+        } catch (final NullPointerException ex) {
+            log.debug("Reflected methods not successfully created. :" + ex.getMessage(), ex);
             return false;
         }
     }
@@ -588,6 +595,10 @@ abstract class NotificationClientBase {
         } catch (final InstantiationException ex) {
             log.debug("Exception while instantiating notification builder or bigTextStyle or bigPictureStyle classes. : " + ex.getMessage(),
                       ex);
+            return createLegacyNotification(iconResId, title, contentText, contentIntent);
+        } catch (final NullPointerException ex) {
+            log.debug("Reflected methods not successfully created. : " + ex.getMessage(),
+                    ex);
             return createLegacyNotification(iconResId, title, contentText, contentIntent);
         }
 
