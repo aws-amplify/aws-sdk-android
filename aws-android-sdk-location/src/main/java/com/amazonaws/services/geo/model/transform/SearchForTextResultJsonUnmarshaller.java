@@ -42,6 +42,9 @@ class SearchForTextResultJsonUnmarshaller implements
             } else if (name.equals("Place")) {
                 searchForTextResult.setPlace(PlaceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PlaceId")) {
+                searchForTextResult.setPlaceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Relevance")) {
                 searchForTextResult.setRelevance(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));

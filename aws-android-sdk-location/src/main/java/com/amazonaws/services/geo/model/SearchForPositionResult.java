@@ -50,6 +50,21 @@ public class SearchForPositionResult implements Serializable {
 
     /**
      * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForPosition</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     */
+    private String placeId;
+
+    /**
+     * <p>
      * The distance in meters of a great-circle arc between the query position
      * and the result.
      * </p>
@@ -196,6 +211,99 @@ public class SearchForPositionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForPosition</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         The unique identifier of the place. You can use this with the
+     *         <code>GetPlace</code> operation to find the place again later.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         For <code>SearchPlaceIndexForPosition</code> operations, the
+     *         <code>PlaceId</code> is returned only by place indexes that use
+     *         HERE as a data provider.
+     *         </p>
+     *         </note>
+     */
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForPosition</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForPosition</code> operations, the
+     *            <code>PlaceId</code> is returned only by place indexes that
+     *            use HERE as a data provider.
+     *            </p>
+     *            </note>
+     */
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForPosition</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForPosition</code> operations, the
+     *            <code>PlaceId</code> is returned only by place indexes that
+     *            use HERE as a data provider.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForPositionResult withPlaceId(String placeId) {
+        this.placeId = placeId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -209,7 +317,9 @@ public class SearchForPositionResult implements Serializable {
         if (getDistance() != null)
             sb.append("Distance: " + getDistance() + ",");
         if (getPlace() != null)
-            sb.append("Place: " + getPlace());
+            sb.append("Place: " + getPlace() + ",");
+        if (getPlaceId() != null)
+            sb.append("PlaceId: " + getPlaceId());
         sb.append("}");
         return sb.toString();
     }
@@ -221,6 +331,7 @@ public class SearchForPositionResult implements Serializable {
 
         hashCode = prime * hashCode + ((getDistance() == null) ? 0 : getDistance().hashCode());
         hashCode = prime * hashCode + ((getPlace() == null) ? 0 : getPlace().hashCode());
+        hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
         return hashCode;
     }
 
@@ -242,6 +353,10 @@ public class SearchForPositionResult implements Serializable {
         if (other.getPlace() == null ^ this.getPlace() == null)
             return false;
         if (other.getPlace() != null && other.getPlace().equals(this.getPlace()) == false)
+            return false;
+        if (other.getPlaceId() == null ^ this.getPlaceId() == null)
+            return false;
+        if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
             return false;
         return true;
     }

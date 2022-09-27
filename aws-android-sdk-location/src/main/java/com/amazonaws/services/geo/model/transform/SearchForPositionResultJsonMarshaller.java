@@ -37,6 +37,11 @@ class SearchForPositionResultJsonMarshaller {
             jsonWriter.name("Place");
             PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
         }
+        if (searchForPositionResult.getPlaceId() != null) {
+            String placeId = searchForPositionResult.getPlaceId();
+            jsonWriter.name("PlaceId");
+            jsonWriter.value(placeId);
+        }
         jsonWriter.endObject();
     }
 

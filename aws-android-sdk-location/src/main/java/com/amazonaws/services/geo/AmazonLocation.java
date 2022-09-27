@@ -1190,6 +1190,54 @@ public interface AmazonLocation {
 
     /**
      * <p>
+     * Finds a place by its unique ID. A <code>PlaceId</code> is returned by
+     * other search operations.
+     * </p>
+     * <note>
+     * <p>
+     * A PlaceId is valid only if all of the following are the same in the
+     * original search request and the call to <code>GetPlace</code>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Customer AWS account
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * AWS Region
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Data provider specified in the place index resource
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param getPlaceRequest
+     * @return getPlaceResult The response from the GetPlace service method, as
+     *         returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    GetPlaceResult getPlace(GetPlaceRequest getPlaceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * A batch request to retrieve all device positions.
      * </p>
      * 

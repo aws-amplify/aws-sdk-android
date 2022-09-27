@@ -21,43 +21,35 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SearchForPositionResult
+ * JSON unmarshaller for response GetPlaceResult
  */
-class SearchForPositionResultJsonUnmarshaller implements
-        Unmarshaller<SearchForPositionResult, JsonUnmarshallerContext> {
+public class GetPlaceResultJsonUnmarshaller implements
+        Unmarshaller<GetPlaceResult, JsonUnmarshallerContext> {
 
-    public SearchForPositionResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public GetPlaceResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        GetPlaceResult getPlaceResult = new GetPlaceResult();
+
         AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-        SearchForPositionResult searchForPositionResult = new SearchForPositionResult();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Distance")) {
-                searchForPositionResult.setDistance(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Place")) {
-                searchForPositionResult.setPlace(PlaceJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("PlaceId")) {
-                searchForPositionResult.setPlaceId(StringJsonUnmarshaller.getInstance()
+            if (name.equals("Place")) {
+                getPlaceResult.setPlace(PlaceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return searchForPositionResult;
+
+        return getPlaceResult;
     }
 
-    private static SearchForPositionResultJsonUnmarshaller instance;
+    private static GetPlaceResultJsonUnmarshaller instance;
 
-    public static SearchForPositionResultJsonUnmarshaller getInstance() {
+    public static GetPlaceResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonUnmarshaller();
+            instance = new GetPlaceResultJsonUnmarshaller();
         return instance;
     }
 }
