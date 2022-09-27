@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about a queue for a quick connect. The contact flow must
- * be of type Transfer to Queue.
+ * Contains information about a queue for a quick connect. The flow must be of
+ * type Transfer to Queue.
  * </p>
  */
 public class QueueQuickConnectConfig implements Serializable {
@@ -33,7 +33,7 @@ public class QueueQuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -88,14 +88,14 @@ public class QueueQuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow.
+     *         The identifier of the flow.
      *         </p>
      */
     public String getContactFlowId() {
@@ -104,14 +104,14 @@ public class QueueQuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      */
     public void setContactFlowId(String contactFlowId) {
@@ -120,7 +120,7 @@ public class QueueQuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the contact flow.
+     * The identifier of the flow.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -130,7 +130,7 @@ public class QueueQuickConnectConfig implements Serializable {
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow.
+     *            The identifier of the flow.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
