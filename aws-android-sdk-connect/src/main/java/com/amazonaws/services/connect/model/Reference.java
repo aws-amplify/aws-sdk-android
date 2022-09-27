@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A link that an agent selects to complete a given task. You can have up to
- * 4,096 UTF-8 bytes across all references for a contact.
+ * Well-formed data on a contact, used by agents to complete a contact request.
+ * You can have up to 4,096 UTF-8 bytes across all references for a contact.
  * </p>
  */
 public class Reference implements Serializable {
@@ -38,12 +38,11 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      */
     private String type;
 
@@ -115,16 +114,14 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @return <p>
-     *         The type of the reference. Only <code>URL</code> type can be
-     *         added or updated on a contact.
+     *         The type of the reference.
      *         </p>
      * @see ReferenceType
      */
@@ -134,16 +131,14 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference. Only <code>URL</code> type can be
-     *            added or updated on a contact.
+     *            The type of the reference.
      *            </p>
      * @see ReferenceType
      */
@@ -153,19 +148,17 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference. Only <code>URL</code> type can be
-     *            added or updated on a contact.
+     *            The type of the reference.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,16 +171,14 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference. Only <code>URL</code> type can be
-     *            added or updated on a contact.
+     *            The type of the reference.
      *            </p>
      * @see ReferenceType
      */
@@ -197,19 +188,17 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference. Only <code>URL</code> type can be added or
-     * updated on a contact.
+     * The type of the reference.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL, ATTACHMENT
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference. Only <code>URL</code> type can be
-     *            added or updated on a contact.
+     *            The type of the reference.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

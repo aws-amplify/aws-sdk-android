@@ -21,6 +21,14 @@ import java.io.Serializable;
  * <p>
  * The search criteria to be used to return users.
  * </p>
+ * <note>
+ * <p>
+ * The <code>Username</code>, <code>Firstname</code>, and <code>Lastname</code>
+ * fields support "contains" queries with a minimum of 2 characters and a
+ * maximum of 25 characters. Any queries with character lengths outside of this
+ * range result in empty results.
+ * </p>
+ * </note>
  */
 public class UserSearchCriteria implements Serializable {
     /**

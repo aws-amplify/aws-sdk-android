@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about the attachment reference if the <code>referenceType</code>
- * is <code>ATTACHMENT</code>. Otherwise, null.
+ * Information about a reference when the <code>referenceType</code> is
+ * <code>ATTACHMENT</code>. Otherwise, null.
  * </p>
  */
 public class AttachmentReference implements Serializable {
@@ -36,7 +36,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Contains the location path of the attachment reference.
+     * The location path of the attachment reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -110,14 +110,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Contains the location path of the attachment reference.
+     * The location path of the attachment reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
-     *         Contains the location path of the attachment reference.
+     *         The location path of the attachment reference.
      *         </p>
      */
     public String getValue() {
@@ -126,14 +126,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Contains the location path of the attachment reference.
+     * The location path of the attachment reference.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            Contains the location path of the attachment reference.
+     *            The location path of the attachment reference.
      *            </p>
      */
     public void setValue(String value) {
@@ -142,7 +142,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Contains the location path of the attachment reference.
+     * The location path of the attachment reference.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,7 +152,7 @@ public class AttachmentReference implements Serializable {
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            Contains the location path of the attachment reference.
+     *            The location path of the attachment reference.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -164,14 +164,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>APPROVED, REJECTED
      *
      * @return <p>
-     *         Status of an attachment reference type.
+     *         Status of the attachment reference type.
      *         </p>
      * @see ReferenceStatus
      */
@@ -181,14 +181,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>APPROVED, REJECTED
      *
      * @param status <p>
-     *            Status of an attachment reference type.
+     *            Status of the attachment reference type.
      *            </p>
      * @see ReferenceStatus
      */
@@ -198,7 +198,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -208,7 +208,7 @@ public class AttachmentReference implements Serializable {
      * <b>Allowed Values: </b>APPROVED, REJECTED
      *
      * @param status <p>
-     *            Status of an attachment reference type.
+     *            Status of the attachment reference type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -221,14 +221,14 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>APPROVED, REJECTED
      *
      * @param status <p>
-     *            Status of an attachment reference type.
+     *            Status of the attachment reference type.
      *            </p>
      * @see ReferenceStatus
      */
@@ -238,7 +238,7 @@ public class AttachmentReference implements Serializable {
 
     /**
      * <p>
-     * Status of an attachment reference type.
+     * Status of the attachment reference type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -248,7 +248,7 @@ public class AttachmentReference implements Serializable {
      * <b>Allowed Values: </b>APPROVED, REJECTED
      *
      * @param status <p>
-     *            Status of an attachment reference type.
+     *            Status of the attachment reference type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
