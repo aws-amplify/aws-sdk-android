@@ -37,6 +37,11 @@ class SearchForTextResultJsonMarshaller {
             jsonWriter.name("Place");
             PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
         }
+        if (searchForTextResult.getPlaceId() != null) {
+            String placeId = searchForTextResult.getPlaceId();
+            jsonWriter.name("PlaceId");
+            jsonWriter.value(placeId);
+        }
         if (searchForTextResult.getRelevance() != null) {
             Double relevance = searchForTextResult.getRelevance();
             jsonWriter.name("Relevance");

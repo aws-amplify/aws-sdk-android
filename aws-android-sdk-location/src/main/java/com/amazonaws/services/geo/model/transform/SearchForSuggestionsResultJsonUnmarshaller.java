@@ -36,7 +36,10 @@ class SearchForSuggestionsResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Text")) {
+            if (name.equals("PlaceId")) {
+                searchForSuggestionsResult.setPlaceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Text")) {
                 searchForSuggestionsResult.setText(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {

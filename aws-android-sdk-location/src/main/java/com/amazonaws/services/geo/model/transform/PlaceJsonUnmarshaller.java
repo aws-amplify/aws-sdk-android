@@ -71,6 +71,12 @@ class PlaceJsonUnmarshaller implements Unmarshaller<Place, JsonUnmarshallerConte
             } else if (name.equals("TimeZone")) {
                 place.setTimeZone(TimeZoneJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UnitNumber")) {
+                place.setUnitNumber(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UnitType")) {
+                place.setUnitType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

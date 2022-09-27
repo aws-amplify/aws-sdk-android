@@ -51,6 +51,21 @@ public class SearchForTextResult implements Serializable {
 
     /**
      * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForText</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     */
+    private String placeId;
+
+    /**
+     * <p>
      * The relative confidence in the match for a result among the results
      * returned. For example, if more fields for an address match (including
      * house number, street, city, country/region, and postal code), the
@@ -222,6 +237,99 @@ public class SearchForTextResult implements Serializable {
 
     /**
      * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForText</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         The unique identifier of the place. You can use this with the
+     *         <code>GetPlace</code> operation to find the place again later.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         For <code>SearchPlaceIndexForText</code> operations, the
+     *         <code>PlaceId</code> is returned only by place indexes that use
+     *         HERE as a data provider.
+     *         </p>
+     *         </note>
+     */
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForText</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForText</code> operations, the
+     *            <code>PlaceId</code> is returned only by place indexes that
+     *            use HERE as a data provider.
+     *            </p>
+     *            </note>
+     */
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForText</code> operations, the
+     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
+     * data provider.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForText</code> operations, the
+     *            <code>PlaceId</code> is returned only by place indexes that
+     *            use HERE as a data provider.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForTextResult withPlaceId(String placeId) {
+        this.placeId = placeId;
+        return this;
+    }
+
+    /**
+     * <p>
      * The relative confidence in the match for a result among the results
      * returned. For example, if more fields for an address match (including
      * house number, street, city, country/region, and postal code), the
@@ -325,6 +433,8 @@ public class SearchForTextResult implements Serializable {
             sb.append("Distance: " + getDistance() + ",");
         if (getPlace() != null)
             sb.append("Place: " + getPlace() + ",");
+        if (getPlaceId() != null)
+            sb.append("PlaceId: " + getPlaceId() + ",");
         if (getRelevance() != null)
             sb.append("Relevance: " + getRelevance());
         sb.append("}");
@@ -338,6 +448,7 @@ public class SearchForTextResult implements Serializable {
 
         hashCode = prime * hashCode + ((getDistance() == null) ? 0 : getDistance().hashCode());
         hashCode = prime * hashCode + ((getPlace() == null) ? 0 : getPlace().hashCode());
+        hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
         hashCode = prime * hashCode + ((getRelevance() == null) ? 0 : getRelevance().hashCode());
         return hashCode;
     }
@@ -360,6 +471,10 @@ public class SearchForTextResult implements Serializable {
         if (other.getPlace() == null ^ this.getPlace() == null)
             return false;
         if (other.getPlace() != null && other.getPlace().equals(this.getPlace()) == false)
+            return false;
+        if (other.getPlaceId() == null ^ this.getPlaceId() == null)
+            return false;
+        if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
             return false;
         if (other.getRelevance() == null ^ this.getRelevance() == null)
             return false;

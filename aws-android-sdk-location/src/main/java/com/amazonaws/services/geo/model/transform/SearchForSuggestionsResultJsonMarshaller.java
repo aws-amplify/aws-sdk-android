@@ -27,6 +27,11 @@ class SearchForSuggestionsResultJsonMarshaller {
     public void marshall(SearchForSuggestionsResult searchForSuggestionsResult,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (searchForSuggestionsResult.getPlaceId() != null) {
+            String placeId = searchForSuggestionsResult.getPlaceId();
+            jsonWriter.name("PlaceId");
+            jsonWriter.value(placeId);
+        }
         if (searchForSuggestionsResult.getText() != null) {
             String text = searchForSuggestionsResult.getText();
             jsonWriter.name("Text");
