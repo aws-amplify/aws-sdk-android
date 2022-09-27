@@ -23,15 +23,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Inspects the text of a batch of documents for the syntax and part of speech
  * of the words in the document and returns information about them. For more
- * information, see <a>how-syntax</a>.
+ * information, see <a
+ * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+ * >Syntax</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size for each document
+     * is 5 KB.
      * </p>
      */
     private java.util.List<String> textList;
@@ -51,15 +53,15 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size for each document
+     * is 5 KB.
      * </p>
      *
      * @return <p>
-     *         A list containing the text of the input documents. The list can
-     *         contain a maximum of 25 documents. Each document must contain
-     *         fewer that 5,000 bytes of UTF-8 encoded characters.
+     *         A list containing the UTF-8 encoded text of the input documents.
+     *         The list can contain a maximum of 25 documents. The maximum size
+     *         for each document is 5 KB.
      *         </p>
      */
     public java.util.List<String> getTextList() {
@@ -68,15 +70,15 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size for each document
+     * is 5 KB.
      * </p>
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size for each document is 5 KB.
      *            </p>
      */
     public void setTextList(java.util.Collection<String> textList) {
@@ -90,18 +92,18 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size for each document
+     * is 5 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size for each document is 5 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -118,18 +120,18 @@ public class BatchDetectSyntaxRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * A list containing the text of the input documents. The list can contain a
-     * maximum of 25 documents. Each document must contain fewer that 5,000
-     * bytes of UTF-8 encoded characters.
+     * A list containing the UTF-8 encoded text of the input documents. The list
+     * can contain a maximum of 25 documents. The maximum size for each document
+     * is 5 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param textList <p>
-     *            A list containing the text of the input documents. The list
-     *            can contain a maximum of 25 documents. Each document must
-     *            contain fewer that 5,000 bytes of UTF-8 encoded characters.
+     *            A list containing the UTF-8 encoded text of the input
+     *            documents. The list can contain a maximum of 25 documents. The
+     *            maximum size for each document is 5 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

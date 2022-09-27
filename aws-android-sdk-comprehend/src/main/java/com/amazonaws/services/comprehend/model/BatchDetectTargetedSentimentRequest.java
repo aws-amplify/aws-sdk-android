@@ -21,10 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Detects the key noun phrases found in a batch of documents.
+ * Inspects a batch of documents and returns a sentiment analysis for each
+ * entity identified in the documents.
+ * </p>
+ * <p>
+ * For more information about targeted sentiment, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
+ * >Targeted sentiment</a>.
  * </p>
  */
-public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implements Serializable {
+public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
      * A list containing the UTF-8 encoded text of the input documents. The list
@@ -36,9 +43,8 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,7 +109,7 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public BatchDetectKeyPhrasesRequest withTextList(String... textList) {
+    public BatchDetectTargetedSentimentRequest withTextList(String... textList) {
         if (getTextList() == null) {
             this.textList = new java.util.ArrayList<String>(textList.length);
         }
@@ -131,25 +137,23 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public BatchDetectKeyPhrasesRequest withTextList(java.util.Collection<String> textList) {
+    public BatchDetectTargetedSentimentRequest withTextList(java.util.Collection<String> textList) {
         setTextList(textList);
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents. You can specify any of the
-     *         primary languages supported by Amazon Comprehend. All documents
-     *         must be in the same language.
+     *         The language of the input documents. Currently, English is the
+     *         only supported language.
      *         </p>
      * @see LanguageCode
      */
@@ -159,18 +163,16 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -180,9 +182,8 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -192,33 +193,30 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public BatchDetectKeyPhrasesRequest withLanguageCode(String languageCode) {
+    public BatchDetectTargetedSentimentRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -228,9 +226,8 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the primary
-     * languages supported by Amazon Comprehend. All documents must be in the
-     * same language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,15 +237,14 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. You can specify any of
-     *            the primary languages supported by Amazon Comprehend. All
-     *            documents must be in the same language.
+     *            The language of the input documents. Currently, English is the
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public BatchDetectKeyPhrasesRequest withLanguageCode(LanguageCode languageCode) {
+    public BatchDetectTargetedSentimentRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
@@ -290,9 +286,9 @@ public class BatchDetectKeyPhrasesRequest extends AmazonWebServiceRequest implem
         if (obj == null)
             return false;
 
-        if (obj instanceof BatchDetectKeyPhrasesRequest == false)
+        if (obj instanceof BatchDetectTargetedSentimentRequest == false)
             return false;
-        BatchDetectKeyPhrasesRequest other = (BatchDetectKeyPhrasesRequest) obj;
+        BatchDetectTargetedSentimentRequest other = (BatchDetectTargetedSentimentRequest) obj;
 
         if (other.getTextList() == null ^ this.getTextList() == null)
             return false;

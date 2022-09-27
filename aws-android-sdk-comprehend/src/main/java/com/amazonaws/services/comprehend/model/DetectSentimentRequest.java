@@ -29,9 +29,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DetectSentimentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Comprehend performs real-time sentiment analysis on the first 500
+     * characters of the input text and ignores any additional text in the
+     * input.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -52,17 +58,29 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Comprehend performs real-time sentiment analysis on the first 500
+     * characters of the input text and ignores any additional text in the
+     * input.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         A UTF-8 text string. Each string must contain fewer that 5,000
-     *         bytes of UTF-8 encoded characters.
+     *         A UTF-8 text string. The maximum string size is 5 KB.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Amazon Comprehend performs real-time sentiment analysis on the
+     *         first 500 characters of the input text and ignores any additional
+     *         text in the input.
+     *         </p>
+     *         </note>
      */
     public String getText() {
         return text;
@@ -70,17 +88,29 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Comprehend performs real-time sentiment analysis on the first 500
+     * characters of the input text and ignores any additional text in the
+     * input.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. Each string must contain fewer that 5,000
-     *            bytes of UTF-8 encoded characters.
+     *            A UTF-8 text string. The maximum string size is 5 KB.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon Comprehend performs real-time sentiment analysis on the
+     *            first 500 characters of the input text and ignores any
+     *            additional text in the input.
+     *            </p>
+     *            </note>
      */
     public void setText(String text) {
         this.text = text;
@@ -88,9 +118,15 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A UTF-8 text string. Each string must contain fewer that 5,000 bytes of
-     * UTF-8 encoded characters.
+     * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Comprehend performs real-time sentiment analysis on the first 500
+     * characters of the input text and ignores any additional text in the
+     * input.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -99,9 +135,15 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            A UTF-8 text string. Each string must contain fewer that 5,000
-     *            bytes of UTF-8 encoded characters.
+     *            A UTF-8 text string. The maximum string size is 5 KB.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon Comprehend performs real-time sentiment analysis on the
+     *            first 500 characters of the input text and ignores any
+     *            additional text in the input.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

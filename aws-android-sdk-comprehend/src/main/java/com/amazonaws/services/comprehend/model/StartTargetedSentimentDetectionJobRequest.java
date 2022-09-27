@@ -69,8 +69,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -369,8 +369,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -378,7 +378,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *
      * @return <p>
      *         The language of the input documents. Currently, English is the
-     *         only valid language.
+     *         only supported language.
      *         </p>
      * @see LanguageCode
      */
@@ -388,8 +388,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -397,7 +397,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -407,8 +407,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -419,7 +419,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -432,8 +432,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -441,7 +441,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -451,8 +451,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only valid
-     * language.
+     * The language of the input documents. Currently, English is the only
+     * supported language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -463,7 +463,7 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      *
      * @param languageCode <p>
      *            The language of the input documents. Currently, English is the
-     *            only valid language.
+     *            only supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
