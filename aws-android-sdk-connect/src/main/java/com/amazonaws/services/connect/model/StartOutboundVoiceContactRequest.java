@@ -21,15 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Places an outbound call to a contact, and then initiates the contact flow. It
- * performs the actions in the contact flow that's specified (in
+ * Places an outbound call to a contact, and then initiates the flow. It
+ * performs the actions in the flow that's specified (in
  * <code>ContactFlowId</code>).
  * </p>
  * <p>
  * Agents do not initiate the outbound API, which means that they do not dial
- * the contact. If the contact flow places an outbound call to a contact, and
- * then puts the contact in queue, the call is then routed to the agent, like
- * any other inbound case.
+ * the contact. If the flow places an outbound call to a contact, and then puts
+ * the contact in queue, the call is then routed to the agent, like any other
+ * inbound case.
  * </p>
  * <p>
  * There is a 60-second dialing timeout for this operation. If the call is not
@@ -48,10 +48,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Campaign calls are not allowed by default. Before you can make a call with
  * <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service
- * quota increase request. For more information, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
- * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
- * Guide</i>.
+ * quota increase request to the quota <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#outbound-communications-quotas"
+ * >Amazon Connect campaigns</a>.
  * </p>
  * </note>
  */
@@ -69,12 +68,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call. To see the
+     * The identifier of the flow for the outbound call. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -125,8 +124,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The queue for the call. If you specify a queue, the phone displayed for
      * caller ID is the phone number specified in the queue. If you do not
-     * specify a queue, the queue defined in the contact flow is used. If you do
-     * not specify a queue, you must specify a source phone number.
+     * specify a queue, the queue defined in the flow is used. If you do not
+     * specify a queue, you must specify a source phone number.
      * </p>
      */
     private String queueId;
@@ -134,8 +133,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes, and can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -232,12 +231,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call. To see the
+     * The identifier of the flow for the outbound call. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -248,13 +247,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <b>Length: </b> - 500<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow for the outbound call. To see
-     *         the ContactFlowId in the Amazon Connect console user interface,
-     *         on the navigation menu go to <b>Routing</b>, <b>Contact
-     *         Flows</b>. Choose the contact flow. On the contact flow page,
-     *         under the name of the contact flow, choose <b>Show additional
-     *         flow information</b>. The ContactFlowId is the last part of the
-     *         ARN, shown here in bold:
+     *         The identifier of the flow for the outbound call. To see the
+     *         ContactFlowId in the Amazon Connect console user interface, on
+     *         the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *         Choose the flow. On the flow page, under the name of the flow,
+     *         choose <b>Show additional flow information</b>. The ContactFlowId
+     *         is the last part of the ARN, shown here in bold:
      *         </p>
      *         <p>
      *         arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -268,12 +266,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call. To see the
+     * The identifier of the flow for the outbound call. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -284,13 +282,13 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for the outbound call. To
-     *            see the ContactFlowId in the Amazon Connect console user
-     *            interface, on the navigation menu go to <b>Routing</b>,
-     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
-     *            flow page, under the name of the contact flow, choose <b>Show
-     *            additional flow information</b>. The ContactFlowId is the last
-     *            part of the ARN, shown here in bold:
+     *            The identifier of the flow for the outbound call. To see the
+     *            ContactFlowId in the Amazon Connect console user interface, on
+     *            the navigation menu go to <b>Routing</b>, <b>Contact
+     *            Flows</b>. Choose the flow. On the flow page, under the name
+     *            of the flow, choose <b>Show additional flow information</b>.
+     *            The ContactFlowId is the last part of the ARN, shown here in
+     *            bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -304,12 +302,12 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow for the outbound call. To see the
+     * The identifier of the flow for the outbound call. To see the
      * ContactFlowId in the Amazon Connect console user interface, on the
      * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * contact flow. On the contact flow page, under the name of the contact
-     * flow, choose <b>Show additional flow information</b>. The ContactFlowId
-     * is the last part of the ARN, shown here in bold:
+     * flow. On the flow page, under the name of the flow, choose <b>Show
+     * additional flow information</b>. The ContactFlowId is the last part of
+     * the ARN, shown here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -323,13 +321,13 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <b>Length: </b> - 500<br/>
      *
      * @param contactFlowId <p>
-     *            The identifier of the contact flow for the outbound call. To
-     *            see the ContactFlowId in the Amazon Connect console user
-     *            interface, on the navigation menu go to <b>Routing</b>,
-     *            <b>Contact Flows</b>. Choose the contact flow. On the contact
-     *            flow page, under the name of the contact flow, choose <b>Show
-     *            additional flow information</b>. The ContactFlowId is the last
-     *            part of the ARN, shown here in bold:
+     *            The identifier of the flow for the outbound call. To see the
+     *            ContactFlowId in the Amazon Connect console user interface, on
+     *            the navigation menu go to <b>Routing</b>, <b>Contact
+     *            Flows</b>. Choose the flow. On the flow page, under the name
+     *            of the flow, choose <b>Show additional flow information</b>.
+     *            The ContactFlowId is the last part of the ARN, shown here in
+     *            bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -543,16 +541,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The queue for the call. If you specify a queue, the phone displayed for
      * caller ID is the phone number specified in the queue. If you do not
-     * specify a queue, the queue defined in the contact flow is used. If you do
-     * not specify a queue, you must specify a source phone number.
+     * specify a queue, the queue defined in the flow is used. If you do not
+     * specify a queue, you must specify a source phone number.
      * </p>
      *
      * @return <p>
      *         The queue for the call. If you specify a queue, the phone
      *         displayed for caller ID is the phone number specified in the
      *         queue. If you do not specify a queue, the queue defined in the
-     *         contact flow is used. If you do not specify a queue, you must
-     *         specify a source phone number.
+     *         flow is used. If you do not specify a queue, you must specify a
+     *         source phone number.
      *         </p>
      */
     public String getQueueId() {
@@ -563,16 +561,16 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The queue for the call. If you specify a queue, the phone displayed for
      * caller ID is the phone number specified in the queue. If you do not
-     * specify a queue, the queue defined in the contact flow is used. If you do
-     * not specify a queue, you must specify a source phone number.
+     * specify a queue, the queue defined in the flow is used. If you do not
+     * specify a queue, you must specify a source phone number.
      * </p>
      *
      * @param queueId <p>
      *            The queue for the call. If you specify a queue, the phone
      *            displayed for caller ID is the phone number specified in the
      *            queue. If you do not specify a queue, the queue defined in the
-     *            contact flow is used. If you do not specify a queue, you must
-     *            specify a source phone number.
+     *            flow is used. If you do not specify a queue, you must specify
+     *            a source phone number.
      *            </p>
      */
     public void setQueueId(String queueId) {
@@ -583,8 +581,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * <p>
      * The queue for the call. If you specify a queue, the phone displayed for
      * caller ID is the phone number specified in the queue. If you do not
-     * specify a queue, the queue defined in the contact flow is used. If you do
-     * not specify a queue, you must specify a source phone number.
+     * specify a queue, the queue defined in the flow is used. If you do not
+     * specify a queue, you must specify a source phone number.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -594,8 +592,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *            The queue for the call. If you specify a queue, the phone
      *            displayed for caller ID is the phone number specified in the
      *            queue. If you do not specify a queue, the queue defined in the
-     *            contact flow is used. If you do not specify a queue, you must
-     *            specify a source phone number.
+     *            flow is used. If you do not specify a queue, you must specify
+     *            a source phone number.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -608,8 +606,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes, and can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -620,7 +618,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * @return <p>
      *         A custom key-value pair using an attribute map. The attributes
      *         are standard Amazon Connect attributes, and can be accessed in
-     *         contact flows just like any other contact attributes.
+     *         flows just like any other contact attributes.
      *         </p>
      *         <p>
      *         There can be up to 32,768 UTF-8 bytes across all key-value pairs
@@ -635,8 +633,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes, and can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -647,7 +645,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
      *            are standard Amazon Connect attributes, and can be accessed in
-     *            contact flows just like any other contact attributes.
+     *            flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -662,8 +660,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes, and can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per
@@ -677,7 +675,7 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
      *            are standard Amazon Connect attributes, and can be accessed in
-     *            contact flows just like any other contact attributes.
+     *            flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -695,8 +693,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
-     * just like any other contact attributes.
+     * standard Amazon Connect attributes, and can be accessed in flows just
+     * like any other contact attributes.
      * </p>
      * <p>
      * There can be up to 32,768 UTF-8 bytes across all key-value pairs per

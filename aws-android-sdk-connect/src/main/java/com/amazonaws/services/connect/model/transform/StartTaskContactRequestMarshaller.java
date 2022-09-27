@@ -122,6 +122,16 @@ public class StartTaskContactRequestMarshaller implements
                 jsonWriter.name("ScheduledTime");
                 jsonWriter.value(scheduledTime);
             }
+            if (startTaskContactRequest.getTaskTemplateId() != null) {
+                String taskTemplateId = startTaskContactRequest.getTaskTemplateId();
+                jsonWriter.name("TaskTemplateId");
+                jsonWriter.value(taskTemplateId);
+            }
+            if (startTaskContactRequest.getQuickConnectId() != null) {
+                String quickConnectId = startTaskContactRequest.getQuickConnectId();
+                jsonWriter.name("QuickConnectId");
+                jsonWriter.value(quickConnectId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

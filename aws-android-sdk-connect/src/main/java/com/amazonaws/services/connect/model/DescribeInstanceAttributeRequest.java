@@ -48,7 +48,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      */
     private String attributeType;
 
@@ -120,7 +120,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      *
      * @return <p>
      *         The type of attribute.
@@ -139,7 +139,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      *
      * @param attributeType <p>
      *            The type of attribute.
@@ -161,7 +161,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      *
      * @param attributeType <p>
      *            The type of attribute.
@@ -183,7 +183,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      *
      * @param attributeType <p>
      *            The type of attribute.
@@ -205,7 +205,7 @@ public class DescribeInstanceAttributeRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
      * CONTACT_LENS, AUTO_RESOLVE_BEST_VOICES, USE_CUSTOM_TTS_VOICES,
-     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE
+     * EARLY_MEDIA, MULTI_PARTY_CONFERENCE, HIGH_VOLUME_OUTBOUND
      *
      * @param attributeType <p>
      *            The type of attribute.

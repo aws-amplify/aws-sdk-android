@@ -24,8 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds the specified tags to the specified resource.
  * </p>
  * <p>
- * The supported resource types are users, routing profiles, queues, quick
- * connects, contact flows, agent status, hours of operation, and phone number.
+ * Some of the supported resource types are agents, routing profiles, queues,
+ * quick connects, contact flows, agent statuses, hours of operation, phone
+ * numbers, security profiles, and task templates. For a complete list, see <a
+ * href="https://docs.aws.amazon.com/connect/latest/adminguide/tagging.html">
+ * Tagging resources in Amazon Connect</a>.
  * </p>
  * <p>
  * For sample policies that use tags, see <a href=
@@ -44,8 +47,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags. For example, { "tags": {"key1":"value1",
-     * "key2":"value2"} }.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -97,12 +100,13 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags. For example, { "tags": {"key1":"value1",
-     * "key2":"value2"} }.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
-     *         One or more tags. For example, { "tags": {"key1":"value1",
+     *         The tags used to organize, track, or control access for this
+     *         resource. For example, { "tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -112,12 +116,13 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags. For example, { "tags": {"key1":"value1",
-     * "key2":"value2"} }.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
-     *            One or more tags. For example, { "tags": {"key1":"value1",
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -127,15 +132,16 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags. For example, { "tags": {"key1":"value1",
-     * "key2":"value2"} }.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            One or more tags. For example, { "tags": {"key1":"value1",
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -148,8 +154,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags. For example, { "tags": {"key1":"value1",
-     * "key2":"value2"} }.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into tags parameter, and returns a
