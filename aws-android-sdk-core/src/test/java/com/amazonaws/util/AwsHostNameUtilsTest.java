@@ -95,9 +95,9 @@ public class AwsHostNameUtilsTest {
     }
 
     @Test
-    public void testVpceEndpoint() {
-        assertEquals("eu-central-1", AwsHostNameUtils.parseRegionName(
-                "bucket.vpce-0415caba8c0-i1xu.s3.eu-central-1.vpce.amazonaws.com", "s3"));
+    public void testVpcEndpoint() {
+        assertEquals("us-west-2", AwsHostNameUtils.parseRegionName(
+                "bucket.vpce-1234.s3.us-west-2.vpce.amazonaws.com", "s3"));
     }
 
     @Test
