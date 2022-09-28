@@ -32,6 +32,8 @@ public class AwsHostNameUtils {
 
     private static final Pattern S3_ENDPOINT_PATTERN =
             Pattern.compile("^(?:.+\\.)?s3[.-]([a-z0-9-]+)$");
+    
+    private static final String VPC_NAME = "vpce";
 
     /**
      * @deprecated in favor of {@link #parseRegionName(String, String)}.
@@ -117,8 +119,18 @@ public class AwsHostNameUtils {
             return "us-east-1";
         }
 
-        // host was 'service.[region].amazonaws.com'.
+        // host was 'service.[region].amazonaws.com'. or 'service.[region].vpce.amazonaws.com'
         String region = fragment.substring(index + 1);
+        if (region.equals(VPC_NAME)) {
+            String[] partsOfFragment = fragment.split("\\.");
+            if (partsOfFragment.length >= 2) {
+                // host was 'service.[region].vpce.amazonaws.com'
+                region = partsOfFragment[partsOfFragment.length - 2];
+            } else {
+                // guess us-east-1 for lack of a better option
+                return "us-east-1";
+            }
+        }
 
         // Special case for iam.us-gov.amazonaws.com, which is actually
         // us-gov-west-1.
