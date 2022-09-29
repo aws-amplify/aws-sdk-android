@@ -1,3 +1,18 @@
+## [Release 2.54.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.54.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#3011)
+- **aws-android-sdk-comprehend:** update models to latest (#3013)
+- **aws-android-sdk-location:** update models to latest (#3020)
+
+### Bug Fixes
+- **aws-android-sdk-core:** modify region parsing for endpoints in vpc (#3024)
+
+### Miscellaneous
+- Fix Pinpoint NullPointerException (#3007)
+
+[See all changes between 2.53.0 and 2.54.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.53.0...release_v2.54.0)
+
 ## [Release 2.53.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.53.0)
 
 ### Features
