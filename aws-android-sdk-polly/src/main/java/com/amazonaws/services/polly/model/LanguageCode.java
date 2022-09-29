@@ -55,7 +55,8 @@ public enum LanguageCode {
     EnNZ("en-NZ"),
     EnZA("en-ZA"),
     CaES("ca-ES"),
-    DeAT("de-AT");
+    DeAT("de-AT"),
+    YueCN("yue-CN");
 
     private String value;
 
@@ -104,6 +105,7 @@ public enum LanguageCode {
         enumMap.put("en-ZA", EnZA);
         enumMap.put("ca-ES", CaES);
         enumMap.put("de-AT", DeAT);
+        enumMap.put("yue-CN", YueCN);
     }
 
     /**
