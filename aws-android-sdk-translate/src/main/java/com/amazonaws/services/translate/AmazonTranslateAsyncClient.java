@@ -274,7 +274,9 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws InvalidRequestException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
      * @throws ConflictException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -311,7 +313,9 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws InvalidRequestException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
      * @throws ConflictException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -716,6 +720,8 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws InvalidParameterValueException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -757,6 +763,8 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
      * @throws InvalidParameterValueException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -918,6 +926,67 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(listParallelDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                return listTagsForResource(listTagsForResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * @param listTagsForResourceRequest
+     * @return A Java Future object containing the response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListTagsForResourceResult> listTagsForResourceAsync(
+            final ListTagsForResourceRequest listTagsForResourceRequest,
+            final AsyncHandler<ListTagsForResourceRequest, ListTagsForResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListTagsForResourceResult>() {
+            public ListTagsForResourceResult call() throws Exception {
+                ListTagsForResourceResult result = null;
+                try {
+                    result = listTagsForResource(listTagsForResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listTagsForResourceRequest, result);
                 return result;
             }
         });
@@ -1262,6 +1331,67 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
     }
 
     /**
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                return tagResource(tagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * @param tagResourceRequest
+     * @return A Java Future object containing the response from the TagResource
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<TagResourceResult> tagResourceAsync(final TagResourceRequest tagResourceRequest,
+            final AsyncHandler<TagResourceRequest, TagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<TagResourceResult>() {
+            public TagResourceResult call() throws Exception {
+                TagResourceResult result = null;
+                try {
+                    result = tagResource(tagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(tagResourceRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
      * <p>
      * Translates input text from the source language to the target language.
      * For a list of available languages and language codes, see
@@ -1337,6 +1467,67 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(translateTextRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                return untagResource(untagResourceRequest);
+            }
+        });
+    }
+
+    /**
+     * @param untagResourceRequest
+     * @return A Java Future object containing the response from the
+     *         UntagResource service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UntagResourceResult> untagResourceAsync(
+            final UntagResourceRequest untagResourceRequest,
+            final AsyncHandler<UntagResourceRequest, UntagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UntagResourceResult>() {
+            public UntagResourceResult call() throws Exception {
+                UntagResourceResult result = null;
+                try {
+                    result = untagResource(untagResourceRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(untagResourceRequest, result);
                 return result;
             }
         });

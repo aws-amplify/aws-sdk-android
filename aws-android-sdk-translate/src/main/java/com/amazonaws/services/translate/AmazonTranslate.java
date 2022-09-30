@@ -102,7 +102,9 @@ public interface AmazonTranslate {
      * @throws InvalidRequestException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
      * @throws ConflictException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -252,6 +254,8 @@ public interface AmazonTranslate {
      * @throws InvalidParameterValueException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -309,6 +313,26 @@ public interface AmazonTranslate {
      */
     ListParallelDataResult listParallelData(ListParallelDataRequest listParallelDataRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -436,6 +460,26 @@ public interface AmazonTranslate {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
      * <p>
      * Translates input text from the source language to the target language.
      * For a list of available languages and language codes, see
@@ -462,6 +506,25 @@ public interface AmazonTranslate {
      *             request, or a server side issue.
      */
     TranslateTextResult translateText(TranslateTextRequest translateTextRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

@@ -38,21 +38,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateParallelDataRequest
+ * JSON request marshaller for TagResourceRequest
  */
-public class CreateParallelDataRequestMarshaller implements
-        Marshaller<Request<CreateParallelDataRequest>, CreateParallelDataRequest> {
+public class TagResourceRequestMarshaller implements
+        Marshaller<Request<TagResourceRequest>, TagResourceRequest> {
 
-    public Request<CreateParallelDataRequest> marshall(
-            CreateParallelDataRequest createParallelDataRequest) {
-        if (createParallelDataRequest == null) {
+    public Request<TagResourceRequest> marshall(TagResourceRequest tagResourceRequest) {
+        if (tagResourceRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(CreateParallelDataRequest)");
+                    "Invalid argument passed to marshall(TagResourceRequest)");
         }
 
-        Request<CreateParallelDataRequest> request = new DefaultRequest<CreateParallelDataRequest>(
-                createParallelDataRequest, "AmazonTranslate");
-        String target = "AWSShineFrontendService_20170701.CreateParallelData";
+        Request<TagResourceRequest> request = new DefaultRequest<TagResourceRequest>(
+                tagResourceRequest, "AmazonTranslate");
+        String target = "AWSShineFrontendService_20170701.TagResource";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -63,35 +62,13 @@ public class CreateParallelDataRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createParallelDataRequest.getName() != null) {
-                String name = createParallelDataRequest.getName();
-                jsonWriter.name("Name");
-                jsonWriter.value(name);
+            if (tagResourceRequest.getResourceArn() != null) {
+                String resourceArn = tagResourceRequest.getResourceArn();
+                jsonWriter.name("ResourceArn");
+                jsonWriter.value(resourceArn);
             }
-            if (createParallelDataRequest.getDescription() != null) {
-                String description = createParallelDataRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (createParallelDataRequest.getParallelDataConfig() != null) {
-                ParallelDataConfig parallelDataConfig = createParallelDataRequest
-                        .getParallelDataConfig();
-                jsonWriter.name("ParallelDataConfig");
-                ParallelDataConfigJsonMarshaller.getInstance().marshall(parallelDataConfig,
-                        jsonWriter);
-            }
-            if (createParallelDataRequest.getEncryptionKey() != null) {
-                EncryptionKey encryptionKey = createParallelDataRequest.getEncryptionKey();
-                jsonWriter.name("EncryptionKey");
-                EncryptionKeyJsonMarshaller.getInstance().marshall(encryptionKey, jsonWriter);
-            }
-            if (createParallelDataRequest.getClientToken() != null) {
-                String clientToken = createParallelDataRequest.getClientToken();
-                jsonWriter.name("ClientToken");
-                jsonWriter.value(clientToken);
-            }
-            if (createParallelDataRequest.getTags() != null) {
-                java.util.List<Tag> tags = createParallelDataRequest.getTags();
+            if (tagResourceRequest.getTags() != null) {
+                java.util.List<Tag> tags = tagResourceRequest.getTags();
                 jsonWriter.name("Tags");
                 jsonWriter.beginArray();
                 for (Tag tagsItem : tags) {

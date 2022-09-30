@@ -88,6 +88,17 @@ public class ImportTerminologyRequestMarshaller implements
                 jsonWriter.name("EncryptionKey");
                 EncryptionKeyJsonMarshaller.getInstance().marshall(encryptionKey, jsonWriter);
             }
+            if (importTerminologyRequest.getTags() != null) {
+                java.util.List<Tag> tags = importTerminologyRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
