@@ -773,7 +773,8 @@ public class TransferUtility {
         long remainingLenth = file.length();
         double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
-        final long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
+        final long optimalPartSize = (long) Math.max(partSize,
+                transferUtilityOptions.getMinimumUploadPartSize());
         long fileOffset = 0;
         int partNumber = 1;
 
@@ -986,7 +987,7 @@ public class TransferUtility {
     }
 
     private boolean shouldUploadInMultipart(File file) {
-        return (file != null && file.length() > MINIMUM_UPLOAD_PART_SIZE);
+        return (file != null && file.length() > transferUtilityOptions.getMinimumUploadPartSize());
     }
 
     static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(final X request) {

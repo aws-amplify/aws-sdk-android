@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import static com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility.MINIMUM_UPLOAD_PART_SIZE;
+import static com.amazonaws.services.s3.internal.Constants.MB;
+
 import java.io.Serializable;
 
 /**
@@ -65,6 +68,12 @@ public class TransferUtilityOptions implements Serializable {
     private int transferThreadPoolSize;
 
     /**
+     * Minimum part size for upload parts. Anything below this will use a
+     * single upload
+     */
+    private int minimumUploadPartSize;
+
+    /**
      * Type of connection to use for transfers.
      */
     protected TransferNetworkConnectionType transferNetworkConnectionType;
@@ -78,6 +87,7 @@ public class TransferUtilityOptions implements Serializable {
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = getDefaultThreadPoolSize();
         this.transferNetworkConnectionType = getDefaultTransferNetworkConnectionType();
+        this.minimumUploadPartSize = MINIMUM_UPLOAD_PART_SIZE;
     }
 
     /**
@@ -93,6 +103,7 @@ public class TransferUtilityOptions implements Serializable {
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = transferThreadPoolSize;
         this.transferNetworkConnectionType = transferNetworkConnectionType;
+        this.minimumUploadPartSize = MINIMUM_UPLOAD_PART_SIZE;
     }
 
     /**
@@ -160,6 +171,23 @@ public class TransferUtilityOptions implements Serializable {
      */
     static int getDefaultThreadPoolSize() {
         return 2 * (Runtime.getRuntime().availableProcessors() + 1);
+    }
+
+    /**
+     * Retrieve minimum part size for upload parts.
+     * @return the minimum upload part size
+     */
+    public int getMinimumUploadPartSize() {
+        return minimumUploadPartSize;
+    }
+
+    /**
+     * Set the minimum part size for upload parts.
+     * @param minimumUploadPartSize the minimum part size to set. Anything below this value
+     *                              use a single upload
+     */
+    public void setMinimumUploadPartSize(final int minimumUploadPartSize) {
+        this.minimumUploadPartSize = Math.max(minimumUploadPartSize, MINIMUM_UPLOAD_PART_SIZE);
     }
 
     /**
