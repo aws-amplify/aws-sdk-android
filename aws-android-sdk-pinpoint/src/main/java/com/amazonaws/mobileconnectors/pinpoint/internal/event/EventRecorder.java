@@ -15,12 +15,17 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.net.Uri;
 
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -247,7 +252,11 @@ public class EventRecorder {
         submissionRunnableQueue.execute(new Runnable() {
             @Override
             public void run() {
-                processEvents();
+                if (isNetworkAvailable(pinpointContext.getApplicationContext())) {
+                    processEvents();
+                } else {
+                    log.warn("Device is offline, skipping submitting events to Pinpoint");
+                }
             }
         });
     }
@@ -256,7 +265,12 @@ public class EventRecorder {
         return submissionRunnableQueue.submit(new Callable<List<AnalyticsEvent>>() {
             @Override
             public List<AnalyticsEvent> call() throws Exception {
-                return processEvents();
+                if (isNetworkAvailable(pinpointContext.getApplicationContext())) {
+                    return processEvents();
+                } else {
+                    log.warn("Device is offline, skipping submitting events to Pinpoint");
+                    return Collections.emptyList();
+                }
             }
         });
     }
@@ -451,7 +465,8 @@ public class EventRecorder {
             // in the local database.
             // For all other client exceptions occurred during submit events,
             // log the exception and delete the events in the local database.
-            if (isClientExceptionRetryable(amazonClientException)) {
+            if (isClientExceptionRetryable(amazonClientException) ||
+                isClientExceptionRetryable(amazonClientException.getCause())) {
                 log.error("AmazonClientException: Unable to successfully deliver events to server. " +
                         "Events will be saved, error likely recoverable." +
                         amazonClientException.getMessage(), amazonClientException);
@@ -542,10 +557,13 @@ public class EventRecorder {
         return true;
     }
 
-    private boolean isClientExceptionRetryable(AmazonClientException amazonClientException) {
+    private boolean isClientExceptionRetryable(Throwable amazonClientException) {
+        if (!isNetworkAvailable(pinpointContext.getApplicationContext())) {
+            return true;
+        }
         return amazonClientException.getCause() != null &&
-                (amazonClientException.getCause() instanceof UnknownHostException ||
-                 amazonClientException.getCause() instanceof SocketException);
+            (amazonClientException.getCause() instanceof UnknownHostException ||
+                amazonClientException.getCause() instanceof SocketException);
     }
 
     /**
@@ -673,5 +691,23 @@ public class EventRecorder {
                 .withSdkName(internalEvent.getSdkName())
                 .withSession(session)
                 .withTimestamp(DateUtils.formatISO8601Date(new Date(internalEvent.getEventTimestamp())));
+    }
+
+    private boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager =
+            (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            NetworkCapabilities capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork());
+            if (capabilities != null) {
+                return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET);
+            }
+        } else {
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        }
+        return false;
     }
 }
