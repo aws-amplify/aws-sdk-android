@@ -26,11 +26,119 @@ import java.io.Serializable;
 public class SearchForSuggestionsResult implements Serializable {
     /**
      * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForSuggestions</code> operations, the
+     * <code>PlaceId</code> is returned by place indexes that use HERE or Esri
+     * as data providers.
+     * </p>
+     * </note>
+     */
+    private String placeId;
+
+    /**
+     * <p>
      * The text of the place suggestion, typically formatted as an address
      * string.
      * </p>
      */
     private String text;
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForSuggestions</code> operations, the
+     * <code>PlaceId</code> is returned by place indexes that use HERE or Esri
+     * as data providers.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         The unique identifier of the place. You can use this with the
+     *         <code>GetPlace</code> operation to find the place again later.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         For <code>SearchPlaceIndexForSuggestions</code> operations, the
+     *         <code>PlaceId</code> is returned by place indexes that use HERE
+     *         or Esri as data providers.
+     *         </p>
+     *         </note>
+     */
+    public String getPlaceId() {
+        return placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForSuggestions</code> operations, the
+     * <code>PlaceId</code> is returned by place indexes that use HERE or Esri
+     * as data providers.
+     * </p>
+     * </note>
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForSuggestions</code> operations,
+     *            the <code>PlaceId</code> is returned by place indexes that use
+     *            HERE or Esri as data providers.
+     *            </p>
+     *            </note>
+     */
+    public void setPlaceId(String placeId) {
+        this.placeId = placeId;
+    }
+
+    /**
+     * <p>
+     * The unique identifier of the place. You can use this with the
+     * <code>GetPlace</code> operation to find the place again later.
+     * </p>
+     * <note>
+     * <p>
+     * For <code>SearchPlaceIndexForSuggestions</code> operations, the
+     * <code>PlaceId</code> is returned by place indexes that use HERE or Esri
+     * as data providers.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param placeId <p>
+     *            The unique identifier of the place. You can use this with the
+     *            <code>GetPlace</code> operation to find the place again later.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For <code>SearchPlaceIndexForSuggestions</code> operations,
+     *            the <code>PlaceId</code> is returned by place indexes that use
+     *            HERE or Esri as data providers.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchForSuggestionsResult withPlaceId(String placeId) {
+        this.placeId = placeId;
+        return this;
+    }
 
     /**
      * <p>
@@ -94,6 +202,8 @@ public class SearchForSuggestionsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getPlaceId() != null)
+            sb.append("PlaceId: " + getPlaceId() + ",");
         if (getText() != null)
             sb.append("Text: " + getText());
         sb.append("}");
@@ -105,6 +215,7 @@ public class SearchForSuggestionsResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         return hashCode;
     }
@@ -120,6 +231,10 @@ public class SearchForSuggestionsResult implements Serializable {
             return false;
         SearchForSuggestionsResult other = (SearchForSuggestionsResult) obj;
 
+        if (other.getPlaceId() == null ^ this.getPlaceId() == null)
+            return false;
+        if (other.getPlaceId() != null && other.getPlaceId().equals(this.getPlaceId()) == false)
+            return false;
         if (other.getText() == null ^ this.getText() == null)
             return false;
         if (other.getText() != null && other.getText().equals(this.getText()) == false)

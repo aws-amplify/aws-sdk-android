@@ -42,6 +42,9 @@ class SearchForPositionResultJsonUnmarshaller implements
             } else if (name.equals("Place")) {
                 searchForPositionResult.setPlace(PlaceJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PlaceId")) {
+                searchForPositionResult.setPlaceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -95,6 +95,12 @@ public class AwsHostNameUtilsTest {
     }
 
     @Test
+    public void testVpcEndpoint() {
+        assertEquals("us-west-2", AwsHostNameUtils.parseRegionName(
+                "bucket.vpce-1234.s3.us-west-2.vpce.amazonaws.com", "s3"));
+    }
+
+    @Test
     public void testBJS() {
         // Verify that BJS endpoints parse correctly even though they're
         // non-standard.

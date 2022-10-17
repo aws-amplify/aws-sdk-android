@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Returns a paginated list of all Lambda functions that display in the dropdown
- * options in the relevant contact flow blocks.
+ * options in the relevant flow blocks.
  * </p>
  */
 public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implements Serializable {

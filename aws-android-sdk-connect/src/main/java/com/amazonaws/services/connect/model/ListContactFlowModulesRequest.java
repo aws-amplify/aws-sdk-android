@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides information about the contact flow modules for the specified Amazon
- * Connect instance.
+ * Provides information about the flow modules for the specified Amazon Connect
+ * instance.
  * </p>
  */
 public class ListContactFlowModulesRequest extends AmazonWebServiceRequest implements Serializable {
@@ -58,7 +58,7 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,14 +239,14 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @return <p>
-     *         The state of the contact flow module.
+     *         The state of the flow module.
      *         </p>
      * @see ContactFlowModuleState
      */
@@ -256,14 +256,14 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowModuleState <p>
-     *            The state of the contact flow module.
+     *            The state of the flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -273,7 +273,7 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -283,7 +283,7 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowModuleState <p>
-     *            The state of the contact flow module.
+     *            The state of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -296,14 +296,14 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowModuleState <p>
-     *            The state of the contact flow module.
+     *            The state of the flow module.
      *            </p>
      * @see ContactFlowModuleState
      */
@@ -313,7 +313,7 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The state of the contact flow module.
+     * The state of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -323,7 +323,7 @@ public class ListContactFlowModulesRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>ACTIVE, ARCHIVED
      *
      * @param contactFlowModuleState <p>
-     *            The state of the contact flow module.
+     *            The state of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -90,6 +90,17 @@ public class CreateParallelDataRequestMarshaller implements
                 jsonWriter.name("ClientToken");
                 jsonWriter.value(clientToken);
             }
+            if (createParallelDataRequest.getTags() != null) {
+                java.util.List<Tag> tags = createParallelDataRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

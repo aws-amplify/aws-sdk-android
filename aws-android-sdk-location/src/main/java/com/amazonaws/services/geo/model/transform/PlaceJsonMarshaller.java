@@ -86,6 +86,16 @@ class PlaceJsonMarshaller {
             jsonWriter.name("TimeZone");
             TimeZoneJsonMarshaller.getInstance().marshall(timeZone, jsonWriter);
         }
+        if (place.getUnitNumber() != null) {
+            String unitNumber = place.getUnitNumber();
+            jsonWriter.name("UnitNumber");
+            jsonWriter.value(unitNumber);
+        }
+        if (place.getUnitType() != null) {
+            String unitType = place.getUnitType();
+            jsonWriter.name("UnitType");
+            jsonWriter.value(unitType);
+        }
         jsonWriter.endObject();
     }
 

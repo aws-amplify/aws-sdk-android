@@ -78,6 +78,11 @@ public class CreateParallelDataRequest extends AmazonWebServiceRequest implement
     private String clientToken;
 
     /**
+     * The new value for the tags property for this object.
+     */
+    private java.util.List<Tag> tags;
+
+    /**
      * <p>
      * A custom name for the parallel data resource in Amazon Translate. You
      * must assign a name that is unique in the account and region.
@@ -361,6 +366,64 @@ public class CreateParallelDataRequest extends AmazonWebServiceRequest implement
     }
 
     /**
+     * Returns the value of the tags property for this object.
+     *
+     * @return The value of the tags property for this object.
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * Sets the value of tags
+     *
+     * @param tags The new value for the tags property for this object.
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * Sets the value of the tags property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The new value for the tags property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateParallelDataRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the tags property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The new value for the tags property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateParallelDataRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -380,7 +443,9 @@ public class CreateParallelDataRequest extends AmazonWebServiceRequest implement
         if (getEncryptionKey() != null)
             sb.append("EncryptionKey: " + getEncryptionKey() + ",");
         if (getClientToken() != null)
-            sb.append("ClientToken: " + getClientToken());
+            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -399,6 +464,7 @@ public class CreateParallelDataRequest extends AmazonWebServiceRequest implement
                 + ((getEncryptionKey() == null) ? 0 : getEncryptionKey().hashCode());
         hashCode = prime * hashCode
                 + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -436,6 +502,10 @@ public class CreateParallelDataRequest extends AmazonWebServiceRequest implement
             return false;
         if (other.getClientToken() != null
                 && other.getClientToken().equals(this.getClientToken()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

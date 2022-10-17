@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the specified contact flow module.
+ * Describes the specified flow module.
  * </p>
  */
 public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest implements
@@ -39,7 +39,7 @@ public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,14 +109,14 @@ public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier of the contact flow module.
+     *         The identifier of the flow module.
      *         </p>
      */
     public String getContactFlowModuleId() {
@@ -125,14 +125,14 @@ public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      */
     public void setContactFlowModuleId(String contactFlowModuleId) {
@@ -141,7 +141,7 @@ public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The identifier of the contact flow module.
+     * The identifier of the flow module.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +151,7 @@ public class DescribeContactFlowModuleRequest extends AmazonWebServiceRequest im
      * <b>Length: </b>1 - 256<br/>
      *
      * @param contactFlowModuleId <p>
-     *            The identifier of the contact flow module.
+     *            The identifier of the flow module.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

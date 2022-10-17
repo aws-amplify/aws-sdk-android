@@ -337,6 +337,7 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
         jsonErrorUnmarshallers.add(new ServiceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TextSizeLimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyTagsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedDisplayLanguageCodeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedLanguagePairExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -375,7 +376,9 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * @throws InvalidRequestException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
      * @throws ConflictException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -682,6 +685,8 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * @throws InvalidParameterValueException
      * @throws LimitExceededException
      * @throws TooManyRequestsException
+     * @throws TooManyTagsException
+     * @throws ConcurrentModificationException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -809,6 +814,53 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<ListParallelDataResult, JsonUnmarshallerContext> unmarshaller = new ListParallelDataResultJsonUnmarshaller();
             JsonResponseHandler<ListParallelDataResult> responseHandler = new JsonResponseHandler<ListParallelDataResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1055,6 +1107,52 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
     }
 
     /**
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyTagsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<TagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Translates input text from the source language to the target language.
      * For a list of available languages and language codes, see
@@ -1098,6 +1196,51 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<TranslateTextResult, JsonUnmarshallerContext> unmarshaller = new TranslateTextResultJsonUnmarshaller();
             JsonResponseHandler<TranslateTextResult> responseHandler = new JsonResponseHandler<TranslateTextResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<UntagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

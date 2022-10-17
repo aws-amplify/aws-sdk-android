@@ -84,6 +84,11 @@ public class ImportTerminologyRequest extends AmazonWebServiceRequest implements
     private EncryptionKey encryptionKey;
 
     /**
+     * The new value for the tags property for this object.
+     */
+    private java.util.List<Tag> tags;
+
+    /**
      * <p>
      * The name of the custom terminology being imported.
      * </p>
@@ -417,6 +422,64 @@ public class ImportTerminologyRequest extends AmazonWebServiceRequest implements
     }
 
     /**
+     * Returns the value of the tags property for this object.
+     *
+     * @return The value of the tags property for this object.
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * Sets the value of tags
+     *
+     * @param tags The new value for the tags property for this object.
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * Sets the value of the tags property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The new value for the tags property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportTerminologyRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * Sets the value of the tags property for this object.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags The new value for the tags property for this object.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportTerminologyRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -436,7 +499,9 @@ public class ImportTerminologyRequest extends AmazonWebServiceRequest implements
         if (getTerminologyData() != null)
             sb.append("TerminologyData: " + getTerminologyData() + ",");
         if (getEncryptionKey() != null)
-            sb.append("EncryptionKey: " + getEncryptionKey());
+            sb.append("EncryptionKey: " + getEncryptionKey() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -455,6 +520,7 @@ public class ImportTerminologyRequest extends AmazonWebServiceRequest implements
                 + ((getTerminologyData() == null) ? 0 : getTerminologyData().hashCode());
         hashCode = prime * hashCode
                 + ((getEncryptionKey() == null) ? 0 : getEncryptionKey().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -492,6 +558,10 @@ public class ImportTerminologyRequest extends AmazonWebServiceRequest implements
             return false;
         if (other.getEncryptionKey() != null
                 && other.getEncryptionKey().equals(this.getEncryptionKey()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

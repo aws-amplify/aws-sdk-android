@@ -22,7 +22,9 @@ import java.io.Serializable;
  * Identifies the part of speech represented by the token and gives the
  * confidence that Amazon Comprehend has that the part of speech was correctly
  * identified. For more information about the parts of speech that Amazon
- * Comprehend can identify, see <a>how-syntax</a>.
+ * Comprehend can identify, see <a
+ * href="https://docs.aws.amazon.com/comprehend/latest/dg/how-syntax.html"
+ * >Syntax</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class PartOfSpeechTag implements Serializable {
