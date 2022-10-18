@@ -777,7 +777,7 @@ public class TransferUtility {
         double partSize = (double) remainingLength / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
         final long optimalPartSize = (long) Math.max(partSize,
-                transferUtilityOptions.getMinimumUploadPartSizeInMB());
+                transferUtilityOptions.getMinimumUploadPartSizeInBytes());
         long fileOffset = 0;
         int partNumber = 1;
 
@@ -992,7 +992,7 @@ public class TransferUtility {
     private boolean shouldUploadInMultipart(File file) {
         return (
                 file != null &&
-                file.length() > transferUtilityOptions.getMinimumUploadPartSizeInMB()
+                file.length() > transferUtilityOptions.getMinimumUploadPartSizeInBytes()
         );
     }
 

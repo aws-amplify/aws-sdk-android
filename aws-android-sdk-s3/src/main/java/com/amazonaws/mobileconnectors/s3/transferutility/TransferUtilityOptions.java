@@ -181,6 +181,14 @@ public class TransferUtilityOptions implements Serializable {
     }
 
     /**
+     * Retrieve minimum part size for upload parts in Bytes.
+     * @return the minimum upload part size in Bytes
+     */
+    protected long getMinimumUploadPartSizeInBytes() {
+        return minimumUploadPartSizeInBytes;
+    }
+
+    /**
      * Retrieve minimum part size for upload parts in MB.
      * @return the minimum upload part size in MB
      */
