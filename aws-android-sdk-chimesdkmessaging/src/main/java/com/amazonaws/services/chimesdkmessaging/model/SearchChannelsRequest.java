@@ -21,10 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Allows an <code>AppInstanceUser</code> to search the channels that they
- * belong to. The <code>AppInstanceUser</code> can search by membership or
- * external ID. An <code>AppInstanceAdmin</code> can search across all channels
- * within the <code>AppInstance</code>.
+ * Allows <code>ChimeBearer</code> to search channels by channel members.
+ * AppInstanceUsers can search across the channels that they belong to.
+ * AppInstanceAdmins can search across all channels.
  * </p>
  */
 public class SearchChannelsRequest extends AmazonWebServiceRequest implements Serializable {
