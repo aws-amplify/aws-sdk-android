@@ -301,6 +301,20 @@ public interface AmazonConnect {
      * Associates a flow with a phone number claimed to your Amazon Connect
      * instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param associatePhoneNumberContactFlowRequest
      * @throws InvalidParameterException
@@ -405,8 +419,20 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Claims an available phone number to your Amazon Connect instance.
+     * Claims an available phone number to your Amazon Connect instance or
+     * traffic distribution group. You can call this API only in the same Amazon
+     * Web Services Region where the Amazon Connect instance or traffic
+     * distribution group was created.
      * </p>
+     * <important>
+     * <p>
+     * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param claimPhoneNumberRequest
      * @return claimPhoneNumberResult The response from the ClaimPhoneNumber
@@ -626,6 +652,22 @@ public interface AmazonConnect {
      * <p>
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param createQueueRequest
      * @return createQueueResult The response from the CreateQueue service
@@ -757,6 +799,43 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     CreateTaskTemplateResult createTaskTemplate(CreateTaskTemplateRequest createTaskTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a traffic distribution group given an Amazon Connect instance
+     * that has been replicated.
+     * </p>
+     * <p>
+     * For more information about creating traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html"
+     * >Set up traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param createTrafficDistributionGroupRequest
+     * @return createTrafficDistributionGroupResult The response from the
+     *         CreateTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateTrafficDistributionGroupResult createTrafficDistributionGroup(
+            CreateTrafficDistributionGroupRequest createTrafficDistributionGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1075,6 +1154,40 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     DeleteTaskTemplateResult deleteTaskTemplate(DeleteTaskTemplateRequest deleteTaskTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a traffic distribution group. This API can be called only in the
+     * Region where the traffic distribution group is created.
+     * </p>
+     * <p>
+     * For more information about deleting traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-traffic-distribution-groups.html"
+     * >Delete traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param deleteTrafficDistributionGroupRequest
+     * @return deleteTrafficDistributionGroupResult The response from the
+     *         DeleteTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteTrafficDistributionGroupResult deleteTrafficDistributionGroup(
+            DeleteTrafficDistributionGroupRequest deleteTrafficDistributionGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1430,8 +1543,21 @@ public interface AmazonConnect {
     /**
      * <p>
      * Gets details and status of a phone number that’s claimed to your Amazon
-     * Connect instance
+     * Connect instance or traffic distribution group.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling in the Amazon Web Services Region where the traffic distribution
+     * group was created, you can use either a phone number ARN or UUID value
+     * for the <code>PhoneNumberId</code> URI request parameter. However, if the
+     * number is claimed to a traffic distribution group and you are calling
+     * this API in the alternate Amazon Web Services Region associated with the
+     * traffic distribution group, you must provide a full phone number ARN. If
+     * a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param describePhoneNumberRequest
      * @return describePhoneNumberResult The response from the
@@ -1562,6 +1688,32 @@ public interface AmazonConnect {
      */
     DescribeSecurityProfileResult describeSecurityProfile(
             DescribeSecurityProfileRequest describeSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets details and status of a traffic distribution group.
+     * </p>
+     * 
+     * @param describeTrafficDistributionGroupRequest
+     * @return describeTrafficDistributionGroupResult The response from the
+     *         DescribeTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeTrafficDistributionGroupResult describeTrafficDistributionGroup(
+            DescribeTrafficDistributionGroupRequest describeTrafficDistributionGroupRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1807,8 +1959,22 @@ public interface AmazonConnect {
     /**
      * <p>
      * Removes the flow association from a phone number claimed to your Amazon
-     * Connect instance, if a flow association exists.
+     * Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
      * @throws InvalidParameterException
@@ -2074,6 +2240,33 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     GetTaskTemplateResult getTaskTemplate(GetTaskTemplateRequest getTaskTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves the current traffic distribution for a given traffic
+     * distribution group.
+     * </p>
+     * 
+     * @param getTrafficDistributionRequest
+     * @return getTrafficDistributionResult The response from the
+     *         GetTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetTrafficDistributionResult getTrafficDistribution(
+            GetTrafficDistributionRequest getTrafficDistributionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2505,6 +2698,19 @@ public interface AmazonConnect {
      * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
      * Connect Administrator Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The phone number <code>Arn</code> value that is returned from each of the
+     * items in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList"
+     * >PhoneNumberSummaryList</a> cannot be used to tag phone number resources.
+     * It will fail with a <code>ResourceNotFoundException</code>. Instead, use
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
+     * be used to tag phone number resources.
+     * </p>
+     * </important>
      * 
      * @param listPhoneNumbersRequest
      * @return listPhoneNumbersResult The response from the ListPhoneNumbers
@@ -2527,7 +2733,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Lists phone numbers claimed to your Amazon Connect instance.
+     * Lists phone numbers claimed to your Amazon Connect instance or traffic
+     * distribution group. If the provided <code>TargetArn</code> is a traffic
+     * distribution group, you can call this API in both Amazon Web Services
+     * Regions associated with traffic distribution group.
      * </p>
      * <p>
      * For more information about phone numbers, see <a href=
@@ -2882,6 +3091,31 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Lists traffic distribution groups.
+     * </p>
+     * 
+     * @param listTrafficDistributionGroupsRequest
+     * @return listTrafficDistributionGroupsResult The response from the
+     *         ListTrafficDistributionGroups service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTrafficDistributionGroupsResult listTrafficDistributionGroups(
+            ListTrafficDistributionGroupsRequest listTrafficDistributionGroupsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the use cases for the integration association.
      * </p>
      * 
@@ -3000,8 +3234,22 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * Releases a phone number previously claimed to an Amazon Connect instance
+     * or traffic distribution group. You can call this API only in the Amazon
+     * Web Services Region where the number was claimed.
      * </p>
+     * <important>
+     * <p>
+     * To release phone numbers from a traffic distribution group, use the
+     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+     * </p>
+     * <p>
+     * After releasing a phone number, the phone number enters into a cooldown
+     * period of 30 days. It cannot be searched for or claimed again until the
+     * period has ended. If you accidentally release a phone number, contact
+     * Amazon Web Services Support.
+     * </p>
+     * </important>
      * 
      * @param releasePhoneNumberRequest
      * @throws InvalidParameterException
@@ -3020,6 +3268,41 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void releasePhoneNumber(ReleasePhoneNumberRequest releasePhoneNumberRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Replicates an Amazon Connect instance in the specified Amazon Web
+     * Services Region.
+     * </p>
+     * <p>
+     * For more information about replicating an Amazon Connect instance, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html"
+     * >Create a replica of your existing Amazon Connect instance</a> in the
+     * <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param replicateInstanceRequest
+     * @return replicateInstanceResult The response from the ReplicateInstance
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceNotReadyException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ReplicateInstanceResult replicateInstance(ReplicateInstanceRequest replicateInstanceRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3053,7 +3336,10 @@ public interface AmazonConnect {
     /**
      * <p>
      * Searches for available phone numbers that you can claim to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group. If the provided
+     * <code>TargetArn</code> is a traffic distribution group, you can call this
+     * API in both Amazon Web Services Regions associated with the traffic
+     * distribution group.
      * </p>
      * 
      * @param searchAvailablePhoneNumbersRequest
@@ -3170,6 +3456,11 @@ public interface AmazonConnect {
      * <p>
      * Searches users in an Amazon Connect instance, with optional filtering.
      * </p>
+     * <note>
+     * <p>
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * 
      * @param searchUsersRequest
      * @return searchUsersResult The response from the SearchUsers service
@@ -4064,8 +4355,18 @@ public interface AmazonConnect {
     /**
      * <p>
      * Updates your claimed phone number from its current Amazon Connect
-     * instance to another Amazon Connect instance in the same Region.
+     * instance or traffic distribution group to another Amazon Connect instance
+     * or traffic distribution group in the same Amazon Web Services Region.
      * </p>
+     * <important>
+     * <p>
+     * You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param updatePhoneNumberRequest
      * @return updatePhoneNumberResult The response from the UpdatePhoneNumber
@@ -4179,6 +4480,22 @@ public interface AmazonConnect {
      * Updates the outbound caller ID name, number, and outbound whisper flow
      * for a specified queue.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
      * @throws InvalidRequestException
@@ -4417,6 +4734,38 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     UpdateTaskTemplateResult updateTaskTemplate(UpdateTaskTemplateRequest updateTaskTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the traffic distribution for a given traffic distribution group.
+     * For more information about updating a traffic distribution group see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
+     * >Update telephony traffic distribution across Amazon Web Services Regions
+     * </a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param updateTrafficDistributionRequest
+     * @return updateTrafficDistributionResult The response from the
+     *         UpdateTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateTrafficDistributionResult updateTrafficDistribution(
+            UpdateTrafficDistributionRequest updateTrafficDistributionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

@@ -55,6 +55,30 @@ public class UserIdentityInfo implements Serializable {
 
     /**
      * <p>
+     * The user's secondary email address. If you provide a secondary email, the
+     * user receives email notifications - other than password reset
+     * notifications - to this email address instead of to their primary email
+     * address.
+     * </p>
+     * <p>
+     * Pattern:
+     * <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     * </p>
+     */
+    private String secondaryEmail;
+
+    /**
+     * <p>
+     * The user's mobile number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
+     */
+    private String mobile;
+
+    /**
+     * <p>
      * The first name. This is required if you are using Amazon Connect or SAML
      * for identity management.
      * </p>
@@ -225,6 +249,147 @@ public class UserIdentityInfo implements Serializable {
     }
 
     /**
+     * <p>
+     * The user's secondary email address. If you provide a secondary email, the
+     * user receives email notifications - other than password reset
+     * notifications - to this email address instead of to their primary email
+     * address.
+     * </p>
+     * <p>
+     * Pattern:
+     * <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     * </p>
+     *
+     * @return <p>
+     *         The user's secondary email address. If you provide a secondary
+     *         email, the user receives email notifications - other than
+     *         password reset notifications - to this email address instead of
+     *         to their primary email address.
+     *         </p>
+     *         <p>
+     *         Pattern:
+     *         <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     *         </p>
+     */
+    public String getSecondaryEmail() {
+        return secondaryEmail;
+    }
+
+    /**
+     * <p>
+     * The user's secondary email address. If you provide a secondary email, the
+     * user receives email notifications - other than password reset
+     * notifications - to this email address instead of to their primary email
+     * address.
+     * </p>
+     * <p>
+     * Pattern:
+     * <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     * </p>
+     *
+     * @param secondaryEmail <p>
+     *            The user's secondary email address. If you provide a secondary
+     *            email, the user receives email notifications - other than
+     *            password reset notifications - to this email address instead
+     *            of to their primary email address.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     *            </p>
+     */
+    public void setSecondaryEmail(String secondaryEmail) {
+        this.secondaryEmail = secondaryEmail;
+    }
+
+    /**
+     * <p>
+     * The user's secondary email address. If you provide a secondary email, the
+     * user receives email notifications - other than password reset
+     * notifications - to this email address instead of to their primary email
+     * address.
+     * </p>
+     * <p>
+     * Pattern:
+     * <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param secondaryEmail <p>
+     *            The user's secondary email address. If you provide a secondary
+     *            email, the user receives email notifications - other than
+     *            password reset notifications - to this email address instead
+     *            of to their primary email address.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>(?=^.{0,265}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserIdentityInfo withSecondaryEmail(String secondaryEmail) {
+        this.secondaryEmail = secondaryEmail;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The user's mobile number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
+     *
+     * @return <p>
+     *         The user's mobile number.
+     *         </p>
+     */
+    public String getMobile() {
+        return mobile;
+    }
+
+    /**
+     * <p>
+     * The user's mobile number.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
+     *
+     * @param mobile <p>
+     *            The user's mobile number.
+     *            </p>
+     */
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    /**
+     * <p>
+     * The user's mobile number.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>\\+[1-9]\\d{1,14}$<br/>
+     *
+     * @param mobile <p>
+     *            The user's mobile number.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserIdentityInfo withMobile(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -240,7 +405,11 @@ public class UserIdentityInfo implements Serializable {
         if (getLastName() != null)
             sb.append("LastName: " + getLastName() + ",");
         if (getEmail() != null)
-            sb.append("Email: " + getEmail());
+            sb.append("Email: " + getEmail() + ",");
+        if (getSecondaryEmail() != null)
+            sb.append("SecondaryEmail: " + getSecondaryEmail() + ",");
+        if (getMobile() != null)
+            sb.append("Mobile: " + getMobile());
         sb.append("}");
         return sb.toString();
     }
@@ -253,6 +422,9 @@ public class UserIdentityInfo implements Serializable {
         hashCode = prime * hashCode + ((getFirstName() == null) ? 0 : getFirstName().hashCode());
         hashCode = prime * hashCode + ((getLastName() == null) ? 0 : getLastName().hashCode());
         hashCode = prime * hashCode + ((getEmail() == null) ? 0 : getEmail().hashCode());
+        hashCode = prime * hashCode
+                + ((getSecondaryEmail() == null) ? 0 : getSecondaryEmail().hashCode());
+        hashCode = prime * hashCode + ((getMobile() == null) ? 0 : getMobile().hashCode());
         return hashCode;
     }
 
@@ -279,6 +451,15 @@ public class UserIdentityInfo implements Serializable {
         if (other.getEmail() == null ^ this.getEmail() == null)
             return false;
         if (other.getEmail() != null && other.getEmail().equals(this.getEmail()) == false)
+            return false;
+        if (other.getSecondaryEmail() == null ^ this.getSecondaryEmail() == null)
+            return false;
+        if (other.getSecondaryEmail() != null
+                && other.getSecondaryEmail().equals(this.getSecondaryEmail()) == false)
+            return false;
+        if (other.getMobile() == null ^ this.getMobile() == null)
+            return false;
+        if (other.getMobile() != null && other.getMobile().equals(this.getMobile()) == false)
             return false;
         return true;
     }

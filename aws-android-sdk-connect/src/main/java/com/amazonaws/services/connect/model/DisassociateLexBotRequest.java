@@ -52,7 +52,8 @@ public class DisassociateLexBotRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Region in which the Amazon Lex bot has been created.
+     * The Amazon Web Services Region in which the Amazon Lex bot has been
+     * created.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -176,14 +177,16 @@ public class DisassociateLexBotRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Region in which the Amazon Lex bot has been created.
+     * The Amazon Web Services Region in which the Amazon Lex bot has been
+     * created.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 60<br/>
      *
      * @return <p>
-     *         The Region in which the Amazon Lex bot has been created.
+     *         The Amazon Web Services Region in which the Amazon Lex bot has
+     *         been created.
      *         </p>
      */
     public String getLexRegion() {
@@ -192,14 +195,16 @@ public class DisassociateLexBotRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Region in which the Amazon Lex bot has been created.
+     * The Amazon Web Services Region in which the Amazon Lex bot has been
+     * created.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 60<br/>
      *
      * @param lexRegion <p>
-     *            The Region in which the Amazon Lex bot has been created.
+     *            The Amazon Web Services Region in which the Amazon Lex bot has
+     *            been created.
      *            </p>
      */
     public void setLexRegion(String lexRegion) {
@@ -208,7 +213,8 @@ public class DisassociateLexBotRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Region in which the Amazon Lex bot has been created.
+     * The Amazon Web Services Region in which the Amazon Lex bot has been
+     * created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -218,7 +224,8 @@ public class DisassociateLexBotRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b> - 60<br/>
      *
      * @param lexRegion <p>
-     *            The Region in which the Amazon Lex bot has been created.
+     *            The Amazon Web Services Region in which the Amazon Lex bot has
+     *            been created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

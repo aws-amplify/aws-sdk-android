@@ -22,15 +22,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Searches for available phone numbers that you can claim to your Amazon
- * Connect instance.
+ * Connect instance or traffic distribution group. If the provided
+ * <code>TargetArn</code> is a traffic distribution group, you can call this API
+ * in both Amazon Web Services Regions associated with the traffic distribution
+ * group.
  * </p>
  */
 public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      */
     private String targetArn;
@@ -103,13 +106,13 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
-     *         phone numbers are claimed to.
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *         traffic distribution groups that phone numbers are claimed to.
      *         </p>
      */
     public String getTargetArn() {
@@ -118,13 +121,13 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -133,16 +136,16 @@ public class SearchAvailablePhoneNumbersRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

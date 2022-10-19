@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about a user account for a Amazon Connect instance.
+ * Contains information about a user account for an Amazon Connect instance.
  * </p>
  */
 public class User implements Serializable {

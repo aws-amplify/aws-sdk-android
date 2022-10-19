@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class ListLexBotsResult implements Serializable {
     /**
      * <p>
-     * The names and Regions of the Amazon Lex bots associated with the
-     * specified instance.
+     * The names and Amazon Web Services Regions of the Amazon Lex bots
+     * associated with the specified instance.
      * </p>
      */
     private java.util.List<LexBot> lexBots;
@@ -36,13 +36,13 @@ public class ListLexBotsResult implements Serializable {
 
     /**
      * <p>
-     * The names and Regions of the Amazon Lex bots associated with the
-     * specified instance.
+     * The names and Amazon Web Services Regions of the Amazon Lex bots
+     * associated with the specified instance.
      * </p>
      *
      * @return <p>
-     *         The names and Regions of the Amazon Lex bots associated with the
-     *         specified instance.
+     *         The names and Amazon Web Services Regions of the Amazon Lex bots
+     *         associated with the specified instance.
      *         </p>
      */
     public java.util.List<LexBot> getLexBots() {
@@ -51,13 +51,13 @@ public class ListLexBotsResult implements Serializable {
 
     /**
      * <p>
-     * The names and Regions of the Amazon Lex bots associated with the
-     * specified instance.
+     * The names and Amazon Web Services Regions of the Amazon Lex bots
+     * associated with the specified instance.
      * </p>
      *
      * @param lexBots <p>
-     *            The names and Regions of the Amazon Lex bots associated with
-     *            the specified instance.
+     *            The names and Amazon Web Services Regions of the Amazon Lex
+     *            bots associated with the specified instance.
      *            </p>
      */
     public void setLexBots(java.util.Collection<LexBot> lexBots) {
@@ -71,16 +71,16 @@ public class ListLexBotsResult implements Serializable {
 
     /**
      * <p>
-     * The names and Regions of the Amazon Lex bots associated with the
-     * specified instance.
+     * The names and Amazon Web Services Regions of the Amazon Lex bots
+     * associated with the specified instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lexBots <p>
-     *            The names and Regions of the Amazon Lex bots associated with
-     *            the specified instance.
+     *            The names and Amazon Web Services Regions of the Amazon Lex
+     *            bots associated with the specified instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -97,16 +97,16 @@ public class ListLexBotsResult implements Serializable {
 
     /**
      * <p>
-     * The names and Regions of the Amazon Lex bots associated with the
-     * specified instance.
+     * The names and Amazon Web Services Regions of the Amazon Lex bots
+     * associated with the specified instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lexBots <p>
-     *            The names and Regions of the Amazon Lex bots associated with
-     *            the specified instance.
+     *            The names and Amazon Web Services Regions of the Amazon Lex
+     *            bots associated with the specified instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

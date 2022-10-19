@@ -38,7 +38,8 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,14 +115,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @return <p>
-     *         The type of the reference.
+     *         The type of the reference. <code>DATE</code> must be of type
+     *         Epoch timestamp.
      *         </p>
      * @see ReferenceType
      */
@@ -131,14 +134,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference.
+     *            The type of the reference. <code>DATE</code> must be of type
+     *            Epoch timestamp.
      *            </p>
      * @see ReferenceType
      */
@@ -148,7 +153,8 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +164,8 @@ public class Reference implements Serializable {
      * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference.
+     *            The type of the reference. <code>DATE</code> must be of type
+     *            Epoch timestamp.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -171,14 +178,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference.
+     *            The type of the reference. <code>DATE</code> must be of type
+     *            Epoch timestamp.
      *            </p>
      * @see ReferenceType
      */
@@ -188,7 +197,8 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * The type of the reference.
+     * The type of the reference. <code>DATE</code> must be of type Epoch
+     * timestamp.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -198,7 +208,8 @@ public class Reference implements Serializable {
      * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
-     *            The type of the reference.
+     *            The type of the reference. <code>DATE</code> must be of type
+     *            Epoch timestamp.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

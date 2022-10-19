@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Searches users in an Amazon Connect instance, with optional filtering.
  * </p>
+ * <note>
+ * <p>
+ * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+ * </p>
+ * </note>
  */
 public class SearchUsersRequest extends AmazonWebServiceRequest implements Serializable {
     /**

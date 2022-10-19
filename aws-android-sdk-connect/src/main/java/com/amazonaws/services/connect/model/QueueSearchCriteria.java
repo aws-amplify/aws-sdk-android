@@ -41,9 +41,14 @@ public class QueueSearchCriteria implements Serializable {
 
     /**
      * <p>
-     * A leaf node condition which can be used to specify a string condition,
-     * for example, <code>username = 'abc'</code>.
+     * A leaf node condition which can be used to specify a string condition.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      */
     private StringCondition stringCondition;
 
@@ -225,14 +230,25 @@ public class QueueSearchCriteria implements Serializable {
 
     /**
      * <p>
-     * A leaf node condition which can be used to specify a string condition,
-     * for example, <code>username = 'abc'</code>.
+     * A leaf node condition which can be used to specify a string condition.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      *
      * @return <p>
      *         A leaf node condition which can be used to specify a string
-     *         condition, for example, <code>username = 'abc'</code>.
+     *         condition.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The currently supported value for <code>FieldName</code>:
+     *         <code>name</code>
+     *         </p>
+     *         </note>
      */
     public StringCondition getStringCondition() {
         return stringCondition;
@@ -240,14 +256,25 @@ public class QueueSearchCriteria implements Serializable {
 
     /**
      * <p>
-     * A leaf node condition which can be used to specify a string condition,
-     * for example, <code>username = 'abc'</code>.
+     * A leaf node condition which can be used to specify a string condition.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      *
      * @param stringCondition <p>
      *            A leaf node condition which can be used to specify a string
-     *            condition, for example, <code>username = 'abc'</code>.
+     *            condition.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The currently supported value for <code>FieldName</code>:
+     *            <code>name</code>
+     *            </p>
+     *            </note>
      */
     public void setStringCondition(StringCondition stringCondition) {
         this.stringCondition = stringCondition;
@@ -255,17 +282,28 @@ public class QueueSearchCriteria implements Serializable {
 
     /**
      * <p>
-     * A leaf node condition which can be used to specify a string condition,
-     * for example, <code>username = 'abc'</code>.
+     * A leaf node condition which can be used to specify a string condition.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param stringCondition <p>
      *            A leaf node condition which can be used to specify a string
-     *            condition, for example, <code>username = 'abc'</code>.
+     *            condition.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The currently supported value for <code>FieldName</code>:
+     *            <code>name</code>
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

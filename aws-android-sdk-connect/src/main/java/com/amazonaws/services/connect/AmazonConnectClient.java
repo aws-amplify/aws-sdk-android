@@ -368,6 +368,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserNotFoundExceptionUnmarshaller());
@@ -721,6 +722,20 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Associates a flow with a phone number claimed to your Amazon Connect
      * instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param associatePhoneNumberContactFlowRequest
      * @throws InvalidParameterException
@@ -918,8 +933,20 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Claims an available phone number to your Amazon Connect instance.
+     * Claims an available phone number to your Amazon Connect instance or
+     * traffic distribution group. You can call this API only in the same Amazon
+     * Web Services Region where the Amazon Connect instance or traffic
+     * distribution group was created.
      * </p>
+     * <important>
+     * <p>
+     * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param claimPhoneNumberRequest
      * @return claimPhoneNumberResult The response from the ClaimPhoneNumber
@@ -1328,6 +1355,22 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * <p>
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param createQueueRequest
      * @return createQueueResult The response from the CreateQueue service
@@ -1586,6 +1629,70 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<CreateTaskTemplateResult, JsonUnmarshallerContext> unmarshaller = new CreateTaskTemplateResultJsonUnmarshaller();
             JsonResponseHandler<CreateTaskTemplateResult> responseHandler = new JsonResponseHandler<CreateTaskTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a traffic distribution group given an Amazon Connect instance
+     * that has been replicated.
+     * </p>
+     * <p>
+     * For more information about creating traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html"
+     * >Set up traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param createTrafficDistributionGroupRequest
+     * @return createTrafficDistributionGroupResult The response from the
+     *         CreateTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateTrafficDistributionGroupResult createTrafficDistributionGroup(
+            CreateTrafficDistributionGroupRequest createTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createTrafficDistributionGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateTrafficDistributionGroupRequest> request = null;
+        Response<CreateTrafficDistributionGroupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateTrafficDistributionGroupRequestMarshaller()
+                        .marshall(createTrafficDistributionGroupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateTrafficDistributionGroupResult, JsonUnmarshallerContext> unmarshaller = new CreateTrafficDistributionGroupResultJsonUnmarshaller();
+            JsonResponseHandler<CreateTrafficDistributionGroupResult> responseHandler = new JsonResponseHandler<CreateTrafficDistributionGroupResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2195,6 +2302,67 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DeleteTaskTemplateResult, JsonUnmarshallerContext> unmarshaller = new DeleteTaskTemplateResultJsonUnmarshaller();
             JsonResponseHandler<DeleteTaskTemplateResult> responseHandler = new JsonResponseHandler<DeleteTaskTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a traffic distribution group. This API can be called only in the
+     * Region where the traffic distribution group is created.
+     * </p>
+     * <p>
+     * For more information about deleting traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-traffic-distribution-groups.html"
+     * >Delete traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param deleteTrafficDistributionGroupRequest
+     * @return deleteTrafficDistributionGroupResult The response from the
+     *         DeleteTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteTrafficDistributionGroupResult deleteTrafficDistributionGroup(
+            DeleteTrafficDistributionGroupRequest deleteTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteTrafficDistributionGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteTrafficDistributionGroupRequest> request = null;
+        Response<DeleteTrafficDistributionGroupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteTrafficDistributionGroupRequestMarshaller()
+                        .marshall(deleteTrafficDistributionGroupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteTrafficDistributionGroupResult, JsonUnmarshallerContext> unmarshaller = new DeleteTrafficDistributionGroupResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteTrafficDistributionGroupResult> responseHandler = new JsonResponseHandler<DeleteTrafficDistributionGroupResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2864,8 +3032,21 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Gets details and status of a phone number that’s claimed to your Amazon
-     * Connect instance
+     * Connect instance or traffic distribution group.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling in the Amazon Web Services Region where the traffic distribution
+     * group was created, you can use either a phone number ARN or UUID value
+     * for the <code>PhoneNumberId</code> URI request parameter. However, if the
+     * number is claimed to a traffic distribution group and you are calling
+     * this API in the alternate Amazon Web Services Region associated with the
+     * traffic distribution group, you must provide a full phone number ARN. If
+     * a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param describePhoneNumberRequest
      * @return describePhoneNumberResult The response from the
@@ -3121,6 +3302,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DescribeSecurityProfileResult, JsonUnmarshallerContext> unmarshaller = new DescribeSecurityProfileResultJsonUnmarshaller();
             JsonResponseHandler<DescribeSecurityProfileResult> responseHandler = new JsonResponseHandler<DescribeSecurityProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets details and status of a traffic distribution group.
+     * </p>
+     * 
+     * @param describeTrafficDistributionGroupRequest
+     * @return describeTrafficDistributionGroupResult The response from the
+     *         DescribeTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeTrafficDistributionGroupResult describeTrafficDistributionGroup(
+            DescribeTrafficDistributionGroupRequest describeTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeTrafficDistributionGroupRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeTrafficDistributionGroupRequest> request = null;
+        Response<DescribeTrafficDistributionGroupResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeTrafficDistributionGroupRequestMarshaller()
+                        .marshall(describeTrafficDistributionGroupRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeTrafficDistributionGroupResult, JsonUnmarshallerContext> unmarshaller = new DescribeTrafficDistributionGroupResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeTrafficDistributionGroupResult> responseHandler = new JsonResponseHandler<DescribeTrafficDistributionGroupResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3592,8 +3826,22 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Removes the flow association from a phone number claimed to your Amazon
-     * Connect instance, if a flow association exists.
+     * Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
      * @throws InvalidParameterException
@@ -4101,6 +4349,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<GetTaskTemplateResult, JsonUnmarshallerContext> unmarshaller = new GetTaskTemplateResultJsonUnmarshaller();
             JsonResponseHandler<GetTaskTemplateResult> responseHandler = new JsonResponseHandler<GetTaskTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the current traffic distribution for a given traffic
+     * distribution group.
+     * </p>
+     * 
+     * @param getTrafficDistributionRequest
+     * @return getTrafficDistributionResult The response from the
+     *         GetTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetTrafficDistributionResult getTrafficDistribution(
+            GetTrafficDistributionRequest getTrafficDistributionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getTrafficDistributionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetTrafficDistributionRequest> request = null;
+        Response<GetTrafficDistributionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetTrafficDistributionRequestMarshaller()
+                        .marshall(getTrafficDistributionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetTrafficDistributionResult, JsonUnmarshallerContext> unmarshaller = new GetTrafficDistributionResultJsonUnmarshaller();
+            JsonResponseHandler<GetTrafficDistributionResult> responseHandler = new JsonResponseHandler<GetTrafficDistributionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4916,6 +5218,19 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
      * Connect Administrator Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The phone number <code>Arn</code> value that is returned from each of the
+     * items in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList"
+     * >PhoneNumberSummaryList</a> cannot be used to tag phone number resources.
+     * It will fail with a <code>ResourceNotFoundException</code>. Instead, use
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
+     * be used to tag phone number resources.
+     * </p>
+     * </important>
      * 
      * @param listPhoneNumbersRequest
      * @return listPhoneNumbersResult The response from the ListPhoneNumbers
@@ -4964,7 +5279,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Lists phone numbers claimed to your Amazon Connect instance.
+     * Lists phone numbers claimed to your Amazon Connect instance or traffic
+     * distribution group. If the provided <code>TargetArn</code> is a traffic
+     * distribution group, you can call this API in both Amazon Web Services
+     * Regions associated with traffic distribution group.
      * </p>
      * <p>
      * For more information about phone numbers, see <a href=
@@ -5643,6 +5961,58 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Lists traffic distribution groups.
+     * </p>
+     * 
+     * @param listTrafficDistributionGroupsRequest
+     * @return listTrafficDistributionGroupsResult The response from the
+     *         ListTrafficDistributionGroups service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListTrafficDistributionGroupsResult listTrafficDistributionGroups(
+            ListTrafficDistributionGroupsRequest listTrafficDistributionGroupsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTrafficDistributionGroupsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTrafficDistributionGroupsRequest> request = null;
+        Response<ListTrafficDistributionGroupsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTrafficDistributionGroupsRequestMarshaller()
+                        .marshall(listTrafficDistributionGroupsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTrafficDistributionGroupsResult, JsonUnmarshallerContext> unmarshaller = new ListTrafficDistributionGroupsResultJsonUnmarshaller();
+            JsonResponseHandler<ListTrafficDistributionGroupsResult> responseHandler = new JsonResponseHandler<ListTrafficDistributionGroupsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the use cases for the integration association.
      * </p>
      * 
@@ -5866,8 +6236,22 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * Releases a phone number previously claimed to an Amazon Connect instance
+     * or traffic distribution group. You can call this API only in the Amazon
+     * Web Services Region where the number was claimed.
      * </p>
+     * <important>
+     * <p>
+     * To release phone numbers from a traffic distribution group, use the
+     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+     * </p>
+     * <p>
+     * After releasing a phone number, the phone number enters into a cooldown
+     * period of 30 days. It cannot be searched for or claimed again until the
+     * period has ended. If you accidentally release a phone number, contact
+     * Amazon Web Services Support.
+     * </p>
+     * </important>
      * 
      * @param releasePhoneNumberRequest
      * @throws InvalidParameterException
@@ -5904,6 +6288,69 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Replicates an Amazon Connect instance in the specified Amazon Web
+     * Services Region.
+     * </p>
+     * <p>
+     * For more information about replicating an Amazon Connect instance, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html"
+     * >Create a replica of your existing Amazon Connect instance</a> in the
+     * <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param replicateInstanceRequest
+     * @return replicateInstanceResult The response from the ReplicateInstance
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceNotReadyException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ReplicateInstanceResult replicateInstance(
+            ReplicateInstanceRequest replicateInstanceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(replicateInstanceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ReplicateInstanceRequest> request = null;
+        Response<ReplicateInstanceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ReplicateInstanceRequestMarshaller()
+                        .marshall(replicateInstanceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ReplicateInstanceResult, JsonUnmarshallerContext> unmarshaller = new ReplicateInstanceResultJsonUnmarshaller();
+            JsonResponseHandler<ReplicateInstanceResult> responseHandler = new JsonResponseHandler<ReplicateInstanceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -5968,7 +6415,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Searches for available phone numbers that you can claim to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group. If the provided
+     * <code>TargetArn</code> is a traffic distribution group, you can call this
+     * API in both Amazon Web Services Regions associated with the traffic
+     * distribution group.
      * </p>
      * 
      * @param searchAvailablePhoneNumbersRequest
@@ -6192,6 +6642,11 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * <p>
      * Searches users in an Amazon Connect instance, with optional filtering.
      * </p>
+     * <note>
+     * <p>
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * 
      * @param searchUsersRequest
      * @return searchUsersResult The response from the SearchUsers service
@@ -7739,8 +8194,18 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Updates your claimed phone number from its current Amazon Connect
-     * instance to another Amazon Connect instance in the same Region.
+     * instance or traffic distribution group to another Amazon Connect instance
+     * or traffic distribution group in the same Amazon Web Services Region.
      * </p>
+     * <important>
+     * <p>
+     * You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param updatePhoneNumberRequest
      * @return updatePhoneNumberResult The response from the UpdatePhoneNumber
@@ -7947,6 +8412,22 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Updates the outbound caller ID name, number, and outbound whisper flow
      * for a specified queue.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
      * @throws InvalidRequestException
@@ -8404,6 +8885,65 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<UpdateTaskTemplateResult, JsonUnmarshallerContext> unmarshaller = new UpdateTaskTemplateResultJsonUnmarshaller();
             JsonResponseHandler<UpdateTaskTemplateResult> responseHandler = new JsonResponseHandler<UpdateTaskTemplateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the traffic distribution for a given traffic distribution group.
+     * For more information about updating a traffic distribution group see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
+     * >Update telephony traffic distribution across Amazon Web Services Regions
+     * </a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param updateTrafficDistributionRequest
+     * @return updateTrafficDistributionResult The response from the
+     *         UpdateTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateTrafficDistributionResult updateTrafficDistribution(
+            UpdateTrafficDistributionRequest updateTrafficDistributionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateTrafficDistributionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateTrafficDistributionRequest> request = null;
+        Response<UpdateTrafficDistributionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateTrafficDistributionRequestMarshaller()
+                        .marshall(updateTrafficDistributionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateTrafficDistributionResult, JsonUnmarshallerContext> unmarshaller = new UpdateTrafficDistributionResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateTrafficDistributionResult> responseHandler = new JsonResponseHandler<UpdateTrafficDistributionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

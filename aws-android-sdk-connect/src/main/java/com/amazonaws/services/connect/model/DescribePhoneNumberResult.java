@@ -21,7 +21,7 @@ public class DescribePhoneNumberResult implements Serializable {
     /**
      * <p>
      * Information about a phone number that's been claimed to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group.
      * </p>
      */
     private ClaimedPhoneNumberSummary claimedPhoneNumberSummary;
@@ -29,12 +29,12 @@ public class DescribePhoneNumberResult implements Serializable {
     /**
      * <p>
      * Information about a phone number that's been claimed to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group.
      * </p>
      *
      * @return <p>
      *         Information about a phone number that's been claimed to your
-     *         Amazon Connect instance.
+     *         Amazon Connect instance or traffic distribution group.
      *         </p>
      */
     public ClaimedPhoneNumberSummary getClaimedPhoneNumberSummary() {
@@ -44,12 +44,12 @@ public class DescribePhoneNumberResult implements Serializable {
     /**
      * <p>
      * Information about a phone number that's been claimed to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group.
      * </p>
      *
      * @param claimedPhoneNumberSummary <p>
      *            Information about a phone number that's been claimed to your
-     *            Amazon Connect instance.
+     *            Amazon Connect instance or traffic distribution group.
      *            </p>
      */
     public void setClaimedPhoneNumberSummary(ClaimedPhoneNumberSummary claimedPhoneNumberSummary) {
@@ -59,7 +59,7 @@ public class DescribePhoneNumberResult implements Serializable {
     /**
      * <p>
      * Information about a phone number that's been claimed to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -67,7 +67,7 @@ public class DescribePhoneNumberResult implements Serializable {
      *
      * @param claimedPhoneNumberSummary <p>
      *            Information about a phone number that's been claimed to your
-     *            Amazon Connect instance.
+     *            Amazon Connect instance or traffic distribution group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

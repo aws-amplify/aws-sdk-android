@@ -58,7 +58,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      */
     private String integrationType;
 
@@ -271,7 +271,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      *
      * @return <p>
      *         The integration type.
@@ -289,7 +289,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      *
      * @param integrationType <p>
      *            The integration type.
@@ -310,7 +310,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      *
      * @param integrationType <p>
      *            The integration type.
@@ -331,7 +331,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      *
      * @param integrationType <p>
      *            The integration type.
@@ -352,7 +352,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE
+     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
      *
      * @param integrationType <p>
      *            The integration type.

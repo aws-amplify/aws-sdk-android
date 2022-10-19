@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class UserData implements Serializable {
     /**
      * <p>
-     * Information about the user for the data that is returned. It contains
-     * resourceId and ARN of the user.
+     * Information about the user for the data that is returned. It contains the
+     * <code>resourceId</code> and ARN of the user.
      * </p>
      */
     private UserReference user;
@@ -69,7 +69,8 @@ public class UserData implements Serializable {
      * is an integer: the maximum number of slots. This is calculated from <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     * >MediaConcurrency</a> of the RoutingProfile assigned to the agent.
+     * >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned to the
+     * agent.
      * </p>
      */
     private java.util.Map<String, Integer> maxSlotsByChannel;
@@ -91,13 +92,13 @@ public class UserData implements Serializable {
 
     /**
      * <p>
-     * Information about the user for the data that is returned. It contains
-     * resourceId and ARN of the user.
+     * Information about the user for the data that is returned. It contains the
+     * <code>resourceId</code> and ARN of the user.
      * </p>
      *
      * @return <p>
      *         Information about the user for the data that is returned. It
-     *         contains resourceId and ARN of the user.
+     *         contains the <code>resourceId</code> and ARN of the user.
      *         </p>
      */
     public UserReference getUser() {
@@ -106,13 +107,13 @@ public class UserData implements Serializable {
 
     /**
      * <p>
-     * Information about the user for the data that is returned. It contains
-     * resourceId and ARN of the user.
+     * Information about the user for the data that is returned. It contains the
+     * <code>resourceId</code> and ARN of the user.
      * </p>
      *
      * @param user <p>
      *            Information about the user for the data that is returned. It
-     *            contains resourceId and ARN of the user.
+     *            contains the <code>resourceId</code> and ARN of the user.
      *            </p>
      */
     public void setUser(UserReference user) {
@@ -121,8 +122,8 @@ public class UserData implements Serializable {
 
     /**
      * <p>
-     * Information about the user for the data that is returned. It contains
-     * resourceId and ARN of the user.
+     * Information about the user for the data that is returned. It contains the
+     * <code>resourceId</code> and ARN of the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -130,7 +131,7 @@ public class UserData implements Serializable {
      *
      * @param user <p>
      *            Information about the user for the data that is returned. It
-     *            contains resourceId and ARN of the user.
+     *            contains the <code>resourceId</code> and ARN of the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -392,7 +393,8 @@ public class UserData implements Serializable {
      * is an integer: the maximum number of slots. This is calculated from <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     * >MediaConcurrency</a> of the RoutingProfile assigned to the agent.
+     * >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned to the
+     * agent.
      * </p>
      *
      * @return <p>
@@ -400,8 +402,8 @@ public class UserData implements Serializable {
      *         value is an integer: the maximum number of slots. This is
      *         calculated from <a href=
      *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     *         >MediaConcurrency</a> of the RoutingProfile assigned to the
-     *         agent.
+     *         >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned
+     *         to the agent.
      *         </p>
      */
     public java.util.Map<String, Integer> getMaxSlotsByChannel() {
@@ -414,7 +416,8 @@ public class UserData implements Serializable {
      * is an integer: the maximum number of slots. This is calculated from <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     * >MediaConcurrency</a> of the RoutingProfile assigned to the agent.
+     * >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned to the
+     * agent.
      * </p>
      *
      * @param maxSlotsByChannel <p>
@@ -422,8 +425,8 @@ public class UserData implements Serializable {
      *            The value is an integer: the maximum number of slots. This is
      *            calculated from <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     *            >MediaConcurrency</a> of the RoutingProfile assigned to the
-     *            agent.
+     *            >MediaConcurrency</a> of the <code>RoutingProfile</code>
+     *            assigned to the agent.
      *            </p>
      */
     public void setMaxSlotsByChannel(java.util.Map<String, Integer> maxSlotsByChannel) {
@@ -436,7 +439,8 @@ public class UserData implements Serializable {
      * is an integer: the maximum number of slots. This is calculated from <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     * >MediaConcurrency</a> of the RoutingProfile assigned to the agent.
+     * >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned to the
+     * agent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -447,8 +451,8 @@ public class UserData implements Serializable {
      *            The value is an integer: the maximum number of slots. This is
      *            calculated from <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     *            >MediaConcurrency</a> of the RoutingProfile assigned to the
-     *            agent.
+     *            >MediaConcurrency</a> of the <code>RoutingProfile</code>
+     *            assigned to the agent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -464,7 +468,8 @@ public class UserData implements Serializable {
      * is an integer: the maximum number of slots. This is calculated from <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_MediaConcurrency.html"
-     * >MediaConcurrency</a> of the RoutingProfile assigned to the agent.
+     * >MediaConcurrency</a> of the <code>RoutingProfile</code> assigned to the
+     * agent.
      * </p>
      * <p>
      * The method adds a new key-value pair into MaxSlotsByChannel parameter,

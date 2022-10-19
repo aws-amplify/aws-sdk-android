@@ -44,6 +44,12 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
+     * <note>
+     * <p>
+     * When returned by a <code>SearchUsers</code> call,
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
@@ -219,6 +225,12 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
+     * <note>
+     * <p>
+     * When returned by a <code>SearchUsers</code> call,
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
@@ -226,6 +238,13 @@ public class UserPhoneConfig implements Serializable {
      * @return <p>
      *         The After Call Work (ACW) timeout setting, in seconds.
      *         </p>
+     *         <note>
+     *         <p>
+     *         When returned by a <code>SearchUsers</code> call,
+     *         <code>AfterContactWorkTimeLimit</code> is returned in
+     *         milliseconds.
+     *         </p>
+     *         </note>
      */
     public Integer getAfterContactWorkTimeLimit() {
         return afterContactWorkTimeLimit;
@@ -235,6 +254,12 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
+     * <note>
+     * <p>
+     * When returned by a <code>SearchUsers</code> call,
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
@@ -242,6 +267,13 @@ public class UserPhoneConfig implements Serializable {
      * @param afterContactWorkTimeLimit <p>
      *            The After Call Work (ACW) timeout setting, in seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When returned by a <code>SearchUsers</code> call,
+     *            <code>AfterContactWorkTimeLimit</code> is returned in
+     *            milliseconds.
+     *            </p>
+     *            </note>
      */
     public void setAfterContactWorkTimeLimit(Integer afterContactWorkTimeLimit) {
         this.afterContactWorkTimeLimit = afterContactWorkTimeLimit;
@@ -251,6 +283,12 @@ public class UserPhoneConfig implements Serializable {
      * <p>
      * The After Call Work (ACW) timeout setting, in seconds.
      * </p>
+     * <note>
+     * <p>
+     * When returned by a <code>SearchUsers</code> call,
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -261,6 +299,13 @@ public class UserPhoneConfig implements Serializable {
      * @param afterContactWorkTimeLimit <p>
      *            The After Call Work (ACW) timeout setting, in seconds.
      *            </p>
+     *            <note>
+     *            <p>
+     *            When returned by a <code>SearchUsers</code> call,
+     *            <code>AfterContactWorkTimeLimit</code> is returned in
+     *            milliseconds.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
