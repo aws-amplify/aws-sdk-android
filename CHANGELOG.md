@@ -1,3 +1,17 @@
+## [Release 2.55.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.55.0)
+
+### Features
+- **aws-android-sdk-polly:** update models to latest (#3027)
+- **aws-android-sdk-translate:** update models to latest (#3028)
+- **storage:** Customize minimum multipart upload size (#3039)
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#3041)
+- **aws-android-sdk-connect:** update models to latest (#3040)
+
+### Bug Fixes
+- Events deleted from local DB on failures when device is offline (#3038)
+
+[See all changes between 2.54.0 and 2.55.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.54.0...release_v2.55.0)
+
 ## [Release 2.54.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.54.0)
 
 ### Features
