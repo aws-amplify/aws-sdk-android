@@ -43,6 +43,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.amazonaws.services.s3.internal.Constants.GB;
 import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
 import static com.amazonaws.services.s3.internal.Constants.MB;
 
@@ -141,7 +142,9 @@ public class TransferUtility {
      * Default minimum part size for upload parts. Anything below this will use a
      * single upload
      */
-    static final int MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
+    static final int DEFAULT_MINIMUM_UPLOAD_PART_SIZE_IN_BYTES = 5 * MB;
+    static final int MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES = 5 * MB;
+    static final long MAXIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES = 5 * GB;
 
     private static String userAgentFromConfig = "";
 
@@ -770,15 +773,16 @@ public class TransferUtility {
      */
     private int createMultipartUploadRecords(String bucket, String key, File file, ObjectMetadata metadata,
             CannedAccessControlList cannedAcl) {
-        long remainingLenth = file.length();
-        double partSize = (double) remainingLenth / (double) MAXIMUM_UPLOAD_PARTS;
+        long remainingLength = file.length();
+        double partSize = (double) remainingLength / (double) MAXIMUM_UPLOAD_PARTS;
         partSize = Math.ceil(partSize);
-        final long optimalPartSize = (long) Math.max(partSize, MINIMUM_UPLOAD_PART_SIZE);
+        final long optimalPartSize = (long) Math.max(partSize,
+                transferUtilityOptions.getMinimumUploadPartSizeInBytes());
         long fileOffset = 0;
         int partNumber = 1;
 
         // the number of parts
-        final int partCount = (int) Math.ceil((double) remainingLenth / (double) optimalPartSize);
+        final int partCount = (int) Math.ceil((double) remainingLength / (double) optimalPartSize);
 
         /*
          * the size of valuesArray is partCount + 1, one for a multipart upload summary,
@@ -788,11 +792,11 @@ public class TransferUtility {
         valuesArray[0] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key, file, fileOffset, 0, "",
                 file.length(), 0, metadata, cannedAcl, transferUtilityOptions);
         for (int i = 1; i < partCount + 1; i++) {
-            final long bytesForPart = Math.min(optimalPartSize, remainingLenth);
+            final long bytesForPart = Math.min(optimalPartSize, remainingLength);
             valuesArray[i] = dbUtil.generateContentValuesForMultiPartUpload(bucket, key, file, fileOffset, partNumber,
-                    "", bytesForPart, remainingLenth - optimalPartSize <= 0 ? 1 : 0, metadata, cannedAcl, transferUtilityOptions);
+                    "", bytesForPart, remainingLength - optimalPartSize <= 0 ? 1 : 0, metadata, cannedAcl, transferUtilityOptions);
             fileOffset += optimalPartSize;
-            remainingLenth -= optimalPartSize;
+            remainingLength -= optimalPartSize;
             partNumber++;
         }
         return dbUtil.bulkInsertTransferRecords(valuesArray);
@@ -986,7 +990,10 @@ public class TransferUtility {
     }
 
     private boolean shouldUploadInMultipart(File file) {
-        return (file != null && file.length() > MINIMUM_UPLOAD_PART_SIZE);
+        return (
+                file != null &&
+                file.length() > transferUtilityOptions.getMinimumUploadPartSizeInBytes()
+        );
     }
 
     static <X extends AmazonWebServiceRequest> X appendTransferServiceUserAgentString(final X request) {

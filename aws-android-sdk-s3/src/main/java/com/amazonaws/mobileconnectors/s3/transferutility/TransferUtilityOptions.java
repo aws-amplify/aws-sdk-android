@@ -15,6 +15,14 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import static com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility.DEFAULT_MINIMUM_UPLOAD_PART_SIZE_IN_BYTES;
+import static com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility.MAXIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES;
+import static com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility.MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES;
+
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
+import com.amazonaws.services.s3.internal.Constants;
+
 import java.io.Serializable;
 
 /**
@@ -38,6 +46,8 @@ import java.io.Serializable;
  *
  */
 public class TransferUtilityOptions implements Serializable {
+
+    private static final Log LOGGER = LogFactory.getLog(TransferUtilityOptions.class);
 
     /**
      * Default serial versionID.
@@ -65,6 +75,12 @@ public class TransferUtilityOptions implements Serializable {
     private int transferThreadPoolSize;
 
     /**
+     * Minimum part size for upload parts. Anything below this will use a
+     * single upload
+     */
+    private long minimumUploadPartSizeInBytes;
+
+    /**
      * Type of connection to use for transfers.
      */
     protected TransferNetworkConnectionType transferNetworkConnectionType;
@@ -78,6 +94,7 @@ public class TransferUtilityOptions implements Serializable {
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = getDefaultThreadPoolSize();
         this.transferNetworkConnectionType = getDefaultTransferNetworkConnectionType();
+        this.minimumUploadPartSizeInBytes = DEFAULT_MINIMUM_UPLOAD_PART_SIZE_IN_BYTES;
     }
 
     /**
@@ -93,6 +110,7 @@ public class TransferUtilityOptions implements Serializable {
         this.transferServiceCheckTimeInterval = getDefaultCheckTimeInterval();
         this.transferThreadPoolSize = transferThreadPoolSize;
         this.transferNetworkConnectionType = transferNetworkConnectionType;
+        this.minimumUploadPartSizeInBytes = DEFAULT_MINIMUM_UPLOAD_PART_SIZE_IN_BYTES;
     }
 
     /**
@@ -160,6 +178,49 @@ public class TransferUtilityOptions implements Serializable {
      */
     static int getDefaultThreadPoolSize() {
         return 2 * (Runtime.getRuntime().availableProcessors() + 1);
+    }
+
+    /**
+     * Retrieve minimum part size for upload parts in Bytes.
+     * @return the minimum upload part size in Bytes
+     */
+    protected long getMinimumUploadPartSizeInBytes() {
+        return minimumUploadPartSizeInBytes;
+    }
+
+    /**
+     * Retrieve minimum part size for upload parts in MB.
+     * @return the minimum upload part size in MB
+     */
+    public int getMinimumUploadPartSizeInMB() {
+        return (int) (minimumUploadPartSizeInBytes / Constants.MB);
+    }
+
+    /**
+     * Set the minimum part size in MB for upload parts.
+     * There maximum value allowed is 5GB. Anything higher will set minimum part size at a 5GB.
+     * There minimum value allowed is 5MB. Anything lower will set minimum part size at 5MB.
+     * @param minimumUploadPartSizeInMB the minimum part size to set in MB.
+     */
+    public void setMinimumUploadPartSizeInMB(final int minimumUploadPartSizeInMB) {
+        long minimumUploadPartSizeInBytes = minimumUploadPartSizeInMB * ((long) Constants.MB);
+        if (minimumUploadPartSizeInBytes > MAXIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES) {
+            LOGGER.warn(
+                    "The provided minimumUploadPartSize is greater than the maximum upload part " +
+                            "size limit. Setting upload part size to the maximum allowed value of"
+                            + (MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES / Constants.MB) + "MB."
+            );
+            this.minimumUploadPartSizeInBytes = MAXIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES;
+        } else if (minimumUploadPartSizeInBytes < MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES) {
+            LOGGER.warn(
+                    "The provided minimumUploadPartSize is less than the minimum upload part " +
+                            "size limit. Setting upload part size to the minimum allowed value of"
+                            + (MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES / Constants.MB) + "MB."
+            );
+            this.minimumUploadPartSizeInBytes = MINIMUM_SUPPORTED_UPLOAD_PART_SIZE_IN_BYTES;
+        } else {
+            this.minimumUploadPartSizeInBytes = minimumUploadPartSizeInBytes;
+        }
     }
 
     /**
