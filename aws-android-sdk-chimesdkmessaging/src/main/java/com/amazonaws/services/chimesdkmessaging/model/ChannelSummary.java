@@ -81,7 +81,7 @@ public class ChannelSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which the last message in a channel was sent.
+     * The time at which the last persistent message in a channel was sent.
      * </p>
      */
     private java.util.Date lastMessageTimestamp;
@@ -462,11 +462,12 @@ public class ChannelSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which the last message in a channel was sent.
+     * The time at which the last persistent message in a channel was sent.
      * </p>
      *
      * @return <p>
-     *         The time at which the last message in a channel was sent.
+     *         The time at which the last persistent message in a channel was
+     *         sent.
      *         </p>
      */
     public java.util.Date getLastMessageTimestamp() {
@@ -475,11 +476,12 @@ public class ChannelSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which the last message in a channel was sent.
+     * The time at which the last persistent message in a channel was sent.
      * </p>
      *
      * @param lastMessageTimestamp <p>
-     *            The time at which the last message in a channel was sent.
+     *            The time at which the last persistent message in a channel was
+     *            sent.
      *            </p>
      */
     public void setLastMessageTimestamp(java.util.Date lastMessageTimestamp) {
@@ -488,14 +490,15 @@ public class ChannelSummary implements Serializable {
 
     /**
      * <p>
-     * The time at which the last message in a channel was sent.
+     * The time at which the last persistent message in a channel was sent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastMessageTimestamp <p>
-     *            The time at which the last message in a channel was sent.
+     *            The time at which the last persistent message in a channel was
+     *            sent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
