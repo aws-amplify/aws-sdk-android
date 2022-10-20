@@ -112,7 +112,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -392,7 +396,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -400,7 +408,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -410,7 +422,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -418,7 +434,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -428,7 +448,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -439,7 +463,11 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

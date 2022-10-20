@@ -21,8 +21,22 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Releases a phone number previously claimed to an Amazon Connect instance.
+ * Releases a phone number previously claimed to an Amazon Connect instance or
+ * traffic distribution group. You can call this API only in the Amazon Web
+ * Services Region where the number was claimed.
  * </p>
+ * <important>
+ * <p>
+ * To release phone numbers from a traffic distribution group, use the
+ * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+ * </p>
+ * <p>
+ * After releasing a phone number, the phone number enters into a cooldown
+ * period of 30 days. It cannot be searched for or claimed again until the
+ * period has ended. If you accidentally release a phone number, contact Amazon
+ * Web Services Support.
+ * </p>
+ * </important>
  */
 public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -35,7 +49,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +109,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,7 +121,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -109,7 +135,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,7 +147,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -127,7 +161,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -138,7 +176,11 @@ public class ReleasePhoneNumberRequest extends AmazonWebServiceRequest implement
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

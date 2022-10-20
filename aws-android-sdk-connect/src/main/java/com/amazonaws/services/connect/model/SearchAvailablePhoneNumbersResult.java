@@ -31,8 +31,8 @@ public class SearchAvailablePhoneNumbersResult implements Serializable {
 
     /**
      * <p>
-     * A list of available phone numbers that you can claim for your Amazon
-     * Connect instance.
+     * A list of available phone numbers that you can claim to your Amazon
+     * Connect instance or traffic distribution group.
      * </p>
      */
     private java.util.List<AvailableNumberSummary> availableNumbersList;
@@ -99,13 +99,13 @@ public class SearchAvailablePhoneNumbersResult implements Serializable {
 
     /**
      * <p>
-     * A list of available phone numbers that you can claim for your Amazon
-     * Connect instance.
+     * A list of available phone numbers that you can claim to your Amazon
+     * Connect instance or traffic distribution group.
      * </p>
      *
      * @return <p>
-     *         A list of available phone numbers that you can claim for your
-     *         Amazon Connect instance.
+     *         A list of available phone numbers that you can claim to your
+     *         Amazon Connect instance or traffic distribution group.
      *         </p>
      */
     public java.util.List<AvailableNumberSummary> getAvailableNumbersList() {
@@ -114,13 +114,13 @@ public class SearchAvailablePhoneNumbersResult implements Serializable {
 
     /**
      * <p>
-     * A list of available phone numbers that you can claim for your Amazon
-     * Connect instance.
+     * A list of available phone numbers that you can claim to your Amazon
+     * Connect instance or traffic distribution group.
      * </p>
      *
      * @param availableNumbersList <p>
-     *            A list of available phone numbers that you can claim for your
-     *            Amazon Connect instance.
+     *            A list of available phone numbers that you can claim to your
+     *            Amazon Connect instance or traffic distribution group.
      *            </p>
      */
     public void setAvailableNumbersList(
@@ -136,16 +136,16 @@ public class SearchAvailablePhoneNumbersResult implements Serializable {
 
     /**
      * <p>
-     * A list of available phone numbers that you can claim for your Amazon
-     * Connect instance.
+     * A list of available phone numbers that you can claim to your Amazon
+     * Connect instance or traffic distribution group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param availableNumbersList <p>
-     *            A list of available phone numbers that you can claim for your
-     *            Amazon Connect instance.
+     *            A list of available phone numbers that you can claim to your
+     *            Amazon Connect instance or traffic distribution group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -164,16 +164,16 @@ public class SearchAvailablePhoneNumbersResult implements Serializable {
 
     /**
      * <p>
-     * A list of available phone numbers that you can claim for your Amazon
-     * Connect instance.
+     * A list of available phone numbers that you can claim to your Amazon
+     * Connect instance or traffic distribution group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param availableNumbersList <p>
-     *            A list of available phone numbers that you can claim for your
-     *            Amazon Connect instance.
+     *            A list of available phone numbers that you can claim to your
+     *            Amazon Connect instance or traffic distribution group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

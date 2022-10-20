@@ -32,7 +32,7 @@ public class ListPhoneNumbersV2Result implements Serializable {
     /**
      * <p>
      * Information about phone numbers that have been claimed to your Amazon
-     * Connect instances.
+     * Connect instances or traffic distribution groups.
      * </p>
      */
     private java.util.List<ListPhoneNumbersSummary> listPhoneNumbersSummaryList;
@@ -100,12 +100,12 @@ public class ListPhoneNumbersV2Result implements Serializable {
     /**
      * <p>
      * Information about phone numbers that have been claimed to your Amazon
-     * Connect instances.
+     * Connect instances or traffic distribution groups.
      * </p>
      *
      * @return <p>
      *         Information about phone numbers that have been claimed to your
-     *         Amazon Connect instances.
+     *         Amazon Connect instances or traffic distribution groups.
      *         </p>
      */
     public java.util.List<ListPhoneNumbersSummary> getListPhoneNumbersSummaryList() {
@@ -115,12 +115,12 @@ public class ListPhoneNumbersV2Result implements Serializable {
     /**
      * <p>
      * Information about phone numbers that have been claimed to your Amazon
-     * Connect instances.
+     * Connect instances or traffic distribution groups.
      * </p>
      *
      * @param listPhoneNumbersSummaryList <p>
      *            Information about phone numbers that have been claimed to your
-     *            Amazon Connect instances.
+     *            Amazon Connect instances or traffic distribution groups.
      *            </p>
      */
     public void setListPhoneNumbersSummaryList(
@@ -137,7 +137,7 @@ public class ListPhoneNumbersV2Result implements Serializable {
     /**
      * <p>
      * Information about phone numbers that have been claimed to your Amazon
-     * Connect instances.
+     * Connect instances or traffic distribution groups.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -145,7 +145,7 @@ public class ListPhoneNumbersV2Result implements Serializable {
      *
      * @param listPhoneNumbersSummaryList <p>
      *            Information about phone numbers that have been claimed to your
-     *            Amazon Connect instances.
+     *            Amazon Connect instances or traffic distribution groups.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -165,7 +165,7 @@ public class ListPhoneNumbersV2Result implements Serializable {
     /**
      * <p>
      * Information about phone numbers that have been claimed to your Amazon
-     * Connect instances.
+     * Connect instances or traffic distribution groups.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -173,7 +173,7 @@ public class ListPhoneNumbersV2Result implements Serializable {
      *
      * @param listPhoneNumbersSummaryList <p>
      *            Information about phone numbers that have been claimed to your
-     *            Amazon Connect instances.
+     *            Amazon Connect instances or traffic distribution groups.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

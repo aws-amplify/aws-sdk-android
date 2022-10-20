@@ -66,6 +66,12 @@ public class SearchSecurityProfilesRequest extends AmazonWebServiceRequest imple
      * <p>
      * The search criteria to be used to return security profiles.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      */
     private SecurityProfileSearchCriteria searchCriteria;
 
@@ -260,10 +266,22 @@ public class SearchSecurityProfilesRequest extends AmazonWebServiceRequest imple
      * <p>
      * The search criteria to be used to return security profiles.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The search criteria to be used to return security profiles.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The currently supported value for <code>FieldName</code>:
+     *         <code>name</code>
+     *         </p>
+     *         </note>
      */
     public SecurityProfileSearchCriteria getSearchCriteria() {
         return searchCriteria;
@@ -273,10 +291,22 @@ public class SearchSecurityProfilesRequest extends AmazonWebServiceRequest imple
      * <p>
      * The search criteria to be used to return security profiles.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      *
      * @param searchCriteria <p>
      *            The search criteria to be used to return security profiles.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The currently supported value for <code>FieldName</code>:
+     *            <code>name</code>
+     *            </p>
+     *            </note>
      */
     public void setSearchCriteria(SecurityProfileSearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
@@ -286,6 +316,12 @@ public class SearchSecurityProfilesRequest extends AmazonWebServiceRequest imple
      * <p>
      * The search criteria to be used to return security profiles.
      * </p>
+     * <note>
+     * <p>
+     * The currently supported value for <code>FieldName</code>:
+     * <code>name</code>
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -293,6 +329,12 @@ public class SearchSecurityProfilesRequest extends AmazonWebServiceRequest imple
      * @param searchCriteria <p>
      *            The search criteria to be used to return security profiles.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The currently supported value for <code>FieldName</code>:
+     *            <code>name</code>
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

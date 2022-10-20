@@ -42,6 +42,16 @@ class UserIdentityInfoJsonMarshaller {
             jsonWriter.name("Email");
             jsonWriter.value(email);
         }
+        if (userIdentityInfo.getSecondaryEmail() != null) {
+            String secondaryEmail = userIdentityInfo.getSecondaryEmail();
+            jsonWriter.name("SecondaryEmail");
+            jsonWriter.value(secondaryEmail);
+        }
+        if (userIdentityInfo.getMobile() != null) {
+            String mobile = userIdentityInfo.getMobile();
+            jsonWriter.name("Mobile");
+            jsonWriter.value(mobile);
+        }
         jsonWriter.endObject();
     }
 

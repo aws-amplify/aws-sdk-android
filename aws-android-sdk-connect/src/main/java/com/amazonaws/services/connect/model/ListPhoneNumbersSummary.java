@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Information about phone numbers that have been claimed to your Amazon Connect
- * instance.
+ * instance or traffic distribution group.
  * </p>
  */
 public class ListPhoneNumbersSummary implements Serializable {
@@ -84,8 +84,8 @@ public class ListPhoneNumbersSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      */
     private String targetArn;
@@ -505,13 +505,13 @@ public class ListPhoneNumbersSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
-     *         phone numbers are claimed to.
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *         traffic distribution groups that phone numbers are claimed to.
      *         </p>
      */
     public String getTargetArn() {
@@ -520,13 +520,13 @@ public class ListPhoneNumbersSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -535,16 +535,16 @@ public class ListPhoneNumbersSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

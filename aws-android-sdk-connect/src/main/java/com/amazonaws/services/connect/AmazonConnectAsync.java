@@ -482,6 +482,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Associates a flow with a phone number claimed to your Amazon Connect
      * instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param associatePhoneNumberContactFlowRequest
      * @return A Java Future object containing the response from the
@@ -509,6 +523,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Associates a flow with a phone number claimed to your Amazon Connect
      * instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param associatePhoneNumberContactFlowRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -731,8 +759,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Claims an available phone number to your Amazon Connect instance.
+     * Claims an available phone number to your Amazon Connect instance or
+     * traffic distribution group. You can call this API only in the same Amazon
+     * Web Services Region where the Amazon Connect instance or traffic
+     * distribution group was created.
      * </p>
+     * <important>
+     * <p>
+     * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param claimPhoneNumberRequest
      * @return A Java Future object containing the response from the
@@ -757,8 +797,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Claims an available phone number to your Amazon Connect instance.
+     * Claims an available phone number to your Amazon Connect instance or
+     * traffic distribution group. You can call this API only in the same Amazon
+     * Web Services Region where the Amazon Connect instance or traffic
+     * distribution group was created.
      * </p>
+     * <important>
+     * <p>
+     * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param claimPhoneNumberRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1208,6 +1260,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param createQueueRequest
      * @return A Java Future object containing the response from the CreateQueue
@@ -1238,6 +1306,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param createQueueRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1509,6 +1593,85 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<CreateTaskTemplateResult> createTaskTemplateAsync(
             CreateTaskTemplateRequest createTaskTemplateRequest,
             AsyncHandler<CreateTaskTemplateRequest, CreateTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a traffic distribution group given an Amazon Connect instance
+     * that has been replicated.
+     * </p>
+     * <p>
+     * For more information about creating traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html"
+     * >Set up traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param createTrafficDistributionGroupRequest
+     * @return A Java Future object containing the response from the
+     *         CreateTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateTrafficDistributionGroupResult> createTrafficDistributionGroupAsync(
+            CreateTrafficDistributionGroupRequest createTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a traffic distribution group given an Amazon Connect instance
+     * that has been replicated.
+     * </p>
+     * <p>
+     * For more information about creating traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-traffic-distribution-groups.html"
+     * >Set up traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param createTrafficDistributionGroupRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateTrafficDistributionGroupResult> createTrafficDistributionGroupAsync(
+            CreateTrafficDistributionGroupRequest createTrafficDistributionGroupRequest,
+            AsyncHandler<CreateTrafficDistributionGroupRequest, CreateTrafficDistributionGroupResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2243,6 +2406,79 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DeleteTaskTemplateResult> deleteTaskTemplateAsync(
             DeleteTaskTemplateRequest deleteTaskTemplateRequest,
             AsyncHandler<DeleteTaskTemplateRequest, DeleteTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a traffic distribution group. This API can be called only in the
+     * Region where the traffic distribution group is created.
+     * </p>
+     * <p>
+     * For more information about deleting traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-traffic-distribution-groups.html"
+     * >Delete traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param deleteTrafficDistributionGroupRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteTrafficDistributionGroupResult> deleteTrafficDistributionGroupAsync(
+            DeleteTrafficDistributionGroupRequest deleteTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a traffic distribution group. This API can be called only in the
+     * Region where the traffic distribution group is created.
+     * </p>
+     * <p>
+     * For more information about deleting traffic distribution groups, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-traffic-distribution-groups.html"
+     * >Delete traffic distribution groups</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param deleteTrafficDistributionGroupRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteTrafficDistributionGroupResult> deleteTrafficDistributionGroupAsync(
+            DeleteTrafficDistributionGroupRequest deleteTrafficDistributionGroupRequest,
+            AsyncHandler<DeleteTrafficDistributionGroupRequest, DeleteTrafficDistributionGroupResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3029,8 +3265,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Gets details and status of a phone number that’s claimed to your Amazon
-     * Connect instance
+     * Connect instance or traffic distribution group.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling in the Amazon Web Services Region where the traffic distribution
+     * group was created, you can use either a phone number ARN or UUID value
+     * for the <code>PhoneNumberId</code> URI request parameter. However, if the
+     * number is claimed to a traffic distribution group and you are calling
+     * this API in the alternate Amazon Web Services Region associated with the
+     * traffic distribution group, you must provide a full phone number ARN. If
+     * a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param describePhoneNumberRequest
      * @return A Java Future object containing the response from the
@@ -3056,8 +3305,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Gets details and status of a phone number that’s claimed to your Amazon
-     * Connect instance
+     * Connect instance or traffic distribution group.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling in the Amazon Web Services Region where the traffic distribution
+     * group was created, you can use either a phone number ARN or UUID value
+     * for the <code>PhoneNumberId</code> URI request parameter. However, if the
+     * number is claimed to a traffic distribution group and you are calling
+     * this API in the alternate Amazon Web Services Region associated with the
+     * traffic distribution group, you must provide a full phone number ARN. If
+     * a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param describePhoneNumberRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -3323,6 +3585,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribeSecurityProfileResult> describeSecurityProfileAsync(
             DescribeSecurityProfileRequest describeSecurityProfileRequest,
             AsyncHandler<DescribeSecurityProfileRequest, DescribeSecurityProfileResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets details and status of a traffic distribution group.
+     * </p>
+     * 
+     * @param describeTrafficDistributionGroupRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeTrafficDistributionGroupResult> describeTrafficDistributionGroupAsync(
+            DescribeTrafficDistributionGroupRequest describeTrafficDistributionGroupRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets details and status of a traffic distribution group.
+     * </p>
+     * 
+     * @param describeTrafficDistributionGroupRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeTrafficDistributionGroup service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeTrafficDistributionGroupResult> describeTrafficDistributionGroupAsync(
+            DescribeTrafficDistributionGroupRequest describeTrafficDistributionGroupRequest,
+            AsyncHandler<DescribeTrafficDistributionGroupRequest, DescribeTrafficDistributionGroupResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3881,8 +4200,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Removes the flow association from a phone number claimed to your Amazon
-     * Connect instance, if a flow association exists.
+     * Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
      * @return A Java Future object containing the response from the
@@ -3908,8 +4241,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Removes the flow association from a phone number claimed to your Amazon
-     * Connect instance, if a flow association exists.
+     * Connect instance.
      * </p>
+     * <important>
+     * <p>
+     * If the number is claimed to a traffic distribution group, and you are
+     * calling this API using an instance in the Amazon Web Services Region
+     * where the traffic distribution group was created, you can use either a
+     * full phone number ARN or UUID value for the <code>PhoneNumberId</code>
+     * URI request parameter. However, if the number is claimed to a traffic
+     * distribution group and you are calling this API using an instance in the
+     * alternate Amazon Web Services Region associated with the traffic
+     * distribution group, you must provide a full phone number ARN. If a UUID
+     * is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param disassociatePhoneNumberContactFlowRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -4501,6 +4848,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<GetTaskTemplateResult> getTaskTemplateAsync(
             GetTaskTemplateRequest getTaskTemplateRequest,
             AsyncHandler<GetTaskTemplateRequest, GetTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the current traffic distribution for a given traffic
+     * distribution group.
+     * </p>
+     * 
+     * @param getTrafficDistributionRequest
+     * @return A Java Future object containing the response from the
+     *         GetTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetTrafficDistributionResult> getTrafficDistributionAsync(
+            GetTrafficDistributionRequest getTrafficDistributionRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the current traffic distribution for a given traffic
+     * distribution group.
+     * </p>
+     * 
+     * @param getTrafficDistributionRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetTrafficDistributionResult> getTrafficDistributionAsync(
+            GetTrafficDistributionRequest getTrafficDistributionRequest,
+            AsyncHandler<GetTrafficDistributionRequest, GetTrafficDistributionResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5424,6 +5830,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
      * Connect Administrator Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The phone number <code>Arn</code> value that is returned from each of the
+     * items in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList"
+     * >PhoneNumberSummaryList</a> cannot be used to tag phone number resources.
+     * It will fail with a <code>ResourceNotFoundException</code>. Instead, use
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
+     * be used to tag phone number resources.
+     * </p>
+     * </important>
      * 
      * @param listPhoneNumbersRequest
      * @return A Java Future object containing the response from the
@@ -5456,6 +5875,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
      * Connect Administrator Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The phone number <code>Arn</code> value that is returned from each of the
+     * items in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbers.html#connect-ListPhoneNumbers-response-PhoneNumberSummaryList"
+     * >PhoneNumberSummaryList</a> cannot be used to tag phone number resources.
+     * It will fail with a <code>ResourceNotFoundException</code>. Instead, use
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
+     * be used to tag phone number resources.
+     * </p>
+     * </important>
      * 
      * @param listPhoneNumbersRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -5484,7 +5916,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Lists phone numbers claimed to your Amazon Connect instance.
+     * Lists phone numbers claimed to your Amazon Connect instance or traffic
+     * distribution group. If the provided <code>TargetArn</code> is a traffic
+     * distribution group, you can call this API in both Amazon Web Services
+     * Regions associated with traffic distribution group.
      * </p>
      * <p>
      * For more information about phone numbers, see <a href=
@@ -5515,7 +5950,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Lists phone numbers claimed to your Amazon Connect instance.
+     * Lists phone numbers claimed to your Amazon Connect instance or traffic
+     * distribution group. If the provided <code>TargetArn</code> is a traffic
+     * distribution group, you can call this API in both Amazon Web Services
+     * Regions associated with traffic distribution group.
      * </p>
      * <p>
      * For more information about phone numbers, see <a href=
@@ -6262,6 +6700,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Lists traffic distribution groups.
+     * </p>
+     * 
+     * @param listTrafficDistributionGroupsRequest
+     * @return A Java Future object containing the response from the
+     *         ListTrafficDistributionGroups service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListTrafficDistributionGroupsResult> listTrafficDistributionGroupsAsync(
+            ListTrafficDistributionGroupsRequest listTrafficDistributionGroupsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists traffic distribution groups.
+     * </p>
+     * 
+     * @param listTrafficDistributionGroupsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListTrafficDistributionGroups service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListTrafficDistributionGroupsResult> listTrafficDistributionGroupsAsync(
+            ListTrafficDistributionGroupsRequest listTrafficDistributionGroupsRequest,
+            AsyncHandler<ListTrafficDistributionGroupsRequest, ListTrafficDistributionGroupsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Lists the use cases for the integration association.
      * </p>
      * 
@@ -6518,8 +7011,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * Releases a phone number previously claimed to an Amazon Connect instance
+     * or traffic distribution group. You can call this API only in the Amazon
+     * Web Services Region where the number was claimed.
      * </p>
+     * <important>
+     * <p>
+     * To release phone numbers from a traffic distribution group, use the
+     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+     * </p>
+     * <p>
+     * After releasing a phone number, the phone number enters into a cooldown
+     * period of 30 days. It cannot be searched for or claimed again until the
+     * period has ended. If you accidentally release a phone number, contact
+     * Amazon Web Services Support.
+     * </p>
+     * </important>
      * 
      * @param releasePhoneNumberRequest
      * @return A Java Future object containing the response from the
@@ -6544,8 +7051,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Releases a phone number previously claimed to an Amazon Connect instance.
+     * Releases a phone number previously claimed to an Amazon Connect instance
+     * or traffic distribution group. You can call this API only in the Amazon
+     * Web Services Region where the number was claimed.
      * </p>
+     * <important>
+     * <p>
+     * To release phone numbers from a traffic distribution group, use the
+     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+     * </p>
+     * <p>
+     * After releasing a phone number, the phone number enters into a cooldown
+     * period of 30 days. It cannot be searched for or claimed again until the
+     * period has ended. If you accidentally release a phone number, contact
+     * Amazon Web Services Support.
+     * </p>
+     * </important>
      * 
      * @param releasePhoneNumberRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -6571,6 +7092,83 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<Void> releasePhoneNumberAsync(ReleasePhoneNumberRequest releasePhoneNumberRequest,
             AsyncHandler<ReleasePhoneNumberRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Replicates an Amazon Connect instance in the specified Amazon Web
+     * Services Region.
+     * </p>
+     * <p>
+     * For more information about replicating an Amazon Connect instance, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html"
+     * >Create a replica of your existing Amazon Connect instance</a> in the
+     * <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param replicateInstanceRequest
+     * @return A Java Future object containing the response from the
+     *         ReplicateInstance service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceNotReadyException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ReplicateInstanceResult> replicateInstanceAsync(
+            ReplicateInstanceRequest replicateInstanceRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Replicates an Amazon Connect instance in the specified Amazon Web
+     * Services Region.
+     * </p>
+     * <p>
+     * For more information about replicating an Amazon Connect instance, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/create-replica-connect-instance.html"
+     * >Create a replica of your existing Amazon Connect instance</a> in the
+     * <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param replicateInstanceRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ReplicateInstance service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ResourceNotReadyException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ReplicateInstanceResult> replicateInstanceAsync(
+            ReplicateInstanceRequest replicateInstanceRequest,
+            AsyncHandler<ReplicateInstanceRequest, ReplicateInstanceResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -6637,7 +7235,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Searches for available phone numbers that you can claim to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group. If the provided
+     * <code>TargetArn</code> is a traffic distribution group, you can call this
+     * API in both Amazon Web Services Regions associated with the traffic
+     * distribution group.
      * </p>
      * 
      * @param searchAvailablePhoneNumbersRequest
@@ -6663,7 +7264,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Searches for available phone numbers that you can claim to your Amazon
-     * Connect instance.
+     * Connect instance or traffic distribution group. If the provided
+     * <code>TargetArn</code> is a traffic distribution group, you can call this
+     * API in both Amazon Web Services Regions associated with the traffic
+     * distribution group.
      * </p>
      * 
      * @param searchAvailablePhoneNumbersRequest
@@ -6890,6 +7494,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Searches users in an Amazon Connect instance, with optional filtering.
      * </p>
+     * <note>
+     * <p>
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * 
      * @param searchUsersRequest
      * @return A Java Future object containing the response from the SearchUsers
@@ -6914,6 +7523,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Searches users in an Amazon Connect instance, with optional filtering.
      * </p>
+     * <note>
+     * <p>
+     * <code>AfterContactWorkTimeLimit</code> is returned in milliseconds.
+     * </p>
+     * </note>
      * 
      * @param searchUsersRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -8874,8 +9488,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Updates your claimed phone number from its current Amazon Connect
-     * instance to another Amazon Connect instance in the same Region.
+     * instance or traffic distribution group to another Amazon Connect instance
+     * or traffic distribution group in the same Amazon Web Services Region.
      * </p>
+     * <important>
+     * <p>
+     * You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param updatePhoneNumberRequest
      * @return A Java Future object containing the response from the
@@ -8902,8 +9526,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Updates your claimed phone number from its current Amazon Connect
-     * instance to another Amazon Connect instance in the same Region.
+     * instance or traffic distribution group to another Amazon Connect instance
+     * or traffic distribution group in the same Amazon Web Services Region.
      * </p>
+     * <important>
+     * <p>
+     * You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation.
+     * </p>
+     * </important>
      * 
      * @param updatePhoneNumberRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -9138,6 +9772,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Updates the outbound caller ID name, number, and outbound whisper flow
      * for a specified queue.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
      * @return A Java Future object containing the response from the
@@ -9169,6 +9819,22 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Updates the outbound caller ID name, number, and outbound whisper flow
      * for a specified queue.
      * </p>
+     * <important>
+     * <p>
+     * If the number being used in the input is claimed to a traffic
+     * distribution group, and you are calling this API using an instance in the
+     * Amazon Web Services Region where the traffic distribution group was
+     * created, you can use either a full phone number ARN or UUID value for the
+     * <code>OutboundCallerIdNumberId</code> value of the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
+     * >OutboundCallerConfig</a> request body parameter. However, if the number
+     * is claimed to a traffic distribution group and you are calling this API
+     * using an instance in the alternate Amazon Web Services Region associated
+     * with the traffic distribution group, you must provide a full phone number
+     * ARN. If a UUID is provided in this scenario, you will receive a
+     * <code>ResourceNotFoundException</code>.
+     * </p>
+     * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -9737,6 +10403,75 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<UpdateTaskTemplateResult> updateTaskTemplateAsync(
             UpdateTaskTemplateRequest updateTaskTemplateRequest,
             AsyncHandler<UpdateTaskTemplateRequest, UpdateTaskTemplateResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the traffic distribution for a given traffic distribution group.
+     * For more information about updating a traffic distribution group see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
+     * >Update telephony traffic distribution across Amazon Web Services Regions
+     * </a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param updateTrafficDistributionRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateTrafficDistributionResult> updateTrafficDistributionAsync(
+            UpdateTrafficDistributionRequest updateTrafficDistributionRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the traffic distribution for a given traffic distribution group.
+     * For more information about updating a traffic distribution group see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
+     * >Update telephony traffic distribution across Amazon Web Services Regions
+     * </a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
+     * 
+     * @param updateTrafficDistributionRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateTrafficDistribution service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateTrafficDistributionResult> updateTrafficDistributionAsync(
+            UpdateTrafficDistributionRequest updateTrafficDistributionRequest,
+            AsyncHandler<UpdateTrafficDistributionRequest, UpdateTrafficDistributionResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

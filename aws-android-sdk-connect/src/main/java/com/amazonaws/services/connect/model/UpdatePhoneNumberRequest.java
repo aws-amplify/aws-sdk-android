@@ -21,9 +21,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates your claimed phone number from its current Amazon Connect instance to
- * another Amazon Connect instance in the same Region.
+ * Updates your claimed phone number from its current Amazon Connect instance or
+ * traffic distribution group to another Amazon Connect instance or traffic
+ * distribution group in the same Amazon Web Services Region.
  * </p>
+ * <important>
+ * <p>
+ * You can call <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+ * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+ * >UpdatePhoneNumber</a> operation.
+ * </p>
+ * </important>
  */
 public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -35,8 +45,8 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      */
     private String targetArn;
@@ -44,7 +54,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,13 +113,13 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
-     *         phone numbers are claimed to.
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *         traffic distribution groups that phone numbers are claimed to.
      *         </p>
      */
     public String getTargetArn() {
@@ -114,13 +128,13 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -129,16 +143,16 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,7 +165,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -159,7 +177,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -169,7 +191,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -177,7 +203,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -187,7 +217,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -198,7 +232,11 @@ public class UpdatePhoneNumberRequest extends AmazonWebServiceRequest implements
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

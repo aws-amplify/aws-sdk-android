@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class QueueInfo implements Serializable {
     /**
      * <p>
-     * The identifier of the agent who accepted the contact.
+     * The unique identifier for the queue.
      * </p>
      */
     private String id;
@@ -39,11 +39,11 @@ public class QueueInfo implements Serializable {
 
     /**
      * <p>
-     * The identifier of the agent who accepted the contact.
+     * The unique identifier for the queue.
      * </p>
      *
      * @return <p>
-     *         The identifier of the agent who accepted the contact.
+     *         The unique identifier for the queue.
      *         </p>
      */
     public String getId() {
@@ -52,11 +52,11 @@ public class QueueInfo implements Serializable {
 
     /**
      * <p>
-     * The identifier of the agent who accepted the contact.
+     * The unique identifier for the queue.
      * </p>
      *
      * @param id <p>
-     *            The identifier of the agent who accepted the contact.
+     *            The unique identifier for the queue.
      *            </p>
      */
     public void setId(String id) {
@@ -65,14 +65,14 @@ public class QueueInfo implements Serializable {
 
     /**
      * <p>
-     * The identifier of the agent who accepted the contact.
+     * The unique identifier for the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            The identifier of the agent who accepted the contact.
+     *            The unique identifier for the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -45,6 +45,12 @@ class UserIdentityInfoJsonUnmarshaller implements
             } else if (name.equals("Email")) {
                 userIdentityInfo.setEmail(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SecondaryEmail")) {
+                userIdentityInfo.setSecondaryEmail(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Mobile")) {
+                userIdentityInfo.setMobile(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

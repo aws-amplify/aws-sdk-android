@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Information about a phone number that has been claimed to your Amazon Connect
- * instance.
+ * instance or traffic distribution group.
  * </p>
  */
 public class ClaimedPhoneNumberSummary implements Serializable {
@@ -95,8 +95,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      */
     private String targetArn;
@@ -113,6 +113,51 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <p>
      * The status of the phone number.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>CLAIMED</code> means the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation succeeded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IN_PROGRESS</code> means a <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
+     * completed. You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> at a later time to verify if the previous
+     * operation has completed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> indicates that the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation has failed. It will include a message
+     * indicating the failure reason. A common reason for a failure may be that
+     * the <code>TargetArn</code> value you are claiming or updating a phone
+     * number to has reached its limit of total claimed numbers. If you received
+     * a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API
+     * call, you have one day to retry claiming the phone number before the
+     * number is released back to the inventory for other customers to claim.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * You will not be billed for the phone number during the 1-day period if
+     * number claiming fails.
+     * </p>
+     * </note>
      */
     private PhoneNumberStatus phoneNumberStatus;
 
@@ -588,13 +633,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
-     *         phone numbers are claimed to.
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *         traffic distribution groups that phone numbers are claimed to.
      *         </p>
      */
     public String getTargetArn() {
@@ -603,13 +648,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -618,16 +663,16 @@ public class ClaimedPhoneNumberSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -731,10 +776,101 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <p>
      * The status of the phone number.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>CLAIMED</code> means the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation succeeded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IN_PROGRESS</code> means a <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
+     * completed. You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> at a later time to verify if the previous
+     * operation has completed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> indicates that the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation has failed. It will include a message
+     * indicating the failure reason. A common reason for a failure may be that
+     * the <code>TargetArn</code> value you are claiming or updating a phone
+     * number to has reached its limit of total claimed numbers. If you received
+     * a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API
+     * call, you have one day to retry claiming the phone number before the
+     * number is released back to the inventory for other customers to claim.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * You will not be billed for the phone number during the 1-day period if
+     * number claiming fails.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The status of the phone number.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>CLAIMED</code> means the previous <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *         >UpdatePhoneNumber</a> operation succeeded.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>IN_PROGRESS</code> means a <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *         >UpdatePhoneNumber</a> operation is still in progress and has not
+     *         yet completed. You can call <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     *         >DescribePhoneNumber</a> at a later time to verify if the
+     *         previous operation has completed.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FAILED</code> indicates that the previous <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *         >UpdatePhoneNumber</a> operation has failed. It will include a
+     *         message indicating the failure reason. A common reason for a
+     *         failure may be that the <code>TargetArn</code> value you are
+     *         claiming or updating a phone number to has reached its limit of
+     *         total claimed numbers. If you received a <code>FAILED</code>
+     *         status from a <code>ClaimPhoneNumber</code> API call, you have
+     *         one day to retry claiming the phone number before the number is
+     *         released back to the inventory for other customers to claim.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <note>
+     *         <p>
+     *         You will not be billed for the phone number during the 1-day
+     *         period if number claiming fails.
+     *         </p>
+     *         </note>
      */
     public PhoneNumberStatus getPhoneNumberStatus() {
         return phoneNumberStatus;
@@ -744,10 +880,102 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <p>
      * The status of the phone number.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>CLAIMED</code> means the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation succeeded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IN_PROGRESS</code> means a <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
+     * completed. You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> at a later time to verify if the previous
+     * operation has completed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> indicates that the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation has failed. It will include a message
+     * indicating the failure reason. A common reason for a failure may be that
+     * the <code>TargetArn</code> value you are claiming or updating a phone
+     * number to has reached its limit of total claimed numbers. If you received
+     * a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API
+     * call, you have one day to retry claiming the phone number before the
+     * number is released back to the inventory for other customers to claim.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * You will not be billed for the phone number during the 1-day period if
+     * number claiming fails.
+     * </p>
+     * </note>
      *
      * @param phoneNumberStatus <p>
      *            The status of the phone number.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>CLAIMED</code> means the previous <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation succeeded.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IN_PROGRESS</code> means a <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation is still in progress and has
+     *            not yet completed. You can call <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     *            >DescribePhoneNumber</a> at a later time to verify if the
+     *            previous operation has completed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> indicates that the previous <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation has failed. It will include a
+     *            message indicating the failure reason. A common reason for a
+     *            failure may be that the <code>TargetArn</code> value you are
+     *            claiming or updating a phone number to has reached its limit
+     *            of total claimed numbers. If you received a
+     *            <code>FAILED</code> status from a
+     *            <code>ClaimPhoneNumber</code> API call, you have one day to
+     *            retry claiming the phone number before the number is released
+     *            back to the inventory for other customers to claim.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            You will not be billed for the phone number during the 1-day
+     *            period if number claiming fails.
+     *            </p>
+     *            </note>
      */
     public void setPhoneNumberStatus(PhoneNumberStatus phoneNumberStatus) {
         this.phoneNumberStatus = phoneNumberStatus;
@@ -757,6 +985,51 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <p>
      * The status of the phone number.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>CLAIMED</code> means the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation succeeded.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>IN_PROGRESS</code> means a <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
+     * completed. You can call <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> at a later time to verify if the previous
+     * operation has completed.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> indicates that the previous <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     * >UpdatePhoneNumber</a> operation has failed. It will include a message
+     * indicating the failure reason. A common reason for a failure may be that
+     * the <code>TargetArn</code> value you are claiming or updating a phone
+     * number to has reached its limit of total claimed numbers. If you received
+     * a <code>FAILED</code> status from a <code>ClaimPhoneNumber</code> API
+     * call, you have one day to retry claiming the phone number before the
+     * number is released back to the inventory for other customers to claim.
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * You will not be billed for the phone number during the 1-day period if
+     * number claiming fails.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -764,6 +1037,53 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * @param phoneNumberStatus <p>
      *            The status of the phone number.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>CLAIMED</code> means the previous <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation succeeded.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>IN_PROGRESS</code> means a <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation is still in progress and has
+     *            not yet completed. You can call <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     *            >DescribePhoneNumber</a> at a later time to verify if the
+     *            previous operation has completed.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> indicates that the previous <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
+     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
+     *            >UpdatePhoneNumber</a> operation has failed. It will include a
+     *            message indicating the failure reason. A common reason for a
+     *            failure may be that the <code>TargetArn</code> value you are
+     *            claiming or updating a phone number to has reached its limit
+     *            of total claimed numbers. If you received a
+     *            <code>FAILED</code> status from a
+     *            <code>ClaimPhoneNumber</code> API call, you have one day to
+     *            retry claiming the phone number before the number is released
+     *            back to the inventory for other customers to claim.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            You will not be billed for the phone number during the 1-day
+     *            period if number claiming fails.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

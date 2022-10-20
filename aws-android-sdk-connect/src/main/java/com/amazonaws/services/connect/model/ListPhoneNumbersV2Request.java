@@ -21,7 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists phone numbers claimed to your Amazon Connect instance.
+ * Lists phone numbers claimed to your Amazon Connect instance or traffic
+ * distribution group. If the provided <code>TargetArn</code> is a traffic
+ * distribution group, you can call this API in both Amazon Web Services Regions
+ * associated with traffic distribution group.
  * </p>
  * <p>
  * For more information about phone numbers, see <a href=
@@ -33,10 +36,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to. If <code>TargetArn</code> input is not provided,
-     * this API lists numbers claimed to all the Amazon Connect instances
-     * belonging to your account.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to. If
+     * <code>TargetArn</code> input is not provided, this API lists numbers
+     * claimed to all the Amazon Connect instances belonging to your account in
+     * the same Amazon Web Services Region as the request.
      * </p>
      */
     private String targetArn;
@@ -90,17 +94,20 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to. If <code>TargetArn</code> input is not provided,
-     * this API lists numbers claimed to all the Amazon Connect instances
-     * belonging to your account.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to. If
+     * <code>TargetArn</code> input is not provided, this API lists numbers
+     * claimed to all the Amazon Connect instances belonging to your account in
+     * the same Amazon Web Services Region as the request.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for Amazon Connect instances that
-     *         phone numbers are claimed to. If <code>TargetArn</code> input is
-     *         not provided, this API lists numbers claimed to all the Amazon
-     *         Connect instances belonging to your account.
+     *         The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *         traffic distribution groups that phone numbers are claimed to. If
+     *         <code>TargetArn</code> input is not provided, this API lists
+     *         numbers claimed to all the Amazon Connect instances belonging to
+     *         your account in the same Amazon Web Services Region as the
+     *         request.
      *         </p>
      */
     public String getTargetArn() {
@@ -109,17 +116,20 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to. If <code>TargetArn</code> input is not provided,
-     * this API lists numbers claimed to all the Amazon Connect instances
-     * belonging to your account.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to. If
+     * <code>TargetArn</code> input is not provided, this API lists numbers
+     * claimed to all the Amazon Connect instances belonging to your account in
+     * the same Amazon Web Services Region as the request.
      * </p>
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to. If <code>TargetArn</code>
-     *            input is not provided, this API lists numbers claimed to all
-     *            the Amazon Connect instances belonging to your account.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
+     *            If <code>TargetArn</code> input is not provided, this API
+     *            lists numbers claimed to all the Amazon Connect instances
+     *            belonging to your account in the same Amazon Web Services
+     *            Region as the request.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -128,20 +138,23 @@ public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for Amazon Connect instances that phone
-     * numbers are claimed to. If <code>TargetArn</code> input is not provided,
-     * this API lists numbers claimed to all the Amazon Connect instances
-     * belonging to your account.
+     * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
+     * distribution groups that phone numbers are claimed to. If
+     * <code>TargetArn</code> input is not provided, this API lists numbers
+     * claimed to all the Amazon Connect instances belonging to your account in
+     * the same Amazon Web Services Region as the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targetArn <p>
-     *            The Amazon Resource Name (ARN) for Amazon Connect instances
-     *            that phone numbers are claimed to. If <code>TargetArn</code>
-     *            input is not provided, this API lists numbers claimed to all
-     *            the Amazon Connect instances belonging to your account.
+     *            The Amazon Resource Name (ARN) for Amazon Connect instances or
+     *            traffic distribution groups that phone numbers are claimed to.
+     *            If <code>TargetArn</code> input is not provided, this API
+     *            lists numbers claimed to all the Amazon Connect instances
+     *            belonging to your account in the same Amazon Web Services
+     *            Region as the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -27,7 +27,8 @@ public enum IntegrationType {
     VOICE_ID("VOICE_ID"),
     PINPOINT_APP("PINPOINT_APP"),
     WISDOM_ASSISTANT("WISDOM_ASSISTANT"),
-    WISDOM_KNOWLEDGE_BASE("WISDOM_KNOWLEDGE_BASE");
+    WISDOM_KNOWLEDGE_BASE("WISDOM_KNOWLEDGE_BASE"),
+    CASES_DOMAIN("CASES_DOMAIN");
 
     private String value;
 
@@ -48,6 +49,7 @@ public enum IntegrationType {
         enumMap.put("PINPOINT_APP", PINPOINT_APP);
         enumMap.put("WISDOM_ASSISTANT", WISDOM_ASSISTANT);
         enumMap.put("WISDOM_KNOWLEDGE_BASE", WISDOM_KNOWLEDGE_BASE);
+        enumMap.put("CASES_DOMAIN", CASES_DOMAIN);
     }
 
     /**
