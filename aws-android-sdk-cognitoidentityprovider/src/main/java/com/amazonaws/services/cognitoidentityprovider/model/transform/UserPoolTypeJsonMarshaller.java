@@ -41,6 +41,11 @@ class UserPoolTypeJsonMarshaller {
             jsonWriter.name("Policies");
             UserPoolPolicyTypeJsonMarshaller.getInstance().marshall(policies, jsonWriter);
         }
+        if (userPoolType.getDeletionProtection() != null) {
+            String deletionProtection = userPoolType.getDeletionProtection();
+            jsonWriter.name("DeletionProtection");
+            jsonWriter.value(deletionProtection);
+        }
         if (userPoolType.getLambdaConfig() != null) {
             LambdaConfigType lambdaConfig = userPoolType.getLambdaConfig();
             jsonWriter.name("LambdaConfig");
