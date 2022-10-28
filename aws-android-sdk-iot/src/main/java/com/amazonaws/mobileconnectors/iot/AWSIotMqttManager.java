@@ -1277,7 +1277,8 @@ public class AWSIotMqttManager {
         if (null != mqttClient) {
             if (mqttClient.isConnected()) {
                 try {
-                    mqttClient.disconnect(0);
+                    IMqttToken token = mqttClient.disconnect(0);
+                    token.waitForCompletion();
                 } catch (final MqttException e) {
                     throw new AmazonClientException("Client error when disconnecting.", e);
                 }
