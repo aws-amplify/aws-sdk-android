@@ -80,7 +80,11 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Updates the pre-provisioning hook template.
+     * Updates the pre-provisioning hook template. Only supports template of
+     * type <code>FLEET_PROVISIONING</code>. For more information about
+     * provisioning template types, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     * >type</a>.
      * </p>
      */
     private ProvisioningHook preProvisioningHook;
@@ -371,11 +375,19 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Updates the pre-provisioning hook template.
+     * Updates the pre-provisioning hook template. Only supports template of
+     * type <code>FLEET_PROVISIONING</code>. For more information about
+     * provisioning template types, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     * >type</a>.
      * </p>
      *
      * @return <p>
-     *         Updates the pre-provisioning hook template.
+     *         Updates the pre-provisioning hook template. Only supports
+     *         template of type <code>FLEET_PROVISIONING</code>. For more
+     *         information about provisioning template types, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     *         >type</a>.
      *         </p>
      */
     public ProvisioningHook getPreProvisioningHook() {
@@ -384,11 +396,19 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Updates the pre-provisioning hook template.
+     * Updates the pre-provisioning hook template. Only supports template of
+     * type <code>FLEET_PROVISIONING</code>. For more information about
+     * provisioning template types, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     * >type</a>.
      * </p>
      *
      * @param preProvisioningHook <p>
-     *            Updates the pre-provisioning hook template.
+     *            Updates the pre-provisioning hook template. Only supports
+     *            template of type <code>FLEET_PROVISIONING</code>. For more
+     *            information about provisioning template types, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     *            >type</a>.
      *            </p>
      */
     public void setPreProvisioningHook(ProvisioningHook preProvisioningHook) {
@@ -397,14 +417,22 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Updates the pre-provisioning hook template.
+     * Updates the pre-provisioning hook template. Only supports template of
+     * type <code>FLEET_PROVISIONING</code>. For more information about
+     * provisioning template types, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     * >type</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param preProvisioningHook <p>
-     *            Updates the pre-provisioning hook template.
+     *            Updates the pre-provisioning hook template. Only supports
+     *            template of type <code>FLEET_PROVISIONING</code>. For more
+     *            information about provisioning template types, see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type"
+     *            >type</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
