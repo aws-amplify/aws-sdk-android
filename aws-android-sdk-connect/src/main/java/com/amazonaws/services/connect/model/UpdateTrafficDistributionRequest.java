@@ -21,8 +21,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the traffic distribution for a given traffic distribution group. For
- * more information about updating a traffic distribution group see <a href=
+ * Updates the traffic distribution for a given traffic distribution group.
+ * </p>
+ * <p>
+ * For more information about updating a traffic distribution group, see <a
+ * href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
  * >Update telephony traffic distribution across Amazon Web Services Regions
  * </a> in the <i>Amazon Connect Administrator Guide</i>.
