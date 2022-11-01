@@ -21,48 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO IdentityDocument
+ * JSON unmarshaller for POJO ExpenseCurrency
  */
-class IdentityDocumentJsonUnmarshaller implements
-        Unmarshaller<IdentityDocument, JsonUnmarshallerContext> {
+class ExpenseCurrencyJsonUnmarshaller implements
+        Unmarshaller<ExpenseCurrency, JsonUnmarshallerContext> {
 
-    public IdentityDocument unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ExpenseCurrency unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        IdentityDocument identityDocument = new IdentityDocument();
+        ExpenseCurrency expenseCurrency = new ExpenseCurrency();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DocumentIndex")) {
-                identityDocument.setDocumentIndex(IntegerJsonUnmarshaller.getInstance()
+            if (name.equals("Code")) {
+                expenseCurrency.setCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("IdentityDocumentFields")) {
-                identityDocument
-                        .setIdentityDocumentFields(new ListUnmarshaller<IdentityDocumentField>(
-                                IdentityDocumentFieldJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("Blocks")) {
-                identityDocument.setBlocks(new ListUnmarshaller<Block>(BlockJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
+            } else if (name.equals("Confidence")) {
+                expenseCurrency.setConfidence(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return identityDocument;
+        return expenseCurrency;
     }
 
-    private static IdentityDocumentJsonUnmarshaller instance;
+    private static ExpenseCurrencyJsonUnmarshaller instance;
 
-    public static IdentityDocumentJsonUnmarshaller getInstance() {
+    public static ExpenseCurrencyJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new IdentityDocumentJsonUnmarshaller();
+            instance = new ExpenseCurrencyJsonUnmarshaller();
         return instance;
     }
 }

@@ -45,6 +45,13 @@ public class IdentityDocument implements Serializable {
 
     /**
      * <p>
+     * Individual word recognition, as returned by document detection.
+     * </p>
+     */
+    private java.util.List<Block> blocks;
+
+    /**
+     * <p>
      * Denotes the placement of a document in the IdentityDocument list. The
      * first document is marked 1, the second 2 and so on.
      * </p>
@@ -199,6 +206,83 @@ public class IdentityDocument implements Serializable {
     }
 
     /**
+     * <p>
+     * Individual word recognition, as returned by document detection.
+     * </p>
+     *
+     * @return <p>
+     *         Individual word recognition, as returned by document detection.
+     *         </p>
+     */
+    public java.util.List<Block> getBlocks() {
+        return blocks;
+    }
+
+    /**
+     * <p>
+     * Individual word recognition, as returned by document detection.
+     * </p>
+     *
+     * @param blocks <p>
+     *            Individual word recognition, as returned by document
+     *            detection.
+     *            </p>
+     */
+    public void setBlocks(java.util.Collection<Block> blocks) {
+        if (blocks == null) {
+            this.blocks = null;
+            return;
+        }
+
+        this.blocks = new java.util.ArrayList<Block>(blocks);
+    }
+
+    /**
+     * <p>
+     * Individual word recognition, as returned by document detection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blocks <p>
+     *            Individual word recognition, as returned by document
+     *            detection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IdentityDocument withBlocks(Block... blocks) {
+        if (getBlocks() == null) {
+            this.blocks = new java.util.ArrayList<Block>(blocks.length);
+        }
+        for (Block value : blocks) {
+            this.blocks.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Individual word recognition, as returned by document detection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blocks <p>
+     *            Individual word recognition, as returned by document
+     *            detection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public IdentityDocument withBlocks(java.util.Collection<Block> blocks) {
+        setBlocks(blocks);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -212,7 +296,9 @@ public class IdentityDocument implements Serializable {
         if (getDocumentIndex() != null)
             sb.append("DocumentIndex: " + getDocumentIndex() + ",");
         if (getIdentityDocumentFields() != null)
-            sb.append("IdentityDocumentFields: " + getIdentityDocumentFields());
+            sb.append("IdentityDocumentFields: " + getIdentityDocumentFields() + ",");
+        if (getBlocks() != null)
+            sb.append("Blocks: " + getBlocks());
         sb.append("}");
         return sb.toString();
     }
@@ -228,6 +314,7 @@ public class IdentityDocument implements Serializable {
                 * hashCode
                 + ((getIdentityDocumentFields() == null) ? 0 : getIdentityDocumentFields()
                         .hashCode());
+        hashCode = prime * hashCode + ((getBlocks() == null) ? 0 : getBlocks().hashCode());
         return hashCode;
     }
 
@@ -251,6 +338,10 @@ public class IdentityDocument implements Serializable {
             return false;
         if (other.getIdentityDocumentFields() != null
                 && other.getIdentityDocumentFields().equals(this.getIdentityDocumentFields()) == false)
+            return false;
+        if (other.getBlocks() == null ^ this.getBlocks() == null)
+            return false;
+        if (other.getBlocks() != null && other.getBlocks().equals(this.getBlocks()) == false)
             return false;
         return true;
     }
