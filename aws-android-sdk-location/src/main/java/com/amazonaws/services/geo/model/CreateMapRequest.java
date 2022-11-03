@@ -37,7 +37,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateMapRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Specifies the map style selected from an available data provider.
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
      * </p>
      */
     private MapConfiguration configuration;
@@ -146,11 +148,16 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider.
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
      * </p>
      *
      * @return <p>
-     *         Specifies the map style selected from an available data provider.
+     *         Specifies the <code>MapConfiguration</code>, including the map
+     *         style, for the map resource that you create. The map style
+     *         defines the look of maps and the data provider for your map
+     *         resource.
      *         </p>
      */
     public MapConfiguration getConfiguration() {
@@ -159,12 +166,16 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider.
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
      * </p>
      *
      * @param configuration <p>
-     *            Specifies the map style selected from an available data
-     *            provider.
+     *            Specifies the <code>MapConfiguration</code>, including the map
+     *            style, for the map resource that you create. The map style
+     *            defines the look of maps and the data provider for your map
+     *            resource.
      *            </p>
      */
     public void setConfiguration(MapConfiguration configuration) {
@@ -173,15 +184,19 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider.
+     * Specifies the <code>MapConfiguration</code>, including the map style, for
+     * the map resource that you create. The map style defines the look of maps
+     * and the data provider for your map resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configuration <p>
-     *            Specifies the map style selected from an available data
-     *            provider.
+     *            Specifies the <code>MapConfiguration</code>, including the map
+     *            style, for the map resource that you create. The map style
+     *            defines the look of maps and the data provider for your map
+     *            resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
