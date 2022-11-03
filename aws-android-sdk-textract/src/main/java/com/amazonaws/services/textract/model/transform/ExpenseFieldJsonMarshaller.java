@@ -46,6 +46,24 @@ class ExpenseFieldJsonMarshaller {
             jsonWriter.name("PageNumber");
             jsonWriter.value(pageNumber);
         }
+        if (expenseField.getCurrency() != null) {
+            ExpenseCurrency currency = expenseField.getCurrency();
+            jsonWriter.name("Currency");
+            ExpenseCurrencyJsonMarshaller.getInstance().marshall(currency, jsonWriter);
+        }
+        if (expenseField.getGroupProperties() != null) {
+            java.util.List<ExpenseGroupProperty> groupProperties = expenseField
+                    .getGroupProperties();
+            jsonWriter.name("GroupProperties");
+            jsonWriter.beginArray();
+            for (ExpenseGroupProperty groupPropertiesItem : groupProperties) {
+                if (groupPropertiesItem != null) {
+                    ExpenseGroupPropertyJsonMarshaller.getInstance().marshall(groupPropertiesItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

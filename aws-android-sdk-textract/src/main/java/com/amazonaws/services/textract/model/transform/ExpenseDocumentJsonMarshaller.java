@@ -56,6 +56,17 @@ class ExpenseDocumentJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (expenseDocument.getBlocks() != null) {
+            java.util.List<Block> blocks = expenseDocument.getBlocks();
+            jsonWriter.name("Blocks");
+            jsonWriter.beginArray();
+            for (Block blocksItem : blocks) {
+                if (blocksItem != null) {
+                    BlockJsonMarshaller.getInstance().marshall(blocksItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
