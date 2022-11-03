@@ -417,7 +417,7 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
-    public void testConnectDisconnectConnect() throws Exception {
+    public void testRepeatedConnectDisconnect() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
@@ -429,15 +429,16 @@ public class AWSIotMqttManagerTest {
 
         KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
                 KEYSTORE_NAME, KEYSTORE_PASSWORD);
-        testClient.connect(testKeystore, csb);
-        mockClient.mockConnectSuccess();
-        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
-        testClient.disconnect();
-        assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
-        testClient.connect(testKeystore, csb);
-        mockClient.mockConnectSuccess();
+        int connectionAttempts = 3;
+        for (int i = 0; i < connectionAttempts; i++) {
+            testClient.connect(testKeystore, csb);
+            mockClient.mockConnectSuccess();
+            assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+            testClient.disconnect();
+            assertEquals(MqttManagerConnectionState.Disconnected, testClient.getConnectionState());
+        }
 
-        assertEquals(2, mockClient.connectCalls);
+        assertEquals(connectionAttempts, mockClient.connectCalls);
     }
 
     @Test

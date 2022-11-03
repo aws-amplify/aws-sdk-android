@@ -53,8 +53,8 @@ public class Query implements Serializable {
 
     /**
      * <p>
-     * List of pages associated with the query. The following is a list of rules
-     * for using this parameter.
+     * Pages is a parameter that the user inputs to specify which pages to apply
+     * a query to. The following is a list of rules for using this parameter.
      * </p>
      * <ul>
      * <li>
@@ -70,8 +70,8 @@ public class Query implements Serializable {
      * </li>
      * <li>
      * <p>
-     * When using <code>*</code> to indicate all pages, it must be the only
-     * element in the string.
+     * When using * to indicate all pages, it must be the only element in the
+     * list.
      * </p>
      * </li>
      * <li>
@@ -224,8 +224,8 @@ public class Query implements Serializable {
 
     /**
      * <p>
-     * List of pages associated with the query. The following is a list of rules
-     * for using this parameter.
+     * Pages is a parameter that the user inputs to specify which pages to apply
+     * a query to. The following is a list of rules for using this parameter.
      * </p>
      * <ul>
      * <li>
@@ -241,8 +241,8 @@ public class Query implements Serializable {
      * </li>
      * <li>
      * <p>
-     * When using <code>*</code> to indicate all pages, it must be the only
-     * element in the string.
+     * When using * to indicate all pages, it must be the only element in the
+     * list.
      * </p>
      * </li>
      * <li>
@@ -260,8 +260,9 @@ public class Query implements Serializable {
      * </ul>
      *
      * @return <p>
-     *         List of pages associated with the query. The following is a list
-     *         of rules for using this parameter.
+     *         Pages is a parameter that the user inputs to specify which pages
+     *         to apply a query to. The following is a list of rules for using
+     *         this parameter.
      *         </p>
      *         <ul>
      *         <li>
@@ -278,8 +279,8 @@ public class Query implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         When using <code>*</code> to indicate all pages, it must be the
-     *         only element in the string.
+     *         When using * to indicate all pages, it must be the only element
+     *         in the list.
      *         </p>
      *         </li>
      *         <li>
@@ -303,8 +304,8 @@ public class Query implements Serializable {
 
     /**
      * <p>
-     * List of pages associated with the query. The following is a list of rules
-     * for using this parameter.
+     * Pages is a parameter that the user inputs to specify which pages to apply
+     * a query to. The following is a list of rules for using this parameter.
      * </p>
      * <ul>
      * <li>
@@ -320,8 +321,8 @@ public class Query implements Serializable {
      * </li>
      * <li>
      * <p>
-     * When using <code>*</code> to indicate all pages, it must be the only
-     * element in the string.
+     * When using * to indicate all pages, it must be the only element in the
+     * list.
      * </p>
      * </li>
      * <li>
@@ -339,8 +340,9 @@ public class Query implements Serializable {
      * </ul>
      *
      * @param pages <p>
-     *            List of pages associated with the query. The following is a
-     *            list of rules for using this parameter.
+     *            Pages is a parameter that the user inputs to specify which
+     *            pages to apply a query to. The following is a list of rules
+     *            for using this parameter.
      *            </p>
      *            <ul>
      *            <li>
@@ -358,8 +360,8 @@ public class Query implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            When using <code>*</code> to indicate all pages, it must be
-     *            the only element in the string.
+     *            When using * to indicate all pages, it must be the only
+     *            element in the list.
      *            </p>
      *            </li>
      *            <li>
@@ -388,8 +390,8 @@ public class Query implements Serializable {
 
     /**
      * <p>
-     * List of pages associated with the query. The following is a list of rules
-     * for using this parameter.
+     * Pages is a parameter that the user inputs to specify which pages to apply
+     * a query to. The following is a list of rules for using this parameter.
      * </p>
      * <ul>
      * <li>
@@ -405,8 +407,8 @@ public class Query implements Serializable {
      * </li>
      * <li>
      * <p>
-     * When using <code>*</code> to indicate all pages, it must be the only
-     * element in the string.
+     * When using * to indicate all pages, it must be the only element in the
+     * list.
      * </p>
      * </li>
      * <li>
@@ -427,8 +429,9 @@ public class Query implements Serializable {
      * together.
      *
      * @param pages <p>
-     *            List of pages associated with the query. The following is a
-     *            list of rules for using this parameter.
+     *            Pages is a parameter that the user inputs to specify which
+     *            pages to apply a query to. The following is a list of rules
+     *            for using this parameter.
      *            </p>
      *            <ul>
      *            <li>
@@ -446,8 +449,8 @@ public class Query implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            When using <code>*</code> to indicate all pages, it must be
-     *            the only element in the string.
+     *            When using * to indicate all pages, it must be the only
+     *            element in the list.
      *            </p>
      *            </li>
      *            <li>
@@ -479,8 +482,8 @@ public class Query implements Serializable {
 
     /**
      * <p>
-     * List of pages associated with the query. The following is a list of rules
-     * for using this parameter.
+     * Pages is a parameter that the user inputs to specify which pages to apply
+     * a query to. The following is a list of rules for using this parameter.
      * </p>
      * <ul>
      * <li>
@@ -496,8 +499,8 @@ public class Query implements Serializable {
      * </li>
      * <li>
      * <p>
-     * When using <code>*</code> to indicate all pages, it must be the only
-     * element in the string.
+     * When using * to indicate all pages, it must be the only element in the
+     * list.
      * </p>
      * </li>
      * <li>
@@ -518,8 +521,9 @@ public class Query implements Serializable {
      * together.
      *
      * @param pages <p>
-     *            List of pages associated with the query. The following is a
-     *            list of rules for using this parameter.
+     *            Pages is a parameter that the user inputs to specify which
+     *            pages to apply a query to. The following is a list of rules
+     *            for using this parameter.
      *            </p>
      *            <ul>
      *            <li>
@@ -537,8 +541,8 @@ public class Query implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            When using <code>*</code> to indicate all pages, it must be
-     *            the only element in the string.
+     *            When using * to indicate all pages, it must be the only
+     *            element in the list.
      *            </p>
      *            </li>
      *            <li>
