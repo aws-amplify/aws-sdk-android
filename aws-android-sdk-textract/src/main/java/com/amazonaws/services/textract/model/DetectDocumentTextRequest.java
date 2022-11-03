@@ -22,9 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Detects text in the input document. Amazon Textract can detect lines of text
- * and the words that make up a line of text. The input document must be an
- * image in JPEG, PNG, PDF, or TIFF format. <code>DetectDocumentText</code>
- * returns the detected text in an array of <a>Block</a> objects.
+ * and the words that make up a line of text. The input document must be in one
+ * of the following image formats: JPEG, PNG, PDF, or TIFF.
+ * <code>DetectDocumentText</code> returns the detected text in an array of
+ * <a>Block</a> objects.
  * </p>
  * <p>
  * Each document page has as an associated <code>Block</code> of type PAGE. Each

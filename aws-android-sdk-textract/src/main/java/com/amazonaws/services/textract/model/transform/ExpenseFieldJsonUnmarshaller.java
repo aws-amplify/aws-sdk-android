@@ -47,6 +47,14 @@ class ExpenseFieldJsonUnmarshaller implements Unmarshaller<ExpenseField, JsonUnm
             } else if (name.equals("PageNumber")) {
                 expenseField.setPageNumber(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Currency")) {
+                expenseField.setCurrency(ExpenseCurrencyJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("GroupProperties")) {
+                expenseField.setGroupProperties(new ListUnmarshaller<ExpenseGroupProperty>(
+                        ExpenseGroupPropertyJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

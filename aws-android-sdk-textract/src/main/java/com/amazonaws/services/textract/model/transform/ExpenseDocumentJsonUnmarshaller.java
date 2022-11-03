@@ -49,6 +49,11 @@ class ExpenseDocumentJsonUnmarshaller implements
                         LineItemGroupJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Blocks")) {
+                expenseDocument.setBlocks(new ListUnmarshaller<Block>(BlockJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
