@@ -2072,6 +2072,37 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Dismisses contacts from an agent’s CCP and returns the agent to an
+     * available state, which allows the agent to receive a new routed contact.
+     * Contacts can only be dismissed if they are in a <code>MISSED</code>,
+     * <code>ERROR</code>, <code>ENDED</code>, or <code>REJECTED</code> state in
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/about-contact-states.html"
+     * >Agent Event Stream</a>.
+     * </p>
+     * 
+     * @param dismissUserContactRequest
+     * @return dismissUserContactResult The response from the DismissUserContact
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DismissUserContactResult dismissUserContact(DismissUserContactRequest dismissUserContactRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Retrieves the contact attributes for the specified contact.
      * </p>
      * 
@@ -4739,7 +4770,9 @@ public interface AmazonConnect {
     /**
      * <p>
      * Updates the traffic distribution for a given traffic distribution group.
-     * For more information about updating a traffic distribution group see <a
+     * </p>
+     * <p>
+     * For more information about updating a traffic distribution group, see <a
      * href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/update-telephony-traffic-distribution.html"
      * >Update telephony traffic distribution across Amazon Web Services Regions
