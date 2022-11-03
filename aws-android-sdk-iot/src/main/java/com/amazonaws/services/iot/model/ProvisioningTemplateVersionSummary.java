@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class ProvisioningTemplateVersionSummary implements Serializable {
     /**
      * <p>
-     * The ID of the fleet privisioning template version.
+     * The ID of the fleet provisioning template version.
      * </p>
      */
     private Integer versionId;
@@ -47,11 +47,11 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The ID of the fleet privisioning template version.
+     * The ID of the fleet provisioning template version.
      * </p>
      *
      * @return <p>
-     *         The ID of the fleet privisioning template version.
+     *         The ID of the fleet provisioning template version.
      *         </p>
      */
     public Integer getVersionId() {
@@ -60,11 +60,11 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The ID of the fleet privisioning template version.
+     * The ID of the fleet provisioning template version.
      * </p>
      *
      * @param versionId <p>
-     *            The ID of the fleet privisioning template version.
+     *            The ID of the fleet provisioning template version.
      *            </p>
      */
     public void setVersionId(Integer versionId) {
@@ -73,14 +73,14 @@ public class ProvisioningTemplateVersionSummary implements Serializable {
 
     /**
      * <p>
-     * The ID of the fleet privisioning template version.
+     * The ID of the fleet provisioning template version.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param versionId <p>
-     *            The ID of the fleet privisioning template version.
+     *            The ID of the fleet provisioning template version.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

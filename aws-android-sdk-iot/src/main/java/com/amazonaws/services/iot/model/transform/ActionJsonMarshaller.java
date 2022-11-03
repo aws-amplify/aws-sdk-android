@@ -137,6 +137,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("openSearch");
             OpenSearchActionJsonMarshaller.getInstance().marshall(openSearch, jsonWriter);
         }
+        if (action.getLocation() != null) {
+            LocationAction location = action.getLocation();
+            jsonWriter.name("location");
+            LocationActionJsonMarshaller.getInstance().marshall(location, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
