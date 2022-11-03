@@ -45,6 +45,17 @@ class IdentityDocumentJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (identityDocument.getBlocks() != null) {
+            java.util.List<Block> blocks = identityDocument.getBlocks();
+            jsonWriter.name("Blocks");
+            jsonWriter.beginArray();
+            for (Block blocksItem : blocks) {
+                if (blocksItem != null) {
+                    BlockJsonMarshaller.getInstance().marshall(blocksItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

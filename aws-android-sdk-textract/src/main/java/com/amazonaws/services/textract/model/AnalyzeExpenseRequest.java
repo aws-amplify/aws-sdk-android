@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Information is returned as <code>ExpenseDocuments</code> and seperated as
- * follows.
+ * follows:
  * </p>
  * <ul>
  * <li>

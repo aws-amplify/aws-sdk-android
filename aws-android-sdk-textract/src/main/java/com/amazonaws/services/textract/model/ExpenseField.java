@@ -59,6 +59,22 @@ public class ExpenseField implements Serializable {
 
     /**
      * <p>
+     * Shows the kind of currency, both the code and confidence associated with
+     * any monatary value detected.
+     * </p>
+     */
+    private ExpenseCurrency currency;
+
+    /**
+     * <p>
+     * Shows which group a response object belongs to, such as whether an
+     * address line belongs to the vendor's address or the recipent's address.
+     * </p>
+     */
+    private java.util.List<ExpenseGroupProperty> groupProperties;
+
+    /**
+     * <p>
      * The implied label of a detected element. Present alongside LabelDetection
      * for explicit elements.
      * </p>
@@ -259,6 +275,145 @@ public class ExpenseField implements Serializable {
     }
 
     /**
+     * <p>
+     * Shows the kind of currency, both the code and confidence associated with
+     * any monatary value detected.
+     * </p>
+     *
+     * @return <p>
+     *         Shows the kind of currency, both the code and confidence
+     *         associated with any monatary value detected.
+     *         </p>
+     */
+    public ExpenseCurrency getCurrency() {
+        return currency;
+    }
+
+    /**
+     * <p>
+     * Shows the kind of currency, both the code and confidence associated with
+     * any monatary value detected.
+     * </p>
+     *
+     * @param currency <p>
+     *            Shows the kind of currency, both the code and confidence
+     *            associated with any monatary value detected.
+     *            </p>
+     */
+    public void setCurrency(ExpenseCurrency currency) {
+        this.currency = currency;
+    }
+
+    /**
+     * <p>
+     * Shows the kind of currency, both the code and confidence associated with
+     * any monatary value detected.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param currency <p>
+     *            Shows the kind of currency, both the code and confidence
+     *            associated with any monatary value detected.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExpenseField withCurrency(ExpenseCurrency currency) {
+        this.currency = currency;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Shows which group a response object belongs to, such as whether an
+     * address line belongs to the vendor's address or the recipent's address.
+     * </p>
+     *
+     * @return <p>
+     *         Shows which group a response object belongs to, such as whether
+     *         an address line belongs to the vendor's address or the recipent's
+     *         address.
+     *         </p>
+     */
+    public java.util.List<ExpenseGroupProperty> getGroupProperties() {
+        return groupProperties;
+    }
+
+    /**
+     * <p>
+     * Shows which group a response object belongs to, such as whether an
+     * address line belongs to the vendor's address or the recipent's address.
+     * </p>
+     *
+     * @param groupProperties <p>
+     *            Shows which group a response object belongs to, such as
+     *            whether an address line belongs to the vendor's address or the
+     *            recipent's address.
+     *            </p>
+     */
+    public void setGroupProperties(java.util.Collection<ExpenseGroupProperty> groupProperties) {
+        if (groupProperties == null) {
+            this.groupProperties = null;
+            return;
+        }
+
+        this.groupProperties = new java.util.ArrayList<ExpenseGroupProperty>(groupProperties);
+    }
+
+    /**
+     * <p>
+     * Shows which group a response object belongs to, such as whether an
+     * address line belongs to the vendor's address or the recipent's address.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupProperties <p>
+     *            Shows which group a response object belongs to, such as
+     *            whether an address line belongs to the vendor's address or the
+     *            recipent's address.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExpenseField withGroupProperties(ExpenseGroupProperty... groupProperties) {
+        if (getGroupProperties() == null) {
+            this.groupProperties = new java.util.ArrayList<ExpenseGroupProperty>(
+                    groupProperties.length);
+        }
+        for (ExpenseGroupProperty value : groupProperties) {
+            this.groupProperties.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Shows which group a response object belongs to, such as whether an
+     * address line belongs to the vendor's address or the recipent's address.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupProperties <p>
+     *            Shows which group a response object belongs to, such as
+     *            whether an address line belongs to the vendor's address or the
+     *            recipent's address.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExpenseField withGroupProperties(
+            java.util.Collection<ExpenseGroupProperty> groupProperties) {
+        setGroupProperties(groupProperties);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -276,7 +431,11 @@ public class ExpenseField implements Serializable {
         if (getValueDetection() != null)
             sb.append("ValueDetection: " + getValueDetection() + ",");
         if (getPageNumber() != null)
-            sb.append("PageNumber: " + getPageNumber());
+            sb.append("PageNumber: " + getPageNumber() + ",");
+        if (getCurrency() != null)
+            sb.append("Currency: " + getCurrency() + ",");
+        if (getGroupProperties() != null)
+            sb.append("GroupProperties: " + getGroupProperties());
         sb.append("}");
         return sb.toString();
     }
@@ -292,6 +451,9 @@ public class ExpenseField implements Serializable {
         hashCode = prime * hashCode
                 + ((getValueDetection() == null) ? 0 : getValueDetection().hashCode());
         hashCode = prime * hashCode + ((getPageNumber() == null) ? 0 : getPageNumber().hashCode());
+        hashCode = prime * hashCode + ((getCurrency() == null) ? 0 : getCurrency().hashCode());
+        hashCode = prime * hashCode
+                + ((getGroupProperties() == null) ? 0 : getGroupProperties().hashCode());
         return hashCode;
     }
 
@@ -324,6 +486,15 @@ public class ExpenseField implements Serializable {
             return false;
         if (other.getPageNumber() != null
                 && other.getPageNumber().equals(this.getPageNumber()) == false)
+            return false;
+        if (other.getCurrency() == null ^ this.getCurrency() == null)
+            return false;
+        if (other.getCurrency() != null && other.getCurrency().equals(this.getCurrency()) == false)
+            return false;
+        if (other.getGroupProperties() == null ^ this.getGroupProperties() == null)
+            return false;
+        if (other.getGroupProperties() != null
+                && other.getGroupProperties().equals(this.getGroupProperties()) == false)
             return false;
         return true;
     }

@@ -51,6 +51,14 @@ public class ExpenseDocument implements Serializable {
 
     /**
      * <p>
+     * This is a block object, the same as reported when DetectDocumentText is
+     * run on a document. It provides word level recognition of text.
+     * </p>
+     */
+    private java.util.List<Block> blocks;
+
+    /**
+     * <p>
      * Denotes which invoice or receipt in the document the information is
      * coming from. First document will be 1, the second 2, and so on.
      * </p>
@@ -269,6 +277,92 @@ public class ExpenseDocument implements Serializable {
     }
 
     /**
+     * <p>
+     * This is a block object, the same as reported when DetectDocumentText is
+     * run on a document. It provides word level recognition of text.
+     * </p>
+     *
+     * @return <p>
+     *         This is a block object, the same as reported when
+     *         DetectDocumentText is run on a document. It provides word level
+     *         recognition of text.
+     *         </p>
+     */
+    public java.util.List<Block> getBlocks() {
+        return blocks;
+    }
+
+    /**
+     * <p>
+     * This is a block object, the same as reported when DetectDocumentText is
+     * run on a document. It provides word level recognition of text.
+     * </p>
+     *
+     * @param blocks <p>
+     *            This is a block object, the same as reported when
+     *            DetectDocumentText is run on a document. It provides word
+     *            level recognition of text.
+     *            </p>
+     */
+    public void setBlocks(java.util.Collection<Block> blocks) {
+        if (blocks == null) {
+            this.blocks = null;
+            return;
+        }
+
+        this.blocks = new java.util.ArrayList<Block>(blocks);
+    }
+
+    /**
+     * <p>
+     * This is a block object, the same as reported when DetectDocumentText is
+     * run on a document. It provides word level recognition of text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blocks <p>
+     *            This is a block object, the same as reported when
+     *            DetectDocumentText is run on a document. It provides word
+     *            level recognition of text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExpenseDocument withBlocks(Block... blocks) {
+        if (getBlocks() == null) {
+            this.blocks = new java.util.ArrayList<Block>(blocks.length);
+        }
+        for (Block value : blocks) {
+            this.blocks.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * This is a block object, the same as reported when DetectDocumentText is
+     * run on a document. It provides word level recognition of text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blocks <p>
+     *            This is a block object, the same as reported when
+     *            DetectDocumentText is run on a document. It provides word
+     *            level recognition of text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ExpenseDocument withBlocks(java.util.Collection<Block> blocks) {
+        setBlocks(blocks);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -284,7 +378,9 @@ public class ExpenseDocument implements Serializable {
         if (getSummaryFields() != null)
             sb.append("SummaryFields: " + getSummaryFields() + ",");
         if (getLineItemGroups() != null)
-            sb.append("LineItemGroups: " + getLineItemGroups());
+            sb.append("LineItemGroups: " + getLineItemGroups() + ",");
+        if (getBlocks() != null)
+            sb.append("Blocks: " + getBlocks());
         sb.append("}");
         return sb.toString();
     }
@@ -300,6 +396,7 @@ public class ExpenseDocument implements Serializable {
                 + ((getSummaryFields() == null) ? 0 : getSummaryFields().hashCode());
         hashCode = prime * hashCode
                 + ((getLineItemGroups() == null) ? 0 : getLineItemGroups().hashCode());
+        hashCode = prime * hashCode + ((getBlocks() == null) ? 0 : getBlocks().hashCode());
         return hashCode;
     }
 
@@ -328,6 +425,10 @@ public class ExpenseDocument implements Serializable {
             return false;
         if (other.getLineItemGroups() != null
                 && other.getLineItemGroups().equals(this.getLineItemGroups()) == false)
+            return false;
+        if (other.getBlocks() == null ^ this.getBlocks() == null)
+            return false;
+        if (other.getBlocks() != null && other.getBlocks().equals(this.getBlocks()) == false)
             return false;
         return true;
     }
