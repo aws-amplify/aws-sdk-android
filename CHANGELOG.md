@@ -1,3 +1,16 @@
+## [Release 2.56.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.56.0)
+
+### Features
+- **aws-android-sdk-textract:** update models to latest (#3057)
+- **aws-android-sdk-connect:** update models to latest (#3053)
+- **aws-android-sdk-iot:** update models to latest (#3054)
+- **aws-android-sdk-location:** update models to latest (#3049)
+
+### Bug Fixes
+- **iot:** wait for disconnect to finish before setting connection state to disconnected (#3051)
+
+[See all changes between 2.55.0 and 2.56.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.55.0...release_v2.56.0)
+
 ## [Release 2.55.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.55.0)
 
 ### Features
