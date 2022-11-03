@@ -197,6 +197,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * The Amazon Location Service rule action sends device location updates
+     * from an MQTT message to an Amazon Location tracker resource.
+     * </p>
+     */
+    private LocationAction location;
+
+    /**
+     * <p>
      * Write to a DynamoDB table.
      * </p>
      *
@@ -1296,6 +1304,60 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Location Service rule action sends device location updates
+     * from an MQTT message to an Amazon Location tracker resource.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Location Service rule action sends device location
+     *         updates from an MQTT message to an Amazon Location tracker
+     *         resource.
+     *         </p>
+     */
+    public LocationAction getLocation() {
+        return location;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location Service rule action sends device location updates
+     * from an MQTT message to an Amazon Location tracker resource.
+     * </p>
+     *
+     * @param location <p>
+     *            The Amazon Location Service rule action sends device location
+     *            updates from an MQTT message to an Amazon Location tracker
+     *            resource.
+     *            </p>
+     */
+    public void setLocation(LocationAction location) {
+        this.location = location;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location Service rule action sends device location updates
+     * from an MQTT message to an Amazon Location tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param location <p>
+     *            The Amazon Location Service rule action sends device location
+     *            updates from an MQTT message to an Amazon Location tracker
+     *            resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withLocation(LocationAction location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1349,7 +1411,9 @@ public class Action implements Serializable {
         if (getKafka() != null)
             sb.append("kafka: " + getKafka() + ",");
         if (getOpenSearch() != null)
-            sb.append("openSearch: " + getOpenSearch());
+            sb.append("openSearch: " + getOpenSearch() + ",");
+        if (getLocation() != null)
+            sb.append("location: " + getLocation());
         sb.append("}");
         return sb.toString();
     }
@@ -1388,6 +1452,7 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getHttp() == null) ? 0 : getHttp().hashCode());
         hashCode = prime * hashCode + ((getKafka() == null) ? 0 : getKafka().hashCode());
         hashCode = prime * hashCode + ((getOpenSearch() == null) ? 0 : getOpenSearch().hashCode());
+        hashCode = prime * hashCode + ((getLocation() == null) ? 0 : getLocation().hashCode());
         return hashCode;
     }
 
@@ -1502,6 +1567,10 @@ public class Action implements Serializable {
             return false;
         if (other.getOpenSearch() != null
                 && other.getOpenSearch().equals(this.getOpenSearch()) == false)
+            return false;
+        if (other.getLocation() == null ^ this.getLocation() == null)
+            return false;
+        if (other.getLocation() != null && other.getLocation().equals(this.getLocation()) == false)
             return false;
         return true;
     }
