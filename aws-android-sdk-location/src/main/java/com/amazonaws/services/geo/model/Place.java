@@ -129,7 +129,7 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using Here as the selected partner.
+     * when using HERE as the selected partner.
      * </p>
      */
     private TimeZone timeZone;
@@ -839,12 +839,12 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using Here as the selected partner.
+     * when using HERE as the selected partner.
      * </p>
      *
      * @return <p>
      *         The time zone in which the <code>Place</code> is located.
-     *         Returned only when using Here as the selected partner.
+     *         Returned only when using HERE as the selected partner.
      *         </p>
      */
     public TimeZone getTimeZone() {
@@ -854,12 +854,12 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using Here as the selected partner.
+     * when using HERE as the selected partner.
      * </p>
      *
      * @param timeZone <p>
      *            The time zone in which the <code>Place</code> is located.
-     *            Returned only when using Here as the selected partner.
+     *            Returned only when using HERE as the selected partner.
      *            </p>
      */
     public void setTimeZone(TimeZone timeZone) {
@@ -869,7 +869,7 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using Here as the selected partner.
+     * when using HERE as the selected partner.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -877,7 +877,7 @@ public class Place implements Serializable {
      *
      * @param timeZone <p>
      *            The time zone in which the <code>Place</code> is located.
-     *            Returned only when using Here as the selected partner.
+     *            Returned only when using HERE as the selected partner.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

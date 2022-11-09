@@ -59,8 +59,7 @@ public class DescribeMapResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -325,8 +324,7 @@ public class DescribeMapResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -345,7 +343,7 @@ public class DescribeMapResult implements Serializable {
      *         <li>
      *         <p>
      *         Format example:
-     *         <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     *         <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      *         </p>
      *         </li>
      *         </ul>
@@ -362,8 +360,7 @@ public class DescribeMapResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -382,7 +379,7 @@ public class DescribeMapResult implements Serializable {
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      *            </p>
      *            </li>
      *            </ul>
@@ -399,8 +396,7 @@ public class DescribeMapResult implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Format example:
-     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     * Format example: <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -422,7 +418,7 @@ public class DescribeMapResult implements Serializable {
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
+     *            <code>arn:aws:geo:region:account-id:map/ExampleMap</code>
      *            </p>
      *            </li>
      *            </ul>

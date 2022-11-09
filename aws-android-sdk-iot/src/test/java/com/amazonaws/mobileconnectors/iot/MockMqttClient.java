@@ -2,6 +2,7 @@
 package com.amazonaws.mobileconnectors.iot;
 
 import org.eclipse.paho.client.mqttv3.*;
+import org.eclipse.paho.client.mqttv3.internal.Token;
 
 import java.util.HashMap;
 
@@ -31,7 +32,7 @@ public class MockMqttClient extends MqttAsyncClient {
 
     public HashMap<String, Integer> mockSubscriptions;
 
-    IMqttToken testToken = new MqttToken("unit-test");
+    IMqttToken testToken = new TestMqttToken("unit-test");
     IMqttDeliveryToken testDeliveryToken = new MqttDeliveryToken();
 
     MockMqttClient() throws MqttException {
@@ -145,5 +146,22 @@ public class MockMqttClient extends MqttAsyncClient {
     public void mockDisconnect() {
         isConnected = false;
         mockCallback.connectionLost(new Exception("disconnect"));
+    }
+
+    private class TestToken extends Token {
+
+        public TestToken(String logContext) {
+            super(logContext);
+        }
+
+        @Override
+        public void waitForCompletion(long timeout) throws MqttException {}
+    }
+
+    private class TestMqttToken extends MqttToken {
+
+        public TestMqttToken(String logContext) {
+            internalTok = new TestToken(logContext);
+        }
     }
 }

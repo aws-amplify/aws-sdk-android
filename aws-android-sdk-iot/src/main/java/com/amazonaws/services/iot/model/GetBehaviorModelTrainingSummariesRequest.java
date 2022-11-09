@@ -45,7 +45,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The maximum number of results to return at one time. The default is 25.
+     * The maximum number of results to return at one time. The default is 10.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +120,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The maximum number of results to return at one time. The default is 25.
+     * The maximum number of results to return at one time. The default is 10.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,7 +128,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
      *
      * @return <p>
      *         The maximum number of results to return at one time. The default
-     *         is 25.
+     *         is 10.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -137,7 +137,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The maximum number of results to return at one time. The default is 25.
+     * The maximum number of results to return at one time. The default is 10.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,7 +145,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
      *
      * @param maxResults <p>
      *            The maximum number of results to return at one time. The
-     *            default is 25.
+     *            default is 10.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -154,7 +154,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
 
     /**
      * <p>
-     * The maximum number of results to return at one time. The default is 25.
+     * The maximum number of results to return at one time. The default is 10.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -165,7 +165,7 @@ public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRe
      *
      * @param maxResults <p>
      *            The maximum number of results to return at one time. The
-     *            default is 25.
+     *            default is 10.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

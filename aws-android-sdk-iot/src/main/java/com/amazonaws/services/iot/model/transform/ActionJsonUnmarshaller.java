@@ -101,6 +101,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("openSearch")) {
                 action.setOpenSearch(OpenSearchActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("location")) {
+                action.setLocation(LocationActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

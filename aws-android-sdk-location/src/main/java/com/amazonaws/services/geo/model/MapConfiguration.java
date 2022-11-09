@@ -91,7 +91,13 @@ public class MapConfiguration implements Serializable {
      * a high contrast detailed base map of the world that blends 3D and 2D
      * rendering.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>VectorHereExplore</code> – A default HERE map style containing a
@@ -108,14 +114,28 @@ public class MapConfiguration implements Serializable {
      * cases within transport and logistics.
      * </p>
      * </li>
-     * </ul>
+     * <li>
+     * <p>
+     * <code>RasterHereExploreSatellite</code> – A global map containing high
+     * resolution satellite imagery.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HybridHereExploreSatellite</code> – A global map displaying the
+     * road network, street names, and city labels over satellite imagery. This
+     * style will automatically retrieve both raster and vector tiles, and your
+     * charges will be based on total tiles retrieved.
+     * </p>
      * <note>
      * <p>
-     * The <code>VectorHereContrast</code> style has been renamed from
-     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
-     * deprecated, but will continue to work in applications that use it.
+     * Hybrid styles use both vector and raster tiles when rendering the map
+     * that you see. This means that more tiles are retrieved than when using
+     * either vector or raster tiles alone. Your charges will include all tiles
+     * retrieved.
      * </p>
-     * </note>
+     * </note></li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -191,7 +211,13 @@ public class MapConfiguration implements Serializable {
      * a high contrast detailed base map of the world that blends 3D and 2D
      * rendering.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>VectorHereExplore</code> – A default HERE map style containing a
@@ -208,14 +234,28 @@ public class MapConfiguration implements Serializable {
      * cases within transport and logistics.
      * </p>
      * </li>
-     * </ul>
+     * <li>
+     * <p>
+     * <code>RasterHereExploreSatellite</code> – A global map containing high
+     * resolution satellite imagery.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HybridHereExploreSatellite</code> – A global map displaying the
+     * road network, street names, and city labels over satellite imagery. This
+     * style will automatically retrieve both raster and vector tiles, and your
+     * charges will be based on total tiles retrieved.
+     * </p>
      * <note>
      * <p>
-     * The <code>VectorHereContrast</code> style has been renamed from
-     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
-     * deprecated, but will continue to work in applications that use it.
+     * Hybrid styles use both vector and raster tiles when rendering the map
+     * that you see. This means that more tiles are retrieved than when using
+     * either vector or raster tiles alone. Your charges will include all tiles
+     * retrieved.
      * </p>
-     * </note>
+     * </note></li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -292,7 +332,14 @@ public class MapConfiguration implements Serializable {
      *         style is a high contrast detailed base map of the world that
      *         blends 3D and 2D rendering.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         The <code>VectorHereContrast</code> style has been renamed from
+     *         <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has
+     *         been deprecated, but will continue to work in applications that
+     *         use it.
+     *         </p>
+     *         </note></li>
      *         <li>
      *         <p>
      *         <code>VectorHereExplore</code> – A default HERE map style
@@ -309,15 +356,29 @@ public class MapConfiguration implements Serializable {
      *         Explore to support use cases within transport and logistics.
      *         </p>
      *         </li>
-     *         </ul>
+     *         <li>
+     *         <p>
+     *         <code>RasterHereExploreSatellite</code> – A global map containing
+     *         high resolution satellite imagery.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>HybridHereExploreSatellite</code> – A global map displaying
+     *         the road network, street names, and city labels over satellite
+     *         imagery. This style will automatically retrieve both raster and
+     *         vector tiles, and your charges will be based on total tiles
+     *         retrieved.
+     *         </p>
      *         <note>
      *         <p>
-     *         The <code>VectorHereContrast</code> style has been renamed from
-     *         <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has
-     *         been deprecated, but will continue to work in applications that
-     *         use it.
+     *         Hybrid styles use both vector and raster tiles when rendering the
+     *         map that you see. This means that more tiles are retrieved than
+     *         when using either vector or raster tiles alone. Your charges will
+     *         include all tiles retrieved.
      *         </p>
-     *         </note>
+     *         </note></li>
+     *         </ul>
      */
     public String getStyle() {
         return style;
@@ -391,7 +452,13 @@ public class MapConfiguration implements Serializable {
      * a high contrast detailed base map of the world that blends 3D and 2D
      * rendering.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>VectorHereExplore</code> – A default HERE map style containing a
@@ -408,14 +475,28 @@ public class MapConfiguration implements Serializable {
      * cases within transport and logistics.
      * </p>
      * </li>
-     * </ul>
+     * <li>
+     * <p>
+     * <code>RasterHereExploreSatellite</code> – A global map containing high
+     * resolution satellite imagery.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HybridHereExploreSatellite</code> – A global map displaying the
+     * road network, street names, and city labels over satellite imagery. This
+     * style will automatically retrieve both raster and vector tiles, and your
+     * charges will be based on total tiles retrieved.
+     * </p>
      * <note>
      * <p>
-     * The <code>VectorHereContrast</code> style has been renamed from
-     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
-     * deprecated, but will continue to work in applications that use it.
+     * Hybrid styles use both vector and raster tiles when rendering the map
+     * that you see. This means that more tiles are retrieved than when using
+     * either vector or raster tiles alone. Your charges will include all tiles
+     * retrieved.
      * </p>
-     * </note>
+     * </note></li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
@@ -493,7 +574,14 @@ public class MapConfiguration implements Serializable {
      *            map style is a high contrast detailed base map of the world
      *            that blends 3D and 2D rendering.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The <code>VectorHereContrast</code> style has been renamed
+     *            from <code>VectorHereBerlin</code>.
+     *            <code>VectorHereBerlin</code> has been deprecated, but will
+     *            continue to work in applications that use it.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>VectorHereExplore</code> – A default HERE map style
@@ -511,15 +599,29 @@ public class MapConfiguration implements Serializable {
      *            logistics.
      *            </p>
      *            </li>
-     *            </ul>
+     *            <li>
+     *            <p>
+     *            <code>RasterHereExploreSatellite</code> – A global map
+     *            containing high resolution satellite imagery.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HybridHereExploreSatellite</code> – A global map
+     *            displaying the road network, street names, and city labels
+     *            over satellite imagery. This style will automatically retrieve
+     *            both raster and vector tiles, and your charges will be based
+     *            on total tiles retrieved.
+     *            </p>
      *            <note>
      *            <p>
-     *            The <code>VectorHereContrast</code> style has been renamed
-     *            from <code>VectorHereBerlin</code>.
-     *            <code>VectorHereBerlin</code> has been deprecated, but will
-     *            continue to work in applications that use it.
+     *            Hybrid styles use both vector and raster tiles when rendering
+     *            the map that you see. This means that more tiles are retrieved
+     *            than when using either vector or raster tiles alone. Your
+     *            charges will include all tiles retrieved.
      *            </p>
-     *            </note>
+     *            </note></li>
+     *            </ul>
      */
     public void setStyle(String style) {
         this.style = style;
@@ -593,7 +695,13 @@ public class MapConfiguration implements Serializable {
      * a high contrast detailed base map of the world that blends 3D and 2D
      * rendering.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * The <code>VectorHereContrast</code> style has been renamed from
+     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
+     * deprecated, but will continue to work in applications that use it.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
      * <code>VectorHereExplore</code> – A default HERE map style containing a
@@ -610,14 +718,28 @@ public class MapConfiguration implements Serializable {
      * cases within transport and logistics.
      * </p>
      * </li>
-     * </ul>
+     * <li>
+     * <p>
+     * <code>RasterHereExploreSatellite</code> – A global map containing high
+     * resolution satellite imagery.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>HybridHereExploreSatellite</code> – A global map displaying the
+     * road network, street names, and city labels over satellite imagery. This
+     * style will automatically retrieve both raster and vector tiles, and your
+     * charges will be based on total tiles retrieved.
+     * </p>
      * <note>
      * <p>
-     * The <code>VectorHereContrast</code> style has been renamed from
-     * <code>VectorHereBerlin</code>. <code>VectorHereBerlin</code> has been
-     * deprecated, but will continue to work in applications that use it.
+     * Hybrid styles use both vector and raster tiles when rendering the map
+     * that you see. This means that more tiles are retrieved than when using
+     * either vector or raster tiles alone. Your charges will include all tiles
+     * retrieved.
      * </p>
-     * </note>
+     * </note></li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -698,7 +820,14 @@ public class MapConfiguration implements Serializable {
      *            map style is a high contrast detailed base map of the world
      *            that blends 3D and 2D rendering.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            The <code>VectorHereContrast</code> style has been renamed
+     *            from <code>VectorHereBerlin</code>.
+     *            <code>VectorHereBerlin</code> has been deprecated, but will
+     *            continue to work in applications that use it.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
      *            <code>VectorHereExplore</code> – A default HERE map style
@@ -716,15 +845,29 @@ public class MapConfiguration implements Serializable {
      *            logistics.
      *            </p>
      *            </li>
-     *            </ul>
+     *            <li>
+     *            <p>
+     *            <code>RasterHereExploreSatellite</code> – A global map
+     *            containing high resolution satellite imagery.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HybridHereExploreSatellite</code> – A global map
+     *            displaying the road network, street names, and city labels
+     *            over satellite imagery. This style will automatically retrieve
+     *            both raster and vector tiles, and your charges will be based
+     *            on total tiles retrieved.
+     *            </p>
      *            <note>
      *            <p>
-     *            The <code>VectorHereContrast</code> style has been renamed
-     *            from <code>VectorHereBerlin</code>.
-     *            <code>VectorHereBerlin</code> has been deprecated, but will
-     *            continue to work in applications that use it.
+     *            Hybrid styles use both vector and raster tiles when rendering
+     *            the map that you see. This means that more tiles are retrieved
+     *            than when using either vector or raster tiles alone. Your
+     *            charges will include all tiles retrieved.
      *            </p>
-     *            </note>
+     *            </note></li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
