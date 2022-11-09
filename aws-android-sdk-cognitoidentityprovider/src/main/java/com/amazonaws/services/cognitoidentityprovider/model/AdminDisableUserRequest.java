@@ -21,10 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disables the specified user.
+ * Deactivates a user and revokes all access tokens for the user. A deactivated
+ * user can't sign in, but still appears in the responses to
+ * <code>GetUser</code> and <code>ListUsers</code> API requests.
  * </p>
  * <p>
- * Calling this action requires developer credentials.
+ * You must make this API request with Amazon Web Services credentials that have
+ * <code>cognito-idp:AdminDisableUser</code> permissions.
  * </p>
  */
 public class AdminDisableUserRequest extends AmazonWebServiceRequest implements Serializable {

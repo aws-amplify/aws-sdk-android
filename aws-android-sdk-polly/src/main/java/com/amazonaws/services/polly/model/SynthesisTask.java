@@ -164,7 +164,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      */
     private String voiceId;
 
@@ -1223,7 +1224,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1247,7 +1249,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1274,7 +1277,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1301,7 +1305,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1328,7 +1333,8 @@ public class SynthesisTask implements Serializable {
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
-     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin
+     * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
+     * Elin, Ida, Suvi
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
