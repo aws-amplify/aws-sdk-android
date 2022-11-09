@@ -157,6 +157,18 @@ public enum Region {
     EU_Frankfurt("eu-central-1"),
 
     /**
+     * The EU (Zurich) Region. This region uses Amazon S3 servers
+     * located in Zurich.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-eu-central-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    EU_Zurich("eu-central-2"),
+
+    /**
      * The EU (Stockholm) Amazon S3 Region. This region uses Amazon S3 servers
      * located in Stockholm.
      * <p>
