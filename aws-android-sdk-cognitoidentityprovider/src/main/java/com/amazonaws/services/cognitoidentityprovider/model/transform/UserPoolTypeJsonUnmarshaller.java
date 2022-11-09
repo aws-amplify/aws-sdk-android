@@ -44,6 +44,9 @@ class UserPoolTypeJsonUnmarshaller implements Unmarshaller<UserPoolType, JsonUnm
             } else if (name.equals("Policies")) {
                 userPoolType.setPolicies(UserPoolPolicyTypeJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DeletionProtection")) {
+                userPoolType.setDeletionProtection(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LambdaConfig")) {
                 userPoolType.setLambdaConfig(LambdaConfigTypeJsonUnmarshaller.getInstance()
                         .unmarshall(context));
