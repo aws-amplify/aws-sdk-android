@@ -73,6 +73,25 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     */
+    private String deletionProtection;
+
+    /**
+     * <p>
      * The Lambda configuration information from the request to update the user
      * pool.
      * </p>
@@ -368,6 +387,207 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
      */
     public UpdateUserPoolRequest withPolicies(UserPoolPolicyType policies) {
         this.policies = policies;
+        return this;
+    }
+
+    /**
+     * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     *
+     * @return <p>
+     *         When active, <code>DeletionProtection</code> prevents accidental
+     *         deletion of your user pool. Before you can delete a user pool
+     *         that you have protected against deletion, you must deactivate
+     *         this feature.
+     *         </p>
+     *         <p>
+     *         When you try to delete a protected user pool in a
+     *         <code>DeleteUserPool</code> API request, Amazon Cognito returns
+     *         an <code>InvalidParameterException</code> error. To delete a
+     *         protected user pool, send a new <code>DeleteUserPool</code>
+     *         request after you deactivate deletion protection in an
+     *         <code>UpdateUserPool</code> API request.
+     *         </p>
+     * @see DeletionProtectionType
+     */
+    public String getDeletionProtection() {
+        return deletionProtection;
+    }
+
+    /**
+     * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     *
+     * @param deletionProtection <p>
+     *            When active, <code>DeletionProtection</code> prevents
+     *            accidental deletion of your user pool. Before you can delete a
+     *            user pool that you have protected against deletion, you must
+     *            deactivate this feature.
+     *            </p>
+     *            <p>
+     *            When you try to delete a protected user pool in a
+     *            <code>DeleteUserPool</code> API request, Amazon Cognito
+     *            returns an <code>InvalidParameterException</code> error. To
+     *            delete a protected user pool, send a new
+     *            <code>DeleteUserPool</code> request after you deactivate
+     *            deletion protection in an <code>UpdateUserPool</code> API
+     *            request.
+     *            </p>
+     * @see DeletionProtectionType
+     */
+    public void setDeletionProtection(String deletionProtection) {
+        this.deletionProtection = deletionProtection;
+    }
+
+    /**
+     * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     *
+     * @param deletionProtection <p>
+     *            When active, <code>DeletionProtection</code> prevents
+     *            accidental deletion of your user pool. Before you can delete a
+     *            user pool that you have protected against deletion, you must
+     *            deactivate this feature.
+     *            </p>
+     *            <p>
+     *            When you try to delete a protected user pool in a
+     *            <code>DeleteUserPool</code> API request, Amazon Cognito
+     *            returns an <code>InvalidParameterException</code> error. To
+     *            delete a protected user pool, send a new
+     *            <code>DeleteUserPool</code> request after you deactivate
+     *            deletion protection in an <code>UpdateUserPool</code> API
+     *            request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DeletionProtectionType
+     */
+    public UpdateUserPoolRequest withDeletionProtection(String deletionProtection) {
+        this.deletionProtection = deletionProtection;
+        return this;
+    }
+
+    /**
+     * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     *
+     * @param deletionProtection <p>
+     *            When active, <code>DeletionProtection</code> prevents
+     *            accidental deletion of your user pool. Before you can delete a
+     *            user pool that you have protected against deletion, you must
+     *            deactivate this feature.
+     *            </p>
+     *            <p>
+     *            When you try to delete a protected user pool in a
+     *            <code>DeleteUserPool</code> API request, Amazon Cognito
+     *            returns an <code>InvalidParameterException</code> error. To
+     *            delete a protected user pool, send a new
+     *            <code>DeleteUserPool</code> request after you deactivate
+     *            deletion protection in an <code>UpdateUserPool</code> API
+     *            request.
+     *            </p>
+     * @see DeletionProtectionType
+     */
+    public void setDeletionProtection(DeletionProtectionType deletionProtection) {
+        this.deletionProtection = deletionProtection.toString();
+    }
+
+    /**
+     * <p>
+     * When active, <code>DeletionProtection</code> prevents accidental deletion
+     * of your user pool. Before you can delete a user pool that you have
+     * protected against deletion, you must deactivate this feature.
+     * </p>
+     * <p>
+     * When you try to delete a protected user pool in a
+     * <code>DeleteUserPool</code> API request, Amazon Cognito returns an
+     * <code>InvalidParameterException</code> error. To delete a protected user
+     * pool, send a new <code>DeleteUserPool</code> request after you deactivate
+     * deletion protection in an <code>UpdateUserPool</code> API request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE
+     *
+     * @param deletionProtection <p>
+     *            When active, <code>DeletionProtection</code> prevents
+     *            accidental deletion of your user pool. Before you can delete a
+     *            user pool that you have protected against deletion, you must
+     *            deactivate this feature.
+     *            </p>
+     *            <p>
+     *            When you try to delete a protected user pool in a
+     *            <code>DeleteUserPool</code> API request, Amazon Cognito
+     *            returns an <code>InvalidParameterException</code> error. To
+     *            delete a protected user pool, send a new
+     *            <code>DeleteUserPool</code> request after you deactivate
+     *            deletion protection in an <code>UpdateUserPool</code> API
+     *            request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DeletionProtectionType
+     */
+    public UpdateUserPoolRequest withDeletionProtection(DeletionProtectionType deletionProtection) {
+        this.deletionProtection = deletionProtection.toString();
         return this;
     }
 
@@ -1782,6 +2002,8 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
             sb.append("UserPoolId: " + getUserPoolId() + ",");
         if (getPolicies() != null)
             sb.append("Policies: " + getPolicies() + ",");
+        if (getDeletionProtection() != null)
+            sb.append("DeletionProtection: " + getDeletionProtection() + ",");
         if (getLambdaConfig() != null)
             sb.append("LambdaConfig: " + getLambdaConfig() + ",");
         if (getAutoVerifiedAttributes() != null)
@@ -1825,6 +2047,8 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
         hashCode = prime * hashCode + ((getUserPoolId() == null) ? 0 : getUserPoolId().hashCode());
         hashCode = prime * hashCode + ((getPolicies() == null) ? 0 : getPolicies().hashCode());
+        hashCode = prime * hashCode
+                + ((getDeletionProtection() == null) ? 0 : getDeletionProtection().hashCode());
         hashCode = prime * hashCode
                 + ((getLambdaConfig() == null) ? 0 : getLambdaConfig().hashCode());
         hashCode = prime
@@ -1896,6 +2120,11 @@ public class UpdateUserPoolRequest extends AmazonWebServiceRequest implements Se
         if (other.getPolicies() == null ^ this.getPolicies() == null)
             return false;
         if (other.getPolicies() != null && other.getPolicies().equals(this.getPolicies()) == false)
+            return false;
+        if (other.getDeletionProtection() == null ^ this.getDeletionProtection() == null)
+            return false;
+        if (other.getDeletionProtection() != null
+                && other.getDeletionProtection().equals(this.getDeletionProtection()) == false)
             return false;
         if (other.getLambdaConfig() == null ^ this.getLambdaConfig() == null)
             return false;

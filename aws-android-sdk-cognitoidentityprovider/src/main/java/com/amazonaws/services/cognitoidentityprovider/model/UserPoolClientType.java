@@ -102,6 +102,10 @@ public class UserPoolClientType implements Serializable {
      * days. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your refresh tokens are valid for 30 days.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 315360000<br/>
      */
@@ -125,6 +129,10 @@ public class UserPoolClientType implements Serializable {
      * request is hours. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your access tokens are valid for one hour.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
      */
@@ -146,6 +154,10 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The default time unit for <code>AccessTokenValidity</code> in an API
      * request is hours. <i>Valid range</i> is displayed below in seconds.
+     * </p>
+     * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your ID tokens are valid for one hour.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -177,12 +189,19 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
-     * The authentication flows that are supported by the user pool clients.
-     * Flow names without the <code>ALLOW_</code> prefix are no longer supported
-     * in favor of new names with the <code>ALLOW_</code> prefix. Note that
-     * values with <code>ALLOW_</code> prefix must be used only along with
-     * values including the <code>ALLOW_</code> prefix.
+     * The authentication flows that you want your user pool client to support.
+     * For each app client in your user pool, you can sign in your users with
+     * any combination of one or more flows, including with a user name and
+     * Secure Remote Password (SRP), a user name and password, or a custom
+     * authentication process that you define with Lambda functions.
      * </p>
+     * <note>
+     * <p>
+     * If you don't specify a value for <code>ExplicitAuthFlows</code>, your
+     * user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     * <code>ALLOW_USER_SRP_AUTH</code>, and <code>ALLOW_CUSTOM_AUTH</code>.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -192,9 +211,9 @@ public class UserPoolClientType implements Serializable {
      * <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user
      * password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This
      * setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     * authentication flow, Amazon Cognito receives the password in the request
-     * instead of using the Secure Remote Password (SRP) protocol to verify
-     * passwords.
+     * authentication flow, your app passes a user name and password to Amazon
+     * Cognito in the request, instead of using the Secure Remote Password (SRP)
+     * protocol to securely transmit the password.
      * </p>
      * </li>
      * <li>
@@ -221,6 +240,14 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * In some environments, you will see the values
+     * <code>ADMIN_NO_SRP_AUTH</code>, <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     * <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     * <code>ExplicitAuthFlows</code> values to user pool clients at the same
+     * time as values that begin with <code>ALLOW_</code>, like
+     * <code>ALLOW_USER_SRP_AUTH</code>.
+     * </p>
      */
     private java.util.List<String> explicitAuthFlows;
 
@@ -819,6 +846,10 @@ public class UserPoolClientType implements Serializable {
      * days. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your refresh tokens are valid for 30 days.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 315360000<br/>
      *
@@ -841,6 +872,10 @@ public class UserPoolClientType implements Serializable {
      *         <code>RefreshTokenValidity</code> to 0. If you do, Amazon Cognito
      *         overrides the value with the default value of 30 days. <i>Valid
      *         range</i> is displayed below in seconds.
+     *         </p>
+     *         <p>
+     *         If you don't specify otherwise in the configuration of your app
+     *         client, your refresh tokens are valid for 30 days.
      *         </p>
      */
     public Integer getRefreshTokenValidity() {
@@ -868,6 +903,10 @@ public class UserPoolClientType implements Serializable {
      * days. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your refresh tokens are valid for 30 days.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 315360000<br/>
      *
@@ -891,6 +930,10 @@ public class UserPoolClientType implements Serializable {
      *            <code>RefreshTokenValidity</code> to 0. If you do, Amazon
      *            Cognito overrides the value with the default value of 30 days.
      *            <i>Valid range</i> is displayed below in seconds.
+     *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your refresh tokens are valid for 30 days.
      *            </p>
      */
     public void setRefreshTokenValidity(Integer refreshTokenValidity) {
@@ -918,6 +961,10 @@ public class UserPoolClientType implements Serializable {
      * days. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your refresh tokens are valid for 30 days.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -945,6 +992,10 @@ public class UserPoolClientType implements Serializable {
      *            Cognito overrides the value with the default value of 30 days.
      *            <i>Valid range</i> is displayed below in seconds.
      *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your refresh tokens are valid for 30 days.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -971,6 +1022,10 @@ public class UserPoolClientType implements Serializable {
      * request is hours. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your access tokens are valid for one hour.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
      *
@@ -991,6 +1046,10 @@ public class UserPoolClientType implements Serializable {
      *         The default time unit for <code>AccessTokenValidity</code> in an
      *         API request is hours. <i>Valid range</i> is displayed below in
      *         seconds.
+     *         </p>
+     *         <p>
+     *         If you don't specify otherwise in the configuration of your app
+     *         client, your access tokens are valid for one hour.
      *         </p>
      */
     public Integer getAccessTokenValidity() {
@@ -1015,6 +1074,10 @@ public class UserPoolClientType implements Serializable {
      * request is hours. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your access tokens are valid for one hour.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
      *
@@ -1037,6 +1100,10 @@ public class UserPoolClientType implements Serializable {
      *            an API request is hours. <i>Valid range</i> is displayed below
      *            in seconds.
      *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your access tokens are valid for one hour.
+     *            </p>
      */
     public void setAccessTokenValidity(Integer accessTokenValidity) {
         this.accessTokenValidity = accessTokenValidity;
@@ -1058,6 +1125,10 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The default time unit for <code>AccessTokenValidity</code> in an API
      * request is hours. <i>Valid range</i> is displayed below in seconds.
+     * </p>
+     * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your access tokens are valid for one hour.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1084,6 +1155,10 @@ public class UserPoolClientType implements Serializable {
      *            The default time unit for <code>AccessTokenValidity</code> in
      *            an API request is hours. <i>Valid range</i> is displayed below
      *            in seconds.
+     *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your access tokens are valid for one hour.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1111,6 +1186,10 @@ public class UserPoolClientType implements Serializable {
      * request is hours. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your ID tokens are valid for one hour.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
      *
@@ -1131,6 +1210,10 @@ public class UserPoolClientType implements Serializable {
      *         The default time unit for <code>AccessTokenValidity</code> in an
      *         API request is hours. <i>Valid range</i> is displayed below in
      *         seconds.
+     *         </p>
+     *         <p>
+     *         If you don't specify otherwise in the configuration of your app
+     *         client, your ID tokens are valid for one hour.
      *         </p>
      */
     public Integer getIdTokenValidity() {
@@ -1155,6 +1238,10 @@ public class UserPoolClientType implements Serializable {
      * request is hours. <i>Valid range</i> is displayed below in seconds.
      * </p>
      * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your ID tokens are valid for one hour.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 86400<br/>
      *
@@ -1177,6 +1264,10 @@ public class UserPoolClientType implements Serializable {
      *            an API request is hours. <i>Valid range</i> is displayed below
      *            in seconds.
      *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your ID tokens are valid for one hour.
+     *            </p>
      */
     public void setIdTokenValidity(Integer idTokenValidity) {
         this.idTokenValidity = idTokenValidity;
@@ -1198,6 +1289,10 @@ public class UserPoolClientType implements Serializable {
      * <p>
      * The default time unit for <code>AccessTokenValidity</code> in an API
      * request is hours. <i>Valid range</i> is displayed below in seconds.
+     * </p>
+     * <p>
+     * If you don't specify otherwise in the configuration of your app client,
+     * your ID tokens are valid for one hour.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1224,6 +1319,10 @@ public class UserPoolClientType implements Serializable {
      *            The default time unit for <code>AccessTokenValidity</code> in
      *            an API request is hours. <i>Valid range</i> is displayed below
      *            in seconds.
+     *            </p>
+     *            <p>
+     *            If you don't specify otherwise in the configuration of your
+     *            app client, your ID tokens are valid for one hour.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1434,12 +1533,19 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
-     * The authentication flows that are supported by the user pool clients.
-     * Flow names without the <code>ALLOW_</code> prefix are no longer supported
-     * in favor of new names with the <code>ALLOW_</code> prefix. Note that
-     * values with <code>ALLOW_</code> prefix must be used only along with
-     * values including the <code>ALLOW_</code> prefix.
+     * The authentication flows that you want your user pool client to support.
+     * For each app client in your user pool, you can sign in your users with
+     * any combination of one or more flows, including with a user name and
+     * Secure Remote Password (SRP), a user name and password, or a custom
+     * authentication process that you define with Lambda functions.
      * </p>
+     * <note>
+     * <p>
+     * If you don't specify a value for <code>ExplicitAuthFlows</code>, your
+     * user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     * <code>ALLOW_USER_SRP_AUTH</code>, and <code>ALLOW_CUSTOM_AUTH</code>.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1449,9 +1555,9 @@ public class UserPoolClientType implements Serializable {
      * <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user
      * password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This
      * setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     * authentication flow, Amazon Cognito receives the password in the request
-     * instead of using the Secure Remote Password (SRP) protocol to verify
-     * passwords.
+     * authentication flow, your app passes a user name and password to Amazon
+     * Cognito in the request, instead of using the Secure Remote Password (SRP)
+     * protocol to securely transmit the password.
      * </p>
      * </li>
      * <li>
@@ -1478,15 +1584,31 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * In some environments, you will see the values
+     * <code>ADMIN_NO_SRP_AUTH</code>, <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     * <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     * <code>ExplicitAuthFlows</code> values to user pool clients at the same
+     * time as values that begin with <code>ALLOW_</code>, like
+     * <code>ALLOW_USER_SRP_AUTH</code>.
+     * </p>
      *
      * @return <p>
-     *         The authentication flows that are supported by the user pool
-     *         clients. Flow names without the <code>ALLOW_</code> prefix are no
-     *         longer supported in favor of new names with the
-     *         <code>ALLOW_</code> prefix. Note that values with
-     *         <code>ALLOW_</code> prefix must be used only along with values
-     *         including the <code>ALLOW_</code> prefix.
+     *         The authentication flows that you want your user pool client to
+     *         support. For each app client in your user pool, you can sign in
+     *         your users with any combination of one or more flows, including
+     *         with a user name and Secure Remote Password (SRP), a user name
+     *         and password, or a custom authentication process that you define
+     *         with Lambda functions.
      *         </p>
+     *         <note>
+     *         <p>
+     *         If you don't specify a value for <code>ExplicitAuthFlows</code>,
+     *         your user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     *         <code>ALLOW_USER_SRP_AUTH</code>, and
+     *         <code>ALLOW_CUSTOM_AUTH</code>.
+     *         </p>
+     *         </note>
      *         <p>
      *         Valid values include:
      *         </p>
@@ -1497,9 +1619,9 @@ public class UserPoolClientType implements Serializable {
      *         user password authentication flow
      *         <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces the
      *         <code>ADMIN_NO_SRP_AUTH</code> setting. With this authentication
-     *         flow, Amazon Cognito receives the password in the request instead
-     *         of using the Secure Remote Password (SRP) protocol to verify
-     *         passwords.
+     *         flow, your app passes a user name and password to Amazon Cognito
+     *         in the request, instead of using the Secure Remote Password (SRP)
+     *         protocol to securely transmit the password.
      *         </p>
      *         </li>
      *         <li>
@@ -1529,6 +1651,15 @@ public class UserPoolClientType implements Serializable {
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         In some environments, you will see the values
+     *         <code>ADMIN_NO_SRP_AUTH</code>,
+     *         <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     *         <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     *         <code>ExplicitAuthFlows</code> values to user pool clients at the
+     *         same time as values that begin with <code>ALLOW_</code>, like
+     *         <code>ALLOW_USER_SRP_AUTH</code>.
+     *         </p>
      */
     public java.util.List<String> getExplicitAuthFlows() {
         return explicitAuthFlows;
@@ -1536,12 +1667,19 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
-     * The authentication flows that are supported by the user pool clients.
-     * Flow names without the <code>ALLOW_</code> prefix are no longer supported
-     * in favor of new names with the <code>ALLOW_</code> prefix. Note that
-     * values with <code>ALLOW_</code> prefix must be used only along with
-     * values including the <code>ALLOW_</code> prefix.
+     * The authentication flows that you want your user pool client to support.
+     * For each app client in your user pool, you can sign in your users with
+     * any combination of one or more flows, including with a user name and
+     * Secure Remote Password (SRP), a user name and password, or a custom
+     * authentication process that you define with Lambda functions.
      * </p>
+     * <note>
+     * <p>
+     * If you don't specify a value for <code>ExplicitAuthFlows</code>, your
+     * user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     * <code>ALLOW_USER_SRP_AUTH</code>, and <code>ALLOW_CUSTOM_AUTH</code>.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1551,9 +1689,9 @@ public class UserPoolClientType implements Serializable {
      * <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user
      * password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This
      * setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     * authentication flow, Amazon Cognito receives the password in the request
-     * instead of using the Secure Remote Password (SRP) protocol to verify
-     * passwords.
+     * authentication flow, your app passes a user name and password to Amazon
+     * Cognito in the request, instead of using the Secure Remote Password (SRP)
+     * protocol to securely transmit the password.
      * </p>
      * </li>
      * <li>
@@ -1580,15 +1718,32 @@ public class UserPoolClientType implements Serializable {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * In some environments, you will see the values
+     * <code>ADMIN_NO_SRP_AUTH</code>, <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     * <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     * <code>ExplicitAuthFlows</code> values to user pool clients at the same
+     * time as values that begin with <code>ALLOW_</code>, like
+     * <code>ALLOW_USER_SRP_AUTH</code>.
+     * </p>
      *
      * @param explicitAuthFlows <p>
-     *            The authentication flows that are supported by the user pool
-     *            clients. Flow names without the <code>ALLOW_</code> prefix are
-     *            no longer supported in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with values
-     *            including the <code>ALLOW_</code> prefix.
+     *            The authentication flows that you want your user pool client
+     *            to support. For each app client in your user pool, you can
+     *            sign in your users with any combination of one or more flows,
+     *            including with a user name and Secure Remote Password (SRP), a
+     *            user name and password, or a custom authentication process
+     *            that you define with Lambda functions.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you don't specify a value for
+     *            <code>ExplicitAuthFlows</code>, your user client supports
+     *            <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     *            <code>ALLOW_USER_SRP_AUTH</code>, and
+     *            <code>ALLOW_CUSTOM_AUTH</code>.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -1599,9 +1754,10 @@ public class UserPoolClientType implements Serializable {
      *            based user password authentication flow
      *            <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces
      *            the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     *            authentication flow, Amazon Cognito receives the password in
-     *            the request instead of using the Secure Remote Password (SRP)
-     *            protocol to verify passwords.
+     *            authentication flow, your app passes a user name and password
+     *            to Amazon Cognito in the request, instead of using the Secure
+     *            Remote Password (SRP) protocol to securely transmit the
+     *            password.
      *            </p>
      *            </li>
      *            <li>
@@ -1631,6 +1787,15 @@ public class UserPoolClientType implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            In some environments, you will see the values
+     *            <code>ADMIN_NO_SRP_AUTH</code>,
+     *            <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     *            <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     *            <code>ExplicitAuthFlows</code> values to user pool clients at
+     *            the same time as values that begin with <code>ALLOW_</code>,
+     *            like <code>ALLOW_USER_SRP_AUTH</code>.
+     *            </p>
      */
     public void setExplicitAuthFlows(java.util.Collection<String> explicitAuthFlows) {
         if (explicitAuthFlows == null) {
@@ -1643,12 +1808,19 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
-     * The authentication flows that are supported by the user pool clients.
-     * Flow names without the <code>ALLOW_</code> prefix are no longer supported
-     * in favor of new names with the <code>ALLOW_</code> prefix. Note that
-     * values with <code>ALLOW_</code> prefix must be used only along with
-     * values including the <code>ALLOW_</code> prefix.
+     * The authentication flows that you want your user pool client to support.
+     * For each app client in your user pool, you can sign in your users with
+     * any combination of one or more flows, including with a user name and
+     * Secure Remote Password (SRP), a user name and password, or a custom
+     * authentication process that you define with Lambda functions.
      * </p>
+     * <note>
+     * <p>
+     * If you don't specify a value for <code>ExplicitAuthFlows</code>, your
+     * user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     * <code>ALLOW_USER_SRP_AUTH</code>, and <code>ALLOW_CUSTOM_AUTH</code>.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1658,9 +1830,9 @@ public class UserPoolClientType implements Serializable {
      * <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user
      * password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This
      * setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     * authentication flow, Amazon Cognito receives the password in the request
-     * instead of using the Secure Remote Password (SRP) protocol to verify
-     * passwords.
+     * authentication flow, your app passes a user name and password to Amazon
+     * Cognito in the request, instead of using the Secure Remote Password (SRP)
+     * protocol to securely transmit the password.
      * </p>
      * </li>
      * <li>
@@ -1688,17 +1860,34 @@ public class UserPoolClientType implements Serializable {
      * </li>
      * </ul>
      * <p>
+     * In some environments, you will see the values
+     * <code>ADMIN_NO_SRP_AUTH</code>, <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     * <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     * <code>ExplicitAuthFlows</code> values to user pool clients at the same
+     * time as values that begin with <code>ALLOW_</code>, like
+     * <code>ALLOW_USER_SRP_AUTH</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param explicitAuthFlows <p>
-     *            The authentication flows that are supported by the user pool
-     *            clients. Flow names without the <code>ALLOW_</code> prefix are
-     *            no longer supported in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with values
-     *            including the <code>ALLOW_</code> prefix.
+     *            The authentication flows that you want your user pool client
+     *            to support. For each app client in your user pool, you can
+     *            sign in your users with any combination of one or more flows,
+     *            including with a user name and Secure Remote Password (SRP), a
+     *            user name and password, or a custom authentication process
+     *            that you define with Lambda functions.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you don't specify a value for
+     *            <code>ExplicitAuthFlows</code>, your user client supports
+     *            <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     *            <code>ALLOW_USER_SRP_AUTH</code>, and
+     *            <code>ALLOW_CUSTOM_AUTH</code>.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -1709,9 +1898,10 @@ public class UserPoolClientType implements Serializable {
      *            based user password authentication flow
      *            <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces
      *            the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     *            authentication flow, Amazon Cognito receives the password in
-     *            the request instead of using the Secure Remote Password (SRP)
-     *            protocol to verify passwords.
+     *            authentication flow, your app passes a user name and password
+     *            to Amazon Cognito in the request, instead of using the Secure
+     *            Remote Password (SRP) protocol to securely transmit the
+     *            password.
      *            </p>
      *            </li>
      *            <li>
@@ -1741,6 +1931,15 @@ public class UserPoolClientType implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            In some environments, you will see the values
+     *            <code>ADMIN_NO_SRP_AUTH</code>,
+     *            <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     *            <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     *            <code>ExplicitAuthFlows</code> values to user pool clients at
+     *            the same time as values that begin with <code>ALLOW_</code>,
+     *            like <code>ALLOW_USER_SRP_AUTH</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1756,12 +1955,19 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
-     * The authentication flows that are supported by the user pool clients.
-     * Flow names without the <code>ALLOW_</code> prefix are no longer supported
-     * in favor of new names with the <code>ALLOW_</code> prefix. Note that
-     * values with <code>ALLOW_</code> prefix must be used only along with
-     * values including the <code>ALLOW_</code> prefix.
+     * The authentication flows that you want your user pool client to support.
+     * For each app client in your user pool, you can sign in your users with
+     * any combination of one or more flows, including with a user name and
+     * Secure Remote Password (SRP), a user name and password, or a custom
+     * authentication process that you define with Lambda functions.
      * </p>
+     * <note>
+     * <p>
+     * If you don't specify a value for <code>ExplicitAuthFlows</code>, your
+     * user client supports <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     * <code>ALLOW_USER_SRP_AUTH</code>, and <code>ALLOW_CUSTOM_AUTH</code>.
+     * </p>
+     * </note>
      * <p>
      * Valid values include:
      * </p>
@@ -1771,9 +1977,9 @@ public class UserPoolClientType implements Serializable {
      * <code>ALLOW_ADMIN_USER_PASSWORD_AUTH</code>: Enable admin based user
      * password authentication flow <code>ADMIN_USER_PASSWORD_AUTH</code>. This
      * setting replaces the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     * authentication flow, Amazon Cognito receives the password in the request
-     * instead of using the Secure Remote Password (SRP) protocol to verify
-     * passwords.
+     * authentication flow, your app passes a user name and password to Amazon
+     * Cognito in the request, instead of using the Secure Remote Password (SRP)
+     * protocol to securely transmit the password.
      * </p>
      * </li>
      * <li>
@@ -1801,17 +2007,34 @@ public class UserPoolClientType implements Serializable {
      * </li>
      * </ul>
      * <p>
+     * In some environments, you will see the values
+     * <code>ADMIN_NO_SRP_AUTH</code>, <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     * <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     * <code>ExplicitAuthFlows</code> values to user pool clients at the same
+     * time as values that begin with <code>ALLOW_</code>, like
+     * <code>ALLOW_USER_SRP_AUTH</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param explicitAuthFlows <p>
-     *            The authentication flows that are supported by the user pool
-     *            clients. Flow names without the <code>ALLOW_</code> prefix are
-     *            no longer supported in favor of new names with the
-     *            <code>ALLOW_</code> prefix. Note that values with
-     *            <code>ALLOW_</code> prefix must be used only along with values
-     *            including the <code>ALLOW_</code> prefix.
+     *            The authentication flows that you want your user pool client
+     *            to support. For each app client in your user pool, you can
+     *            sign in your users with any combination of one or more flows,
+     *            including with a user name and Secure Remote Password (SRP), a
+     *            user name and password, or a custom authentication process
+     *            that you define with Lambda functions.
      *            </p>
+     *            <note>
+     *            <p>
+     *            If you don't specify a value for
+     *            <code>ExplicitAuthFlows</code>, your user client supports
+     *            <code>ALLOW_REFRESH_TOKEN_AUTH</code>,
+     *            <code>ALLOW_USER_SRP_AUTH</code>, and
+     *            <code>ALLOW_CUSTOM_AUTH</code>.
+     *            </p>
+     *            </note>
      *            <p>
      *            Valid values include:
      *            </p>
@@ -1822,9 +2045,10 @@ public class UserPoolClientType implements Serializable {
      *            based user password authentication flow
      *            <code>ADMIN_USER_PASSWORD_AUTH</code>. This setting replaces
      *            the <code>ADMIN_NO_SRP_AUTH</code> setting. With this
-     *            authentication flow, Amazon Cognito receives the password in
-     *            the request instead of using the Secure Remote Password (SRP)
-     *            protocol to verify passwords.
+     *            authentication flow, your app passes a user name and password
+     *            to Amazon Cognito in the request, instead of using the Secure
+     *            Remote Password (SRP) protocol to securely transmit the
+     *            password.
      *            </p>
      *            </li>
      *            <li>
@@ -1854,6 +2078,15 @@ public class UserPoolClientType implements Serializable {
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            In some environments, you will see the values
+     *            <code>ADMIN_NO_SRP_AUTH</code>,
+     *            <code>CUSTOM_AUTH_FLOW_ONLY</code>, or
+     *            <code>USER_PASSWORD_AUTH</code>. You can't assign these legacy
+     *            <code>ExplicitAuthFlows</code> values to user pool clients at
+     *            the same time as values that begin with <code>ALLOW_</code>,
+     *            like <code>ALLOW_USER_SRP_AUTH</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
