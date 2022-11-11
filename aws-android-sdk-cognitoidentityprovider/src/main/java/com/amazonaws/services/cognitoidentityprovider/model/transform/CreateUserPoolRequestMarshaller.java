@@ -72,6 +72,11 @@ public class CreateUserPoolRequestMarshaller implements
                 jsonWriter.name("Policies");
                 UserPoolPolicyTypeJsonMarshaller.getInstance().marshall(policies, jsonWriter);
             }
+            if (createUserPoolRequest.getDeletionProtection() != null) {
+                String deletionProtection = createUserPoolRequest.getDeletionProtection();
+                jsonWriter.name("DeletionProtection");
+                jsonWriter.value(deletionProtection);
+            }
             if (createUserPoolRequest.getLambdaConfig() != null) {
                 LambdaConfigType lambdaConfig = createUserPoolRequest.getLambdaConfig();
                 jsonWriter.name("LambdaConfig");

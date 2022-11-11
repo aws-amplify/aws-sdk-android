@@ -50,7 +50,9 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of authentication events to return.
+     * The maximum number of authentication events to return. Returns 60 events
+     * if you set <code>MaxResults</code> to 0, or if you don't include a
+     * <code>MaxResults</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,14 +187,18 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of authentication events to return.
+     * The maximum number of authentication events to return. Returns 60 events
+     * if you set <code>MaxResults</code> to 0, or if you don't include a
+     * <code>MaxResults</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @return <p>
-     *         The maximum number of authentication events to return.
+     *         The maximum number of authentication events to return. Returns 60
+     *         events if you set <code>MaxResults</code> to 0, or if you don't
+     *         include a <code>MaxResults</code> parameter.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -201,14 +207,18 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of authentication events to return.
+     * The maximum number of authentication events to return. Returns 60 events
+     * if you set <code>MaxResults</code> to 0, or if you don't include a
+     * <code>MaxResults</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of authentication events to return.
+     *            The maximum number of authentication events to return. Returns
+     *            60 events if you set <code>MaxResults</code> to 0, or if you
+     *            don't include a <code>MaxResults</code> parameter.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -217,7 +227,9 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The maximum number of authentication events to return.
+     * The maximum number of authentication events to return. Returns 60 events
+     * if you set <code>MaxResults</code> to 0, or if you don't include a
+     * <code>MaxResults</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -227,7 +239,9 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
      * <b>Range: </b>0 - 60<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of authentication events to return.
+     *            The maximum number of authentication events to return. Returns
+     *            60 events if you set <code>MaxResults</code> to 0, or if you
+     *            don't include a <code>MaxResults</code> parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

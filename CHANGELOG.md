@@ -1,3 +1,12 @@
+## [Release 2.57.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.57.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#3045)
+- **aws-android-sdk-polly:** update models to latest (#3062)
+- add support for ZRH region (#3068)
+
+[See all changes between 2.56.0 and 2.57.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.56.0...release_v2.57.0)
+
 ## [Release 2.56.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.56.0)
 
 ### Features

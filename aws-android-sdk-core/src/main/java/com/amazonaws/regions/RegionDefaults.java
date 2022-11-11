@@ -202,6 +202,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.eu-central-1.amazonaws.com", false, true);
 
+        // Support for Europe (Zurich) `eu-central-2` region
+        region = new Region("eu-central-2", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.eu-central-2.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.eu-central-2.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.eu-central-2.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-central-2.amazonaws.com", false, true);
+
         region = new Region("eu-south-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-south-1.amazonaws.com", false, true);
