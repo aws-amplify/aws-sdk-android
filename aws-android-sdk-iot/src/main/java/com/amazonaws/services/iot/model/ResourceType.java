@@ -30,7 +30,8 @@ public enum ResourceType {
     CLIENT_ID("CLIENT_ID"),
     ACCOUNT_SETTINGS("ACCOUNT_SETTINGS"),
     ROLE_ALIAS("ROLE_ALIAS"),
-    IAM_ROLE("IAM_ROLE");
+    IAM_ROLE("IAM_ROLE"),
+    ISSUER_CERTIFICATE("ISSUER_CERTIFICATE");
 
     private String value;
 
@@ -54,6 +55,7 @@ public enum ResourceType {
         enumMap.put("ACCOUNT_SETTINGS", ACCOUNT_SETTINGS);
         enumMap.put("ROLE_ALIAS", ROLE_ALIAS);
         enumMap.put("IAM_ROLE", IAM_ROLE);
+        enumMap.put("ISSUER_CERTIFICATE", ISSUER_CERTIFICATE);
     }
 
     /**

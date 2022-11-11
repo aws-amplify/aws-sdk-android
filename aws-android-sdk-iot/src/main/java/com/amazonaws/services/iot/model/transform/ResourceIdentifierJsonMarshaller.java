@@ -69,6 +69,18 @@ class ResourceIdentifierJsonMarshaller {
             jsonWriter.name("roleAliasArn");
             jsonWriter.value(roleAliasArn);
         }
+        if (resourceIdentifier.getIssuerCertificateIdentifier() != null) {
+            IssuerCertificateIdentifier issuerCertificateIdentifier = resourceIdentifier
+                    .getIssuerCertificateIdentifier();
+            jsonWriter.name("issuerCertificateIdentifier");
+            IssuerCertificateIdentifierJsonMarshaller.getInstance().marshall(
+                    issuerCertificateIdentifier, jsonWriter);
+        }
+        if (resourceIdentifier.getDeviceCertificateArn() != null) {
+            String deviceCertificateArn = resourceIdentifier.getDeviceCertificateArn();
+            jsonWriter.name("deviceCertificateArn");
+            jsonWriter.value(deviceCertificateArn);
+        }
         jsonWriter.endObject();
     }
 
