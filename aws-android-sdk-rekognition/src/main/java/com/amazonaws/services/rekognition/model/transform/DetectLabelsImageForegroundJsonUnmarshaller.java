@@ -21,28 +21,27 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Instance
+ * JSON unmarshaller for POJO DetectLabelsImageForeground
  */
-class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshallerContext> {
+class DetectLabelsImageForegroundJsonUnmarshaller implements
+        Unmarshaller<DetectLabelsImageForeground, JsonUnmarshallerContext> {
 
-    public Instance unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public DetectLabelsImageForeground unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Instance instance = new Instance();
+        DetectLabelsImageForeground detectLabelsImageForeground = new DetectLabelsImageForeground();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BoundingBox")) {
-                instance.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                instance.setConfidence(FloatJsonUnmarshaller.getInstance()
+            if (name.equals("Quality")) {
+                detectLabelsImageForeground.setQuality(DetectLabelsImageQualityJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("DominantColors")) {
-                instance.setDominantColors(new ListUnmarshaller<DominantColor>(
+                detectLabelsImageForeground.setDominantColors(new ListUnmarshaller<DominantColor>(
                         DominantColorJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
@@ -51,14 +50,14 @@ class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshalle
             }
         }
         reader.endObject();
-        return instance;
+        return detectLabelsImageForeground;
     }
 
-    private static InstanceJsonUnmarshaller instance;
+    private static DetectLabelsImageForegroundJsonUnmarshaller instance;
 
-    public static InstanceJsonUnmarshaller getInstance() {
+    public static DetectLabelsImageForegroundJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new InstanceJsonUnmarshaller();
+            instance = new DetectLabelsImageForegroundJsonUnmarshaller();
         return instance;
     }
 }

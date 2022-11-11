@@ -27,7 +27,9 @@ public class ContentModerationDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the beginning of the video, that the content
-     * moderation label was detected.
+     * moderation label was detected. Note that <code>Timestamp</code> is not
+     * guaranteed to be accurate to the individual frame where the moderated
+     * content first appears.
      * </p>
      */
     private Long timestamp;
@@ -42,12 +44,16 @@ public class ContentModerationDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the beginning of the video, that the content
-     * moderation label was detected.
+     * moderation label was detected. Note that <code>Timestamp</code> is not
+     * guaranteed to be accurate to the individual frame where the moderated
+     * content first appears.
      * </p>
      *
      * @return <p>
      *         Time, in milliseconds from the beginning of the video, that the
-     *         content moderation label was detected.
+     *         content moderation label was detected. Note that
+     *         <code>Timestamp</code> is not guaranteed to be accurate to the
+     *         individual frame where the moderated content first appears.
      *         </p>
      */
     public Long getTimestamp() {
@@ -57,12 +63,16 @@ public class ContentModerationDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the beginning of the video, that the content
-     * moderation label was detected.
+     * moderation label was detected. Note that <code>Timestamp</code> is not
+     * guaranteed to be accurate to the individual frame where the moderated
+     * content first appears.
      * </p>
      *
      * @param timestamp <p>
      *            Time, in milliseconds from the beginning of the video, that
-     *            the content moderation label was detected.
+     *            the content moderation label was detected. Note that
+     *            <code>Timestamp</code> is not guaranteed to be accurate to the
+     *            individual frame where the moderated content first appears.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -72,7 +82,9 @@ public class ContentModerationDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the beginning of the video, that the content
-     * moderation label was detected.
+     * moderation label was detected. Note that <code>Timestamp</code> is not
+     * guaranteed to be accurate to the individual frame where the moderated
+     * content first appears.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +92,9 @@ public class ContentModerationDetection implements Serializable {
      *
      * @param timestamp <p>
      *            Time, in milliseconds from the beginning of the video, that
-     *            the content moderation label was detected.
+     *            the content moderation label was detected. Note that
+     *            <code>Timestamp</code> is not guaranteed to be accurate to the
+     *            individual frame where the moderated content first appears.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

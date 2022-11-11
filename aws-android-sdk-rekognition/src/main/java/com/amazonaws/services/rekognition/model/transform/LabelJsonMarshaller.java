@@ -58,6 +58,28 @@ class LabelJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (label.getAliases() != null) {
+            java.util.List<LabelAlias> aliases = label.getAliases();
+            jsonWriter.name("Aliases");
+            jsonWriter.beginArray();
+            for (LabelAlias aliasesItem : aliases) {
+                if (aliasesItem != null) {
+                    LabelAliasJsonMarshaller.getInstance().marshall(aliasesItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (label.getCategories() != null) {
+            java.util.List<LabelCategory> categories = label.getCategories();
+            jsonWriter.name("Categories");
+            jsonWriter.beginArray();
+            for (LabelCategory categoriesItem : categories) {
+                if (categoriesItem != null) {
+                    LabelCategoryJsonMarshaller.getInstance().marshall(categoriesItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

@@ -30,14 +30,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For an example, see Analyzing images stored in an Amazon S3 bucket in the
  * Amazon Rekognition Developer Guide.
  * </p>
- * <note>
- * <p>
- * <code>DetectLabels</code> does not support the detection of activities.
- * However, activity detection is supported for label detection in videos. For
- * more information, see StartLabelDetection in the Amazon Rekognition Developer
- * Guide.
- * </p>
- * </note>
  * <p>
  * You pass the input image as base64-encoded image bytes or as a reference to
  * an image in an Amazon S3 bucket. If you use the AWS CLI to call Amazon
@@ -45,11 +37,118 @@ import com.amazonaws.AmazonWebServiceRequest;
  * be either a PNG or JPEG formatted file.
  * </p>
  * <p>
- * For each object, scene, and concept the API returns one or more labels. Each
- * label provides the object name, and the level of confidence that the image
- * contains the object. For example, suppose the input image has a lighthouse,
- * the sea, and a rock. The response includes all three labels, one for each
+ * <b>Optional Parameters</b>
+ * </p>
+ * <p>
+ * You can specify one or both of the <code>GENERAL_LABELS</code> and
+ * <code>IMAGE_PROPERTIES</code> feature types when calling the DetectLabels
+ * API. Including <code>GENERAL_LABELS</code> will ensure the response includes
+ * the labels detected in the input image, while including
+ * <code>IMAGE_PROPERTIES </code>will ensure the response includes information
+ * about the image quality and color.
+ * </p>
+ * <p>
+ * When using <code>GENERAL_LABELS</code> and/or <code>IMAGE_PROPERTIES</code>
+ * you can provide filtering criteria to the Settings parameter. You can filter
+ * with sets of individual labels or with label categories. You can specify
+ * inclusive filters, exclusive filters, or a combination of inclusive and
+ * exclusive filters. For more information on filtering see <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/dg/labels-detect-labels-image.html"
+ * >Detecting Labels in an Image</a>.
+ * </p>
+ * <p>
+ * You can specify <code>MinConfidence</code> to control the confidence
+ * threshold for the labels returned. The default is 55%. You can also add the
+ * <code>MaxLabels</code> parameter to limit the number of labels returned. The
+ * default and upper limit is 1000 labels.
+ * </p>
+ * <p>
+ * <b>Response Elements</b>
+ * </p>
+ * <p>
+ * For each object, scene, and concept the API returns one or more labels. The
+ * API returns the following types of information regarding labels:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Name - The name of the detected label.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Confidence - The level of confidence in the label assigned to a detected
  * object.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Parents - The ancestor labels for a detected label. DetectLabels returns a
+ * hierarchical taxonomy of detected labels. For example, a detected car might
+ * be assigned the label car. The label car has two parent labels: Vehicle (its
+ * parent) and Transportation (its grandparent). The response includes the all
+ * ancestors for a label, where every ancestor is a unique label. In the
+ * previous example, Car, Vehicle, and Transportation are returned as unique
+ * labels in the response.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Aliases - Possible Aliases for the label.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Categories - The label categories that the detected label belongs to. A given
+ * label can belong to more than one category.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * BoundingBox — Bounding boxes are described for all instances of detected
+ * common object labels, returned in an array of Instance objects. An Instance
+ * object contains a BoundingBox object, describing the location of the label on
+ * the input image. It also includes the confidence for the accuracy of the
+ * detected bounding box.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * The API returns the following information regarding the image, as part of the
+ * ImageProperties structure:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Quality - Information about the Sharpness, Brightness, and Contrast of the
+ * input image, scored between 0 to 100. Image quality is returned for the
+ * entire image, as well as the background and the foreground.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Dominant Color - An array of the dominant colors in the image.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Foreground - Information about the Sharpness and Brightness of the input
+ * image’s foreground.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Background - Information about the Sharpness and Brightness of the input
+ * image’s background.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * The list of returned labels will include at least one label for every
+ * detected object, along with information about that label. In the following
+ * example, suppose the input image has a lighthouse, the sea, and a rock. The
+ * response includes all three labels, one for each object, as well as the
+ * confidence in the label:
  * </p>
  * <p>
  * <code>{Name: lighthouse, Confidence: 98.4629}</code>
@@ -61,10 +160,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code> {Name: sea,Confidence: 75.061}</code>
  * </p>
  * <p>
- * In the preceding example, the operation returns one label for each of the
- * three objects. The operation can also return multiple labels for the same
- * object in the image. For example, if the input image shows a flower (for
- * example, a tulip), the operation might return the following three labels.
+ * The list of labels can include multiple labels for the same object. For
+ * example, if the input image shows a flower (for example, a tulip), the
+ * operation might return the following three labels.
  * </p>
  * <p>
  * <code>{Name: flower,Confidence: 99.0562}</code>
@@ -79,35 +177,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * In this example, the detection algorithm more precisely identifies the flower
  * as a tulip.
  * </p>
- * <p>
- * In response, the API returns an array of labels. In addition, the response
- * also includes the orientation correction. Optionally, you can specify
- * <code>MinConfidence</code> to control the confidence threshold for the labels
- * returned. The default is 55%. You can also add the <code>MaxLabels</code>
- * parameter to limit the number of labels returned.
- * </p>
  * <note>
  * <p>
  * If the object detected is a person, the operation doesn't provide the same
  * facial details that the <a>DetectFaces</a> operation provides.
  * </p>
  * </note>
- * <p>
- * <code>DetectLabels</code> returns bounding boxes for instances of common
- * object labels in an array of <a>Instance</a> objects. An
- * <code>Instance</code> object contains a <a>BoundingBox</a> object, for the
- * location of the label on the image. It also includes the confidence by which
- * the bounding box was detected.
- * </p>
- * <p>
- * <code>DetectLabels</code> also returns a hierarchical taxonomy of detected
- * labels. For example, a detected car might be assigned the label <i>car</i>.
- * The label <i>car</i> has two parent labels: <i>Vehicle</i> (its parent) and
- * <i>Transportation</i> (its grandparent). The response returns the entire list
- * of ancestors for a label. Each ancestor is a unique label in the response. In
- * the previous example, <i>Car</i>, <i>Vehicle</i>, and <i>Transportation</i>
- * are returned as unique labels in the response.
- * </p>
  * <p>
  * This is a stateless API operation. That is, the operation does not persist
  * any data.
@@ -160,6 +235,27 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>0.0 - 100.0<br/>
      */
     private Float minConfidence;
+
+    /**
+     * <p>
+     * A list of the types of analysis to perform. Specifying GENERAL_LABELS
+     * uses the label detection feature, while specifying IMAGE_PROPERTIES
+     * returns information regarding image color and quality. If no option is
+     * specified GENERAL_LABELS is used by default.
+     * </p>
+     */
+    private java.util.List<String> features;
+
+    /**
+     * <p>
+     * A list of the filters to be applied to returned detected labels and image
+     * properties. Specified filters can be inclusive, exclusive, or a
+     * combination of both. Filters can be used for individual labels or label
+     * categories. The exact label names or label categories must be supplied.
+     * For a full list of labels and label categories, see LINK HERE.
+     * </p>
+     */
+    private DetectLabelsSettings settings;
 
     /**
      * Default constructor for DetectLabelsRequest object. Callers should use
@@ -447,6 +543,180 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
+     * <p>
+     * A list of the types of analysis to perform. Specifying GENERAL_LABELS
+     * uses the label detection feature, while specifying IMAGE_PROPERTIES
+     * returns information regarding image color and quality. If no option is
+     * specified GENERAL_LABELS is used by default.
+     * </p>
+     *
+     * @return <p>
+     *         A list of the types of analysis to perform. Specifying
+     *         GENERAL_LABELS uses the label detection feature, while specifying
+     *         IMAGE_PROPERTIES returns information regarding image color and
+     *         quality. If no option is specified GENERAL_LABELS is used by
+     *         default.
+     *         </p>
+     */
+    public java.util.List<String> getFeatures() {
+        return features;
+    }
+
+    /**
+     * <p>
+     * A list of the types of analysis to perform. Specifying GENERAL_LABELS
+     * uses the label detection feature, while specifying IMAGE_PROPERTIES
+     * returns information regarding image color and quality. If no option is
+     * specified GENERAL_LABELS is used by default.
+     * </p>
+     *
+     * @param features <p>
+     *            A list of the types of analysis to perform. Specifying
+     *            GENERAL_LABELS uses the label detection feature, while
+     *            specifying IMAGE_PROPERTIES returns information regarding
+     *            image color and quality. If no option is specified
+     *            GENERAL_LABELS is used by default.
+     *            </p>
+     */
+    public void setFeatures(java.util.Collection<String> features) {
+        if (features == null) {
+            this.features = null;
+            return;
+        }
+
+        this.features = new java.util.ArrayList<String>(features);
+    }
+
+    /**
+     * <p>
+     * A list of the types of analysis to perform. Specifying GENERAL_LABELS
+     * uses the label detection feature, while specifying IMAGE_PROPERTIES
+     * returns information regarding image color and quality. If no option is
+     * specified GENERAL_LABELS is used by default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param features <p>
+     *            A list of the types of analysis to perform. Specifying
+     *            GENERAL_LABELS uses the label detection feature, while
+     *            specifying IMAGE_PROPERTIES returns information regarding
+     *            image color and quality. If no option is specified
+     *            GENERAL_LABELS is used by default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectLabelsRequest withFeatures(String... features) {
+        if (getFeatures() == null) {
+            this.features = new java.util.ArrayList<String>(features.length);
+        }
+        for (String value : features) {
+            this.features.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of the types of analysis to perform. Specifying GENERAL_LABELS
+     * uses the label detection feature, while specifying IMAGE_PROPERTIES
+     * returns information regarding image color and quality. If no option is
+     * specified GENERAL_LABELS is used by default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param features <p>
+     *            A list of the types of analysis to perform. Specifying
+     *            GENERAL_LABELS uses the label detection feature, while
+     *            specifying IMAGE_PROPERTIES returns information regarding
+     *            image color and quality. If no option is specified
+     *            GENERAL_LABELS is used by default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectLabelsRequest withFeatures(java.util.Collection<String> features) {
+        setFeatures(features);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of the filters to be applied to returned detected labels and image
+     * properties. Specified filters can be inclusive, exclusive, or a
+     * combination of both. Filters can be used for individual labels or label
+     * categories. The exact label names or label categories must be supplied.
+     * For a full list of labels and label categories, see LINK HERE.
+     * </p>
+     *
+     * @return <p>
+     *         A list of the filters to be applied to returned detected labels
+     *         and image properties. Specified filters can be inclusive,
+     *         exclusive, or a combination of both. Filters can be used for
+     *         individual labels or label categories. The exact label names or
+     *         label categories must be supplied. For a full list of labels and
+     *         label categories, see LINK HERE.
+     *         </p>
+     */
+    public DetectLabelsSettings getSettings() {
+        return settings;
+    }
+
+    /**
+     * <p>
+     * A list of the filters to be applied to returned detected labels and image
+     * properties. Specified filters can be inclusive, exclusive, or a
+     * combination of both. Filters can be used for individual labels or label
+     * categories. The exact label names or label categories must be supplied.
+     * For a full list of labels and label categories, see LINK HERE.
+     * </p>
+     *
+     * @param settings <p>
+     *            A list of the filters to be applied to returned detected
+     *            labels and image properties. Specified filters can be
+     *            inclusive, exclusive, or a combination of both. Filters can be
+     *            used for individual labels or label categories. The exact
+     *            label names or label categories must be supplied. For a full
+     *            list of labels and label categories, see LINK HERE.
+     *            </p>
+     */
+    public void setSettings(DetectLabelsSettings settings) {
+        this.settings = settings;
+    }
+
+    /**
+     * <p>
+     * A list of the filters to be applied to returned detected labels and image
+     * properties. Specified filters can be inclusive, exclusive, or a
+     * combination of both. Filters can be used for individual labels or label
+     * categories. The exact label names or label categories must be supplied.
+     * For a full list of labels and label categories, see LINK HERE.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param settings <p>
+     *            A list of the filters to be applied to returned detected
+     *            labels and image properties. Specified filters can be
+     *            inclusive, exclusive, or a combination of both. Filters can be
+     *            used for individual labels or label categories. The exact
+     *            label names or label categories must be supplied. For a full
+     *            list of labels and label categories, see LINK HERE.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectLabelsRequest withSettings(DetectLabelsSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -462,7 +732,11 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
         if (getMaxLabels() != null)
             sb.append("MaxLabels: " + getMaxLabels() + ",");
         if (getMinConfidence() != null)
-            sb.append("MinConfidence: " + getMinConfidence());
+            sb.append("MinConfidence: " + getMinConfidence() + ",");
+        if (getFeatures() != null)
+            sb.append("Features: " + getFeatures() + ",");
+        if (getSettings() != null)
+            sb.append("Settings: " + getSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -476,6 +750,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
         hashCode = prime * hashCode + ((getMaxLabels() == null) ? 0 : getMaxLabels().hashCode());
         hashCode = prime * hashCode
                 + ((getMinConfidence() == null) ? 0 : getMinConfidence().hashCode());
+        hashCode = prime * hashCode + ((getFeatures() == null) ? 0 : getFeatures().hashCode());
+        hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         return hashCode;
     }
 
@@ -503,6 +779,14 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
             return false;
         if (other.getMinConfidence() != null
                 && other.getMinConfidence().equals(this.getMinConfidence()) == false)
+            return false;
+        if (other.getFeatures() == null ^ this.getFeatures() == null)
+            return false;
+        if (other.getFeatures() != null && other.getFeatures().equals(this.getFeatures()) == false)
+            return false;
+        if (other.getSettings() == null ^ this.getSettings() == null)
+            return false;
+        if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
             return false;
         return true;
     }

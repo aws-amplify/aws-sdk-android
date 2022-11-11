@@ -21,44 +21,51 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Instance
+ * JSON unmarshaller for POJO DetectLabelsImageProperties
  */
-class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshallerContext> {
+class DetectLabelsImagePropertiesJsonUnmarshaller implements
+        Unmarshaller<DetectLabelsImageProperties, JsonUnmarshallerContext> {
 
-    public Instance unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public DetectLabelsImageProperties unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Instance instance = new Instance();
+        DetectLabelsImageProperties detectLabelsImageProperties = new DetectLabelsImageProperties();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BoundingBox")) {
-                instance.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                instance.setConfidence(FloatJsonUnmarshaller.getInstance()
+            if (name.equals("Quality")) {
+                detectLabelsImageProperties.setQuality(DetectLabelsImageQualityJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("DominantColors")) {
-                instance.setDominantColors(new ListUnmarshaller<DominantColor>(
+                detectLabelsImageProperties.setDominantColors(new ListUnmarshaller<DominantColor>(
                         DominantColorJsonUnmarshaller.getInstance()
                         )
+                                .unmarshall(context));
+            } else if (name.equals("Foreground")) {
+                detectLabelsImageProperties
+                        .setForeground(DetectLabelsImageForegroundJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("Background")) {
+                detectLabelsImageProperties
+                        .setBackground(DetectLabelsImageBackgroundJsonUnmarshaller.getInstance()
                                 .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return instance;
+        return detectLabelsImageProperties;
     }
 
-    private static InstanceJsonUnmarshaller instance;
+    private static DetectLabelsImagePropertiesJsonUnmarshaller instance;
 
-    public static InstanceJsonUnmarshaller getInstance() {
+    public static DetectLabelsImagePropertiesJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new InstanceJsonUnmarshaller();
+            instance = new DetectLabelsImagePropertiesJsonUnmarshaller();
         return instance;
     }
 }

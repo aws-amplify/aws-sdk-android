@@ -21,44 +21,36 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Instance
+ * JSON unmarshaller for POJO LabelAlias
  */
-class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshallerContext> {
+class LabelAliasJsonUnmarshaller implements Unmarshaller<LabelAlias, JsonUnmarshallerContext> {
 
-    public Instance unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public LabelAlias unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Instance instance = new Instance();
+        LabelAlias labelAlias = new LabelAlias();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BoundingBox")) {
-                instance.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
+            if (name.equals("Name")) {
+                labelAlias.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                instance.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("DominantColors")) {
-                instance.setDominantColors(new ListUnmarshaller<DominantColor>(
-                        DominantColorJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return instance;
+        return labelAlias;
     }
 
-    private static InstanceJsonUnmarshaller instance;
+    private static LabelAliasJsonUnmarshaller instance;
 
-    public static InstanceJsonUnmarshaller getInstance() {
+    public static LabelAliasJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new InstanceJsonUnmarshaller();
+            instance = new LabelAliasJsonUnmarshaller();
         return instance;
     }
 }

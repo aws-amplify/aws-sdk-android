@@ -21,44 +21,43 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Instance
+ * JSON unmarshaller for POJO DetectLabelsImageQuality
  */
-class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshallerContext> {
+class DetectLabelsImageQualityJsonUnmarshaller implements
+        Unmarshaller<DetectLabelsImageQuality, JsonUnmarshallerContext> {
 
-    public Instance unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public DetectLabelsImageQuality unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Instance instance = new Instance();
+        DetectLabelsImageQuality detectLabelsImageQuality = new DetectLabelsImageQuality();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("BoundingBox")) {
-                instance.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
+            if (name.equals("Brightness")) {
+                detectLabelsImageQuality.setBrightness(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                instance.setConfidence(FloatJsonUnmarshaller.getInstance()
+            } else if (name.equals("Sharpness")) {
+                detectLabelsImageQuality.setSharpness(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("DominantColors")) {
-                instance.setDominantColors(new ListUnmarshaller<DominantColor>(
-                        DominantColorJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+            } else if (name.equals("Contrast")) {
+                detectLabelsImageQuality.setContrast(FloatJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return instance;
+        return detectLabelsImageQuality;
     }
 
-    private static InstanceJsonUnmarshaller instance;
+    private static DetectLabelsImageQualityJsonUnmarshaller instance;
 
-    public static InstanceJsonUnmarshaller getInstance() {
+    public static DetectLabelsImageQualityJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new InstanceJsonUnmarshaller();
+            instance = new DetectLabelsImageQualityJsonUnmarshaller();
         return instance;
     }
 }

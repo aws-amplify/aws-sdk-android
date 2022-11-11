@@ -62,6 +62,20 @@ public class Label implements Serializable {
 
     /**
      * <p>
+     * A list of potential aliases for a given label.
+     * </p>
+     */
+    private java.util.List<LabelAlias> aliases;
+
+    /**
+     * <p>
+     * A list of the categories associated with a given label.
+     * </p>
+     */
+    private java.util.List<LabelCategory> categories;
+
+    /**
+     * <p>
      * The name (label) of the object or scene.
      * </p>
      *
@@ -340,6 +354,154 @@ public class Label implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of potential aliases for a given label.
+     * </p>
+     *
+     * @return <p>
+     *         A list of potential aliases for a given label.
+     *         </p>
+     */
+    public java.util.List<LabelAlias> getAliases() {
+        return aliases;
+    }
+
+    /**
+     * <p>
+     * A list of potential aliases for a given label.
+     * </p>
+     *
+     * @param aliases <p>
+     *            A list of potential aliases for a given label.
+     *            </p>
+     */
+    public void setAliases(java.util.Collection<LabelAlias> aliases) {
+        if (aliases == null) {
+            this.aliases = null;
+            return;
+        }
+
+        this.aliases = new java.util.ArrayList<LabelAlias>(aliases);
+    }
+
+    /**
+     * <p>
+     * A list of potential aliases for a given label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param aliases <p>
+     *            A list of potential aliases for a given label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Label withAliases(LabelAlias... aliases) {
+        if (getAliases() == null) {
+            this.aliases = new java.util.ArrayList<LabelAlias>(aliases.length);
+        }
+        for (LabelAlias value : aliases) {
+            this.aliases.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of potential aliases for a given label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param aliases <p>
+     *            A list of potential aliases for a given label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Label withAliases(java.util.Collection<LabelAlias> aliases) {
+        setAliases(aliases);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of the categories associated with a given label.
+     * </p>
+     *
+     * @return <p>
+     *         A list of the categories associated with a given label.
+     *         </p>
+     */
+    public java.util.List<LabelCategory> getCategories() {
+        return categories;
+    }
+
+    /**
+     * <p>
+     * A list of the categories associated with a given label.
+     * </p>
+     *
+     * @param categories <p>
+     *            A list of the categories associated with a given label.
+     *            </p>
+     */
+    public void setCategories(java.util.Collection<LabelCategory> categories) {
+        if (categories == null) {
+            this.categories = null;
+            return;
+        }
+
+        this.categories = new java.util.ArrayList<LabelCategory>(categories);
+    }
+
+    /**
+     * <p>
+     * A list of the categories associated with a given label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            A list of the categories associated with a given label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Label withCategories(LabelCategory... categories) {
+        if (getCategories() == null) {
+            this.categories = new java.util.ArrayList<LabelCategory>(categories.length);
+        }
+        for (LabelCategory value : categories) {
+            this.categories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of the categories associated with a given label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            A list of the categories associated with a given label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Label withCategories(java.util.Collection<LabelCategory> categories) {
+        setCategories(categories);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -357,7 +519,11 @@ public class Label implements Serializable {
         if (getInstances() != null)
             sb.append("Instances: " + getInstances() + ",");
         if (getParents() != null)
-            sb.append("Parents: " + getParents());
+            sb.append("Parents: " + getParents() + ",");
+        if (getAliases() != null)
+            sb.append("Aliases: " + getAliases() + ",");
+        if (getCategories() != null)
+            sb.append("Categories: " + getCategories());
         sb.append("}");
         return sb.toString();
     }
@@ -371,6 +537,8 @@ public class Label implements Serializable {
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
         hashCode = prime * hashCode + ((getInstances() == null) ? 0 : getInstances().hashCode());
         hashCode = prime * hashCode + ((getParents() == null) ? 0 : getParents().hashCode());
+        hashCode = prime * hashCode + ((getAliases() == null) ? 0 : getAliases().hashCode());
+        hashCode = prime * hashCode + ((getCategories() == null) ? 0 : getCategories().hashCode());
         return hashCode;
     }
 
@@ -402,6 +570,15 @@ public class Label implements Serializable {
         if (other.getParents() == null ^ this.getParents() == null)
             return false;
         if (other.getParents() != null && other.getParents().equals(this.getParents()) == false)
+            return false;
+        if (other.getAliases() == null ^ this.getAliases() == null)
+            return false;
+        if (other.getAliases() != null && other.getAliases().equals(this.getAliases()) == false)
+            return false;
+        if (other.getCategories() == null ^ this.getCategories() == null)
+            return false;
+        if (other.getCategories() != null
+                && other.getCategories().equals(this.getCategories()) == false)
             return false;
         return true;
     }
