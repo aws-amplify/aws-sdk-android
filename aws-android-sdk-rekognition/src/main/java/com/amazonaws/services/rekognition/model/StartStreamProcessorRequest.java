@@ -49,8 +49,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Specifies the starting point in the Kinesis stream to start processing.
-     * You can use the producer timestamp or the fragment number. For more
-     * information, see <a href=
+     * You can use the producer timestamp or the fragment number. If you use the
+     * producer timestamp, you must put the time in milliseconds. For more
+     * information about fragment numbers, see <a href=
      * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      * >Fragment</a>.
      * </p>
@@ -133,8 +134,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Specifies the starting point in the Kinesis stream to start processing.
-     * You can use the producer timestamp or the fragment number. For more
-     * information, see <a href=
+     * You can use the producer timestamp or the fragment number. If you use the
+     * producer timestamp, you must put the time in milliseconds. For more
+     * information about fragment numbers, see <a href=
      * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      * >Fragment</a>.
      * </p>
@@ -146,7 +148,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
      * @return <p>
      *         Specifies the starting point in the Kinesis stream to start
      *         processing. You can use the producer timestamp or the fragment
-     *         number. For more information, see <a href=
+     *         number. If you use the producer timestamp, you must put the time
+     *         in milliseconds. For more information about fragment numbers, see
+     *         <a href=
      *         "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      *         >Fragment</a>.
      *         </p>
@@ -163,8 +167,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Specifies the starting point in the Kinesis stream to start processing.
-     * You can use the producer timestamp or the fragment number. For more
-     * information, see <a href=
+     * You can use the producer timestamp or the fragment number. If you use the
+     * producer timestamp, you must put the time in milliseconds. For more
+     * information about fragment numbers, see <a href=
      * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      * >Fragment</a>.
      * </p>
@@ -176,7 +181,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
      * @param startSelector <p>
      *            Specifies the starting point in the Kinesis stream to start
      *            processing. You can use the producer timestamp or the fragment
-     *            number. For more information, see <a href=
+     *            number. If you use the producer timestamp, you must put the
+     *            time in milliseconds. For more information about fragment
+     *            numbers, see <a href=
      *            "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      *            >Fragment</a>.
      *            </p>
@@ -193,8 +200,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Specifies the starting point in the Kinesis stream to start processing.
-     * You can use the producer timestamp or the fragment number. For more
-     * information, see <a href=
+     * You can use the producer timestamp or the fragment number. If you use the
+     * producer timestamp, you must put the time in milliseconds. For more
+     * information about fragment numbers, see <a href=
      * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      * >Fragment</a>.
      * </p>
@@ -209,7 +217,9 @@ public class StartStreamProcessorRequest extends AmazonWebServiceRequest impleme
      * @param startSelector <p>
      *            Specifies the starting point in the Kinesis stream to start
      *            processing. You can use the producer timestamp or the fragment
-     *            number. For more information, see <a href=
+     *            number. If you use the producer timestamp, you must put the
+     *            time in milliseconds. For more information about fragment
+     *            numbers, see <a href=
      *            "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
      *            >Fragment</a>.
      *            </p>

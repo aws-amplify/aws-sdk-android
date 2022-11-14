@@ -28,7 +28,8 @@ public class TextDetectionResult implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the text was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the text first appears.
      * </p>
      */
     private Long timestamp;
@@ -43,12 +44,15 @@ public class TextDetectionResult implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the text was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the text first appears.
      * </p>
      *
      * @return <p>
      *         The time, in milliseconds from the start of the video, that the
-     *         text was detected.
+     *         text was detected. Note that <code>Timestamp</code> is not
+     *         guaranteed to be accurate to the individual frame where the text
+     *         first appears.
      *         </p>
      */
     public Long getTimestamp() {
@@ -58,12 +62,15 @@ public class TextDetectionResult implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the text was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the text first appears.
      * </p>
      *
      * @param timestamp <p>
      *            The time, in milliseconds from the start of the video, that
-     *            the text was detected.
+     *            the text was detected. Note that <code>Timestamp</code> is not
+     *            guaranteed to be accurate to the individual frame where the
+     *            text first appears.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -73,7 +80,8 @@ public class TextDetectionResult implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the text was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the text first appears.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -81,7 +89,9 @@ public class TextDetectionResult implements Serializable {
      *
      * @param timestamp <p>
      *            The time, in milliseconds from the start of the video, that
-     *            the text was detected.
+     *            the text was detected. Note that <code>Timestamp</code> is not
+     *            guaranteed to be accurate to the individual frame where the
+     *            text first appears.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

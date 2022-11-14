@@ -20,24 +20,21 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO Instance
+ * JSON marshaller for POJO DetectLabelsImageBackground
  */
-class InstanceJsonMarshaller {
+class DetectLabelsImageBackgroundJsonMarshaller {
 
-    public void marshall(Instance instance, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(DetectLabelsImageBackground detectLabelsImageBackground,
+            AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (instance.getBoundingBox() != null) {
-            BoundingBox boundingBox = instance.getBoundingBox();
-            jsonWriter.name("BoundingBox");
-            BoundingBoxJsonMarshaller.getInstance().marshall(boundingBox, jsonWriter);
+        if (detectLabelsImageBackground.getQuality() != null) {
+            DetectLabelsImageQuality quality = detectLabelsImageBackground.getQuality();
+            jsonWriter.name("Quality");
+            DetectLabelsImageQualityJsonMarshaller.getInstance().marshall(quality, jsonWriter);
         }
-        if (instance.getConfidence() != null) {
-            Float confidence = instance.getConfidence();
-            jsonWriter.name("Confidence");
-            jsonWriter.value(confidence);
-        }
-        if (instance.getDominantColors() != null) {
-            java.util.List<DominantColor> dominantColors = instance.getDominantColors();
+        if (detectLabelsImageBackground.getDominantColors() != null) {
+            java.util.List<DominantColor> dominantColors = detectLabelsImageBackground
+                    .getDominantColors();
             jsonWriter.name("DominantColors");
             jsonWriter.beginArray();
             for (DominantColor dominantColorsItem : dominantColors) {
@@ -51,11 +48,11 @@ class InstanceJsonMarshaller {
         jsonWriter.endObject();
     }
 
-    private static InstanceJsonMarshaller instance;
+    private static DetectLabelsImageBackgroundJsonMarshaller instance;
 
-    public static InstanceJsonMarshaller getInstance() {
+    public static DetectLabelsImageBackgroundJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new InstanceJsonMarshaller();
+            instance = new DetectLabelsImageBackgroundJsonMarshaller();
         return instance;
     }
 }

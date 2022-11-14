@@ -77,6 +77,22 @@ public class DetectLabelsRequestMarshaller implements
                 jsonWriter.name("MinConfidence");
                 jsonWriter.value(minConfidence);
             }
+            if (detectLabelsRequest.getFeatures() != null) {
+                java.util.List<String> features = detectLabelsRequest.getFeatures();
+                jsonWriter.name("Features");
+                jsonWriter.beginArray();
+                for (String featuresItem : features) {
+                    if (featuresItem != null) {
+                        jsonWriter.value(featuresItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (detectLabelsRequest.getSettings() != null) {
+                DetectLabelsSettings settings = detectLabelsRequest.getSettings();
+                jsonWriter.name("Settings");
+                DetectLabelsSettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

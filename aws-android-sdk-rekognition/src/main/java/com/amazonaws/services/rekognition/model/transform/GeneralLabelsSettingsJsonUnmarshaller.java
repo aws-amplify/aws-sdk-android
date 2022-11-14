@@ -21,43 +21,41 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Label
+ * JSON unmarshaller for POJO GeneralLabelsSettings
  */
-class LabelJsonUnmarshaller implements Unmarshaller<Label, JsonUnmarshallerContext> {
+class GeneralLabelsSettingsJsonUnmarshaller implements
+        Unmarshaller<GeneralLabelsSettings, JsonUnmarshallerContext> {
 
-    public Label unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public GeneralLabelsSettings unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Label label = new Label();
+        GeneralLabelsSettings generalLabelsSettings = new GeneralLabelsSettings();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Name")) {
-                label.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                label.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Instances")) {
-                label.setInstances(new ListUnmarshaller<Instance>(InstanceJsonUnmarshaller
-                        .getInstance()
+            if (name.equals("LabelInclusionFilters")) {
+                generalLabelsSettings.setLabelInclusionFilters(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Parents")) {
-                label.setParents(new ListUnmarshaller<Parent>(ParentJsonUnmarshaller.getInstance()
+            } else if (name.equals("LabelExclusionFilters")) {
+                generalLabelsSettings.setLabelExclusionFilters(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Aliases")) {
-                label.setAliases(new ListUnmarshaller<LabelAlias>(LabelAliasJsonUnmarshaller
-                        .getInstance()
+            } else if (name.equals("LabelCategoryInclusionFilters")) {
+                generalLabelsSettings
+                        .setLabelCategoryInclusionFilters(new ListUnmarshaller<String>(
+                                StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("Categories")) {
-                label.setCategories(new ListUnmarshaller<LabelCategory>(
-                        LabelCategoryJsonUnmarshaller.getInstance()
+            } else if (name.equals("LabelCategoryExclusionFilters")) {
+                generalLabelsSettings
+                        .setLabelCategoryExclusionFilters(new ListUnmarshaller<String>(
+                                StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {
@@ -65,14 +63,14 @@ class LabelJsonUnmarshaller implements Unmarshaller<Label, JsonUnmarshallerConte
             }
         }
         reader.endObject();
-        return label;
+        return generalLabelsSettings;
     }
 
-    private static LabelJsonUnmarshaller instance;
+    private static GeneralLabelsSettingsJsonUnmarshaller instance;
 
-    public static LabelJsonUnmarshaller getInstance() {
+    public static GeneralLabelsSettingsJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new LabelJsonUnmarshaller();
+            instance = new GeneralLabelsSettingsJsonUnmarshaller();
         return instance;
     }
 }
