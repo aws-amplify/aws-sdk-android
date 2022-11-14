@@ -25,7 +25,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * parameters to filter your things. For example, calling
  * <code>ListThings</code> with attributeName=Color and attributeValue=Red
  * retrieves all things in the registry that contain an attribute <b>Color</b>
- * with the value <b>Red</b>.
+ * with the value <b>Red</b>. For more information, see <a href=
+ * "https://docs.aws.amazon.com/iot/latest/developerguide/thing-registry.html#list-things"
+ * >List Things</a> from the <i>Amazon Web Services IoT Core Developer
+ * Guide</i>.
  * </p>
  * <p>
  * Requires permission to access the <a href=

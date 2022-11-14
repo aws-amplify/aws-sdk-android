@@ -99,6 +99,20 @@ public class ResourceIdentifier implements Serializable {
 
     /**
      * <p>
+     * The issuer certificate identifier.
+     * </p>
+     */
+    private IssuerCertificateIdentifier issuerCertificateIdentifier;
+
+    /**
+     * <p>
+     * The ARN of the identified device certificate.
+     * </p>
+     */
+    private String deviceCertificateArn;
+
+    /**
+     * <p>
      * The ID of the certificate attached to the resource.
      * </p>
      * <p>
@@ -515,6 +529,98 @@ public class ResourceIdentifier implements Serializable {
     }
 
     /**
+     * <p>
+     * The issuer certificate identifier.
+     * </p>
+     *
+     * @return <p>
+     *         The issuer certificate identifier.
+     *         </p>
+     */
+    public IssuerCertificateIdentifier getIssuerCertificateIdentifier() {
+        return issuerCertificateIdentifier;
+    }
+
+    /**
+     * <p>
+     * The issuer certificate identifier.
+     * </p>
+     *
+     * @param issuerCertificateIdentifier <p>
+     *            The issuer certificate identifier.
+     *            </p>
+     */
+    public void setIssuerCertificateIdentifier(
+            IssuerCertificateIdentifier issuerCertificateIdentifier) {
+        this.issuerCertificateIdentifier = issuerCertificateIdentifier;
+    }
+
+    /**
+     * <p>
+     * The issuer certificate identifier.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param issuerCertificateIdentifier <p>
+     *            The issuer certificate identifier.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ResourceIdentifier withIssuerCertificateIdentifier(
+            IssuerCertificateIdentifier issuerCertificateIdentifier) {
+        this.issuerCertificateIdentifier = issuerCertificateIdentifier;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the identified device certificate.
+     * </p>
+     *
+     * @return <p>
+     *         The ARN of the identified device certificate.
+     *         </p>
+     */
+    public String getDeviceCertificateArn() {
+        return deviceCertificateArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the identified device certificate.
+     * </p>
+     *
+     * @param deviceCertificateArn <p>
+     *            The ARN of the identified device certificate.
+     *            </p>
+     */
+    public void setDeviceCertificateArn(String deviceCertificateArn) {
+        this.deviceCertificateArn = deviceCertificateArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the identified device certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param deviceCertificateArn <p>
+     *            The ARN of the identified device certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ResourceIdentifier withDeviceCertificateArn(String deviceCertificateArn) {
+        this.deviceCertificateArn = deviceCertificateArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -540,7 +646,11 @@ public class ResourceIdentifier implements Serializable {
         if (getIamRoleArn() != null)
             sb.append("iamRoleArn: " + getIamRoleArn() + ",");
         if (getRoleAliasArn() != null)
-            sb.append("roleAliasArn: " + getRoleAliasArn());
+            sb.append("roleAliasArn: " + getRoleAliasArn() + ",");
+        if (getIssuerCertificateIdentifier() != null)
+            sb.append("issuerCertificateIdentifier: " + getIssuerCertificateIdentifier() + ",");
+        if (getDeviceCertificateArn() != null)
+            sb.append("deviceCertificateArn: " + getDeviceCertificateArn());
         sb.append("}");
         return sb.toString();
     }
@@ -566,6 +676,12 @@ public class ResourceIdentifier implements Serializable {
         hashCode = prime * hashCode + ((getIamRoleArn() == null) ? 0 : getIamRoleArn().hashCode());
         hashCode = prime * hashCode
                 + ((getRoleAliasArn() == null) ? 0 : getRoleAliasArn().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getIssuerCertificateIdentifier() == null) ? 0
+                        : getIssuerCertificateIdentifier().hashCode());
+        hashCode = prime * hashCode
+                + ((getDeviceCertificateArn() == null) ? 0 : getDeviceCertificateArn().hashCode());
         return hashCode;
     }
 
@@ -617,6 +733,18 @@ public class ResourceIdentifier implements Serializable {
             return false;
         if (other.getRoleAliasArn() != null
                 && other.getRoleAliasArn().equals(this.getRoleAliasArn()) == false)
+            return false;
+        if (other.getIssuerCertificateIdentifier() == null
+                ^ this.getIssuerCertificateIdentifier() == null)
+            return false;
+        if (other.getIssuerCertificateIdentifier() != null
+                && other.getIssuerCertificateIdentifier().equals(
+                        this.getIssuerCertificateIdentifier()) == false)
+            return false;
+        if (other.getDeviceCertificateArn() == null ^ this.getDeviceCertificateArn() == null)
+            return false;
+        if (other.getDeviceCertificateArn() != null
+                && other.getDeviceCertificateArn().equals(this.getDeviceCertificateArn()) == false)
             return false;
         return true;
     }

@@ -30,7 +30,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      */
     private String resourceType;
 
@@ -55,7 +56,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      *
      * @return <p>
      *         The type of resource.
@@ -73,7 +75,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      *
      * @param resourceType <p>
      *            The type of resource.
@@ -94,7 +97,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      *
      * @param resourceType <p>
      *            The type of resource.
@@ -115,7 +119,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      *
      * @param resourceType <p>
      *            The type of resource.
@@ -136,7 +141,8 @@ public class RelatedResource implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEVICE_CERTIFICATE, CA_CERTIFICATE, IOT_POLICY,
-     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE
+     * COGNITO_IDENTITY_POOL, CLIENT_ID, ACCOUNT_SETTINGS, ROLE_ALIAS, IAM_ROLE,
+     * ISSUER_CERTIFICATE
      *
      * @param resourceType <p>
      *            The type of resource.
