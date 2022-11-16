@@ -6235,6 +6235,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return monitorContactResult The response from the MonitorContact service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public MonitorContactResult monitorContact(MonitorContactRequest monitorContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(monitorContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<MonitorContactRequest> request = null;
+        Response<MonitorContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new MonitorContactRequestMarshaller().marshall(monitorContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<MonitorContactResult, JsonUnmarshallerContext> unmarshaller = new MonitorContactResultJsonUnmarshaller();
+            JsonResponseHandler<MonitorContactResult> responseHandler = new JsonResponseHandler<MonitorContactResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Changes the current status of a user or agent in Amazon Connect. If the
      * agent is currently handling a contact, this sets the agent's next status.
      * </p>

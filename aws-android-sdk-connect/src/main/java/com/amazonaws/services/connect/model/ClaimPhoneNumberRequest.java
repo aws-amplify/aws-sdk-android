@@ -85,6 +85,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      */
@@ -363,6 +367,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
@@ -373,6 +381,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *         idempotency, see <a href=
      *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *         >Making retries safe with idempotent APIs</a>.
+     *         </p>
+     *         <p>
+     *         Pattern:
+     *         <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *         </p>
      */
     public String getClientToken() {
@@ -389,6 +401,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
@@ -399,6 +415,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *            about idempotency, see <a href=
      *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *            >Making retries safe with idempotent APIs</a>.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -415,6 +435,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -428,6 +452,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *            about idempotency, see <a href=
      *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *            >Making retries safe with idempotent APIs</a>.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

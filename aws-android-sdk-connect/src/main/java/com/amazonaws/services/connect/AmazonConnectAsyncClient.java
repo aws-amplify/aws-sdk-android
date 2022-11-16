@@ -8976,6 +8976,85 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return A Java Future object containing the response from the
+     *         MonitorContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<MonitorContactResult> monitorContactAsync(
+            final MonitorContactRequest monitorContactRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<MonitorContactResult>() {
+            public MonitorContactResult call() throws Exception {
+                return monitorContact(monitorContactRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return A Java Future object containing the response from the
+     *         MonitorContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<MonitorContactResult> monitorContactAsync(
+            final MonitorContactRequest monitorContactRequest,
+            final AsyncHandler<MonitorContactRequest, MonitorContactResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<MonitorContactResult>() {
+            public MonitorContactResult call() throws Exception {
+                MonitorContactResult result = null;
+                try {
+                    result = monitorContact(monitorContactRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(monitorContactRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Changes the current status of a user or agent in Amazon Connect. If the
      * agent is currently handling a contact, this sets the agent's next status.
      * </p>

@@ -73,6 +73,14 @@ public class SearchRoutingProfilesRequest extends AmazonWebServiceRequest implem
      * <p>
      * The search criteria to be used to return routing profiles.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      */
     private RoutingProfileSearchCriteria searchCriteria;
 
@@ -305,10 +313,26 @@ public class SearchRoutingProfilesRequest extends AmazonWebServiceRequest implem
      * <p>
      * The search criteria to be used to return routing profiles.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The search criteria to be used to return routing profiles.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>name</code> and <code>description</code> fields support
+     *         "contains" queries with a minimum of 2 characters and a maximum
+     *         of 25 characters. Any queries with character lengths outside of
+     *         this range will throw invalid results.
+     *         </p>
+     *         </note>
      */
     public RoutingProfileSearchCriteria getSearchCriteria() {
         return searchCriteria;
@@ -318,10 +342,26 @@ public class SearchRoutingProfilesRequest extends AmazonWebServiceRequest implem
      * <p>
      * The search criteria to be used to return routing profiles.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      *
      * @param searchCriteria <p>
      *            The search criteria to be used to return routing profiles.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>name</code> and <code>description</code> fields
+     *            support "contains" queries with a minimum of 2 characters and
+     *            a maximum of 25 characters. Any queries with character lengths
+     *            outside of this range will throw invalid results.
+     *            </p>
+     *            </note>
      */
     public void setSearchCriteria(RoutingProfileSearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
@@ -331,6 +371,14 @@ public class SearchRoutingProfilesRequest extends AmazonWebServiceRequest implem
      * <p>
      * The search criteria to be used to return routing profiles.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -338,6 +386,14 @@ public class SearchRoutingProfilesRequest extends AmazonWebServiceRequest implem
      * @param searchCriteria <p>
      *            The search criteria to be used to return routing profiles.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>name</code> and <code>description</code> fields
+     *            support "contains" queries with a minimum of 2 characters and
+     *            a maximum of 25 characters. Any queries with character lengths
+     *            outside of this range will throw invalid results.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
