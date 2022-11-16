@@ -40,6 +40,9 @@ public enum Regions {
 
     /** eu-south-1/ */
     EU_SOUTH_1("eu-south-1"),
+    
+    /** eu-south-2. */
+    EU_SOUTH_2("eu-south-2"),
 
     /** eu-west-1/ */
     EU_WEST_1("eu-west-1"),
