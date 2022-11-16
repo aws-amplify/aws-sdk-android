@@ -1,3 +1,12 @@
+## [Release 2.58.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.58.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#3070)
+- **aws-android-sdk-rekognition:** update models to latest (#3071)
+- add support for ZAZ region (#3076)
+
+[See all changes between 2.57.0 and 2.58.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.57.0...release_v2.58.0)
+
 ## [Release 2.57.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.57.0)
 
 ### Features
