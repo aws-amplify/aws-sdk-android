@@ -99,7 +99,9 @@ public enum VoiceId {
     Laura("Laura"),
     Elin("Elin"),
     Ida("Ida"),
-    Suvi("Suvi");
+    Suvi("Suvi"),
+    Ola("Ola"),
+    Hala("Hala");
 
     private String value;
 
@@ -192,6 +194,8 @@ public enum VoiceId {
         enumMap.put("Elin", Elin);
         enumMap.put("Ida", Ida);
         enumMap.put("Suvi", Suvi);
+        enumMap.put("Ola", Ola);
+        enumMap.put("Hala", Hala);
     }
 
     /**
