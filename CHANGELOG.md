@@ -1,3 +1,10 @@
+## [Release 2.59.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.0)
+
+### Miscellaneous
+- Feat(MISC): Support for Asia Pacific Hyderabad region (#3087)
+
+[See all changes between 2.58.0 and 2.59.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.58.0...release_v2.59.0)
+
 ## [Release 2.58.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.58.0)
 
 ### Features
