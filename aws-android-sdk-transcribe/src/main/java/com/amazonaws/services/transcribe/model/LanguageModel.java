@@ -57,7 +57,7 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified language model was last modified.
+     * The date and time the specified custom language model was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -70,10 +70,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -117,8 +117,8 @@ public class LanguageModel implements Serializable {
      * specified custom language model.
      * </p>
      * <p>
-     * If <code>false</code>, your language model is using the most up-to-date
-     * base model.
+     * If <code>false</code>, your custom language model is using the most
+     * up-to-date base model.
      * </p>
      * <p>
      * If <code>true</code>, there is a newer base model available than the one
@@ -319,7 +319,7 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified language model was last modified.
+     * The date and time the specified custom language model was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -329,7 +329,8 @@ public class LanguageModel implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time the specified language model was last modified.
+     *         The date and time the specified custom language model was last
+     *         modified.
      *         </p>
      *         <p>
      *         Timestamps are in the format
@@ -344,7 +345,7 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified language model was last modified.
+     * The date and time the specified custom language model was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -354,7 +355,7 @@ public class LanguageModel implements Serializable {
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified language model was last
+     *            The date and time the specified custom language model was last
      *            modified.
      *            </p>
      *            <p>
@@ -370,7 +371,7 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified language model was last modified.
+     * The date and time the specified custom language model was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -383,7 +384,7 @@ public class LanguageModel implements Serializable {
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified language model was last
+     *            The date and time the specified custom language model was last
      *            modified.
      *            </p>
      *            <p>
@@ -402,10 +403,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -421,9 +422,9 @@ public class LanguageModel implements Serializable {
      *
      * @return <p>
      *         The language code used to create your custom language model. Each
-     *         language model must contain terms in only one language, and the
-     *         language you select for your model must match the language of
-     *         your training and tuning data.
+     *         custom language model must contain terms in only one language,
+     *         and the language you select for your custom language model must
+     *         match the language of your training and tuning data.
      *         </p>
      *         <p>
      *         For a list of supported languages and their associated language
@@ -441,10 +442,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -460,9 +461,10 @@ public class LanguageModel implements Serializable {
      *
      * @param languageCode <p>
      *            The language code used to create your custom language model.
-     *            Each language model must contain terms in only one language,
-     *            and the language you select for your model must match the
-     *            language of your training and tuning data.
+     *            Each custom language model must contain terms in only one
+     *            language, and the language you select for your custom language
+     *            model must match the language of your training and tuning
+     *            data.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -480,10 +482,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -502,9 +504,10 @@ public class LanguageModel implements Serializable {
      *
      * @param languageCode <p>
      *            The language code used to create your custom language model.
-     *            Each language model must contain terms in only one language,
-     *            and the language you select for your model must match the
-     *            language of your training and tuning data.
+     *            Each custom language model must contain terms in only one
+     *            language, and the language you select for your custom language
+     *            model must match the language of your training and tuning
+     *            data.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -525,10 +528,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -544,9 +547,10 @@ public class LanguageModel implements Serializable {
      *
      * @param languageCode <p>
      *            The language code used to create your custom language model.
-     *            Each language model must contain terms in only one language,
-     *            and the language you select for your model must match the
-     *            language of your training and tuning data.
+     *            Each custom language model must contain terms in only one
+     *            language, and the language you select for your custom language
+     *            model must match the language of your training and tuning
+     *            data.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -564,10 +568,10 @@ public class LanguageModel implements Serializable {
 
     /**
      * <p>
-     * The language code used to create your custom language model. Each
+     * The language code used to create your custom language model. Each custom
      * language model must contain terms in only one language, and the language
-     * you select for your model must match the language of your training and
-     * tuning data.
+     * you select for your custom language model must match the language of your
+     * training and tuning data.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -586,9 +590,10 @@ public class LanguageModel implements Serializable {
      *
      * @param languageCode <p>
      *            The language code used to create your custom language model.
-     *            Each language model must contain terms in only one language,
-     *            and the language you select for your model must match the
-     *            language of your training and tuning data.
+     *            Each custom language model must contain terms in only one
+     *            language, and the language you select for your custom language
+     *            model must match the language of your training and tuning
+     *            data.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -832,8 +837,8 @@ public class LanguageModel implements Serializable {
      * specified custom language model.
      * </p>
      * <p>
-     * If <code>false</code>, your language model is using the most up-to-date
-     * base model.
+     * If <code>false</code>, your custom language model is using the most
+     * up-to-date base model.
      * </p>
      * <p>
      * If <code>true</code>, there is a newer base model available than the one
@@ -850,8 +855,8 @@ public class LanguageModel implements Serializable {
      *         specified custom language model.
      *         </p>
      *         <p>
-     *         If <code>false</code>, your language model is using the most
-     *         up-to-date base model.
+     *         If <code>false</code>, your custom language model is using the
+     *         most up-to-date base model.
      *         </p>
      *         <p>
      *         If <code>true</code>, there is a newer base model available than
@@ -873,8 +878,8 @@ public class LanguageModel implements Serializable {
      * specified custom language model.
      * </p>
      * <p>
-     * If <code>false</code>, your language model is using the most up-to-date
-     * base model.
+     * If <code>false</code>, your custom language model is using the most
+     * up-to-date base model.
      * </p>
      * <p>
      * If <code>true</code>, there is a newer base model available than the one
@@ -891,8 +896,8 @@ public class LanguageModel implements Serializable {
      *         specified custom language model.
      *         </p>
      *         <p>
-     *         If <code>false</code>, your language model is using the most
-     *         up-to-date base model.
+     *         If <code>false</code>, your custom language model is using the
+     *         most up-to-date base model.
      *         </p>
      *         <p>
      *         If <code>true</code>, there is a newer base model available than
@@ -914,8 +919,8 @@ public class LanguageModel implements Serializable {
      * specified custom language model.
      * </p>
      * <p>
-     * If <code>false</code>, your language model is using the most up-to-date
-     * base model.
+     * If <code>false</code>, your custom language model is using the most
+     * up-to-date base model.
      * </p>
      * <p>
      * If <code>true</code>, there is a newer base model available than the one
@@ -932,8 +937,8 @@ public class LanguageModel implements Serializable {
      *            the specified custom language model.
      *            </p>
      *            <p>
-     *            If <code>false</code>, your language model is using the most
-     *            up-to-date base model.
+     *            If <code>false</code>, your custom language model is using the
+     *            most up-to-date base model.
      *            </p>
      *            <p>
      *            If <code>true</code>, there is a newer base model available
@@ -955,8 +960,8 @@ public class LanguageModel implements Serializable {
      * specified custom language model.
      * </p>
      * <p>
-     * If <code>false</code>, your language model is using the most up-to-date
-     * base model.
+     * If <code>false</code>, your custom language model is using the most
+     * up-to-date base model.
      * </p>
      * <p>
      * If <code>true</code>, there is a newer base model available than the one
@@ -976,8 +981,8 @@ public class LanguageModel implements Serializable {
      *            the specified custom language model.
      *            </p>
      *            <p>
-     *            If <code>false</code>, your language model is using the most
-     *            up-to-date base model.
+     *            If <code>false</code>, your custom language model is using the
+     *            most up-to-date base model.
      *            </p>
      *            <p>
      *            If <code>true</code>, there is a newer base model available

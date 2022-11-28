@@ -19,9 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Allows you to control how your transcription job is processed. Currently, the
- * only <code>JobExecutionSettings</code> modification you can choose is
- * enabling job queueing using the <code>AllowDeferredExecution</code>
+ * Makes it possible to control how your transcription job is processed.
+ * Currently, the only <code>JobExecutionSettings</code> modification you can
+ * choose is enabling job queueing using the <code>AllowDeferredExecution</code>
  * sub-parameter.
  * </p>
  * <p>
@@ -33,8 +33,8 @@ import java.io.Serializable;
 public class JobExecutionSettings implements Serializable {
     /**
      * <p>
-     * Allows you to enable job queuing when your concurrent request limit is
-     * exceeded. When <code>AllowDeferredExecution</code> is set to
+     * Makes it possible to enable job queuing when your concurrent request
+     * limit is exceeded. When <code>AllowDeferredExecution</code> is set to
      * <code>true</code>, transcription job requests are placed in a queue until
      * the number of jobs falls below the concurrent request limit. If
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
@@ -55,7 +55,7 @@ public class JobExecutionSettings implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -81,8 +81,8 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * Allows you to enable job queuing when your concurrent request limit is
-     * exceeded. When <code>AllowDeferredExecution</code> is set to
+     * Makes it possible to enable job queuing when your concurrent request
+     * limit is exceeded. When <code>AllowDeferredExecution</code> is set to
      * <code>true</code>, transcription job requests are placed in a queue until
      * the number of jobs falls below the concurrent request limit. If
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
@@ -98,13 +98,14 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Allows you to enable job queuing when your concurrent request
-     *         limit is exceeded. When <code>AllowDeferredExecution</code> is
-     *         set to <code>true</code>, transcription job requests are placed
-     *         in a queue until the number of jobs falls below the concurrent
-     *         request limit. If <code>AllowDeferredExecution</code> is set to
-     *         <code>false</code> and the number of transcription job requests
-     *         exceed the concurrent request limit, you get a
+     *         Makes it possible to enable job queuing when your concurrent
+     *         request limit is exceeded. When
+     *         <code>AllowDeferredExecution</code> is set to <code>true</code>,
+     *         transcription job requests are placed in a queue until the number
+     *         of jobs falls below the concurrent request limit. If
+     *         <code>AllowDeferredExecution</code> is set to <code>false</code>
+     *         and the number of transcription job requests exceed the
+     *         concurrent request limit, you get a
      *         <code>LimitExceededException</code> error.
      *         </p>
      *         <p>
@@ -122,8 +123,8 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * Allows you to enable job queuing when your concurrent request limit is
-     * exceeded. When <code>AllowDeferredExecution</code> is set to
+     * Makes it possible to enable job queuing when your concurrent request
+     * limit is exceeded. When <code>AllowDeferredExecution</code> is set to
      * <code>true</code>, transcription job requests are placed in a queue until
      * the number of jobs falls below the concurrent request limit. If
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
@@ -139,13 +140,14 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      *
      * @return <p>
-     *         Allows you to enable job queuing when your concurrent request
-     *         limit is exceeded. When <code>AllowDeferredExecution</code> is
-     *         set to <code>true</code>, transcription job requests are placed
-     *         in a queue until the number of jobs falls below the concurrent
-     *         request limit. If <code>AllowDeferredExecution</code> is set to
-     *         <code>false</code> and the number of transcription job requests
-     *         exceed the concurrent request limit, you get a
+     *         Makes it possible to enable job queuing when your concurrent
+     *         request limit is exceeded. When
+     *         <code>AllowDeferredExecution</code> is set to <code>true</code>,
+     *         transcription job requests are placed in a queue until the number
+     *         of jobs falls below the concurrent request limit. If
+     *         <code>AllowDeferredExecution</code> is set to <code>false</code>
+     *         and the number of transcription job requests exceed the
+     *         concurrent request limit, you get a
      *         <code>LimitExceededException</code> error.
      *         </p>
      *         <p>
@@ -163,8 +165,8 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * Allows you to enable job queuing when your concurrent request limit is
-     * exceeded. When <code>AllowDeferredExecution</code> is set to
+     * Makes it possible to enable job queuing when your concurrent request
+     * limit is exceeded. When <code>AllowDeferredExecution</code> is set to
      * <code>true</code>, transcription job requests are placed in a queue until
      * the number of jobs falls below the concurrent request limit. If
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
@@ -180,13 +182,13 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      *
      * @param allowDeferredExecution <p>
-     *            Allows you to enable job queuing when your concurrent request
-     *            limit is exceeded. When <code>AllowDeferredExecution</code> is
-     *            set to <code>true</code>, transcription job requests are
-     *            placed in a queue until the number of jobs falls below the
-     *            concurrent request limit. If
+     *            Makes it possible to enable job queuing when your concurrent
+     *            request limit is exceeded. When
      *            <code>AllowDeferredExecution</code> is set to
-     *            <code>false</code> and the number of transcription job
+     *            <code>true</code>, transcription job requests are placed in a
+     *            queue until the number of jobs falls below the concurrent
+     *            request limit. If <code>AllowDeferredExecution</code> is set
+     *            to <code>false</code> and the number of transcription job
      *            requests exceed the concurrent request limit, you get a
      *            <code>LimitExceededException</code> error.
      *            </p>
@@ -205,8 +207,8 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * Allows you to enable job queuing when your concurrent request limit is
-     * exceeded. When <code>AllowDeferredExecution</code> is set to
+     * Makes it possible to enable job queuing when your concurrent request
+     * limit is exceeded. When <code>AllowDeferredExecution</code> is set to
      * <code>true</code>, transcription job requests are placed in a queue until
      * the number of jobs falls below the concurrent request limit. If
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
@@ -225,13 +227,13 @@ public class JobExecutionSettings implements Serializable {
      * together.
      *
      * @param allowDeferredExecution <p>
-     *            Allows you to enable job queuing when your concurrent request
-     *            limit is exceeded. When <code>AllowDeferredExecution</code> is
-     *            set to <code>true</code>, transcription job requests are
-     *            placed in a queue until the number of jobs falls below the
-     *            concurrent request limit. If
+     *            Makes it possible to enable job queuing when your concurrent
+     *            request limit is exceeded. When
      *            <code>AllowDeferredExecution</code> is set to
-     *            <code>false</code> and the number of transcription job
+     *            <code>true</code>, transcription job requests are placed in a
+     *            queue until the number of jobs falls below the concurrent
+     *            request limit. If <code>AllowDeferredExecution</code> is set
+     *            to <code>false</code> and the number of transcription job
      *            requests exceed the concurrent request limit, you get a
      *            <code>LimitExceededException</code> error.
      *            </p>
@@ -255,7 +257,7 @@ public class JobExecutionSettings implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -280,9 +282,9 @@ public class JobExecutionSettings implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) of an IAM role that has
      *         permissions to access the Amazon S3 bucket that contains your
-     *         input files. If the role you specify doesn’t have the appropriate
-     *         permissions to access the specified Amazon S3 location, your
-     *         request fails.
+     *         input files. If the role that you specify doesn’t have the
+     *         appropriate permissions to access the specified Amazon S3
+     *         location, your request fails.
      *         </p>
      *         <p>
      *         IAM role ARNs have the format
@@ -306,7 +308,7 @@ public class JobExecutionSettings implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -331,7 +333,7 @@ public class JobExecutionSettings implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>
@@ -358,7 +360,7 @@ public class JobExecutionSettings implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -386,7 +388,7 @@ public class JobExecutionSettings implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>

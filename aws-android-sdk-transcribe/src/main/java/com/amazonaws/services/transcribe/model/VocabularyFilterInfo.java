@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about a vocabulary filter, including the language of the
- * filter, when it was last modified, and its name.
+ * Provides information about a custom vocabulary filter, including the language
+ * of the filter, when it was last modified, and its name.
  * </p>
  */
 public class VocabularyFilterInfo implements Serializable {
@@ -40,14 +40,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -66,7 +66,8 @@ public class VocabularyFilterInfo implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last modified.
+     * The date and time the specified custom vocabulary filter was last
+     * modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -149,14 +150,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -173,14 +174,15 @@ public class VocabularyFilterInfo implements Serializable {
      *
      * @return <p>
      *         The language code that represents the language of the entries in
-     *         your vocabulary filter. Each vocabulary filter must contain terms
-     *         in only one language.
+     *         your vocabulary filter. Each custom vocabulary filter must
+     *         contain terms in only one language.
      *         </p>
      *         <p>
-     *         A vocabulary filter can only be used to transcribe files in the
-     *         same language as the filter. For example, if you create a
-     *         vocabulary filter using US English (<code>en-US</code>), you can
-     *         only apply this filter to files that contain English audio.
+     *         A custom vocabulary filter can only be used to transcribe files
+     *         in the same language as the filter. For example, if you create a
+     *         custom vocabulary filter using US English (<code>en-US</code>),
+     *         you can only apply this filter to files that contain English
+     *         audio.
      *         </p>
      *         <p>
      *         For a list of supported languages and their associated language
@@ -197,14 +199,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -221,15 +223,15 @@ public class VocabularyFilterInfo implements Serializable {
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -246,14 +248,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -273,15 +275,15 @@ public class VocabularyFilterInfo implements Serializable {
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -301,14 +303,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -325,15 +327,15 @@ public class VocabularyFilterInfo implements Serializable {
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -350,14 +352,14 @@ public class VocabularyFilterInfo implements Serializable {
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -377,15 +379,15 @@ public class VocabularyFilterInfo implements Serializable {
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -404,7 +406,8 @@ public class VocabularyFilterInfo implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last modified.
+     * The date and time the specified custom vocabulary filter was last
+     * modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -414,7 +417,7 @@ public class VocabularyFilterInfo implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time the specified vocabulary filter was last
+     *         The date and time the specified custom vocabulary filter was last
      *         modified.
      *         </p>
      *         <p>
@@ -430,7 +433,8 @@ public class VocabularyFilterInfo implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last modified.
+     * The date and time the specified custom vocabulary filter was last
+     * modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -440,8 +444,8 @@ public class VocabularyFilterInfo implements Serializable {
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary filter was last
-     *            modified.
+     *            The date and time the specified custom vocabulary filter was
+     *            last modified.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -456,7 +460,8 @@ public class VocabularyFilterInfo implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last modified.
+     * The date and time the specified custom vocabulary filter was last
+     * modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -469,8 +474,8 @@ public class VocabularyFilterInfo implements Serializable {
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary filter was last
-     *            modified.
+     *            The date and time the specified custom vocabulary filter was
+     *            last modified.
      *            </p>
      *            <p>
      *            Timestamps are in the format

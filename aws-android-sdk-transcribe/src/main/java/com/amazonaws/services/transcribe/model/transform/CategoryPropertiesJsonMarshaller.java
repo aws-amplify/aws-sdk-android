@@ -53,6 +53,11 @@ class CategoryPropertiesJsonMarshaller {
             jsonWriter.name("LastUpdateTime");
             jsonWriter.value(lastUpdateTime);
         }
+        if (categoryProperties.getInputType() != null) {
+            String inputType = categoryProperties.getInputType();
+            jsonWriter.name("InputType");
+            jsonWriter.value(inputType);
+        }
         jsonWriter.endObject();
     }
 

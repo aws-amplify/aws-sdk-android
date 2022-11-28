@@ -26,8 +26,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To view the status of the specified transcription job, check the
  * <code>TranscriptionJobStatus</code> field. If the status is
- * <code>COMPLETED</code>, the job is finished and you can find the results at
- * the location specified in <code>TranscriptFileUri</code>. If the status is
+ * <code>COMPLETED</code>, the job is finished. You can find the results at the
+ * location specified in <code>TranscriptFileUri</code>. If the status is
  * <code>FAILED</code>, <code>FailureReason</code> provides details on why your
  * transcription job failed.
  * </p>
