@@ -21,46 +21,43 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO RepublishAction
+ * JSON unmarshaller for POJO SchedulingConfig
  */
-class RepublishActionJsonUnmarshaller implements
-        Unmarshaller<RepublishAction, JsonUnmarshallerContext> {
+class SchedulingConfigJsonUnmarshaller implements
+        Unmarshaller<SchedulingConfig, JsonUnmarshallerContext> {
 
-    public RepublishAction unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public SchedulingConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        RepublishAction republishAction = new RepublishAction();
+        SchedulingConfig schedulingConfig = new SchedulingConfig();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("roleArn")) {
-                republishAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+            if (name.equals("startTime")) {
+                schedulingConfig.setStartTime(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("topic")) {
-                republishAction.setTopic(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("endTime")) {
+                schedulingConfig.setEndTime(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("qos")) {
-                republishAction.setQos(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("headers")) {
-                republishAction.setHeaders(MqttHeadersJsonUnmarshaller.getInstance()
+            } else if (name.equals("endBehavior")) {
+                schedulingConfig.setEndBehavior(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return republishAction;
+        return schedulingConfig;
     }
 
-    private static RepublishActionJsonUnmarshaller instance;
+    private static SchedulingConfigJsonUnmarshaller instance;
 
-    public static RepublishActionJsonUnmarshaller getInstance() {
+    public static SchedulingConfigJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new RepublishActionJsonUnmarshaller();
+            instance = new SchedulingConfigJsonUnmarshaller();
         return instance;
     }
 }

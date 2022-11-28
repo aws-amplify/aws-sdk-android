@@ -103,7 +103,6 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
@@ -455,7 +454,6 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
@@ -499,7 +497,6 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -546,7 +543,6 @@ public class UpdateJobRequest extends AmazonWebServiceRequest implements Seriali
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
