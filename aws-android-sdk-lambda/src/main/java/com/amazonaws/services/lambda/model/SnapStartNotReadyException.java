@@ -19,21 +19,23 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Amazon EC2 throttled Lambda during Lambda function initialization using the
- * execution role provided for the function.
+ * Lambda is initializing your function. You can invoke the function when the <a
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/functions-states.html">
+ * function state</a> becomes <code>Active</code>.
  * </p>
  */
-public class EC2ThrottledException extends AmazonServiceException {
+public class SnapStartNotReadyException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     private String type;
 
     /**
-     * Constructs a new EC2ThrottledException with the specified error message.
+     * Constructs a new SnapStartNotReadyException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public EC2ThrottledException(String message) {
+    public SnapStartNotReadyException(String message) {
         super(message);
     }
 
