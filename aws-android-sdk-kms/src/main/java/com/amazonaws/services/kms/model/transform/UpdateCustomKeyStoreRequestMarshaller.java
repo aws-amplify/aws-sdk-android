@@ -84,6 +84,34 @@ public class UpdateCustomKeyStoreRequestMarshaller implements
                 jsonWriter.name("CloudHsmClusterId");
                 jsonWriter.value(cloudHsmClusterId);
             }
+            if (updateCustomKeyStoreRequest.getXksProxyUriEndpoint() != null) {
+                String xksProxyUriEndpoint = updateCustomKeyStoreRequest.getXksProxyUriEndpoint();
+                jsonWriter.name("XksProxyUriEndpoint");
+                jsonWriter.value(xksProxyUriEndpoint);
+            }
+            if (updateCustomKeyStoreRequest.getXksProxyUriPath() != null) {
+                String xksProxyUriPath = updateCustomKeyStoreRequest.getXksProxyUriPath();
+                jsonWriter.name("XksProxyUriPath");
+                jsonWriter.value(xksProxyUriPath);
+            }
+            if (updateCustomKeyStoreRequest.getXksProxyVpcEndpointServiceName() != null) {
+                String xksProxyVpcEndpointServiceName = updateCustomKeyStoreRequest
+                        .getXksProxyVpcEndpointServiceName();
+                jsonWriter.name("XksProxyVpcEndpointServiceName");
+                jsonWriter.value(xksProxyVpcEndpointServiceName);
+            }
+            if (updateCustomKeyStoreRequest.getXksProxyAuthenticationCredential() != null) {
+                XksProxyAuthenticationCredentialType xksProxyAuthenticationCredential = updateCustomKeyStoreRequest
+                        .getXksProxyAuthenticationCredential();
+                jsonWriter.name("XksProxyAuthenticationCredential");
+                XksProxyAuthenticationCredentialTypeJsonMarshaller.getInstance().marshall(
+                        xksProxyAuthenticationCredential, jsonWriter);
+            }
+            if (updateCustomKeyStoreRequest.getXksProxyConnectivity() != null) {
+                String xksProxyConnectivity = updateCustomKeyStoreRequest.getXksProxyConnectivity();
+                jsonWriter.name("XksProxyConnectivity");
+                jsonWriter.value(xksProxyConnectivity);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

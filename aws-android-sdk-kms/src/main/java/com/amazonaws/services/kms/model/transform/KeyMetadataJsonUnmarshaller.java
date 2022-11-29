@@ -111,6 +111,10 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("XksKeyConfiguration")) {
+                keyMetadata.setXksKeyConfiguration(XksKeyConfigurationTypeJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
