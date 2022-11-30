@@ -45,7 +45,24 @@ public class XpathUtils {
     /** Shared logger */
     private static Log log = LogFactory.getLog(XpathUtils.class);
 
-    private static DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    private static DocumentBuilderFactory factory = getDocumentBuilderFactory();
+
+
+    /**
+     * Creates new documentbuilderfactory object
+     * @return DocumentBuilderFactory.
+     */
+    private static DocumentBuilderFactory getDocumentBuilderFactory() {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            dbf.setXIncludeAware(false); // Default false for java 8. Disable XML Inclusions leading to SSRF - https://portswigger.net/web-security/xxe/lab-xinclude-attack
+            return dbf;
+        }
+        catch (ParserConfigurationException exception){
+            return null;
+        }
+    }
 
     /**
      * InputStream to Document.

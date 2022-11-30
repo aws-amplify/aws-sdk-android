@@ -109,9 +109,9 @@ public class RegionMetadataParser {
         Document document;
         try {
 
-            DocumentBuilderFactory factory =
-                    DocumentBuilderFactory.newInstance();
-
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            factory.setXIncludeAware(false);
             DocumentBuilder documentBuilder = factory.newDocumentBuilder();
             document = documentBuilder.parse(input);
 
