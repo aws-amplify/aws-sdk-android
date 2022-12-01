@@ -19,25 +19,60 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The input properties for a topic detection job.
+ * Provides configuration parameters to override the default actions for
+ * extracting text from PDF documents and image files.
+ * </p>
+ * <p>
+ * By default, Amazon Comprehend performs the following actions to extract text
+ * from files, based on the input file type:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <b>Word files</b> - Amazon Comprehend parser extracts the text.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the Amazon
+ * Textract <code>DetectDocumentText</code> API to extract the text.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * <code>DocumentReaderConfig</code> does not apply to plain text files or Word
+ * files.
+ * </p>
+ * <p>
+ * For image files and PDF documents, you can override these default actions
+ * using the fields listed below. For more information, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/detecting-cer.html#detecting-cer-pdf"
+ * > Setting text extraction options</a>.
  * </p>
  */
 public class DocumentReaderConfig implements Serializable {
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -50,20 +85,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -75,26 +111,44 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * Specifies how the text in an input file should be processed:
+     * Specifies the type of Amazon Textract features to apply. If you chose
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must
+     * specify one or both of the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TABLES</code> - Returns information about any tables that are
+     * detected in the input document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FORMS</code> - Returns information and the data from any forms that
+     * are detected in the input document.
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.List<String> featureTypes;
 
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -104,20 +158,22 @@ public class DocumentReaderConfig implements Serializable {
      * TEXTRACT_ANALYZE_DOCUMENT
      *
      * @return <p>
-     *         This enum field will start with two values which will apply to
-     *         PDFs:
+     *         This field defines the Amazon Textract API operation that Amazon
+     *         Comprehend uses to extract text from PDF files and image files.
+     *         Enter one of the following values:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     *         DetectDocumentText for PDF documents per page.
+     *         <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon
+     *         Comprehend service uses the <code>DetectDocumentText</code> API
+     *         operation.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     *         AnalyzeDocument for PDF documents per page.
+     *         <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend
+     *         service uses the <code>AnalyzeDocument</code> API operation.
      *         </p>
      *         </li>
      *         </ul>
@@ -129,19 +185,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -151,20 +209,22 @@ public class DocumentReaderConfig implements Serializable {
      * TEXTRACT_ANALYZE_DOCUMENT
      *
      * @param documentReadAction <p>
-     *            This enum field will start with two values which will apply to
-     *            PDFs:
+     *            This field defines the Amazon Textract API operation that
+     *            Amazon Comprehend uses to extract text from PDF files and
+     *            image files. Enter one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     *            DetectDocumentText for PDF documents per page.
+     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon
+     *            Comprehend service uses the <code>DetectDocumentText</code>
+     *            API operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     *            AnalyzeDocument for PDF documents per page.
+     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend
+     *            service uses the <code>AnalyzeDocument</code> API operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -176,19 +236,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -201,20 +263,22 @@ public class DocumentReaderConfig implements Serializable {
      * TEXTRACT_ANALYZE_DOCUMENT
      *
      * @param documentReadAction <p>
-     *            This enum field will start with two values which will apply to
-     *            PDFs:
+     *            This field defines the Amazon Textract API operation that
+     *            Amazon Comprehend uses to extract text from PDF files and
+     *            image files. Enter one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     *            DetectDocumentText for PDF documents per page.
+     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon
+     *            Comprehend service uses the <code>DetectDocumentText</code>
+     *            API operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     *            AnalyzeDocument for PDF documents per page.
+     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend
+     *            service uses the <code>AnalyzeDocument</code> API operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -229,19 +293,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -251,20 +317,22 @@ public class DocumentReaderConfig implements Serializable {
      * TEXTRACT_ANALYZE_DOCUMENT
      *
      * @param documentReadAction <p>
-     *            This enum field will start with two values which will apply to
-     *            PDFs:
+     *            This field defines the Amazon Textract API operation that
+     *            Amazon Comprehend uses to extract text from PDF files and
+     *            image files. Enter one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     *            DetectDocumentText for PDF documents per page.
+     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon
+     *            Comprehend service uses the <code>DetectDocumentText</code>
+     *            API operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     *            AnalyzeDocument for PDF documents per page.
+     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend
+     *            service uses the <code>AnalyzeDocument</code> API operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -276,19 +344,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field will start with two values which will apply to PDFs:
+     * This field defines the Amazon Textract API operation that Amazon
+     * Comprehend uses to extract text from PDF files and image files. Enter one
+     * of the following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     * DetectDocumentText for PDF documents per page.
+     * <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon Comprehend
+     * service uses the <code>DetectDocumentText</code> API operation.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     * AnalyzeDocument for PDF documents per page.
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend service
+     * uses the <code>AnalyzeDocument</code> API operation.
      * </p>
      * </li>
      * </ul>
@@ -301,20 +371,22 @@ public class DocumentReaderConfig implements Serializable {
      * TEXTRACT_ANALYZE_DOCUMENT
      *
      * @param documentReadAction <p>
-     *            This enum field will start with two values which will apply to
-     *            PDFs:
+     *            This field defines the Amazon Textract API operation that
+     *            Amazon Comprehend uses to extract text from PDF files and
+     *            image files. Enter one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls
-     *            DetectDocumentText for PDF documents per page.
+     *            <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The Amazon
+     *            Comprehend service uses the <code>DetectDocumentText</code>
+     *            API operation.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls
-     *            AnalyzeDocument for PDF documents per page.
+     *            <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The Amazon Comprehend
+     *            service uses the <code>AnalyzeDocument</code> API operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -329,20 +401,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -351,20 +424,21 @@ public class DocumentReaderConfig implements Serializable {
      * <b>Allowed Values: </b>SERVICE_DEFAULT, FORCE_DOCUMENT_READ_ACTION
      *
      * @return <p>
-     *         This enum field provides two values:
+     *         Determines the text extraction actions for PDF files. Enter one
+     *         of the following values:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>SERVICE_DEFAULT</code> - use service defaults for Document
-     *         reading. For Digital PDF it would mean using an internal parser
-     *         instead of Textract APIs
+     *         <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service
+     *         defaults for PDF files.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified
-     *         action for DocumentReadAction, including Digital PDF.
+     *         <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses
+     *         the Textract API specified by DocumentReadAction for all PDF
+     *         files, including digital PDF files.
      *         </p>
      *         </li>
      *         </ul>
@@ -376,20 +450,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -398,20 +473,21 @@ public class DocumentReaderConfig implements Serializable {
      * <b>Allowed Values: </b>SERVICE_DEFAULT, FORCE_DOCUMENT_READ_ACTION
      *
      * @param documentReadMode <p>
-     *            This enum field provides two values:
+     *            Determines the text extraction actions for PDF files. Enter
+     *            one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>SERVICE_DEFAULT</code> - use service defaults for
-     *            Document reading. For Digital PDF it would mean using an
-     *            internal parser instead of Textract APIs
+     *            <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend
+     *            service defaults for PDF files.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified
-     *            action for DocumentReadAction, including Digital PDF.
+     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend
+     *            uses the Textract API specified by DocumentReadAction for all
+     *            PDF files, including digital PDF files.
      *            </p>
      *            </li>
      *            </ul>
@@ -423,20 +499,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -448,20 +525,21 @@ public class DocumentReaderConfig implements Serializable {
      * <b>Allowed Values: </b>SERVICE_DEFAULT, FORCE_DOCUMENT_READ_ACTION
      *
      * @param documentReadMode <p>
-     *            This enum field provides two values:
+     *            Determines the text extraction actions for PDF files. Enter
+     *            one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>SERVICE_DEFAULT</code> - use service defaults for
-     *            Document reading. For Digital PDF it would mean using an
-     *            internal parser instead of Textract APIs
+     *            <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend
+     *            service defaults for PDF files.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified
-     *            action for DocumentReadAction, including Digital PDF.
+     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend
+     *            uses the Textract API specified by DocumentReadAction for all
+     *            PDF files, including digital PDF files.
      *            </p>
      *            </li>
      *            </ul>
@@ -476,20 +554,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -498,20 +577,21 @@ public class DocumentReaderConfig implements Serializable {
      * <b>Allowed Values: </b>SERVICE_DEFAULT, FORCE_DOCUMENT_READ_ACTION
      *
      * @param documentReadMode <p>
-     *            This enum field provides two values:
+     *            Determines the text extraction actions for PDF files. Enter
+     *            one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>SERVICE_DEFAULT</code> - use service defaults for
-     *            Document reading. For Digital PDF it would mean using an
-     *            internal parser instead of Textract APIs
+     *            <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend
+     *            service defaults for PDF files.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified
-     *            action for DocumentReadAction, including Digital PDF.
+     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend
+     *            uses the Textract API specified by DocumentReadAction for all
+     *            PDF files, including digital PDF files.
      *            </p>
      *            </li>
      *            </ul>
@@ -523,20 +603,21 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * This enum field provides two values:
+     * Determines the text extraction actions for PDF files. Enter one of the
+     * following values:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>SERVICE_DEFAULT</code> - use service defaults for Document reading.
-     * For Digital PDF it would mean using an internal parser instead of
-     * Textract APIs
+     * <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend service defaults
+     * for PDF files.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for
-     * DocumentReadAction, including Digital PDF.
+     * <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend uses the
+     * Textract API specified by DocumentReadAction for all PDF files, including
+     * digital PDF files.
      * </p>
      * </li>
      * </ul>
@@ -548,20 +629,21 @@ public class DocumentReaderConfig implements Serializable {
      * <b>Allowed Values: </b>SERVICE_DEFAULT, FORCE_DOCUMENT_READ_ACTION
      *
      * @param documentReadMode <p>
-     *            This enum field provides two values:
+     *            Determines the text extraction actions for PDF files. Enter
+     *            one of the following values:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>SERVICE_DEFAULT</code> - use service defaults for
-     *            Document reading. For Digital PDF it would mean using an
-     *            internal parser instead of Textract APIs
+     *            <code>SERVICE_DEFAULT</code> - use the Amazon Comprehend
+     *            service defaults for PDF files.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified
-     *            action for DocumentReadAction, including Digital PDF.
+     *            <code>FORCE_DOCUMENT_READ_ACTION</code> - Amazon Comprehend
+     *            uses the Textract API specified by DocumentReadAction for all
+     *            PDF files, including digital PDF files.
      *            </p>
      *            </li>
      *            </ul>
@@ -576,12 +658,44 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * Specifies how the text in an input file should be processed:
+     * Specifies the type of Amazon Textract features to apply. If you chose
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must
+     * specify one or both of the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TABLES</code> - Returns information about any tables that are
+     * detected in the input document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FORMS</code> - Returns information and the data from any forms that
+     * are detected in the input document.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         Specifies how the text in an input file should be processed:
+     *         Specifies the type of Amazon Textract features to apply. If you
+     *         chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action,
+     *         you must specify one or both of the following values:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>TABLES</code> - Returns information about any tables that
+     *         are detected in the input document.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FORMS</code> - Returns information and the data from any
+     *         forms that are detected in the input document.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.List<String> getFeatureTypes() {
         return featureTypes;
@@ -589,12 +703,44 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * Specifies how the text in an input file should be processed:
+     * Specifies the type of Amazon Textract features to apply. If you chose
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must
+     * specify one or both of the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TABLES</code> - Returns information about any tables that are
+     * detected in the input document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FORMS</code> - Returns information and the data from any forms that
+     * are detected in the input document.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param featureTypes <p>
-     *            Specifies how the text in an input file should be processed:
+     *            Specifies the type of Amazon Textract features to apply. If
+     *            you chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read
+     *            action, you must specify one or both of the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TABLES</code> - Returns information about any tables
+     *            that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FORMS</code> - Returns information and the data from any
+     *            forms that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setFeatureTypes(java.util.Collection<String> featureTypes) {
         if (featureTypes == null) {
@@ -607,15 +753,47 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * Specifies how the text in an input file should be processed:
+     * Specifies the type of Amazon Textract features to apply. If you chose
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must
+     * specify one or both of the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TABLES</code> - Returns information about any tables that are
+     * detected in the input document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FORMS</code> - Returns information and the data from any forms that
+     * are detected in the input document.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param featureTypes <p>
-     *            Specifies how the text in an input file should be processed:
+     *            Specifies the type of Amazon Textract features to apply. If
+     *            you chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read
+     *            action, you must specify one or both of the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TABLES</code> - Returns information about any tables
+     *            that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FORMS</code> - Returns information and the data from any
+     *            forms that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -631,15 +809,47 @@ public class DocumentReaderConfig implements Serializable {
 
     /**
      * <p>
-     * Specifies how the text in an input file should be processed:
+     * Specifies the type of Amazon Textract features to apply. If you chose
+     * <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read action, you must
+     * specify one or both of the following values:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TABLES</code> - Returns information about any tables that are
+     * detected in the input document.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FORMS</code> - Returns information and the data from any forms that
+     * are detected in the input document.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param featureTypes <p>
-     *            Specifies how the text in an input file should be processed:
+     *            Specifies the type of Amazon Textract features to apply. If
+     *            you chose <code>TEXTRACT_ANALYZE_DOCUMENT</code> as the read
+     *            action, you must specify one or both of the following values:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TABLES</code> - Returns information about any tables
+     *            that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FORMS</code> - Returns information and the data from any
+     *            forms that are detected in the input document.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

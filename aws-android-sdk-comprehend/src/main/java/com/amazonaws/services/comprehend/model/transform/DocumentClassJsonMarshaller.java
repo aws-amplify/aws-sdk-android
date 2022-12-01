@@ -36,6 +36,11 @@ class DocumentClassJsonMarshaller {
             jsonWriter.name("Score");
             jsonWriter.value(score);
         }
+        if (documentClass.getPage() != null) {
+            Integer page = documentClass.getPage();
+            jsonWriter.name("Page");
+            jsonWriter.value(page);
+        }
         jsonWriter.endObject();
     }
 

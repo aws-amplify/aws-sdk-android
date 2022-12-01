@@ -29,7 +29,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
         Serializable {
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      */
     private InputDataConfig inputDataConfig;
@@ -139,11 +140,13 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @return <p>
-     *         The input properties for an inference job.
+     *         The input properties for an inference job. The document reader
+     *         config field applies only to non-text inputs for custom analysis.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -152,11 +155,14 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -165,14 +171,17 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

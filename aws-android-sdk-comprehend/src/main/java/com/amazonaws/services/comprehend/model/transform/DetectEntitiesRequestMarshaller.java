@@ -77,6 +77,18 @@ public class DetectEntitiesRequestMarshaller implements
                 jsonWriter.name("EndpointArn");
                 jsonWriter.value(endpointArn);
             }
+            if (detectEntitiesRequest.getBytes() != null) {
+                java.nio.ByteBuffer bytes = detectEntitiesRequest.getBytes();
+                jsonWriter.name("Bytes");
+                jsonWriter.value(bytes);
+            }
+            if (detectEntitiesRequest.getDocumentReaderConfig() != null) {
+                DocumentReaderConfig documentReaderConfig = detectEntitiesRequest
+                        .getDocumentReaderConfig();
+                jsonWriter.name("DocumentReaderConfig");
+                DocumentReaderConfigJsonMarshaller.getInstance().marshall(documentReaderConfig,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -72,6 +72,18 @@ public class ClassifyDocumentRequestMarshaller implements
                 jsonWriter.name("EndpointArn");
                 jsonWriter.value(endpointArn);
             }
+            if (classifyDocumentRequest.getBytes() != null) {
+                java.nio.ByteBuffer bytes = classifyDocumentRequest.getBytes();
+                jsonWriter.name("Bytes");
+                jsonWriter.value(bytes);
+            }
+            if (classifyDocumentRequest.getDocumentReaderConfig() != null) {
+                DocumentReaderConfig documentReaderConfig = classifyDocumentRequest
+                        .getDocumentReaderConfig();
+                jsonWriter.name("DocumentReaderConfig");
+                DocumentReaderConfigJsonMarshaller.getInstance().marshall(documentReaderConfig,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

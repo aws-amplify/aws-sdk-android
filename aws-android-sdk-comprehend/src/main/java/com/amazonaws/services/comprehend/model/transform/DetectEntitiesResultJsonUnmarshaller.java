@@ -38,6 +38,25 @@ public class DetectEntitiesResultJsonUnmarshaller implements
                         EntityJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("DocumentMetadata")) {
+                detectEntitiesResult.setDocumentMetadata(DocumentMetadataJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DocumentType")) {
+                detectEntitiesResult.setDocumentType(new ListUnmarshaller<DocumentTypeListItem>(
+                        DocumentTypeListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Blocks")) {
+                detectEntitiesResult.setBlocks(new ListUnmarshaller<Block>(BlockJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Errors")) {
+                detectEntitiesResult.setErrors(new ListUnmarshaller<ErrorsListItem>(
+                        ErrorsListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

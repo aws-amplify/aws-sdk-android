@@ -50,6 +50,11 @@ class EntityJsonUnmarshaller implements Unmarshaller<Entity, JsonUnmarshallerCon
             } else if (name.equals("EndOffset")) {
                 entity.setEndOffset(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("BlockReferences")) {
+                entity.setBlockReferences(new ListUnmarshaller<BlockReference>(
+                        BlockReferenceJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

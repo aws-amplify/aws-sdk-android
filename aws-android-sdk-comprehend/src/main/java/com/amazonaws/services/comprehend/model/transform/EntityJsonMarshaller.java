@@ -51,6 +51,18 @@ class EntityJsonMarshaller {
             jsonWriter.name("EndOffset");
             jsonWriter.value(endOffset);
         }
+        if (entity.getBlockReferences() != null) {
+            java.util.List<BlockReference> blockReferences = entity.getBlockReferences();
+            jsonWriter.name("BlockReferences");
+            jsonWriter.beginArray();
+            for (BlockReference blockReferencesItem : blockReferences) {
+                if (blockReferencesItem != null) {
+                    BlockReferenceJsonMarshaller.getInstance().marshall(blockReferencesItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

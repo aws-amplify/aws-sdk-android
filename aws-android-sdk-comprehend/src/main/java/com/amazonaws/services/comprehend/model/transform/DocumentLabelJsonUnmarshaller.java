@@ -41,6 +41,9 @@ class DocumentLabelJsonUnmarshaller implements Unmarshaller<DocumentLabel, JsonU
             } else if (name.equals("Score")) {
                 documentLabel.setScore(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Page")) {
+                documentLabel.setPage(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

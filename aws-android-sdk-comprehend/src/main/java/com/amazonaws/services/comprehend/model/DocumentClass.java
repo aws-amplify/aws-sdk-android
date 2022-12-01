@@ -43,6 +43,14 @@ public class DocumentClass implements Serializable {
 
     /**
      * <p>
+     * Page number in the input document. This field is present in the response
+     * only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     */
+    private Integer page;
+
+    /**
+     * <p>
      * The name of the class.
      * </p>
      * <p>
@@ -147,6 +155,60 @@ public class DocumentClass implements Serializable {
     }
 
     /**
+     * <p>
+     * Page number in the input document. This field is present in the response
+     * only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     *
+     * @return <p>
+     *         Page number in the input document. This field is present in the
+     *         response only if your request includes the <code>Byte</code>
+     *         parameter.
+     *         </p>
+     */
+    public Integer getPage() {
+        return page;
+    }
+
+    /**
+     * <p>
+     * Page number in the input document. This field is present in the response
+     * only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     *
+     * @param page <p>
+     *            Page number in the input document. This field is present in
+     *            the response only if your request includes the
+     *            <code>Byte</code> parameter.
+     *            </p>
+     */
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    /**
+     * <p>
+     * Page number in the input document. This field is present in the response
+     * only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param page <p>
+     *            Page number in the input document. This field is present in
+     *            the response only if your request includes the
+     *            <code>Byte</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClass withPage(Integer page) {
+        this.page = page;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -160,7 +222,9 @@ public class DocumentClass implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getScore() != null)
-            sb.append("Score: " + getScore());
+            sb.append("Score: " + getScore() + ",");
+        if (getPage() != null)
+            sb.append("Page: " + getPage());
         sb.append("}");
         return sb.toString();
     }
@@ -172,6 +236,7 @@ public class DocumentClass implements Serializable {
 
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getScore() == null) ? 0 : getScore().hashCode());
+        hashCode = prime * hashCode + ((getPage() == null) ? 0 : getPage().hashCode());
         return hashCode;
     }
 
@@ -193,6 +258,10 @@ public class DocumentClass implements Serializable {
         if (other.getScore() == null ^ this.getScore() == null)
             return false;
         if (other.getScore() != null && other.getScore().equals(this.getScore()) == false)
+            return false;
+        if (other.getPage() == null ^ this.getPage() == null)
+            return false;
+        if (other.getPage() != null && other.getPage().equals(this.getPage()) == false)
             return false;
         return true;
     }

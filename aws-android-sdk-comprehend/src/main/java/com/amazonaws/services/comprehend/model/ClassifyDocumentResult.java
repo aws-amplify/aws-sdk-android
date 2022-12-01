@@ -42,6 +42,31 @@ public class ClassifyDocumentResult implements Serializable {
 
     /**
      * <p>
+     * Extraction information about the document. This field is present in the
+     * response only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     */
+    private DocumentMetadata documentMetadata;
+
+    /**
+     * <p>
+     * The document type for each page in the input document. This field is
+     * present in the response only if your request includes the
+     * <code>Byte</code> parameter.
+     * </p>
+     */
+    private java.util.List<DocumentTypeListItem> documentType;
+
+    /**
+     * <p>
+     * Page-level errors that the system detected while processing the input
+     * document. The field is empty if the system encountered no errors.
+     * </p>
+     */
+    private java.util.List<ErrorsListItem> errors;
+
+    /**
+     * <p>
      * The classes used by the document being analyzed. These are used for
      * multi-class trained models. Individual classes are mutually exclusive and
      * each document is expected to have only a single class assigned to it. For
@@ -257,6 +282,237 @@ public class ClassifyDocumentResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Extraction information about the document. This field is present in the
+     * response only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     *
+     * @return <p>
+     *         Extraction information about the document. This field is present
+     *         in the response only if your request includes the
+     *         <code>Byte</code> parameter.
+     *         </p>
+     */
+    public DocumentMetadata getDocumentMetadata() {
+        return documentMetadata;
+    }
+
+    /**
+     * <p>
+     * Extraction information about the document. This field is present in the
+     * response only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     *
+     * @param documentMetadata <p>
+     *            Extraction information about the document. This field is
+     *            present in the response only if your request includes the
+     *            <code>Byte</code> parameter.
+     *            </p>
+     */
+    public void setDocumentMetadata(DocumentMetadata documentMetadata) {
+        this.documentMetadata = documentMetadata;
+    }
+
+    /**
+     * <p>
+     * Extraction information about the document. This field is present in the
+     * response only if your request includes the <code>Byte</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentMetadata <p>
+     *            Extraction information about the document. This field is
+     *            present in the response only if your request includes the
+     *            <code>Byte</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withDocumentMetadata(DocumentMetadata documentMetadata) {
+        this.documentMetadata = documentMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The document type for each page in the input document. This field is
+     * present in the response only if your request includes the
+     * <code>Byte</code> parameter.
+     * </p>
+     *
+     * @return <p>
+     *         The document type for each page in the input document. This field
+     *         is present in the response only if your request includes the
+     *         <code>Byte</code> parameter.
+     *         </p>
+     */
+    public java.util.List<DocumentTypeListItem> getDocumentType() {
+        return documentType;
+    }
+
+    /**
+     * <p>
+     * The document type for each page in the input document. This field is
+     * present in the response only if your request includes the
+     * <code>Byte</code> parameter.
+     * </p>
+     *
+     * @param documentType <p>
+     *            The document type for each page in the input document. This
+     *            field is present in the response only if your request includes
+     *            the <code>Byte</code> parameter.
+     *            </p>
+     */
+    public void setDocumentType(java.util.Collection<DocumentTypeListItem> documentType) {
+        if (documentType == null) {
+            this.documentType = null;
+            return;
+        }
+
+        this.documentType = new java.util.ArrayList<DocumentTypeListItem>(documentType);
+    }
+
+    /**
+     * <p>
+     * The document type for each page in the input document. This field is
+     * present in the response only if your request includes the
+     * <code>Byte</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentType <p>
+     *            The document type for each page in the input document. This
+     *            field is present in the response only if your request includes
+     *            the <code>Byte</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withDocumentType(DocumentTypeListItem... documentType) {
+        if (getDocumentType() == null) {
+            this.documentType = new java.util.ArrayList<DocumentTypeListItem>(documentType.length);
+        }
+        for (DocumentTypeListItem value : documentType) {
+            this.documentType.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The document type for each page in the input document. This field is
+     * present in the response only if your request includes the
+     * <code>Byte</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentType <p>
+     *            The document type for each page in the input document. This
+     *            field is present in the response only if your request includes
+     *            the <code>Byte</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withDocumentType(
+            java.util.Collection<DocumentTypeListItem> documentType) {
+        setDocumentType(documentType);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Page-level errors that the system detected while processing the input
+     * document. The field is empty if the system encountered no errors.
+     * </p>
+     *
+     * @return <p>
+     *         Page-level errors that the system detected while processing the
+     *         input document. The field is empty if the system encountered no
+     *         errors.
+     *         </p>
+     */
+    public java.util.List<ErrorsListItem> getErrors() {
+        return errors;
+    }
+
+    /**
+     * <p>
+     * Page-level errors that the system detected while processing the input
+     * document. The field is empty if the system encountered no errors.
+     * </p>
+     *
+     * @param errors <p>
+     *            Page-level errors that the system detected while processing
+     *            the input document. The field is empty if the system
+     *            encountered no errors.
+     *            </p>
+     */
+    public void setErrors(java.util.Collection<ErrorsListItem> errors) {
+        if (errors == null) {
+            this.errors = null;
+            return;
+        }
+
+        this.errors = new java.util.ArrayList<ErrorsListItem>(errors);
+    }
+
+    /**
+     * <p>
+     * Page-level errors that the system detected while processing the input
+     * document. The field is empty if the system encountered no errors.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Page-level errors that the system detected while processing
+     *            the input document. The field is empty if the system
+     *            encountered no errors.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withErrors(ErrorsListItem... errors) {
+        if (getErrors() == null) {
+            this.errors = new java.util.ArrayList<ErrorsListItem>(errors.length);
+        }
+        for (ErrorsListItem value : errors) {
+            this.errors.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Page-level errors that the system detected while processing the input
+     * document. The field is empty if the system encountered no errors.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param errors <p>
+     *            Page-level errors that the system detected while processing
+     *            the input document. The field is empty if the system
+     *            encountered no errors.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentResult withErrors(java.util.Collection<ErrorsListItem> errors) {
+        setErrors(errors);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -270,7 +526,13 @@ public class ClassifyDocumentResult implements Serializable {
         if (getClasses() != null)
             sb.append("Classes: " + getClasses() + ",");
         if (getLabels() != null)
-            sb.append("Labels: " + getLabels());
+            sb.append("Labels: " + getLabels() + ",");
+        if (getDocumentMetadata() != null)
+            sb.append("DocumentMetadata: " + getDocumentMetadata() + ",");
+        if (getDocumentType() != null)
+            sb.append("DocumentType: " + getDocumentType() + ",");
+        if (getErrors() != null)
+            sb.append("Errors: " + getErrors());
         sb.append("}");
         return sb.toString();
     }
@@ -282,6 +544,11 @@ public class ClassifyDocumentResult implements Serializable {
 
         hashCode = prime * hashCode + ((getClasses() == null) ? 0 : getClasses().hashCode());
         hashCode = prime * hashCode + ((getLabels() == null) ? 0 : getLabels().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentMetadata() == null) ? 0 : getDocumentMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentType() == null) ? 0 : getDocumentType().hashCode());
+        hashCode = prime * hashCode + ((getErrors() == null) ? 0 : getErrors().hashCode());
         return hashCode;
     }
 
@@ -303,6 +570,20 @@ public class ClassifyDocumentResult implements Serializable {
         if (other.getLabels() == null ^ this.getLabels() == null)
             return false;
         if (other.getLabels() != null && other.getLabels().equals(this.getLabels()) == false)
+            return false;
+        if (other.getDocumentMetadata() == null ^ this.getDocumentMetadata() == null)
+            return false;
+        if (other.getDocumentMetadata() != null
+                && other.getDocumentMetadata().equals(this.getDocumentMetadata()) == false)
+            return false;
+        if (other.getDocumentType() == null ^ this.getDocumentType() == null)
+            return false;
+        if (other.getDocumentType() != null
+                && other.getDocumentType().equals(this.getDocumentType()) == false)
+            return false;
+        if (other.getErrors() == null ^ this.getErrors() == null)
+            return false;
+        if (other.getErrors() != null && other.getErrors().equals(this.getErrors()) == false)
             return false;
         return true;
     }

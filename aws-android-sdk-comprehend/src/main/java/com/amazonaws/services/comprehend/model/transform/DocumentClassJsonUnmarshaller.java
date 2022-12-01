@@ -41,6 +41,9 @@ class DocumentClassJsonUnmarshaller implements Unmarshaller<DocumentClass, JsonU
             } else if (name.equals("Score")) {
                 documentClass.setScore(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Page")) {
+                documentClass.setPage(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

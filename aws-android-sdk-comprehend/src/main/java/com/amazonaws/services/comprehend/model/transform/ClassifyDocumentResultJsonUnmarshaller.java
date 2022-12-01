@@ -43,6 +43,20 @@ public class ClassifyDocumentResultJsonUnmarshaller implements
                         DocumentLabelJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("DocumentMetadata")) {
+                classifyDocumentResult.setDocumentMetadata(DocumentMetadataJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DocumentType")) {
+                classifyDocumentResult.setDocumentType(new ListUnmarshaller<DocumentTypeListItem>(
+                        DocumentTypeListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Errors")) {
+                classifyDocumentResult.setErrors(new ListUnmarshaller<ErrorsListItem>(
+                        ErrorsListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

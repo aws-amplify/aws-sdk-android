@@ -33,9 +33,12 @@ public class InvalidRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
-
+        final com.google.gson.Gson gson = new com.google.gson.Gson();
         InvalidRequestException e = (InvalidRequestException) super.unmarshall(error);
         e.setErrorCode("InvalidRequestException");
+        e.setReason(String.valueOf(error.get("Reason")));
+
+        e.setDetail(gson.fromJson(error.get("Detail"), InvalidRequestDetail.class));
 
         return e;
     }
