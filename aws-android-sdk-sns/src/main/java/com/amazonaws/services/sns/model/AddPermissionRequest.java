@@ -24,6 +24,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds a statement to a topic's access control policy, granting access for the
  * specified Amazon Web Services accounts to the specified actions.
  * </p>
+ * <note>
+ * <p>
+ * To remove the ability to change topic permissions, you must deny permissions
+ * to the <code>AddPermission</code>, <code>RemovePermission</code>, and
+ * <code>SetTopicAttributes</code> actions in your IAM policy.
+ * </p>
+ * </note>
  */
 public class AddPermissionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
