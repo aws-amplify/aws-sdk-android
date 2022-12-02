@@ -57,6 +57,7 @@ public class XpathUtils {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             dbf.setXIncludeAware(false); // Default false for java 8. Disable XML Inclusions leading to SSRF - https://portswigger.net/web-security/xxe/lab-xinclude-attack
+            dbf.setExpandEntityReferences(false);
             return dbf;
         }
         catch (ParserConfigurationException exception){
