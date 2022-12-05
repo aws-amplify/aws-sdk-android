@@ -53,39 +53,39 @@ import java.io.Serializable;
  * </ul>
  * <p>
  * See <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics-create-categories.html#call-analytics-create-categories-rules"
- * >Rule criteria</a> for examples.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch"
+ * >Rule criteria for batch categories</a> for usage examples.
  * </p>
  */
 public class SentimentFilter implements Serializable {
     /**
      * <p>
-     * Specify the sentiments you want to flag.
+     * Specify the sentiments that you want to flag.
      * </p>
      */
     private java.util.List<String> sentiments;
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      */
     private AbsoluteTimeRange absoluteTimeRange;
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      */
     private RelativeTimeRange relativeTimeRange;
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -96,20 +96,20 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the sentiments you didn't include in
-     * your request. Set to <code>FALSE</code> to flag the sentiments you
-     * specified in your request.
+     * Set to <code>TRUE</code> to flag the sentiments that you didn't include
+     * in your request. Set to <code>FALSE</code> to flag the sentiments that
+     * you specified in your request.
      * </p>
      */
     private Boolean negate;
 
     /**
      * <p>
-     * Specify the sentiments you want to flag.
+     * Specify the sentiments that you want to flag.
      * </p>
      *
      * @return <p>
-     *         Specify the sentiments you want to flag.
+     *         Specify the sentiments that you want to flag.
      *         </p>
      */
     public java.util.List<String> getSentiments() {
@@ -118,11 +118,11 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the sentiments you want to flag.
+     * Specify the sentiments that you want to flag.
      * </p>
      *
      * @param sentiments <p>
-     *            Specify the sentiments you want to flag.
+     *            Specify the sentiments that you want to flag.
      *            </p>
      */
     public void setSentiments(java.util.Collection<String> sentiments) {
@@ -136,14 +136,14 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the sentiments you want to flag.
+     * Specify the sentiments that you want to flag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sentiments <p>
-     *            Specify the sentiments you want to flag.
+     *            Specify the sentiments that you want to flag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -160,14 +160,14 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the sentiments you want to flag.
+     * Specify the sentiments that you want to flag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sentiments <p>
-     *            Specify the sentiments you want to flag.
+     *            Specify the sentiments that you want to flag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -179,14 +179,14 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in milliseconds) in your
-     *         audio, during which you want to search for the specified
+     *         Makes it possible to specify a time range (in milliseconds) in
+     *         your audio, during which you want to search for the specified
      *         sentiments. See for more detail.
      *         </p>
      */
@@ -196,14 +196,14 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for the specified
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for the specified
      *            sentiments. See for more detail.
      *            </p>
      */
@@ -213,17 +213,17 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for the specified
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for the specified
      *            sentiments. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -236,14 +236,14 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in percentage) in your media
-     *         file, during which you want to search for the specified
+     *         Makes it possible to specify a time range (in percentage) in your
+     *         media file, during which you want to search for the specified
      *         sentiments. See for more detail.
      *         </p>
      */
@@ -253,15 +253,15 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for the specified
-     *            sentiments. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for the
+     *            specified sentiments. See for more detail.
      *            </p>
      */
     public void setRelativeTimeRange(RelativeTimeRange relativeTimeRange) {
@@ -270,18 +270,18 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified sentiments. See for
-     * more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified sentiments. See
+     * for more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for the specified
-     *            sentiments. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for the
+     *            specified sentiments. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -293,7 +293,7 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -301,8 +301,8 @@ public class SentimentFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @return <p>
-     *         Specify the participant you want to flag. Omitting this parameter
-     *         is equivalent to specifying both participants.
+     *         Specify the participant that you want to flag. Omitting this
+     *         parameter is equivalent to specifying both participants.
      *         </p>
      * @see ParticipantRole
      */
@@ -312,7 +312,7 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -320,7 +320,7 @@ public class SentimentFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -331,7 +331,7 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -342,7 +342,7 @@ public class SentimentFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -356,7 +356,7 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -364,7 +364,7 @@ public class SentimentFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -375,7 +375,7 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -386,7 +386,7 @@ public class SentimentFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -400,15 +400,15 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the sentiments you didn't include in
-     * your request. Set to <code>FALSE</code> to flag the sentiments you
-     * specified in your request.
+     * Set to <code>TRUE</code> to flag the sentiments that you didn't include
+     * in your request. Set to <code>FALSE</code> to flag the sentiments that
+     * you specified in your request.
      * </p>
      *
      * @return <p>
-     *         Set to <code>TRUE</code> to flag the sentiments you didn't
+     *         Set to <code>TRUE</code> to flag the sentiments that you didn't
      *         include in your request. Set to <code>FALSE</code> to flag the
-     *         sentiments you specified in your request.
+     *         sentiments that you specified in your request.
      *         </p>
      */
     public Boolean isNegate() {
@@ -417,15 +417,15 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the sentiments you didn't include in
-     * your request. Set to <code>FALSE</code> to flag the sentiments you
-     * specified in your request.
+     * Set to <code>TRUE</code> to flag the sentiments that you didn't include
+     * in your request. Set to <code>FALSE</code> to flag the sentiments that
+     * you specified in your request.
      * </p>
      *
      * @return <p>
-     *         Set to <code>TRUE</code> to flag the sentiments you didn't
+     *         Set to <code>TRUE</code> to flag the sentiments that you didn't
      *         include in your request. Set to <code>FALSE</code> to flag the
-     *         sentiments you specified in your request.
+     *         sentiments that you specified in your request.
      *         </p>
      */
     public Boolean getNegate() {
@@ -434,15 +434,15 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the sentiments you didn't include in
-     * your request. Set to <code>FALSE</code> to flag the sentiments you
-     * specified in your request.
+     * Set to <code>TRUE</code> to flag the sentiments that you didn't include
+     * in your request. Set to <code>FALSE</code> to flag the sentiments that
+     * you specified in your request.
      * </p>
      *
      * @param negate <p>
-     *            Set to <code>TRUE</code> to flag the sentiments you didn't
-     *            include in your request. Set to <code>FALSE</code> to flag the
-     *            sentiments you specified in your request.
+     *            Set to <code>TRUE</code> to flag the sentiments that you
+     *            didn't include in your request. Set to <code>FALSE</code> to
+     *            flag the sentiments that you specified in your request.
      *            </p>
      */
     public void setNegate(Boolean negate) {
@@ -451,18 +451,18 @@ public class SentimentFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the sentiments you didn't include in
-     * your request. Set to <code>FALSE</code> to flag the sentiments you
-     * specified in your request.
+     * Set to <code>TRUE</code> to flag the sentiments that you didn't include
+     * in your request. Set to <code>FALSE</code> to flag the sentiments that
+     * you specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param negate <p>
-     *            Set to <code>TRUE</code> to flag the sentiments you didn't
-     *            include in your request. Set to <code>FALSE</code> to flag the
-     *            sentiments you specified in your request.
+     *            Set to <code>TRUE</code> to flag the sentiments that you
+     *            didn't include in your request. Set to <code>FALSE</code> to
+     *            flag the sentiments that you specified in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

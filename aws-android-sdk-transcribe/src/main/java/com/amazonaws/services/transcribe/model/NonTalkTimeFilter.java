@@ -39,15 +39,15 @@ import java.io.Serializable;
  * </ul>
  * <p>
  * See <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics-create-categories.html#call-analytics-create-categories-rules"
- * >Rule criteria</a> for usage examples.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch"
+ * >Rule criteria for batch categories</a> for usage examples.
  * </p>
  */
 public class NonTalkTimeFilter implements Serializable {
     /**
      * <p>
-     * Specify the duration, in milliseconds, of the period of silence you want
-     * to flag. For example, you can flag a silent period that lasts 30000
+     * Specify the duration, in milliseconds, of the period of silence that you
+     * want to flag. For example, you can flag a silent period that lasts 30,000
      * milliseconds.
      * </p>
      * <p>
@@ -58,18 +58,18 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      */
     private AbsoluteTimeRange absoluteTimeRange;
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      */
     private RelativeTimeRange relativeTimeRange;
@@ -84,8 +84,8 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the duration, in milliseconds, of the period of silence you want
-     * to flag. For example, you can flag a silent period that lasts 30000
+     * Specify the duration, in milliseconds, of the period of silence that you
+     * want to flag. For example, you can flag a silent period that lasts 30,000
      * milliseconds.
      * </p>
      * <p>
@@ -94,8 +94,8 @@ public class NonTalkTimeFilter implements Serializable {
      *
      * @return <p>
      *         Specify the duration, in milliseconds, of the period of silence
-     *         you want to flag. For example, you can flag a silent period that
-     *         lasts 30000 milliseconds.
+     *         that you want to flag. For example, you can flag a silent period
+     *         that lasts 30,000 milliseconds.
      *         </p>
      */
     public Long getThreshold() {
@@ -104,8 +104,8 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the duration, in milliseconds, of the period of silence you want
-     * to flag. For example, you can flag a silent period that lasts 30000
+     * Specify the duration, in milliseconds, of the period of silence that you
+     * want to flag. For example, you can flag a silent period that lasts 30,000
      * milliseconds.
      * </p>
      * <p>
@@ -114,8 +114,8 @@ public class NonTalkTimeFilter implements Serializable {
      *
      * @param threshold <p>
      *            Specify the duration, in milliseconds, of the period of
-     *            silence you want to flag. For example, you can flag a silent
-     *            period that lasts 30000 milliseconds.
+     *            silence that you want to flag. For example, you can flag a
+     *            silent period that lasts 30,000 milliseconds.
      *            </p>
      */
     public void setThreshold(Long threshold) {
@@ -124,8 +124,8 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the duration, in milliseconds, of the period of silence you want
-     * to flag. For example, you can flag a silent period that lasts 30000
+     * Specify the duration, in milliseconds, of the period of silence that you
+     * want to flag. For example, you can flag a silent period that lasts 30,000
      * milliseconds.
      * </p>
      * <p>
@@ -137,8 +137,8 @@ public class NonTalkTimeFilter implements Serializable {
      *
      * @param threshold <p>
      *            Specify the duration, in milliseconds, of the period of
-     *            silence you want to flag. For example, you can flag a silent
-     *            period that lasts 30000 milliseconds.
+     *            silence that you want to flag. For example, you can flag a
+     *            silent period that lasts 30,000 milliseconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -150,15 +150,15 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in milliseconds) in your
-     *         audio, during which you want to search for a period of silence.
-     *         See for more detail.
+     *         Makes it possible to specify a time range (in milliseconds) in
+     *         your audio, during which you want to search for a period of
+     *         silence. See for more detail.
      *         </p>
      */
     public AbsoluteTimeRange getAbsoluteTimeRange() {
@@ -167,14 +167,14 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for a period of
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for a period of
      *            silence. See for more detail.
      *            </p>
      */
@@ -184,17 +184,17 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for a period of
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for a period of
      *            silence. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -207,15 +207,15 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in percentage) in your media
-     *         file, during which you want to search for a period of silence.
-     *         See for more detail.
+     *         Makes it possible to specify a time range (in percentage) in your
+     *         media file, during which you want to search for a period of
+     *         silence. See for more detail.
      *         </p>
      */
     public RelativeTimeRange getRelativeTimeRange() {
@@ -224,15 +224,15 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for a period of
-     *            silence. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for a period
+     *            of silence. See for more detail.
      *            </p>
      */
     public void setRelativeTimeRange(RelativeTimeRange relativeTimeRange) {
@@ -241,18 +241,18 @@ public class NonTalkTimeFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for a period of silence. See for more
-     * detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for a period of silence. See for
+     * more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for a period of
-     *            silence. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for a period
+     *            of silence. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

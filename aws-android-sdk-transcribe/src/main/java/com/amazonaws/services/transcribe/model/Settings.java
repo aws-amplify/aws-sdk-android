@@ -20,8 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Allows additional optional settings in your request, including channel
- * identification, alternative transcriptions, and speaker labeling; allows you
- * to apply custom vocabularies to your transcription job.
+ * identification, alternative transcriptions, and speaker partitioning. You can
+ * use that to apply custom vocabularies to your transcription job.
  * </p>
  */
 public class Settings implements Serializable {
@@ -40,9 +40,9 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Enables speaker identification (diarization) in your transcription
-     * output. Speaker identification labels the speech from individual speakers
-     * in your media file.
+     * Enables speaker partitioning (diarization) in your transcription output.
+     * Speaker partitioning labels the speech from individual speakers in your
+     * media file.
      * </p>
      * <p>
      * If you enable <code>ShowSpeakerLabels</code> in your request, you must
@@ -56,19 +56,19 @@ public class Settings implements Serializable {
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     * >Identifying speakers (diarization)</a>.
+     * >Partitioning speakers (diarization)</a>.
      * </p>
      */
     private Boolean showSpeakerLabels;
 
     /**
      * <p>
-     * Specify the maximum number of speakers you want to identify in your
+     * Specify the maximum number of speakers you want to partition in your
      * media.
      * </p>
      * <p>
      * Note that if your media contains more speakers than the specified number,
-     * multiple speakers will be identified as a single speaker.
+     * multiple speakers are treated as a single speaker.
      * </p>
      * <p>
      * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
@@ -170,7 +170,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -261,9 +262,9 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Enables speaker identification (diarization) in your transcription
-     * output. Speaker identification labels the speech from individual speakers
-     * in your media file.
+     * Enables speaker partitioning (diarization) in your transcription output.
+     * Speaker partitioning labels the speech from individual speakers in your
+     * media file.
      * </p>
      * <p>
      * If you enable <code>ShowSpeakerLabels</code> in your request, you must
@@ -277,13 +278,13 @@ public class Settings implements Serializable {
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     * >Identifying speakers (diarization)</a>.
+     * >Partitioning speakers (diarization)</a>.
      * </p>
      *
      * @return <p>
-     *         Enables speaker identification (diarization) in your
-     *         transcription output. Speaker identification labels the speech
-     *         from individual speakers in your media file.
+     *         Enables speaker partitioning (diarization) in your transcription
+     *         output. Speaker partitioning labels the speech from individual
+     *         speakers in your media file.
      *         </p>
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
@@ -297,7 +298,7 @@ public class Settings implements Serializable {
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     *         >Identifying speakers (diarization)</a>.
+     *         >Partitioning speakers (diarization)</a>.
      *         </p>
      */
     public Boolean isShowSpeakerLabels() {
@@ -306,9 +307,9 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Enables speaker identification (diarization) in your transcription
-     * output. Speaker identification labels the speech from individual speakers
-     * in your media file.
+     * Enables speaker partitioning (diarization) in your transcription output.
+     * Speaker partitioning labels the speech from individual speakers in your
+     * media file.
      * </p>
      * <p>
      * If you enable <code>ShowSpeakerLabels</code> in your request, you must
@@ -322,13 +323,13 @@ public class Settings implements Serializable {
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     * >Identifying speakers (diarization)</a>.
+     * >Partitioning speakers (diarization)</a>.
      * </p>
      *
      * @return <p>
-     *         Enables speaker identification (diarization) in your
-     *         transcription output. Speaker identification labels the speech
-     *         from individual speakers in your media file.
+     *         Enables speaker partitioning (diarization) in your transcription
+     *         output. Speaker partitioning labels the speech from individual
+     *         speakers in your media file.
      *         </p>
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
@@ -342,7 +343,7 @@ public class Settings implements Serializable {
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     *         >Identifying speakers (diarization)</a>.
+     *         >Partitioning speakers (diarization)</a>.
      *         </p>
      */
     public Boolean getShowSpeakerLabels() {
@@ -351,9 +352,9 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Enables speaker identification (diarization) in your transcription
-     * output. Speaker identification labels the speech from individual speakers
-     * in your media file.
+     * Enables speaker partitioning (diarization) in your transcription output.
+     * Speaker partitioning labels the speech from individual speakers in your
+     * media file.
      * </p>
      * <p>
      * If you enable <code>ShowSpeakerLabels</code> in your request, you must
@@ -367,12 +368,12 @@ public class Settings implements Serializable {
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     * >Identifying speakers (diarization)</a>.
+     * >Partitioning speakers (diarization)</a>.
      * </p>
      *
      * @param showSpeakerLabels <p>
-     *            Enables speaker identification (diarization) in your
-     *            transcription output. Speaker identification labels the speech
+     *            Enables speaker partitioning (diarization) in your
+     *            transcription output. Speaker partitioning labels the speech
      *            from individual speakers in your media file.
      *            </p>
      *            <p>
@@ -388,7 +389,7 @@ public class Settings implements Serializable {
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     *            >Identifying speakers (diarization)</a>.
+     *            >Partitioning speakers (diarization)</a>.
      *            </p>
      */
     public void setShowSpeakerLabels(Boolean showSpeakerLabels) {
@@ -397,9 +398,9 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Enables speaker identification (diarization) in your transcription
-     * output. Speaker identification labels the speech from individual speakers
-     * in your media file.
+     * Enables speaker partitioning (diarization) in your transcription output.
+     * Speaker partitioning labels the speech from individual speakers in your
+     * media file.
      * </p>
      * <p>
      * If you enable <code>ShowSpeakerLabels</code> in your request, you must
@@ -413,15 +414,15 @@ public class Settings implements Serializable {
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     * >Identifying speakers (diarization)</a>.
+     * >Partitioning speakers (diarization)</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param showSpeakerLabels <p>
-     *            Enables speaker identification (diarization) in your
-     *            transcription output. Speaker identification labels the speech
+     *            Enables speaker partitioning (diarization) in your
+     *            transcription output. Speaker partitioning labels the speech
      *            from individual speakers in your media file.
      *            </p>
      *            <p>
@@ -437,7 +438,7 @@ public class Settings implements Serializable {
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
-     *            >Identifying speakers (diarization)</a>.
+     *            >Partitioning speakers (diarization)</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -449,12 +450,12 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify the maximum number of speakers you want to identify in your
+     * Specify the maximum number of speakers you want to partition in your
      * media.
      * </p>
      * <p>
      * Note that if your media contains more speakers than the specified number,
-     * multiple speakers will be identified as a single speaker.
+     * multiple speakers are treated as a single speaker.
      * </p>
      * <p>
      * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
@@ -465,12 +466,12 @@ public class Settings implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @return <p>
-     *         Specify the maximum number of speakers you want to identify in
+     *         Specify the maximum number of speakers you want to partition in
      *         your media.
      *         </p>
      *         <p>
      *         Note that if your media contains more speakers than the specified
-     *         number, multiple speakers will be identified as a single speaker.
+     *         number, multiple speakers are treated as a single speaker.
      *         </p>
      *         <p>
      *         If you specify the <code>MaxSpeakerLabels</code> field, you must
@@ -483,12 +484,12 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify the maximum number of speakers you want to identify in your
+     * Specify the maximum number of speakers you want to partition in your
      * media.
      * </p>
      * <p>
      * Note that if your media contains more speakers than the specified number,
-     * multiple speakers will be identified as a single speaker.
+     * multiple speakers are treated as a single speaker.
      * </p>
      * <p>
      * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
@@ -499,13 +500,13 @@ public class Settings implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxSpeakerLabels <p>
-     *            Specify the maximum number of speakers you want to identify in
-     *            your media.
+     *            Specify the maximum number of speakers you want to partition
+     *            in your media.
      *            </p>
      *            <p>
      *            Note that if your media contains more speakers than the
-     *            specified number, multiple speakers will be identified as a
-     *            single speaker.
+     *            specified number, multiple speakers are treated as a single
+     *            speaker.
      *            </p>
      *            <p>
      *            If you specify the <code>MaxSpeakerLabels</code> field, you
@@ -518,12 +519,12 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify the maximum number of speakers you want to identify in your
+     * Specify the maximum number of speakers you want to partition in your
      * media.
      * </p>
      * <p>
      * Note that if your media contains more speakers than the specified number,
-     * multiple speakers will be identified as a single speaker.
+     * multiple speakers are treated as a single speaker.
      * </p>
      * <p>
      * If you specify the <code>MaxSpeakerLabels</code> field, you must set the
@@ -537,13 +538,13 @@ public class Settings implements Serializable {
      * <b>Range: </b>2 - 10<br/>
      *
      * @param maxSpeakerLabels <p>
-     *            Specify the maximum number of speakers you want to identify in
-     *            your media.
+     *            Specify the maximum number of speakers you want to partition
+     *            in your media.
      *            </p>
      *            <p>
      *            Note that if your media contains more speakers than the
-     *            specified number, multiple speakers will be identified as a
-     *            single speaker.
+     *            specified number, multiple speakers are treated as a single
+     *            speaker.
      *            </p>
      *            <p>
      *            If you specify the <code>MaxSpeakerLabels</code> field, you
@@ -1184,7 +1185,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1200,8 +1202,8 @@ public class Settings implements Serializable {
      * <b>Allowed Values: </b>remove, mask, tag
      *
      * @return <p>
-     *         Specify how you want your vocabulary filter applied to your
-     *         transcript.
+     *         Specify how you want your custom vocabulary filter applied to
+     *         your transcript.
      *         </p>
      *         <p>
      *         To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1220,7 +1222,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1236,8 +1239,8 @@ public class Settings implements Serializable {
      * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
-     *            Specify how you want your vocabulary filter applied to your
-     *            transcript.
+     *            Specify how you want your custom vocabulary filter applied to
+     *            your transcript.
      *            </p>
      *            <p>
      *            To replace words with <code>***</code>, choose
@@ -1257,7 +1260,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1276,8 +1280,8 @@ public class Settings implements Serializable {
      * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
-     *            Specify how you want your vocabulary filter applied to your
-     *            transcript.
+     *            Specify how you want your custom vocabulary filter applied to
+     *            your transcript.
      *            </p>
      *            <p>
      *            To replace words with <code>***</code>, choose
@@ -1300,7 +1304,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1316,8 +1321,8 @@ public class Settings implements Serializable {
      * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
-     *            Specify how you want your vocabulary filter applied to your
-     *            transcript.
+     *            Specify how you want your custom vocabulary filter applied to
+     *            your transcript.
      *            </p>
      *            <p>
      *            To replace words with <code>***</code>, choose
@@ -1337,7 +1342,8 @@ public class Settings implements Serializable {
 
     /**
      * <p>
-     * Specify how you want your vocabulary filter applied to your transcript.
+     * Specify how you want your custom vocabulary filter applied to your
+     * transcript.
      * </p>
      * <p>
      * To replace words with <code>***</code>, choose <code>mask</code>.
@@ -1356,8 +1362,8 @@ public class Settings implements Serializable {
      * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
-     *            Specify how you want your vocabulary filter applied to your
-     *            transcript.
+     *            Specify how you want your custom vocabulary filter applied to
+     *            your transcript.
      *            </p>
      *            <p>
      *            To replace words with <code>***</code>, choose

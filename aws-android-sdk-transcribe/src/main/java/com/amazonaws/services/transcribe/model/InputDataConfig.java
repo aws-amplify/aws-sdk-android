@@ -65,7 +65,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -265,7 +265,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -288,9 +288,9 @@ public class InputDataConfig implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) of an IAM role that has
      *         permissions to access the Amazon S3 bucket that contains your
-     *         input files. If the role you specify doesn’t have the appropriate
-     *         permissions to access the specified Amazon S3 location, your
-     *         request fails.
+     *         input files. If the role that you specify doesn’t have the
+     *         appropriate permissions to access the specified Amazon S3
+     *         location, your request fails.
      *         </p>
      *         <p>
      *         IAM role ARNs have the format
@@ -311,7 +311,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -334,7 +334,7 @@ public class InputDataConfig implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>
@@ -358,7 +358,7 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -384,7 +384,7 @@ public class InputDataConfig implements Serializable {
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>

@@ -31,9 +31,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -129,9 +129,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,9 +141,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code you selected for your medical vocabulary. US
-     *         English (<code>en-US</code>) is the only language supported with
-     *         Amazon Transcribe Medical.
+     *         The language code you selected for your custom medical
+     *         vocabulary. US English (<code>en-US</code>) is the only language
+     *         supported with Amazon Transcribe Medical.
      *         </p>
      * @see LanguageCode
      */
@@ -153,9 +153,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,9 +165,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your medical vocabulary. US
-     *            English (<code>en-US</code>) is the only language supported
-     *            with Amazon Transcribe Medical.
+     *            The language code you selected for your custom medical
+     *            vocabulary. US English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -177,9 +177,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -192,9 +192,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your medical vocabulary. US
-     *            English (<code>en-US</code>) is the only language supported
-     *            with Amazon Transcribe Medical.
+     *            The language code you selected for your custom medical
+     *            vocabulary. US English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -207,9 +207,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -219,9 +219,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your medical vocabulary. US
-     *            English (<code>en-US</code>) is the only language supported
-     *            with Amazon Transcribe Medical.
+     *            The language code you selected for your custom medical
+     *            vocabulary. US English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -231,9 +231,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your medical vocabulary. US English (
-     * <code>en-US</code>) is the only language supported with Amazon Transcribe
-     * Medical.
+     * The language code you selected for your custom medical vocabulary. US
+     * English (<code>en-US</code>) is the only language supported with Amazon
+     * Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -246,9 +246,9 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your medical vocabulary. US
-     *            English (<code>en-US</code>) is the only language supported
-     *            with Amazon Transcribe Medical.
+     *            The language code you selected for your custom medical
+     *            vocabulary. US English (<code>en-US</code>) is the only
+     *            language supported with Amazon Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -349,7 +349,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -358,8 +358,8 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      *
      * @return <p>
      *         The processing state of your custom medical vocabulary. If the
-     *         state is <code>READY</code>, you can use the vocabulary in a
-     *         <code>StartMedicalTranscriptionJob</code> request.
+     *         state is <code>READY</code>, you can use the custom vocabulary in
+     *         a <code>StartMedicalTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
      */
@@ -370,7 +370,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -379,8 +379,8 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom medical vocabulary. If the
-     *            state is <code>READY</code>, you can use the vocabulary in a
-     *            <code>StartMedicalTranscriptionJob</code> request.
+     *            state is <code>READY</code>, you can use the custom vocabulary
+     *            in a <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
      */
@@ -391,7 +391,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -403,8 +403,8 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom medical vocabulary. If the
-     *            state is <code>READY</code>, you can use the vocabulary in a
-     *            <code>StartMedicalTranscriptionJob</code> request.
+     *            state is <code>READY</code>, you can use the custom vocabulary
+     *            in a <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -418,7 +418,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -427,8 +427,8 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom medical vocabulary. If the
-     *            state is <code>READY</code>, you can use the vocabulary in a
-     *            <code>StartMedicalTranscriptionJob</code> request.
+     *            state is <code>READY</code>, you can use the custom vocabulary
+     *            in a <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
      */
@@ -439,7 +439,7 @@ public class UpdateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom medical vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartMedicalTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -451,8 +451,8 @@ public class UpdateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom medical vocabulary. If the
-     *            state is <code>READY</code>, you can use the vocabulary in a
-     *            <code>StartMedicalTranscriptionJob</code> request.
+     *            state is <code>READY</code>, you can use the custom vocabulary
+     *            in a <code>StartMedicalTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
