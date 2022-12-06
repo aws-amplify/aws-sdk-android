@@ -229,7 +229,7 @@ public class NotificationDetails {
             if (NotificationClient.GCM_INTENT_ACTION.equals(intentAction)) {
                 notificationDetails.setFrom(from);
                 notificationDetails.setBundle(bundle);
-                notificationDetails.setTargetClass(serviceClass);
+                notificationDetails.setTargetClass(PinpointNotificationActivity.class);
                 notificationDetails.setIntentAction(intentAction);
                 notificationDetails.setNotificationChannelId(notificationChannelId);
             }
