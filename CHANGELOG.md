@@ -1,3 +1,12 @@
+## [Release 2.59.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.1)
+
+### Bug Fixes
+- **core:** added fix for xml parser (#3100)
+- **pinpoint:** Fix GCM (Not FCM) Android 12 trampolining (#3109)
+- **pinpoint:**  Remove GCM service as target class usage as it is no longer allowed in Android 12. (#3110)
+
+[See all changes between 2.59.0 and 2.59.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.59.0...release_v2.59.1)
+
 ## [Release 2.59.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.0)
 
 ### Miscellaneous
