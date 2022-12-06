@@ -424,9 +424,20 @@ public interface AmazonConnect {
      * Web Services Region where the Amazon Connect instance or traffic
      * distribution group was created.
      * </p>
+     * <p>
+     * For more information about how to use this operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+     * >Claim a phone number in your country</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+     * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * <important>
      * <p>
      * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+     * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you
+     * can claim. Call the <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -742,6 +753,32 @@ public interface AmazonConnect {
      */
     CreateRoutingProfileResult createRoutingProfile(
             CreateRoutingProfileRequest createRoutingProfileRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @return createRuleResult The response from the CreateRule service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateRuleResult createRule(CreateRuleRequest createRuleRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -1103,6 +1140,28 @@ public interface AmazonConnect {
      */
     void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteRule(DeleteRuleRequest deleteRuleRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1658,6 +1717,30 @@ public interface AmazonConnect {
      */
     DescribeRoutingProfileResult describeRoutingProfile(
             DescribeRoutingProfileRequest describeRoutingProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeRuleRequest
+     * @return describeRuleResult The response from the DescribeRule service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeRuleResult describeRule(DescribeRuleRequest describeRuleRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2975,6 +3058,30 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * List all rules for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listRulesRequest
+     * @return listRulesResult The response from the ListRules service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListRulesResult listRules(ListRulesRequest listRulesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -3228,6 +3335,34 @@ public interface AmazonConnect {
      */
     ListUsersResult listUsers(ListUsersRequest listUsersRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return monitorContactResult The response from the MonitorContact service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    MonitorContactResult monitorContact(MonitorContactRequest monitorContactRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -4713,6 +4848,29 @@ public interface AmazonConnect {
     void updateRoutingProfileQueues(
             UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param updateRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRule(UpdateRuleRequest updateRuleRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
