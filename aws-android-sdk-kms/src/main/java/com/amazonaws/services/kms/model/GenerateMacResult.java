@@ -20,8 +20,12 @@ import java.io.Serializable;
 public class GenerateMacResult implements Serializable {
     /**
      * <p>
-     * The hash-based message authentication code (HMAC) for the given message,
-     * key, and MAC algorithm.
+     * The hash-based message authentication code (HMAC) that was generated for
+     * the specified message, HMAC KMS key, and MAC algorithm.
+     * </p>
+     * <p>
+     * This is the standard, raw HMAC defined in <a
+     * href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,16 +56,26 @@ public class GenerateMacResult implements Serializable {
 
     /**
      * <p>
-     * The hash-based message authentication code (HMAC) for the given message,
-     * key, and MAC algorithm.
+     * The hash-based message authentication code (HMAC) that was generated for
+     * the specified message, HMAC KMS key, and MAC algorithm.
+     * </p>
+     * <p>
+     * This is the standard, raw HMAC defined in <a
+     * href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The hash-based message authentication code (HMAC) for the given
-     *         message, key, and MAC algorithm.
+     *         The hash-based message authentication code (HMAC) that was
+     *         generated for the specified message, HMAC KMS key, and MAC
+     *         algorithm.
+     *         </p>
+     *         <p>
+     *         This is the standard, raw HMAC defined in <a
+     *         href="https://datatracker.ietf.org/doc/html/rfc2104">RFC
+     *         2104</a>.
      *         </p>
      */
     public java.nio.ByteBuffer getMac() {
@@ -70,16 +84,26 @@ public class GenerateMacResult implements Serializable {
 
     /**
      * <p>
-     * The hash-based message authentication code (HMAC) for the given message,
-     * key, and MAC algorithm.
+     * The hash-based message authentication code (HMAC) that was generated for
+     * the specified message, HMAC KMS key, and MAC algorithm.
+     * </p>
+     * <p>
+     * This is the standard, raw HMAC defined in <a
+     * href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param mac <p>
-     *            The hash-based message authentication code (HMAC) for the
-     *            given message, key, and MAC algorithm.
+     *            The hash-based message authentication code (HMAC) that was
+     *            generated for the specified message, HMAC KMS key, and MAC
+     *            algorithm.
+     *            </p>
+     *            <p>
+     *            This is the standard, raw HMAC defined in <a
+     *            href="https://datatracker.ietf.org/doc/html/rfc2104">RFC
+     *            2104</a>.
      *            </p>
      */
     public void setMac(java.nio.ByteBuffer mac) {
@@ -88,8 +112,12 @@ public class GenerateMacResult implements Serializable {
 
     /**
      * <p>
-     * The hash-based message authentication code (HMAC) for the given message,
-     * key, and MAC algorithm.
+     * The hash-based message authentication code (HMAC) that was generated for
+     * the specified message, HMAC KMS key, and MAC algorithm.
+     * </p>
+     * <p>
+     * This is the standard, raw HMAC defined in <a
+     * href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,8 +127,14 @@ public class GenerateMacResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param mac <p>
-     *            The hash-based message authentication code (HMAC) for the
-     *            given message, key, and MAC algorithm.
+     *            The hash-based message authentication code (HMAC) that was
+     *            generated for the specified message, HMAC KMS key, and MAC
+     *            algorithm.
+     *            </p>
+     *            <p>
+     *            This is the standard, raw HMAC defined in <a
+     *            href="https://datatracker.ietf.org/doc/html/rfc2104">RFC
+     *            2104</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -84,6 +84,39 @@ public class CreateCustomKeyStoreRequestMarshaller implements
                 jsonWriter.name("KeyStorePassword");
                 jsonWriter.value(keyStorePassword);
             }
+            if (createCustomKeyStoreRequest.getCustomKeyStoreType() != null) {
+                String customKeyStoreType = createCustomKeyStoreRequest.getCustomKeyStoreType();
+                jsonWriter.name("CustomKeyStoreType");
+                jsonWriter.value(customKeyStoreType);
+            }
+            if (createCustomKeyStoreRequest.getXksProxyUriEndpoint() != null) {
+                String xksProxyUriEndpoint = createCustomKeyStoreRequest.getXksProxyUriEndpoint();
+                jsonWriter.name("XksProxyUriEndpoint");
+                jsonWriter.value(xksProxyUriEndpoint);
+            }
+            if (createCustomKeyStoreRequest.getXksProxyUriPath() != null) {
+                String xksProxyUriPath = createCustomKeyStoreRequest.getXksProxyUriPath();
+                jsonWriter.name("XksProxyUriPath");
+                jsonWriter.value(xksProxyUriPath);
+            }
+            if (createCustomKeyStoreRequest.getXksProxyVpcEndpointServiceName() != null) {
+                String xksProxyVpcEndpointServiceName = createCustomKeyStoreRequest
+                        .getXksProxyVpcEndpointServiceName();
+                jsonWriter.name("XksProxyVpcEndpointServiceName");
+                jsonWriter.value(xksProxyVpcEndpointServiceName);
+            }
+            if (createCustomKeyStoreRequest.getXksProxyAuthenticationCredential() != null) {
+                XksProxyAuthenticationCredentialType xksProxyAuthenticationCredential = createCustomKeyStoreRequest
+                        .getXksProxyAuthenticationCredential();
+                jsonWriter.name("XksProxyAuthenticationCredential");
+                XksProxyAuthenticationCredentialTypeJsonMarshaller.getInstance().marshall(
+                        xksProxyAuthenticationCredential, jsonWriter);
+            }
+            if (createCustomKeyStoreRequest.getXksProxyConnectivity() != null) {
+                String xksProxyConnectivity = createCustomKeyStoreRequest.getXksProxyConnectivity();
+                jsonWriter.name("XksProxyConnectivity");
+                jsonWriter.value(xksProxyConnectivity);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
