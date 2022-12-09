@@ -19,19 +19,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Job Status
+ * Job End Behavior
  */
-public enum JobStatus {
+public enum JobEndBehavior {
 
-    IN_PROGRESS("IN_PROGRESS"),
-    CANCELED("CANCELED"),
-    COMPLETED("COMPLETED"),
-    DELETION_IN_PROGRESS("DELETION_IN_PROGRESS"),
-    SCHEDULED("SCHEDULED");
+    STOP_ROLLOUT("STOP_ROLLOUT"),
+    CANCEL("CANCEL"),
+    FORCE_CANCEL("FORCE_CANCEL");
 
     private String value;
 
-    private JobStatus(String value) {
+    private JobEndBehavior(String value) {
         this.value = value;
     }
 
@@ -40,23 +38,21 @@ public enum JobStatus {
         return value;
     }
 
-    private static final Map<String, JobStatus> enumMap;
+    private static final Map<String, JobEndBehavior> enumMap;
     static {
-        enumMap = new HashMap<String, JobStatus>();
-        enumMap.put("IN_PROGRESS", IN_PROGRESS);
-        enumMap.put("CANCELED", CANCELED);
-        enumMap.put("COMPLETED", COMPLETED);
-        enumMap.put("DELETION_IN_PROGRESS", DELETION_IN_PROGRESS);
-        enumMap.put("SCHEDULED", SCHEDULED);
+        enumMap = new HashMap<String, JobEndBehavior>();
+        enumMap.put("STOP_ROLLOUT", STOP_ROLLOUT);
+        enumMap.put("CANCEL", CANCEL);
+        enumMap.put("FORCE_CANCEL", FORCE_CANCEL);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return JobStatus corresponding to the value
+     * @return JobEndBehavior corresponding to the value
      */
-    public static JobStatus fromValue(String value) {
+    public static JobEndBehavior fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
