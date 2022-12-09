@@ -183,8 +183,7 @@ public class NotificationClient {
      *
      * @param from         the from string received by the GCM service
      * @param data         the bundle received from the GCM service
-     * @param serviceClass the class extending GCMListenerService that handles
-     *                     receiving GCM messages.
+     * @param serviceClass No longer used due to Android 12 restrictions
      * @return {@link PushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
@@ -195,7 +194,6 @@ public class NotificationClient {
                 NotificationDetails.builder()
                 .from(from)
                 .bundle(data)
-                .serviceClass(serviceClass)
                 .intentAction(GCM_INTENT_ACTION);
         return handleCampaignPush(notificationDetailsBuilder.build());
     }
