@@ -53,16 +53,14 @@ final class GCMNotificationClient extends NotificationClientBase {
             flags |= PendingIntent.FLAG_IMMUTABLE;
         }
 
-        if (intentAction.equals(NotificationClient.GCM_INTENT_ACTION)) {
-            contentIntent = PendingIntent.getService(pinpointContext.getApplicationContext(), requestId,
-                    this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.GCM_INTENT_ACTION,
-                            targetClass), flags);
-        } else {
-            contentIntent = PendingIntent.getActivity(pinpointContext.getApplicationContext(), requestId,
-                    this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.FCM_INTENT_ACTION,
-                            targetClass), flags);
-            PinpointNotificationActivity.setNotificationClient(this);
-        }
+        String updatedAction = intentAction.equals(NotificationClient.GCM_INTENT_ACTION) ?
+                NotificationClient.GCM_INTENT_ACTION : NotificationClient.FCM_INTENT_ACTION;
+
+        contentIntent = PendingIntent.getActivity(pinpointContext.getApplicationContext(), requestId,
+                this.notificationIntent(pushBundle, eventSourceId, requestId, updatedAction,
+                        targetClass), flags);
+
+        PinpointNotificationActivity.setNotificationClient(this);
         return contentIntent;
     }
 }
