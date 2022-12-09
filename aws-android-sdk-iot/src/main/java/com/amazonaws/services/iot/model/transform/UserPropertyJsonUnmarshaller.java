@@ -21,46 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO RepublishAction
+ * JSON unmarshaller for POJO UserProperty
  */
-class RepublishActionJsonUnmarshaller implements
-        Unmarshaller<RepublishAction, JsonUnmarshallerContext> {
+class UserPropertyJsonUnmarshaller implements Unmarshaller<UserProperty, JsonUnmarshallerContext> {
 
-    public RepublishAction unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public UserProperty unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        RepublishAction republishAction = new RepublishAction();
+        UserProperty userProperty = new UserProperty();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("roleArn")) {
-                republishAction.setRoleArn(StringJsonUnmarshaller.getInstance()
+            if (name.equals("key")) {
+                userProperty.setKey(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("topic")) {
-                republishAction.setTopic(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("qos")) {
-                republishAction.setQos(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("headers")) {
-                republishAction.setHeaders(MqttHeadersJsonUnmarshaller.getInstance()
+            } else if (name.equals("value")) {
+                userProperty.setValue(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return republishAction;
+        return userProperty;
     }
 
-    private static RepublishActionJsonUnmarshaller instance;
+    private static UserPropertyJsonUnmarshaller instance;
 
-    public static RepublishActionJsonUnmarshaller getInstance() {
+    public static UserPropertyJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new RepublishActionJsonUnmarshaller();
+            instance = new UserPropertyJsonUnmarshaller();
         return instance;
     }
 }
