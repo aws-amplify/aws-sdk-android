@@ -623,6 +623,34 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.me-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.me-central-1.amazonaws.com", false, true);
 
+        // Support for Asia Pacific (Hyderabad) `ap-south-2` region
+        region = new Region("ap-south-2", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-south-2.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-south-2.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-south-2.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-south-2.amazonaws.com", false, true);
+
+
         return ret;
     }
 
