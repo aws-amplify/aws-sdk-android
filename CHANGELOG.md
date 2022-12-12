@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---rekognition
+---kinesisvideo
 ## [Release 2.59.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.1)
 
 ### Bug Fixes
