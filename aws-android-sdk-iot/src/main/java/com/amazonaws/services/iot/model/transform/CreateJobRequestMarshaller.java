@@ -160,6 +160,11 @@ public class CreateJobRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createJobRequest.getSchedulingConfig() != null) {
+                SchedulingConfig schedulingConfig = createJobRequest.getSchedulingConfig();
+                jsonWriter.name("schedulingConfig");
+                SchedulingConfigJsonMarshaller.getInstance().marshall(schedulingConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -179,7 +179,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
@@ -216,6 +215,14 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      */
     private java.util.Map<String, String> documentParameters;
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     */
+    private SchedulingConfig schedulingConfig;
 
     /**
      * <p>
@@ -1164,7 +1171,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
@@ -1208,7 +1214,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -1255,7 +1260,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -1528,6 +1532,60 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration that allows you to schedule a job for a future
+     *         date and time in addition to specifying the end behavior for each
+     *         job execution.
+     *         </p>
+     */
+    public SchedulingConfig getSchedulingConfig() {
+        return schedulingConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     *
+     * @param schedulingConfig <p>
+     *            The configuration that allows you to schedule a job for a
+     *            future date and time in addition to specifying the end
+     *            behavior for each job execution.
+     *            </p>
+     */
+    public void setSchedulingConfig(SchedulingConfig schedulingConfig) {
+        this.schedulingConfig = schedulingConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param schedulingConfig <p>
+     *            The configuration that allows you to schedule a job for a
+     *            future date and time in addition to specifying the end
+     *            behavior for each job execution.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withSchedulingConfig(SchedulingConfig schedulingConfig) {
+        this.schedulingConfig = schedulingConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1567,7 +1625,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getJobExecutionsRetryConfig() != null)
             sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
         if (getDocumentParameters() != null)
-            sb.append("documentParameters: " + getDocumentParameters());
+            sb.append("documentParameters: " + getDocumentParameters() + ",");
+        if (getSchedulingConfig() != null)
+            sb.append("schedulingConfig: " + getSchedulingConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -1607,6 +1667,8 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
+        hashCode = prime * hashCode
+                + ((getSchedulingConfig() == null) ? 0 : getSchedulingConfig().hashCode());
         return hashCode;
     }
 
@@ -1694,6 +1756,11 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getDocumentParameters() != null
                 && other.getDocumentParameters().equals(this.getDocumentParameters()) == false)
+            return false;
+        if (other.getSchedulingConfig() == null ^ this.getSchedulingConfig() == null)
+            return false;
+        if (other.getSchedulingConfig() != null
+                && other.getSchedulingConfig().equals(this.getSchedulingConfig()) == false)
             return false;
         return true;
     }

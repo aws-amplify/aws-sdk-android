@@ -19,8 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * An invalid job identifier was passed to <a>GetDocumentAnalysis</a> or to
- * <a>GetDocumentAnalysis</a>.
+ * An invalid job identifier was passed to an asynchronous analysis operation.
  * </p>
  */
 public class InvalidJobIdException extends AmazonServiceException {

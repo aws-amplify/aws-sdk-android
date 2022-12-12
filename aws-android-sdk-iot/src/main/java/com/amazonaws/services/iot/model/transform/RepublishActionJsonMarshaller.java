@@ -42,6 +42,11 @@ class RepublishActionJsonMarshaller {
             jsonWriter.name("qos");
             jsonWriter.value(qos);
         }
+        if (republishAction.getHeaders() != null) {
+            MqttHeaders headers = republishAction.getHeaders();
+            jsonWriter.name("headers");
+            MqttHeadersJsonMarshaller.getInstance().marshall(headers, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
