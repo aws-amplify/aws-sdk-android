@@ -99,8 +99,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Categories - The label categories that the detected label belongs to. A given
- * label can belong to more than one category.
+ * Categories - The label categories that the detected label belongs to.
  * </p>
  * </li>
  * <li>
@@ -132,14 +131,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Foreground - Information about the Sharpness and Brightness of the input
- * image’s foreground.
+ * Foreground - Information about the sharpness, brightness, and dominant colors
+ * of the input image’s foreground.
  * </p>
  * </li>
  * <li>
  * <p>
- * Background - Information about the Sharpness and Brightness of the input
- * image’s background.
+ * Background - Information about the sharpness, brightness, and dominant colors
+ * of the input image’s background.
  * </p>
  * </li>
  * </ul>
