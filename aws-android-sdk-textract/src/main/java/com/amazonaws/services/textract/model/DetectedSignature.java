@@ -19,64 +19,71 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The Amazon S3 bucket that contains the document to be processed. It's used by
- * asynchronous operations.
- * </p>
- * <p>
- * The input document can be an image file in JPEG or PNG format. It can also be
- * a file in PDF format.
+ * A structure that holds information regarding a detected signature on a page.
  * </p>
  */
-public class DocumentLocation implements Serializable {
+public class DetectedSignature implements Serializable {
     /**
      * <p>
-     * The Amazon S3 bucket that contains the input document.
+     * The page a detected signature was found on.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
      */
-    private S3Object s3Object;
+    private Integer page;
 
     /**
      * <p>
-     * The Amazon S3 bucket that contains the input document.
+     * The page a detected signature was found on.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The Amazon S3 bucket that contains the input document.
+     *         The page a detected signature was found on.
      *         </p>
      */
-    public S3Object getS3Object() {
-        return s3Object;
+    public Integer getPage() {
+        return page;
     }
 
     /**
      * <p>
-     * The Amazon S3 bucket that contains the input document.
+     * The page a detected signature was found on.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
      *
-     * @param s3Object <p>
-     *            The Amazon S3 bucket that contains the input document.
+     * @param page <p>
+     *            The page a detected signature was found on.
      *            </p>
      */
-    public void setS3Object(S3Object s3Object) {
-        this.s3Object = s3Object;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
     /**
      * <p>
-     * The Amazon S3 bucket that contains the input document.
+     * The page a detected signature was found on.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
      *
-     * @param s3Object <p>
-     *            The Amazon S3 bucket that contains the input document.
+     * @param page <p>
+     *            The page a detected signature was found on.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DocumentLocation withS3Object(S3Object s3Object) {
-        this.s3Object = s3Object;
+    public DetectedSignature withPage(Integer page) {
+        this.page = page;
         return this;
     }
 
@@ -91,8 +98,8 @@ public class DocumentLocation implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getS3Object() != null)
-            sb.append("S3Object: " + getS3Object());
+        if (getPage() != null)
+            sb.append("Page: " + getPage());
         sb.append("}");
         return sb.toString();
     }
@@ -102,7 +109,7 @@ public class DocumentLocation implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getS3Object() == null) ? 0 : getS3Object().hashCode());
+        hashCode = prime * hashCode + ((getPage() == null) ? 0 : getPage().hashCode());
         return hashCode;
     }
 
@@ -113,13 +120,13 @@ public class DocumentLocation implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof DocumentLocation == false)
+        if (obj instanceof DetectedSignature == false)
             return false;
-        DocumentLocation other = (DocumentLocation) obj;
+        DetectedSignature other = (DetectedSignature) obj;
 
-        if (other.getS3Object() == null ^ this.getS3Object() == null)
+        if (other.getPage() == null ^ this.getPage() == null)
             return false;
-        if (other.getS3Object() != null && other.getS3Object().equals(this.getS3Object()) == false)
+        if (other.getPage() != null && other.getPage().equals(this.getPage()) == false)
             return false;
         return true;
     }

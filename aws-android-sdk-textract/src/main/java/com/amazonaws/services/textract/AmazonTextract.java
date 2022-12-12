@@ -121,6 +121,14 @@ public interface AmazonTextract {
      * </li>
      * <li>
      * <p>
+     * Signatures. A SIGNATURE <code>Block</code> object contains the location
+     * information of a signature in a document. If used in conjunction with
+     * forms or tables, a signature can be given a Key-Value pairing or be
+     * detected in the cell of a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * Query. A QUERY Block object contains the query text, alias and link to
      * the associated Query results block object.
      * </p>
@@ -556,6 +564,97 @@ public interface AmazonTextract {
 
     /**
      * <p>
+     * Gets the results for an Amazon Textract asynchronous operation that
+     * analyzes text in a lending document.
+     * </p>
+     * <p>
+     * You start asynchronous text analysis by calling
+     * <code>StartLendingAnalysis</code>, which returns a job identifier (
+     * <code>JobId</code>). When the text analysis operation finishes, Amazon
+     * Textract publishes a completion status to the Amazon Simple Notification
+     * Service (Amazon SNS) topic that's registered in the initial call to
+     * <code>StartLendingAnalysis</code>.
+     * </p>
+     * <p>
+     * To get the results of the text analysis operation, first check that the
+     * status value published to the Amazon SNS topic is SUCCEEDED. If so, call
+     * GetLendingAnalysis, and pass the job identifier (<code>JobId</code>) from
+     * the initial call to <code>StartLendingAnalysis</code>.
+     * </p>
+     * 
+     * @param getLendingAnalysisRequest
+     * @return getLendingAnalysisResult The response from the GetLendingAnalysis
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidJobIdException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetLendingAnalysisResult getLendingAnalysis(GetLendingAnalysisRequest getLendingAnalysisRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets summarized results for the <code>StartLendingAnalysis</code>
+     * operation, which analyzes text in a lending document. The returned
+     * summary consists of information about documents grouped together by a
+     * common document type. Information like detected signatures, page numbers,
+     * and split documents is returned with respect to the type of grouped
+     * document.
+     * </p>
+     * <p>
+     * You start asynchronous text analysis by calling
+     * <code>StartLendingAnalysis</code>, which returns a job identifier (
+     * <code>JobId</code>). When the text analysis operation finishes, Amazon
+     * Textract publishes a completion status to the Amazon Simple Notification
+     * Service (Amazon SNS) topic that's registered in the initial call to
+     * <code>StartLendingAnalysis</code>.
+     * </p>
+     * <p>
+     * To get the results of the text analysis operation, first check that the
+     * status value published to the Amazon SNS topic is SUCCEEDED. If so, call
+     * <code>GetLendingAnalysisSummary</code>, and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartLendingAnalysis</code>.
+     * </p>
+     * 
+     * @param getLendingAnalysisSummaryRequest
+     * @return getLendingAnalysisSummaryResult The response from the
+     *         GetLendingAnalysisSummary service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidJobIdException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetLendingAnalysisSummaryResult getLendingAnalysisSummary(
+            GetLendingAnalysisSummaryRequest getLendingAnalysisSummaryRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
@@ -726,6 +825,83 @@ public interface AmazonTextract {
      */
     StartExpenseAnalysisResult startExpenseAnalysis(
             StartExpenseAnalysisRequest startExpenseAnalysisRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Starts the classification and analysis of an input document.
+     * <code>StartLendingAnalysis</code> initiates the classification and
+     * analysis of a packet of lending documents.
+     * <code>StartLendingAnalysis</code> operates on a document file located in
+     * an Amazon S3 bucket.
+     * </p>
+     * <p>
+     * <code>StartLendingAnalysis</code> can analyze text in documents that are
+     * in one of the following formats: JPEG, PNG, TIFF, PDF. Use
+     * <code>DocumentLocation</code> to specify the bucket name and the file
+     * name of the document.
+     * </p>
+     * <p>
+     * <code>StartLendingAnalysis</code> returns a job identifier (
+     * <code>JobId</code>) that you use to get the results of the operation.
+     * When the text analysis is finished, Amazon Textract publishes a
+     * completion status to the Amazon Simple Notification Service (Amazon SNS)
+     * topic that you specify in <code>NotificationChannel</code>. To get the
+     * results of the text analysis operation, first check that the status value
+     * published to the Amazon SNS topic is SUCCEEDED. If the status is
+     * SUCCEEDED you can call either <code>GetLendingAnalysis</code> or
+     * <code>GetLendingAnalysisSummary</code> and provide the <code>JobId</code>
+     * to obtain the results of the analysis.
+     * </p>
+     * <p>
+     * If using <code>OutputConfig</code> to specify an Amazon S3 bucket, the
+     * output will be contained within the specified prefix in a directory
+     * labeled with the job-id. In the directory there are 3 sub-directories:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * detailedResponse (contains the GetLendingAnalysis response)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * summaryResponse (for the GetLendingAnalysisSummary response)
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * splitDocuments (documents split across logical boundaries)
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param startLendingAnalysisRequest
+     * @return startLendingAnalysisResult The response from the
+     *         StartLendingAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartLendingAnalysisResult startLendingAnalysis(
+            StartLendingAnalysisRequest startLendingAnalysisRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
