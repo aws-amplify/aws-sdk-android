@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class ImageGenerationDestinationConfig implements Serializable {
     /**
      * <p>
-     * The Uniform Resource Idenifier (URI) that identifies where the images
+     * The Uniform Resource Identifier (URI) that identifies where the images
      * will be delivered.
      * </p>
      * <p>
@@ -51,7 +51,7 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The Uniform Resource Idenifier (URI) that identifies where the images
+     * The Uniform Resource Identifier (URI) that identifies where the images
      * will be delivered.
      * </p>
      * <p>
@@ -60,7 +60,7 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z_0-9]+:(//)?([^/]+)/?([^*]*)$<br/>
      *
      * @return <p>
-     *         The Uniform Resource Idenifier (URI) that identifies where the
+     *         The Uniform Resource Identifier (URI) that identifies where the
      *         images will be delivered.
      *         </p>
      */
@@ -70,7 +70,7 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The Uniform Resource Idenifier (URI) that identifies where the images
+     * The Uniform Resource Identifier (URI) that identifies where the images
      * will be delivered.
      * </p>
      * <p>
@@ -79,8 +79,8 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z_0-9]+:(//)?([^/]+)/?([^*]*)$<br/>
      *
      * @param uri <p>
-     *            The Uniform Resource Idenifier (URI) that identifies where the
-     *            images will be delivered.
+     *            The Uniform Resource Identifier (URI) that identifies where
+     *            the images will be delivered.
      *            </p>
      */
     public void setUri(String uri) {
@@ -89,7 +89,7 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The Uniform Resource Idenifier (URI) that identifies where the images
+     * The Uniform Resource Identifier (URI) that identifies where the images
      * will be delivered.
      * </p>
      * <p>
@@ -101,8 +101,8 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z_0-9]+:(//)?([^/]+)/?([^*]*)$<br/>
      *
      * @param uri <p>
-     *            The Uniform Resource Idenifier (URI) that identifies where the
-     *            images will be delivered.
+     *            The Uniform Resource Identifier (URI) that identifies where
+     *            the images will be delivered.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

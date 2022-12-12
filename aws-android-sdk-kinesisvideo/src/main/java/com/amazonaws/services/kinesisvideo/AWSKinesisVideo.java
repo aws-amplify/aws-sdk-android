@@ -233,6 +233,35 @@ public interface AWSKinesisVideo {
 
     /**
      * <p>
+     * Describes a stream’s edge configuration that was set using the
+     * <code>StartEdgeConfigurationUpdate</code> API. Use this API to get the
+     * status of the configuration if the configuration is in sync with the Edge
+     * Agent.
+     * </p>
+     * 
+     * @param describeEdgeConfigurationRequest
+     * @return describeEdgeConfigurationResult The response from the
+     *         DescribeEdgeConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws AccessDeniedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws ResourceNotFoundException
+     * @throws StreamEdgeConfigurationNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    DescribeEdgeConfigurationResult describeEdgeConfiguration(
+            DescribeEdgeConfigurationRequest describeEdgeConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the <code>ImageGenerationConfiguration</code> for a given Kinesis
      * video stream.
      * </p>
@@ -514,6 +543,53 @@ public interface AWSKinesisVideo {
      *             data in the request, or a server side issue.
      */
     ListTagsForStreamResult listTagsForStream(ListTagsForStreamRequest listTagsForStreamRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * An asynchronous API that updates a stream’s existing edge configuration.
+     * If this API is invoked for the first time, a new edge configuration will
+     * be created for the stream, and the sync status will be set to
+     * <code>SYNCING</code>.
+     * </p>
+     * <p>
+     * The Kinesis Video Stream will sync the stream’s edge configuration with
+     * the Edge Agent IoT Greengrass component that runs on an IoT Hub Device
+     * setup at your premise. The time to sync can vary and depends on the
+     * connectivity of the Hub Device. The <code>SyncStatus</code> will be
+     * updated as the edge configuration is acknowledged, and synced with the
+     * Edge Agent. You will have to wait for the sync status to reach a terminal
+     * state such as: <code>IN_SYNC</code> and <code>SYNC_FAILED</code>, before
+     * using this API again.
+     * </p>
+     * <p>
+     * If you invoke this API during the syncing process, a
+     * <code>ResourceInUseException</code> will be thrown. The connectivity of
+     * the stream's edge configuration and the Edge Agent will be retried for 15
+     * minutes. After 15 minutes, the status will transition into the
+     * <code>SYNC_FAILED</code> state.
+     * </p>
+     * 
+     * @param startEdgeConfigurationUpdateRequest
+     * @return startEdgeConfigurationUpdateResult The response from the
+     *         StartEdgeConfigurationUpdate service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws AccessDeniedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws NoDataRetentionException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    StartEdgeConfigurationUpdateResult startEdgeConfigurationUpdate(
+            StartEdgeConfigurationUpdateRequest startEdgeConfigurationUpdateRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
