@@ -283,6 +283,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * Adds a statement to a topic's access control policy, granting access for
      * the specified Amazon Web Services accounts to the specified actions.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param addPermissionRequest
      * @return A Java Future object containing the response from the
@@ -315,6 +323,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * Adds a statement to a topic's access control policy, granting access for
      * the specified Amazon Web Services accounts to the specified actions.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param addPermissionRequest
      * @return A Java Future object containing the response from the
@@ -3272,6 +3288,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Removes a statement from a topic's access control policy.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param removePermissionRequest <p>
      *            Input for RemovePermission action.
@@ -3305,6 +3329,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Removes a statement from a topic's access control policy.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param removePermissionRequest <p>
      *            Input for RemovePermission action.
@@ -3710,6 +3742,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Allows a topic owner to set an attribute of the topic to a new value.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param setTopicAttributesRequest <p>
      *            Input for SetTopicAttributes action.
@@ -3745,6 +3785,14 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Allows a topic owner to set an attribute of the topic to a new value.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param setTopicAttributesRequest <p>
      *            Input for SetTopicAttributes action.
@@ -4045,6 +4093,13 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * resubscribe to the topic if the <code>Unsubscribe</code> request was
      * unintended.
      * </p>
+     * <note>
+     * <p>
+     * Amazon SQS queue subscriptions require authentication for deletion. Only
+     * the owner of the subscription, or the owner of the topic can unsubscribe
+     * using the required Amazon Web Services signature.
+     * </p>
+     * </note>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
      * </p>
@@ -4089,6 +4144,13 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * resubscribe to the topic if the <code>Unsubscribe</code> request was
      * unintended.
      * </p>
+     * <note>
+     * <p>
+     * Amazon SQS queue subscriptions require authentication for deletion. Only
+     * the owner of the subscription, or the owner of the topic can unsubscribe
+     * using the required Amazon Web Services signature.
+     * </p>
+     * </note>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
      * </p>
