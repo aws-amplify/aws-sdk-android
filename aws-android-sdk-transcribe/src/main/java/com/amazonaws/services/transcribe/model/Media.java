@@ -22,6 +22,13 @@ import java.io.Serializable;
  * Describes the Amazon S3 location of the media file you want to use in your
  * request.
  * </p>
+ * <p>
+ * For information on supported media formats, refer to the <a href=
+ * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+ * >MediaFormat</a> parameter or the <a href=
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+ * >Media formats</a> section in the Amazon S3 Developer Guide.
+ * </p>
  */
 public class Media implements Serializable {
     /**
@@ -76,8 +83,9 @@ public class Media implements Serializable {
      * </p>
      * <important>
      * <p>
-     * <code>RedactedMediaFileUri</code> is only supported for Call Analytics (
-     * <code>StartCallAnalyticsJob</code>) transcription requests.
+     * <code>RedactedMediaFileUri</code> produces a redacted audio file in
+     * addition to a redacted transcript. It is only supported for Call
+     * Analytics (<code>StartCallAnalyticsJob</code>) transcription requests.
      * </p>
      * </important>
      * <p>
@@ -275,8 +283,9 @@ public class Media implements Serializable {
      * </p>
      * <important>
      * <p>
-     * <code>RedactedMediaFileUri</code> is only supported for Call Analytics (
-     * <code>StartCallAnalyticsJob</code>) transcription requests.
+     * <code>RedactedMediaFileUri</code> produces a redacted audio file in
+     * addition to a redacted transcript. It is only supported for Call
+     * Analytics (<code>StartCallAnalyticsJob</code>) transcription requests.
      * </p>
      * </important>
      * <p>
@@ -307,8 +316,9 @@ public class Media implements Serializable {
      *         </p>
      *         <important>
      *         <p>
-     *         <code>RedactedMediaFileUri</code> is only supported for Call
-     *         Analytics (<code>StartCallAnalyticsJob</code>) transcription
+     *         <code>RedactedMediaFileUri</code> produces a redacted audio file
+     *         in addition to a redacted transcript. It is only supported for
+     *         Call Analytics (<code>StartCallAnalyticsJob</code>) transcription
      *         requests.
      *         </p>
      *         </important>
@@ -340,8 +350,9 @@ public class Media implements Serializable {
      * </p>
      * <important>
      * <p>
-     * <code>RedactedMediaFileUri</code> is only supported for Call Analytics (
-     * <code>StartCallAnalyticsJob</code>) transcription requests.
+     * <code>RedactedMediaFileUri</code> produces a redacted audio file in
+     * addition to a redacted transcript. It is only supported for Call
+     * Analytics (<code>StartCallAnalyticsJob</code>) transcription requests.
      * </p>
      * </important>
      * <p>
@@ -372,9 +383,10 @@ public class Media implements Serializable {
      *            </p>
      *            <important>
      *            <p>
-     *            <code>RedactedMediaFileUri</code> is only supported for Call
-     *            Analytics (<code>StartCallAnalyticsJob</code>) transcription
-     *            requests.
+     *            <code>RedactedMediaFileUri</code> produces a redacted audio
+     *            file in addition to a redacted transcript. It is only
+     *            supported for Call Analytics (
+     *            <code>StartCallAnalyticsJob</code>) transcription requests.
      *            </p>
      *            </important>
      */
@@ -405,8 +417,9 @@ public class Media implements Serializable {
      * </p>
      * <important>
      * <p>
-     * <code>RedactedMediaFileUri</code> is only supported for Call Analytics (
-     * <code>StartCallAnalyticsJob</code>) transcription requests.
+     * <code>RedactedMediaFileUri</code> produces a redacted audio file in
+     * addition to a redacted transcript. It is only supported for Call
+     * Analytics (<code>StartCallAnalyticsJob</code>) transcription requests.
      * </p>
      * </important>
      * <p>
@@ -440,9 +453,10 @@ public class Media implements Serializable {
      *            </p>
      *            <important>
      *            <p>
-     *            <code>RedactedMediaFileUri</code> is only supported for Call
-     *            Analytics (<code>StartCallAnalyticsJob</code>) transcription
-     *            requests.
+     *            <code>RedactedMediaFileUri</code> produces a redacted audio
+     *            file in addition to a redacted transcript. It is only
+     *            supported for Call Analytics (
+     *            <code>StartCallAnalyticsJob</code>) transcription requests.
      *            </p>
      *            </important>
      * @return A reference to this updated object so that method calls can be

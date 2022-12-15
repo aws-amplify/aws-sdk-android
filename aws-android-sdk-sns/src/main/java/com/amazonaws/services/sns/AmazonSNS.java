@@ -113,6 +113,14 @@ public interface AmazonSNS {
      * Adds a statement to a topic's access control policy, granting access for
      * the specified Amazon Web Services accounts to the specified actions.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param addPermissionRequest
      * @throws InvalidParameterException
@@ -1253,6 +1261,14 @@ public interface AmazonSNS {
      * <p>
      * Removes a statement from a topic's access control policy.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param removePermissionRequest <p>
      *            Input for RemovePermission action.
@@ -1402,6 +1418,14 @@ public interface AmazonSNS {
      * <p>
      * Allows a topic owner to set an attribute of the topic to a new value.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param setTopicAttributesRequest <p>
      *            Input for SetTopicAttributes action.
@@ -1535,6 +1559,13 @@ public interface AmazonSNS {
      * resubscribe to the topic if the <code>Unsubscribe</code> request was
      * unintended.
      * </p>
+     * <note>
+     * <p>
+     * Amazon SQS queue subscriptions require authentication for deletion. Only
+     * the owner of the subscription, or the owner of the topic can unsubscribe
+     * using the required Amazon Web Services signature.
+     * </p>
+     * </note>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
      * </p>
@@ -1655,6 +1686,27 @@ public interface AmazonSNS {
      *            your subscriber receive only a subset of messages, rather than
      *            receiving every message published to the topic.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FilterPolicyScope</code> – This attribute lets you
+     *            choose the filtering scope by using one of the following
+     *            string value types:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>MessageAttributes</code> (default) – The filter is
+     *            applied on the message attributes.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageBody</code> – The filter is applied on the
+     *            message body.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
@@ -1916,6 +1968,14 @@ public interface AmazonSNS {
      * Adds a statement to a topic's access control policy, granting access for
      * the specified Amazon Web Services accounts to the specified actions.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param topicArn <p>
      *            The ARN of the topic whose access control policy you wish to
@@ -1985,6 +2045,14 @@ public interface AmazonSNS {
      * <p>
      * Removes a statement from a topic's access control policy.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param topicArn <p>
      *            The ARN of the topic whose access control policy you wish to
@@ -2151,6 +2219,14 @@ public interface AmazonSNS {
      * <p>
      * Allows a topic owner to set an attribute of the topic to a new value.
      * </p>
+     * <note>
+     * <p>
+     * To remove the ability to change topic permissions, you must deny
+     * permissions to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetTopicAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </note>
      * 
      * @param topicArn <p>
      *            The ARN of the topic to modify.
@@ -2183,6 +2259,18 @@ public interface AmazonSNS {
      *            subscribe to the topic.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
+     *            segment data to topic owner account if the sampled flag in the
+     *            tracing header is true. This is only supported on standard
+     *            topics.
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            The following attribute applies only to <a href=
@@ -2199,6 +2287,14 @@ public interface AmazonSNS {
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            </li>
      *            </ul>
@@ -2344,6 +2440,13 @@ public interface AmazonSNS {
      * resubscribe to the topic if the <code>Unsubscribe</code> request was
      * unintended.
      * </p>
+     * <note>
+     * <p>
+     * Amazon SQS queue subscriptions require authentication for deletion. Only
+     * the owner of the subscription, or the owner of the topic can unsubscribe
+     * using the required Amazon Web Services signature.
+     * </p>
+     * </note>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
      * </p>
