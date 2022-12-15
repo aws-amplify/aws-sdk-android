@@ -26,7 +26,8 @@ public enum JobStatus {
     IN_PROGRESS("IN_PROGRESS"),
     CANCELED("CANCELED"),
     COMPLETED("COMPLETED"),
-    DELETION_IN_PROGRESS("DELETION_IN_PROGRESS");
+    DELETION_IN_PROGRESS("DELETION_IN_PROGRESS"),
+    SCHEDULED("SCHEDULED");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum JobStatus {
         enumMap.put("CANCELED", CANCELED);
         enumMap.put("COMPLETED", COMPLETED);
         enumMap.put("DELETION_IN_PROGRESS", DELETION_IN_PROGRESS);
+        enumMap.put("SCHEDULED", SCHEDULED);
     }
 
     /**

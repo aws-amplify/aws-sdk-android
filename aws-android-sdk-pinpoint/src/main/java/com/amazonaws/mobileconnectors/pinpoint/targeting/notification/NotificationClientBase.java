@@ -908,14 +908,16 @@ abstract class NotificationClientBase {
             return this.handleNotificationOpen(eventSourceAttributes, bundle);
         }
 
-        final AnalyticsEvent pushEvent;
-        this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
-        if (isAppInForeground) {
-            pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedForeground());
-        } else {
-            pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedBackground());
+        AnalyticsEvent pushEvent = null;
+        if (this.pinpointContext.getAnalyticsClient() != null) {
+            this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
+            if (isAppInForeground) {
+                pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedForeground());
+            } else {
+                pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedBackground());
+            }
+            pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
         }
-        pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
         try {
             // Ignore whether the app is in the foreground if the configuration indicates it should post
             // notifications in the foreground.
@@ -944,15 +946,19 @@ abstract class NotificationClientBase {
                     // user from Settings -> App Info
                     // or we couldn't display the notification for some
                     // reason.
-                    pushEvent.addAttribute("isOptedOut", "true");
+                    if (pushEvent != null) {
+                        pushEvent.addAttribute("isOptedOut", "true");
+                    }
                     // We can't post a notification, so delegate to the
                     // passed in handler.
                     return NotificationClient.PushResult.OPTED_OUT;
                 }
             }
         } finally {
-            this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
-            this.pinpointContext.getAnalyticsClient().submitEvents();
+            if (pushEvent != null) {
+                this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
+                this.pinpointContext.getAnalyticsClient().submitEvents();
+            }
         }
 
         return NotificationClient.PushResult.POSTED_NOTIFICATION;

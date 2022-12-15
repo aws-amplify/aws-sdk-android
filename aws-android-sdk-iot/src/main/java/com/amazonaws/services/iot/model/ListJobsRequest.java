@@ -38,7 +38,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      */
     private String status;
 
@@ -122,7 +122,6 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
@@ -135,7 +134,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @return <p>
      *         An optional filter that lets you search for jobs that have the
@@ -155,7 +154,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -178,7 +177,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -201,7 +200,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -224,7 +223,7 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            An optional filter that lets you search for jobs that have the
@@ -704,7 +703,6 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
@@ -748,7 +746,6 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -795,7 +792,6 @@ public class ListJobsRequest extends AmazonWebServiceRequest implements Serializ
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
