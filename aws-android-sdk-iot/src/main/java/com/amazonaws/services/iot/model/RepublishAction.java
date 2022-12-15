@@ -50,6 +50,15 @@ public class RepublishAction implements Serializable {
 
     /**
      * <p>
+     * MQTT Version 5.0 headers information. For more information, see <a
+     * href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">
+     * MQTT</a> from the Amazon Web Services IoT Core Developer Guide.
+     * </p>
+     */
+    private MqttHeaders headers;
+
+    /**
+     * <p>
      * The ARN of the IAM role that grants access.
      * </p>
      *
@@ -199,6 +208,68 @@ public class RepublishAction implements Serializable {
     }
 
     /**
+     * <p>
+     * MQTT Version 5.0 headers information. For more information, see <a
+     * href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">
+     * MQTT</a> from the Amazon Web Services IoT Core Developer Guide.
+     * </p>
+     *
+     * @return <p>
+     *         MQTT Version 5.0 headers information. For more information, see
+     *         <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"
+     *         > MQTT</a> from the Amazon Web Services IoT Core Developer Guide.
+     *         </p>
+     */
+    public MqttHeaders getHeaders() {
+        return headers;
+    }
+
+    /**
+     * <p>
+     * MQTT Version 5.0 headers information. For more information, see <a
+     * href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">
+     * MQTT</a> from the Amazon Web Services IoT Core Developer Guide.
+     * </p>
+     *
+     * @param headers <p>
+     *            MQTT Version 5.0 headers information. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"
+     *            > MQTT</a> from the Amazon Web Services IoT Core Developer
+     *            Guide.
+     *            </p>
+     */
+    public void setHeaders(MqttHeaders headers) {
+        this.headers = headers;
+    }
+
+    /**
+     * <p>
+     * MQTT Version 5.0 headers information. For more information, see <a
+     * href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">
+     * MQTT</a> from the Amazon Web Services IoT Core Developer Guide.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param headers <p>
+     *            MQTT Version 5.0 headers information. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"
+     *            > MQTT</a> from the Amazon Web Services IoT Core Developer
+     *            Guide.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RepublishAction withHeaders(MqttHeaders headers) {
+        this.headers = headers;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -214,7 +285,9 @@ public class RepublishAction implements Serializable {
         if (getTopic() != null)
             sb.append("topic: " + getTopic() + ",");
         if (getQos() != null)
-            sb.append("qos: " + getQos());
+            sb.append("qos: " + getQos() + ",");
+        if (getHeaders() != null)
+            sb.append("headers: " + getHeaders());
         sb.append("}");
         return sb.toString();
     }
@@ -227,6 +300,7 @@ public class RepublishAction implements Serializable {
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode + ((getTopic() == null) ? 0 : getTopic().hashCode());
         hashCode = prime * hashCode + ((getQos() == null) ? 0 : getQos().hashCode());
+        hashCode = prime * hashCode + ((getHeaders() == null) ? 0 : getHeaders().hashCode());
         return hashCode;
     }
 
@@ -252,6 +326,10 @@ public class RepublishAction implements Serializable {
         if (other.getQos() == null ^ this.getQos() == null)
             return false;
         if (other.getQos() != null && other.getQos().equals(this.getQos()) == false)
+            return false;
+        if (other.getHeaders() == null ^ this.getHeaders() == null)
+            return false;
+        if (other.getHeaders() != null && other.getHeaders().equals(this.getHeaders()) == false)
             return false;
         return true;
     }

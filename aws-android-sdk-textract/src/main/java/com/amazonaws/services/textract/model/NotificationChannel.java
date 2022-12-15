@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * The Amazon Simple Notification Service (Amazon SNS) topic to which Amazon
  * Textract publishes the completion status of an asynchronous document
- * operation, such as <a>StartDocumentTextDetection</a>.
+ * operation.
  * </p>
  */
 public class NotificationChannel implements Serializable {
