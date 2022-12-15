@@ -119,6 +119,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -134,7 +141,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      */
     private String blockType;
 
@@ -398,6 +405,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -413,7 +427,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      *
      * @return <p>
      *         The type of text item that's recognized. In operations for text
@@ -491,6 +505,13 @@ public class Block implements Serializable {
      *         button (radio button) or a check box that's detected on a
      *         document page. Use the value of <code>SelectionStatus</code> to
      *         determine the status of the selection element.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>SIGNATURE</i> - The location and confidene score of a
+     *         signature detected on a document page. Can be returned as part of
+     *         a Key-Value pair or a detected cell.
      *         </p>
      *         </li>
      *         <li>
@@ -593,6 +614,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -608,7 +636,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -687,6 +715,13 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            signature detected on a document page. Can be returned as part
+     *            of a Key-Value pair or a detected cell.
      *            </p>
      *            </li>
      *            <li>
@@ -789,6 +824,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -807,7 +849,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -886,6 +928,13 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            signature detected on a document page. Can be returned as part
+     *            of a Key-Value pair or a detected cell.
      *            </p>
      *            </li>
      *            <li>
@@ -991,6 +1040,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -1006,7 +1062,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1085,6 +1141,13 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            signature detected on a document page. Can be returned as part
+     *            of a Key-Value pair or a detected cell.
      *            </p>
      *            </li>
      *            <li>
@@ -1187,6 +1250,13 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * detected on a document page. Can be returned as part of a Key-Value pair
+     * or a detected cell.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <i>QUERY</i> - A question asked during the call of AnalyzeDocument.
      * Contains an alias and an ID that attaches it to its answer.
      * </p>
@@ -1205,7 +1275,7 @@ public class Block implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
-     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT
+     * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1284,6 +1354,13 @@ public class Block implements Serializable {
      *            option button (radio button) or a check box that's detected on
      *            a document page. Use the value of <code>SelectionStatus</code>
      *            to determine the status of the selection element.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            signature detected on a document page. Can be returned as part
+     *            of a Key-Value pair or a detected cell.
      *            </p>
      *            </li>
      *            <li>
