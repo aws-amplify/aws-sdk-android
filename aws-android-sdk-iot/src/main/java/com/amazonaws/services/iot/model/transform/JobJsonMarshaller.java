@@ -154,6 +154,11 @@ class JobJsonMarshaller {
             jsonWriter.name("isConcurrent");
             jsonWriter.value(isConcurrent);
         }
+        if (job.getSchedulingConfig() != null) {
+            SchedulingConfig schedulingConfig = job.getSchedulingConfig();
+            jsonWriter.name("schedulingConfig");
+            SchedulingConfigJsonMarshaller.getInstance().marshall(schedulingConfig, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
