@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The function couldn't mount the configured file system due to a permission or
- * configuration issue.
+ * The Lambda function couldn't mount the configured file system due to a
+ * permission or configuration issue.
  * </p>
  */
 public class EFSMountFailureException extends AmazonServiceException {

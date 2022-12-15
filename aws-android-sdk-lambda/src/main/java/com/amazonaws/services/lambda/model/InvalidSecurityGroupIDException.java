@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The Security Group ID provided in the Lambda function VPC configuration is
- * invalid.
+ * The security group ID provided in the Lambda function VPC configuration is
+ * not valid.
  * </p>
  */
 public class InvalidSecurityGroupIDException extends AmazonServiceException {

@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The function was able to make a network connection to the configured file
- * system, but the mount operation timed out.
+ * The Lambda function made a network connection to the configured file system,
+ * but the mount operation timed out.
  * </p>
  */
 public class EFSMountTimeoutException extends AmazonServiceException {
