@@ -19,21 +19,21 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Amazon EC2 throttled Lambda during Lambda function initialization using the
- * execution role provided for the function.
+ * The runtime restore hook encountered an error. For more information, check
+ * the Amazon CloudWatch logs.
  * </p>
  */
-public class EC2ThrottledException extends AmazonServiceException {
+public class SnapStartException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     private String type;
 
     /**
-     * Constructs a new EC2ThrottledException with the specified error message.
+     * Constructs a new SnapStartException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public EC2ThrottledException(String message) {
+    public SnapStartException(String message) {
         super(message);
     }
 
