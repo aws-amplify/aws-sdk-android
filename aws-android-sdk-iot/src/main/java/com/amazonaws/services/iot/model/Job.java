@@ -73,7 +73,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      */
     private String status;
 
@@ -204,7 +204,6 @@ public class Job implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
@@ -252,6 +251,14 @@ public class Job implements Serializable {
      * </p>
      */
     private Boolean isConcurrent;
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     */
+    private SchedulingConfig schedulingConfig;
 
     /**
      * <p>
@@ -600,7 +607,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @return <p>
      *         The status of the job, one of <code>IN_PROGRESS</code>,
@@ -622,7 +629,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
@@ -647,7 +654,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
@@ -672,7 +679,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
@@ -697,7 +704,7 @@ public class Job implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The status of the job, one of <code>IN_PROGRESS</code>,
@@ -1444,7 +1451,6 @@ public class Job implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
@@ -1488,7 +1494,6 @@ public class Job implements Serializable {
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -1535,7 +1540,6 @@ public class Job implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -1895,6 +1899,60 @@ public class Job implements Serializable {
     }
 
     /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration that allows you to schedule a job for a future
+     *         date and time in addition to specifying the end behavior for each
+     *         job execution.
+     *         </p>
+     */
+    public SchedulingConfig getSchedulingConfig() {
+        return schedulingConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     *
+     * @param schedulingConfig <p>
+     *            The configuration that allows you to schedule a job for a
+     *            future date and time in addition to specifying the end
+     *            behavior for each job execution.
+     *            </p>
+     */
+    public void setSchedulingConfig(SchedulingConfig schedulingConfig) {
+        this.schedulingConfig = schedulingConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration that allows you to schedule a job for a future date and
+     * time in addition to specifying the end behavior for each job execution.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param schedulingConfig <p>
+     *            The configuration that allows you to schedule a job for a
+     *            future date and time in addition to specifying the end
+     *            behavior for each job execution.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withSchedulingConfig(SchedulingConfig schedulingConfig) {
+        this.schedulingConfig = schedulingConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1948,7 +2006,9 @@ public class Job implements Serializable {
         if (getDocumentParameters() != null)
             sb.append("documentParameters: " + getDocumentParameters() + ",");
         if (getIsConcurrent() != null)
-            sb.append("isConcurrent: " + getIsConcurrent());
+            sb.append("isConcurrent: " + getIsConcurrent() + ",");
+        if (getSchedulingConfig() != null)
+            sb.append("schedulingConfig: " + getSchedulingConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -1999,6 +2059,8 @@ public class Job implements Serializable {
                 + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
         hashCode = prime * hashCode
                 + ((getIsConcurrent() == null) ? 0 : getIsConcurrent().hashCode());
+        hashCode = prime * hashCode
+                + ((getSchedulingConfig() == null) ? 0 : getSchedulingConfig().hashCode());
         return hashCode;
     }
 
@@ -2120,6 +2182,11 @@ public class Job implements Serializable {
             return false;
         if (other.getIsConcurrent() != null
                 && other.getIsConcurrent().equals(this.getIsConcurrent()) == false)
+            return false;
+        if (other.getSchedulingConfig() == null ^ this.getSchedulingConfig() == null)
+            return false;
+        if (other.getSchedulingConfig() != null
+                && other.getSchedulingConfig().equals(this.getSchedulingConfig()) == false)
             return false;
         return true;
     }

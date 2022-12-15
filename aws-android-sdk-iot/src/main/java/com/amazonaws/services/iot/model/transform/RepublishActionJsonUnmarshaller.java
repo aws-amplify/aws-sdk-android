@@ -45,6 +45,9 @@ class RepublishActionJsonUnmarshaller implements
             } else if (name.equals("qos")) {
                 republishAction.setQos(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("headers")) {
+                republishAction.setHeaders(MqttHeadersJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
