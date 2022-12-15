@@ -377,7 +377,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+     * >ABAC for KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1735,7 +1735,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+     * >ABAC for KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1774,7 +1774,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         Tagging or untagging a KMS key can allow or deny permission to
      *         the KMS key. For details, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *         >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *         >ABAC for KMS</a> in the <i>Key Management Service Developer
      *         Guide</i>.
      *         </p>
      *         </note>
@@ -1821,7 +1821,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+     * >ABAC for KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1860,7 +1860,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            >ABAC for KMS</a> in the <i>Key Management Service Developer
      *            Guide</i>.
      *            </p>
      *            </note>
@@ -1912,7 +1912,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+     * >ABAC for KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -1954,7 +1954,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            >ABAC for KMS</a> in the <i>Key Management Service Developer
      *            Guide</i>.
      *            </p>
      *            </note>
@@ -2009,7 +2009,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+     * >ABAC for KMS</a> in the <i>Key Management Service Developer Guide</i>.
      * </p>
      * </note>
      * <p>
@@ -2051,7 +2051,7 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >ABAC in KMS</a> in the <i>Key Management Service Developer
+     *            >ABAC for KMS</a> in the <i>Key Management Service Developer
      *            Guide</i>.
      *            </p>
      *            </note>

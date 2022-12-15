@@ -118,6 +118,11 @@ public class CreateKeyRequestMarshaller implements
                 jsonWriter.name("MultiRegion");
                 jsonWriter.value(multiRegion);
             }
+            if (createKeyRequest.getXksKeyId() != null) {
+                String xksKeyId = createKeyRequest.getXksKeyId();
+                jsonWriter.name("XksKeyId");
+                jsonWriter.value(xksKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

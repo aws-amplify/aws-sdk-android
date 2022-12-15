@@ -22,8 +22,8 @@ import java.io.Serializable;
  * Contains metadata about a KMS key.
  * </p>
  * <p>
- * This data type is used as a response element for the <a>CreateKey</a> and
- * <a>DescribeKey</a> operations.
+ * This data type is used as a response element for the <a>CreateKey</a>,
+ * <a>DescribeKey</a>, and <a>ReplicateKey</a> operations.
  * </p>
  */
 public class KeyMetadata implements Serializable {
@@ -151,7 +151,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      */
     private String origin;
 
@@ -159,7 +160,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * A unique identifier for the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >custom key store</a> that contains the KMS key. This value is present
+     * >custom key store</a> that contains the KMS key. This field is present
      * only when the KMS key is created in a custom key store.
      * </p>
      * <p>
@@ -171,11 +172,11 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The cluster ID of the CloudHSM cluster that contains the key material for
-     * the KMS key. When you create a KMS key in a <a href=
+     * the KMS key. When you create a KMS key in an CloudHSM <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, KMS creates the key material for the KMS key in
-     * the associated CloudHSM cluster. This value is present only when the KMS
-     * key is created in a custom key store.
+     * the associated CloudHSM cluster. This field is present only when the KMS
+     * key is created in an CloudHSM key store.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,8 +217,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -349,6 +350,19 @@ public class KeyMetadata implements Serializable {
      * </p>
      */
     private java.util.List<String> macAlgorithms = new java.util.ArrayList<String>();
+
+    /**
+     * <p>
+     * Information about the external key that is associated with a KMS key in
+     * an external key store.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     * >External key</a> in the <i>Key Management Service Developer Guide</i>.
+     * </p>
+     */
+    private XksKeyConfigurationType xksKeyConfiguration;
 
     /**
      * <p>
@@ -1179,7 +1193,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      *
      * @return <p>
      *         The source of the key material for the KMS key. When this value
@@ -1206,7 +1221,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      *
      * @param origin <p>
      *            The source of the key material for the KMS key. When this
@@ -1237,7 +1253,8 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      *
      * @param origin <p>
      *            The source of the key material for the KMS key. When this
@@ -1268,7 +1285,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      *
      * @param origin <p>
      *            The source of the key material for the KMS key. When this
@@ -1299,7 +1317,8 @@ public class KeyMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM
+     * <b>Allowed Values: </b>AWS_KMS, EXTERNAL, AWS_CLOUDHSM,
+     * EXTERNAL_KEY_STORE
      *
      * @param origin <p>
      *            The source of the key material for the KMS key. When this
@@ -1323,7 +1342,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * A unique identifier for the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >custom key store</a> that contains the KMS key. This value is present
+     * >custom key store</a> that contains the KMS key. This field is present
      * only when the KMS key is created in a custom key store.
      * </p>
      * <p>
@@ -1333,7 +1352,7 @@ public class KeyMetadata implements Serializable {
      * @return <p>
      *         A unique identifier for the <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     *         >custom key store</a> that contains the KMS key. This value is
+     *         >custom key store</a> that contains the KMS key. This field is
      *         present only when the KMS key is created in a custom key store.
      *         </p>
      */
@@ -1345,7 +1364,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * A unique identifier for the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >custom key store</a> that contains the KMS key. This value is present
+     * >custom key store</a> that contains the KMS key. This field is present
      * only when the KMS key is created in a custom key store.
      * </p>
      * <p>
@@ -1355,7 +1374,7 @@ public class KeyMetadata implements Serializable {
      * @param customKeyStoreId <p>
      *            A unique identifier for the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     *            >custom key store</a> that contains the KMS key. This value is
+     *            >custom key store</a> that contains the KMS key. This field is
      *            present only when the KMS key is created in a custom key
      *            store.
      *            </p>
@@ -1368,7 +1387,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * A unique identifier for the <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     * >custom key store</a> that contains the KMS key. This value is present
+     * >custom key store</a> that contains the KMS key. This field is present
      * only when the KMS key is created in a custom key store.
      * </p>
      * <p>
@@ -1381,7 +1400,7 @@ public class KeyMetadata implements Serializable {
      * @param customKeyStoreId <p>
      *            A unique identifier for the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
-     *            >custom key store</a> that contains the KMS key. This value is
+     *            >custom key store</a> that contains the KMS key. This field is
      *            present only when the KMS key is created in a custom key
      *            store.
      *            </p>
@@ -1396,11 +1415,11 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The cluster ID of the CloudHSM cluster that contains the key material for
-     * the KMS key. When you create a KMS key in a <a href=
+     * the KMS key. When you create a KMS key in an CloudHSM <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, KMS creates the key material for the KMS key in
-     * the associated CloudHSM cluster. This value is present only when the KMS
-     * key is created in a custom key store.
+     * the associated CloudHSM cluster. This field is present only when the KMS
+     * key is created in an CloudHSM key store.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1408,11 +1427,12 @@ public class KeyMetadata implements Serializable {
      *
      * @return <p>
      *         The cluster ID of the CloudHSM cluster that contains the key
-     *         material for the KMS key. When you create a KMS key in a <a href=
+     *         material for the KMS key. When you create a KMS key in an
+     *         CloudHSM <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a>, KMS creates the key material for the KMS
-     *         key in the associated CloudHSM cluster. This value is present
-     *         only when the KMS key is created in a custom key store.
+     *         key in the associated CloudHSM cluster. This field is present
+     *         only when the KMS key is created in an CloudHSM key store.
      *         </p>
      */
     public String getCloudHsmClusterId() {
@@ -1422,11 +1442,11 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The cluster ID of the CloudHSM cluster that contains the key material for
-     * the KMS key. When you create a KMS key in a <a href=
+     * the KMS key. When you create a KMS key in an CloudHSM <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, KMS creates the key material for the KMS key in
-     * the associated CloudHSM cluster. This value is present only when the KMS
-     * key is created in a custom key store.
+     * the associated CloudHSM cluster. This field is present only when the KMS
+     * key is created in an CloudHSM key store.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1434,12 +1454,12 @@ public class KeyMetadata implements Serializable {
      *
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the CloudHSM cluster that contains the key
-     *            material for the KMS key. When you create a KMS key in a <a
-     *            href=
+     *            material for the KMS key. When you create a KMS key in an
+     *            CloudHSM <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>, KMS creates the key material for the
-     *            KMS key in the associated CloudHSM cluster. This value is
-     *            present only when the KMS key is created in a custom key
+     *            KMS key in the associated CloudHSM cluster. This field is
+     *            present only when the KMS key is created in an CloudHSM key
      *            store.
      *            </p>
      */
@@ -1450,11 +1470,11 @@ public class KeyMetadata implements Serializable {
     /**
      * <p>
      * The cluster ID of the CloudHSM cluster that contains the key material for
-     * the KMS key. When you create a KMS key in a <a href=
+     * the KMS key. When you create a KMS key in an CloudHSM <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>, KMS creates the key material for the KMS key in
-     * the associated CloudHSM cluster. This value is present only when the KMS
-     * key is created in a custom key store.
+     * the associated CloudHSM cluster. This field is present only when the KMS
+     * key is created in an CloudHSM key store.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1465,12 +1485,12 @@ public class KeyMetadata implements Serializable {
      *
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the CloudHSM cluster that contains the key
-     *            material for the KMS key. When you create a KMS key in a <a
-     *            href=
+     *            material for the KMS key. When you create a KMS key in an
+     *            CloudHSM <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>, KMS creates the key material for the
-     *            KMS key in the associated CloudHSM cluster. This value is
-     *            present only when the KMS key is created in a custom key
+     *            KMS key in the associated CloudHSM cluster. This field is
+     *            present only when the KMS key is created in an CloudHSM key
      *            store.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1751,8 +1771,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1767,7 +1787,7 @@ public class KeyMetadata implements Serializable {
      *         The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code>
      *         fields have the same value. We recommend that you use the
      *         <code>KeySpec</code> field in your code. However, to avoid
-     *         breaking changes, KMS will support both fields.
+     *         breaking changes, KMS supports both fields.
      *         </p>
      * @see CustomerMasterKeySpec
      */
@@ -1782,8 +1802,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1798,8 +1818,8 @@ public class KeyMetadata implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @see CustomerMasterKeySpec
      */
@@ -1814,8 +1834,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1833,8 +1853,8 @@ public class KeyMetadata implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1852,8 +1872,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1868,8 +1888,8 @@ public class KeyMetadata implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @see CustomerMasterKeySpec
      */
@@ -1884,8 +1904,8 @@ public class KeyMetadata implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1903,8 +1923,8 @@ public class KeyMetadata implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2867,6 +2887,90 @@ public class KeyMetadata implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about the external key that is associated with a KMS key in
+     * an external key store.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     * >External key</a> in the <i>Key Management Service Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the external key that is associated with a KMS
+     *         key in an external key store.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     *         >External key</a> in the <i>Key Management Service Developer
+     *         Guide</i>.
+     *         </p>
+     */
+    public XksKeyConfigurationType getXksKeyConfiguration() {
+        return xksKeyConfiguration;
+    }
+
+    /**
+     * <p>
+     * Information about the external key that is associated with a KMS key in
+     * an external key store.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     * >External key</a> in the <i>Key Management Service Developer Guide</i>.
+     * </p>
+     *
+     * @param xksKeyConfiguration <p>
+     *            Information about the external key that is associated with a
+     *            KMS key in an external key store.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     *            >External key</a> in the <i>Key Management Service Developer
+     *            Guide</i>.
+     *            </p>
+     */
+    public void setXksKeyConfiguration(XksKeyConfigurationType xksKeyConfiguration) {
+        this.xksKeyConfiguration = xksKeyConfiguration;
+    }
+
+    /**
+     * <p>
+     * Information about the external key that is associated with a KMS key in
+     * an external key store.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     * >External key</a> in the <i>Key Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param xksKeyConfiguration <p>
+     *            Information about the external key that is associated with a
+     *            KMS key in an external key store.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/keystore-external.html#concept-external-key"
+     *            >External key</a> in the <i>Key Management Service Developer
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public KeyMetadata withXksKeyConfiguration(XksKeyConfigurationType xksKeyConfiguration) {
+        this.xksKeyConfiguration = xksKeyConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2922,7 +3026,9 @@ public class KeyMetadata implements Serializable {
         if (getPendingDeletionWindowInDays() != null)
             sb.append("PendingDeletionWindowInDays: " + getPendingDeletionWindowInDays() + ",");
         if (getMacAlgorithms() != null)
-            sb.append("MacAlgorithms: " + getMacAlgorithms());
+            sb.append("MacAlgorithms: " + getMacAlgorithms() + ",");
+        if (getXksKeyConfiguration() != null)
+            sb.append("XksKeyConfiguration: " + getXksKeyConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -2974,6 +3080,8 @@ public class KeyMetadata implements Serializable {
                         : getPendingDeletionWindowInDays().hashCode());
         hashCode = prime * hashCode
                 + ((getMacAlgorithms() == null) ? 0 : getMacAlgorithms().hashCode());
+        hashCode = prime * hashCode
+                + ((getXksKeyConfiguration() == null) ? 0 : getXksKeyConfiguration().hashCode());
         return hashCode;
     }
 
@@ -3097,6 +3205,11 @@ public class KeyMetadata implements Serializable {
             return false;
         if (other.getMacAlgorithms() != null
                 && other.getMacAlgorithms().equals(this.getMacAlgorithms()) == false)
+            return false;
+        if (other.getXksKeyConfiguration() == null ^ this.getXksKeyConfiguration() == null)
+            return false;
+        if (other.getXksKeyConfiguration() != null
+                && other.getXksKeyConfiguration().equals(this.getXksKeyConfiguration()) == false)
             return false;
         return true;
     }

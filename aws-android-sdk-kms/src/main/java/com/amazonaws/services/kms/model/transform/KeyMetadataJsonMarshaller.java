@@ -161,6 +161,12 @@ class KeyMetadataJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (keyMetadata.getXksKeyConfiguration() != null) {
+            XksKeyConfigurationType xksKeyConfiguration = keyMetadata.getXksKeyConfiguration();
+            jsonWriter.name("XksKeyConfiguration");
+            XksKeyConfigurationTypeJsonMarshaller.getInstance().marshall(xksKeyConfiguration,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
