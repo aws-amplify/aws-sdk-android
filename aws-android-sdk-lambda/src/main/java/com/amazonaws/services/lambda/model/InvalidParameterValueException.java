@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * One of the parameters in the request is invalid.
+ * One of the parameters in the request is not valid.
  * </p>
  */
 public class InvalidParameterValueException extends AmazonServiceException {

@@ -216,8 +216,8 @@ public interface AWSLambda {
      * For example, if you invoke a function asynchronously and it returns an
      * error, Lambda executes the function up to two more times. For more
      * information, see <a href=
-     * "https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html"
-     * >Retry Behavior</a>.
+     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html"
+     * >Error handling and automatic retries in Lambda</a>.
      * </p>
      * <p>
      * For <a href=
@@ -228,26 +228,26 @@ public interface AWSLambda {
      * your function may receive the same event multiple times, even if no error
      * occurs. To retain events that were not processed, configure your function
      * with a <a href=
-     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#dlq"
+     * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq"
      * >dead-letter queue</a>.
      * </p>
      * <p>
      * The status code in the API response doesn't reflect function errors.
      * Error codes are reserved for errors that prevent your function from
-     * executing, such as permissions errors, <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
-     * errors</a>, or issues with your function's code and configuration. For
-     * example, Lambda returns <code>TooManyRequestsException</code> if
-     * executing the function would cause you to exceed a concurrency limit at
+     * executing, such as permissions errors, <a href=
+     * "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html"
+     * >quota</a> errors, or issues with your function's code and configuration.
+     * For example, Lambda returns <code>TooManyRequestsException</code> if
+     * running the function would cause you to exceed a concurrency limit at
      * either the account level (<code>ConcurrentInvocationLimitExceeded</code>)
      * or function level (
      * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
      * </p>
      * <p>
-     * For functions with a long timeout, your client might be disconnected
-     * during synchronous invocation while it waits for a response. Configure
-     * your HTTP client, SDK, firewall, proxy, or operating system to allow for
-     * long connections with timeout or keep-alive settings.
+     * For functions with a long timeout, your client might disconnect during
+     * synchronous invocation while it waits for a response. Configure your HTTP
+     * client, SDK, firewall, proxy, or operating system to allow for long
+     * connections with timeout or keep-alive settings.
      * </p>
      * <p>
      * This operation requires permission for the <a href=
@@ -275,6 +275,9 @@ public interface AWSLambda {
      * @throws EFSMountFailureException
      * @throws EFSMountTimeoutException
      * @throws EFSIOException
+     * @throws SnapStartException
+     * @throws SnapStartTimeoutException
+     * @throws SnapStartNotReadyException
      * @throws EC2ThrottledException
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException

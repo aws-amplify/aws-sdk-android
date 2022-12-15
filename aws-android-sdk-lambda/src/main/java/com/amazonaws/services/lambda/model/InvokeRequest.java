@@ -42,8 +42,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * example, if you invoke a function asynchronously and it returns an error,
  * Lambda executes the function up to two more times. For more information, see
  * <a
- * href="https://docs.aws.amazon.com/lambda/latest/dg/retries-on-errors.html">
- * Retry Behavior</a>.
+ * href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html"
+ * >Error handling and automatic retries in Lambda</a>.
  * </p>
  * <p>
  * For <a
@@ -53,22 +53,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * up with the queue, events may be lost. Occasionally, your function may
  * receive the same event multiple times, even if no error occurs. To retain
  * events that were not processed, configure your function with a <a href=
- * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#dlq"
+ * "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq"
  * >dead-letter queue</a>.
  * </p>
  * <p>
  * The status code in the API response doesn't reflect function errors. Error
  * codes are reserved for errors that prevent your function from executing, such
- * as permissions errors, <a
- * href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">limit
- * errors</a>, or issues with your function's code and configuration. For
- * example, Lambda returns <code>TooManyRequestsException</code> if executing
- * the function would cause you to exceed a concurrency limit at either the
- * account level (<code>ConcurrentInvocationLimitExceeded</code>) or function
- * level (<code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
+ * as permissions errors, <a href=
+ * "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html"
+ * >quota</a> errors, or issues with your function's code and configuration. For
+ * example, Lambda returns <code>TooManyRequestsException</code> if running the
+ * function would cause you to exceed a concurrency limit at either the account
+ * level (<code>ConcurrentInvocationLimitExceeded</code>) or function level (
+ * <code>ReservedFunctionConcurrentInvocationLimitExceeded</code>).
  * </p>
  * <p>
- * For functions with a long timeout, your client might be disconnected during
+ * For functions with a long timeout, your client might disconnect during
  * synchronous invocation while it waits for a response. Configure your HTTP
  * client, SDK, firewall, proxy, or operating system to allow for long
  * connections with timeout or keep-alive settings.
@@ -93,19 +93,19 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <b>Function name</b> – <code>my-function</code> (name-only),
      * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Function ARN</b> -
+     * <b>Function ARN</b> –
      * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
+     * <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
@@ -131,7 +131,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -139,14 +139,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -170,8 +170,8 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
-     * to the function in the context object.
+     * Up to 3,583 bytes of base64-encoded data about the invoking client to
+     * pass to the function in the context object.
      * </p>
      */
     private String clientContext;
@@ -209,19 +209,19 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <b>Function name</b> – <code>my-function</code> (name-only),
      * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Function ARN</b> -
+     * <b>Function ARN</b> –
      * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
+     * <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
@@ -247,20 +247,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         <ul>
      *         <li>
      *         <p>
-     *         <b>Function name</b> - <code>my-function</code> (name-only),
+     *         <b>Function name</b> – <code>my-function</code> (name-only),
      *         <code>my-function:v1</code> (with alias).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <b>Function ARN</b> -
+     *         <b>Function ARN</b> –
      *         <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *         .
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <b>Partial ARN</b> -
+     *         <b>Partial ARN</b> –
      *         <code>123456789012:function:my-function</code>.
      *         </p>
      *         </li>
@@ -286,19 +286,19 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <b>Function name</b> – <code>my-function</code> (name-only),
      * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Function ARN</b> -
+     * <b>Function ARN</b> –
      * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
+     * <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
@@ -324,20 +324,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <b>Function name</b> - <code>my-function</code> (name-only),
+     *            <b>Function name</b> – <code>my-function</code> (name-only),
      *            <code>my-function:v1</code> (with alias).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <b>Function ARN</b> -
+     *            <b>Function ARN</b> –
      *            <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *            .
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <b>Partial ARN</b> -
+     *            <b>Partial ARN</b> –
      *            <code>123456789012:function:my-function</code>.
      *            </p>
      *            </li>
@@ -363,19 +363,19 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <b>Function name</b> - <code>my-function</code> (name-only),
+     * <b>Function name</b> – <code>my-function</code> (name-only),
      * <code>my-function:v1</code> (with alias).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Function ARN</b> -
+     * <b>Function ARN</b> –
      * <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <b>Partial ARN</b> - <code>123456789012:function:my-function</code>.
+     * <b>Partial ARN</b> – <code>123456789012:function:my-function</code>.
      * </p>
      * </li>
      * </ul>
@@ -404,20 +404,20 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <b>Function name</b> - <code>my-function</code> (name-only),
+     *            <b>Function name</b> – <code>my-function</code> (name-only),
      *            <code>my-function:v1</code> (with alias).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <b>Function ARN</b> -
+     *            <b>Function ARN</b> –
      *            <code>arn:aws:lambda:us-west-2:123456789012:function:my-function</code>
      *            .
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <b>Partial ARN</b> -
+     *            <b>Partial ARN</b> –
      *            <code>123456789012:function:my-function</code>.
      *            </p>
      *            </li>
@@ -443,7 +443,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -451,14 +451,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -473,7 +473,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>RequestResponse</code> (default) - Invoke the function
+     *         <code>RequestResponse</code> (default) – Invoke the function
      *         synchronously. Keep the connection open until the function
      *         returns a response or times out. The API response includes the
      *         function response and additional data.
@@ -481,15 +481,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Event</code> - Invoke the function asynchronously. Send
+     *         <code>Event</code> – Invoke the function asynchronously. Send
      *         events that fail multiple times to the function's dead-letter
-     *         queue (if it's configured). The API response only includes a
+     *         queue (if one is configured). The API response only includes a
      *         status code.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>DryRun</code> - Validate parameter values and verify that
+     *         <code>DryRun</code> – Validate parameter values and verify that
      *         the user or role has permission to invoke the function.
      *         </p>
      *         </li>
@@ -507,7 +507,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -515,14 +515,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -537,7 +537,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>RequestResponse</code> (default) - Invoke the function
+     *            <code>RequestResponse</code> (default) – Invoke the function
      *            synchronously. Keep the connection open until the function
      *            returns a response or times out. The API response includes the
      *            function response and additional data.
@@ -545,15 +545,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Event</code> - Invoke the function asynchronously. Send
+     *            <code>Event</code> – Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if it's configured). The API response only includes a
+     *            queue (if one is configured). The API response only includes a
      *            status code.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DryRun</code> - Validate parameter values and verify
+     *            <code>DryRun</code> – Validate parameter values and verify
      *            that the user or role has permission to invoke the function.
      *            </p>
      *            </li>
@@ -571,7 +571,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -579,14 +579,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -604,7 +604,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>RequestResponse</code> (default) - Invoke the function
+     *            <code>RequestResponse</code> (default) – Invoke the function
      *            synchronously. Keep the connection open until the function
      *            returns a response or times out. The API response includes the
      *            function response and additional data.
@@ -612,15 +612,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Event</code> - Invoke the function asynchronously. Send
+     *            <code>Event</code> – Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if it's configured). The API response only includes a
+     *            queue (if one is configured). The API response only includes a
      *            status code.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DryRun</code> - Validate parameter values and verify
+     *            <code>DryRun</code> – Validate parameter values and verify
      *            that the user or role has permission to invoke the function.
      *            </p>
      *            </li>
@@ -641,7 +641,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -649,14 +649,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -671,7 +671,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>RequestResponse</code> (default) - Invoke the function
+     *            <code>RequestResponse</code> (default) – Invoke the function
      *            synchronously. Keep the connection open until the function
      *            returns a response or times out. The API response includes the
      *            function response and additional data.
@@ -679,15 +679,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Event</code> - Invoke the function asynchronously. Send
+     *            <code>Event</code> – Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if it's configured). The API response only includes a
+     *            queue (if one is configured). The API response only includes a
      *            status code.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DryRun</code> - Validate parameter values and verify
+     *            <code>DryRun</code> – Validate parameter values and verify
      *            that the user or role has permission to invoke the function.
      *            </p>
      *            </li>
@@ -705,7 +705,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <ul>
      * <li>
      * <p>
-     * <code>RequestResponse</code> (default) - Invoke the function
+     * <code>RequestResponse</code> (default) – Invoke the function
      * synchronously. Keep the connection open until the function returns a
      * response or times out. The API response includes the function response
      * and additional data.
@@ -713,14 +713,14 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * </li>
      * <li>
      * <p>
-     * <code>Event</code> - Invoke the function asynchronously. Send events that
-     * fail multiple times to the function's dead-letter queue (if it's
+     * <code>Event</code> – Invoke the function asynchronously. Send events that
+     * fail multiple times to the function's dead-letter queue (if one is
      * configured). The API response only includes a status code.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DryRun</code> - Validate parameter values and verify that the user
+     * <code>DryRun</code> – Validate parameter values and verify that the user
      * or role has permission to invoke the function.
      * </p>
      * </li>
@@ -738,7 +738,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>RequestResponse</code> (default) - Invoke the function
+     *            <code>RequestResponse</code> (default) – Invoke the function
      *            synchronously. Keep the connection open until the function
      *            returns a response or times out. The API response includes the
      *            function response and additional data.
@@ -746,15 +746,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Event</code> - Invoke the function asynchronously. Send
+     *            <code>Event</code> – Invoke the function asynchronously. Send
      *            events that fail multiple times to the function's dead-letter
-     *            queue (if it's configured). The API response only includes a
+     *            queue (if one is configured). The API response only includes a
      *            status code.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DryRun</code> - Validate parameter values and verify
+     *            <code>DryRun</code> – Validate parameter values and verify
      *            that the user or role has permission to invoke the function.
      *            </p>
      *            </li>
@@ -877,13 +877,13 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
-     * to the function in the context object.
+     * Up to 3,583 bytes of base64-encoded data about the invoking client to
+     * pass to the function in the context object.
      * </p>
      *
      * @return <p>
-     *         Up to 3583 bytes of base64-encoded data about the invoking client
-     *         to pass to the function in the context object.
+     *         Up to 3,583 bytes of base64-encoded data about the invoking
+     *         client to pass to the function in the context object.
      *         </p>
      */
     public String getClientContext() {
@@ -892,12 +892,12 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
-     * to the function in the context object.
+     * Up to 3,583 bytes of base64-encoded data about the invoking client to
+     * pass to the function in the context object.
      * </p>
      *
      * @param clientContext <p>
-     *            Up to 3583 bytes of base64-encoded data about the invoking
+     *            Up to 3,583 bytes of base64-encoded data about the invoking
      *            client to pass to the function in the context object.
      *            </p>
      */
@@ -907,15 +907,15 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * Up to 3583 bytes of base64-encoded data about the invoking client to pass
-     * to the function in the context object.
+     * Up to 3,583 bytes of base64-encoded data about the invoking client to
+     * pass to the function in the context object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param clientContext <p>
-     *            Up to 3583 bytes of base64-encoded data about the invoking
+     *            Up to 3,583 bytes of base64-encoded data about the invoking
      *            client to pass to the function in the context object.
      *            </p>
      * @return A reference to this updated object so that method calls can be

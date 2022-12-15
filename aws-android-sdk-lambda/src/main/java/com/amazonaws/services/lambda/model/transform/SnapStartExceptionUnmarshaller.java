@@ -13,29 +13,30 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.services.kinesisfirehose.model.transform;
+package com.amazonaws.services.lambda.model.transform;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.kinesisfirehose.model.ServiceUnavailableException;
+import com.amazonaws.services.lambda.model.SnapStartException;
 
-public class ServiceUnavailableExceptionUnmarshaller extends JsonErrorUnmarshaller {
+public class SnapStartExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
-    public ServiceUnavailableExceptionUnmarshaller() {
-        super(ServiceUnavailableException.class);
+    public SnapStartExceptionUnmarshaller() {
+        super(SnapStartException.class);
     }
 
     @Override
     public boolean match(JsonErrorResponse error) throws Exception {
-        return error.getErrorCode().equals("ServiceUnavailableException");
+        return error.getErrorCode().equals("SnapStartException");
     }
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
 
-        ServiceUnavailableException e = (ServiceUnavailableException) super.unmarshall(error);
-        e.setErrorCode("ServiceUnavailableException");
+        SnapStartException e = (SnapStartException) super.unmarshall(error);
+        e.setErrorCode("SnapStartException");
+        e.setType(String.valueOf(error.get("Type")));
 
         return e;
     }

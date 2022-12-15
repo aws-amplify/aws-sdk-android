@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Lambda was not able to set up VPC access for the Lambda function because one
- * or more configured subnets has no available IP addresses.
+ * Lambda couldn't set up VPC access for the Lambda function because one or more
+ * configured subnets has no available IP addresses.
  * </p>
  */
 public class SubnetIPAddressLimitReachedException extends AmazonServiceException {

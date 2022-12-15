@@ -19,21 +19,22 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Amazon EC2 throttled Lambda during Lambda function initialization using the
- * execution role provided for the function.
+ * The runtime restore hook failed to complete within the timeout limit (2
+ * seconds).
  * </p>
  */
-public class EC2ThrottledException extends AmazonServiceException {
+public class SnapStartTimeoutException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     private String type;
 
     /**
-     * Constructs a new EC2ThrottledException with the specified error message.
+     * Constructs a new SnapStartTimeoutException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public EC2ThrottledException(String message) {
+    public SnapStartTimeoutException(String message) {
         super(message);
     }
 
