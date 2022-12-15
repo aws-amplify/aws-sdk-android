@@ -55,6 +55,20 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     */
+    private String inputType;
+
+    /**
+     * <p>
      * The name of the Call Analytics category you want to update. Category
      * names are case sensitive.
      * </p>
@@ -207,6 +221,152 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
     }
 
     /**
+     * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     *
+     * @return <p>
+     *         Choose whether you want to update a streaming or a batch Call
+     *         Analytics category. The input type you specify must match the
+     *         input type specified when the category was created. For example,
+     *         if you created a category with the <code>POST_CALL</code> input
+     *         type, you must use <code>POST_CALL</code> as the input type when
+     *         updating this category.
+     *         </p>
+     * @see InputType
+     */
+    public String getInputType() {
+        return inputType;
+    }
+
+    /**
+     * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     *
+     * @param inputType <p>
+     *            Choose whether you want to update a streaming or a batch Call
+     *            Analytics category. The input type you specify must match the
+     *            input type specified when the category was created. For
+     *            example, if you created a category with the
+     *            <code>POST_CALL</code> input type, you must use
+     *            <code>POST_CALL</code> as the input type when updating this
+     *            category.
+     *            </p>
+     * @see InputType
+     */
+    public void setInputType(String inputType) {
+        this.inputType = inputType;
+    }
+
+    /**
+     * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     *
+     * @param inputType <p>
+     *            Choose whether you want to update a streaming or a batch Call
+     *            Analytics category. The input type you specify must match the
+     *            input type specified when the category was created. For
+     *            example, if you created a category with the
+     *            <code>POST_CALL</code> input type, you must use
+     *            <code>POST_CALL</code> as the input type when updating this
+     *            category.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see InputType
+     */
+    public UpdateCallAnalyticsCategoryRequest withInputType(String inputType) {
+        this.inputType = inputType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     *
+     * @param inputType <p>
+     *            Choose whether you want to update a streaming or a batch Call
+     *            Analytics category. The input type you specify must match the
+     *            input type specified when the category was created. For
+     *            example, if you created a category with the
+     *            <code>POST_CALL</code> input type, you must use
+     *            <code>POST_CALL</code> as the input type when updating this
+     *            category.
+     *            </p>
+     * @see InputType
+     */
+    public void setInputType(InputType inputType) {
+        this.inputType = inputType.toString();
+    }
+
+    /**
+     * <p>
+     * Choose whether you want to update a streaming or a batch Call Analytics
+     * category. The input type you specify must match the input type specified
+     * when the category was created. For example, if you created a category
+     * with the <code>POST_CALL</code> input type, you must use
+     * <code>POST_CALL</code> as the input type when updating this category.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>REAL_TIME, POST_CALL
+     *
+     * @param inputType <p>
+     *            Choose whether you want to update a streaming or a batch Call
+     *            Analytics category. The input type you specify must match the
+     *            input type specified when the category was created. For
+     *            example, if you created a category with the
+     *            <code>POST_CALL</code> input type, you must use
+     *            <code>POST_CALL</code> as the input type when updating this
+     *            category.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see InputType
+     */
+    public UpdateCallAnalyticsCategoryRequest withInputType(InputType inputType) {
+        this.inputType = inputType.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -220,7 +380,9 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
         if (getCategoryName() != null)
             sb.append("CategoryName: " + getCategoryName() + ",");
         if (getRules() != null)
-            sb.append("Rules: " + getRules());
+            sb.append("Rules: " + getRules() + ",");
+        if (getInputType() != null)
+            sb.append("InputType: " + getInputType());
         sb.append("}");
         return sb.toString();
     }
@@ -233,6 +395,7 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
         hashCode = prime * hashCode
                 + ((getCategoryName() == null) ? 0 : getCategoryName().hashCode());
         hashCode = prime * hashCode + ((getRules() == null) ? 0 : getRules().hashCode());
+        hashCode = prime * hashCode + ((getInputType() == null) ? 0 : getInputType().hashCode());
         return hashCode;
     }
 
@@ -255,6 +418,11 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
         if (other.getRules() == null ^ this.getRules() == null)
             return false;
         if (other.getRules() != null && other.getRules().equals(this.getRules()) == false)
+            return false;
+        if (other.getInputType() == null ^ this.getInputType() == null)
+            return false;
+        if (other.getInputType() != null
+                && other.getInputType().equals(this.getInputType()) == false)
             return false;
         return true;
     }

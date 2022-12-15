@@ -44,7 +44,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last updated.
+     * The date and time the specified custom vocabulary was last updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -58,7 +58,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -238,7 +238,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last updated.
+     * The date and time the specified custom vocabulary was last updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -248,7 +248,8 @@ public class UpdateVocabularyResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time the specified vocabulary was last updated.
+     *         The date and time the specified custom vocabulary was last
+     *         updated.
      *         </p>
      *         <p>
      *         Timestamps are in the format
@@ -263,7 +264,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last updated.
+     * The date and time the specified custom vocabulary was last updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -273,7 +274,8 @@ public class UpdateVocabularyResult implements Serializable {
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary was last updated.
+     *            The date and time the specified custom vocabulary was last
+     *            updated.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -288,7 +290,7 @@ public class UpdateVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last updated.
+     * The date and time the specified custom vocabulary was last updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -301,7 +303,8 @@ public class UpdateVocabularyResult implements Serializable {
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary was last updated.
+     *            The date and time the specified custom vocabulary was last
+     *            updated.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -320,7 +323,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -329,7 +332,7 @@ public class UpdateVocabularyResult implements Serializable {
      *
      * @return <p>
      *         The processing state of your custom vocabulary. If the state is
-     *         <code>READY</code>, you can use the vocabulary in a
+     *         <code>READY</code>, you can use the custom vocabulary in a
      *         <code>StartTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
@@ -341,7 +344,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -350,7 +353,7 @@ public class UpdateVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -362,7 +365,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -374,7 +377,7 @@ public class UpdateVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -389,7 +392,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -398,7 +401,7 @@ public class UpdateVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -410,7 +413,7 @@ public class UpdateVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -422,7 +425,7 @@ public class UpdateVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be

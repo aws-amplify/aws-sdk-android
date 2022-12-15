@@ -45,14 +45,16 @@ import java.io.Serializable;
  * </ul>
  * <p>
  * See <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics-create-categories.html#call-analytics-create-categories-rules"
- * >Rule criteria</a> for examples.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch"
+ * >Rule criteria for batch categories</a> and <a href=
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html#tca-rules-stream"
+ * >Rule criteria for streaming categories</a> for usage examples.
  * </p>
  */
 public class TranscriptFilter implements Serializable {
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -69,25 +71,25 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      */
     private AbsoluteTimeRange absoluteTimeRange;
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      */
     private RelativeTimeRange relativeTimeRange;
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -98,23 +100,23 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the absence of the phrase you specified
-     * in your request. Set to <code>FALSE</code> to flag the presence of the
-     * phrase you specified in your request.
+     * Set to <code>TRUE</code> to flag the absence of the phrase that you
+     * specified in your request. Set to <code>FALSE</code> to flag the presence
+     * of the phrase that you specified in your request.
      * </p>
      */
     private Boolean negate;
 
     /**
      * <p>
-     * Specify the phrases you want to flag.
+     * Specify the phrases that you want to flag.
      * </p>
      */
     private java.util.List<String> targets;
 
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -128,8 +130,8 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>EXACT
      *
      * @return <p>
-     *         Flag the presence or absence of an exact match to the phrases you
-     *         specify. For example, if you specify the phrase
+     *         Flag the presence or absence of an exact match to the phrases
+     *         that you specify. For example, if you specify the phrase
      *         "speak to a manager" as your <code>Targets</code> value, only
      *         that exact phrase is flagged.
      *         </p>
@@ -146,7 +148,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -161,7 +163,7 @@ public class TranscriptFilter implements Serializable {
      *
      * @param transcriptFilterType <p>
      *            Flag the presence or absence of an exact match to the phrases
-     *            you specify. For example, if you specify the phrase
+     *            that you specify. For example, if you specify the phrase
      *            "speak to a manager" as your <code>Targets</code> value, only
      *            that exact phrase is flagged.
      *            </p>
@@ -178,7 +180,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -196,7 +198,7 @@ public class TranscriptFilter implements Serializable {
      *
      * @param transcriptFilterType <p>
      *            Flag the presence or absence of an exact match to the phrases
-     *            you specify. For example, if you specify the phrase
+     *            that you specify. For example, if you specify the phrase
      *            "speak to a manager" as your <code>Targets</code> value, only
      *            that exact phrase is flagged.
      *            </p>
@@ -216,7 +218,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -231,7 +233,7 @@ public class TranscriptFilter implements Serializable {
      *
      * @param transcriptFilterType <p>
      *            Flag the presence or absence of an exact match to the phrases
-     *            you specify. For example, if you specify the phrase
+     *            that you specify. For example, if you specify the phrase
      *            "speak to a manager" as your <code>Targets</code> value, only
      *            that exact phrase is flagged.
      *            </p>
@@ -248,7 +250,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Flag the presence or absence of an exact match to the phrases you
+     * Flag the presence or absence of an exact match to the phrases that you
      * specify. For example, if you specify the phrase "speak to a manager" as
      * your <code>Targets</code> value, only that exact phrase is flagged.
      * </p>
@@ -266,7 +268,7 @@ public class TranscriptFilter implements Serializable {
      *
      * @param transcriptFilterType <p>
      *            Flag the presence or absence of an exact match to the phrases
-     *            you specify. For example, if you specify the phrase
+     *            that you specify. For example, if you specify the phrase
      *            "speak to a manager" as your <code>Targets</code> value, only
      *            that exact phrase is flagged.
      *            </p>
@@ -286,14 +288,14 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in milliseconds) in your
-     *         audio, during which you want to search for the specified key
+     *         Makes it possible to specify a time range (in milliseconds) in
+     *         your audio, during which you want to search for the specified key
      *         words or phrases. See for more detail.
      *         </p>
      */
@@ -303,15 +305,15 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for the specified key
-     *            words or phrases. See for more detail.
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for the specified
+     *            key words or phrases. See for more detail.
      *            </p>
      */
     public void setAbsoluteTimeRange(AbsoluteTimeRange absoluteTimeRange) {
@@ -320,18 +322,18 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for the specified key
-     *            words or phrases. See for more detail.
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for the specified
+     *            key words or phrases. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -343,15 +345,15 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in percentage) in your media
-     *         file, during which you want to search for the specified key words
-     *         or phrases. See for more detail.
+     *         Makes it possible to specify a time range (in percentage) in your
+     *         media file, during which you want to search for the specified key
+     *         words or phrases. See for more detail.
      *         </p>
      */
     public RelativeTimeRange getRelativeTimeRange() {
@@ -360,15 +362,15 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for the specified
-     *            key words or phrases. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for the
+     *            specified key words or phrases. See for more detail.
      *            </p>
      */
     public void setRelativeTimeRange(RelativeTimeRange relativeTimeRange) {
@@ -377,18 +379,18 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for the specified key words or phrases.
-     * See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for the specified key words or
+     * phrases. See for more detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for the specified
-     *            key words or phrases. See for more detail.
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for the
+     *            specified key words or phrases. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -400,7 +402,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -408,8 +410,8 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @return <p>
-     *         Specify the participant you want to flag. Omitting this parameter
-     *         is equivalent to specifying both participants.
+     *         Specify the participant that you want to flag. Omitting this
+     *         parameter is equivalent to specifying both participants.
      *         </p>
      * @see ParticipantRole
      */
@@ -419,7 +421,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -427,7 +429,7 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -438,7 +440,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -449,7 +451,7 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -463,7 +465,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -471,7 +473,7 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -482,7 +484,7 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the participant you want to flag. Omitting this parameter is
+     * Specify the participant that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -493,7 +495,7 @@ public class TranscriptFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the participant you want to flag. Omitting this
+     *            Specify the participant that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -507,15 +509,15 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the absence of the phrase you specified
-     * in your request. Set to <code>FALSE</code> to flag the presence of the
-     * phrase you specified in your request.
+     * Set to <code>TRUE</code> to flag the absence of the phrase that you
+     * specified in your request. Set to <code>FALSE</code> to flag the presence
+     * of the phrase that you specified in your request.
      * </p>
      *
      * @return <p>
-     *         Set to <code>TRUE</code> to flag the absence of the phrase you
-     *         specified in your request. Set to <code>FALSE</code> to flag the
-     *         presence of the phrase you specified in your request.
+     *         Set to <code>TRUE</code> to flag the absence of the phrase that
+     *         you specified in your request. Set to <code>FALSE</code> to flag
+     *         the presence of the phrase that you specified in your request.
      *         </p>
      */
     public Boolean isNegate() {
@@ -524,15 +526,15 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the absence of the phrase you specified
-     * in your request. Set to <code>FALSE</code> to flag the presence of the
-     * phrase you specified in your request.
+     * Set to <code>TRUE</code> to flag the absence of the phrase that you
+     * specified in your request. Set to <code>FALSE</code> to flag the presence
+     * of the phrase that you specified in your request.
      * </p>
      *
      * @return <p>
-     *         Set to <code>TRUE</code> to flag the absence of the phrase you
-     *         specified in your request. Set to <code>FALSE</code> to flag the
-     *         presence of the phrase you specified in your request.
+     *         Set to <code>TRUE</code> to flag the absence of the phrase that
+     *         you specified in your request. Set to <code>FALSE</code> to flag
+     *         the presence of the phrase that you specified in your request.
      *         </p>
      */
     public Boolean getNegate() {
@@ -541,15 +543,16 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the absence of the phrase you specified
-     * in your request. Set to <code>FALSE</code> to flag the presence of the
-     * phrase you specified in your request.
+     * Set to <code>TRUE</code> to flag the absence of the phrase that you
+     * specified in your request. Set to <code>FALSE</code> to flag the presence
+     * of the phrase that you specified in your request.
      * </p>
      *
      * @param negate <p>
-     *            Set to <code>TRUE</code> to flag the absence of the phrase you
-     *            specified in your request. Set to <code>FALSE</code> to flag
-     *            the presence of the phrase you specified in your request.
+     *            Set to <code>TRUE</code> to flag the absence of the phrase
+     *            that you specified in your request. Set to <code>FALSE</code>
+     *            to flag the presence of the phrase that you specified in your
+     *            request.
      *            </p>
      */
     public void setNegate(Boolean negate) {
@@ -558,18 +561,19 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Set to <code>TRUE</code> to flag the absence of the phrase you specified
-     * in your request. Set to <code>FALSE</code> to flag the presence of the
-     * phrase you specified in your request.
+     * Set to <code>TRUE</code> to flag the absence of the phrase that you
+     * specified in your request. Set to <code>FALSE</code> to flag the presence
+     * of the phrase that you specified in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param negate <p>
-     *            Set to <code>TRUE</code> to flag the absence of the phrase you
-     *            specified in your request. Set to <code>FALSE</code> to flag
-     *            the presence of the phrase you specified in your request.
+     *            Set to <code>TRUE</code> to flag the absence of the phrase
+     *            that you specified in your request. Set to <code>FALSE</code>
+     *            to flag the presence of the phrase that you specified in your
+     *            request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -581,11 +585,11 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the phrases you want to flag.
+     * Specify the phrases that you want to flag.
      * </p>
      *
      * @return <p>
-     *         Specify the phrases you want to flag.
+     *         Specify the phrases that you want to flag.
      *         </p>
      */
     public java.util.List<String> getTargets() {
@@ -594,11 +598,11 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the phrases you want to flag.
+     * Specify the phrases that you want to flag.
      * </p>
      *
      * @param targets <p>
-     *            Specify the phrases you want to flag.
+     *            Specify the phrases that you want to flag.
      *            </p>
      */
     public void setTargets(java.util.Collection<String> targets) {
@@ -612,14 +616,14 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the phrases you want to flag.
+     * Specify the phrases that you want to flag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targets <p>
-     *            Specify the phrases you want to flag.
+     *            Specify the phrases that you want to flag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -636,14 +640,14 @@ public class TranscriptFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the phrases you want to flag.
+     * Specify the phrases that you want to flag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targets <p>
-     *            Specify the phrases you want to flag.
+     *            Specify the phrases that you want to flag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

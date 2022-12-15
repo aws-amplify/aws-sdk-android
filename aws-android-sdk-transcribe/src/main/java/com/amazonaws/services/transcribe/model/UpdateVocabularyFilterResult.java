@@ -31,7 +31,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +44,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last updated.
+     * The date and time the specified custom vocabulary filter was last
+     * updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -114,7 +115,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +125,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @return <p>
-     *         The language code you selected for your vocabulary filter.
+     *         The language code you selected for your custom vocabulary filter.
      *         </p>
      * @see LanguageCode
      */
@@ -134,7 +135,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +145,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your vocabulary filter.
+     *            The language code you selected for your custom vocabulary
+     *            filter.
      *            </p>
      * @see LanguageCode
      */
@@ -154,7 +156,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -167,7 +169,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your vocabulary filter.
+     *            The language code you selected for your custom vocabulary
+     *            filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,7 +183,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -190,7 +193,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your vocabulary filter.
+     *            The language code you selected for your custom vocabulary
+     *            filter.
      *            </p>
      * @see LanguageCode
      */
@@ -200,7 +204,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The language code you selected for your vocabulary filter.
+     * The language code you selected for your custom vocabulary filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,7 +217,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
-     *            The language code you selected for your vocabulary filter.
+     *            The language code you selected for your custom vocabulary
+     *            filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -226,7 +231,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last updated.
+     * The date and time the specified custom vocabulary filter was last
+     * updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -236,7 +242,7 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time the specified vocabulary filter was last
+     *         The date and time the specified custom vocabulary filter was last
      *         updated.
      *         </p>
      *         <p>
@@ -252,7 +258,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last updated.
+     * The date and time the specified custom vocabulary filter was last
+     * updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -262,8 +269,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary filter was last
-     *            updated.
+     *            The date and time the specified custom vocabulary filter was
+     *            last updated.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -278,7 +285,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary filter was last updated.
+     * The date and time the specified custom vocabulary filter was last
+     * updated.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -291,8 +299,8 @@ public class UpdateVocabularyFilterResult implements Serializable {
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary filter was last
-     *            updated.
+     *            The date and time the specified custom vocabulary filter was
+     *            last updated.
      *            </p>
      *            <p>
      *            Timestamps are in the format

@@ -49,9 +49,9 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The maximum number of custom vocabulary filters to return in each page of
-     * results. If there are fewer results than the value you specify, only the
-     * actual results are returned. If you don't specify a value, a default of 5
-     * is used.
+     * results. If there are fewer results than the value that you specify, only
+     * the actual results are returned. If you don't specify a value, a default
+     * of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -161,9 +161,9 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The maximum number of custom vocabulary filters to return in each page of
-     * results. If there are fewer results than the value you specify, only the
-     * actual results are returned. If you don't specify a value, a default of 5
-     * is used.
+     * results. If there are fewer results than the value that you specify, only
+     * the actual results are returned. If you don't specify a value, a default
+     * of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -171,8 +171,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         The maximum number of custom vocabulary filters to return in each
-     *         page of results. If there are fewer results than the value you
-     *         specify, only the actual results are returned. If you don't
+     *         page of results. If there are fewer results than the value that
+     *         you specify, only the actual results are returned. If you don't
      *         specify a value, a default of 5 is used.
      *         </p>
      */
@@ -183,9 +183,9 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The maximum number of custom vocabulary filters to return in each page of
-     * results. If there are fewer results than the value you specify, only the
-     * actual results are returned. If you don't specify a value, a default of 5
-     * is used.
+     * results. If there are fewer results than the value that you specify, only
+     * the actual results are returned. If you don't specify a value, a default
+     * of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -194,8 +194,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * @param maxResults <p>
      *            The maximum number of custom vocabulary filters to return in
      *            each page of results. If there are fewer results than the
-     *            value you specify, only the actual results are returned. If
-     *            you don't specify a value, a default of 5 is used.
+     *            value that you specify, only the actual results are returned.
+     *            If you don't specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -205,9 +205,9 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The maximum number of custom vocabulary filters to return in each page of
-     * results. If there are fewer results than the value you specify, only the
-     * actual results are returned. If you don't specify a value, a default of 5
-     * is used.
+     * results. If there are fewer results than the value that you specify, only
+     * the actual results are returned. If you don't specify a value, a default
+     * of 5 is used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -219,8 +219,8 @@ public class ListVocabularyFiltersRequest extends AmazonWebServiceRequest implem
      * @param maxResults <p>
      *            The maximum number of custom vocabulary filters to return in
      *            each page of results. If there are fewer results than the
-     *            value you specify, only the actual results are returned. If
-     *            you don't specify a value, a default of 5 is used.
+     *            value that you specify, only the actual results are returned.
+     *            If you don't specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

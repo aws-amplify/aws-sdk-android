@@ -79,6 +79,11 @@ public class UpdateCallAnalyticsCategoryRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (updateCallAnalyticsCategoryRequest.getInputType() != null) {
+                String inputType = updateCallAnalyticsCategoryRequest.getInputType();
+                jsonWriter.name("InputType");
+                jsonWriter.value(inputType);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

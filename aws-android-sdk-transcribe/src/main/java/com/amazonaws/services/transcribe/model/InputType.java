@@ -19,21 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * CLMLanguage Code
+ * Input Type
  */
-public enum CLMLanguageCode {
+public enum InputType {
 
-    EnUS("en-US"),
-    HiIN("hi-IN"),
-    EsUS("es-US"),
-    EnGB("en-GB"),
-    EnAU("en-AU"),
-    DeDE("de-DE"),
-    JaJP("ja-JP");
+    REAL_TIME("REAL_TIME"),
+    POST_CALL("POST_CALL");
 
     private String value;
 
-    private CLMLanguageCode(String value) {
+    private InputType(String value) {
         this.value = value;
     }
 
@@ -42,25 +37,20 @@ public enum CLMLanguageCode {
         return value;
     }
 
-    private static final Map<String, CLMLanguageCode> enumMap;
+    private static final Map<String, InputType> enumMap;
     static {
-        enumMap = new HashMap<String, CLMLanguageCode>();
-        enumMap.put("en-US", EnUS);
-        enumMap.put("hi-IN", HiIN);
-        enumMap.put("es-US", EsUS);
-        enumMap.put("en-GB", EnGB);
-        enumMap.put("en-AU", EnAU);
-        enumMap.put("de-DE", DeDE);
-        enumMap.put("ja-JP", JaJP);
+        enumMap = new HashMap<String, InputType>();
+        enumMap.put("REAL_TIME", REAL_TIME);
+        enumMap.put("POST_CALL", POST_CALL);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return CLMLanguageCode corresponding to the value
+     * @return InputType corresponding to the value
      */
-    public static CLMLanguageCode fromValue(String value) {
+    public static InputType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
