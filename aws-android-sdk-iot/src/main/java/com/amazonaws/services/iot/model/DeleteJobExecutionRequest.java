@@ -103,7 +103,6 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
     private String namespaceId;
@@ -481,7 +480,6 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
@@ -525,7 +523,6 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * </note>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
@@ -572,7 +569,6 @@ public class DeleteJobExecutionRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param namespaceId <p>
