@@ -19,17 +19,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Channel Protocol
+ * Sync Status
  */
-public enum ChannelProtocol {
+public enum SyncStatus {
 
-    WSS("WSS"),
-    HTTPS("HTTPS"),
-    WEBRTC("WEBRTC");
+    SYNCING("SYNCING"),
+    ACKNOWLEDGED("ACKNOWLEDGED"),
+    IN_SYNC("IN_SYNC"),
+    SYNC_FAILED("SYNC_FAILED"),
+    DELETING("DELETING"),
+    DELETE_FAILED("DELETE_FAILED");
 
     private String value;
 
-    private ChannelProtocol(String value) {
+    private SyncStatus(String value) {
         this.value = value;
     }
 
@@ -38,21 +41,24 @@ public enum ChannelProtocol {
         return value;
     }
 
-    private static final Map<String, ChannelProtocol> enumMap;
+    private static final Map<String, SyncStatus> enumMap;
     static {
-        enumMap = new HashMap<String, ChannelProtocol>();
-        enumMap.put("WSS", WSS);
-        enumMap.put("HTTPS", HTTPS);
-        enumMap.put("WEBRTC", WEBRTC);
+        enumMap = new HashMap<String, SyncStatus>();
+        enumMap.put("SYNCING", SYNCING);
+        enumMap.put("ACKNOWLEDGED", ACKNOWLEDGED);
+        enumMap.put("IN_SYNC", IN_SYNC);
+        enumMap.put("SYNC_FAILED", SYNC_FAILED);
+        enumMap.put("DELETING", DELETING);
+        enumMap.put("DELETE_FAILED", DELETE_FAILED);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ChannelProtocol corresponding to the value
+     * @return SyncStatus corresponding to the value
      */
-    public static ChannelProtocol fromValue(String value) {
+    public static SyncStatus fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

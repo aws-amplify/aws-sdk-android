@@ -31,7 +31,7 @@ public class ResourceEndpointListItem implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      */
     private String protocol;
 
@@ -50,7 +50,7 @@ public class ResourceEndpointListItem implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      *
      * @return <p>
      *         The protocol of the signaling channel returned by the
@@ -69,7 +69,7 @@ public class ResourceEndpointListItem implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      *
      * @param protocol <p>
      *            The protocol of the signaling channel returned by the
@@ -91,7 +91,7 @@ public class ResourceEndpointListItem implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      *
      * @param protocol <p>
      *            The protocol of the signaling channel returned by the
@@ -113,7 +113,7 @@ public class ResourceEndpointListItem implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      *
      * @param protocol <p>
      *            The protocol of the signaling channel returned by the
@@ -135,7 +135,7 @@ public class ResourceEndpointListItem implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>WSS, HTTPS
+     * <b>Allowed Values: </b>WSS, HTTPS, WEBRTC
      *
      * @param protocol <p>
      *            The protocol of the signaling channel returned by the

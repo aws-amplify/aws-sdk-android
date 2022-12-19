@@ -19,17 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Channel Protocol
+ * Strategy On Full Size
  */
-public enum ChannelProtocol {
+public enum StrategyOnFullSize {
 
-    WSS("WSS"),
-    HTTPS("HTTPS"),
-    WEBRTC("WEBRTC");
+    DELETE_OLDEST_MEDIA("DELETE_OLDEST_MEDIA"),
+    DENY_NEW_MEDIA("DENY_NEW_MEDIA");
 
     private String value;
 
-    private ChannelProtocol(String value) {
+    private StrategyOnFullSize(String value) {
         this.value = value;
     }
 
@@ -38,21 +37,20 @@ public enum ChannelProtocol {
         return value;
     }
 
-    private static final Map<String, ChannelProtocol> enumMap;
+    private static final Map<String, StrategyOnFullSize> enumMap;
     static {
-        enumMap = new HashMap<String, ChannelProtocol>();
-        enumMap.put("WSS", WSS);
-        enumMap.put("HTTPS", HTTPS);
-        enumMap.put("WEBRTC", WEBRTC);
+        enumMap = new HashMap<String, StrategyOnFullSize>();
+        enumMap.put("DELETE_OLDEST_MEDIA", DELETE_OLDEST_MEDIA);
+        enumMap.put("DENY_NEW_MEDIA", DENY_NEW_MEDIA);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ChannelProtocol corresponding to the value
+     * @return StrategyOnFullSize corresponding to the value
      */
-    public static ChannelProtocol fromValue(String value) {
+    public static StrategyOnFullSize fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
