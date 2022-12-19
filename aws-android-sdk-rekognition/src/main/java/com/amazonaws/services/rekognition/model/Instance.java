@@ -45,6 +45,13 @@ public class Instance implements Serializable {
 
     /**
      * <p>
+     * The dominant colors found in an individual instance of a label.
+     * </p>
+     */
+    private java.util.List<DominantColor> dominantColors;
+
+    /**
+     * <p>
      * The position of the label instance on the image.
      * </p>
      *
@@ -149,6 +156,83 @@ public class Instance implements Serializable {
     }
 
     /**
+     * <p>
+     * The dominant colors found in an individual instance of a label.
+     * </p>
+     *
+     * @return <p>
+     *         The dominant colors found in an individual instance of a label.
+     *         </p>
+     */
+    public java.util.List<DominantColor> getDominantColors() {
+        return dominantColors;
+    }
+
+    /**
+     * <p>
+     * The dominant colors found in an individual instance of a label.
+     * </p>
+     *
+     * @param dominantColors <p>
+     *            The dominant colors found in an individual instance of a
+     *            label.
+     *            </p>
+     */
+    public void setDominantColors(java.util.Collection<DominantColor> dominantColors) {
+        if (dominantColors == null) {
+            this.dominantColors = null;
+            return;
+        }
+
+        this.dominantColors = new java.util.ArrayList<DominantColor>(dominantColors);
+    }
+
+    /**
+     * <p>
+     * The dominant colors found in an individual instance of a label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dominantColors <p>
+     *            The dominant colors found in an individual instance of a
+     *            label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Instance withDominantColors(DominantColor... dominantColors) {
+        if (getDominantColors() == null) {
+            this.dominantColors = new java.util.ArrayList<DominantColor>(dominantColors.length);
+        }
+        for (DominantColor value : dominantColors) {
+            this.dominantColors.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The dominant colors found in an individual instance of a label.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dominantColors <p>
+     *            The dominant colors found in an individual instance of a
+     *            label.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Instance withDominantColors(java.util.Collection<DominantColor> dominantColors) {
+        setDominantColors(dominantColors);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -162,7 +246,9 @@ public class Instance implements Serializable {
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
         if (getConfidence() != null)
-            sb.append("Confidence: " + getConfidence());
+            sb.append("Confidence: " + getConfidence() + ",");
+        if (getDominantColors() != null)
+            sb.append("DominantColors: " + getDominantColors());
         sb.append("}");
         return sb.toString();
     }
@@ -175,6 +261,8 @@ public class Instance implements Serializable {
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
+        hashCode = prime * hashCode
+                + ((getDominantColors() == null) ? 0 : getDominantColors().hashCode());
         return hashCode;
     }
 
@@ -198,6 +286,11 @@ public class Instance implements Serializable {
             return false;
         if (other.getConfidence() != null
                 && other.getConfidence().equals(this.getConfidence()) == false)
+            return false;
+        if (other.getDominantColors() == null ^ this.getDominantColors() == null)
+            return false;
+        if (other.getDominantColors() != null
+                && other.getDominantColors().equals(this.getDominantColors()) == false)
             return false;
         return true;
     }

@@ -41,6 +41,11 @@ class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshalle
             } else if (name.equals("Confidence")) {
                 instance.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DominantColors")) {
+                instance.setDominantColors(new ListUnmarshaller<DominantColor>(
+                        DominantColorJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

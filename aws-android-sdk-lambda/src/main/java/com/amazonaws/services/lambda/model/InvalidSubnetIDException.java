@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The Subnet ID provided in the Lambda function VPC configuration is invalid.
+ * The subnet ID provided in the Lambda function VPC configuration is not valid.
  * </p>
  */
 public class InvalidSubnetIDException extends AmazonServiceException {

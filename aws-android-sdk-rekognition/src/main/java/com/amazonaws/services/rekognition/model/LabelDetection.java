@@ -27,7 +27,8 @@ public class LabelDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the start of the video, that the label was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the label first appears.
      * </p>
      */
     private Long timestamp;
@@ -42,12 +43,15 @@ public class LabelDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the start of the video, that the label was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the label first appears.
      * </p>
      *
      * @return <p>
      *         Time, in milliseconds from the start of the video, that the label
-     *         was detected.
+     *         was detected. Note that <code>Timestamp</code> is not guaranteed
+     *         to be accurate to the individual frame where the label first
+     *         appears.
      *         </p>
      */
     public Long getTimestamp() {
@@ -57,12 +61,15 @@ public class LabelDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the start of the video, that the label was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the label first appears.
      * </p>
      *
      * @param timestamp <p>
      *            Time, in milliseconds from the start of the video, that the
-     *            label was detected.
+     *            label was detected. Note that <code>Timestamp</code> is not
+     *            guaranteed to be accurate to the individual frame where the
+     *            label first appears.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -72,7 +79,8 @@ public class LabelDetection implements Serializable {
     /**
      * <p>
      * Time, in milliseconds from the start of the video, that the label was
-     * detected.
+     * detected. Note that <code>Timestamp</code> is not guaranteed to be
+     * accurate to the individual frame where the label first appears.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -80,7 +88,9 @@ public class LabelDetection implements Serializable {
      *
      * @param timestamp <p>
      *            Time, in milliseconds from the start of the video, that the
-     *            label was detected.
+     *            label was detected. Note that <code>Timestamp</code> is not
+     *            guaranteed to be accurate to the individual frame where the
+     *            label first appears.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -33,7 +33,9 @@ public class PersonDetection implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the person's
-     * path was tracked.
+     * path was tracked. Note that <code>Timestamp</code> is not guaranteed to
+     * be accurate to the individual frame where the person's path first
+     * appears.
      * </p>
      */
     private Long timestamp;
@@ -48,12 +50,16 @@ public class PersonDetection implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the person's
-     * path was tracked.
+     * path was tracked. Note that <code>Timestamp</code> is not guaranteed to
+     * be accurate to the individual frame where the person's path first
+     * appears.
      * </p>
      *
      * @return <p>
      *         The time, in milliseconds from the start of the video, that the
-     *         person's path was tracked.
+     *         person's path was tracked. Note that <code>Timestamp</code> is
+     *         not guaranteed to be accurate to the individual frame where the
+     *         person's path first appears.
      *         </p>
      */
     public Long getTimestamp() {
@@ -63,12 +69,16 @@ public class PersonDetection implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the person's
-     * path was tracked.
+     * path was tracked. Note that <code>Timestamp</code> is not guaranteed to
+     * be accurate to the individual frame where the person's path first
+     * appears.
      * </p>
      *
      * @param timestamp <p>
      *            The time, in milliseconds from the start of the video, that
-     *            the person's path was tracked.
+     *            the person's path was tracked. Note that
+     *            <code>Timestamp</code> is not guaranteed to be accurate to the
+     *            individual frame where the person's path first appears.
      *            </p>
      */
     public void setTimestamp(Long timestamp) {
@@ -78,7 +88,9 @@ public class PersonDetection implements Serializable {
     /**
      * <p>
      * The time, in milliseconds from the start of the video, that the person's
-     * path was tracked.
+     * path was tracked. Note that <code>Timestamp</code> is not guaranteed to
+     * be accurate to the individual frame where the person's path first
+     * appears.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +98,9 @@ public class PersonDetection implements Serializable {
      *
      * @param timestamp <p>
      *            The time, in milliseconds from the start of the video, that
-     *            the person's path was tracked.
+     *            the person's path was tracked. Note that
+     *            <code>Timestamp</code> is not guaranteed to be accurate to the
+     *            individual frame where the person's path first appears.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

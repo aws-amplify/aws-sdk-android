@@ -50,6 +50,16 @@ class LabelJsonUnmarshaller implements Unmarshaller<Label, JsonUnmarshallerConte
                 label.setParents(new ListUnmarshaller<Parent>(ParentJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Aliases")) {
+                label.setAliases(new ListUnmarshaller<LabelAlias>(LabelAliasJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Categories")) {
+                label.setCategories(new ListUnmarshaller<LabelCategory>(
+                        LabelCategoryJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -20,8 +20,10 @@ import java.io.Serializable;
 /**
  * <p>
  * Specifies the starting point in a Kinesis stream to start processing. You can
- * use the producer timestamp or the fragment number. For more information, see
- * <a href=
+ * use the producer timestamp or the fragment number. One of either producer
+ * timestamp or fragment number is required. If you use the producer timestamp,
+ * you must put the time in milliseconds. For more information about fragment
+ * numbers, see <a href=
  * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/API_reader_Fragment.html"
  * >Fragment</a>.
  * </p>
@@ -29,7 +31,8 @@ import java.io.Serializable;
 public class KinesisVideoStreamStartSelector implements Serializable {
     /**
      * <p>
-     * The timestamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment, in
+     * milliseconds, expressed in unix time format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,14 +54,16 @@ public class KinesisVideoStreamStartSelector implements Serializable {
 
     /**
      * <p>
-     * The timestamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment, in
+     * milliseconds, expressed in unix time format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The timestamp from the producer corresponding to the fragment.
+     *         The timestamp from the producer corresponding to the fragment, in
+     *         milliseconds, expressed in unix time format.
      *         </p>
      */
     public Long getProducerTimestamp() {
@@ -67,14 +72,16 @@ public class KinesisVideoStreamStartSelector implements Serializable {
 
     /**
      * <p>
-     * The timestamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment, in
+     * milliseconds, expressed in unix time format.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param producerTimestamp <p>
-     *            The timestamp from the producer corresponding to the fragment.
+     *            The timestamp from the producer corresponding to the fragment,
+     *            in milliseconds, expressed in unix time format.
      *            </p>
      */
     public void setProducerTimestamp(Long producerTimestamp) {
@@ -83,7 +90,8 @@ public class KinesisVideoStreamStartSelector implements Serializable {
 
     /**
      * <p>
-     * The timestamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment, in
+     * milliseconds, expressed in unix time format.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -93,7 +101,8 @@ public class KinesisVideoStreamStartSelector implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param producerTimestamp <p>
-     *            The timestamp from the producer corresponding to the fragment.
+     *            The timestamp from the producer corresponding to the fragment,
+     *            in milliseconds, expressed in unix time format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -317,6 +317,18 @@ public enum Region {
     EU_Milan("eu-south-1"),
 
     /**
+     * The Europe (Spain) Region. This region uses Amazon S3 servers
+     * located in Spain.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-eu-south-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    EU_Spain("eu-south-2"),
+
+    /**
      * The Africa (Cape Town) Region. This region uses Amazon S3 servers
      * located in Cape Town.
      * <p>
@@ -350,7 +362,19 @@ public enum Region {
      * bucket in this region.
      * </p>
      */
-    ME_UAE("me-central-1");
+    ME_UAE("me-central-1"),
+
+    /**
+     * The Asia Pacific (Hyderabad) Region. This region uses Amazon S3 servers
+     * located in Hyderabad, India.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-ap-south-2.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    AP_HYD("ap-south-2");
 
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this

@@ -36,6 +36,18 @@ class InstanceJsonMarshaller {
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
+        if (instance.getDominantColors() != null) {
+            java.util.List<DominantColor> dominantColors = instance.getDominantColors();
+            jsonWriter.name("DominantColors");
+            jsonWriter.beginArray();
+            for (DominantColor dominantColorsItem : dominantColors) {
+                if (dominantColorsItem != null) {
+                    DominantColorJsonMarshaller.getInstance().marshall(dominantColorsItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

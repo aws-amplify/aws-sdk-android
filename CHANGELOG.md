@@ -1,3 +1,28 @@
+## [Release 2.59.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.1)
+
+### Bug Fixes
+- **core:** added fix for xml parser (#3100)
+- **pinpoint:** Fix GCM (Not FCM) Android 12 trampolining (#3109)
+- **pinpoint:**  Remove GCM service as target class usage as it is no longer allowed in Android 12. (#3110)
+
+[See all changes between 2.59.0 and 2.59.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.59.0...release_v2.59.1)
+
+## [Release 2.59.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.0)
+
+### Miscellaneous
+- Feat(MISC): Support for Asia Pacific Hyderabad region (#3087)
+
+[See all changes between 2.58.0 and 2.59.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.58.0...release_v2.59.0)
+
+## [Release 2.58.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.58.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#3070)
+- **aws-android-sdk-rekognition:** update models to latest (#3071)
+- add support for ZAZ region (#3076)
+
+[See all changes between 2.57.0 and 2.58.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.57.0...release_v2.58.0)
+
 ## [Release 2.57.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.57.0)
 
 ### Features

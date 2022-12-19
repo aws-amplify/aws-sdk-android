@@ -97,7 +97,6 @@ public class NotificationDetails {
      * new NotificationDetails.builder()
      *      .from(from)
      *      .bundle(bundle)
-     *      .serviceClass(serviceClass)
      *      .intentAction(NotificationClient.GCM_INTENT_ACTION)
      *      .build();
      *
@@ -111,7 +110,6 @@ public class NotificationDetails {
      * ADM example:
      *  new NotificationDetails.builder()
      *      .intent(intent)
-     *      .serviceClass(serviceClass)
      *      .intentAction(NotificationClient.ADM_INTENT_ACTION)
      *      .build();
      *
@@ -123,7 +121,6 @@ public class NotificationDetails {
     public static class NotificationDetailsBuilder {
         private String from;
         private Bundle bundle;
-        private Class<? extends Service> serviceClass;
         private String intentAction;
         private Map<String, String> mapData;
         private Intent intent;
@@ -156,11 +153,12 @@ public class NotificationDetails {
         /**
          * The Android Service class that received the push notification.
          * @param serviceClass Android service class that received the push notification
+         * @deprecated The set value is no longer used due to Android 12 restrictions
          * @return {@link NotificationDetailsBuilder}
          */
         @SuppressWarnings("checkstyle:hiddenfield")
+        @Deprecated
         public NotificationDetailsBuilder serviceClass(Class<? extends Service> serviceClass) {
-            this.serviceClass = serviceClass;
             return this;
         }
 
@@ -229,7 +227,7 @@ public class NotificationDetails {
             if (NotificationClient.GCM_INTENT_ACTION.equals(intentAction)) {
                 notificationDetails.setFrom(from);
                 notificationDetails.setBundle(bundle);
-                notificationDetails.setTargetClass(serviceClass);
+                notificationDetails.setTargetClass(PinpointNotificationActivity.class);
                 notificationDetails.setIntentAction(intentAction);
                 notificationDetails.setNotificationChannelId(notificationChannelId);
             }

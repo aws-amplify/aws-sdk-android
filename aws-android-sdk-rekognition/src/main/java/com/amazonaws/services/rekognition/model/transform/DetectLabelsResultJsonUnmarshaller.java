@@ -44,6 +44,10 @@ public class DetectLabelsResultJsonUnmarshaller implements
             } else if (name.equals("LabelModelVersion")) {
                 detectLabelsResult.setLabelModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ImageProperties")) {
+                detectLabelsResult.setImageProperties(DetectLabelsImagePropertiesJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

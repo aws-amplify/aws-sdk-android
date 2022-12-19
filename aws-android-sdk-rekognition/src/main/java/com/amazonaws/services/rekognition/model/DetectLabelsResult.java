@@ -60,6 +60,14 @@ public class DetectLabelsResult implements Serializable {
 
     /**
      * <p>
+     * Information about the properties of the input image, such as brightness,
+     * sharpness, contrast, and dominant colors.
+     * </p>
+     */
+    private DetectLabelsImageProperties imageProperties;
+
+    /**
+     * <p>
      * An array of labels for the real-world objects detected.
      * </p>
      *
@@ -445,6 +453,57 @@ public class DetectLabelsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about the properties of the input image, such as brightness,
+     * sharpness, contrast, and dominant colors.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the properties of the input image, such as
+     *         brightness, sharpness, contrast, and dominant colors.
+     *         </p>
+     */
+    public DetectLabelsImageProperties getImageProperties() {
+        return imageProperties;
+    }
+
+    /**
+     * <p>
+     * Information about the properties of the input image, such as brightness,
+     * sharpness, contrast, and dominant colors.
+     * </p>
+     *
+     * @param imageProperties <p>
+     *            Information about the properties of the input image, such as
+     *            brightness, sharpness, contrast, and dominant colors.
+     *            </p>
+     */
+    public void setImageProperties(DetectLabelsImageProperties imageProperties) {
+        this.imageProperties = imageProperties;
+    }
+
+    /**
+     * <p>
+     * Information about the properties of the input image, such as brightness,
+     * sharpness, contrast, and dominant colors.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param imageProperties <p>
+     *            Information about the properties of the input image, such as
+     *            brightness, sharpness, contrast, and dominant colors.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectLabelsResult withImageProperties(DetectLabelsImageProperties imageProperties) {
+        this.imageProperties = imageProperties;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -460,7 +519,9 @@ public class DetectLabelsResult implements Serializable {
         if (getOrientationCorrection() != null)
             sb.append("OrientationCorrection: " + getOrientationCorrection() + ",");
         if (getLabelModelVersion() != null)
-            sb.append("LabelModelVersion: " + getLabelModelVersion());
+            sb.append("LabelModelVersion: " + getLabelModelVersion() + ",");
+        if (getImageProperties() != null)
+            sb.append("ImageProperties: " + getImageProperties());
         sb.append("}");
         return sb.toString();
     }
@@ -476,6 +537,8 @@ public class DetectLabelsResult implements Serializable {
                 + ((getOrientationCorrection() == null) ? 0 : getOrientationCorrection().hashCode());
         hashCode = prime * hashCode
                 + ((getLabelModelVersion() == null) ? 0 : getLabelModelVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getImageProperties() == null) ? 0 : getImageProperties().hashCode());
         return hashCode;
     }
 
@@ -503,6 +566,11 @@ public class DetectLabelsResult implements Serializable {
             return false;
         if (other.getLabelModelVersion() != null
                 && other.getLabelModelVersion().equals(this.getLabelModelVersion()) == false)
+            return false;
+        if (other.getImageProperties() == null ^ this.getImageProperties() == null)
+            return false;
+        if (other.getImageProperties() != null
+                && other.getImageProperties().equals(this.getImageProperties()) == false)
             return false;
         return true;
     }

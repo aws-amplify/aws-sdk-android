@@ -79,6 +79,11 @@ public class CreateCallAnalyticsCategoryRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createCallAnalyticsCategoryRequest.getInputType() != null) {
+                String inputType = createCallAnalyticsCategoryRequest.getInputType();
+                jsonWriter.name("InputType");
+                jsonWriter.value(inputType);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -20,13 +20,14 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The request was rejected because the specified CloudHSM cluster is already
- * associated with a custom key store or it shares a backup history with a
- * cluster that is associated with a custom key store. Each custom key store
- * must be associated with a different CloudHSM cluster.
+ * associated with an CloudHSM key store in the account, or it shares a backup
+ * history with an CloudHSM key store in the account. Each CloudHSM key store in
+ * the account must be associated with a different CloudHSM cluster.
  * </p>
  * <p>
- * Clusters that share a backup history have the same cluster certificate. To
- * view the cluster certificate of a cluster, use the <a href=
+ * CloudHSM clusters that share a backup history have the same cluster
+ * certificate. To view the cluster certificate of an CloudHSM cluster, use the
+ * <a href=
  * "https://docs.aws.amazon.com/cloudhsm/latest/APIReference/API_DescribeClusters.html"
  * >DescribeClusters</a> operation.
  * </p>

@@ -198,8 +198,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -740,8 +739,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -757,8 +755,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *         and the rule that permits you to use ECC KMS keys only to sign
      *         and verify, are not effective on data key pairs, which are used
      *         outside of KMS. The SM2 key spec is only available in China
-     *         Regions. RSA and ECC asymmetric key pairs are also available in
-     *         China Regions.
+     *         Regions.
      *         </p>
      * @see DataKeyPairSpec
      */
@@ -775,8 +772,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -792,8 +788,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            both), and the rule that permits you to use ECC KMS keys only
      *            to sign and verify, are not effective on data key pairs, which
      *            are used outside of KMS. The SM2 key spec is only available in
-     *            China Regions. RSA and ECC asymmetric key pairs are also
-     *            available in China Regions.
+     *            China Regions.
      *            </p>
      * @see DataKeyPairSpec
      */
@@ -810,8 +805,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -830,8 +824,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            both), and the rule that permits you to use ECC KMS keys only
      *            to sign and verify, are not effective on data key pairs, which
      *            are used outside of KMS. The SM2 key spec is only available in
-     *            China Regions. RSA and ECC asymmetric key pairs are also
-     *            available in China Regions.
+     *            China Regions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -851,8 +844,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -868,8 +860,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            both), and the rule that permits you to use ECC KMS keys only
      *            to sign and verify, are not effective on data key pairs, which
      *            are used outside of KMS. The SM2 key spec is only available in
-     *            China Regions. RSA and ECC asymmetric key pairs are also
-     *            available in China Regions.
+     *            China Regions.
      *            </p>
      * @see DataKeyPairSpec
      */
@@ -886,8 +877,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      * encrypt and decrypt or to sign and verify (but not both), and the rule
      * that permits you to use ECC KMS keys only to sign and verify, are not
      * effective on data key pairs, which are used outside of KMS. The SM2 key
-     * spec is only available in China Regions. RSA and ECC asymmetric key pairs
-     * are also available in China Regions.
+     * spec is only available in China Regions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -906,8 +896,7 @@ public class GenerateDataKeyPairWithoutPlaintextRequest extends AmazonWebService
      *            both), and the rule that permits you to use ECC KMS keys only
      *            to sign and verify, are not effective on data key pairs, which
      *            are used outside of KMS. The SM2 key spec is only available in
-     *            China Regions. RSA and ECC asymmetric key pairs are also
-     *            available in China Regions.
+     *            China Regions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

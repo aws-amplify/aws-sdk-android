@@ -81,7 +81,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      */
     private String status;
 
@@ -511,7 +511,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @return <p>
      *         The job summary status.
@@ -529,7 +529,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The job summary status.
@@ -550,7 +550,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The job summary status.
@@ -571,7 +571,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The job summary status.
@@ -592,7 +592,7 @@ public class JobSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>IN_PROGRESS, CANCELED, COMPLETED,
-     * DELETION_IN_PROGRESS
+     * DELETION_IN_PROGRESS, SCHEDULED
      *
      * @param status <p>
      *            The job summary status.

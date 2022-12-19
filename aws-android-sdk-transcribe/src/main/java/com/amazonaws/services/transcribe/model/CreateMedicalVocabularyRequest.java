@@ -24,25 +24,25 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a new custom medical vocabulary.
  * </p>
  * <p>
- * Prior to creating a new medical vocabulary, you must first upload a text file
- * that contains your new entries, phrases, and terms into an Amazon S3 bucket.
- * Note that this differs from , where you can include a list of terms within
- * your request using the <code>Phrases</code> flag;
+ * Before creating a new custom medical vocabulary, you must first upload a text
+ * file that contains your new entries, phrases, and terms into an Amazon S3
+ * bucket. Note that this differs from , where you can include a list of terms
+ * within your request using the <code>Phrases</code> flag;
  * <code>CreateMedicalVocabulary</code> does not support the
  * <code>Phrases</code> flag.
  * </p>
  * <p>
  * Each language has a character set that contains all allowed characters for
- * that specific language. If you use unsupported characters, your vocabulary
- * request fails. Refer to <a
+ * that specific language. If you use unsupported characters, your custom
+ * vocabulary request fails. Refer to <a
  * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
  * >Character Sets for Custom Vocabularies</a> to get the character set for your
  * language.
  * </p>
  * <p>
  * For more information, see <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary-create.html"
- * >Creating a custom vocabulary</a>.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html"
+ * >Custom vocabularies</a>.
  * </p>
  */
 public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
@@ -52,9 +52,9 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new medical
-     * vocabulary with the same name as an existing medical vocabulary, you get
-     * a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * medical vocabulary with the same name as an existing custom medical
+     * vocabulary, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +98,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new medical vocabulary at the time you create this new vocabulary.
+     * new custom medical vocabulary at the time you create this new custom
+     * vocabulary.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -114,9 +115,9 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new medical
-     * vocabulary with the same name as an existing medical vocabulary, you get
-     * a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * medical vocabulary with the same name as an existing custom medical
+     * vocabulary, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,9 +131,9 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *         <p>
      *         This name is case sensitive, cannot contain spaces, and must be
      *         unique within an Amazon Web Services account. If you try to
-     *         create a new medical vocabulary with the same name as an existing
-     *         medical vocabulary, you get a <code>ConflictException</code>
-     *         error.
+     *         create a new custom medical vocabulary with the same name as an
+     *         existing custom medical vocabulary, you get a
+     *         <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyName() {
@@ -145,9 +146,9 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new medical
-     * vocabulary with the same name as an existing medical vocabulary, you get
-     * a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * medical vocabulary with the same name as an existing custom medical
+     * vocabulary, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -161,8 +162,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a new medical vocabulary with the same name as an
-     *            existing medical vocabulary, you get a
+     *            create a new custom medical vocabulary with the same name as
+     *            an existing custom medical vocabulary, you get a
      *            <code>ConflictException</code> error.
      *            </p>
      */
@@ -176,9 +177,9 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new medical
-     * vocabulary with the same name as an existing medical vocabulary, you get
-     * a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * medical vocabulary with the same name as an existing custom medical
+     * vocabulary, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -195,8 +196,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a new medical vocabulary with the same name as an
-     *            existing medical vocabulary, you get a
+     *            create a new custom medical vocabulary with the same name as
+     *            an existing custom medical vocabulary, you get a
      *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -435,7 +436,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new medical vocabulary at the time you create this new vocabulary.
+     * new custom medical vocabulary at the time you create this new custom
+     * vocabulary.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -445,8 +447,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         Adds one or more custom tags, each in the form of a key:value
-     *         pair, to a new medical vocabulary at the time you create this new
-     *         vocabulary.
+     *         pair, to a new custom medical vocabulary at the time you create
+     *         this new custom vocabulary.
      *         </p>
      *         <p>
      *         To learn more about using tags with Amazon Transcribe, refer to
@@ -462,7 +464,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new medical vocabulary at the time you create this new vocabulary.
+     * new custom medical vocabulary at the time you create this new custom
+     * vocabulary.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -472,8 +475,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
-     *            pair, to a new medical vocabulary at the time you create this
-     *            new vocabulary.
+     *            pair, to a new custom medical vocabulary at the time you
+     *            create this new custom vocabulary.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer
@@ -494,7 +497,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new medical vocabulary at the time you create this new vocabulary.
+     * new custom medical vocabulary at the time you create this new custom
+     * vocabulary.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -507,8 +511,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
-     *            pair, to a new medical vocabulary at the time you create this
-     *            new vocabulary.
+     *            pair, to a new custom medical vocabulary at the time you
+     *            create this new custom vocabulary.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer
@@ -532,7 +536,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new medical vocabulary at the time you create this new vocabulary.
+     * new custom medical vocabulary at the time you create this new custom
+     * vocabulary.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -545,8 +550,8 @@ public class CreateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
-     *            pair, to a new medical vocabulary at the time you create this
-     *            new vocabulary.
+     *            pair, to a new custom medical vocabulary at the time you
+     *            create this new custom vocabulary.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer

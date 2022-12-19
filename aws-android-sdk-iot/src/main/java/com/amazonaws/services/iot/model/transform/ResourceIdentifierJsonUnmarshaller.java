@@ -62,6 +62,14 @@ class ResourceIdentifierJsonUnmarshaller implements
             } else if (name.equals("roleAliasArn")) {
                 resourceIdentifier.setRoleAliasArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("issuerCertificateIdentifier")) {
+                resourceIdentifier
+                        .setIssuerCertificateIdentifier(IssuerCertificateIdentifierJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("deviceCertificateArn")) {
+                resourceIdentifier.setDeviceCertificateArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

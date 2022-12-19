@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The system timed out while trying to fulfill the request. The request can be
- * retried.
+ * The system timed out while trying to fulfill the request. You can retry the
+ * request.
  * </p>
  */
 public class DependencyTimeoutException extends AmazonServiceException {

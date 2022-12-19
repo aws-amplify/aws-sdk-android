@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The function couldn't make a network connection to the configured file
+ * The Lambda function couldn't make a network connection to the configured file
  * system.
  * </p>
  */
