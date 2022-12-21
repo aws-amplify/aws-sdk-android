@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
@@ -132,7 +132,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the message.
@@ -148,7 +148,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message.
@@ -167,7 +167,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message.
