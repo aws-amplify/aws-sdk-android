@@ -50,7 +50,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      */
     private String languageCode;
 
@@ -136,7 +136,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      *
      * @return <p>
      *         The language code of the vocabulary entries. For a list of
@@ -161,7 +161,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
@@ -189,7 +189,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
@@ -217,7 +217,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
@@ -245,7 +245,7 @@ public class AssociateDefaultVocabularyRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ar-AE, de-CH, de-DE, en-AB, en-AU, en-GB, en-IE,
      * en-IN, en-US, en-WL, es-ES, es-US, fr-CA, fr-FR, hi-IN, it-IT, ja-JP,
-     * ko-KR, pt-BR, pt-PT, zh-CN
+     * ko-KR, pt-BR, pt-PT, zh-CN, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of

@@ -99,6 +99,33 @@ public class CreateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createSecurityProfileRequest.getAllowedAccessControlTags() != null) {
+                java.util.Map<String, String> allowedAccessControlTags = createSecurityProfileRequest
+                        .getAllowedAccessControlTags();
+                jsonWriter.name("AllowedAccessControlTags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> allowedAccessControlTagsEntry : allowedAccessControlTags
+                        .entrySet()) {
+                    String allowedAccessControlTagsValue = allowedAccessControlTagsEntry.getValue();
+                    if (allowedAccessControlTagsValue != null) {
+                        jsonWriter.name(allowedAccessControlTagsEntry.getKey());
+                        jsonWriter.value(allowedAccessControlTagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
+            if (createSecurityProfileRequest.getTagRestrictedResources() != null) {
+                java.util.List<String> tagRestrictedResources = createSecurityProfileRequest
+                        .getTagRestrictedResources();
+                jsonWriter.name("TagRestrictedResources");
+                jsonWriter.beginArray();
+                for (String tagRestrictedResourcesItem : tagRestrictedResources) {
+                    if (tagRestrictedResourcesItem != null) {
+                        jsonWriter.value(tagRestrictedResourcesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

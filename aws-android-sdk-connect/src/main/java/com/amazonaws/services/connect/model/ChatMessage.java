@@ -39,7 +39,7 @@ public class ChatMessage implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
@@ -106,7 +106,7 @@ public class ChatMessage implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the chat message.
@@ -122,7 +122,7 @@ public class ChatMessage implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the chat message.
@@ -141,7 +141,7 @@ public class ChatMessage implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the chat message.
