@@ -85,6 +85,33 @@ public class UpdateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (updateSecurityProfileRequest.getAllowedAccessControlTags() != null) {
+                java.util.Map<String, String> allowedAccessControlTags = updateSecurityProfileRequest
+                        .getAllowedAccessControlTags();
+                jsonWriter.name("AllowedAccessControlTags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> allowedAccessControlTagsEntry : allowedAccessControlTags
+                        .entrySet()) {
+                    String allowedAccessControlTagsValue = allowedAccessControlTagsEntry.getValue();
+                    if (allowedAccessControlTagsValue != null) {
+                        jsonWriter.name(allowedAccessControlTagsEntry.getKey());
+                        jsonWriter.value(allowedAccessControlTagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
+            if (updateSecurityProfileRequest.getTagRestrictedResources() != null) {
+                java.util.List<String> tagRestrictedResources = updateSecurityProfileRequest
+                        .getTagRestrictedResources();
+                jsonWriter.name("TagRestrictedResources");
+                jsonWriter.beginArray();
+                for (String tagRestrictedResourcesItem : tagRestrictedResources) {
+                    if (tagRestrictedResourcesItem != null) {
+                        jsonWriter.value(tagRestrictedResourcesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

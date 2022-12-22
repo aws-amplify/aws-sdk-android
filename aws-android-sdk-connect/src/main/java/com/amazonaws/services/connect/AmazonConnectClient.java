@@ -58,13 +58,6 @@ import com.amazonaws.services.connect.model.transform.*;
  * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
  * >Amazon Connect Endpoints</a>.
  * </p>
- * <note>
- * <p>
- * Working with flows? Check out the <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
- * >Amazon Connect Flow language</a>.
- * </p>
- * </note>
  */
 public class AmazonConnectClient extends AmazonWebServiceClient implements AmazonConnect {
     /** Provider for AWS credentials. */
@@ -938,9 +931,20 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Web Services Region where the Amazon Connect instance or traffic
      * distribution group was created.
      * </p>
+     * <p>
+     * For more information about how to use this operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+     * >Claim a phone number in your country</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+     * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * <important>
      * <p>
      * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+     * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you
+     * can claim. Call the <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -1058,7 +1062,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -1517,6 +1521,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<CreateRoutingProfileResult, JsonUnmarshallerContext> unmarshaller = new CreateRoutingProfileResultJsonUnmarshaller();
             JsonResponseHandler<CreateRoutingProfileResult> responseHandler = new JsonResponseHandler<CreateRoutingProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @return createRuleResult The response from the CreateRule service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateRuleResult createRule(CreateRuleRequest createRuleRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateRuleRequest> request = null;
+        Response<CreateRuleResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateRuleRequestMarshaller().marshall(createRuleRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateRuleResult, JsonUnmarshallerContext> unmarshaller = new CreateRuleResultJsonUnmarshaller();
+            JsonResponseHandler<CreateRuleResult> responseHandler = new JsonResponseHandler<CreateRuleResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2213,6 +2274,49 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Deletes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteRule(DeleteRuleRequest deleteRuleRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteRuleRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteRuleRequestMarshaller().marshall(deleteRuleRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -2690,7 +2794,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -3245,6 +3349,56 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DescribeRoutingProfileResult, JsonUnmarshallerContext> unmarshaller = new DescribeRoutingProfileResultJsonUnmarshaller();
             JsonResponseHandler<DescribeRoutingProfileResult> responseHandler = new JsonResponseHandler<DescribeRoutingProfileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeRuleRequest
+     * @return describeRuleResult The response from the DescribeRule service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeRuleResult describeRule(DescribeRuleRequest describeRuleRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeRuleRequest> request = null;
+        Response<DescribeRuleResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeRuleRequestMarshaller().marshall(describeRuleRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeRuleResult, JsonUnmarshallerContext> unmarshaller = new DescribeRuleResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeRuleResult> responseHandler = new JsonResponseHandler<DescribeRuleResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4704,7 +4858,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
@@ -5738,6 +5892,56 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * List all rules for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listRulesRequest
+     * @return listRulesResult The response from the ListRules service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListRulesResult listRules(ListRulesRequest listRulesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listRulesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListRulesRequest> request = null;
+        Response<ListRulesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListRulesRequestMarshaller().marshall(listRulesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListRulesResult, JsonUnmarshallerContext> unmarshaller = new ListRulesResultJsonUnmarshaller();
+            JsonResponseHandler<ListRulesResult> responseHandler = new JsonResponseHandler<ListRulesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -6222,6 +6426,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListUsersResult, JsonUnmarshallerContext> unmarshaller = new ListUsersResultJsonUnmarshaller();
             JsonResponseHandler<ListUsersResult> responseHandler = new JsonResponseHandler<ListUsersResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact. Supports voice and chat contacts.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return monitorContactResult The response from the MonitorContact service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public MonitorContactResult monitorContact(MonitorContactRequest monitorContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(monitorContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<MonitorContactRequest> request = null;
+        Response<MonitorContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new MonitorContactRequestMarshaller().marshall(monitorContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<MonitorContactResult, JsonUnmarshallerContext> unmarshaller = new MonitorContactResultJsonUnmarshaller();
+            JsonResponseHandler<MonitorContactResult> responseHandler = new JsonResponseHandler<MonitorContactResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7798,7 +8056,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -8004,7 +8262,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -8244,6 +8502,89 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates timeouts for when human chat participants are to be considered
+     * idle, and when agents are automatically disconnected from a chat due to
+     * idleness. You can set four timers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Customer idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Customer auto-disconnect timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent auto-disconnect timeout
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat timeouts work, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html"
+     * >Set up chat timeouts for human participants</a>.
+     * </p>
+     * 
+     * @param updateParticipantRoleConfigRequest
+     * @return updateParticipantRoleConfigResult The response from the
+     *         UpdateParticipantRoleConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateParticipantRoleConfigResult updateParticipantRoleConfig(
+            UpdateParticipantRoleConfigRequest updateParticipantRoleConfigRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateParticipantRoleConfigRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateParticipantRoleConfigRequest> request = null;
+        Response<UpdateParticipantRoleConfigResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateParticipantRoleConfigRequestMarshaller()
+                        .marshall(updateParticipantRoleConfigRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateParticipantRoleConfigResult, JsonUnmarshallerContext> unmarshaller = new UpdateParticipantRoleConfigResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateParticipantRoleConfigResult> responseHandler = new JsonResponseHandler<UpdateParticipantRoleConfigResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -8839,6 +9180,55 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             try {
                 request = new UpdateRoutingProfileQueuesRequestMarshaller()
                         .marshall(updateRoutingProfileQueuesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param updateRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updateRule(UpdateRuleRequest updateRuleRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateRuleRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateRuleRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateRuleRequestMarshaller().marshall(updateRuleRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {

@@ -56,6 +56,16 @@ class SecurityProfileJsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("AllowedAccessControlTags")) {
+                securityProfile.setAllowedAccessControlTags(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("TagRestrictedResources")) {
+                securityProfile.setTagRestrictedResources(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

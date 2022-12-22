@@ -23,10 +23,10 @@ import java.io.Serializable;
  * </p>
  * <note>
  * <p>
- * The <code>Username</code>, <code>Firstname</code>, and <code>Lastname</code>
- * fields support "contains" queries with a minimum of 2 characters and a
- * maximum of 25 characters. Any queries with character lengths outside of this
- * range result in empty results.
+ * The <code>name</code> and <code>description</code> fields support "contains"
+ * queries with a minimum of 2 characters and a maximum of 25 characters. Any
+ * queries with character lengths outside of this range will throw invalid
+ * results.
  * </p>
  * </note>
  */

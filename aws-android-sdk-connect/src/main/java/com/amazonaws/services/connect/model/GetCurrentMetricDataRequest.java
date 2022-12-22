@@ -57,14 +57,28 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
-     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. VOICE, CHAT, and TASK channels are
-     * supported.
+     * than aggregated for all queues.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you group by <code>CHANNEL</code>, you should include a Channels
+     * filter. VOICE, CHAT, and TASK channels are supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you group by <code>ROUTING_PROFILE</code>, you must include either a
+     * queue or routing profile filter.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
      * metrics is returned.
      * </p>
+     * </li>
+     * </ul>
      */
     private java.util.List<String> groupings;
 
@@ -398,26 +412,54 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
-     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. VOICE, CHAT, and TASK channels are
-     * supported.
+     * than aggregated for all queues.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you group by <code>CHANNEL</code>, you should include a Channels
+     * filter. VOICE, CHAT, and TASK channels are supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you group by <code>ROUTING_PROFILE</code>, you must include either a
+     * queue or routing profile filter.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
      * metrics is returned.
      * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         The grouping applied to the metrics returned. For example, when
      *         grouped by <code>QUEUE</code>, the metrics returned apply to each
-     *         queue rather than aggregated for all queues. If you group by
-     *         <code>CHANNEL</code>, you should include a Channels filter.
-     *         VOICE, CHAT, and TASK channels are supported.
+     *         queue rather than aggregated for all queues.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         If you group by <code>CHANNEL</code>, you should include a
+     *         Channels filter. VOICE, CHAT, and TASK channels are supported.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         If you group by <code>ROUTING_PROFILE</code>, you must include
+     *         either a queue or routing profile filter.
+     *         </p>
+     *         </li>
+     *         <li>
      *         <p>
      *         If no <code>Grouping</code> is included in the request, a summary
      *         of metrics is returned.
      *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.List<String> getGroupings() {
         return groupings;
@@ -427,26 +469,54 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
-     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. VOICE, CHAT, and TASK channels are
-     * supported.
+     * than aggregated for all queues.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you group by <code>CHANNEL</code>, you should include a Channels
+     * filter. VOICE, CHAT, and TASK channels are supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you group by <code>ROUTING_PROFILE</code>, you must include either a
+     * queue or routing profile filter.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
      * metrics is returned.
      * </p>
+     * </li>
+     * </ul>
      *
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
-     *            to each queue rather than aggregated for all queues. If you
-     *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. VOICE, CHAT, and TASK channels are supported.
+     *            to each queue rather than aggregated for all queues.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If you group by <code>CHANNEL</code>, you should include a
+     *            Channels filter. VOICE, CHAT, and TASK channels are supported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If you group by <code>ROUTING_PROFILE</code>, you must include
+     *            either a queue or routing profile filter.
+     *            </p>
+     *            </li>
+     *            <li>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
      *            summary of metrics is returned.
      *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setGroupings(java.util.Collection<String> groupings) {
         if (groupings == null) {
@@ -461,14 +531,28 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
-     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. VOICE, CHAT, and TASK channels are
-     * supported.
+     * than aggregated for all queues.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you group by <code>CHANNEL</code>, you should include a Channels
+     * filter. VOICE, CHAT, and TASK channels are supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you group by <code>ROUTING_PROFILE</code>, you must include either a
+     * queue or routing profile filter.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
      * metrics is returned.
      * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -476,14 +560,28 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
-     *            to each queue rather than aggregated for all queues. If you
-     *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. VOICE, CHAT, and TASK channels are supported.
+     *            to each queue rather than aggregated for all queues.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If you group by <code>CHANNEL</code>, you should include a
+     *            Channels filter. VOICE, CHAT, and TASK channels are supported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If you group by <code>ROUTING_PROFILE</code>, you must include
+     *            either a queue or routing profile filter.
+     *            </p>
+     *            </li>
+     *            <li>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
      *            summary of metrics is returned.
      *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -501,14 +599,28 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
-     * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. VOICE, CHAT, and TASK channels are
-     * supported.
+     * than aggregated for all queues.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you group by <code>CHANNEL</code>, you should include a Channels
+     * filter. VOICE, CHAT, and TASK channels are supported.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you group by <code>ROUTING_PROFILE</code>, you must include either a
+     * queue or routing profile filter.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
      * metrics is returned.
      * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -516,14 +628,28 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * @param groupings <p>
      *            The grouping applied to the metrics returned. For example,
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
-     *            to each queue rather than aggregated for all queues. If you
-     *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. VOICE, CHAT, and TASK channels are supported.
+     *            to each queue rather than aggregated for all queues.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            If you group by <code>CHANNEL</code>, you should include a
+     *            Channels filter. VOICE, CHAT, and TASK channels are supported.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If you group by <code>ROUTING_PROFILE</code>, you must include
+     *            either a queue or routing profile filter.
+     *            </p>
+     *            </li>
+     *            <li>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
      *            summary of metrics is returned.
      *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
