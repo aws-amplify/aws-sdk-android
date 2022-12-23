@@ -43,6 +43,39 @@ class UserDataFiltersJsonMarshaller {
             jsonWriter.name("ContactFilter");
             ContactFilterJsonMarshaller.getInstance().marshall(contactFilter, jsonWriter);
         }
+        if (userDataFilters.getRoutingProfiles() != null) {
+            java.util.List<String> routingProfiles = userDataFilters.getRoutingProfiles();
+            jsonWriter.name("RoutingProfiles");
+            jsonWriter.beginArray();
+            for (String routingProfilesItem : routingProfiles) {
+                if (routingProfilesItem != null) {
+                    jsonWriter.value(routingProfilesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userDataFilters.getAgents() != null) {
+            java.util.List<String> agents = userDataFilters.getAgents();
+            jsonWriter.name("Agents");
+            jsonWriter.beginArray();
+            for (String agentsItem : agents) {
+                if (agentsItem != null) {
+                    jsonWriter.value(agentsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (userDataFilters.getUserHierarchyGroups() != null) {
+            java.util.List<String> userHierarchyGroups = userDataFilters.getUserHierarchyGroups();
+            jsonWriter.name("UserHierarchyGroups");
+            jsonWriter.beginArray();
+            for (String userHierarchyGroupsItem : userHierarchyGroups) {
+                if (userHierarchyGroupsItem != null) {
+                    jsonWriter.value(userHierarchyGroupsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

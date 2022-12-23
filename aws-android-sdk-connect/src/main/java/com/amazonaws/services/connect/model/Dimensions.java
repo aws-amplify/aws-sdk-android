@@ -42,6 +42,13 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
+     * Information about the routing profile assigned to the user.
+     * </p>
+     */
+    private RoutingProfileReference routingProfile;
+
+    /**
+     * <p>
      * Information about the queue for which metrics are returned.
      * </p>
      *
@@ -183,6 +190,51 @@ public class Dimensions implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about the routing profile assigned to the user.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the routing profile assigned to the user.
+     *         </p>
+     */
+    public RoutingProfileReference getRoutingProfile() {
+        return routingProfile;
+    }
+
+    /**
+     * <p>
+     * Information about the routing profile assigned to the user.
+     * </p>
+     *
+     * @param routingProfile <p>
+     *            Information about the routing profile assigned to the user.
+     *            </p>
+     */
+    public void setRoutingProfile(RoutingProfileReference routingProfile) {
+        this.routingProfile = routingProfile;
+    }
+
+    /**
+     * <p>
+     * Information about the routing profile assigned to the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfile <p>
+     *            Information about the routing profile assigned to the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Dimensions withRoutingProfile(RoutingProfileReference routingProfile) {
+        this.routingProfile = routingProfile;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -196,7 +248,9 @@ public class Dimensions implements Serializable {
         if (getQueue() != null)
             sb.append("Queue: " + getQueue() + ",");
         if (getChannel() != null)
-            sb.append("Channel: " + getChannel());
+            sb.append("Channel: " + getChannel() + ",");
+        if (getRoutingProfile() != null)
+            sb.append("RoutingProfile: " + getRoutingProfile());
         sb.append("}");
         return sb.toString();
     }
@@ -208,6 +262,8 @@ public class Dimensions implements Serializable {
 
         hashCode = prime * hashCode + ((getQueue() == null) ? 0 : getQueue().hashCode());
         hashCode = prime * hashCode + ((getChannel() == null) ? 0 : getChannel().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingProfile() == null) ? 0 : getRoutingProfile().hashCode());
         return hashCode;
     }
 
@@ -229,6 +285,11 @@ public class Dimensions implements Serializable {
         if (other.getChannel() == null ^ this.getChannel() == null)
             return false;
         if (other.getChannel() != null && other.getChannel().equals(this.getChannel()) == false)
+            return false;
+        if (other.getRoutingProfile() == null ^ this.getRoutingProfile() == null)
+            return false;
+        if (other.getRoutingProfile() != null
+                && other.getRoutingProfile().equals(this.getRoutingProfile()) == false)
             return false;
         return true;
     }

@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class ChatMessage implements Serializable {
     /**
      * <p>
-     * The type of the content. Supported types are <code>text/plain</code>.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,15 +38,30 @@ public class ChatMessage implements Serializable {
      * <p>
      * The content of the chat message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
     /**
      * <p>
-     * The type of the content. Supported types are <code>text/plain</code>.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,7 +69,8 @@ public class ChatMessage implements Serializable {
      *
      * @return <p>
      *         The type of the content. Supported types are
-     *         <code>text/plain</code>.
+     *         <code>text/plain</code>, <code>text/markdown</code>, and
+     *         <code>application/json</code>.
      *         </p>
      */
     public String getContentType() {
@@ -62,7 +79,8 @@ public class ChatMessage implements Serializable {
 
     /**
      * <p>
-     * The type of the content. Supported types are <code>text/plain</code>.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +88,8 @@ public class ChatMessage implements Serializable {
      *
      * @param contentType <p>
      *            The type of the content. Supported types are
-     *            <code>text/plain</code>.
+     *            <code>text/plain</code>, <code>text/markdown</code>, and
+     *            <code>application/json</code>.
      *            </p>
      */
     public void setContentType(String contentType) {
@@ -79,7 +98,8 @@ public class ChatMessage implements Serializable {
 
     /**
      * <p>
-     * The type of the content. Supported types are <code>text/plain</code>.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +110,8 @@ public class ChatMessage implements Serializable {
      *
      * @param contentType <p>
      *            The type of the content. Supported types are
-     *            <code>text/plain</code>.
+     *            <code>text/plain</code>, <code>text/markdown</code>, and
+     *            <code>application/json</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -104,13 +125,41 @@ public class ChatMessage implements Serializable {
      * <p>
      * The content of the chat message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the chat message.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For <code>text/plain</code> and <code>text/markdown</code>, the
+     *         Length Constraints are Minimum of 1, Maximum of 1024.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For <code>application/json</code>, the Length Constraints are
+     *         Minimum of 1, Maximum of 12000.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getContent() {
         return content;
@@ -120,13 +169,41 @@ public class ChatMessage implements Serializable {
      * <p>
      * The content of the chat message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the chat message.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For <code>text/plain</code> and <code>text/markdown</code>,
+     *            the Length Constraints are Minimum of 1, Maximum of 1024.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For <code>application/json</code>, the Length Constraints are
+     *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setContent(String content) {
         this.content = content;
@@ -136,16 +213,44 @@ public class ChatMessage implements Serializable {
      * <p>
      * The content of the chat message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the chat message.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For <code>text/plain</code> and <code>text/markdown</code>,
+     *            the Length Constraints are Minimum of 1, Maximum of 1024.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For <code>application/json</code>, the Length Constraints are
+     *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

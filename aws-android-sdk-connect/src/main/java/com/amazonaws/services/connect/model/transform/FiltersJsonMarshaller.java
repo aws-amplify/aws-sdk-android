@@ -48,6 +48,17 @@ class FiltersJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (filters.getRoutingProfiles() != null) {
+            java.util.List<String> routingProfiles = filters.getRoutingProfiles();
+            jsonWriter.name("RoutingProfiles");
+            jsonWriter.beginArray();
+            for (String routingProfilesItem : routingProfiles) {
+                if (routingProfilesItem != null) {
+                    jsonWriter.value(routingProfilesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

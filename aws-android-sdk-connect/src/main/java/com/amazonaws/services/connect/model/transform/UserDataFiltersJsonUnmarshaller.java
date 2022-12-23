@@ -44,6 +44,21 @@ class UserDataFiltersJsonUnmarshaller implements
             } else if (name.equals("ContactFilter")) {
                 userDataFilters.setContactFilter(ContactFilterJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("RoutingProfiles")) {
+                userDataFilters.setRoutingProfiles(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Agents")) {
+                userDataFilters.setAgents(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("UserHierarchyGroups")) {
+                userDataFilters.setUserHierarchyGroups(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

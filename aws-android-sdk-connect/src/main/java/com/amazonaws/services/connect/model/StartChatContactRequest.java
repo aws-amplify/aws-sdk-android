@@ -153,8 +153,13 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      */
     private java.util.List<String> supportedMessagingContentTypes;
@@ -711,13 +716,23 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      *
      * @return <p>
-     *         The supported chat message content types. Content types can be
-     *         text/plain or both text/plain and text/markdown.
+     *         The supported chat message content types. Content types must
+     *         always contain <code>text/plain</code>. You can then put any
+     *         other supported type in the list. For example, all the following
+     *         lists are valid because they contain <code>text/plain</code>:
+     *         <code>[text/plain, text/markdown, application/json]</code>,
+     *         <code>[text/markdown, text/plain]</code>,
+     *         <code>[text/plain, application/json]</code>.
      *         </p>
      */
     public java.util.List<String> getSupportedMessagingContentTypes() {
@@ -726,13 +741,24 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      */
     public void setSupportedMessagingContentTypes(
@@ -748,16 +774,27 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -776,16 +813,27 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -41,6 +41,9 @@ class DimensionsJsonUnmarshaller implements Unmarshaller<Dimensions, JsonUnmarsh
             } else if (name.equals("Channel")) {
                 dimensions.setChannel(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("RoutingProfile")) {
+                dimensions.setRoutingProfile(RoutingProfileReferenceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

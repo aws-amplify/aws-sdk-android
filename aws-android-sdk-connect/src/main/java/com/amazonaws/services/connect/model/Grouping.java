@@ -24,7 +24,8 @@ import java.util.Map;
 public enum Grouping {
 
     QUEUE("QUEUE"),
-    CHANNEL("CHANNEL");
+    CHANNEL("CHANNEL"),
+    ROUTING_PROFILE("ROUTING_PROFILE");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum Grouping {
         enumMap = new HashMap<String, Grouping>();
         enumMap.put("QUEUE", QUEUE);
         enumMap.put("CHANNEL", CHANNEL);
+        enumMap.put("ROUTING_PROFILE", ROUTING_PROFILE);
     }
 
     /**

@@ -41,6 +41,10 @@ public class GetCurrentUserDataResultJsonUnmarshaller implements
                         UserDataJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("ApproximateTotalCount")) {
+                getCurrentUserDataResult.setApproximateTotalCount(LongJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

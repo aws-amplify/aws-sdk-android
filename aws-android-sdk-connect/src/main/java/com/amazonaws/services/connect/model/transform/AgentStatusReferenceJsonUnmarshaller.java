@@ -42,6 +42,9 @@ class AgentStatusReferenceJsonUnmarshaller implements
             } else if (name.equals("StatusArn")) {
                 agentStatusReference.setStatusArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StatusName")) {
+                agentStatusReference.setStatusName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

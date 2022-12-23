@@ -92,6 +92,16 @@ public class UserData implements Serializable {
 
     /**
      * <p>
+     * The Next status of the agent.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     */
+    private String nextStatus;
+
+    /**
+     * <p>
      * Information about the user for the data that is returned. It contains the
      * <code>resourceId</code> and ARN of the user.
      * </p>
@@ -668,6 +678,60 @@ public class UserData implements Serializable {
     }
 
     /**
+     * <p>
+     * The Next status of the agent.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @return <p>
+     *         The Next status of the agent.
+     *         </p>
+     */
+    public String getNextStatus() {
+        return nextStatus;
+    }
+
+    /**
+     * <p>
+     * The Next status of the agent.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @param nextStatus <p>
+     *            The Next status of the agent.
+     *            </p>
+     */
+    public void setNextStatus(String nextStatus) {
+        this.nextStatus = nextStatus;
+    }
+
+    /**
+     * <p>
+     * The Next status of the agent.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @param nextStatus <p>
+     *            The Next status of the agent.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserData withNextStatus(String nextStatus) {
+        this.nextStatus = nextStatus;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -693,7 +757,9 @@ public class UserData implements Serializable {
         if (getActiveSlotsByChannel() != null)
             sb.append("ActiveSlotsByChannel: " + getActiveSlotsByChannel() + ",");
         if (getContacts() != null)
-            sb.append("Contacts: " + getContacts());
+            sb.append("Contacts: " + getContacts() + ",");
+        if (getNextStatus() != null)
+            sb.append("NextStatus: " + getNextStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -718,6 +784,7 @@ public class UserData implements Serializable {
         hashCode = prime * hashCode
                 + ((getActiveSlotsByChannel() == null) ? 0 : getActiveSlotsByChannel().hashCode());
         hashCode = prime * hashCode + ((getContacts() == null) ? 0 : getContacts().hashCode());
+        hashCode = prime * hashCode + ((getNextStatus() == null) ? 0 : getNextStatus().hashCode());
         return hashCode;
     }
 
@@ -768,6 +835,11 @@ public class UserData implements Serializable {
         if (other.getContacts() == null ^ this.getContacts() == null)
             return false;
         if (other.getContacts() != null && other.getContacts().equals(this.getContacts()) == false)
+            return false;
+        if (other.getNextStatus() == null ^ this.getNextStatus() == null)
+            return false;
+        if (other.getNextStatus() != null
+                && other.getNextStatus().equals(this.getNextStatus()) == false)
             return false;
         return true;
     }

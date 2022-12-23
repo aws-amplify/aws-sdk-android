@@ -67,6 +67,9 @@ class UserDataJsonUnmarshaller implements Unmarshaller<UserData, JsonUnmarshalle
                         AgentContactReferenceJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("NextStatus")) {
+                userData.setNextStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

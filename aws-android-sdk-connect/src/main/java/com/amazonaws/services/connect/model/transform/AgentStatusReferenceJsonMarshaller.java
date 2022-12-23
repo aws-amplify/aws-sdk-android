@@ -37,6 +37,11 @@ class AgentStatusReferenceJsonMarshaller {
             jsonWriter.name("StatusArn");
             jsonWriter.value(statusArn);
         }
+        if (agentStatusReference.getStatusName() != null) {
+            String statusName = agentStatusReference.getStatusName();
+            jsonWriter.name("StatusName");
+            jsonWriter.value(statusName);
+        }
         jsonWriter.endObject();
     }
 

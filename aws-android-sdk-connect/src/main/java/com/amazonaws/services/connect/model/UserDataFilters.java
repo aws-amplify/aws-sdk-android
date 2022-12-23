@@ -25,8 +25,7 @@ import java.io.Serializable;
 public class UserDataFilters implements Serializable {
     /**
      * <p>
-     * Contains information about a queue resource for which metrics are
-     * returned.
+     * A list of up to 100 queues or ARNs.
      * </p>
      */
     private java.util.List<String> queues;
@@ -41,13 +40,32 @@ public class UserDataFilters implements Serializable {
 
     /**
      * <p>
-     * Contains information about a queue resource for which metrics are
-     * returned.
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     */
+    private java.util.List<String> routingProfiles;
+
+    /**
+     * <p>
+     * A list of up to 100 agent IDs or ARNs.
+     * </p>
+     */
+    private java.util.List<String> agents;
+
+    /**
+     * <p>
+     * A UserHierarchyGroup ID or ARN.
+     * </p>
+     */
+    private java.util.List<String> userHierarchyGroups;
+
+    /**
+     * <p>
+     * A list of up to 100 queues or ARNs.
      * </p>
      *
      * @return <p>
-     *         Contains information about a queue resource for which metrics are
-     *         returned.
+     *         A list of up to 100 queues or ARNs.
      *         </p>
      */
     public java.util.List<String> getQueues() {
@@ -56,13 +74,11 @@ public class UserDataFilters implements Serializable {
 
     /**
      * <p>
-     * Contains information about a queue resource for which metrics are
-     * returned.
+     * A list of up to 100 queues or ARNs.
      * </p>
      *
      * @param queues <p>
-     *            Contains information about a queue resource for which metrics
-     *            are returned.
+     *            A list of up to 100 queues or ARNs.
      *            </p>
      */
     public void setQueues(java.util.Collection<String> queues) {
@@ -76,16 +92,14 @@ public class UserDataFilters implements Serializable {
 
     /**
      * <p>
-     * Contains information about a queue resource for which metrics are
-     * returned.
+     * A list of up to 100 queues or ARNs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            Contains information about a queue resource for which metrics
-     *            are returned.
+     *            A list of up to 100 queues or ARNs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,16 +116,14 @@ public class UserDataFilters implements Serializable {
 
     /**
      * <p>
-     * Contains information about a queue resource for which metrics are
-     * returned.
+     * A list of up to 100 queues or ARNs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queues <p>
-     *            Contains information about a queue resource for which metrics
-     *            are returned.
+     *            A list of up to 100 queues or ARNs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -175,6 +187,228 @@ public class UserDataFilters implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     *
+     * @return <p>
+     *         A list of up to 100 routing profile IDs or ARNs.
+     *         </p>
+     */
+    public java.util.List<String> getRoutingProfiles() {
+        return routingProfiles;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     */
+    public void setRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        if (routingProfiles == null) {
+            this.routingProfiles = null;
+            return;
+        }
+
+        this.routingProfiles = new java.util.ArrayList<String>(routingProfiles);
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withRoutingProfiles(String... routingProfiles) {
+        if (getRoutingProfiles() == null) {
+            this.routingProfiles = new java.util.ArrayList<String>(routingProfiles.length);
+        }
+        for (String value : routingProfiles) {
+            this.routingProfiles.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        setRoutingProfiles(routingProfiles);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 agent IDs or ARNs.
+     * </p>
+     *
+     * @return <p>
+     *         A list of up to 100 agent IDs or ARNs.
+     *         </p>
+     */
+    public java.util.List<String> getAgents() {
+        return agents;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 agent IDs or ARNs.
+     * </p>
+     *
+     * @param agents <p>
+     *            A list of up to 100 agent IDs or ARNs.
+     *            </p>
+     */
+    public void setAgents(java.util.Collection<String> agents) {
+        if (agents == null) {
+            this.agents = null;
+            return;
+        }
+
+        this.agents = new java.util.ArrayList<String>(agents);
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 agent IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param agents <p>
+     *            A list of up to 100 agent IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withAgents(String... agents) {
+        if (getAgents() == null) {
+            this.agents = new java.util.ArrayList<String>(agents.length);
+        }
+        for (String value : agents) {
+            this.agents.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 agent IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param agents <p>
+     *            A list of up to 100 agent IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withAgents(java.util.Collection<String> agents) {
+        setAgents(agents);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A UserHierarchyGroup ID or ARN.
+     * </p>
+     *
+     * @return <p>
+     *         A UserHierarchyGroup ID or ARN.
+     *         </p>
+     */
+    public java.util.List<String> getUserHierarchyGroups() {
+        return userHierarchyGroups;
+    }
+
+    /**
+     * <p>
+     * A UserHierarchyGroup ID or ARN.
+     * </p>
+     *
+     * @param userHierarchyGroups <p>
+     *            A UserHierarchyGroup ID or ARN.
+     *            </p>
+     */
+    public void setUserHierarchyGroups(java.util.Collection<String> userHierarchyGroups) {
+        if (userHierarchyGroups == null) {
+            this.userHierarchyGroups = null;
+            return;
+        }
+
+        this.userHierarchyGroups = new java.util.ArrayList<String>(userHierarchyGroups);
+    }
+
+    /**
+     * <p>
+     * A UserHierarchyGroup ID or ARN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userHierarchyGroups <p>
+     *            A UserHierarchyGroup ID or ARN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withUserHierarchyGroups(String... userHierarchyGroups) {
+        if (getUserHierarchyGroups() == null) {
+            this.userHierarchyGroups = new java.util.ArrayList<String>(userHierarchyGroups.length);
+        }
+        for (String value : userHierarchyGroups) {
+            this.userHierarchyGroups.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A UserHierarchyGroup ID or ARN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userHierarchyGroups <p>
+     *            A UserHierarchyGroup ID or ARN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UserDataFilters withUserHierarchyGroups(java.util.Collection<String> userHierarchyGroups) {
+        setUserHierarchyGroups(userHierarchyGroups);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -188,7 +422,13 @@ public class UserDataFilters implements Serializable {
         if (getQueues() != null)
             sb.append("Queues: " + getQueues() + ",");
         if (getContactFilter() != null)
-            sb.append("ContactFilter: " + getContactFilter());
+            sb.append("ContactFilter: " + getContactFilter() + ",");
+        if (getRoutingProfiles() != null)
+            sb.append("RoutingProfiles: " + getRoutingProfiles() + ",");
+        if (getAgents() != null)
+            sb.append("Agents: " + getAgents() + ",");
+        if (getUserHierarchyGroups() != null)
+            sb.append("UserHierarchyGroups: " + getUserHierarchyGroups());
         sb.append("}");
         return sb.toString();
     }
@@ -201,6 +441,11 @@ public class UserDataFilters implements Serializable {
         hashCode = prime * hashCode + ((getQueues() == null) ? 0 : getQueues().hashCode());
         hashCode = prime * hashCode
                 + ((getContactFilter() == null) ? 0 : getContactFilter().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingProfiles() == null) ? 0 : getRoutingProfiles().hashCode());
+        hashCode = prime * hashCode + ((getAgents() == null) ? 0 : getAgents().hashCode());
+        hashCode = prime * hashCode
+                + ((getUserHierarchyGroups() == null) ? 0 : getUserHierarchyGroups().hashCode());
         return hashCode;
     }
 
@@ -223,6 +468,20 @@ public class UserDataFilters implements Serializable {
             return false;
         if (other.getContactFilter() != null
                 && other.getContactFilter().equals(this.getContactFilter()) == false)
+            return false;
+        if (other.getRoutingProfiles() == null ^ this.getRoutingProfiles() == null)
+            return false;
+        if (other.getRoutingProfiles() != null
+                && other.getRoutingProfiles().equals(this.getRoutingProfiles()) == false)
+            return false;
+        if (other.getAgents() == null ^ this.getAgents() == null)
+            return false;
+        if (other.getAgents() != null && other.getAgents().equals(this.getAgents()) == false)
+            return false;
+        if (other.getUserHierarchyGroups() == null ^ this.getUserHierarchyGroups() == null)
+            return false;
+        if (other.getUserHierarchyGroups() != null
+                && other.getUserHierarchyGroups().equals(this.getUserHierarchyGroups()) == false)
             return false;
         return true;
     }

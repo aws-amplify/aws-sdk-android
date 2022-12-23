@@ -39,6 +39,16 @@ public class AgentStatusReference implements Serializable {
 
     /**
      * <p>
+     * The name of the agent status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     */
+    private String statusName;
+
+    /**
+     * <p>
      * The start timestamp of the agent's status.
      * </p>
      *
@@ -128,6 +138,60 @@ public class AgentStatusReference implements Serializable {
     }
 
     /**
+     * <p>
+     * The name of the agent status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @return <p>
+     *         The name of the agent status.
+     *         </p>
+     */
+    public String getStatusName() {
+        return statusName;
+    }
+
+    /**
+     * <p>
+     * The name of the agent status.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @param statusName <p>
+     *            The name of the agent status.
+     *            </p>
+     */
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    /**
+     * <p>
+     * The name of the agent status.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @param statusName <p>
+     *            The name of the agent status.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentStatusReference withStatusName(String statusName) {
+        this.statusName = statusName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -141,7 +205,9 @@ public class AgentStatusReference implements Serializable {
         if (getStatusStartTimestamp() != null)
             sb.append("StatusStartTimestamp: " + getStatusStartTimestamp() + ",");
         if (getStatusArn() != null)
-            sb.append("StatusArn: " + getStatusArn());
+            sb.append("StatusArn: " + getStatusArn() + ",");
+        if (getStatusName() != null)
+            sb.append("StatusName: " + getStatusName());
         sb.append("}");
         return sb.toString();
     }
@@ -154,6 +220,7 @@ public class AgentStatusReference implements Serializable {
         hashCode = prime * hashCode
                 + ((getStatusStartTimestamp() == null) ? 0 : getStatusStartTimestamp().hashCode());
         hashCode = prime * hashCode + ((getStatusArn() == null) ? 0 : getStatusArn().hashCode());
+        hashCode = prime * hashCode + ((getStatusName() == null) ? 0 : getStatusName().hashCode());
         return hashCode;
     }
 
@@ -177,6 +244,11 @@ public class AgentStatusReference implements Serializable {
             return false;
         if (other.getStatusArn() != null
                 && other.getStatusArn().equals(this.getStatusArn()) == false)
+            return false;
+        if (other.getStatusName() == null ^ this.getStatusName() == null)
+            return false;
+        if (other.getStatusName() != null
+                && other.getStatusName().equals(this.getStatusName()) == false)
             return false;
         return true;
     }

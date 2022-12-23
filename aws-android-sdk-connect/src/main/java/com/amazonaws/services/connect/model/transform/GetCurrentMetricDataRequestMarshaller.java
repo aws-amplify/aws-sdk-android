@@ -104,6 +104,19 @@ public class GetCurrentMetricDataRequestMarshaller implements
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
             }
+            if (getCurrentMetricDataRequest.getSortCriteria() != null) {
+                java.util.List<CurrentMetricSortCriteria> sortCriteria = getCurrentMetricDataRequest
+                        .getSortCriteria();
+                jsonWriter.name("SortCriteria");
+                jsonWriter.beginArray();
+                for (CurrentMetricSortCriteria sortCriteriaItem : sortCriteria) {
+                    if (sortCriteriaItem != null) {
+                        CurrentMetricSortCriteriaJsonMarshaller.getInstance().marshall(
+                                sortCriteriaItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

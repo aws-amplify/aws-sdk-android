@@ -35,6 +35,13 @@ public class GetCurrentUserDataResult implements Serializable {
 
     /**
      * <p>
+     * The total count of the result, regardless of the current page size.
+     * </p>
+     */
+    private Long approximateTotalCount;
+
+    /**
+     * <p>
      * If there are additional results, this is the token for the next set of
      * results.
      * </p>
@@ -159,6 +166,54 @@ public class GetCurrentUserDataResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The total count of the result, regardless of the current page size.
+     * </p>
+     *
+     * @return <p>
+     *         The total count of the result, regardless of the current page
+     *         size.
+     *         </p>
+     */
+    public Long getApproximateTotalCount() {
+        return approximateTotalCount;
+    }
+
+    /**
+     * <p>
+     * The total count of the result, regardless of the current page size.
+     * </p>
+     *
+     * @param approximateTotalCount <p>
+     *            The total count of the result, regardless of the current page
+     *            size.
+     *            </p>
+     */
+    public void setApproximateTotalCount(Long approximateTotalCount) {
+        this.approximateTotalCount = approximateTotalCount;
+    }
+
+    /**
+     * <p>
+     * The total count of the result, regardless of the current page size.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param approximateTotalCount <p>
+     *            The total count of the result, regardless of the current page
+     *            size.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetCurrentUserDataResult withApproximateTotalCount(Long approximateTotalCount) {
+        this.approximateTotalCount = approximateTotalCount;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -172,7 +227,9 @@ public class GetCurrentUserDataResult implements Serializable {
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getUserDataList() != null)
-            sb.append("UserDataList: " + getUserDataList());
+            sb.append("UserDataList: " + getUserDataList() + ",");
+        if (getApproximateTotalCount() != null)
+            sb.append("ApproximateTotalCount: " + getApproximateTotalCount());
         sb.append("}");
         return sb.toString();
     }
@@ -185,6 +242,9 @@ public class GetCurrentUserDataResult implements Serializable {
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
                 + ((getUserDataList() == null) ? 0 : getUserDataList().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getApproximateTotalCount() == null) ? 0 : getApproximateTotalCount().hashCode());
         return hashCode;
     }
 
@@ -208,6 +268,11 @@ public class GetCurrentUserDataResult implements Serializable {
             return false;
         if (other.getUserDataList() != null
                 && other.getUserDataList().equals(this.getUserDataList()) == false)
+            return false;
+        if (other.getApproximateTotalCount() == null ^ this.getApproximateTotalCount() == null)
+            return false;
+        if (other.getApproximateTotalCount() != null
+                && other.getApproximateTotalCount().equals(this.getApproximateTotalCount()) == false)
             return false;
         return true;
     }

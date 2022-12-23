@@ -45,6 +45,10 @@ public class GetCurrentMetricDataResultJsonUnmarshaller implements
             } else if (name.equals("DataSnapshotTime")) {
                 getCurrentMetricDataResult.setDataSnapshotTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ApproximateTotalCount")) {
+                getCurrentMetricDataResult.setApproximateTotalCount(LongJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

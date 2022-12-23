@@ -43,7 +43,9 @@ public enum VocabularyLanguageCode {
     KoKR("ko-KR"),
     PtBR("pt-BR"),
     PtPT("pt-PT"),
-    ZhCN("zh-CN");
+    ZhCN("zh-CN"),
+    EnNZ("en-NZ"),
+    EnZA("en-ZA");
 
     private String value;
 
@@ -80,6 +82,8 @@ public enum VocabularyLanguageCode {
         enumMap.put("pt-BR", PtBR);
         enumMap.put("pt-PT", PtPT);
         enumMap.put("zh-CN", ZhCN);
+        enumMap.put("en-NZ", EnNZ);
+        enumMap.put("en-ZA", EnZA);
     }
 
     /**

@@ -103,6 +103,11 @@ class UserDataJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (userData.getNextStatus() != null) {
+            String nextStatus = userData.getNextStatus();
+            jsonWriter.name("NextStatus");
+            jsonWriter.value(nextStatus);
+        }
         jsonWriter.endObject();
     }
 
