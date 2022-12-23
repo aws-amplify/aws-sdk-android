@@ -21,40 +21,42 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO ConnectionCredentials
+ * JSON unmarshaller for POJO Receipt
  */
-class ConnectionCredentialsJsonUnmarshaller implements
-        Unmarshaller<ConnectionCredentials, JsonUnmarshallerContext> {
+class ReceiptJsonUnmarshaller implements Unmarshaller<Receipt, JsonUnmarshallerContext> {
 
-    public ConnectionCredentials unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public Receipt unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        ConnectionCredentials connectionCredentials = new ConnectionCredentials();
+        Receipt receipt = new Receipt();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("ConnectionToken")) {
-                connectionCredentials.setConnectionToken(StringJsonUnmarshaller.getInstance()
+            if (name.equals("DeliveredTimestamp")) {
+                receipt.setDeliveredTimestamp(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Expiry")) {
-                connectionCredentials.setExpiry(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("ReadTimestamp")) {
+                receipt.setReadTimestamp(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("RecipientParticipantId")) {
+                receipt.setRecipientParticipantId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return connectionCredentials;
+        return receipt;
     }
 
-    private static ConnectionCredentialsJsonUnmarshaller instance;
+    private static ReceiptJsonUnmarshaller instance;
 
-    public static ConnectionCredentialsJsonUnmarshaller getInstance() {
+    public static ReceiptJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ConnectionCredentialsJsonUnmarshaller();
+            instance = new ReceiptJsonUnmarshaller();
         return instance;
     }
 }

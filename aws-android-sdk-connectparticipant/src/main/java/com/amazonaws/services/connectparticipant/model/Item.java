@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
@@ -75,7 +75,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      */
     private String type;
 
@@ -115,6 +115,14 @@ public class Item implements Serializable {
      * </p>
      */
     private java.util.List<AttachmentItem> attachments;
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     */
+    private MessageMetadata messageMetadata;
 
     /**
      * <p>
@@ -200,7 +208,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the message or event.
@@ -216,7 +224,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message or event.
@@ -235,7 +243,7 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message or event.
@@ -364,7 +372,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @return <p>
      *         Type of the item: message or event.
@@ -383,7 +391,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -405,7 +413,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -427,7 +435,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -449,7 +457,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -748,6 +756,57 @@ public class Item implements Serializable {
     }
 
     /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     *
+     * @return <p>
+     *         The metadata related to the message. Currently this supports only
+     *         information related to message receipts.
+     *         </p>
+     */
+    public MessageMetadata getMessageMetadata() {
+        return messageMetadata;
+    }
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     *
+     * @param messageMetadata <p>
+     *            The metadata related to the message. Currently this supports
+     *            only information related to message receipts.
+     *            </p>
+     */
+    public void setMessageMetadata(MessageMetadata messageMetadata) {
+        this.messageMetadata = messageMetadata;
+    }
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageMetadata <p>
+     *            The metadata related to the message. Currently this supports
+     *            only information related to message receipts.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withMessageMetadata(MessageMetadata messageMetadata) {
+        this.messageMetadata = messageMetadata;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -775,7 +834,9 @@ public class Item implements Serializable {
         if (getParticipantRole() != null)
             sb.append("ParticipantRole: " + getParticipantRole() + ",");
         if (getAttachments() != null)
-            sb.append("Attachments: " + getAttachments());
+            sb.append("Attachments: " + getAttachments() + ",");
+        if (getMessageMetadata() != null)
+            sb.append("MessageMetadata: " + getMessageMetadata());
         sb.append("}");
         return sb.toString();
     }
@@ -800,6 +861,8 @@ public class Item implements Serializable {
                 + ((getParticipantRole() == null) ? 0 : getParticipantRole().hashCode());
         hashCode = prime * hashCode
                 + ((getAttachments() == null) ? 0 : getAttachments().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageMetadata() == null) ? 0 : getMessageMetadata().hashCode());
         return hashCode;
     }
 
@@ -855,6 +918,11 @@ public class Item implements Serializable {
             return false;
         if (other.getAttachments() != null
                 && other.getAttachments().equals(this.getAttachments()) == false)
+            return false;
+        if (other.getMessageMetadata() == null ^ this.getMessageMetadata() == null)
+            return false;
+        if (other.getMessageMetadata() != null
+                && other.getMessageMetadata().equals(this.getMessageMetadata()) == false)
             return false;
         return true;
     }
