@@ -222,7 +222,7 @@ public class AWSKeyValueStore {
         // on the persistent store.
         Key decryptionKey = retrieveEncryptionKey(encryptionKeyAlias);
         if (decryptionKey == null) {
-            logger.error("Error in retrieving the decryption key " +
+            logger.warn("Error in retrieving the decryption key " +
                     "used to decrypt the data from the persistent store. " +
                     "Returning null for the requested dataKey = " + dataKey);
             return null;
@@ -257,7 +257,7 @@ public class AWSKeyValueStore {
             cache.put(dataKey, decryptedDataInString);
             return decryptedDataInString;
         } catch (Exception ex) {
-            logger.error("Error in retrieving value for dataKey = " + dataKey, ex);
+            logger.warn("Error in retrieving value for dataKey = " + dataKey, ex);
 
             // Remove the dataKey and its associated value if there is an exception in decryption
             remove(dataKey);
@@ -313,7 +313,7 @@ public class AWSKeyValueStore {
             logger.warn("No encryption key found for encryptionKeyAlias: " + encryptionKeyAlias);
             encryptionKey = generateEncryptionKey(encryptionKeyAlias);
             if (encryptionKey == null) {
-                logger.error("Error in generating the encryption key for encryptionKeyAlias: " +
+                logger.warn("Error in generating the encryption key for encryptionKeyAlias: " +
                         encryptionKeyAlias + " used to encrypt the data before storing. " +
                         "Skipping persisting the data in the persistent store.");
                 return;
@@ -479,7 +479,7 @@ public class AWSKeyValueStore {
         try {
             return keyProvider.retrieveKey(encryptionKeyAlias);
         } catch (KeyNotFoundException keyNotFoundException) {
-            logger.error(keyNotFoundException);
+            logger.warn(keyNotFoundException);
             // When Key cannot be retrieved, any existing encrypted data
             // cannot be decrypted successfully. Hence, deleting all the
             // existing encrypted data stored in SharedPreferences
