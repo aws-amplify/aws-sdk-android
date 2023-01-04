@@ -21,40 +21,42 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO ConnectionCredentials
+ * JSON unmarshaller for POJO MessageMetadata
  */
-class ConnectionCredentialsJsonUnmarshaller implements
-        Unmarshaller<ConnectionCredentials, JsonUnmarshallerContext> {
+class MessageMetadataJsonUnmarshaller implements
+        Unmarshaller<MessageMetadata, JsonUnmarshallerContext> {
 
-    public ConnectionCredentials unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public MessageMetadata unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        ConnectionCredentials connectionCredentials = new ConnectionCredentials();
+        MessageMetadata messageMetadata = new MessageMetadata();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("ConnectionToken")) {
-                connectionCredentials.setConnectionToken(StringJsonUnmarshaller.getInstance()
+            if (name.equals("MessageId")) {
+                messageMetadata.setMessageId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Expiry")) {
-                connectionCredentials.setExpiry(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
+            } else if (name.equals("Receipts")) {
+                messageMetadata.setReceipts(new ListUnmarshaller<Receipt>(ReceiptJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return connectionCredentials;
+        return messageMetadata;
     }
 
-    private static ConnectionCredentialsJsonUnmarshaller instance;
+    private static MessageMetadataJsonUnmarshaller instance;
 
-    public static ConnectionCredentialsJsonUnmarshaller getInstance() {
+    public static MessageMetadataJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ConnectionCredentialsJsonUnmarshaller();
+            instance = new MessageMetadataJsonUnmarshaller();
         return instance;
     }
 }
