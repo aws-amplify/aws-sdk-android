@@ -83,6 +83,11 @@ public class GetLabelDetectionRequestMarshaller implements
                 jsonWriter.name("SortBy");
                 jsonWriter.value(sortBy);
             }
+            if (getLabelDetectionRequest.getAggregateBy() != null) {
+                String aggregateBy = getLabelDetectionRequest.getAggregateBy();
+                jsonWriter.name("AggregateBy");
+                jsonWriter.value(aggregateBy);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
