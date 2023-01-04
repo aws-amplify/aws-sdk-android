@@ -24,8 +24,8 @@ public class TranslateTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 10000<br/>
-     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
+     * <b>Length: </b> - 20000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,20000}<br/>
      */
     private String translatedText;
 
@@ -70,8 +70,8 @@ public class TranslateTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 10000<br/>
-     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
+     * <b>Length: </b> - 20000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,20000}<br/>
      *
      * @return <p>
      *         The translated text.
@@ -87,8 +87,8 @@ public class TranslateTextResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 10000<br/>
-     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
+     * <b>Length: </b> - 20000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,20000}<br/>
      *
      * @param translatedText <p>
      *            The translated text.
@@ -107,8 +107,8 @@ public class TranslateTextResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 10000<br/>
-     * <b>Pattern: </b>[\P{M}\p{M}]{0,10000}<br/>
+     * <b>Length: </b> - 20000<br/>
+     * <b>Pattern: </b>[\P{M}\p{M}]{0,20000}<br/>
      *
      * @param translatedText <p>
      *            The translated text.

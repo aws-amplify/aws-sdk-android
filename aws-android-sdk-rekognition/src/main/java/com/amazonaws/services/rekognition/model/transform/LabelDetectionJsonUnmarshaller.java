@@ -42,6 +42,15 @@ class LabelDetectionJsonUnmarshaller implements
             } else if (name.equals("Label")) {
                 labelDetection.setLabel(LabelJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartTimestampMillis")) {
+                labelDetection.setStartTimestampMillis(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EndTimestampMillis")) {
+                labelDetection.setEndTimestampMillis(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DurationMillis")) {
+                labelDetection.setDurationMillis(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
