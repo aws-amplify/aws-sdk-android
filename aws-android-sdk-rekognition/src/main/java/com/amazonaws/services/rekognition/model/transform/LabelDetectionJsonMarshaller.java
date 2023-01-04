@@ -36,6 +36,21 @@ class LabelDetectionJsonMarshaller {
             jsonWriter.name("Label");
             LabelJsonMarshaller.getInstance().marshall(label, jsonWriter);
         }
+        if (labelDetection.getStartTimestampMillis() != null) {
+            Long startTimestampMillis = labelDetection.getStartTimestampMillis();
+            jsonWriter.name("StartTimestampMillis");
+            jsonWriter.value(startTimestampMillis);
+        }
+        if (labelDetection.getEndTimestampMillis() != null) {
+            Long endTimestampMillis = labelDetection.getEndTimestampMillis();
+            jsonWriter.name("EndTimestampMillis");
+            jsonWriter.value(endTimestampMillis);
+        }
+        if (labelDetection.getDurationMillis() != null) {
+            Long durationMillis = labelDetection.getDurationMillis();
+            jsonWriter.name("DurationMillis");
+            jsonWriter.value(durationMillis);
+        }
         jsonWriter.endObject();
     }
 
