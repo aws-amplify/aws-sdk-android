@@ -1,3 +1,18 @@
+## [Release 2.61.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.61.0)
+
+### Features
+- **aws-android-sdk-rekognition:** update models to latest (#3119)
+- **aws-android-sdk-location:** update models to latest (#3121)
+- **aws-android-sdk-translate:** update models to latest (#3123)
+- **aws-android-sdk-kinesisvideo:** update models to latest (#3127)
+- **aws-android-sdk-transcribe:** update models to latest (#3129)
+- **aws-android-sdk-connectparticipant:** update models to latest (#3138)
+
+### Miscellaneous
+- change log level for failed keystore migration (#3134)
+
+[See all changes between 2.60.0 and 2.61.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.60.0...release_v2.61.0)
+
 ## [Release 2.60.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.60.0)
 
 ### Features
