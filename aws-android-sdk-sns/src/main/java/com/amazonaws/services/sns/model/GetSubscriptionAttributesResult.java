@@ -59,6 +59,25 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>FilterPolicyScope</code> – This attribute lets you choose the
+     * filtering scope by using one of the following string value types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>MessageAttributes</code> (default) – The filter is applied on the
+     * message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageBody</code> – The filter is applied on the message body.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>Owner</code> – The Amazon Web Services account ID of the
      * subscription's owner.
      * </p>
@@ -170,6 +189,25 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>FilterPolicyScope</code> – This attribute lets you choose the
+     * filtering scope by using one of the following string value types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>MessageAttributes</code> (default) – The filter is applied on the
+     * message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageBody</code> – The filter is applied on the message body.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>Owner</code> – The Amazon Web Services account ID of the
      * subscription's owner.
      * </p>
@@ -275,6 +313,27 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
      *         Guide</i>.
      *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FilterPolicyScope</code> – This attribute lets you choose
+     *         the filtering scope by using one of the following string value
+     *         types:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>MessageAttributes</code> (default) – The filter is applied
+     *         on the message attributes.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageBody</code> – The filter is applied on the message
+     *         body.
+     *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         <li>
      *         <p>
@@ -394,6 +453,25 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>FilterPolicyScope</code> – This attribute lets you choose the
+     * filtering scope by using one of the following string value types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>MessageAttributes</code> (default) – The filter is applied on the
+     * message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageBody</code> – The filter is applied on the message body.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>Owner</code> – The Amazon Web Services account ID of the
      * subscription's owner.
      * </p>
@@ -500,6 +578,27 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            >Amazon SNS Message Filtering</a> in the <i>Amazon SNS
      *            Developer Guide</i>.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FilterPolicyScope</code> – This attribute lets you
+     *            choose the filtering scope by using one of the following
+     *            string value types:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>MessageAttributes</code> (default) – The filter is
+     *            applied on the message attributes.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageBody</code> – The filter is applied on the
+     *            message body.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
@@ -620,6 +719,25 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
+     * <code>FilterPolicyScope</code> – This attribute lets you choose the
+     * filtering scope by using one of the following string value types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>MessageAttributes</code> (default) – The filter is applied on the
+     * message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageBody</code> – The filter is applied on the message body.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
      * <code>Owner</code> – The Amazon Web Services account ID of the
      * subscription's owner.
      * </p>
@@ -729,6 +847,27 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            >Amazon SNS Message Filtering</a> in the <i>Amazon SNS
      *            Developer Guide</i>.
      *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FilterPolicyScope</code> – This attribute lets you
+     *            choose the filtering scope by using one of the following
+     *            string value types:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>MessageAttributes</code> (default) – The filter is
+     *            applied on the message attributes.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageBody</code> – The filter is applied on the
+     *            message body.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            <li>
      *            <p>
@@ -849,6 +988,25 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
      * Guide</i>.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FilterPolicyScope</code> – This attribute lets you choose the
+     * filtering scope by using one of the following string value types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>MessageAttributes</code> (default) – The filter is applied on the
+     * message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageBody</code> – The filter is applied on the message body.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * <li>
      * <p>

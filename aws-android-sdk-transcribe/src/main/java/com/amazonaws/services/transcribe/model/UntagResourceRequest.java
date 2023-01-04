@@ -38,7 +38,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * For example,
-     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      * .
      * </p>
      * <p>
@@ -73,7 +73,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * For example,
-     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      * .
      * </p>
      * <p>
@@ -97,7 +97,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *         </p>
      *         <p>
      *         For example,
-     *         <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *         <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      *         .
      *         </p>
      *         <p>
@@ -121,7 +121,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * For example,
-     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      * .
      * </p>
      * <p>
@@ -145,7 +145,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            </p>
      *            <p>
      *            For example,
-     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      *            .
      *            </p>
      *            <p>
@@ -170,7 +170,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * For example,
-     * <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     * <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      * .
      * </p>
      * <p>
@@ -197,7 +197,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            </p>
      *            <p>
      *            For example,
-     *            <code>arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name</code>
+     *            <code>arn:aws:transcribe:us-west-2:111122223333:transcription-job/transcription-job-name</code>
      *            .
      *            </p>
      *            <p>

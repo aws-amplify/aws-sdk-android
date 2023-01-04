@@ -50,6 +50,9 @@ class CategoryPropertiesJsonUnmarshaller implements
             } else if (name.equals("LastUpdateTime")) {
                 categoryProperties.setLastUpdateTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InputType")) {
+                categoryProperties.setInputType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

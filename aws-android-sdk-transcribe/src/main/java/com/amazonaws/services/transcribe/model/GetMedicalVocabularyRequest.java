@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides information about the specified custom medical vocabulary.
  * </p>
  * <p>
- * To view the status of the specified medical vocabulary, check the
+ * To view the status of the specified custom medical vocabulary, check the
  * <code>VocabularyState</code> field. If the status is <code>READY</code>, your
- * vocabulary is available to use. If the status is <code>FAILED</code>,
+ * custom vocabulary is available to use. If the status is <code>FAILED</code>,
  * <code>FailureReason</code> provides details on why your vocabulary failed.
  * </p>
  * <p>
@@ -37,7 +37,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The name of the custom medical vocabulary you want information about.
-     * Vocabulary names are case sensitive.
+     * Custom medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The name of the custom medical vocabulary you want information about.
-     * Vocabulary names are case sensitive.
+     * Custom medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +58,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The name of the custom medical vocabulary you want information
-     *         about. Vocabulary names are case sensitive.
+     *         about. Custom medical vocabulary names are case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -68,7 +68,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The name of the custom medical vocabulary you want information about.
-     * Vocabulary names are case sensitive.
+     * Custom medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,7 +77,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      *
      * @param vocabularyName <p>
      *            The name of the custom medical vocabulary you want information
-     *            about. Vocabulary names are case sensitive.
+     *            about. Custom medical vocabulary names are case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -87,7 +87,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The name of the custom medical vocabulary you want information about.
-     * Vocabulary names are case sensitive.
+     * Custom medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,7 +99,7 @@ public class GetMedicalVocabularyRequest extends AmazonWebServiceRequest impleme
      *
      * @param vocabularyName <p>
      *            The name of the custom medical vocabulary you want information
-     *            about. Vocabulary names are case sensitive.
+     *            about. Custom medical vocabulary names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

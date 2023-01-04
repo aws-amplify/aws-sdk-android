@@ -21,8 +21,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,8 +57,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,8 +66,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *
      * @return <p>
      *         Lists all custom medical vocabularies that have the status
-     *         specified in your request. Vocabularies are ordered by creation
-     *         date, with the newest vocabulary first.
+     *         specified in your request. Custom vocabularies are ordered by
+     *         creation date, with the newest vocabulary first.
      *         </p>
      * @see VocabularyState
      */
@@ -78,8 +78,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,7 +87,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *
      * @param status <p>
      *            Lists all custom medical vocabularies that have the status
-     *            specified in your request. Vocabularies are ordered by
+     *            specified in your request. Custom vocabularies are ordered by
      *            creation date, with the newest vocabulary first.
      *            </p>
      * @see VocabularyState
@@ -99,8 +99,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -111,7 +111,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *
      * @param status <p>
      *            Lists all custom medical vocabularies that have the status
-     *            specified in your request. Vocabularies are ordered by
+     *            specified in your request. Custom vocabularies are ordered by
      *            creation date, with the newest vocabulary first.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -126,8 +126,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,7 +135,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *
      * @param status <p>
      *            Lists all custom medical vocabularies that have the status
-     *            specified in your request. Vocabularies are ordered by
+     *            specified in your request. Custom vocabularies are ordered by
      *            creation date, with the newest vocabulary first.
      *            </p>
      * @see VocabularyState
@@ -147,8 +147,8 @@ public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * Lists all custom medical vocabularies that have the status specified in
-     * your request. Vocabularies are ordered by creation date, with the newest
-     * vocabulary first.
+     * your request. Custom vocabularies are ordered by creation date, with the
+     * newest vocabulary first.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -159,7 +159,7 @@ public class ListMedicalVocabulariesResult implements Serializable {
      *
      * @param status <p>
      *            Lists all custom medical vocabularies that have the status
-     *            specified in your request. Vocabularies are ordered by
+     *            specified in your request. Custom vocabularies are ordered by
      *            creation date, with the newest vocabulary first.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Tagging or untagging a KMS key can allow or deny permission to the KMS key.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">ABAC
- * in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+ * for KMS</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * </note>
  * <p>

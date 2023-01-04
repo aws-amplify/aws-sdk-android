@@ -45,7 +45,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -56,7 +56,7 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last modified.
+     * The date and time the specified custom vocabulary was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -70,8 +70,8 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * If <code>VocabularyState</code> is <code>FAILED</code>,
-     * <code>FailureReason</code> contains information about why the vocabulary
-     * request failed. See also: <a href=
+     * <code>FailureReason</code> contains information about why the custom
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      * >Common Errors</a>.
      * </p>
@@ -80,8 +80,8 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the custom vocabulary is stored; use this URI to
+     * view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -265,7 +265,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -274,7 +274,7 @@ public class GetVocabularyResult implements Serializable {
      *
      * @return <p>
      *         The processing state of your custom vocabulary. If the state is
-     *         <code>READY</code>, you can use the vocabulary in a
+     *         <code>READY</code>, you can use the custom vocabulary in a
      *         <code>StartTranscriptionJob</code> request.
      *         </p>
      * @see VocabularyState
@@ -286,7 +286,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -295,7 +295,7 @@ public class GetVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -307,7 +307,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -319,7 +319,7 @@ public class GetVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -334,7 +334,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -343,7 +343,7 @@ public class GetVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @see VocabularyState
@@ -355,7 +355,7 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * The processing state of your custom vocabulary. If the state is
-     * <code>READY</code>, you can use the vocabulary in a
+     * <code>READY</code>, you can use the custom vocabulary in a
      * <code>StartTranscriptionJob</code> request.
      * </p>
      * <p>
@@ -367,7 +367,7 @@ public class GetVocabularyResult implements Serializable {
      *
      * @param vocabularyState <p>
      *            The processing state of your custom vocabulary. If the state
-     *            is <code>READY</code>, you can use the vocabulary in a
+     *            is <code>READY</code>, you can use the custom vocabulary in a
      *            <code>StartTranscriptionJob</code> request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -381,7 +381,7 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last modified.
+     * The date and time the specified custom vocabulary was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -391,7 +391,8 @@ public class GetVocabularyResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The date and time the specified vocabulary was last modified.
+     *         The date and time the specified custom vocabulary was last
+     *         modified.
      *         </p>
      *         <p>
      *         Timestamps are in the format
@@ -406,7 +407,7 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last modified.
+     * The date and time the specified custom vocabulary was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -416,7 +417,8 @@ public class GetVocabularyResult implements Serializable {
      * </p>
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary was last modified.
+     *            The date and time the specified custom vocabulary was last
+     *            modified.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -431,7 +433,7 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The date and time the specified vocabulary was last modified.
+     * The date and time the specified custom vocabulary was last modified.
      * </p>
      * <p>
      * Timestamps are in the format
@@ -444,7 +446,8 @@ public class GetVocabularyResult implements Serializable {
      * together.
      *
      * @param lastModifiedTime <p>
-     *            The date and time the specified vocabulary was last modified.
+     *            The date and time the specified custom vocabulary was last
+     *            modified.
      *            </p>
      *            <p>
      *            Timestamps are in the format
@@ -463,8 +466,8 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * If <code>VocabularyState</code> is <code>FAILED</code>,
-     * <code>FailureReason</code> contains information about why the vocabulary
-     * request failed. See also: <a href=
+     * <code>FailureReason</code> contains information about why the custom
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      * >Common Errors</a>.
      * </p>
@@ -472,7 +475,7 @@ public class GetVocabularyResult implements Serializable {
      * @return <p>
      *         If <code>VocabularyState</code> is <code>FAILED</code>,
      *         <code>FailureReason</code> contains information about why the
-     *         vocabulary request failed. See also: <a href=
+     *         custom vocabulary request failed. See also: <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      *         >Common Errors</a>.
      *         </p>
@@ -484,8 +487,8 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * If <code>VocabularyState</code> is <code>FAILED</code>,
-     * <code>FailureReason</code> contains information about why the vocabulary
-     * request failed. See also: <a href=
+     * <code>FailureReason</code> contains information about why the custom
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      * >Common Errors</a>.
      * </p>
@@ -493,7 +496,7 @@ public class GetVocabularyResult implements Serializable {
      * @param failureReason <p>
      *            If <code>VocabularyState</code> is <code>FAILED</code>,
      *            <code>FailureReason</code> contains information about why the
-     *            vocabulary request failed. See also: <a href=
+     *            custom vocabulary request failed. See also: <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      *            >Common Errors</a>.
      *            </p>
@@ -505,8 +508,8 @@ public class GetVocabularyResult implements Serializable {
     /**
      * <p>
      * If <code>VocabularyState</code> is <code>FAILED</code>,
-     * <code>FailureReason</code> contains information about why the vocabulary
-     * request failed. See also: <a href=
+     * <code>FailureReason</code> contains information about why the custom
+     * vocabulary request failed. See also: <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      * >Common Errors</a>.
      * </p>
@@ -517,7 +520,7 @@ public class GetVocabularyResult implements Serializable {
      * @param failureReason <p>
      *            If <code>VocabularyState</code> is <code>FAILED</code>,
      *            <code>FailureReason</code> contains information about why the
-     *            vocabulary request failed. See also: <a href=
+     *            custom vocabulary request failed. See also: <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/APIReference/CommonErrors.html"
      *            >Common Errors</a>.
      *            </p>
@@ -531,8 +534,8 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the custom vocabulary is stored; use this URI to
+     * view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -540,8 +543,8 @@ public class GetVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 location where the vocabulary is stored; use this URI to
-     *         view or download the vocabulary.
+     *         The S3 location where the custom vocabulary is stored; use this
+     *         URI to view or download the custom vocabulary.
      *         </p>
      */
     public String getDownloadUri() {
@@ -550,8 +553,8 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the custom vocabulary is stored; use this URI to
+     * view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -559,8 +562,8 @@ public class GetVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the vocabulary is stored; use this URI
-     *            to view or download the vocabulary.
+     *            The S3 location where the custom vocabulary is stored; use
+     *            this URI to view or download the custom vocabulary.
      *            </p>
      */
     public void setDownloadUri(String downloadUri) {
@@ -569,8 +572,8 @@ public class GetVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the vocabulary is stored; use this URI to view or
-     * download the vocabulary.
+     * The S3 location where the custom vocabulary is stored; use this URI to
+     * view or download the custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -581,8 +584,8 @@ public class GetVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the vocabulary is stored; use this URI
-     *            to view or download the vocabulary.
+     *            The S3 location where the custom vocabulary is stored; use
+     *            this URI to view or download the custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
