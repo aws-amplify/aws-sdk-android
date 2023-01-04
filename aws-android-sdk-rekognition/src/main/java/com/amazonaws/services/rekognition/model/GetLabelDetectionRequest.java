@@ -29,36 +29,104 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a>StartLabelDetection</a> which returns a job identifier (<code>JobId</code>
  * ). When the label detection operation finishes, Amazon Rekognition publishes
  * a completion status to the Amazon Simple Notification Service topic
- * registered in the initial call to <code>StartlabelDetection</code>. To get
- * the results of the label detection operation, first check that the status
- * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
- * call <a>GetLabelDetection</a> and pass the job identifier (<code>JobId</code>
- * ) from the initial call to <code>StartLabelDetection</code>.
+ * registered in the initial call to <code>StartlabelDetection</code>.
+ * </p>
+ * <p>
+ * To get the results of the label detection operation, first check that the
+ * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
+ * so, call <a>GetLabelDetection</a> and pass the job identifier (
+ * <code>JobId</code>) from the initial call to <code>StartLabelDetection</code>
+ * .
  * </p>
  * <p>
  * <code>GetLabelDetection</code> returns an array of detected labels (
  * <code>Labels</code>) sorted by the time the labels were detected. You can
  * also sort by the label name by specifying <code>NAME</code> for the
- * <code>SortBy</code> input parameter.
+ * <code>SortBy</code> input parameter. If there is no <code>NAME</code>
+ * specified, the default sort is by timestamp.
  * </p>
  * <p>
- * The labels returned include the label name, the percentage confidence in the
- * accuracy of the detected label, and the time the label was detected in the
- * video.
+ * You can select how results are aggregated by using the
+ * <code>AggregateBy</code> input parameter. The default aggregation method is
+ * <code>TIMESTAMPS</code>. You can also aggregate by <code>SEGMENTS</code>,
+ * which aggregates all instances of labels detected in a given segment.
  * </p>
  * <p>
- * The returned labels also include bounding box information for common objects,
- * a hierarchical taxonomy of detected labels, and the version of the label
- * model used for detection.
+ * The returned Labels array may include the following attributes:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Name - The name of the detected label.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Confidence - The level of confidence in the label assigned to a detected
+ * object.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Parents - The ancestor labels for a detected label. GetLabelDetection returns
+ * a hierarchical taxonomy of detected labels. For example, a detected car might
+ * be assigned the label car. The label car has two parent labels: Vehicle (its
+ * parent) and Transportation (its grandparent). The response includes the all
+ * ancestors for a label, where every ancestor is a unique label. In the
+ * previous example, Car, Vehicle, and Transportation are returned as unique
+ * labels in the response.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Aliases - Possible Aliases for the label.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Categories - The label categories that the detected label belongs to.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * BoundingBox — Bounding boxes are described for all instances of detected
+ * common object labels, returned in an array of Instance objects. An Instance
+ * object contains a BoundingBox object, describing the location of the label on
+ * the input image. It also includes the confidence for the accuracy of the
+ * detected bounding box.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Timestamp - Time, in milliseconds from the start of the video, that the label
+ * was detected. For aggregation by <code>SEGMENTS</code>, the
+ * <code>StartTimestampMillis</code>, <code>EndTimestampMillis</code>, and
+ * <code>DurationMillis</code> structures are what define a segment. Although
+ * the “Timestamp” structure is still returned with each label, its value is set
+ * to be the same as <code>StartTimestampMillis</code>.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * Timestamp and Bounding box information are returned for detected Instances,
+ * only if aggregation is done by <code>TIMESTAMPS</code>. If aggregating by
+ * <code>SEGMENTS</code>, information about detected instances isn’t returned.
  * </p>
  * <p>
- * Use MaxResults parameter to limit the number of labels returned. If there are
- * more results than specified in <code>MaxResults</code>, the value of
- * <code>NextToken</code> in the operation response contains a pagination token
- * for getting the next set of results. To get the next page of results, call
- * <code>GetlabelDetection</code> and populate the <code>NextToken</code>
- * request parameter with the token value returned from the previous call to
- * <code>GetLabelDetection</code>.
+ * The version of the label model used for the detection is also returned.
+ * </p>
+ * <p>
+ * <b>Note <code>DominantColors</code> isn't returned for <code>Instances</code>
+ * , although it is shown as part of the response in the sample seen below.</b>
+ * </p>
+ * <p>
+ * Use <code>MaxResults</code> parameter to limit the number of labels returned.
+ * If there are more results than specified in <code>MaxResults</code>, the
+ * value of <code>NextToken</code> in the operation response contains a
+ * pagination token for getting the next set of results. To get the next page of
+ * results, call <code>GetlabelDetection</code> and populate the
+ * <code>NextToken</code> request parameter with the token value returned from
+ * the previous call to <code>GetLabelDetection</code>.
  * </p>
  */
 public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements Serializable {
@@ -113,6 +181,17 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
      * <b>Allowed Values: </b>NAME, TIMESTAMP
      */
     private String sortBy;
+
+    /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     */
+    private String aggregateBy;
 
     /**
      * <p>
@@ -467,6 +546,113 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
     }
 
     /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @return <p>
+     *         Defines how to aggregate the returned results. Results can be
+     *         aggregated by timestamps or segments.
+     *         </p>
+     * @see LabelDetectionAggregateBy
+     */
+    public String getAggregateBy() {
+        return aggregateBy;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate the returned results. Results can be
+     *            aggregated by timestamps or segments.
+     *            </p>
+     * @see LabelDetectionAggregateBy
+     */
+    public void setAggregateBy(String aggregateBy) {
+        this.aggregateBy = aggregateBy;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate the returned results. Results can be
+     *            aggregated by timestamps or segments.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see LabelDetectionAggregateBy
+     */
+    public GetLabelDetectionRequest withAggregateBy(String aggregateBy) {
+        this.aggregateBy = aggregateBy;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate the returned results. Results can be
+     *            aggregated by timestamps or segments.
+     *            </p>
+     * @see LabelDetectionAggregateBy
+     */
+    public void setAggregateBy(LabelDetectionAggregateBy aggregateBy) {
+        this.aggregateBy = aggregateBy.toString();
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate the returned results. Results can be aggregated
+     * by timestamps or segments.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate the returned results. Results can be
+     *            aggregated by timestamps or segments.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see LabelDetectionAggregateBy
+     */
+    public GetLabelDetectionRequest withAggregateBy(LabelDetectionAggregateBy aggregateBy) {
+        this.aggregateBy = aggregateBy.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -484,7 +670,9 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getSortBy() != null)
-            sb.append("SortBy: " + getSortBy());
+            sb.append("SortBy: " + getSortBy() + ",");
+        if (getAggregateBy() != null)
+            sb.append("AggregateBy: " + getAggregateBy());
         sb.append("}");
         return sb.toString();
     }
@@ -498,6 +686,8 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getSortBy() == null) ? 0 : getSortBy().hashCode());
+        hashCode = prime * hashCode
+                + ((getAggregateBy() == null) ? 0 : getAggregateBy().hashCode());
         return hashCode;
     }
 
@@ -529,6 +719,11 @@ public class GetLabelDetectionRequest extends AmazonWebServiceRequest implements
         if (other.getSortBy() == null ^ this.getSortBy() == null)
             return false;
         if (other.getSortBy() != null && other.getSortBy().equals(this.getSortBy()) == false)
+            return false;
+        if (other.getAggregateBy() == null ^ this.getAggregateBy() == null)
+            return false;
+        if (other.getAggregateBy() != null
+                && other.getAggregateBy().equals(this.getAggregateBy()) == false)
             return false;
         return true;
     }
