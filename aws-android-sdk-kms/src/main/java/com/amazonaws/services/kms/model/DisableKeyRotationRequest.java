@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Automatic key rotation is supported only on symmetric encryption KMS keys.
- * You cannot enable or disable automatic rotation of <a href=
+ * You cannot enable automatic rotation of <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
  * >asymmetric KMS keys</a>, <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html">HMAC
@@ -36,8 +36,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
  * >imported key material</a>, or KMS keys in a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
- * >custom key store</a>. The key rotation status of these KMS keys is always
- * <code>false</code>. To enable or disable automatic rotation of a set of
+ * >custom key store</a>. To enable or disable automatic rotation of a set of
  * related <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-manage.html#multi-region-rotate"
  * >multi-Region keys</a>, set the property on the primary key.

@@ -294,6 +294,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
      * RSAES_OAEP_SHA_256, SM2PKE
@@ -1052,6 +1055,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
      * RSAES_OAEP_SHA_256, SM2PKE
@@ -1066,6 +1072,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         default value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm
      *         used for symmetric encryption KMS keys. If you are using an
      *         asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
+     *         </p>
+     *         <p>
+     *         The SM2PKE algorithm is only available in China Regions.
      *         </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1086,6 +1095,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
      * RSAES_OAEP_SHA_256, SM2PKE
@@ -1100,6 +1112,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
      *            algorithm used for symmetric encryption KMS keys. If you are
      *            using an asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     *            <p>
+     *            The SM2PKE algorithm is only available in China Regions.
      *            </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1120,6 +1135,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -1137,6 +1155,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
      *            algorithm used for symmetric encryption KMS keys. If you are
      *            using an asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     *            <p>
+     *            The SM2PKE algorithm is only available in China Regions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1160,6 +1181,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYMMETRIC_DEFAULT, RSAES_OAEP_SHA_1,
      * RSAES_OAEP_SHA_256, SM2PKE
@@ -1174,6 +1198,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
      *            algorithm used for symmetric encryption KMS keys. If you are
      *            using an asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     *            <p>
+     *            The SM2PKE algorithm is only available in China Regions.
      *            </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1194,6 +1221,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * recommend RSAES_OAEP_SHA_256.
      * </p>
      * <p>
+     * The SM2PKE algorithm is only available in China Regions.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -1211,6 +1241,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
      *            algorithm used for symmetric encryption KMS keys. If you are
      *            using an asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
+     *            </p>
+     *            <p>
+     *            The SM2PKE algorithm is only available in China Regions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

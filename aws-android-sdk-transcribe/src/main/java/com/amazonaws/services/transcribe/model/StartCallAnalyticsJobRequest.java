@@ -25,11 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Request Parameters you choose to include in your request.
  * </p>
  * <p>
- * In addition to many of the standard transcription features, Call Analytics
- * provides you with call characteristics, call summarization, speaker
- * sentiment, and optional redaction of your text transcript and your audio
- * file. You can also apply custom categories to flag specified conditions. To
- * learn more about these features and insights, refer to <a
+ * In addition to many standard transcription features, Call Analytics provides
+ * you with call characteristics, call summarization, speaker sentiment, and
+ * optional redaction of your text transcript and your audio file. You can also
+ * apply custom categories to flag specified conditions. To learn more about
+ * these features and insights, refer to <a
  * href="https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics.html"
  * >Analyzing call center audio with Call Analytics</a>.
  * </p>
@@ -38,8 +38,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * them before submitting your job request. Categories cannot be retroactively
  * applied to a job. To create a new category, use the operation. To learn more
  * about Call Analytics categories, see <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics-create-categories.html"
- * >Creating categories</a>.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html"
+ * >Creating categories for batch transcriptions</a> and <a href=
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html"
+ * >Creating categories for streaming transcriptions</a>.
  * </p>
  * <p>
  * To make a <code>StartCallAnalyticsJob</code> request, you must first upload
@@ -62,8 +64,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * <code>CallAnalyticsJobName</code>: A custom name you create for your
- * transcription job that is unique within your Amazon Web Services account.
+ * <code>CallAnalyticsJobName</code>: A custom name that you create for your
+ * transcription job that's unique within your Amazon Web Services account.
  * </p>
  * </li>
  * <li>
@@ -113,7 +115,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * your Call Analytics request.
      * </p>
      */
     private Media media;
@@ -242,7 +244,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -275,8 +277,8 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel. For example, if
-     * your agent is the first participant to speak, you would set
+     * Makes it possible to specify which speaker is on which channel. For
+     * example, if your agent is the first participant to speak, you would set
      * <code>ChannelId</code> to <code>0</code> (to indicate the first channel)
      * and <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that
      * it's the agent speaking).
@@ -380,12 +382,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * your Call Analytics request.
      * </p>
      *
      * @return <p>
      *         Describes the Amazon S3 location of the media file you want to
-     *         use in your request.
+     *         use in your Call Analytics request.
      *         </p>
      */
     public Media getMedia() {
@@ -395,12 +397,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * your Call Analytics request.
      * </p>
      *
      * @param media <p>
      *            Describes the Amazon S3 location of the media file you want to
-     *            use in your request.
+     *            use in your Call Analytics request.
      *            </p>
      */
     public void setMedia(Media media) {
@@ -410,7 +412,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * your Call Analytics request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -418,7 +420,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *
      * @param media <p>
      *            Describes the Amazon S3 location of the media file you want to
-     *            use in your request.
+     *            use in your Call Analytics request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1151,7 +1153,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -1174,9 +1176,9 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * @return <p>
      *         The Amazon Resource Name (ARN) of an IAM role that has
      *         permissions to access the Amazon S3 bucket that contains your
-     *         input files. If the role you specify doesn’t have the appropriate
-     *         permissions to access the specified Amazon S3 location, your
-     *         request fails.
+     *         input files. If the role that you specify doesn’t have the
+     *         appropriate permissions to access the specified Amazon S3
+     *         location, your request fails.
      *         </p>
      *         <p>
      *         IAM role ARNs have the format
@@ -1197,7 +1199,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -1220,7 +1222,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>
@@ -1244,7 +1246,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The Amazon Resource Name (ARN) of an IAM role that has permissions to
      * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
+     * that you specify doesn’t have the appropriate permissions to access the
      * specified Amazon S3 location, your request fails.
      * </p>
      * <p>
@@ -1270,7 +1272,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of an IAM role that has
      *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
+     *            input files. If the role that you specify doesn’t have the
      *            appropriate permissions to access the specified Amazon S3
      *            location, your request fails.
      *            </p>
@@ -1355,16 +1357,16 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel. For example, if
-     * your agent is the first participant to speak, you would set
+     * Makes it possible to specify which speaker is on which channel. For
+     * example, if your agent is the first participant to speak, you would set
      * <code>ChannelId</code> to <code>0</code> (to indicate the first channel)
      * and <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that
      * it's the agent speaking).
      * </p>
      *
      * @return <p>
-     *         Allows you to specify which speaker is on which channel. For
-     *         example, if your agent is the first participant to speak, you
+     *         Makes it possible to specify which speaker is on which channel.
+     *         For example, if your agent is the first participant to speak, you
      *         would set <code>ChannelId</code> to <code>0</code> (to indicate
      *         the first channel) and <code>ParticipantRole</code> to
      *         <code>AGENT</code> (to indicate that it's the agent speaking).
@@ -1376,20 +1378,20 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel. For example, if
-     * your agent is the first participant to speak, you would set
+     * Makes it possible to specify which speaker is on which channel. For
+     * example, if your agent is the first participant to speak, you would set
      * <code>ChannelId</code> to <code>0</code> (to indicate the first channel)
      * and <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that
      * it's the agent speaking).
      * </p>
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel. For
-     *            example, if your agent is the first participant to speak, you
-     *            would set <code>ChannelId</code> to <code>0</code> (to
-     *            indicate the first channel) and <code>ParticipantRole</code>
-     *            to <code>AGENT</code> (to indicate that it's the agent
-     *            speaking).
+     *            Makes it possible to specify which speaker is on which
+     *            channel. For example, if your agent is the first participant
+     *            to speak, you would set <code>ChannelId</code> to
+     *            <code>0</code> (to indicate the first channel) and
+     *            <code>ParticipantRole</code> to <code>AGENT</code> (to
+     *            indicate that it's the agent speaking).
      *            </p>
      */
     public void setChannelDefinitions(java.util.Collection<ChannelDefinition> channelDefinitions) {
@@ -1403,8 +1405,8 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel. For example, if
-     * your agent is the first participant to speak, you would set
+     * Makes it possible to specify which speaker is on which channel. For
+     * example, if your agent is the first participant to speak, you would set
      * <code>ChannelId</code> to <code>0</code> (to indicate the first channel)
      * and <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that
      * it's the agent speaking).
@@ -1414,12 +1416,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * together.
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel. For
-     *            example, if your agent is the first participant to speak, you
-     *            would set <code>ChannelId</code> to <code>0</code> (to
-     *            indicate the first channel) and <code>ParticipantRole</code>
-     *            to <code>AGENT</code> (to indicate that it's the agent
-     *            speaking).
+     *            Makes it possible to specify which speaker is on which
+     *            channel. For example, if your agent is the first participant
+     *            to speak, you would set <code>ChannelId</code> to
+     *            <code>0</code> (to indicate the first channel) and
+     *            <code>ParticipantRole</code> to <code>AGENT</code> (to
+     *            indicate that it's the agent speaking).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1438,8 +1440,8 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel. For example, if
-     * your agent is the first participant to speak, you would set
+     * Makes it possible to specify which speaker is on which channel. For
+     * example, if your agent is the first participant to speak, you would set
      * <code>ChannelId</code> to <code>0</code> (to indicate the first channel)
      * and <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that
      * it's the agent speaking).
@@ -1449,12 +1451,12 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * together.
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel. For
-     *            example, if your agent is the first participant to speak, you
-     *            would set <code>ChannelId</code> to <code>0</code> (to
-     *            indicate the first channel) and <code>ParticipantRole</code>
-     *            to <code>AGENT</code> (to indicate that it's the agent
-     *            speaking).
+     *            Makes it possible to specify which speaker is on which
+     *            channel. For example, if your agent is the first participant
+     *            to speak, you would set <code>ChannelId</code> to
+     *            <code>0</code> (to indicate the first channel) and
+     *            <code>ParticipantRole</code> to <code>AGENT</code> (to
+     *            indicate that it's the agent speaking).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

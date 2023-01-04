@@ -23,6 +23,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Allows a topic owner to set an attribute of the topic to a new value.
  * </p>
+ * <note>
+ * <p>
+ * To remove the ability to change topic permissions, you must deny permissions
+ * to the <code>AddPermission</code>, <code>RemovePermission</code>, and
+ * <code>SetTopicAttributes</code> actions in your IAM policy.
+ * </p>
+ * </note>
  */
 public class SetTopicAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -59,6 +66,16 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
+     * will vend X-Ray segment data to topic owner account if the sampled flag
+     * in the tracing header is true. This is only supported on standard topics.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -75,6 +92,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * </li>
      * </ul>
@@ -170,6 +195,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            subscribe to the topic.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
+     *            segment data to topic owner account if the sampled flag in the
+     *            tracing header is true. This is only supported on standard
+     *            topics.
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            The following attribute applies only to <a href=
@@ -186,6 +223,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            </li>
      *            </ul>
@@ -310,6 +355,16 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
+     * will vend X-Ray segment data to topic owner account if the sampled flag
+     * in the tracing header is true. This is only supported on standard topics.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -326,6 +381,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * </li>
      * </ul>
@@ -396,6 +459,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *         to the topic.
      *         </p>
      *         </li>
+     *         <li>
+     *         <p>
+     *         <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic.
+     *         By default <code>TracingConfig</code> is set to
+     *         <code>PassThrough</code>, and the topic passes through the
+     *         tracing header it receives from an Amazon SNS publisher to its
+     *         subscriptions. If set to Active, Amazon SNS will vend X-Ray
+     *         segment data to topic owner account if the sampled flag in the
+     *         tracing header is true. This is only supported on standard
+     *         topics.
+     *         </p>
+     *         </li>
      *         </ul>
      *         <p>
      *         The following attribute applies only to <a href=
@@ -412,6 +487,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *         >Key Terms</a>. For more examples, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *         >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SignatureVersion</code> – The signature version corresponds
+     *         to the hashing algorithm used while creating the signature of the
+     *         notifications, subscription confirmations, or unsubscribe
+     *         confirmation messages sent by Amazon SNS.
      *         </p>
      *         </li>
      *         </ul>
@@ -485,6 +568,16 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
+     * will vend X-Ray segment data to topic owner account if the sampled flag
+     * in the tracing header is true. This is only supported on standard topics.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -501,6 +594,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * </li>
      * </ul>
@@ -571,6 +672,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            subscribe to the topic.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
+     *            segment data to topic owner account if the sampled flag in the
+     *            tracing header is true. This is only supported on standard
+     *            topics.
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            The following attribute applies only to <a href=
@@ -587,6 +700,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            </li>
      *            </ul>
@@ -661,6 +782,16 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
+     * will vend X-Ray segment data to topic owner account if the sampled flag
+     * in the tracing header is true. This is only supported on standard topics.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -677,6 +808,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * </li>
      * </ul>
@@ -750,6 +889,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            subscribe to the topic.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
+     *            segment data to topic owner account if the sampled flag in the
+     *            tracing header is true. This is only supported on standard
+     *            topics.
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            The following attribute applies only to <a href=
@@ -766,6 +917,14 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            </li>
      *            </ul>

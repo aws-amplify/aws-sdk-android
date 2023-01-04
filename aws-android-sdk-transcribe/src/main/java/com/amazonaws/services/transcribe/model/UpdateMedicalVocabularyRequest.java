@@ -23,14 +23,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates an existing custom medical vocabulary with new values. This operation
  * overwrites all existing information with your new values; you cannot append
- * new terms onto an existing vocabulary.
+ * new terms onto an existing custom vocabulary.
  * </p>
  */
 public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the custom medical vocabulary you want to update. Vocabulary
-     * names are case sensitive.
+     * The name of the custom medical vocabulary you want to update. Custom
+     * medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,8 +73,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the custom medical vocabulary you want to update. Vocabulary
-     * names are case sensitive.
+     * The name of the custom medical vocabulary you want to update. Custom
+     * medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,7 +83,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         The name of the custom medical vocabulary you want to update.
-     *         Vocabulary names are case sensitive.
+     *         Custom medical vocabulary names are case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -92,8 +92,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the custom medical vocabulary you want to update. Vocabulary
-     * names are case sensitive.
+     * The name of the custom medical vocabulary you want to update. Custom
+     * medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +102,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param vocabularyName <p>
      *            The name of the custom medical vocabulary you want to update.
-     *            Vocabulary names are case sensitive.
+     *            Custom medical vocabulary names are case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -111,8 +111,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the custom medical vocabulary you want to update. Vocabulary
-     * names are case sensitive.
+     * The name of the custom medical vocabulary you want to update. Custom
+     * medical vocabulary names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -124,7 +124,7 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @param vocabularyName <p>
      *            The name of the custom medical vocabulary you want to update.
-     *            Vocabulary names are case sensitive.
+     *            Custom medical vocabulary names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

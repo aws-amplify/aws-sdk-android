@@ -49,15 +49,15 @@ import java.io.Serializable;
  * </ul>
  * <p>
  * See <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/call-analytics-create-categories.html#call-analytics-create-categories-rules"
- * >Rule criteria</a> for usage examples.
+ * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html#tca-rules-batch"
+ * >Rule criteria for batch categories</a> for usage examples.
  * </p>
  */
 public class InterruptionFilter implements Serializable {
     /**
      * <p>
      * Specify the duration of the interruptions in milliseconds. For example,
-     * you can flag speech that contains more than 10000 milliseconds of
+     * you can flag speech that contains more than 10,000 milliseconds of
      * interruptions.
      * </p>
      * <p>
@@ -68,7 +68,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -79,16 +79,18 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      */
     private AbsoluteTimeRange absoluteTimeRange;
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      */
     private RelativeTimeRange relativeTimeRange;
@@ -105,7 +107,7 @@ public class InterruptionFilter implements Serializable {
     /**
      * <p>
      * Specify the duration of the interruptions in milliseconds. For example,
-     * you can flag speech that contains more than 10000 milliseconds of
+     * you can flag speech that contains more than 10,000 milliseconds of
      * interruptions.
      * </p>
      * <p>
@@ -114,7 +116,7 @@ public class InterruptionFilter implements Serializable {
      *
      * @return <p>
      *         Specify the duration of the interruptions in milliseconds. For
-     *         example, you can flag speech that contains more than 10000
+     *         example, you can flag speech that contains more than 10,000
      *         milliseconds of interruptions.
      *         </p>
      */
@@ -125,7 +127,7 @@ public class InterruptionFilter implements Serializable {
     /**
      * <p>
      * Specify the duration of the interruptions in milliseconds. For example,
-     * you can flag speech that contains more than 10000 milliseconds of
+     * you can flag speech that contains more than 10,000 milliseconds of
      * interruptions.
      * </p>
      * <p>
@@ -134,7 +136,7 @@ public class InterruptionFilter implements Serializable {
      *
      * @param threshold <p>
      *            Specify the duration of the interruptions in milliseconds. For
-     *            example, you can flag speech that contains more than 10000
+     *            example, you can flag speech that contains more than 10,000
      *            milliseconds of interruptions.
      *            </p>
      */
@@ -145,7 +147,7 @@ public class InterruptionFilter implements Serializable {
     /**
      * <p>
      * Specify the duration of the interruptions in milliseconds. For example,
-     * you can flag speech that contains more than 10000 milliseconds of
+     * you can flag speech that contains more than 10,000 milliseconds of
      * interruptions.
      * </p>
      * <p>
@@ -157,7 +159,7 @@ public class InterruptionFilter implements Serializable {
      *
      * @param threshold <p>
      *            Specify the duration of the interruptions in milliseconds. For
-     *            example, you can flag speech that contains more than 10000
+     *            example, you can flag speech that contains more than 10,000
      *            milliseconds of interruptions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -170,7 +172,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -178,8 +180,8 @@ public class InterruptionFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @return <p>
-     *         Specify the interrupter you want to flag. Omitting this parameter
-     *         is equivalent to specifying both participants.
+     *         Specify the interrupter that you want to flag. Omitting this
+     *         parameter is equivalent to specifying both participants.
      *         </p>
      * @see ParticipantRole
      */
@@ -189,7 +191,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -197,7 +199,7 @@ public class InterruptionFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the interrupter you want to flag. Omitting this
+     *            Specify the interrupter that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -208,7 +210,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -219,7 +221,7 @@ public class InterruptionFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the interrupter you want to flag. Omitting this
+     *            Specify the interrupter that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -233,7 +235,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -241,7 +243,7 @@ public class InterruptionFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the interrupter you want to flag. Omitting this
+     *            Specify the interrupter that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @see ParticipantRole
@@ -252,7 +254,7 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Specify the interrupter you want to flag. Omitting this parameter is
+     * Specify the interrupter that you want to flag. Omitting this parameter is
      * equivalent to specifying both participants.
      * </p>
      * <p>
@@ -263,7 +265,7 @@ public class InterruptionFilter implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER
      *
      * @param participantRole <p>
-     *            Specify the interrupter you want to flag. Omitting this
+     *            Specify the interrupter that you want to flag. Omitting this
      *            parameter is equivalent to specifying both participants.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -277,14 +279,15 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in milliseconds) in your
-     *         audio, during which you want to search for an interruption. See
-     *         for more detail.
+     *         Makes it possible to specify a time range (in milliseconds) in
+     *         your audio, during which you want to search for an interruption.
+     *         See for more detail.
      *         </p>
      */
     public AbsoluteTimeRange getAbsoluteTimeRange() {
@@ -293,14 +296,15 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for an interruption.
-     *            See for more detail.
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for an
+     *            interruption. See for more detail.
      *            </p>
      */
     public void setAbsoluteTimeRange(AbsoluteTimeRange absoluteTimeRange) {
@@ -309,17 +313,18 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in milliseconds) in your audio,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in milliseconds) in your
+     * audio, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param absoluteTimeRange <p>
-     *            Allows you to specify a time range (in milliseconds) in your
-     *            audio, during which you want to search for an interruption.
-     *            See for more detail.
+     *            Makes it possible to specify a time range (in milliseconds) in
+     *            your audio, during which you want to search for an
+     *            interruption. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -331,14 +336,15 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify a time range (in percentage) in your media
-     *         file, during which you want to search for an interruption. See
-     *         for more detail.
+     *         Makes it possible to specify a time range (in percentage) in your
+     *         media file, during which you want to search for an interruption.
+     *         See for more detail.
      *         </p>
      */
     public RelativeTimeRange getRelativeTimeRange() {
@@ -347,13 +353,14 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for an
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for an
      *            interruption. See for more detail.
      *            </p>
      */
@@ -363,16 +370,17 @@ public class InterruptionFilter implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify a time range (in percentage) in your media file,
-     * during which you want to search for an interruption. See for more detail.
+     * Makes it possible to specify a time range (in percentage) in your media
+     * file, during which you want to search for an interruption. See for more
+     * detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param relativeTimeRange <p>
-     *            Allows you to specify a time range (in percentage) in your
-     *            media file, during which you want to search for an
+     *            Makes it possible to specify a time range (in percentage) in
+     *            your media file, during which you want to search for an
      *            interruption. See for more detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
