@@ -59,6 +59,14 @@ class CustomKeyStoresListEntryJsonUnmarshaller implements
             } else if (name.equals("CreationDate")) {
                 customKeyStoresListEntry.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CustomKeyStoreType")) {
+                customKeyStoresListEntry.setCustomKeyStoreType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("XksProxyConfiguration")) {
+                customKeyStoresListEntry
+                        .setXksProxyConfiguration(XksProxyConfigurationTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -96,7 +96,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,8 +116,8 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * Provides the Amazon S3 location of the media file you used in your Call
+     * Analytics request.
      * </p>
      */
     private Media media;
@@ -206,7 +206,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 8,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -248,20 +248,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
-     * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
-     * specified Amazon S3 location, your request fails.
-     * </p>
-     * <p>
-     * IAM role ARNs have the format
-     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
-     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
-     * </p>
-     * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     * >IAM ARNs</a>.
+     * The Amazon Resource Name (ARN) you included in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -287,21 +274,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows additional optional settings in your request, including content
-     * redaction; allows you to apply custom language models, vocabulary
-     * filters, and custom vocabularies to your Call Analytics job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include content redaction and language
+     * identification settings.
      * </p>
      */
     private CallAnalyticsJobSettings settings;
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel in your Call
-     * Analytics job request. For example, if your agent is the first
-     * participant to speak, you would set <code>ChannelId</code> to
-     * <code>0</code> (to indicate the first channel) and
-     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
-     * the agent speaking).
+     * Indicates which speaker is on which channel.
      * </p>
      */
     private java.util.List<ChannelDefinition> channelDefinitions;
@@ -781,14 +763,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the audio track in your input media
+     *         The sample rate, in hertz, of the audio track in your input media
      *         file.
      *         </p>
      */
@@ -798,14 +780,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in your input
+     *            The sample rate, in hertz, of the audio track in your input
      *            media file.
      *            </p>
      */
@@ -815,7 +797,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -825,7 +807,7 @@ public class CallAnalyticsJob implements Serializable {
      * <b>Range: </b>8000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in your input
+     *            The sample rate, in hertz, of the audio track in your input
      *            media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -935,13 +917,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * Provides the Amazon S3 location of the media file you used in your Call
+     * Analytics request.
      * </p>
      *
      * @return <p>
-     *         Describes the Amazon S3 location of the media file you want to
-     *         use in your request.
+     *         Provides the Amazon S3 location of the media file you used in
+     *         your Call Analytics request.
      *         </p>
      */
     public Media getMedia() {
@@ -950,13 +932,13 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * Provides the Amazon S3 location of the media file you used in your Call
+     * Analytics request.
      * </p>
      *
      * @param media <p>
-     *            Describes the Amazon S3 location of the media file you want to
-     *            use in your request.
+     *            Provides the Amazon S3 location of the media file you used in
+     *            your Call Analytics request.
      *            </p>
      */
     public void setMedia(Media media) {
@@ -965,16 +947,16 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Describes the Amazon S3 location of the media file you want to use in
-     * your request.
+     * Provides the Amazon S3 location of the media file you used in your Call
+     * Analytics request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param media <p>
-     *            Describes the Amazon S3 location of the media file you want to
-     *            use in your request.
+     *            Provides the Amazon S3 location of the media file you used in
+     *            your Call Analytics request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1333,7 +1315,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 8,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1409,7 +1391,7 @@ public class CallAnalyticsJob implements Serializable {
      *         <p>
      *         The sample rate specified in <code>MediaSampleRateHertz</code>
      *         isn't valid. The sample rate must be between 8,000 and 48,000
-     *         Hertz.
+     *         hertz.
      *         </p>
      *         </li>
      *         <li>
@@ -1490,7 +1472,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 8,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1566,7 +1548,7 @@ public class CallAnalyticsJob implements Serializable {
      *            <p>
      *            The sample rate specified in <code>MediaSampleRateHertz</code>
      *            isn't valid. The sample rate must be between 8,000 and 48,000
-     *            Hertz.
+     *            hertz.
      *            </p>
      *            </li>
      *            <li>
@@ -1648,7 +1630,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 8,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 8,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1727,7 +1709,7 @@ public class CallAnalyticsJob implements Serializable {
      *            <p>
      *            The sample rate specified in <code>MediaSampleRateHertz</code>
      *            isn't valid. The sample rate must be between 8,000 and 48,000
-     *            Hertz.
+     *            hertz.
      *            </p>
      *            </li>
      *            <li>
@@ -1777,20 +1759,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
-     * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
-     * specified Amazon S3 location, your request fails.
-     * </p>
-     * <p>
-     * IAM role ARNs have the format
-     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
-     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
-     * </p>
-     * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     * >IAM ARNs</a>.
+     * The Amazon Resource Name (ARN) you included in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1800,21 +1769,7 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of an IAM role that has
-     *         permissions to access the Amazon S3 bucket that contains your
-     *         input files. If the role you specify doesn’t have the appropriate
-     *         permissions to access the specified Amazon S3 location, your
-     *         request fails.
-     *         </p>
-     *         <p>
-     *         IAM role ARNs have the format
-     *         <code>arn:partition:iam::account:role/role-name-with-path</code>.
-     *         For example: <code>arn:aws:iam::111122223333:role/Admin</code>.
-     *         </p>
-     *         <p>
-     *         For more information, see <a href=
-     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     *         >IAM ARNs</a>.
+     *         The Amazon Resource Name (ARN) you included in your request.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -1823,20 +1778,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
-     * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
-     * specified Amazon S3 location, your request fails.
-     * </p>
-     * <p>
-     * IAM role ARNs have the format
-     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
-     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
-     * </p>
-     * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     * >IAM ARNs</a>.
+     * The Amazon Resource Name (ARN) you included in your request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1846,22 +1788,7 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of an IAM role that has
-     *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
-     *            appropriate permissions to access the specified Amazon S3
-     *            location, your request fails.
-     *            </p>
-     *            <p>
-     *            IAM role ARNs have the format
-     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
-     *            . For example:
-     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
-     *            </p>
-     *            <p>
-     *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     *            >IAM ARNs</a>.
+     *            The Amazon Resource Name (ARN) you included in your request.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -1870,20 +1797,7 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
-     * access the Amazon S3 bucket that contains your input files. If the role
-     * you specify doesn’t have the appropriate permissions to access the
-     * specified Amazon S3 location, your request fails.
-     * </p>
-     * <p>
-     * IAM role ARNs have the format
-     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
-     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
-     * </p>
-     * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     * >IAM ARNs</a>.
+     * The Amazon Resource Name (ARN) you included in your request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1896,22 +1810,7 @@ public class CallAnalyticsJob implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of an IAM role that has
-     *            permissions to access the Amazon S3 bucket that contains your
-     *            input files. If the role you specify doesn’t have the
-     *            appropriate permissions to access the specified Amazon S3
-     *            location, your request fails.
-     *            </p>
-     *            <p>
-     *            IAM role ARNs have the format
-     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
-     *            . For example:
-     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
-     *            </p>
-     *            <p>
-     *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
-     *            >IAM ARNs</a>.
+     *            The Amazon Resource Name (ARN) you included in your request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2004,16 +1903,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows additional optional settings in your request, including content
-     * redaction; allows you to apply custom language models, vocabulary
-     * filters, and custom vocabularies to your Call Analytics job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include content redaction and language
+     * identification settings.
      * </p>
      *
      * @return <p>
-     *         Allows additional optional settings in your request, including
-     *         content redaction; allows you to apply custom language models,
-     *         vocabulary filters, and custom vocabularies to your Call
-     *         Analytics job.
+     *         Provides information on any additional settings that were
+     *         included in your request. Additional settings include content
+     *         redaction and language identification settings.
      *         </p>
      */
     public CallAnalyticsJobSettings getSettings() {
@@ -2022,16 +1920,15 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows additional optional settings in your request, including content
-     * redaction; allows you to apply custom language models, vocabulary
-     * filters, and custom vocabularies to your Call Analytics job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include content redaction and language
+     * identification settings.
      * </p>
      *
      * @param settings <p>
-     *            Allows additional optional settings in your request, including
-     *            content redaction; allows you to apply custom language models,
-     *            vocabulary filters, and custom vocabularies to your Call
-     *            Analytics job.
+     *            Provides information on any additional settings that were
+     *            included in your request. Additional settings include content
+     *            redaction and language identification settings.
      *            </p>
      */
     public void setSettings(CallAnalyticsJobSettings settings) {
@@ -2040,19 +1937,18 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows additional optional settings in your request, including content
-     * redaction; allows you to apply custom language models, vocabulary
-     * filters, and custom vocabularies to your Call Analytics job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include content redaction and language
+     * identification settings.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Allows additional optional settings in your request, including
-     *            content redaction; allows you to apply custom language models,
-     *            vocabulary filters, and custom vocabularies to your Call
-     *            Analytics job.
+     *            Provides information on any additional settings that were
+     *            included in your request. Additional settings include content
+     *            redaction and language identification settings.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2064,21 +1960,11 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel in your Call
-     * Analytics job request. For example, if your agent is the first
-     * participant to speak, you would set <code>ChannelId</code> to
-     * <code>0</code> (to indicate the first channel) and
-     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
-     * the agent speaking).
+     * Indicates which speaker is on which channel.
      * </p>
      *
      * @return <p>
-     *         Allows you to specify which speaker is on which channel in your
-     *         Call Analytics job request. For example, if your agent is the
-     *         first participant to speak, you would set <code>ChannelId</code>
-     *         to <code>0</code> (to indicate the first channel) and
-     *         <code>ParticipantRole</code> to <code>AGENT</code> (to indicate
-     *         that it's the agent speaking).
+     *         Indicates which speaker is on which channel.
      *         </p>
      */
     public java.util.List<ChannelDefinition> getChannelDefinitions() {
@@ -2087,21 +1973,11 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel in your Call
-     * Analytics job request. For example, if your agent is the first
-     * participant to speak, you would set <code>ChannelId</code> to
-     * <code>0</code> (to indicate the first channel) and
-     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
-     * the agent speaking).
+     * Indicates which speaker is on which channel.
      * </p>
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel in
-     *            your Call Analytics job request. For example, if your agent is
-     *            the first participant to speak, you would set
-     *            <code>ChannelId</code> to <code>0</code> (to indicate the
-     *            first channel) and <code>ParticipantRole</code> to
-     *            <code>AGENT</code> (to indicate that it's the agent speaking).
+     *            Indicates which speaker is on which channel.
      *            </p>
      */
     public void setChannelDefinitions(java.util.Collection<ChannelDefinition> channelDefinitions) {
@@ -2115,24 +1991,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel in your Call
-     * Analytics job request. For example, if your agent is the first
-     * participant to speak, you would set <code>ChannelId</code> to
-     * <code>0</code> (to indicate the first channel) and
-     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
-     * the agent speaking).
+     * Indicates which speaker is on which channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel in
-     *            your Call Analytics job request. For example, if your agent is
-     *            the first participant to speak, you would set
-     *            <code>ChannelId</code> to <code>0</code> (to indicate the
-     *            first channel) and <code>ParticipantRole</code> to
-     *            <code>AGENT</code> (to indicate that it's the agent speaking).
+     *            Indicates which speaker is on which channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2150,24 +2016,14 @@ public class CallAnalyticsJob implements Serializable {
 
     /**
      * <p>
-     * Allows you to specify which speaker is on which channel in your Call
-     * Analytics job request. For example, if your agent is the first
-     * participant to speak, you would set <code>ChannelId</code> to
-     * <code>0</code> (to indicate the first channel) and
-     * <code>ParticipantRole</code> to <code>AGENT</code> (to indicate that it's
-     * the agent speaking).
+     * Indicates which speaker is on which channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param channelDefinitions <p>
-     *            Allows you to specify which speaker is on which channel in
-     *            your Call Analytics job request. For example, if your agent is
-     *            the first participant to speak, you would set
-     *            <code>ChannelId</code> to <code>0</code> (to indicate the
-     *            first channel) and <code>ParticipantRole</code> to
-     *            <code>AGENT</code> (to indicate that it's the agent speaking).
+     *            Indicates which speaker is on which channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -22,16 +22,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Generates a hash-based message authentication code (HMAC) for a message using
- * an HMAC KMS key and a MAC algorithm that the key supports. The MAC algorithm
- * computes the HMAC for the message and the key as described in <a
+ * an HMAC KMS key and a MAC algorithm that the key supports. HMAC KMS keys and
+ * the HMAC algorithms that KMS uses conform to industry standards defined in <a
  * href="https://datatracker.ietf.org/doc/html/rfc2104">RFC 2104</a>.
  * </p>
  * <p>
- * You can use the HMAC that this operation generates with the <a>VerifyMac</a>
- * operation to demonstrate that the original message has not changed. Also,
- * because a secret key is used to create the hash, you can verify that the
- * party that generated the hash has the required secret key. This operation is
- * part of KMS support for HMAC KMS keys. For details, see <a
+ * You can use value that GenerateMac returns in the <a>VerifyMac</a> operation
+ * to demonstrate that the original message has not changed. Also, because a
+ * secret key is used to create the hash, you can verify that the party that
+ * generated the hash has the required secret key. You can also use the raw
+ * result to implement HMAC-based algorithms such as key derivation functions.
+ * This operation is part of KMS support for HMAC KMS keys. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/hmac.html">HMAC
  * keys in KMS</a> in the <i> <i>Key Management Service Developer Guide</i>
  * </i>.
