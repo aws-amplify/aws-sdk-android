@@ -17,9 +17,18 @@ package com.amazonaws.services.translate.model;
 
 import java.io.Serializable;
 
+/**
+ * <p>
+ * A key-value pair that adds as a metadata to a resource used by Amazon
+ * Translate.
+ * </p>
+ */
 public class Tag implements Serializable {
     /**
-     * The new value for the key property for this object.
+     * <p>
+     * The initial part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -27,7 +36,10 @@ public class Tag implements Serializable {
     private String key;
 
     /**
-     * The new value for the value property for this object.
+     * <p>
+     * The second part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
@@ -35,31 +47,46 @@ public class Tag implements Serializable {
     private String value;
 
     /**
-     * Returns the value of the key property for this object.
+     * <p>
+     * The initial part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @return The value of the key property for this object.
+     * @return <p>
+     *         The initial part of a key-value pair that forms a tag associated
+     *         with a given resource.
+     *         </p>
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Sets the value of key
+     * <p>
+     * The initial part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @param key The new value for the key property for this object.
+     * @param key <p>
+     *            The initial part of a key-value pair that forms a tag
+     *            associated with a given resource.
+     *            </p>
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * Sets the value of the key property for this object.
+     * <p>
+     * The initial part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -67,7 +94,10 @@ public class Tag implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
-     * @param key The new value for the key property for this object.
+     * @param key <p>
+     *            The initial part of a key-value pair that forms a tag
+     *            associated with a given resource.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -77,31 +107,46 @@ public class Tag implements Serializable {
     }
 
     /**
-     * Returns the value of the value property for this object.
+     * <p>
+     * The second part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
      *
-     * @return The value of the value property for this object.
+     * @return <p>
+     *         The second part of a key-value pair that forms a tag associated
+     *         with a given resource.
+     *         </p>
      */
     public String getValue() {
         return value;
     }
 
     /**
-     * Sets the value of value
+     * <p>
+     * The second part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
      *
-     * @param value The new value for the value property for this object.
+     * @param value <p>
+     *            The second part of a key-value pair that forms a tag
+     *            associated with a given resource.
+     *            </p>
      */
     public void setValue(String value) {
         this.value = value;
     }
 
     /**
-     * Sets the value of the value property for this object.
+     * <p>
+     * The second part of a key-value pair that forms a tag associated with a
+     * given resource.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -109,7 +154,10 @@ public class Tag implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 256<br/>
      *
-     * @param value The new value for the value property for this object.
+     * @param value <p>
+     *            The second part of a key-value pair that forms a tag
+     *            associated with a given resource.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

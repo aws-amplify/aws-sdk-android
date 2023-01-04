@@ -20,8 +20,9 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Amazon Translate does not support translation from the language of the source
- * text into the requested target language. For more information, see
- * <a>how-to-error-msg</a>.
+ * text into the requested target language. For more information, see <a href=
+ * "https://docs.aws.amazon.com/translate/latest/dg/how-to-error-msg.html">Error
+ * messages</a>.
  * </p>
  */
 public class UnsupportedLanguagePairException extends AmazonServiceException {

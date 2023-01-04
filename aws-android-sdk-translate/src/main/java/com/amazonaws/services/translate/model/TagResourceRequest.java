@@ -19,9 +19,20 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Associates a specific tag with a resource. A tag is a key-value pair that
+ * adds as a metadata to a resource. For more information, see <a
+ * href="https://docs.aws.amazon.com/translate/latest/dg/tagging.html"> Tagging
+ * your resources</a>.
+ * </p>
+ */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+     * which you want to associate the tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
@@ -29,37 +40,55 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
     private String resourceArn;
 
     /**
-     * The new value for the tags property for this object.
+     * <p>
+     * Tags being associated with a specific Amazon Translate resource. There
+     * can be a maximum of 50 tags (both existing and pending) associated with a
+     * specific resource.
+     * </p>
      */
     private java.util.List<Tag> tags;
 
     /**
-     * Returns the value of the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+     * which you want to associate the tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @return The value of the resourceArn property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the given Amazon Translate
+     *         resource to which you want to associate the tags.
+     *         </p>
      */
     public String getResourceArn() {
         return resourceArn;
     }
 
     /**
-     * Sets the value of resourceArn
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+     * which you want to associate the tags.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @param resourceArn The new value for the resourceArn property for this
-     *            object.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the given Amazon Translate
+     *            resource to which you want to associate the tags.
+     *            </p>
      */
     public void setResourceArn(String resourceArn) {
         this.resourceArn = resourceArn;
     }
 
     /**
-     * Sets the value of the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource to
+     * which you want to associate the tags.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -67,8 +96,10 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @param resourceArn The new value for the resourceArn property for this
-     *            object.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the given Amazon Translate
+     *            resource to which you want to associate the tags.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -78,18 +109,34 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Returns the value of the tags property for this object.
+     * <p>
+     * Tags being associated with a specific Amazon Translate resource. There
+     * can be a maximum of 50 tags (both existing and pending) associated with a
+     * specific resource.
+     * </p>
      *
-     * @return The value of the tags property for this object.
+     * @return <p>
+     *         Tags being associated with a specific Amazon Translate resource.
+     *         There can be a maximum of 50 tags (both existing and pending)
+     *         associated with a specific resource.
+     *         </p>
      */
     public java.util.List<Tag> getTags() {
         return tags;
     }
 
     /**
-     * Sets the value of tags
+     * <p>
+     * Tags being associated with a specific Amazon Translate resource. There
+     * can be a maximum of 50 tags (both existing and pending) associated with a
+     * specific resource.
+     * </p>
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            Tags being associated with a specific Amazon Translate
+     *            resource. There can be a maximum of 50 tags (both existing and
+     *            pending) associated with a specific resource.
+     *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
         if (tags == null) {
@@ -101,12 +148,20 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * Tags being associated with a specific Amazon Translate resource. There
+     * can be a maximum of 50 tags (both existing and pending) associated with a
+     * specific resource.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            Tags being associated with a specific Amazon Translate
+     *            resource. There can be a maximum of 50 tags (both existing and
+     *            pending) associated with a specific resource.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -121,12 +176,20 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
-     * Sets the value of the tags property for this object.
+     * <p>
+     * Tags being associated with a specific Amazon Translate resource. There
+     * can be a maximum of 50 tags (both existing and pending) associated with a
+     * specific resource.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param tags The new value for the tags property for this object.
+     * @param tags <p>
+     *            Tags being associated with a specific Amazon Translate
+     *            resource. There can be a maximum of 50 tags (both existing and
+     *            pending) associated with a specific resource.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
