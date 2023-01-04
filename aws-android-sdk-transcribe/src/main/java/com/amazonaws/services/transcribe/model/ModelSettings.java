@@ -33,14 +33,14 @@ public class ModelSettings implements Serializable {
     /**
      * <p>
      * The name of the custom language model you want to use when processing
-     * your transcription job. Note that language model names are case
+     * your transcription job. Note that custom language model names are case
      * sensitive.
      * </p>
      * <p>
-     * The language of the specified language model must match the language code
-     * you specify in your transcription request. If the languages don't match,
-     * the language model isn't applied. There are no errors or warnings
-     * associated with a language mismatch.
+     * The language of the specified custom language model must match the
+     * language code that you specify in your transcription request. If the
+     * languages don't match, the custom language model isn't applied. There are
+     * no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,14 +52,14 @@ public class ModelSettings implements Serializable {
     /**
      * <p>
      * The name of the custom language model you want to use when processing
-     * your transcription job. Note that language model names are case
+     * your transcription job. Note that custom language model names are case
      * sensitive.
      * </p>
      * <p>
-     * The language of the specified language model must match the language code
-     * you specify in your transcription request. If the languages don't match,
-     * the language model isn't applied. There are no errors or warnings
-     * associated with a language mismatch.
+     * The language of the specified custom language model must match the
+     * language code that you specify in your transcription request. If the
+     * languages don't match, the custom language model isn't applied. There are
+     * no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,14 +68,15 @@ public class ModelSettings implements Serializable {
      *
      * @return <p>
      *         The name of the custom language model you want to use when
-     *         processing your transcription job. Note that language model names
-     *         are case sensitive.
+     *         processing your transcription job. Note that custom language
+     *         model names are case sensitive.
      *         </p>
      *         <p>
-     *         The language of the specified language model must match the
-     *         language code you specify in your transcription request. If the
-     *         languages don't match, the language model isn't applied. There
-     *         are no errors or warnings associated with a language mismatch.
+     *         The language of the specified custom language model must match
+     *         the language code that you specify in your transcription request.
+     *         If the languages don't match, the custom language model isn't
+     *         applied. There are no errors or warnings associated with a
+     *         language mismatch.
      *         </p>
      */
     public String getLanguageModelName() {
@@ -85,14 +86,14 @@ public class ModelSettings implements Serializable {
     /**
      * <p>
      * The name of the custom language model you want to use when processing
-     * your transcription job. Note that language model names are case
+     * your transcription job. Note that custom language model names are case
      * sensitive.
      * </p>
      * <p>
-     * The language of the specified language model must match the language code
-     * you specify in your transcription request. If the languages don't match,
-     * the language model isn't applied. There are no errors or warnings
-     * associated with a language mismatch.
+     * The language of the specified custom language model must match the
+     * language code that you specify in your transcription request. If the
+     * languages don't match, the custom language model isn't applied. There are
+     * no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,15 +102,15 @@ public class ModelSettings implements Serializable {
      *
      * @param languageModelName <p>
      *            The name of the custom language model you want to use when
-     *            processing your transcription job. Note that language model
-     *            names are case sensitive.
+     *            processing your transcription job. Note that custom language
+     *            model names are case sensitive.
      *            </p>
      *            <p>
-     *            The language of the specified language model must match the
-     *            language code you specify in your transcription request. If
-     *            the languages don't match, the language model isn't applied.
-     *            There are no errors or warnings associated with a language
-     *            mismatch.
+     *            The language of the specified custom language model must match
+     *            the language code that you specify in your transcription
+     *            request. If the languages don't match, the custom language
+     *            model isn't applied. There are no errors or warnings
+     *            associated with a language mismatch.
      *            </p>
      */
     public void setLanguageModelName(String languageModelName) {
@@ -119,14 +120,14 @@ public class ModelSettings implements Serializable {
     /**
      * <p>
      * The name of the custom language model you want to use when processing
-     * your transcription job. Note that language model names are case
+     * your transcription job. Note that custom language model names are case
      * sensitive.
      * </p>
      * <p>
-     * The language of the specified language model must match the language code
-     * you specify in your transcription request. If the languages don't match,
-     * the language model isn't applied. There are no errors or warnings
-     * associated with a language mismatch.
+     * The language of the specified custom language model must match the
+     * language code that you specify in your transcription request. If the
+     * languages don't match, the custom language model isn't applied. There are
+     * no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -138,15 +139,15 @@ public class ModelSettings implements Serializable {
      *
      * @param languageModelName <p>
      *            The name of the custom language model you want to use when
-     *            processing your transcription job. Note that language model
-     *            names are case sensitive.
+     *            processing your transcription job. Note that custom language
+     *            model names are case sensitive.
      *            </p>
      *            <p>
-     *            The language of the specified language model must match the
-     *            language code you specify in your transcription request. If
-     *            the languages don't match, the language model isn't applied.
-     *            There are no errors or warnings associated with a language
-     *            mismatch.
+     *            The language of the specified custom language model must match
+     *            the language code that you specify in your transcription
+     *            request. If the languages don't match, the custom language
+     *            model isn't applied. There are no errors or warnings
+     *            associated with a language mismatch.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

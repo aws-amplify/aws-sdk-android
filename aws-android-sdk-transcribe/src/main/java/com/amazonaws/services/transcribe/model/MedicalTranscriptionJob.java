@@ -77,7 +77,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,6 +99,13 @@ public class MedicalTranscriptionJob implements Serializable {
      * <p>
      * Describes the Amazon S3 location of the media file you want to use in
      * your request.
+     * </p>
+     * <p>
+     * For information on supported media formats, refer to the <a href=
+     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     * >MediaFormat</a> parameter or the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     * >Media formats</a> section in the Amazon S3 Developer Guide.
      * </p>
      */
     private Media media;
@@ -190,7 +197,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 16,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -232,19 +239,18 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Specify additional optional settings in your request, including channel
-     * identification, alternative transcriptions, and speaker labeling; allows
-     * you to apply custom vocabularies to your medical transcription job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include channel identification,
+     * alternative transcriptions, speaker partitioning, custom vocabularies,
+     * and custom vocabulary filters.
      * </p>
      */
     private MedicalTranscriptionSetting settings;
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -654,14 +660,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @return <p>
-     *         The sample rate, in Hertz, of the audio track in your input media
+     *         The sample rate, in hertz, of the audio track in your input media
      *         file.
      *         </p>
      */
@@ -671,14 +677,14 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in your input
+     *            The sample rate, in hertz, of the audio track in your input
      *            media file.
      *            </p>
      */
@@ -688,7 +694,7 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * The sample rate, in Hertz, of the audio track in your input media file.
+     * The sample rate, in hertz, of the audio track in your input media file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -698,7 +704,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Range: </b>16000 - 48000<br/>
      *
      * @param mediaSampleRateHertz <p>
-     *            The sample rate, in Hertz, of the audio track in your input
+     *            The sample rate, in hertz, of the audio track in your input
      *            media file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -811,10 +817,24 @@ public class MedicalTranscriptionJob implements Serializable {
      * Describes the Amazon S3 location of the media file you want to use in
      * your request.
      * </p>
+     * <p>
+     * For information on supported media formats, refer to the <a href=
+     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     * >MediaFormat</a> parameter or the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     * >Media formats</a> section in the Amazon S3 Developer Guide.
+     * </p>
      *
      * @return <p>
      *         Describes the Amazon S3 location of the media file you want to
      *         use in your request.
+     *         </p>
+     *         <p>
+     *         For information on supported media formats, refer to the <a href=
+     *         "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     *         >MediaFormat</a> parameter or the <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     *         >Media formats</a> section in the Amazon S3 Developer Guide.
      *         </p>
      */
     public Media getMedia() {
@@ -826,10 +846,25 @@ public class MedicalTranscriptionJob implements Serializable {
      * Describes the Amazon S3 location of the media file you want to use in
      * your request.
      * </p>
+     * <p>
+     * For information on supported media formats, refer to the <a href=
+     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     * >MediaFormat</a> parameter or the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     * >Media formats</a> section in the Amazon S3 Developer Guide.
+     * </p>
      *
      * @param media <p>
      *            Describes the Amazon S3 location of the media file you want to
      *            use in your request.
+     *            </p>
+     *            <p>
+     *            For information on supported media formats, refer to the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     *            >MediaFormat</a> parameter or the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     *            >Media formats</a> section in the Amazon S3 Developer Guide.
      *            </p>
      */
     public void setMedia(Media media) {
@@ -842,12 +877,27 @@ public class MedicalTranscriptionJob implements Serializable {
      * your request.
      * </p>
      * <p>
+     * For information on supported media formats, refer to the <a href=
+     * "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     * >MediaFormat</a> parameter or the <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     * >Media formats</a> section in the Amazon S3 Developer Guide.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param media <p>
      *            Describes the Amazon S3 location of the media file you want to
      *            use in your request.
+     *            </p>
+     *            <p>
+     *            For information on supported media formats, refer to the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/APIReference/API_StartTranscriptionJob.html#transcribe-StartTranscriptionJob-request-MediaFormat"
+     *            >MediaFormat</a> parameter or the <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-input.html#how-input-audio"
+     *            >Media formats</a> section in the Amazon S3 Developer Guide.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1215,7 +1265,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 16,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1291,7 +1341,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *         <p>
      *         The sample rate specified in <code>MediaSampleRateHertz</code>
      *         isn't valid. The sample rate must be between 16,000 and 48,000
-     *         Hertz.
+     *         hertz.
      *         </p>
      *         </li>
      *         <li>
@@ -1372,7 +1422,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 16,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1448,7 +1498,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            <p>
      *            The sample rate specified in <code>MediaSampleRateHertz</code>
      *            isn't valid. The sample rate must be between 16,000 and 48,000
-     *            Hertz.
+     *            hertz.
      *            </p>
      *            </li>
      *            <li>
@@ -1530,7 +1580,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * The sample rate specified in <code>MediaSampleRateHertz</code> isn't
-     * valid. The sample rate must be between 16,000 and 48,000 Hertz.
+     * valid. The sample rate must be between 16,000 and 48,000 hertz.
      * </p>
      * </li>
      * <li>
@@ -1609,7 +1659,7 @@ public class MedicalTranscriptionJob implements Serializable {
      *            <p>
      *            The sample rate specified in <code>MediaSampleRateHertz</code>
      *            isn't valid. The sample rate must be between 16,000 and 48,000
-     *            Hertz.
+     *            hertz.
      *            </p>
      *            </li>
      *            <li>
@@ -1659,16 +1709,17 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Specify additional optional settings in your request, including channel
-     * identification, alternative transcriptions, and speaker labeling; allows
-     * you to apply custom vocabularies to your medical transcription job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include channel identification,
+     * alternative transcriptions, speaker partitioning, custom vocabularies,
+     * and custom vocabulary filters.
      * </p>
      *
      * @return <p>
-     *         Specify additional optional settings in your request, including
-     *         channel identification, alternative transcriptions, and speaker
-     *         labeling; allows you to apply custom vocabularies to your medical
-     *         transcription job.
+     *         Provides information on any additional settings that were
+     *         included in your request. Additional settings include channel
+     *         identification, alternative transcriptions, speaker partitioning,
+     *         custom vocabularies, and custom vocabulary filters.
      *         </p>
      */
     public MedicalTranscriptionSetting getSettings() {
@@ -1677,16 +1728,18 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Specify additional optional settings in your request, including channel
-     * identification, alternative transcriptions, and speaker labeling; allows
-     * you to apply custom vocabularies to your medical transcription job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include channel identification,
+     * alternative transcriptions, speaker partitioning, custom vocabularies,
+     * and custom vocabulary filters.
      * </p>
      *
      * @param settings <p>
-     *            Specify additional optional settings in your request,
-     *            including channel identification, alternative transcriptions,
-     *            and speaker labeling; allows you to apply custom vocabularies
-     *            to your medical transcription job.
+     *            Provides information on any additional settings that were
+     *            included in your request. Additional settings include channel
+     *            identification, alternative transcriptions, speaker
+     *            partitioning, custom vocabularies, and custom vocabulary
+     *            filters.
      *            </p>
      */
     public void setSettings(MedicalTranscriptionSetting settings) {
@@ -1695,19 +1748,21 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Specify additional optional settings in your request, including channel
-     * identification, alternative transcriptions, and speaker labeling; allows
-     * you to apply custom vocabularies to your medical transcription job.
+     * Provides information on any additional settings that were included in
+     * your request. Additional settings include channel identification,
+     * alternative transcriptions, speaker partitioning, custom vocabularies,
+     * and custom vocabulary filters.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param settings <p>
-     *            Specify additional optional settings in your request,
-     *            including channel identification, alternative transcriptions,
-     *            and speaker labeling; allows you to apply custom vocabularies
-     *            to your medical transcription job.
+     *            Provides information on any additional settings that were
+     *            included in your request. Additional settings include channel
+     *            identification, alternative transcriptions, speaker
+     *            partitioning, custom vocabularies, and custom vocabulary
+     *            filters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1719,21 +1774,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @return <p>
-     *         Labels all personal health information (PHI) identified in your
-     *         transcript. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     *         >Identifying personal health information (PHI) in a
-     *         transcription</a>.
+     *         Indicates whether content identification was enabled for your
+     *         transcription request.
      *         </p>
      * @see MedicalContentIdentificationType
      */
@@ -1743,21 +1793,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Labels all personal health information (PHI) identified in
-     *            your transcript. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     *            >Identifying personal health information (PHI) in a
-     *            transcription</a>.
+     *            Indicates whether content identification was enabled for your
+     *            transcription request.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -1767,10 +1812,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1780,11 +1823,8 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Labels all personal health information (PHI) identified in
-     *            your transcript. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     *            >Identifying personal health information (PHI) in a
-     *            transcription</a>.
+     *            Indicates whether content identification was enabled for your
+     *            transcription request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1797,21 +1837,16 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Labels all personal health information (PHI) identified in
-     *            your transcript. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     *            >Identifying personal health information (PHI) in a
-     *            transcription</a>.
+     *            Indicates whether content identification was enabled for your
+     *            transcription request.
      *            </p>
      * @see MedicalContentIdentificationType
      */
@@ -1822,10 +1857,8 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
-     * Labels all personal health information (PHI) identified in your
-     * transcript. For more information, see <a
-     * href="https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     * >Identifying personal health information (PHI) in a transcription</a>.
+     * Indicates whether content identification was enabled for your
+     * transcription request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1835,11 +1868,8 @@ public class MedicalTranscriptionJob implements Serializable {
      * <b>Allowed Values: </b>PHI
      *
      * @param contentIdentificationType <p>
-     *            Labels all personal health information (PHI) identified in
-     *            your transcript. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/phi-id.html"
-     *            >Identifying personal health information (PHI) in a
-     *            transcription</a>.
+     *            Indicates whether content identification was enabled for your
+     *            transcription request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

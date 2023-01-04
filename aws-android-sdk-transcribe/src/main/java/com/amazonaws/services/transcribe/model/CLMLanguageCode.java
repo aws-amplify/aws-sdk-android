@@ -27,7 +27,9 @@ public enum CLMLanguageCode {
     HiIN("hi-IN"),
     EsUS("es-US"),
     EnGB("en-GB"),
-    EnAU("en-AU");
+    EnAU("en-AU"),
+    DeDE("de-DE"),
+    JaJP("ja-JP");
 
     private String value;
 
@@ -48,6 +50,8 @@ public enum CLMLanguageCode {
         enumMap.put("es-US", EsUS);
         enumMap.put("en-GB", EnGB);
         enumMap.put("en-AU", EnAU);
+        enumMap.put("de-DE", DeDE);
+        enumMap.put("ja-JP", JaJP);
     }
 
     /**

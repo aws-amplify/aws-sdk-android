@@ -24,7 +24,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      */
     private String languageCode;
 
@@ -76,7 +76,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      *
      * @return <p>
      *         The language code you selected for your custom language model.
@@ -93,7 +93,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      *
      * @param languageCode <p>
      *            The language code you selected for your custom language model.
@@ -113,7 +113,7 @@ public class CreateLanguageModelResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      *
      * @param languageCode <p>
      *            The language code you selected for your custom language model.
@@ -133,7 +133,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      *
      * @param languageCode <p>
      *            The language code you selected for your custom language model.
@@ -153,7 +153,7 @@ public class CreateLanguageModelResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU, de-DE, ja-JP
      *
      * @param languageCode <p>
      *            The language code you selected for your custom language model.

@@ -57,8 +57,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -305,8 +305,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -322,7 +322,7 @@ public class GetPublicKeyResult implements Serializable {
      *         The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code>
      *         fields have the same value. We recommend that you use the
      *         <code>KeySpec</code> field in your code. However, to avoid
-     *         breaking changes, KMS will support both fields.
+     *         breaking changes, KMS supports both fields.
      *         </p>
      * @see CustomerMasterKeySpec
      */
@@ -338,8 +338,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -355,8 +355,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @see CustomerMasterKeySpec
      */
@@ -372,8 +372,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -392,8 +392,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -412,8 +412,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -429,8 +429,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @see CustomerMasterKeySpec
      */
@@ -446,8 +446,8 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
      * have the same value. We recommend that you use the <code>KeySpec</code>
-     * field in your code. However, to avoid breaking changes, KMS will support
-     * both fields.
+     * field in your code. However, to avoid breaking changes, KMS supports both
+     * fields.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -466,8 +466,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The <code>KeySpec</code> and
      *            <code>CustomerMasterKeySpec</code> fields have the same value.
      *            We recommend that you use the <code>KeySpec</code> field in
-     *            your code. However, to avoid breaking changes, KMS will
-     *            support both fields.
+     *            your code. However, to avoid breaking changes, KMS supports
+     *            both fields.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

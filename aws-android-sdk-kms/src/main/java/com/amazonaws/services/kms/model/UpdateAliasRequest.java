@@ -31,16 +31,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adding, deleting, or updating an alias can allow or deny permission to the
  * KMS key. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">ABAC
- * in KMS</a> in the <i>Key Management Service Developer Guide</i>.
+ * for KMS</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * </note>
  * <p>
  * The current and new KMS key must be the same type (both symmetric or both
- * asymmetric), and they must have the same key usage (
- * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>). This restriction
- * prevents errors in code that uses aliases. If you must assign an alias to a
- * different type of KMS key, use <a>DeleteAlias</a> to delete the old alias and
- * <a>CreateAlias</a> to create a new alias.
+ * asymmetric or both HMAC), and they must have the same key usage. This
+ * restriction prevents errors in code that uses aliases. If you must assign an
+ * alias to a different type of KMS key, use <a>DeleteAlias</a> to delete the
+ * old alias and <a>CreateAlias</a> to create a new alias.
  * </p>
  * <p>
  * You cannot use <code>UpdateAlias</code> to change an alias name. To change an
@@ -145,8 +144,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The KMS key must be in the same Amazon Web Services account and Region as
      * the alias. Also, the new target KMS key must be the same type as the
-     * current target KMS key (both symmetric or both asymmetric) and they must
-     * have the same key usage.
+     * current target KMS key (both symmetric or both asymmetric or both HMAC)
+     * and they must have the same key usage.
      * </p>
      * <p>
      * Specify the key ID or key ARN of the KMS key.
@@ -268,8 +267,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The KMS key must be in the same Amazon Web Services account and Region as
      * the alias. Also, the new target KMS key must be the same type as the
-     * current target KMS key (both symmetric or both asymmetric) and they must
-     * have the same key usage.
+     * current target KMS key (both symmetric or both asymmetric or both HMAC)
+     * and they must have the same key usage.
      * </p>
      * <p>
      * Specify the key ID or key ARN of the KMS key.
@@ -314,7 +313,7 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *         The KMS key must be in the same Amazon Web Services account and
      *         Region as the alias. Also, the new target KMS key must be the
      *         same type as the current target KMS key (both symmetric or both
-     *         asymmetric) and they must have the same key usage.
+     *         asymmetric or both HMAC) and they must have the same key usage.
      *         </p>
      *         <p>
      *         Specify the key ID or key ARN of the KMS key.
@@ -360,8 +359,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The KMS key must be in the same Amazon Web Services account and Region as
      * the alias. Also, the new target KMS key must be the same type as the
-     * current target KMS key (both symmetric or both asymmetric) and they must
-     * have the same key usage.
+     * current target KMS key (both symmetric or both asymmetric or both HMAC)
+     * and they must have the same key usage.
      * </p>
      * <p>
      * Specify the key ID or key ARN of the KMS key.
@@ -406,7 +405,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            The KMS key must be in the same Amazon Web Services account
      *            and Region as the alias. Also, the new target KMS key must be
      *            the same type as the current target KMS key (both symmetric or
-     *            both asymmetric) and they must have the same key usage.
+     *            both asymmetric or both HMAC) and they must have the same key
+     *            usage.
      *            </p>
      *            <p>
      *            Specify the key ID or key ARN of the KMS key.
@@ -452,8 +452,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The KMS key must be in the same Amazon Web Services account and Region as
      * the alias. Also, the new target KMS key must be the same type as the
-     * current target KMS key (both symmetric or both asymmetric) and they must
-     * have the same key usage.
+     * current target KMS key (both symmetric or both asymmetric or both HMAC)
+     * and they must have the same key usage.
      * </p>
      * <p>
      * Specify the key ID or key ARN of the KMS key.
@@ -501,7 +501,8 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            The KMS key must be in the same Amazon Web Services account
      *            and Region as the alias. Also, the new target KMS key must be
      *            the same type as the current target KMS key (both symmetric or
-     *            both asymmetric) and they must have the same key usage.
+     *            both asymmetric or both HMAC) and they must have the same key
+     *            usage.
      *            </p>
      *            <p>
      *            Specify the key ID or key ARN of the KMS key.

@@ -62,6 +62,18 @@ class CustomKeyStoresListEntryJsonMarshaller {
             jsonWriter.name("CreationDate");
             jsonWriter.value(creationDate);
         }
+        if (customKeyStoresListEntry.getCustomKeyStoreType() != null) {
+            String customKeyStoreType = customKeyStoresListEntry.getCustomKeyStoreType();
+            jsonWriter.name("CustomKeyStoreType");
+            jsonWriter.value(customKeyStoreType);
+        }
+        if (customKeyStoresListEntry.getXksProxyConfiguration() != null) {
+            XksProxyConfigurationType xksProxyConfiguration = customKeyStoresListEntry
+                    .getXksProxyConfiguration();
+            jsonWriter.name("XksProxyConfiguration");
+            XksProxyConfigurationTypeJsonMarshaller.getInstance().marshall(xksProxyConfiguration,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

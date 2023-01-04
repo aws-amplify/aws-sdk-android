@@ -24,14 +24,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a new custom vocabulary filter.
  * </p>
  * <p>
- * You can use vocabulary filters to mask, delete, or flag specific words from
- * your transcript. Vocabulary filters are commonly used to mask profanity in
- * transcripts.
+ * You can use custom vocabulary filters to mask, delete, or flag specific words
+ * from your transcript. Custom vocabulary filters are commonly used to mask
+ * profanity in transcripts.
  * </p>
  * <p>
  * Each language has a character set that contains all allowed characters for
- * that specific language. If you use unsupported characters, your vocabulary
- * filter request fails. Refer to <a
+ * that specific language. If you use unsupported characters, your custom
+ * vocabulary filter request fails. Refer to <a
  * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
  * >Character Sets for Custom Vocabularies</a> to get the character set for your
  * language.
@@ -39,7 +39,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/vocabulary-filtering.html"
- * >Using vocabulary filtering with unwanted words</a>.
+ * >Vocabulary filtering</a>.
  * </p>
  */
 public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest implements Serializable {
@@ -49,9 +49,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new
-     * vocabulary filter with the same name as an existing vocabulary filter,
-     * you get a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * vocabulary filter with the same name as an existing custom vocabulary
+     * filter, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,14 +63,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -89,7 +89,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to create your vocabulary filter by
+     * Use this parameter if you want to create your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for creating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -104,7 +104,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -137,7 +137,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new custom vocabulary filter at the time you create this new filter.
+     * new custom vocabulary filter at the time you create this new vocabulary
+     * filter.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -153,9 +154,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new
-     * vocabulary filter with the same name as an existing vocabulary filter,
-     * you get a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * vocabulary filter with the same name as an existing custom vocabulary
+     * filter, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,9 +170,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         This name is case sensitive, cannot contain spaces, and must be
      *         unique within an Amazon Web Services account. If you try to
-     *         create a new vocabulary filter with the same name as an existing
-     *         vocabulary filter, you get a <code>ConflictException</code>
-     *         error.
+     *         create a new custom vocabulary filter with the same name as an
+     *         existing custom vocabulary filter, you get a
+     *         <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -184,9 +185,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new
-     * vocabulary filter with the same name as an existing vocabulary filter,
-     * you get a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * vocabulary filter with the same name as an existing custom vocabulary
+     * filter, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -200,8 +201,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a new vocabulary filter with the same name as an
-     *            existing vocabulary filter, you get a
+     *            create a new custom vocabulary filter with the same name as an
+     *            existing custom vocabulary filter, you get a
      *            <code>ConflictException</code> error.
      *            </p>
      */
@@ -215,9 +216,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * This name is case sensitive, cannot contain spaces, and must be unique
-     * within an Amazon Web Services account. If you try to create a new
-     * vocabulary filter with the same name as an existing vocabulary filter,
-     * you get a <code>ConflictException</code> error.
+     * within an Amazon Web Services account. If you try to create a new custom
+     * vocabulary filter with the same name as an existing custom vocabulary
+     * filter, you get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -234,8 +235,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            This name is case sensitive, cannot contain spaces, and must
      *            be unique within an Amazon Web Services account. If you try to
-     *            create a new vocabulary filter with the same name as an
-     *            existing vocabulary filter, you get a
+     *            create a new custom vocabulary filter with the same name as an
+     *            existing custom vocabulary filter, you get a
      *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -249,14 +250,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -273,14 +274,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The language code that represents the language of the entries in
-     *         your vocabulary filter. Each vocabulary filter must contain terms
-     *         in only one language.
+     *         your vocabulary filter. Each custom vocabulary filter must
+     *         contain terms in only one language.
      *         </p>
      *         <p>
-     *         A vocabulary filter can only be used to transcribe files in the
-     *         same language as the filter. For example, if you create a
-     *         vocabulary filter using US English (<code>en-US</code>), you can
-     *         only apply this filter to files that contain English audio.
+     *         A custom vocabulary filter can only be used to transcribe files
+     *         in the same language as the filter. For example, if you create a
+     *         custom vocabulary filter using US English (<code>en-US</code>),
+     *         you can only apply this filter to files that contain English
+     *         audio.
      *         </p>
      *         <p>
      *         For a list of supported languages and their associated language
@@ -297,14 +299,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -321,15 +323,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -346,14 +348,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -373,15 +375,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -401,14 +403,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -425,15 +427,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -450,14 +452,14 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The language code that represents the language of the entries in your
-     * vocabulary filter. Each vocabulary filter must contain terms in only one
-     * language.
+     * vocabulary filter. Each custom vocabulary filter must contain terms in
+     * only one language.
      * </p>
      * <p>
-     * A vocabulary filter can only be used to transcribe files in the same
-     * language as the filter. For example, if you create a vocabulary filter
-     * using US English (<code>en-US</code>), you can only apply this filter to
-     * files that contain English audio.
+     * A custom vocabulary filter can only be used to transcribe files in the
+     * same language as the filter. For example, if you create a custom
+     * vocabulary filter using US English (<code>en-US</code>), you can only
+     * apply this filter to files that contain English audio.
      * </p>
      * <p>
      * For a list of supported languages and their associated language codes,
@@ -477,15 +479,15 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param languageCode <p>
      *            The language code that represents the language of the entries
-     *            in your vocabulary filter. Each vocabulary filter must contain
-     *            terms in only one language.
+     *            in your vocabulary filter. Each custom vocabulary filter must
+     *            contain terms in only one language.
      *            </p>
      *            <p>
-     *            A vocabulary filter can only be used to transcribe files in
-     *            the same language as the filter. For example, if you create a
-     *            vocabulary filter using US English (<code>en-US</code>), you
-     *            can only apply this filter to files that contain English
-     *            audio.
+     *            A custom vocabulary filter can only be used to transcribe
+     *            files in the same language as the filter. For example, if you
+     *            create a custom vocabulary filter using US English (
+     *            <code>en-US</code>), you can only apply this filter to files
+     *            that contain English audio.
      *            </p>
      *            <p>
      *            For a list of supported languages and their associated
@@ -504,7 +506,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to create your vocabulary filter by
+     * Use this parameter if you want to create your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for creating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -519,19 +521,20 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
      * </p>
      *
      * @return <p>
-     *         Use this parameter if you want to create your vocabulary filter
-     *         by including all desired terms, as comma-separated values, within
-     *         your request. The other option for creating your vocabulary
-     *         filter is to save your entries in a text file and upload them to
-     *         an Amazon S3 bucket, then specify the location of your file using
-     *         the <code>VocabularyFilterFileUri</code> parameter.
+     *         Use this parameter if you want to create your custom vocabulary
+     *         filter by including all desired terms, as comma-separated values,
+     *         within your request. The other option for creating your
+     *         vocabulary filter is to save your entries in a text file and
+     *         upload them to an Amazon S3 bucket, then specify the location of
+     *         your file using the <code>VocabularyFilterFileUri</code>
+     *         parameter.
      *         </p>
      *         <p>
      *         Note that if you include <code>Words</code> in your request, you
@@ -541,8 +544,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         Each language has a character set that contains all allowed
      *         characters for that specific language. If you use unsupported
-     *         characters, your vocabulary filter request fails. Refer to <a
-     *         href=
+     *         characters, your custom vocabulary filter request fails. Refer to
+     *         <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *         >Character Sets for Custom Vocabularies</a> to get the character
      *         set for your language.
@@ -554,7 +557,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to create your vocabulary filter by
+     * Use this parameter if you want to create your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for creating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -569,19 +572,19 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
      * </p>
      *
      * @param words <p>
-     *            Use this parameter if you want to create your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for creating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to create your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for creating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -592,8 +595,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.
@@ -610,7 +613,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to create your vocabulary filter by
+     * Use this parameter if you want to create your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for creating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -625,7 +628,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -635,12 +638,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param words <p>
-     *            Use this parameter if you want to create your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for creating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to create your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for creating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -651,8 +654,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.
@@ -672,7 +675,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to create your vocabulary filter by
+     * Use this parameter if you want to create your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for creating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -687,7 +690,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -697,12 +700,12 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param words <p>
-     *            Use this parameter if you want to create your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for creating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to create your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for creating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -713,8 +716,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.
@@ -855,7 +858,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new custom vocabulary filter at the time you create this new filter.
+     * new custom vocabulary filter at the time you create this new vocabulary
+     * filter.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -866,7 +870,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * @return <p>
      *         Adds one or more custom tags, each in the form of a key:value
      *         pair, to a new custom vocabulary filter at the time you create
-     *         this new filter.
+     *         this new vocabulary filter.
      *         </p>
      *         <p>
      *         To learn more about using tags with Amazon Transcribe, refer to
@@ -882,7 +886,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new custom vocabulary filter at the time you create this new filter.
+     * new custom vocabulary filter at the time you create this new vocabulary
+     * filter.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -893,7 +898,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
      *            pair, to a new custom vocabulary filter at the time you create
-     *            this new filter.
+     *            this new vocabulary filter.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer
@@ -914,7 +919,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new custom vocabulary filter at the time you create this new filter.
+     * new custom vocabulary filter at the time you create this new vocabulary
+     * filter.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -928,7 +934,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
      *            pair, to a new custom vocabulary filter at the time you create
-     *            this new filter.
+     *            this new vocabulary filter.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer
@@ -952,7 +958,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * Adds one or more custom tags, each in the form of a key:value pair, to a
-     * new custom vocabulary filter at the time you create this new filter.
+     * new custom vocabulary filter at the time you create this new vocabulary
+     * filter.
      * </p>
      * <p>
      * To learn more about using tags with Amazon Transcribe, refer to <a
@@ -966,7 +973,7 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * @param tags <p>
      *            Adds one or more custom tags, each in the form of a key:value
      *            pair, to a new custom vocabulary filter at the time you create
-     *            this new filter.
+     *            this new vocabulary filter.
      *            </p>
      *            <p>
      *            To learn more about using tags with Amazon Transcribe, refer

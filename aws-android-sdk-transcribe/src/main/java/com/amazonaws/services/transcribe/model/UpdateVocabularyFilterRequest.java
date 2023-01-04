@@ -23,14 +23,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates an existing custom vocabulary filter with a new list of words. The
  * new list you provide overwrites all previous entries; you cannot append new
- * terms onto an existing vocabulary filter.
+ * terms onto an existing custom vocabulary filter.
  * </p>
  */
 public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the custom vocabulary filter you want to update. Vocabulary
-     * filter names are case sensitive.
+     * The name of the custom vocabulary filter you want to update. Custom
+     * vocabulary filter names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,7 +41,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to update your vocabulary filter by
+     * Use this parameter if you want to update your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for updating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -56,7 +56,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -88,8 +88,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the custom vocabulary filter you want to update. Vocabulary
-     * filter names are case sensitive.
+     * The name of the custom vocabulary filter you want to update. Custom
+     * vocabulary filter names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,7 +98,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The name of the custom vocabulary filter you want to update.
-     *         Vocabulary filter names are case sensitive.
+     *         Custom vocabulary filter names are case sensitive.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -107,8 +107,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the custom vocabulary filter you want to update. Vocabulary
-     * filter names are case sensitive.
+     * The name of the custom vocabulary filter you want to update. Custom
+     * vocabulary filter names are case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,7 +117,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param vocabularyFilterName <p>
      *            The name of the custom vocabulary filter you want to update.
-     *            Vocabulary filter names are case sensitive.
+     *            Custom vocabulary filter names are case sensitive.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -126,8 +126,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the custom vocabulary filter you want to update. Vocabulary
-     * filter names are case sensitive.
+     * The name of the custom vocabulary filter you want to update. Custom
+     * vocabulary filter names are case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +139,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param vocabularyFilterName <p>
      *            The name of the custom vocabulary filter you want to update.
-     *            Vocabulary filter names are case sensitive.
+     *            Custom vocabulary filter names are case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,7 +151,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to update your vocabulary filter by
+     * Use this parameter if you want to update your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for updating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -166,19 +166,20 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
      * </p>
      *
      * @return <p>
-     *         Use this parameter if you want to update your vocabulary filter
-     *         by including all desired terms, as comma-separated values, within
-     *         your request. The other option for updating your vocabulary
-     *         filter is to save your entries in a text file and upload them to
-     *         an Amazon S3 bucket, then specify the location of your file using
-     *         the <code>VocabularyFilterFileUri</code> parameter.
+     *         Use this parameter if you want to update your custom vocabulary
+     *         filter by including all desired terms, as comma-separated values,
+     *         within your request. The other option for updating your
+     *         vocabulary filter is to save your entries in a text file and
+     *         upload them to an Amazon S3 bucket, then specify the location of
+     *         your file using the <code>VocabularyFilterFileUri</code>
+     *         parameter.
      *         </p>
      *         <p>
      *         Note that if you include <code>Words</code> in your request, you
@@ -188,8 +189,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *         <p>
      *         Each language has a character set that contains all allowed
      *         characters for that specific language. If you use unsupported
-     *         characters, your vocabulary filter request fails. Refer to <a
-     *         href=
+     *         characters, your custom vocabulary filter request fails. Refer to
+     *         <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *         >Character Sets for Custom Vocabularies</a> to get the character
      *         set for your language.
@@ -201,7 +202,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to update your vocabulary filter by
+     * Use this parameter if you want to update your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for updating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -216,19 +217,19 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
      * </p>
      *
      * @param words <p>
-     *            Use this parameter if you want to update your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for updating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to update your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for updating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -239,8 +240,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.
@@ -257,7 +258,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to update your vocabulary filter by
+     * Use this parameter if you want to update your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for updating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -272,7 +273,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -282,12 +283,12 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param words <p>
-     *            Use this parameter if you want to update your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for updating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to update your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for updating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -298,8 +299,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.
@@ -319,7 +320,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Use this parameter if you want to update your vocabulary filter by
+     * Use this parameter if you want to update your custom vocabulary filter by
      * including all desired terms, as comma-separated values, within your
      * request. The other option for updating your vocabulary filter is to save
      * your entries in a text file and upload them to an Amazon S3 bucket, then
@@ -334,7 +335,7 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <p>
      * Each language has a character set that contains all allowed characters
      * for that specific language. If you use unsupported characters, your
-     * vocabulary filter request fails. Refer to <a
+     * custom vocabulary filter request fails. Refer to <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      * >Character Sets for Custom Vocabularies</a> to get the character set for
      * your language.
@@ -344,12 +345,12 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * together.
      *
      * @param words <p>
-     *            Use this parameter if you want to update your vocabulary
-     *            filter by including all desired terms, as comma-separated
-     *            values, within your request. The other option for updating
-     *            your vocabulary filter is to save your entries in a text file
-     *            and upload them to an Amazon S3 bucket, then specify the
-     *            location of your file using the
+     *            Use this parameter if you want to update your custom
+     *            vocabulary filter by including all desired terms, as
+     *            comma-separated values, within your request. The other option
+     *            for updating your vocabulary filter is to save your entries in
+     *            a text file and upload them to an Amazon S3 bucket, then
+     *            specify the location of your file using the
      *            <code>VocabularyFilterFileUri</code> parameter.
      *            </p>
      *            <p>
@@ -360,8 +361,8 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            Each language has a character set that contains all allowed
      *            characters for that specific language. If you use unsupported
-     *            characters, your vocabulary filter request fails. Refer to <a
-     *            href=
+     *            characters, your custom vocabulary filter request fails. Refer
+     *            to <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/charsets.html"
      *            >Character Sets for Custom Vocabularies</a> to get the
      *            character set for your language.

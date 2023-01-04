@@ -1,3 +1,22 @@
+## [Release 2.60.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.60.0)
+
+### Features
+- **aws-android-sdk-core:** update models to latest (#3082)
+- **aws-android-sdk-iot:** update models to latest (#3090)
+- **aws-android-sdk-textract:** update models to latest (#3092)
+- **aws-android-sdk-lambda:** update models to latest (#3094)
+- **aws-android-sdk-kinesis:** update models to latest (#3096)
+- **aws-android-sdk-polly:** update models to latest (#3104)
+- **aws-android-sdk-sns:** update models to latest (#3105)
+- **aws-android-sdk-transcribe:** update models to latest (#3107)
+- **aws-android-sdk-kms:** update models to latest (#3114)
+
+### Miscellaneous
+- Fix NPE if Pinpoint configured without event collection (#3117)
+- Correctly pass Pinpoint ID (or null if it's not there) to Cognito User Pool (#3060)
+
+[See all changes between 2.59.1 and 2.60.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.59.1...release_v2.60.0)
+
 ## [Release 2.59.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.59.1)
 
 ### Bug Fixes
