@@ -59,7 +59,9 @@ public enum LanguageCode {
     ZhTW("zh-TW"),
     ThTH("th-TH"),
     EnZA("en-ZA"),
-    EnNZ("en-NZ");
+    EnNZ("en-NZ"),
+    ViVN("vi-VN"),
+    SvSE("sv-SE");
 
     private String value;
 
@@ -112,6 +114,8 @@ public enum LanguageCode {
         enumMap.put("th-TH", ThTH);
         enumMap.put("en-ZA", EnZA);
         enumMap.put("en-NZ", EnNZ);
+        enumMap.put("vi-VN", ViVN);
+        enumMap.put("sv-SE", SvSE);
     }
 
     /**
