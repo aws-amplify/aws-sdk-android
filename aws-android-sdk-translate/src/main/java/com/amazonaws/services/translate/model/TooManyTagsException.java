@@ -18,7 +18,9 @@ package com.amazonaws.services.translate.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * You have added too many tags to this resource. The maximum is 50 tags.
+ * </p>
  */
 public class TooManyTagsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

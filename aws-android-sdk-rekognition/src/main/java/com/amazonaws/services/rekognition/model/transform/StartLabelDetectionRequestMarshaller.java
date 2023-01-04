@@ -90,6 +90,22 @@ public class StartLabelDetectionRequestMarshaller implements
                 jsonWriter.name("JobTag");
                 jsonWriter.value(jobTag);
             }
+            if (startLabelDetectionRequest.getFeatures() != null) {
+                java.util.List<String> features = startLabelDetectionRequest.getFeatures();
+                jsonWriter.name("Features");
+                jsonWriter.beginArray();
+                for (String featuresItem : features) {
+                    if (featuresItem != null) {
+                        jsonWriter.value(featuresItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (startLabelDetectionRequest.getSettings() != null) {
+                LabelDetectionSettings settings = startLabelDetectionRequest.getSettings();
+                jsonWriter.name("Settings");
+                LabelDetectionSettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
