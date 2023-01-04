@@ -19,17 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Channel Protocol
+ * Media Uri Type
  */
-public enum ChannelProtocol {
+public enum MediaUriType {
 
-    WSS("WSS"),
-    HTTPS("HTTPS"),
-    WEBRTC("WEBRTC");
+    RTSP_URI("RTSP_URI"),
+    FILE_URI("FILE_URI");
 
     private String value;
 
-    private ChannelProtocol(String value) {
+    private MediaUriType(String value) {
         this.value = value;
     }
 
@@ -38,21 +37,20 @@ public enum ChannelProtocol {
         return value;
     }
 
-    private static final Map<String, ChannelProtocol> enumMap;
+    private static final Map<String, MediaUriType> enumMap;
     static {
-        enumMap = new HashMap<String, ChannelProtocol>();
-        enumMap.put("WSS", WSS);
-        enumMap.put("HTTPS", HTTPS);
-        enumMap.put("WEBRTC", WEBRTC);
+        enumMap = new HashMap<String, MediaUriType>();
+        enumMap.put("RTSP_URI", RTSP_URI);
+        enumMap.put("FILE_URI", FILE_URI);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ChannelProtocol corresponding to the value
+     * @return MediaUriType corresponding to the value
      */
-    public static ChannelProtocol fromValue(String value) {
+    public static MediaUriType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
