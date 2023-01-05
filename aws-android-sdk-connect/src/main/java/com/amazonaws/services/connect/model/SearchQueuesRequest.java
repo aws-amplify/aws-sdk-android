@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -72,6 +72,14 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * The search criteria to be used to return queues.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      */
     private QueueSearchCriteria searchCriteria;
 
@@ -304,10 +312,26 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * The search criteria to be used to return queues.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The search criteria to be used to return queues.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>name</code> and <code>description</code> fields support
+     *         "contains" queries with a minimum of 2 characters and a maximum
+     *         of 25 characters. Any queries with character lengths outside of
+     *         this range will throw invalid results.
+     *         </p>
+     *         </note>
      */
     public QueueSearchCriteria getSearchCriteria() {
         return searchCriteria;
@@ -317,10 +341,26 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * The search criteria to be used to return queues.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      *
      * @param searchCriteria <p>
      *            The search criteria to be used to return queues.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>name</code> and <code>description</code> fields
+     *            support "contains" queries with a minimum of 2 characters and
+     *            a maximum of 25 characters. Any queries with character lengths
+     *            outside of this range will throw invalid results.
+     *            </p>
+     *            </note>
      */
     public void setSearchCriteria(QueueSearchCriteria searchCriteria) {
         this.searchCriteria = searchCriteria;
@@ -330,6 +370,14 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * The search criteria to be used to return queues.
      * </p>
+     * <note>
+     * <p>
+     * The <code>name</code> and <code>description</code> fields support
+     * "contains" queries with a minimum of 2 characters and a maximum of 25
+     * characters. Any queries with character lengths outside of this range will
+     * throw invalid results.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -337,6 +385,14 @@ public class SearchQueuesRequest extends AmazonWebServiceRequest implements Seri
      * @param searchCriteria <p>
      *            The search criteria to be used to return queues.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>name</code> and <code>description</code> fields
+     *            support "contains" queries with a minimum of 2 characters and
+     *            a maximum of 25 characters. Any queries with character lengths
+     *            outside of this range will throw invalid results.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
