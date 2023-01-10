@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@ public class SearchForPositionResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForPosition</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      */
@@ -218,8 +218,8 @@ public class SearchForPositionResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForPosition</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      *
@@ -231,7 +231,7 @@ public class SearchForPositionResult implements Serializable {
      *         <p>
      *         For <code>SearchPlaceIndexForPosition</code> operations, the
      *         <code>PlaceId</code> is returned only by place indexes that use
-     *         HERE as a data provider.
+     *         HERE or Grab as a data provider.
      *         </p>
      *         </note>
      */
@@ -247,8 +247,8 @@ public class SearchForPositionResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForPosition</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      *
@@ -260,7 +260,7 @@ public class SearchForPositionResult implements Serializable {
      *            <p>
      *            For <code>SearchPlaceIndexForPosition</code> operations, the
      *            <code>PlaceId</code> is returned only by place indexes that
-     *            use HERE as a data provider.
+     *            use HERE or Grab as a data provider.
      *            </p>
      *            </note>
      */
@@ -276,8 +276,8 @@ public class SearchForPositionResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForPosition</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      * <p>
@@ -292,7 +292,7 @@ public class SearchForPositionResult implements Serializable {
      *            <p>
      *            For <code>SearchPlaceIndexForPosition</code> operations, the
      *            <code>PlaceId</code> is returned only by place indexes that
-     *            use HERE as a data provider.
+     *            use HERE or Grab as a data provider.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
