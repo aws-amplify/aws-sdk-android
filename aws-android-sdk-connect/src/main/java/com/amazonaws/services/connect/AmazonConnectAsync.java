@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,13 +48,6 @@ import com.amazonaws.services.connect.model.*;
  * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
  * >Amazon Connect Endpoints</a>.
  * </p>
- * <note>
- * <p>
- * Working with flows? Check out the <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
- * >Amazon Connect Flow language</a>.
- * </p>
- * </note>
  **/
 public interface AmazonConnectAsync extends AmazonConnect {
     /**
@@ -764,9 +757,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Web Services Region where the Amazon Connect instance or traffic
      * distribution group was created.
      * </p>
+     * <p>
+     * For more information about how to use this operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+     * >Claim a phone number in your country</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+     * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * <important>
      * <p>
      * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+     * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you
+     * can claim. Call the <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -802,9 +806,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Web Services Region where the Amazon Connect instance or traffic
      * distribution group was created.
      * </p>
+     * <p>
+     * For more information about how to use this operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+     * >Claim a phone number in your country</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+     * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * <important>
      * <p>
      * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+     * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you
+     * can claim. Call the <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -911,7 +926,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -944,7 +959,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -1471,6 +1486,73 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Creates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @return A Java Future object containing the response from the CreateRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateRuleResult> createRuleAsync(CreateRuleRequest createRuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the CreateRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateRuleResult> createRuleAsync(CreateRuleRequest createRuleRequest,
+            AsyncHandler<CreateRuleRequest, CreateRuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1944,8 +2026,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> deleteContactFlowAsync(DeleteContactFlowRequest deleteContactFlowRequest)
-            throws AmazonServiceException, AmazonClientException;
+    Future<DeleteContactFlowResult> deleteContactFlowAsync(
+            DeleteContactFlowRequest deleteContactFlowRequest) throws AmazonServiceException,
+            AmazonClientException;
 
     /**
      * <p>
@@ -1973,8 +2056,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> deleteContactFlowAsync(DeleteContactFlowRequest deleteContactFlowRequest,
-            AsyncHandler<DeleteContactFlowRequest, Void> asyncHandler)
+    Future<DeleteContactFlowResult> deleteContactFlowAsync(
+            DeleteContactFlowRequest deleteContactFlowRequest,
+            AsyncHandler<DeleteContactFlowRequest, DeleteContactFlowResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2283,6 +2367,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> deleteQuickConnectAsync(DeleteQuickConnectRequest deleteQuickConnectRequest,
             AsyncHandler<DeleteQuickConnectRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @return A Java Future object containing the response from the DeleteRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteRuleAsync(DeleteRuleRequest deleteRuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the DeleteRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteRuleAsync(DeleteRuleRequest deleteRuleRequest,
+            AsyncHandler<DeleteRuleRequest, Void> asyncHandler) throws AmazonServiceException,
+            AmazonClientException;
 
     /**
      * <p>
@@ -2868,7 +3005,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -2900,7 +3037,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -3520,6 +3657,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribeRoutingProfileResult> describeRoutingProfileAsync(
             DescribeRoutingProfileRequest describeRoutingProfileRequest,
             AsyncHandler<DescribeRoutingProfileRequest, DescribeRoutingProfileResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeRuleRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeRule service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeRuleResult> describeRuleAsync(DescribeRuleRequest describeRuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeRuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeRule service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeRuleResult> describeRuleAsync(DescribeRuleRequest describeRuleRequest,
+            AsyncHandler<DescribeRuleRequest, DescribeRuleResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5239,7 +5429,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
@@ -5275,7 +5465,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
@@ -6446,6 +6636,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * List all rules for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listRulesRequest
+     * @return A Java Future object containing the response from the ListRules
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListRulesResult> listRulesAsync(ListRulesRequest listRulesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * List all rules for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listRulesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the ListRules
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListRulesResult> listRulesAsync(ListRulesRequest listRulesRequest,
+            AsyncHandler<ListRulesRequest, ListRulesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -7003,6 +7246,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<ListUsersResult> listUsersAsync(ListUsersRequest listUsersRequest,
             AsyncHandler<ListUsersRequest, ListUsersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return A Java Future object containing the response from the
+     *         MonitorContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<MonitorContactResult> monitorContactAsync(MonitorContactRequest monitorContactRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         MonitorContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<MonitorContactResult> monitorContactAsync(MonitorContactRequest monitorContactRequest,
+            AsyncHandler<MonitorContactRequest, MonitorContactResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -8985,7 +9289,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -9007,7 +9311,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowContentAsync(
+    Future<UpdateContactFlowContentResult> updateContactFlowContentAsync(
             UpdateContactFlowContentRequest updateContactFlowContentRequest)
             throws AmazonServiceException, AmazonClientException;
 
@@ -9017,7 +9321,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -9043,9 +9347,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowContentAsync(
+    Future<UpdateContactFlowContentResult> updateContactFlowContentAsync(
             UpdateContactFlowContentRequest updateContactFlowContentRequest,
-            AsyncHandler<UpdateContactFlowContentRequest, Void> asyncHandler)
+            AsyncHandler<UpdateContactFlowContentRequest, UpdateContactFlowContentResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -9071,7 +9375,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowMetadataAsync(
+    Future<UpdateContactFlowMetadataResult> updateContactFlowMetadataAsync(
             UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest)
             throws AmazonServiceException, AmazonClientException;
 
@@ -9102,9 +9406,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowMetadataAsync(
+    Future<UpdateContactFlowMetadataResult> updateContactFlowMetadataAsync(
             UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest,
-            AsyncHandler<UpdateContactFlowMetadataRequest, Void> asyncHandler)
+            AsyncHandler<UpdateContactFlowMetadataRequest, UpdateContactFlowMetadataResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -9233,7 +9537,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -9255,7 +9559,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowNameAsync(
+    Future<UpdateContactFlowNameResult> updateContactFlowNameAsync(
             UpdateContactFlowNameRequest updateContactFlowNameRequest)
             throws AmazonServiceException, AmazonClientException;
 
@@ -9265,7 +9569,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -9291,9 +9595,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    Future<Void> updateContactFlowNameAsync(
+    Future<UpdateContactFlowNameResult> updateContactFlowNameAsync(
             UpdateContactFlowNameRequest updateContactFlowNameRequest,
-            AsyncHandler<UpdateContactFlowNameRequest, Void> asyncHandler)
+            AsyncHandler<UpdateContactFlowNameRequest, UpdateContactFlowNameResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -9552,6 +9856,123 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> updateInstanceStorageConfigAsync(
             UpdateInstanceStorageConfigRequest updateInstanceStorageConfigRequest,
             AsyncHandler<UpdateInstanceStorageConfigRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates timeouts for when human chat participants are to be considered
+     * idle, and when agents are automatically disconnected from a chat due to
+     * idleness. You can set four timers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Customer idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Customer auto-disconnect timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent auto-disconnect timeout
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat timeouts work, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html"
+     * >Set up chat timeouts for human participants</a>.
+     * </p>
+     * 
+     * @param updateParticipantRoleConfigRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateParticipantRoleConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateParticipantRoleConfigResult> updateParticipantRoleConfigAsync(
+            UpdateParticipantRoleConfigRequest updateParticipantRoleConfigRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates timeouts for when human chat participants are to be considered
+     * idle, and when agents are automatically disconnected from a chat due to
+     * idleness. You can set four timers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Customer idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Customer auto-disconnect timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent auto-disconnect timeout
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat timeouts work, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html"
+     * >Set up chat timeouts for human participants</a>.
+     * </p>
+     * 
+     * @param updateParticipantRoleConfigRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateParticipantRoleConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateParticipantRoleConfigResult> updateParticipantRoleConfigAsync(
+            UpdateParticipantRoleConfigRequest updateParticipantRoleConfigRequest,
+            AsyncHandler<UpdateParticipantRoleConfigRequest, UpdateParticipantRoleConfigResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -10347,6 +10768,71 @@ public interface AmazonConnectAsync extends AmazonConnect {
             UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest,
             AsyncHandler<UpdateRoutingProfileQueuesRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param updateRuleRequest
+     * @return A Java Future object containing the response from the UpdateRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateRuleAsync(UpdateRuleRequest updateRuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param updateRuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the UpdateRule
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateRuleAsync(UpdateRuleRequest updateRuleRequest,
+            AsyncHandler<UpdateRuleRequest, Void> asyncHandler) throws AmazonServiceException,
+            AmazonClientException;
 
     /**
      * <p>

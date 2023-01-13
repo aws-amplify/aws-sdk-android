@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,12 @@ class DimensionsJsonMarshaller {
             String channel = dimensions.getChannel();
             jsonWriter.name("Channel");
             jsonWriter.value(channel);
+        }
+        if (dimensions.getRoutingProfile() != null) {
+            RoutingProfileReference routingProfile = dimensions.getRoutingProfile();
+            jsonWriter.name("RoutingProfile");
+            RoutingProfileReferenceJsonMarshaller.getInstance()
+                    .marshall(routingProfile, jsonWriter);
         }
         jsonWriter.endObject();
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,15 @@ public class GetFederationTokenResultJsonUnmarshaller implements
             String name = reader.nextName();
             if (name.equals("Credentials")) {
                 getFederationTokenResult.setCredentials(CredentialsJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SignInUrl")) {
+                getFederationTokenResult.setSignInUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UserArn")) {
+                getFederationTokenResult.setUserArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UserId")) {
+                getFederationTokenResult.setUserId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

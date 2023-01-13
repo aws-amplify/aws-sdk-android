@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,13 @@ public class Filters implements Serializable {
      * </p>
      */
     private java.util.List<String> channels;
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     */
+    private java.util.List<String> routingProfiles;
 
     /**
      * <p>
@@ -216,6 +223,80 @@ public class Filters implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     *
+     * @return <p>
+     *         A list of up to 100 routing profile IDs or ARNs.
+     *         </p>
+     */
+    public java.util.List<String> getRoutingProfiles() {
+        return routingProfiles;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     */
+    public void setRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        if (routingProfiles == null) {
+            this.routingProfiles = null;
+            return;
+        }
+
+        this.routingProfiles = new java.util.ArrayList<String>(routingProfiles);
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingProfiles(String... routingProfiles) {
+        if (getRoutingProfiles() == null) {
+            this.routingProfiles = new java.util.ArrayList<String>(routingProfiles.length);
+        }
+        for (String value : routingProfiles) {
+            this.routingProfiles.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 100 routing profile IDs or ARNs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            A list of up to 100 routing profile IDs or ARNs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        setRoutingProfiles(routingProfiles);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -229,7 +310,9 @@ public class Filters implements Serializable {
         if (getQueues() != null)
             sb.append("Queues: " + getQueues() + ",");
         if (getChannels() != null)
-            sb.append("Channels: " + getChannels());
+            sb.append("Channels: " + getChannels() + ",");
+        if (getRoutingProfiles() != null)
+            sb.append("RoutingProfiles: " + getRoutingProfiles());
         sb.append("}");
         return sb.toString();
     }
@@ -241,6 +324,8 @@ public class Filters implements Serializable {
 
         hashCode = prime * hashCode + ((getQueues() == null) ? 0 : getQueues().hashCode());
         hashCode = prime * hashCode + ((getChannels() == null) ? 0 : getChannels().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingProfiles() == null) ? 0 : getRoutingProfiles().hashCode());
         return hashCode;
     }
 
@@ -262,6 +347,11 @@ public class Filters implements Serializable {
         if (other.getChannels() == null ^ this.getChannels() == null)
             return false;
         if (other.getChannels() != null && other.getChannels().equals(this.getChannels()) == false)
+            return false;
+        if (other.getRoutingProfiles() == null ^ this.getRoutingProfiles() == null)
+            return false;
+        if (other.getRoutingProfiles() != null
+                && other.getRoutingProfiles().equals(this.getRoutingProfiles()) == false)
             return false;
         return true;
     }

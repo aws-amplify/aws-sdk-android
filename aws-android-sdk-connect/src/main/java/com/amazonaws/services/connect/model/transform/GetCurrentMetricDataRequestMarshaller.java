@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -103,6 +103,19 @@ public class GetCurrentMetricDataRequestMarshaller implements
                 Integer maxResults = getCurrentMetricDataRequest.getMaxResults();
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
+            }
+            if (getCurrentMetricDataRequest.getSortCriteria() != null) {
+                java.util.List<CurrentMetricSortCriteria> sortCriteria = getCurrentMetricDataRequest
+                        .getSortCriteria();
+                jsonWriter.name("SortCriteria");
+                jsonWriter.beginArray();
+                for (CurrentMetricSortCriteria sortCriteriaItem : sortCriteria) {
+                    if (sortCriteriaItem != null) {
+                        CurrentMetricSortCriteriaJsonMarshaller.getInstance().marshall(
+                                sortCriteriaItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();
