@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The input properties for an inference job.
+ * The input properties for an inference job. The document reader config field
+ * applies only to non-text inputs for custom analysis.
  * </p>
  */
 public class InputDataConfig implements Serializable {
@@ -70,13 +71,8 @@ public class InputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The document reader config field applies only for InputDataConfig of
-     * StartEntitiesDetectionJob.
-     * </p>
-     * <p>
-     * Use DocumentReaderConfig to provide specifications about how you want
-     * your inference documents read. Currently it applies for PDF documents in
-     * StartEntitiesDetectionJob custom inference.
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
      * </p>
      */
     private DocumentReaderConfig documentReaderConfig;
@@ -455,23 +451,13 @@ public class InputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The document reader config field applies only for InputDataConfig of
-     * StartEntitiesDetectionJob.
-     * </p>
-     * <p>
-     * Use DocumentReaderConfig to provide specifications about how you want
-     * your inference documents read. Currently it applies for PDF documents in
-     * StartEntitiesDetectionJob custom inference.
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
      * </p>
      *
      * @return <p>
-     *         The document reader config field applies only for InputDataConfig
-     *         of StartEntitiesDetectionJob.
-     *         </p>
-     *         <p>
-     *         Use DocumentReaderConfig to provide specifications about how you
-     *         want your inference documents read. Currently it applies for PDF
-     *         documents in StartEntitiesDetectionJob custom inference.
+     *         Provides configuration parameters to override the default actions
+     *         for extracting text from PDF documents and image files.
      *         </p>
      */
     public DocumentReaderConfig getDocumentReaderConfig() {
@@ -480,24 +466,14 @@ public class InputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The document reader config field applies only for InputDataConfig of
-     * StartEntitiesDetectionJob.
-     * </p>
-     * <p>
-     * Use DocumentReaderConfig to provide specifications about how you want
-     * your inference documents read. Currently it applies for PDF documents in
-     * StartEntitiesDetectionJob custom inference.
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
      * </p>
      *
      * @param documentReaderConfig <p>
-     *            The document reader config field applies only for
-     *            InputDataConfig of StartEntitiesDetectionJob.
-     *            </p>
-     *            <p>
-     *            Use DocumentReaderConfig to provide specifications about how
-     *            you want your inference documents read. Currently it applies
-     *            for PDF documents in StartEntitiesDetectionJob custom
-     *            inference.
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
      *            </p>
      */
     public void setDocumentReaderConfig(DocumentReaderConfig documentReaderConfig) {
@@ -506,27 +482,17 @@ public class InputDataConfig implements Serializable {
 
     /**
      * <p>
-     * The document reader config field applies only for InputDataConfig of
-     * StartEntitiesDetectionJob.
-     * </p>
-     * <p>
-     * Use DocumentReaderConfig to provide specifications about how you want
-     * your inference documents read. Currently it applies for PDF documents in
-     * StartEntitiesDetectionJob custom inference.
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param documentReaderConfig <p>
-     *            The document reader config field applies only for
-     *            InputDataConfig of StartEntitiesDetectionJob.
-     *            </p>
-     *            <p>
-     *            Use DocumentReaderConfig to provide specifications about how
-     *            you want your inference documents read. Currently it applies
-     *            for PDF documents in StartEntitiesDetectionJob custom
-     *            inference.
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

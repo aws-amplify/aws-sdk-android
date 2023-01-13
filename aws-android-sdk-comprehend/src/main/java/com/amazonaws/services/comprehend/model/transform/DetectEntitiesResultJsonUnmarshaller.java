@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,25 @@ public class DetectEntitiesResultJsonUnmarshaller implements
             if (name.equals("Entities")) {
                 detectEntitiesResult.setEntities(new ListUnmarshaller<Entity>(
                         EntityJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DocumentMetadata")) {
+                detectEntitiesResult.setDocumentMetadata(DocumentMetadataJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DocumentType")) {
+                detectEntitiesResult.setDocumentType(new ListUnmarshaller<DocumentTypeListItem>(
+                        DocumentTypeListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Blocks")) {
+                detectEntitiesResult.setBlocks(new ListUnmarshaller<Block>(BlockJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Errors")) {
+                detectEntitiesResult.setErrors(new ListUnmarshaller<ErrorsListItem>(
+                        ErrorsListItemJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {
