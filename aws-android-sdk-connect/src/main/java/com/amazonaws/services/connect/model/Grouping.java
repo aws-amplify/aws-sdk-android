@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import java.util.Map;
 public enum Grouping {
 
     QUEUE("QUEUE"),
-    CHANNEL("CHANNEL");
+    CHANNEL("CHANNEL"),
+    ROUTING_PROFILE("ROUTING_PROFILE");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum Grouping {
         enumMap = new HashMap<String, Grouping>();
         enumMap.put("QUEUE", QUEUE);
         enumMap.put("CHANNEL", CHANNEL);
+        enumMap.put("ROUTING_PROFILE", ROUTING_PROFILE);
     }
 
     /**
