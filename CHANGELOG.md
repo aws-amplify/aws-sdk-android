@@ -1,3 +1,12 @@
+## [Release 2.62.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#3157)
+- **aws-android-sdk-lambda:** update models to latest (#3159)
+- **aws-android-sdk-location:** update models to latest (#3160)
+
+[See all changes between 2.61.0 and 2.62.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.61.0...release_v2.62.0)
+
 ## [Release 2.61.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.61.0)
 
 ### Features
