@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,11 +25,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * real-time, using a previously created and trained custom model and an
  * endpoint.
  * </p>
+ * <p>
+ * You can input plain text or you can upload a single-page input document
+ * (text, PDF, Word, or image).
+ * </p>
+ * <p>
+ * If the system detects errors while processing a page in the input document,
+ * the API response includes an entry in <code>Errors</code> that describes the
+ * errors.
+ * </p>
+ * <p>
+ * If the system detects a document-level error in your input document, the API
+ * returns an <code>InvalidRequestException</code> error response. For details
+ * about this exception, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html">
+ * Errors in semi-structured documents</a> in the Comprehend Developer Guide.
+ * </p>
  */
 public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The document text to be analyzed.
+     * The document text to be analyzed. If you enter text using this parameter,
+     * do not use the <code>Bytes</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,14 +72,53 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The document text to be analyzed.
+     * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
+     * file. You can also use the <code>Bytes</code> parameter to input an
+     * Amazon Textract <code>DetectDocumentText</code> or
+     * <code>AnalyzeDocument</code> output file.
+     * </p>
+     * <p>
+     * Provide the input document as a sequence of base64-encoded bytes. If your
+     * code uses an Amazon Web Services SDK to classify documents, the SDK may
+     * encode the document file bytes for you.
+     * </p>
+     * <p>
+     * The maximum length of this field depends on the input document type. For
+     * details, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html">
+     * Inputs for real-time custom analysis</a> in the Comprehend Developer
+     * Guide.
+     * </p>
+     * <p>
+     * If you use the <code>Bytes</code> parameter, do not use the
+     * <code>Text</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
+    private java.nio.ByteBuffer bytes;
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     */
+    private DocumentReaderConfig documentReaderConfig;
+
+    /**
+     * <p>
+     * The document text to be analyzed. If you enter text using this parameter,
+     * do not use the <code>Bytes</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The document text to be analyzed.
+     *         The document text to be analyzed. If you enter text using this
+     *         parameter, do not use the <code>Bytes</code> parameter.
      *         </p>
      */
     public String getText() {
@@ -71,14 +127,16 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The document text to be analyzed.
+     * The document text to be analyzed. If you enter text using this parameter,
+     * do not use the <code>Bytes</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            The document text to be analyzed.
+     *            The document text to be analyzed. If you enter text using this
+     *            parameter, do not use the <code>Bytes</code> parameter.
      *            </p>
      */
     public void setText(String text) {
@@ -87,7 +145,8 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The document text to be analyzed.
+     * The document text to be analyzed. If you enter text using this parameter,
+     * do not use the <code>Bytes</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -97,7 +156,8 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - <br/>
      *
      * @param text <p>
-     *            The document text to be analyzed.
+     *            The document text to be analyzed. If you enter text using this
+     *            parameter, do not use the <code>Bytes</code> parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -189,6 +249,232 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
+     * file. You can also use the <code>Bytes</code> parameter to input an
+     * Amazon Textract <code>DetectDocumentText</code> or
+     * <code>AnalyzeDocument</code> output file.
+     * </p>
+     * <p>
+     * Provide the input document as a sequence of base64-encoded bytes. If your
+     * code uses an Amazon Web Services SDK to classify documents, the SDK may
+     * encode the document file bytes for you.
+     * </p>
+     * <p>
+     * The maximum length of this field depends on the input document type. For
+     * details, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html">
+     * Inputs for real-time custom analysis</a> in the Comprehend Developer
+     * Guide.
+     * </p>
+     * <p>
+     * If you use the <code>Bytes</code> parameter, do not use the
+     * <code>Text</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @return <p>
+     *         Use the <code>Bytes</code> parameter to input a text, PDF, Word
+     *         or image file. You can also use the <code>Bytes</code> parameter
+     *         to input an Amazon Textract <code>DetectDocumentText</code> or
+     *         <code>AnalyzeDocument</code> output file.
+     *         </p>
+     *         <p>
+     *         Provide the input document as a sequence of base64-encoded bytes.
+     *         If your code uses an Amazon Web Services SDK to classify
+     *         documents, the SDK may encode the document file bytes for you.
+     *         </p>
+     *         <p>
+     *         The maximum length of this field depends on the input document
+     *         type. For details, see <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html"
+     *         > Inputs for real-time custom analysis</a> in the Comprehend
+     *         Developer Guide.
+     *         </p>
+     *         <p>
+     *         If you use the <code>Bytes</code> parameter, do not use the
+     *         <code>Text</code> parameter.
+     *         </p>
+     */
+    public java.nio.ByteBuffer getBytes() {
+        return bytes;
+    }
+
+    /**
+     * <p>
+     * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
+     * file. You can also use the <code>Bytes</code> parameter to input an
+     * Amazon Textract <code>DetectDocumentText</code> or
+     * <code>AnalyzeDocument</code> output file.
+     * </p>
+     * <p>
+     * Provide the input document as a sequence of base64-encoded bytes. If your
+     * code uses an Amazon Web Services SDK to classify documents, the SDK may
+     * encode the document file bytes for you.
+     * </p>
+     * <p>
+     * The maximum length of this field depends on the input document type. For
+     * details, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html">
+     * Inputs for real-time custom analysis</a> in the Comprehend Developer
+     * Guide.
+     * </p>
+     * <p>
+     * If you use the <code>Bytes</code> parameter, do not use the
+     * <code>Text</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @param bytes <p>
+     *            Use the <code>Bytes</code> parameter to input a text, PDF,
+     *            Word or image file. You can also use the <code>Bytes</code>
+     *            parameter to input an Amazon Textract
+     *            <code>DetectDocumentText</code> or
+     *            <code>AnalyzeDocument</code> output file.
+     *            </p>
+     *            <p>
+     *            Provide the input document as a sequence of base64-encoded
+     *            bytes. If your code uses an Amazon Web Services SDK to
+     *            classify documents, the SDK may encode the document file bytes
+     *            for you.
+     *            </p>
+     *            <p>
+     *            The maximum length of this field depends on the input document
+     *            type. For details, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html"
+     *            > Inputs for real-time custom analysis</a> in the Comprehend
+     *            Developer Guide.
+     *            </p>
+     *            <p>
+     *            If you use the <code>Bytes</code> parameter, do not use the
+     *            <code>Text</code> parameter.
+     *            </p>
+     */
+    public void setBytes(java.nio.ByteBuffer bytes) {
+        this.bytes = bytes;
+    }
+
+    /**
+     * <p>
+     * Use the <code>Bytes</code> parameter to input a text, PDF, Word or image
+     * file. You can also use the <code>Bytes</code> parameter to input an
+     * Amazon Textract <code>DetectDocumentText</code> or
+     * <code>AnalyzeDocument</code> output file.
+     * </p>
+     * <p>
+     * Provide the input document as a sequence of base64-encoded bytes. If your
+     * code uses an Amazon Web Services SDK to classify documents, the SDK may
+     * encode the document file bytes for you.
+     * </p>
+     * <p>
+     * The maximum length of this field depends on the input document type. For
+     * details, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html">
+     * Inputs for real-time custom analysis</a> in the Comprehend Developer
+     * Guide.
+     * </p>
+     * <p>
+     * If you use the <code>Bytes</code> parameter, do not use the
+     * <code>Text</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @param bytes <p>
+     *            Use the <code>Bytes</code> parameter to input a text, PDF,
+     *            Word or image file. You can also use the <code>Bytes</code>
+     *            parameter to input an Amazon Textract
+     *            <code>DetectDocumentText</code> or
+     *            <code>AnalyzeDocument</code> output file.
+     *            </p>
+     *            <p>
+     *            Provide the input document as a sequence of base64-encoded
+     *            bytes. If your code uses an Amazon Web Services SDK to
+     *            classify documents, the SDK may encode the document file bytes
+     *            for you.
+     *            </p>
+     *            <p>
+     *            The maximum length of this field depends on the input document
+     *            type. For details, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync.html"
+     *            > Inputs for real-time custom analysis</a> in the Comprehend
+     *            Developer Guide.
+     *            </p>
+     *            <p>
+     *            If you use the <code>Bytes</code> parameter, do not use the
+     *            <code>Text</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentRequest withBytes(java.nio.ByteBuffer bytes) {
+        this.bytes = bytes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     *
+     * @return <p>
+     *         Provides configuration parameters to override the default actions
+     *         for extracting text from PDF documents and image files.
+     *         </p>
+     */
+    public DocumentReaderConfig getDocumentReaderConfig() {
+        return documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     *
+     * @param documentReaderConfig <p>
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
+     *            </p>
+     */
+    public void setDocumentReaderConfig(DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentReaderConfig <p>
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClassifyDocumentRequest withDocumentReaderConfig(
+            DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -202,7 +488,11 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
         if (getText() != null)
             sb.append("Text: " + getText() + ",");
         if (getEndpointArn() != null)
-            sb.append("EndpointArn: " + getEndpointArn());
+            sb.append("EndpointArn: " + getEndpointArn() + ",");
+        if (getBytes() != null)
+            sb.append("Bytes: " + getBytes() + ",");
+        if (getDocumentReaderConfig() != null)
+            sb.append("DocumentReaderConfig: " + getDocumentReaderConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -215,6 +505,9 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode
                 + ((getEndpointArn() == null) ? 0 : getEndpointArn().hashCode());
+        hashCode = prime * hashCode + ((getBytes() == null) ? 0 : getBytes().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentReaderConfig() == null) ? 0 : getDocumentReaderConfig().hashCode());
         return hashCode;
     }
 
@@ -237,6 +530,15 @@ public class ClassifyDocumentRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getEndpointArn() != null
                 && other.getEndpointArn().equals(this.getEndpointArn()) == false)
+            return false;
+        if (other.getBytes() == null ^ this.getBytes() == null)
+            return false;
+        if (other.getBytes() != null && other.getBytes().equals(this.getBytes()) == false)
+            return false;
+        if (other.getDocumentReaderConfig() == null ^ this.getDocumentReaderConfig() == null)
+            return false;
+        if (other.getDocumentReaderConfig() != null
+                && other.getDocumentReaderConfig().equals(this.getDocumentReaderConfig()) == false)
             return false;
         return true;
     }
