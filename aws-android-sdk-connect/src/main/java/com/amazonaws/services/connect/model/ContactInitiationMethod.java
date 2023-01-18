@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,9 @@ public enum ContactInitiationMethod {
     TRANSFER("TRANSFER"),
     QUEUE_TRANSFER("QUEUE_TRANSFER"),
     CALLBACK("CALLBACK"),
-    API("API");
+    API("API"),
+    DISCONNECT("DISCONNECT"),
+    MONITOR("MONITOR");
 
     private String value;
 
@@ -50,6 +52,8 @@ public enum ContactInitiationMethod {
         enumMap.put("QUEUE_TRANSFER", QUEUE_TRANSFER);
         enumMap.put("CALLBACK", CALLBACK);
         enumMap.put("API", API);
+        enumMap.put("DISCONNECT", DISCONNECT);
+        enumMap.put("MONITOR", MONITOR);
     }
 
     /**

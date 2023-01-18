@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,9 @@ public enum VocabularyLanguageCode {
     KoKR("ko-KR"),
     PtBR("pt-BR"),
     PtPT("pt-PT"),
-    ZhCN("zh-CN");
+    ZhCN("zh-CN"),
+    EnNZ("en-NZ"),
+    EnZA("en-ZA");
 
     private String value;
 
@@ -80,6 +82,8 @@ public enum VocabularyLanguageCode {
         enumMap.put("pt-BR", PtBR);
         enumMap.put("pt-PT", PtPT);
         enumMap.put("zh-CN", ZhCN);
+        enumMap.put("en-NZ", EnNZ);
+        enumMap.put("en-ZA", EnZA);
     }
 
     /**
