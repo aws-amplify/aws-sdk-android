@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * instanceId in the ARN of the instance. You can provide the
+     * <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -90,7 +91,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * instanceId in the ARN of the instance. You can provide the
+     * <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +104,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         The identifier of the Amazon Connect instance. You can find the
-     *         instanceId in the ARN of the instance.
+     *         instanceId in the ARN of the instance. You can provide the
+     *         <code>InstanceId</code>, or the entire ARN.
      *         </p>
      */
     public String getInstanceId() {
@@ -112,7 +115,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * instanceId in the ARN of the instance. You can provide the
+     * <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +128,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            the instanceId in the ARN of the instance. You can provide the
+     *            <code>InstanceId</code>, or the entire ARN.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -134,7 +139,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * instanceId in the ARN of the instance. You can provide the
+     * <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -149,7 +155,8 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            the instanceId in the ARN of the instance. You can provide the
+     *            <code>InstanceId</code>, or the entire ARN.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -45,13 +45,6 @@ import com.amazonaws.services.connect.model.*;
  * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
  * >Amazon Connect Endpoints</a>.
  * </p>
- * <note>
- * <p>
- * Working with flows? Check out the <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
- * >Amazon Connect Flow language</a>.
- * </p>
- * </note>
  **/
 public interface AmazonConnect {
 
@@ -424,9 +417,20 @@ public interface AmazonConnect {
      * Web Services Region where the Amazon Connect instance or traffic
      * distribution group was created.
      * </p>
+     * <p>
+     * For more information about how to use this operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+     * >Claim a phone number in your country</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+     * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * <important>
      * <p>
      * You can call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+     * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you
+     * can claim. Call the <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -490,7 +494,7 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -746,6 +750,37 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Creates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param createRuleRequest
+     * @return createRuleResult The response from the CreateRule service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateRuleResult createRule(CreateRuleRequest createRuleRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -957,6 +992,8 @@ public interface AmazonConnect {
      * </p>
      * 
      * @param deleteContactFlowRequest
+     * @return deleteContactFlowResult The response from the DeleteContactFlow
+     *         service method, as returned by Amazon Connect.
      * @throws AccessDeniedException
      * @throws InvalidRequestException
      * @throws InvalidParameterException
@@ -971,7 +1008,7 @@ public interface AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    void deleteContactFlow(DeleteContactFlowRequest deleteContactFlowRequest)
+    DeleteContactFlowResult deleteContactFlow(DeleteContactFlowRequest deleteContactFlowRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1103,6 +1140,28 @@ public interface AmazonConnect {
      */
     void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteRule(DeleteRuleRequest deleteRuleRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1362,7 +1421,7 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
@@ -1658,6 +1717,30 @@ public interface AmazonConnect {
      */
     DescribeRoutingProfileResult describeRoutingProfile(
             DescribeRoutingProfileRequest describeRoutingProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes a rule for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeRuleRequest
+     * @return describeRuleResult The response from the DescribeRule service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeRuleResult describeRule(DescribeRuleRequest describeRuleRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2423,7 +2506,7 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * <p>
@@ -2975,6 +3058,30 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * List all rules for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listRulesRequest
+     * @return listRulesResult The response from the ListRules service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListRulesResult listRules(ListRulesRequest listRulesRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -3228,6 +3335,34 @@ public interface AmazonConnect {
      */
     ListUsersResult listUsers(ListUsersRequest listUsersRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Initiates silent monitoring of a contact. The Contact Control Panel (CCP)
+     * of the user specified by <i>userId</i> will be set to silent monitoring
+     * mode on the contact.
+     * </p>
+     * 
+     * @param monitorContactRequest
+     * @return monitorContactResult The response from the MonitorContact service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    MonitorContactResult monitorContact(MonitorContactRequest monitorContactRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -4147,11 +4282,14 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
      * @param updateContactFlowContentRequest
+     * @return updateContactFlowContentResult The response from the
+     *         UpdateContactFlowContent service method, as returned by Amazon
+     *         Connect.
      * @throws InvalidRequestException
      * @throws InvalidContactFlowException
      * @throws InvalidParameterException
@@ -4166,7 +4304,8 @@ public interface AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    void updateContactFlowContent(UpdateContactFlowContentRequest updateContactFlowContentRequest)
+    UpdateContactFlowContentResult updateContactFlowContent(
+            UpdateContactFlowContentRequest updateContactFlowContentRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4175,6 +4314,9 @@ public interface AmazonConnect {
      * </p>
      * 
      * @param updateContactFlowMetadataRequest
+     * @return updateContactFlowMetadataResult The response from the
+     *         UpdateContactFlowMetadata service method, as returned by Amazon
+     *         Connect.
      * @throws InvalidRequestException
      * @throws InvalidParameterException
      * @throws DuplicateResourceException
@@ -4189,7 +4331,8 @@ public interface AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    void updateContactFlowMetadata(UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest)
+    UpdateContactFlowMetadataResult updateContactFlowMetadata(
+            UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4253,11 +4396,14 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * You can also create and update flows using the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html"
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language.html"
      * >Amazon Connect Flow language</a>.
      * </p>
      * 
      * @param updateContactFlowNameRequest
+     * @return updateContactFlowNameResult The response from the
+     *         UpdateContactFlowName service method, as returned by Amazon
+     *         Connect.
      * @throws InvalidRequestException
      * @throws InvalidParameterException
      * @throws DuplicateResourceException
@@ -4272,7 +4418,8 @@ public interface AmazonConnect {
      *             Connect indicating either a problem with the data in the
      *             request, or a server side issue.
      */
-    void updateContactFlowName(UpdateContactFlowNameRequest updateContactFlowNameRequest)
+    UpdateContactFlowNameResult updateContactFlowName(
+            UpdateContactFlowNameRequest updateContactFlowNameRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4381,6 +4528,62 @@ public interface AmazonConnect {
      */
     void updateInstanceStorageConfig(
             UpdateInstanceStorageConfigRequest updateInstanceStorageConfigRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates timeouts for when human chat participants are to be considered
+     * idle, and when agents are automatically disconnected from a chat due to
+     * idleness. You can set four timers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Customer idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Customer auto-disconnect timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent idle timeout
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agent auto-disconnect timeout
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat timeouts work, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/setup-chat-timeouts.html"
+     * >Set up chat timeouts for human participants</a>.
+     * </p>
+     * 
+     * @param updateParticipantRoleConfigRequest
+     * @return updateParticipantRoleConfigResult The response from the
+     *         UpdateParticipantRoleConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateParticipantRoleConfigResult updateParticipantRoleConfig(
+            UpdateParticipantRoleConfigRequest updateParticipantRoleConfigRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4713,6 +4916,34 @@ public interface AmazonConnect {
     void updateRoutingProfileQueues(
             UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a rule for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * Use the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/connect-rules-language.html"
+     * >Rules Function language</a> to code conditions for the rule.
+     * </p>
+     * 
+     * @param updateRuleRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRule(UpdateRuleRequest updateRuleRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>

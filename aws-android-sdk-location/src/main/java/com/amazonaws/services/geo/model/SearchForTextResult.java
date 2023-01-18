@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,8 +57,8 @@ public class SearchForTextResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForText</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      */
@@ -72,7 +72,7 @@ public class SearchForTextResult implements Serializable {
      * relevance score is closer to 1.
      * </p>
      * <p>
-     * Returned only when the partner selected is Esri.
+     * Returned only when the partner selected is Esri or Grab.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -243,8 +243,8 @@ public class SearchForTextResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForText</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      *
@@ -256,7 +256,7 @@ public class SearchForTextResult implements Serializable {
      *         <p>
      *         For <code>SearchPlaceIndexForText</code> operations, the
      *         <code>PlaceId</code> is returned only by place indexes that use
-     *         HERE as a data provider.
+     *         HERE or Grab as a data provider.
      *         </p>
      *         </note>
      */
@@ -272,8 +272,8 @@ public class SearchForTextResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForText</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      *
@@ -285,7 +285,7 @@ public class SearchForTextResult implements Serializable {
      *            <p>
      *            For <code>SearchPlaceIndexForText</code> operations, the
      *            <code>PlaceId</code> is returned only by place indexes that
-     *            use HERE as a data provider.
+     *            use HERE or Grab as a data provider.
      *            </p>
      *            </note>
      */
@@ -301,8 +301,8 @@ public class SearchForTextResult implements Serializable {
      * <note>
      * <p>
      * For <code>SearchPlaceIndexForText</code> operations, the
-     * <code>PlaceId</code> is returned only by place indexes that use HERE as a
-     * data provider.
+     * <code>PlaceId</code> is returned only by place indexes that use HERE or
+     * Grab as a data provider.
      * </p>
      * </note>
      * <p>
@@ -317,7 +317,7 @@ public class SearchForTextResult implements Serializable {
      *            <p>
      *            For <code>SearchPlaceIndexForText</code> operations, the
      *            <code>PlaceId</code> is returned only by place indexes that
-     *            use HERE as a data provider.
+     *            use HERE or Grab as a data provider.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -336,7 +336,7 @@ public class SearchForTextResult implements Serializable {
      * relevance score is closer to 1.
      * </p>
      * <p>
-     * Returned only when the partner selected is Esri.
+     * Returned only when the partner selected is Esri or Grab.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -349,7 +349,7 @@ public class SearchForTextResult implements Serializable {
      *         postal code), the relevance score is closer to 1.
      *         </p>
      *         <p>
-     *         Returned only when the partner selected is Esri.
+     *         Returned only when the partner selected is Esri or Grab.
      *         </p>
      */
     public Double getRelevance() {
@@ -364,7 +364,7 @@ public class SearchForTextResult implements Serializable {
      * relevance score is closer to 1.
      * </p>
      * <p>
-     * Returned only when the partner selected is Esri.
+     * Returned only when the partner selected is Esri or Grab.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -377,7 +377,7 @@ public class SearchForTextResult implements Serializable {
      *            and postal code), the relevance score is closer to 1.
      *            </p>
      *            <p>
-     *            Returned only when the partner selected is Esri.
+     *            Returned only when the partner selected is Esri or Grab.
      *            </p>
      */
     public void setRelevance(Double relevance) {
@@ -392,7 +392,7 @@ public class SearchForTextResult implements Serializable {
      * relevance score is closer to 1.
      * </p>
      * <p>
-     * Returned only when the partner selected is Esri.
+     * Returned only when the partner selected is Esri or Grab.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -408,7 +408,7 @@ public class SearchForTextResult implements Serializable {
      *            and postal code), the relevance score is closer to 1.
      *            </p>
      *            <p>
-     *            Returned only when the partner selected is Esri.
+     *            Returned only when the partner selected is Esri or Grab.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
