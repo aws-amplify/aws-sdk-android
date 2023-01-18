@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,9 +26,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Services Region where the Amazon Connect instance or traffic distribution
  * group was created.
  * </p>
+ * <p>
+ * For more information about how to use this operation, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-number.html"
+ * >Claim a phone number in your country</a> and <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/claim-phone-numbers-traffic-distribution-groups.html"
+ * >Claim phone numbers to traffic distribution groups</a> in the <i>Amazon
+ * Connect Administrator Guide</i>.
+ * </p>
  * <important>
  * <p>
  * You can call the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_SearchAvailablePhoneNumbers.html"
+ * >SearchAvailablePhoneNumbers</a> API for available phone numbers that you can
+ * claim. Call the <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
  * >DescribePhoneNumber</a> API to verify the status of a previous <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
@@ -83,6 +94,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * href=
      * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      * >Making retries safe with idempotent APIs</a>.
+     * </p>
+     * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,6 +378,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
@@ -373,6 +392,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *         idempotency, see <a href=
      *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *         >Making retries safe with idempotent APIs</a>.
+     *         </p>
+     *         <p>
+     *         Pattern:
+     *         <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *         </p>
      */
     public String getClientToken() {
@@ -389,6 +412,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 500<br/>
      *
@@ -399,6 +426,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *            about idempotency, see <a href=
      *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *            >Making retries safe with idempotent APIs</a>.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -415,6 +446,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
+     * Pattern:
+     * <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -428,6 +463,10 @@ public class ClaimPhoneNumberRequest extends AmazonWebServiceRequest implements 
      *            about idempotency, see <a href=
      *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
      *            >Making retries safe with idempotent APIs</a>.
+     *            </p>
+     *            <p>
+     *            Pattern:
+     *            <code>^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
