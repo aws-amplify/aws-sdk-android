@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sends a message. Note that ConnectionToken is used for invoking this API
- * instead of ParticipantToken.
+ * Sends a message.
  * </p>
+ * <note>
+ * <p>
+ * <code>ConnectionToken</code> is used for invoking this API instead of
+ * <code>ParticipantToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The Amazon Connect Participant Service APIs do not use <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
@@ -33,7 +38,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class SendMessageRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The type of the content. Supported types are text/plain.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,16 +51,34 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The content of the message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,14 +98,17 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The type of the content. Supported types are text/plain.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The type of the content. Supported types are text/plain.
+     *         The type of the content. Supported types are
+     *         <code>text/plain</code>, <code>text/markdown</code>, and
+     *         <code>application/json</code>.
      *         </p>
      */
     public String getContentType() {
@@ -90,14 +117,17 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The type of the content. Supported types are text/plain.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param contentType <p>
-     *            The type of the content. Supported types are text/plain.
+     *            The type of the content. Supported types are
+     *            <code>text/plain</code>, <code>text/markdown</code>, and
+     *            <code>application/json</code>.
      *            </p>
      */
     public void setContentType(String contentType) {
@@ -106,7 +136,8 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The type of the content. Supported types are text/plain.
+     * The type of the content. Supported types are <code>text/plain</code>,
+     * <code>text/markdown</code>, and <code>application/json</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -116,7 +147,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 100<br/>
      *
      * @param contentType <p>
-     *            The type of the content. Supported types are text/plain.
+     *            The type of the content. Supported types are
+     *            <code>text/plain</code>, <code>text/markdown</code>, and
+     *            <code>application/json</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -130,13 +163,41 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The content of the message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the message.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         For <code>text/plain</code> and <code>text/markdown</code>, the
+     *         Length Constraints are Minimum of 1, Maximum of 1024.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For <code>application/json</code>, the Length Constraints are
+     *         Minimum of 1, Maximum of 12000.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getContent() {
         return content;
@@ -146,13 +207,41 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The content of the message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For <code>text/plain</code> and <code>text/markdown</code>,
+     *            the Length Constraints are Minimum of 1, Maximum of 1024.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For <code>application/json</code>, the Length Constraints are
+     *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setContent(String content) {
         this.content = content;
@@ -162,16 +251,44 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The content of the message.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * For <code>text/plain</code> and <code>text/markdown</code>, the Length
+     * Constraints are Minimum of 1, Maximum of 1024.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>application/json</code>, the Length Constraints are Minimum of
+     * 1, Maximum of 12000.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            For <code>text/plain</code> and <code>text/markdown</code>,
+     *            the Length Constraints are Minimum of 1, Maximum of 1024.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For <code>application/json</code>, the Length Constraints are
+     *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -183,7 +300,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -191,7 +312,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -201,7 +326,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -209,7 +338,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -219,7 +352,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -230,7 +367,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

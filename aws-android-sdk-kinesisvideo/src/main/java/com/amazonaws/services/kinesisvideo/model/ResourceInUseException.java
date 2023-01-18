@@ -19,16 +19,31 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The resource is currently not available for this operation. New resources
- * cannot be created with the same name as existing resources. Also, resources
- * cannot be updated or deleted unless they are in an <code>ACTIVE</code> state.
+ * When the input <code>StreamARN</code> or <code>ChannelARN</code> in
+ * <code>CLOUD_STORAGE_MODE</code> is already mapped to a different Kinesis
+ * Video Stream resource, or if the provided input <code>StreamARN</code> or
+ * <code>ChannelARN</code> is not in Active status, try one of the following :
  * </p>
+ * <ol>
+ * <li>
  * <p>
- * If this exception is returned, do not use it to determine whether the
- * requested resource already exists. Instead, it is recommended you use the
- * resource-specific describe API, for example, <code>DescribeStream</code> for
- * video streams.
+ * The <code>DescribeMediaStorageConfiguration</code> API to determine what the
+ * stream given channel is mapped to.
  * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The <code>DescribeMappedResourceConfiguration</code> API to determine the
+ * channel that the given stream is mapped to.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The <code>DescribeStream</code> or <code>DescribeSignalingChannel</code> API
+ * to determine the status of the resource.
+ * </p>
+ * </li>
+ * </ol>
  */
 public class ResourceInUseException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

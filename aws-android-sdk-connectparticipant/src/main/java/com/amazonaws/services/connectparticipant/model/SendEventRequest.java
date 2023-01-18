@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sends an event. Note that ConnectionToken is used for invoking this API
- * instead of ParticipantToken.
+ * Sends an event.
  * </p>
+ * <note>
+ * <p>
+ * <code>ConnectionToken</code> is used for invoking this API instead of
+ * <code>ParticipantToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The Amazon Connect Participant Service APIs do not use <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
@@ -46,6 +51,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * application/vnd.amazonaws.connect.event.connection.acknowledged
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.delivered
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.read
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,19 +70,28 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
+     * The content of the event to be sent (for example, message text). For
+     * content related to message receipts, this is supported in the form of a
+     * JSON string.
+     * </p>
+     * <p>
+     * Sample Content:
+     * "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,6 +124,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * application/vnd.amazonaws.connect.event.connection.acknowledged
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.delivered
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.read
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,6 +151,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         application/vnd.amazonaws.connect.event.connection.acknowledged
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         application/vnd.amazonaws.connect.event.message.delivered
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         application/vnd.amazonaws.connect.event.message.read
      *         </p>
      *         </li>
      *         </ul>
@@ -140,6 +184,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * application/vnd.amazonaws.connect.event.connection.acknowledged
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.delivered
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.read
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,6 +212,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            application/vnd.amazonaws.connect.event.connection.
      *            acknowledged
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            application/vnd.amazonaws.connect.event.message.delivered
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            application/vnd.amazonaws.connect.event.message.read
      *            </p>
      *            </li>
      *            </ul>
@@ -181,6 +245,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * application/vnd.amazonaws.connect.event.connection.acknowledged
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.delivered
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * application/vnd.amazonaws.connect.event.message.read
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -204,6 +278,16 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *            acknowledged
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            application/vnd.amazonaws.connect.event.message.delivered
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            application/vnd.amazonaws.connect.event.message.read
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -215,16 +299,26 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
+     * The content of the event to be sent (for example, message text). For
+     * content related to message receipts, this is supported in the form of a
+     * JSON string.
+     * </p>
+     * <p>
+     * Sample Content:
+     * "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the event to be sent (for example, message text).
-     *         This is not yet supported.
+     *         For content related to message receipts, this is supported in the
+     *         form of a JSON string.
+     *         </p>
+     *         <p>
+     *         Sample Content:
+     *         "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      *         </p>
      */
     public String getContent() {
@@ -233,16 +327,26 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
+     * The content of the event to be sent (for example, message text). For
+     * content related to message receipts, this is supported in the form of a
+     * JSON string.
+     * </p>
+     * <p>
+     * Sample Content:
+     * "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the event to be sent (for example, message
-     *            text). This is not yet supported.
+     *            text). For content related to message receipts, this is
+     *            supported in the form of a JSON string.
+     *            </p>
+     *            <p>
+     *            Sample Content:
+     *            "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      *            </p>
      */
     public void setContent(String content) {
@@ -251,19 +355,29 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
+     * The content of the event to be sent (for example, message text). For
+     * content related to message receipts, this is supported in the form of a
+     * JSON string.
+     * </p>
+     * <p>
+     * Sample Content:
+     * "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the event to be sent (for example, message
-     *            text). This is not yet supported.
+     *            text). For content related to message receipts, this is
+     *            supported in the form of a JSON string.
+     *            </p>
+     *            <p>
+     *            Sample Content:
+     *            "{\"messageId\":\"11111111-aaaa-bbbb-cccc-EXAMPLE01234\"}"
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -276,7 +390,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -284,7 +402,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -294,7 +416,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,7 +428,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -312,7 +442,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -323,7 +457,11 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

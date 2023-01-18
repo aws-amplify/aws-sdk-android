@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates the participant's connection. Note that ParticipantToken is used for
- * invoking this API instead of ConnectionToken.
+ * Creates the participant's connection.
  * </p>
+ * <note>
+ * <p>
+ * <code>ParticipantToken</code> is used for invoking this API instead of
+ * <code>ConnectionToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The participant token is valid for the lifetime of the participant – until
  * they are part of a contact.
@@ -75,7 +80,8 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
         Serializable {
     /**
      * <p>
-     * Type of connection information required.
+     * Type of connection information required. This can be omitted if
+     * <code>ConnectParticipant</code> is <code>true</code>.
      * </p>
      */
     private java.util.List<String> type;
@@ -105,11 +111,13 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required.
+     * Type of connection information required. This can be omitted if
+     * <code>ConnectParticipant</code> is <code>true</code>.
      * </p>
      *
      * @return <p>
-     *         Type of connection information required.
+     *         Type of connection information required. This can be omitted if
+     *         <code>ConnectParticipant</code> is <code>true</code>.
      *         </p>
      */
     public java.util.List<String> getType() {
@@ -118,11 +126,13 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required.
+     * Type of connection information required. This can be omitted if
+     * <code>ConnectParticipant</code> is <code>true</code>.
      * </p>
      *
      * @param type <p>
-     *            Type of connection information required.
+     *            Type of connection information required. This can be omitted
+     *            if <code>ConnectParticipant</code> is <code>true</code>.
      *            </p>
      */
     public void setType(java.util.Collection<String> type) {
@@ -136,14 +146,16 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required.
+     * Type of connection information required. This can be omitted if
+     * <code>ConnectParticipant</code> is <code>true</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param type <p>
-     *            Type of connection information required.
+     *            Type of connection information required. This can be omitted
+     *            if <code>ConnectParticipant</code> is <code>true</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -160,14 +172,16 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required.
+     * Type of connection information required. This can be omitted if
+     * <code>ConnectParticipant</code> is <code>true</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param type <p>
-     *            Type of connection information required.
+     *            Type of connection information required. This can be omitted
+     *            if <code>ConnectParticipant</code> is <code>true</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

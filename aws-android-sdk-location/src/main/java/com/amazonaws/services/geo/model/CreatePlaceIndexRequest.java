@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * If your application is tracking or routing assets you use in your business,
- * such as delivery vehicles or employees, you may only use HERE as your
+ * such as delivery vehicles or employees, you must not use Esri as your
  * geolocation provider. See section 82 of the <a
  * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
  * details.
@@ -60,6 +60,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * >Esri</a>'s coverage in your region of interest, see <a href=
      * "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
      * >Esri details on geocoding coverage</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Grab</code> – Grab provides place index functionality for Southeast
+     * Asia. For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     * >GrabMaps</a>' coverage, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     * >GrabMaps countries and areas covered</a>.
      * </p>
      * </li>
      * <li>
@@ -224,6 +234,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </li>
      * <li>
      * <p>
+     * <code>Grab</code> – Grab provides place index functionality for Southeast
+     * Asia. For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     * >GrabMaps</a>' coverage, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     * >GrabMaps countries and areas covered</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
      * >HERE Technologies</a>' coverage in your region of interest, see <a href=
@@ -268,6 +288,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         >Esri</a>'s coverage in your region of interest, see <a href=
      *         "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
      *         >Esri details on geocoding coverage</a>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Grab</code> – Grab provides place index functionality for
+     *         Southeast Asia. For additional information about <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     *         >GrabMaps</a>' coverage, see <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     *         >GrabMaps countries and areas covered</a>.
      *         </p>
      *         </li>
      *         <li>
@@ -326,6 +356,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </li>
      * <li>
      * <p>
+     * <code>Grab</code> – Grab provides place index functionality for Southeast
+     * Asia. For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     * >GrabMaps</a>' coverage, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     * >GrabMaps countries and areas covered</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
      * >HERE Technologies</a>' coverage in your region of interest, see <a href=
@@ -371,6 +411,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            >Esri</a>'s coverage in your region of interest, see <a href=
      *            "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
      *            >Esri details on geocoding coverage</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Grab</code> – Grab provides place index functionality
+     *            for Southeast Asia. For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     *            >GrabMaps</a>' coverage, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     *            >GrabMaps countries and areas covered</a>.
      *            </p>
      *            </li>
      *            <li>
@@ -430,6 +480,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </li>
      * <li>
      * <p>
+     * <code>Grab</code> – Grab provides place index functionality for Southeast
+     * Asia. For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     * >GrabMaps</a>' coverage, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     * >GrabMaps countries and areas covered</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
      * >HERE Technologies</a>' coverage in your region of interest, see <a href=
@@ -478,6 +538,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            >Esri</a>'s coverage in your region of interest, see <a href=
      *            "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
      *            >Esri details on geocoding coverage</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Grab</code> – Grab provides place index functionality
+     *            for Southeast Asia. For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/grab.html"
+     *            >GrabMaps</a>' coverage, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/grab.html#grab-coverage-area"
+     *            >GrabMaps countries and areas covered</a>.
      *            </p>
      *            </li>
      *            <li>

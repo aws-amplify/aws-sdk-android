@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,6 +44,17 @@ class FiltersJsonMarshaller {
             for (String channelsItem : channels) {
                 if (channelsItem != null) {
                     jsonWriter.value(channelsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (filters.getRoutingProfiles() != null) {
+            java.util.List<String> routingProfiles = filters.getRoutingProfiles();
+            jsonWriter.name("RoutingProfiles");
+            jsonWriter.beginArray();
+            for (String routingProfilesItem : routingProfiles) {
+                if (routingProfilesItem != null) {
+                    jsonWriter.value(routingProfilesItem);
                 }
             }
             jsonWriter.endArray();

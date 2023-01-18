@@ -1624,8 +1624,7 @@ public interface AmazonRekognition {
      * </li>
      * <li>
      * <p>
-     * Categories - The label categories that the detected label belongs to. A
-     * given label can belong to more than one category.
+     * Categories - The label categories that the detected label belongs to.
      * </p>
      * </li>
      * <li>
@@ -1657,14 +1656,14 @@ public interface AmazonRekognition {
      * </li>
      * <li>
      * <p>
-     * Foreground - Information about the Sharpness and Brightness of the input
-     * image’s foreground.
+     * Foreground - Information about the sharpness, brightness, and dominant
+     * colors of the input image’s foreground.
      * </p>
      * </li>
      * <li>
      * <p>
-     * Background - Information about the Sharpness and Brightness of the input
-     * image’s background.
+     * Background - Information about the sharpness, brightness, and dominant
+     * colors of the input image’s background.
      * </p>
      * </li>
      * </ul>
@@ -2343,36 +2342,108 @@ public interface AmazonRekognition {
      * <code>JobId</code>). When the label detection operation finishes, Amazon
      * Rekognition publishes a completion status to the Amazon Simple
      * Notification Service topic registered in the initial call to
-     * <code>StartlabelDetection</code>. To get the results of the label
-     * detection operation, first check that the status value published to the
-     * Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
-     * <a>GetLabelDetection</a> and pass the job identifier (<code>JobId</code>)
-     * from the initial call to <code>StartLabelDetection</code>.
+     * <code>StartlabelDetection</code>.
+     * </p>
+     * <p>
+     * To get the results of the label detection operation, first check that the
+     * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
+     * If so, call <a>GetLabelDetection</a> and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartLabelDetection</code>.
      * </p>
      * <p>
      * <code>GetLabelDetection</code> returns an array of detected labels (
      * <code>Labels</code>) sorted by the time the labels were detected. You can
      * also sort by the label name by specifying <code>NAME</code> for the
-     * <code>SortBy</code> input parameter.
+     * <code>SortBy</code> input parameter. If there is no <code>NAME</code>
+     * specified, the default sort is by timestamp.
      * </p>
      * <p>
-     * The labels returned include the label name, the percentage confidence in
-     * the accuracy of the detected label, and the time the label was detected
-     * in the video.
+     * You can select how results are aggregated by using the
+     * <code>AggregateBy</code> input parameter. The default aggregation method
+     * is <code>TIMESTAMPS</code>. You can also aggregate by
+     * <code>SEGMENTS</code>, which aggregates all instances of labels detected
+     * in a given segment.
      * </p>
      * <p>
-     * The returned labels also include bounding box information for common
-     * objects, a hierarchical taxonomy of detected labels, and the version of
-     * the label model used for detection.
+     * The returned Labels array may include the following attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Name - The name of the detected label.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Confidence - The level of confidence in the label assigned to a detected
+     * object.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Parents - The ancestor labels for a detected label. GetLabelDetection
+     * returns a hierarchical taxonomy of detected labels. For example, a
+     * detected car might be assigned the label car. The label car has two
+     * parent labels: Vehicle (its parent) and Transportation (its grandparent).
+     * The response includes the all ancestors for a label, where every ancestor
+     * is a unique label. In the previous example, Car, Vehicle, and
+     * Transportation are returned as unique labels in the response.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Aliases - Possible Aliases for the label.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Categories - The label categories that the detected label belongs to.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BoundingBox — Bounding boxes are described for all instances of detected
+     * common object labels, returned in an array of Instance objects. An
+     * Instance object contains a BoundingBox object, describing the location of
+     * the label on the input image. It also includes the confidence for the
+     * accuracy of the detected bounding box.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Timestamp - Time, in milliseconds from the start of the video, that the
+     * label was detected. For aggregation by <code>SEGMENTS</code>, the
+     * <code>StartTimestampMillis</code>, <code>EndTimestampMillis</code>, and
+     * <code>DurationMillis</code> structures are what define a segment.
+     * Although the “Timestamp” structure is still returned with each label, its
+     * value is set to be the same as <code>StartTimestampMillis</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Timestamp and Bounding box information are returned for detected
+     * Instances, only if aggregation is done by <code>TIMESTAMPS</code>. If
+     * aggregating by <code>SEGMENTS</code>, information about detected
+     * instances isn’t returned.
      * </p>
      * <p>
-     * Use MaxResults parameter to limit the number of labels returned. If there
-     * are more results than specified in <code>MaxResults</code>, the value of
-     * <code>NextToken</code> in the operation response contains a pagination
-     * token for getting the next set of results. To get the next page of
-     * results, call <code>GetlabelDetection</code> and populate the
-     * <code>NextToken</code> request parameter with the token value returned
-     * from the previous call to <code>GetLabelDetection</code>.
+     * The version of the label model used for the detection is also returned.
+     * </p>
+     * <p>
+     * <b>Note <code>DominantColors</code> isn't returned for
+     * <code>Instances</code>, although it is shown as part of the response in
+     * the sample seen below.</b>
+     * </p>
+     * <p>
+     * Use <code>MaxResults</code> parameter to limit the number of labels
+     * returned. If there are more results than specified in
+     * <code>MaxResults</code>, the value of <code>NextToken</code> in the
+     * operation response contains a pagination token for getting the next set
+     * of results. To get the next page of results, call
+     * <code>GetlabelDetection</code> and populate the <code>NextToken</code>
+     * request parameter with the token value returned from the previous call to
+     * <code>GetLabelDetection</code>.
      * </p>
      * 
      * @param getLabelDetectionRequest
@@ -3514,7 +3585,23 @@ public interface AmazonRekognition {
      * <code>JobId</code>) from the initial call to
      * <code>StartLabelDetection</code>.
      * </p>
-     * <p/>
+     * <p>
+     * <i>Optional Parameters</i>
+     * </p>
+     * <p>
+     * <code>StartLabelDetection</code> has the <code>GENERAL_LABELS</code>
+     * Feature applied by default. This feature allows you to provide filtering
+     * criteria to the <code>Settings</code> parameter. You can filter with sets
+     * of individual labels or with label categories. You can specify inclusive
+     * filters, exclusive filters, or a combination of inclusive and exclusive
+     * filters. For more information on filtering, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/labels-detecting-labels-video.html"
+     * >Detecting labels in a video</a>.
+     * </p>
+     * <p>
+     * You can specify <code>MinConfidence</code> to control the confidence
+     * threshold for the labels returned. The default is 50.
+     * </p>
      * 
      * @param startLabelDetectionRequest
      * @return startLabelDetectionResult The response from the

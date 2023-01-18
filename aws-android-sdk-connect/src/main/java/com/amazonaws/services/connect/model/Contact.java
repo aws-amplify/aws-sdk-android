@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      */
     private String initiationMethod;
 
@@ -379,7 +379,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      *
      * @return <p>
      *         Indicates how the contact was initiated.
@@ -397,7 +397,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -418,7 +418,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -439,7 +439,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -460,7 +460,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API
+     * CALLBACK, API, DISCONNECT, MONITOR
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
