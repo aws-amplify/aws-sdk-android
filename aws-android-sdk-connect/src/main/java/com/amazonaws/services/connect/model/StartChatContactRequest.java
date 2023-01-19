@@ -166,6 +166,17 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     */
+    private PersistentChat persistentChat;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can find the
      * instanceId in the ARN of the instance.
      * </p>
@@ -845,6 +856,75 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Enable persistent chats. For more information about enabling
+     *         persistent chat, and for example use cases and how to configure
+     *         for them, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *         >Enable persistent chat</a>.
+     *         </p>
+     */
+    public PersistentChat getPersistentChat() {
+        return persistentChat;
+    }
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     *
+     * @param persistentChat <p>
+     *            Enable persistent chats. For more information about enabling
+     *            persistent chat, and for example use cases and how to
+     *            configure for them, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     */
+    public void setPersistentChat(PersistentChat persistentChat) {
+        this.persistentChat = persistentChat;
+    }
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param persistentChat <p>
+     *            Enable persistent chats. For more information about enabling
+     *            persistent chat, and for example use cases and how to
+     *            configure for them, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactRequest withPersistentChat(PersistentChat persistentChat) {
+        this.persistentChat = persistentChat;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -870,7 +950,10 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (getChatDurationInMinutes() != null)
             sb.append("ChatDurationInMinutes: " + getChatDurationInMinutes() + ",");
         if (getSupportedMessagingContentTypes() != null)
-            sb.append("SupportedMessagingContentTypes: " + getSupportedMessagingContentTypes());
+            sb.append("SupportedMessagingContentTypes: " + getSupportedMessagingContentTypes()
+                    + ",");
+        if (getPersistentChat() != null)
+            sb.append("PersistentChat: " + getPersistentChat());
         sb.append("}");
         return sb.toString();
     }
@@ -897,6 +980,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
                 * hashCode
                 + ((getSupportedMessagingContentTypes() == null) ? 0
                         : getSupportedMessagingContentTypes().hashCode());
+        hashCode = prime * hashCode
+                + ((getPersistentChat() == null) ? 0 : getPersistentChat().hashCode());
         return hashCode;
     }
 
@@ -952,6 +1037,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (other.getSupportedMessagingContentTypes() != null
                 && other.getSupportedMessagingContentTypes().equals(
                         this.getSupportedMessagingContentTypes()) == false)
+            return false;
+        if (other.getPersistentChat() == null ^ this.getPersistentChat() == null)
+            return false;
+        if (other.getPersistentChat() != null
+                && other.getPersistentChat().equals(this.getPersistentChat()) == false)
             return false;
         return true;
     }

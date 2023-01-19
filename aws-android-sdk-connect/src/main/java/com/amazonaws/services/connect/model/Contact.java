@@ -155,6 +155,18 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String relatedContactId;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the contact.
      * </p>
      *
@@ -1004,6 +1016,72 @@ public class Contact implements Serializable {
     }
 
     /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The contactId that is <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     *         >related</a> to this contact.
+     *         </p>
+     */
+    public String getRelatedContactId() {
+        return relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId that is <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     *            >related</a> to this contact.
+     *            </p>
+     */
+    public void setRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId that is <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html#relatedcontactid"
+     *            >related</a> to this contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1041,7 +1119,9 @@ public class Contact implements Serializable {
         if (getLastUpdateTimestamp() != null)
             sb.append("LastUpdateTimestamp: " + getLastUpdateTimestamp() + ",");
         if (getScheduledTimestamp() != null)
-            sb.append("ScheduledTimestamp: " + getScheduledTimestamp());
+            sb.append("ScheduledTimestamp: " + getScheduledTimestamp() + ",");
+        if (getRelatedContactId() != null)
+            sb.append("RelatedContactId: " + getRelatedContactId());
         sb.append("}");
         return sb.toString();
     }
@@ -1073,6 +1153,8 @@ public class Contact implements Serializable {
                 + ((getLastUpdateTimestamp() == null) ? 0 : getLastUpdateTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getScheduledTimestamp() == null) ? 0 : getScheduledTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
         return hashCode;
     }
 
@@ -1152,6 +1234,11 @@ public class Contact implements Serializable {
             return false;
         if (other.getScheduledTimestamp() != null
                 && other.getScheduledTimestamp().equals(this.getScheduledTimestamp()) == false)
+            return false;
+        if (other.getRelatedContactId() == null ^ this.getRelatedContactId() == null)
+            return false;
+        if (other.getRelatedContactId() != null
+                && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
             return false;
         return true;
     }

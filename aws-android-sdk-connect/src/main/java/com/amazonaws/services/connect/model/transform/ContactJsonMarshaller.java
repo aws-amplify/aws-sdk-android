@@ -96,6 +96,11 @@ class ContactJsonMarshaller {
             jsonWriter.name("ScheduledTimestamp");
             jsonWriter.value(scheduledTimestamp);
         }
+        if (contact.getRelatedContactId() != null) {
+            String relatedContactId = contact.getRelatedContactId();
+            jsonWriter.name("RelatedContactId");
+            jsonWriter.value(relatedContactId);
+        }
         jsonWriter.endObject();
     }
 
