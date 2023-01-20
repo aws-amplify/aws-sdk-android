@@ -844,12 +844,15 @@ abstract class NotificationClientBase {
             if (this.pinpointContext.getSessionClient() != null) {
                 this.pinpointContext.getSessionClient().stopSession();
             }
-            this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
 
-            String eventType = eventSourceType.getEventTypeOpenend();
-            final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
-            this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
-            this.pinpointContext.getAnalyticsClient().submitEvents();
+            if (this.pinpointContext.getAnalyticsClient() != null) {
+                this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
+
+                String eventType = eventSourceType.getEventTypeOpenend();
+                final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
+                this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
+                this.pinpointContext.getAnalyticsClient().submitEvents();
+            }
 
             final String url = data.getString(EVENT_SOURCE_URL_PUSH_KEY);
             if (url != null) {
