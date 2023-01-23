@@ -340,6 +340,7 @@ public class AuthClient {
 
         // Delete local cache
         LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+        userId = null;
     }
 
     /**
