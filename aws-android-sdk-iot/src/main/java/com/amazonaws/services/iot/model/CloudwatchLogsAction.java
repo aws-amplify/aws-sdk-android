@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,15 @@ public class CloudwatchLogsAction implements Serializable {
      * </p>
      */
     private String logGroupName;
+
+    /**
+     * <p>
+     * Indicates whether batches of log records will be extracted and uploaded
+     * into CloudWatch. Values include <code>true</code> or <code>false</code>
+     * <i>(default)</i>.
+     * </p>
+     */
+    private Boolean batchMode;
 
     /**
      * <p>
@@ -128,6 +137,80 @@ public class CloudwatchLogsAction implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether batches of log records will be extracted and uploaded
+     * into CloudWatch. Values include <code>true</code> or <code>false</code>
+     * <i>(default)</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether batches of log records will be extracted and
+     *         uploaded into CloudWatch. Values include <code>true</code> or
+     *         <code>false</code> <i>(default)</i>.
+     *         </p>
+     */
+    public Boolean isBatchMode() {
+        return batchMode;
+    }
+
+    /**
+     * <p>
+     * Indicates whether batches of log records will be extracted and uploaded
+     * into CloudWatch. Values include <code>true</code> or <code>false</code>
+     * <i>(default)</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether batches of log records will be extracted and
+     *         uploaded into CloudWatch. Values include <code>true</code> or
+     *         <code>false</code> <i>(default)</i>.
+     *         </p>
+     */
+    public Boolean getBatchMode() {
+        return batchMode;
+    }
+
+    /**
+     * <p>
+     * Indicates whether batches of log records will be extracted and uploaded
+     * into CloudWatch. Values include <code>true</code> or <code>false</code>
+     * <i>(default)</i>.
+     * </p>
+     *
+     * @param batchMode <p>
+     *            Indicates whether batches of log records will be extracted and
+     *            uploaded into CloudWatch. Values include <code>true</code> or
+     *            <code>false</code> <i>(default)</i>.
+     *            </p>
+     */
+    public void setBatchMode(Boolean batchMode) {
+        this.batchMode = batchMode;
+    }
+
+    /**
+     * <p>
+     * Indicates whether batches of log records will be extracted and uploaded
+     * into CloudWatch. Values include <code>true</code> or <code>false</code>
+     * <i>(default)</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param batchMode <p>
+     *            Indicates whether batches of log records will be extracted and
+     *            uploaded into CloudWatch. Values include <code>true</code> or
+     *            <code>false</code> <i>(default)</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CloudwatchLogsAction withBatchMode(Boolean batchMode) {
+        this.batchMode = batchMode;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -141,7 +224,9 @@ public class CloudwatchLogsAction implements Serializable {
         if (getRoleArn() != null)
             sb.append("roleArn: " + getRoleArn() + ",");
         if (getLogGroupName() != null)
-            sb.append("logGroupName: " + getLogGroupName());
+            sb.append("logGroupName: " + getLogGroupName() + ",");
+        if (getBatchMode() != null)
+            sb.append("batchMode: " + getBatchMode());
         sb.append("}");
         return sb.toString();
     }
@@ -154,6 +239,7 @@ public class CloudwatchLogsAction implements Serializable {
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode
                 + ((getLogGroupName() == null) ? 0 : getLogGroupName().hashCode());
+        hashCode = prime * hashCode + ((getBatchMode() == null) ? 0 : getBatchMode().hashCode());
         return hashCode;
     }
 
@@ -176,6 +262,11 @@ public class CloudwatchLogsAction implements Serializable {
             return false;
         if (other.getLogGroupName() != null
                 && other.getLogGroupName().equals(this.getLogGroupName()) == false)
+            return false;
+        if (other.getBatchMode() == null ^ this.getBatchMode() == null)
+            return false;
+        if (other.getBatchMode() != null
+                && other.getBatchMode().equals(this.getBatchMode()) == false)
             return false;
         return true;
     }
