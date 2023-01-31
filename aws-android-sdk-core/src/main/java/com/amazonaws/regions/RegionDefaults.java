@@ -506,6 +506,23 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.us-gov-west-1.amazonaws.com", false, true);
 
+        region = new Region("us-gov-east-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "rekognition", "rekognition.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-gov-east-1.amazonaws.com", false, true);
+
         region = new Region("eu-north-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-north-1.amazonaws.com", false, true);
