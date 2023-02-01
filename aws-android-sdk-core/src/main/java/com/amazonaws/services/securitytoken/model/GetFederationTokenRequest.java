@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,14 +74,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You can use the temporary credentials created by
- * <code>GetFederationToken</code> in any Amazon Web Services service except the
- * following:
+ * <code>GetFederationToken</code> in any Amazon Web Services service with the
+ * following exceptions:
  * </p>
  * <ul>
  * <li>
  * <p>
  * You cannot call any IAM operations using the CLI or the Amazon Web Services
- * API.
+ * API. This limitation does not apply to console sessions.
  * </p>
  * </li>
  * <li>
@@ -90,6 +90,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * You can use temporary credentials for single sign-on (SSO) to the console.
+ * </p>
  * <p>
  * You must pass an inline or managed <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session"
