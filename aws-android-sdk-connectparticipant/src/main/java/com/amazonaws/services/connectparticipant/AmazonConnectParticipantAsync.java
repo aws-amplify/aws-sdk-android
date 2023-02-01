@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -433,7 +433,10 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
     /**
      * <p>
      * Retrieves a transcript of the session, including details about any
-     * attachments.
+     * attachments. For information about accessing past chat contact
+     * transcripts for a persistent chat, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
      * </p>
      * <note>
      * <p>
@@ -469,7 +472,10 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
     /**
      * <p>
      * Retrieves a transcript of the session, including details about any
-     * attachments.
+     * attachments. For information about accessing past chat contact
+     * transcripts for a persistent chat, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
      * </p>
      * <note>
      * <p>
