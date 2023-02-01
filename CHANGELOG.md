@@ -1,3 +1,17 @@
+## [Release 2.62.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.2)
+
+### Miscellaneous
+- added mel region (#3173)
+
+[See all changes between 2.62.1 and 2.62.2](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.1...release_v2.62.2)
+
+## [Release 2.62.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.1)
+
+### Miscellaneous
+- Clear in memory hosted ui userId after signout (#3168)
+
+[See all changes between 2.62.0 and 2.62.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.0...release_v2.62.1)
+
 ## [Release 2.62.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.0)
 
 ### Features

@@ -340,6 +340,7 @@ public class AuthClient {
 
         // Delete local cache
         LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+        userId = null;
     }
 
     /**
@@ -827,7 +828,7 @@ public class AuthClient {
                 );
             } else {
                 Intent startIntent = CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent);
-                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(startIntent);
             }
     	} catch (final Exception e) {

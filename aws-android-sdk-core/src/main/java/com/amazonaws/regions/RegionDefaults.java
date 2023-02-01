@@ -506,6 +506,23 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.us-gov-west-1.amazonaws.com", false, true);
 
+        region = new Region("us-gov-east-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "rekognition", "rekognition.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.us-gov-east-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-gov-east-1.amazonaws.com", false, true);
+
         region = new Region("eu-north-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.eu-north-1.amazonaws.com", false, true);
@@ -651,6 +668,32 @@ class RegionDefaults {
         updateRegion(region, "sts", "sts.ap-south-2.amazonaws.com", false, true);
 
 
+        // Support for Asia Pacific (Melbourne) `ap-southeast-4` region
+        region = new Region("ap-southeast-4", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-southeast-4.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-southeast-4.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-southeast-4.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-southeast-4.amazonaws.com", false, true);
         return ret;
     }
 
