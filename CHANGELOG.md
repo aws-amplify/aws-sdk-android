@@ -11,9 +11,7 @@
 ### Bug Fixes
 - **core:** add us-gov-east-1 region to list of regions (#3179)
 - **auth:** Dismiss custom tab on signout for all browsers (#3184)
-
-### Miscellaneous
-- If event collection is disabled, opening a notification will also cause a crash (#3169)
+- **analytics:** If event collection is disabled, opening a notification will also cause a crash (#3169)
 
 [See all changes between 2.62.2 and 2.63.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.2...release_v2.63.0)
 
