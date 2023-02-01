@@ -42,6 +42,10 @@ public class StartChatContactResultJsonUnmarshaller implements
             } else if (name.equals("ParticipantToken")) {
                 startChatContactResult.setParticipantToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContinuedFromContactId")) {
+                startChatContactResult.setContinuedFromContactId(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

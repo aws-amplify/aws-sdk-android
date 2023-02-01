@@ -117,6 +117,11 @@ public class StartChatContactRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (startChatContactRequest.getPersistentChat() != null) {
+                PersistentChat persistentChat = startChatContactRequest.getPersistentChat();
+                jsonWriter.name("PersistentChat");
+                PersistentChatJsonMarshaller.getInstance().marshall(persistentChat, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
