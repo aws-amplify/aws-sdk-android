@@ -1,3 +1,20 @@
+## [Release 2.63.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.63.0)
+
+### Features
+- **aws-android-sdk-connectparticipant:** update models to latest (#3182)
+- **aws-android-sdk-iot:** update models to latest (#3181)
+- **aws-android-sdk-polly:** update models to latest (#3180)
+- **aws-android-sdk-core:** update models to latest (#3176)
+- **aws-android-sdk-lambda:** update models to latest (#3170)
+- **aws-android-sdk-connect:** update models to latest (#3165)
+
+### Bug Fixes
+- **core:** add us-gov-east-1 region to list of regions (#3179)
+- **auth:** Dismiss custom tab on signout for all browsers (#3184)
+- **analytics:** If event collection is disabled, opening a notification will also cause a crash (#3169)
+
+[See all changes between 2.62.2 and 2.63.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.2...release_v2.63.0)
+
 ## [Release 2.62.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.2)
 
 ### Miscellaneous
