@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -3301,6 +3301,13 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            <ul>
      *            <li>
      *            <p>
+     *            <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates
+     *            failed message delivery status for an Amazon SNS topic that is
+     *            subscribed to a platform application endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <code>DeliveryPolicy</code> – The policy that defines how
      *            Amazon SNS retries failed deliveries to HTTP/S endpoints.
      *            </p>
@@ -3320,17 +3327,175 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </li>
      *            <li>
      *            <p>
-     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
-     *            topic. By default <code>TracingConfig</code> is set to
-     *            <code>PassThrough</code>, and the topic passes through the
-     *            tracing header it receives from an Amazon SNS publisher to its
-     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
-     *            segment data to topic owner account if the sampled flag in the
-     *            tracing header is true. This is only supported on standard
-     *            topics.
+     *            HTTP
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>HTTPSuccessFeedbackRoleArn</code> – Indicates successful
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an HTTP endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HTTPSuccessFeedbackSampleRate</code> – Indicates
+     *            percentage of successful messages to sample for an Amazon SNS
+     *            topic that is subscribed to an HTTP endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>HTTPFailureFeedbackRoleArn</code> – Indicates failed
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an HTTP endpoint.
      *            </p>
      *            </li>
      *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Kinesis Data Firehose
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>FirehoseSuccessFeedbackRoleArn</code> – Indicates
+     *            successful message delivery status for an Amazon SNS topic
+     *            that is subscribed to an Amazon Kinesis Data Firehose
+     *            endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FirehoseSuccessFeedbackSampleRate</code> – Indicates
+     *            percentage of successful messages to sample for an Amazon SNS
+     *            topic that is subscribed to an Amazon Kinesis Data Firehose
+     *            endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FirehoseFailureFeedbackRoleArn</code> – Indicates failed
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an Amazon Kinesis Data Firehose endpoint.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Lambda
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>LambdaSuccessFeedbackRoleArn</code> – Indicates
+     *            successful message delivery status for an Amazon SNS topic
+     *            that is subscribed to an Lambda endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>LambdaSuccessFeedbackSampleRate</code> – Indicates
+     *            percentage of successful messages to sample for an Amazon SNS
+     *            topic that is subscribed to an Lambda endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>LambdaFailureFeedbackRoleArn</code> – Indicates failed
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an Lambda endpoint.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Platform application endpoint
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApplicationSuccessFeedbackRoleArn</code> – Indicates
+     *            successful message delivery status for an Amazon SNS topic
+     *            that is subscribed to an Amazon Web Services application
+     *            endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApplicationSuccessFeedbackSampleRate</code> – Indicates
+     *            percentage of successful messages to sample for an Amazon SNS
+     *            topic that is subscribed to an Amazon Web Services application
+     *            endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApplicationFailureFeedbackRoleArn</code> – Indicates
+     *            failed message delivery status for an Amazon SNS topic that is
+     *            subscribed to an Amazon Web Services application endpoint.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            In addition to being able to configure topic attributes for
+     *            message delivery status of notification messages sent to
+     *            Amazon SNS application endpoints, you can also configure
+     *            application attributes for the delivery status of push
+     *            notification messages sent to push notification services.
+     *            </p>
+     *            <p>
+     *            For example, For more information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-msg-status.html"
+     *            >Using Amazon SNS Application Attributes for Message Delivery
+     *            Status</a>.
+     *            </p>
+     *            </note></li>
+     *            <li>
+     *            <p>
+     *            Amazon SQS
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SQSSuccessFeedbackRoleArn</code> – Indicates successful
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an Amazon SQS endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SQSSuccessFeedbackSampleRate</code> – Indicates
+     *            percentage of successful messages to sample for an Amazon SNS
+     *            topic that is subscribed to an Amazon SQS endpoint.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SQSFailureFeedbackRoleArn</code> – Indicates failed
+     *            message delivery status for an Amazon SNS topic that is
+     *            subscribed to an Amazon SQS endpoint.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            The &lt;ENDPOINT&gt;SuccessFeedbackRoleArn and
+     *            &lt;ENDPOINT&gt;FailureFeedbackRoleArn attributes are used to
+     *            give Amazon SNS write access to use CloudWatch Logs on your
+     *            behalf. The &lt;ENDPOINT&gt;SuccessFeedbackSampleRate
+     *            attribute is for specifying the sample rate percentage (0-100)
+     *            of successfully delivered messages. After you configure the
+     *            &lt;ENDPOINT&gt;FailureFeedbackRoleArn attribute, then all
+     *            failed message deliveries generate CloudWatch Logs.
+     *            </p>
+     *            </note>
      *            <p>
      *            The following attribute applies only to <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"

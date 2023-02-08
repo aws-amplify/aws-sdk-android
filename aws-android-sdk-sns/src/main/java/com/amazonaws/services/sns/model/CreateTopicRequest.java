@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -85,16 +85,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
      * Amazon SNS. By default, <code>SignatureVersion</code> is set to 1.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
-     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
-     * and the topic passes through the tracing header it receives from an
-     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
-     * will vend X-Ray segment data to topic owner account if the sampled flag
-     * in the tracing header is true. This is only supported on standard topics.
      * </p>
      * </li>
      * </ul>
@@ -362,16 +352,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * Amazon SNS. By default, <code>SignatureVersion</code> is set to 1.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
-     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
-     * and the topic passes through the tracing header it receives from an
-     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
-     * will vend X-Ray segment data to topic owner account if the sampled flag
-     * in the tracing header is true. This is only supported on standard topics.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -476,18 +456,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         notifications, subscription confirmations, or unsubscribe
      *         confirmation messages sent by Amazon SNS. By default,
      *         <code>SignatureVersion</code> is set to 1.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic.
-     *         By default <code>TracingConfig</code> is set to
-     *         <code>PassThrough</code>, and the topic passes through the
-     *         tracing header it receives from an Amazon SNS publisher to its
-     *         subscriptions. If set to Active, Amazon SNS will vend X-Ray
-     *         segment data to topic owner account if the sampled flag in the
-     *         tracing header is true. This is only supported on standard
-     *         topics.
      *         </p>
      *         </li>
      *         </ul>
@@ -598,16 +566,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * Amazon SNS. By default, <code>SignatureVersion</code> is set to 1.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
-     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
-     * and the topic passes through the tracing header it receives from an
-     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
-     * will vend X-Ray segment data to topic owner account if the sampled flag
-     * in the tracing header is true. This is only supported on standard topics.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -712,18 +670,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            signature of the notifications, subscription confirmations, or
      *            unsubscribe confirmation messages sent by Amazon SNS. By
      *            default, <code>SignatureVersion</code> is set to 1.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
-     *            topic. By default <code>TracingConfig</code> is set to
-     *            <code>PassThrough</code>, and the topic passes through the
-     *            tracing header it receives from an Amazon SNS publisher to its
-     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
-     *            segment data to topic owner account if the sampled flag in the
-     *            tracing header is true. This is only supported on standard
-     *            topics.
      *            </p>
      *            </li>
      *            </ul>
@@ -835,16 +781,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * Amazon SNS. By default, <code>SignatureVersion</code> is set to 1.
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
-     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
-     * and the topic passes through the tracing header it receives from an
-     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
-     * will vend X-Ray segment data to topic owner account if the sampled flag
-     * in the tracing header is true. This is only supported on standard topics.
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * The following attribute applies only to <a href=
@@ -952,18 +888,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            signature of the notifications, subscription confirmations, or
      *            unsubscribe confirmation messages sent by Amazon SNS. By
      *            default, <code>SignatureVersion</code> is set to 1.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
-     *            topic. By default <code>TracingConfig</code> is set to
-     *            <code>PassThrough</code>, and the topic passes through the
-     *            tracing header it receives from an Amazon SNS publisher to its
-     *            subscriptions. If set to Active, Amazon SNS will vend X-Ray
-     *            segment data to topic owner account if the sampled flag in the
-     *            tracing header is true. This is only supported on standard
-     *            topics.
      *            </p>
      *            </li>
      *            </ul>
@@ -1076,16 +1000,6 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
      * Amazon SNS. By default, <code>SignatureVersion</code> is set to 1.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
-     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
-     * and the topic passes through the tracing header it receives from an
-     * Amazon SNS publisher to its subscriptions. If set to Active, Amazon SNS
-     * will vend X-Ray segment data to topic owner account if the sampled flag
-     * in the tracing header is true. This is only supported on standard topics.
      * </p>
      * </li>
      * </ul>
