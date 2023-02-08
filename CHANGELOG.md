@@ -1,3 +1,10 @@
+## [Release 2.64.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.64.0)
+
+### Features
+- **aws-android-sdk-sns:** update models to latest (#3186)
+
+[See all changes between 2.63.0 and 2.64.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.63.0...release_v2.64.0)
+
 ## [Release 2.63.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.63.0)
 
 ### Features
