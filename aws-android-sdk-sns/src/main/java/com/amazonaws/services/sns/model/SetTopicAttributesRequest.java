@@ -75,6 +75,17 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * </li>
      * <li>
      * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * HTTP
      * </p>
      * <ul>
@@ -259,7 +270,8 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <code>SignatureVersion</code> – The signature version corresponds to the
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
-     * Amazon SNS.
+     * Amazon SNS. By default, <code>SignatureVersion</code> is set to
+     * <code>1</code>.
      * </p>
      * </li>
      * </ul>
@@ -360,6 +372,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>Policy</code> – The policy that defines who can access
      *            your topic. By default, only the topic owner can publish or
      *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *            vend X-Ray segment data to topic owner account if the sampled
+     *            flag in the tracing header is true. This is only supported on
+     *            standard topics.
      *            </p>
      *            </li>
      *            <li>
@@ -555,7 +579,9 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>SignatureVersion</code> – The signature version
      *            corresponds to the hashing algorithm used while creating the
      *            signature of the notifications, subscription confirmations, or
-     *            unsubscribe confirmation messages sent by Amazon SNS.
+     *            unsubscribe confirmation messages sent by Amazon SNS. By
+     *            default, <code>SignatureVersion</code> is set to
+     *            <code>1</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -685,6 +711,17 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * <li>
@@ -873,7 +910,8 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <code>SignatureVersion</code> – The signature version corresponds to the
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
-     * Amazon SNS.
+     * Amazon SNS. By default, <code>SignatureVersion</code> is set to
+     * <code>1</code>.
      * </p>
      * </li>
      * </ul>
@@ -949,6 +987,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *         <code>Policy</code> – The policy that defines who can access your
      *         topic. By default, only the topic owner can publish or subscribe
      *         to the topic.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic.
+     *         By default <code>TracingConfig</code> is set to
+     *         <code>PassThrough</code>, and the topic passes through the
+     *         tracing header it receives from an Amazon SNS publisher to its
+     *         subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *         vend X-Ray segment data to topic owner account if the sampled
+     *         flag in the tracing header is true. This is only supported on
+     *         standard topics.
      *         </p>
      *         </li>
      *         <li>
@@ -1142,7 +1192,8 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *         <code>SignatureVersion</code> – The signature version corresponds
      *         to the hashing algorithm used while creating the signature of the
      *         notifications, subscription confirmations, or unsubscribe
-     *         confirmation messages sent by Amazon SNS.
+     *         confirmation messages sent by Amazon SNS. By default,
+     *         <code>SignatureVersion</code> is set to <code>1</code>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1221,6 +1272,17 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * <li>
@@ -1409,7 +1471,8 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <code>SignatureVersion</code> – The signature version corresponds to the
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
-     * Amazon SNS.
+     * Amazon SNS. By default, <code>SignatureVersion</code> is set to
+     * <code>1</code>.
      * </p>
      * </li>
      * </ul>
@@ -1485,6 +1548,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>Policy</code> – The policy that defines who can access
      *            your topic. By default, only the topic owner can publish or
      *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *            vend X-Ray segment data to topic owner account if the sampled
+     *            flag in the tracing header is true. This is only supported on
+     *            standard topics.
      *            </p>
      *            </li>
      *            <li>
@@ -1680,7 +1755,9 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>SignatureVersion</code> – The signature version
      *            corresponds to the hashing algorithm used while creating the
      *            signature of the notifications, subscription confirmations, or
-     *            unsubscribe confirmation messages sent by Amazon SNS.
+     *            unsubscribe confirmation messages sent by Amazon SNS. By
+     *            default, <code>SignatureVersion</code> is set to
+     *            <code>1</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1764,6 +1841,17 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * </li>
      * <li>
      * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * HTTP
      * </p>
      * <ul>
@@ -1948,7 +2036,8 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      * <code>SignatureVersion</code> – The signature version corresponds to the
      * hashing algorithm used while creating the signature of the notifications,
      * subscription confirmations, or unsubscribe confirmation messages sent by
-     * Amazon SNS.
+     * Amazon SNS. By default, <code>SignatureVersion</code> is set to
+     * <code>1</code>.
      * </p>
      * </li>
      * </ul>
@@ -2027,6 +2116,18 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>Policy</code> – The policy that defines who can access
      *            your topic. By default, only the topic owner can publish or
      *            subscribe to the topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *            vend X-Ray segment data to topic owner account if the sampled
+     *            flag in the tracing header is true. This is only supported on
+     *            standard topics.
      *            </p>
      *            </li>
      *            <li>
@@ -2222,7 +2323,9 @@ public class SetTopicAttributesRequest extends AmazonWebServiceRequest implement
      *            <code>SignatureVersion</code> – The signature version
      *            corresponds to the hashing algorithm used while creating the
      *            signature of the notifications, subscription confirmations, or
-     *            unsubscribe confirmation messages sent by Amazon SNS.
+     *            unsubscribe confirmation messages sent by Amazon SNS. By
+     *            default, <code>SignatureVersion</code> is set to
+     *            <code>1</code>.
      *            </p>
      *            </li>
      *            </ul>

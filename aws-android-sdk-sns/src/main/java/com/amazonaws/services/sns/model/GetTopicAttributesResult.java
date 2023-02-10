@@ -62,8 +62,10 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>SignatureVersion</code> – The version of the Amazon SNS signature
-     * used for the topic.
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * <ul>
      * <li>
@@ -107,6 +109,17 @@ public class GetTopicAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>TopicArn</code> – The topic's ARN.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * </ul>
@@ -214,8 +227,10 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>SignatureVersion</code> – The version of the Amazon SNS signature
-     * used for the topic.
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * <ul>
      * <li>
@@ -259,6 +274,17 @@ public class GetTopicAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>TopicArn</code> – The topic's ARN.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * </ul>
@@ -364,8 +390,10 @@ public class GetTopicAttributesResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>SignatureVersion</code> – The version of the Amazon SNS
-     *         signature used for the topic.
+     *         <code>SignatureVersion</code> – The signature version corresponds
+     *         to the hashing algorithm used while creating the signature of the
+     *         notifications, subscription confirmations, or unsubscribe
+     *         confirmation messages sent by Amazon SNS.
      *         </p>
      *         <ul>
      *         <li>
@@ -409,6 +437,18 @@ public class GetTopicAttributesResult implements Serializable {
      *         <li>
      *         <p>
      *         <code>TopicArn</code> – The topic's ARN.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic.
+     *         By default <code>TracingConfig</code> is set to
+     *         <code>PassThrough</code>, and the topic passes through the
+     *         tracing header it receives from an Amazon SNS publisher to its
+     *         subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *         vend X-Ray segment data to topic owner account if the sampled
+     *         flag in the tracing header is true. This is only supported on
+     *         standard topics.
      *         </p>
      *         </li>
      *         </ul>
@@ -518,8 +558,10 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>SignatureVersion</code> – The version of the Amazon SNS signature
-     * used for the topic.
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * <ul>
      * <li>
@@ -563,6 +605,17 @@ public class GetTopicAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>TopicArn</code> – The topic's ARN.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * </ul>
@@ -668,8 +721,10 @@ public class GetTopicAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SignatureVersion</code> – The version of the Amazon SNS
-     *            signature used for the topic.
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            <ul>
      *            <li>
@@ -715,6 +770,18 @@ public class GetTopicAttributesResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>TopicArn</code> – The topic's ARN.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *            vend X-Ray segment data to topic owner account if the sampled
+     *            flag in the tracing header is true. This is only supported on
+     *            standard topics.
      *            </p>
      *            </li>
      *            </ul>
@@ -825,8 +892,10 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>SignatureVersion</code> – The version of the Amazon SNS signature
-     * used for the topic.
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * <ul>
      * <li>
@@ -870,6 +939,17 @@ public class GetTopicAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>TopicArn</code> – The topic's ARN.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * </ul>
@@ -978,8 +1058,10 @@ public class GetTopicAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>SignatureVersion</code> – The version of the Amazon SNS
-     *            signature used for the topic.
+     *            <code>SignatureVersion</code> – The signature version
+     *            corresponds to the hashing algorithm used while creating the
+     *            signature of the notifications, subscription confirmations, or
+     *            unsubscribe confirmation messages sent by Amazon SNS.
      *            </p>
      *            <ul>
      *            <li>
@@ -1025,6 +1107,18 @@ public class GetTopicAttributesResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>TopicArn</code> – The topic's ARN.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>TracingConfig</code> – Tracing mode of an Amazon SNS
+     *            topic. By default <code>TracingConfig</code> is set to
+     *            <code>PassThrough</code>, and the topic passes through the
+     *            tracing header it receives from an Amazon SNS publisher to its
+     *            subscriptions. If set to <code>Active</code>, Amazon SNS will
+     *            vend X-Ray segment data to topic owner account if the sampled
+     *            flag in the tracing header is true. This is only supported on
+     *            standard topics.
      *            </p>
      *            </li>
      *            </ul>
@@ -1138,8 +1232,10 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>SignatureVersion</code> – The version of the Amazon SNS signature
-     * used for the topic.
+     * <code>SignatureVersion</code> – The signature version corresponds to the
+     * hashing algorithm used while creating the signature of the notifications,
+     * subscription confirmations, or unsubscribe confirmation messages sent by
+     * Amazon SNS.
      * </p>
      * <ul>
      * <li>
@@ -1183,6 +1279,17 @@ public class GetTopicAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>TopicArn</code> – The topic's ARN.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>TracingConfig</code> – Tracing mode of an Amazon SNS topic. By
+     * default <code>TracingConfig</code> is set to <code>PassThrough</code>,
+     * and the topic passes through the tracing header it receives from an
+     * Amazon SNS publisher to its subscriptions. If set to <code>Active</code>,
+     * Amazon SNS will vend X-Ray segment data to topic owner account if the
+     * sampled flag in the tracing header is true. This is only supported on
+     * standard topics.
      * </p>
      * </li>
      * </ul>
