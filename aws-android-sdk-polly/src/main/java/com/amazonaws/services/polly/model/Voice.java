@@ -49,7 +49,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      */
     private String id;
 
@@ -216,7 +216,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @return <p>
      *         Amazon Polly assigned voice ID. This is the ID that you specify
@@ -244,7 +244,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -276,7 +276,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -308,7 +308,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
@@ -340,7 +340,7 @@ public class Voice implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param id <p>
      *            Amazon Polly assigned voice ID. This is the ID that you
