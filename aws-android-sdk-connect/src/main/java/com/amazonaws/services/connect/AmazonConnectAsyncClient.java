@@ -719,7 +719,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
-     * Amazon Lex bot.
+     * Amazon Lex V1 bot. This API only supports the association of Amazon Lex
+     * V1 bots.
      * </p>
      * 
      * @param associateLexBotRequest
@@ -757,7 +758,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
-     * Amazon Lex bot.
+     * Amazon Lex V1 bot. This API only supports the association of Amazon Lex
+     * V1 bots.
      * </p>
      * 
      * @param associateLexBotRequest

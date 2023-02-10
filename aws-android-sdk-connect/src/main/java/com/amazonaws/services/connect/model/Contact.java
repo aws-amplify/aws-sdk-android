@@ -167,6 +167,13 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * Information about Amazon Connect Wisdom.
+     * </p>
+     */
+    private WisdomInfo wisdomInfo;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) for the contact.
      * </p>
      *
@@ -1082,6 +1089,51 @@ public class Contact implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about Amazon Connect Wisdom.
+     * </p>
+     *
+     * @return <p>
+     *         Information about Amazon Connect Wisdom.
+     *         </p>
+     */
+    public WisdomInfo getWisdomInfo() {
+        return wisdomInfo;
+    }
+
+    /**
+     * <p>
+     * Information about Amazon Connect Wisdom.
+     * </p>
+     *
+     * @param wisdomInfo <p>
+     *            Information about Amazon Connect Wisdom.
+     *            </p>
+     */
+    public void setWisdomInfo(WisdomInfo wisdomInfo) {
+        this.wisdomInfo = wisdomInfo;
+    }
+
+    /**
+     * <p>
+     * Information about Amazon Connect Wisdom.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param wisdomInfo <p>
+     *            Information about Amazon Connect Wisdom.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withWisdomInfo(WisdomInfo wisdomInfo) {
+        this.wisdomInfo = wisdomInfo;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1121,7 +1173,9 @@ public class Contact implements Serializable {
         if (getScheduledTimestamp() != null)
             sb.append("ScheduledTimestamp: " + getScheduledTimestamp() + ",");
         if (getRelatedContactId() != null)
-            sb.append("RelatedContactId: " + getRelatedContactId());
+            sb.append("RelatedContactId: " + getRelatedContactId() + ",");
+        if (getWisdomInfo() != null)
+            sb.append("WisdomInfo: " + getWisdomInfo());
         sb.append("}");
         return sb.toString();
     }
@@ -1155,6 +1209,7 @@ public class Contact implements Serializable {
                 + ((getScheduledTimestamp() == null) ? 0 : getScheduledTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
+        hashCode = prime * hashCode + ((getWisdomInfo() == null) ? 0 : getWisdomInfo().hashCode());
         return hashCode;
     }
 
@@ -1239,6 +1294,11 @@ public class Contact implements Serializable {
             return false;
         if (other.getRelatedContactId() != null
                 && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
+            return false;
+        if (other.getWisdomInfo() == null ^ this.getWisdomInfo() == null)
+            return false;
+        if (other.getWisdomInfo() != null
+                && other.getWisdomInfo().equals(this.getWisdomInfo()) == false)
             return false;
         return true;
     }
