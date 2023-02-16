@@ -9,6 +9,9 @@
 ### Bug Fixes
 - when setPreviewSurfaces is not called startEncoding gives a null pointer ([#3125](https://github.com/aws-amplify/aws-sdk-android/issues/3125))
 
+### Miscellaneous
+- chore(analytics): Simplify error code checking, uniformly across platforms ([#3191]))https://github.com/aws-amplify/aws-sdk-android/pull/3191))
+
 [See all changes between 2.63.0 and 2.64.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.63.0...release_v2.64.0)
 
 ## [Release 2.63.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.63.0)
