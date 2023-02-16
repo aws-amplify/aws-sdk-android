@@ -18,6 +18,7 @@
 package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Context;
@@ -73,7 +74,7 @@ public class AndroidCameraMediaSource implements MediaSource {
 
     private CameraFramesSource mCameraFramesSource;
     private EncodingCancellationToken mEncodingCancellationToken;
-    private List<Surface> mPreivewSurfaces;
+    private List<Surface> mPreviewSurfaces;
 
     private MediaSourceState mMediaSourceState;
     private CameraMediaSourceConfiguration mMediaSourceConfiguration;
@@ -93,10 +94,11 @@ public class AndroidCameraMediaSource implements MediaSource {
         mContext = context;
         mStreamName = streamName;
         mEncodingCancellationToken = new EncodingCancellationToken();
+        mPreviewSurfaces = new LinkedList<>();
     }
 
     public void setPreviewSurfaces(final Surface ... surfaces) {
-        mPreivewSurfaces = Arrays.asList(surfaces);
+        mPreviewSurfaces = Arrays.asList(surfaces);
     }
 
     private CameraFramesSource createFramesSource(final ImageReader imageReader) {
@@ -223,7 +225,7 @@ public class AndroidCameraMediaSource implements MediaSource {
 
         mCameraFramesSource.startEncoding(
                 mContext,
-                mPreivewSurfaces,
+                mPreviewSurfaces,
                 mMediaSourceConfiguration.getCameraId());
     }
 
