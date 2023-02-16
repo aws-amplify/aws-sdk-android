@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disconnects a participant. Note that ConnectionToken is used for invoking
- * this API instead of ParticipantToken.
+ * Disconnects a participant.
  * </p>
+ * <note>
+ * <p>
+ * <code>ConnectionToken</code> is used for invoking this API instead of
+ * <code>ParticipantToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The Amazon Connect Participant Service APIs do not use <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
@@ -34,7 +39,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +64,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +76,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -73,7 +90,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,7 +102,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -91,7 +116,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,7 +131,11 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

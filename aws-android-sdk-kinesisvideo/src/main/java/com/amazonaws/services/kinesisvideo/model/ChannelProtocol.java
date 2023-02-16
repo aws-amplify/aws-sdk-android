@@ -24,7 +24,8 @@ import java.util.Map;
 public enum ChannelProtocol {
 
     WSS("WSS"),
-    HTTPS("HTTPS");
+    HTTPS("HTTPS"),
+    WEBRTC("WEBRTC");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum ChannelProtocol {
         enumMap = new HashMap<String, ChannelProtocol>();
         enumMap.put("WSS", WSS);
         enumMap.put("HTTPS", HTTPS);
+        enumMap.put("WEBRTC", WEBRTC);
     }
 
     /**

@@ -587,7 +587,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             mUserPoolPoolId = userPoolJSON.getString("PoolId");
                             final String clientId = userPoolJSON.getString("AppClientId");
                             final String clientSecret = userPoolJSON.optString("AppClientSecret");
-                            final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
+                            // only attach user pool to Pinpoint if customer specifies an app ID
+                            String pinpointAppId = userPoolJSON.optString("PinpointAppId");
+                            pinpointAppId = pinpointAppId.equals("") ? null : pinpointAppId;
                             final String cognitoUserPoolCustomEndpoint = userPoolJSON.optString(COGNITO_USERPOOL_CUSTOM_ENDPOINT);
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
@@ -601,7 +603,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
 
-                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId, cognitoUserPoolCustomEndpoint);
+                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointAppId, cognitoUserPoolCustomEndpoint);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
 
                             mDeviceOperations = new DeviceOperations(AWSMobileClient.this, userpoolLL);

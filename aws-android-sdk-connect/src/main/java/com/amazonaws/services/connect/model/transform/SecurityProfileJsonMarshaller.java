@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -64,6 +64,33 @@ class SecurityProfileJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (securityProfile.getAllowedAccessControlTags() != null) {
+            java.util.Map<String, String> allowedAccessControlTags = securityProfile
+                    .getAllowedAccessControlTags();
+            jsonWriter.name("AllowedAccessControlTags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> allowedAccessControlTagsEntry : allowedAccessControlTags
+                    .entrySet()) {
+                String allowedAccessControlTagsValue = allowedAccessControlTagsEntry.getValue();
+                if (allowedAccessControlTagsValue != null) {
+                    jsonWriter.name(allowedAccessControlTagsEntry.getKey());
+                    jsonWriter.value(allowedAccessControlTagsValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
+        if (securityProfile.getTagRestrictedResources() != null) {
+            java.util.List<String> tagRestrictedResources = securityProfile
+                    .getTagRestrictedResources();
+            jsonWriter.name("TagRestrictedResources");
+            jsonWriter.beginArray();
+            for (String tagRestrictedResourcesItem : tagRestrictedResources) {
+                if (tagRestrictedResourcesItem != null) {
+                    jsonWriter.value(tagRestrictedResourcesItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

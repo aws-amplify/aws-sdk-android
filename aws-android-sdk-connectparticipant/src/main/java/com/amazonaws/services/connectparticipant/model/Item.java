@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      */
     private String content;
 
@@ -75,7 +75,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      */
     private String type;
 
@@ -115,6 +115,40 @@ public class Item implements Serializable {
      * </p>
      */
     private java.util.List<AttachmentItem> attachments;
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     */
+    private MessageMetadata messageMetadata;
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is only populated for persistent chats when the transcript item is
+     * from the past chat session. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String relatedContactId;
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is populated only when the transcript item is from the current chat
+     * session.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String contactId;
 
     /**
      * <p>
@@ -200,7 +234,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @return <p>
      *         The content of the message or event.
@@ -216,7 +250,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message or event.
@@ -235,7 +269,7 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
+     * <b>Length: </b>1 - 16384<br/>
      *
      * @param content <p>
      *            The content of the message or event.
@@ -364,7 +398,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @return <p>
      *         Type of the item: message or event.
@@ -383,7 +417,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -405,7 +439,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -427,7 +461,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -449,7 +483,7 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, MESSAGE_DELIVERED, MESSAGE_READ
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -748,6 +782,204 @@ public class Item implements Serializable {
     }
 
     /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     *
+     * @return <p>
+     *         The metadata related to the message. Currently this supports only
+     *         information related to message receipts.
+     *         </p>
+     */
+    public MessageMetadata getMessageMetadata() {
+        return messageMetadata;
+    }
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     *
+     * @param messageMetadata <p>
+     *            The metadata related to the message. Currently this supports
+     *            only information related to message receipts.
+     *            </p>
+     */
+    public void setMessageMetadata(MessageMetadata messageMetadata) {
+        this.messageMetadata = messageMetadata;
+    }
+
+    /**
+     * <p>
+     * The metadata related to the message. Currently this supports only
+     * information related to message receipts.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageMetadata <p>
+     *            The metadata related to the message. Currently this supports
+     *            only information related to message receipts.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withMessageMetadata(MessageMetadata messageMetadata) {
+        this.messageMetadata = messageMetadata;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is only populated for persistent chats when the transcript item is
+     * from the past chat session. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The contactId on which the transcript item was originally sent.
+     *         This field is only populated for persistent chats when the
+     *         transcript item is from the past chat session. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *         >Enable persistent chat</a>.
+     *         </p>
+     */
+    public String getRelatedContactId() {
+        return relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is only populated for persistent chats when the transcript item is
+     * from the past chat session. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId on which the transcript item was originally
+     *            sent. This field is only populated for persistent chats when
+     *            the transcript item is from the past chat session. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     */
+    public void setRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is only populated for persistent chats when the transcript item is
+     * from the past chat session. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId on which the transcript item was originally
+     *            sent. This field is only populated for persistent chats when
+     *            the transcript item is from the past chat session. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is populated only when the transcript item is from the current chat
+     * session.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The contactId on which the transcript item was originally sent.
+     *         This field is populated only when the transcript item is from the
+     *         current chat session.
+     *         </p>
+     */
+    public String getContactId() {
+        return contactId;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is populated only when the transcript item is from the current chat
+     * session.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param contactId <p>
+     *            The contactId on which the transcript item was originally
+     *            sent. This field is populated only when the transcript item is
+     *            from the current chat session.
+     *            </p>
+     */
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
+    }
+
+    /**
+     * <p>
+     * The contactId on which the transcript item was originally sent. This
+     * field is populated only when the transcript item is from the current chat
+     * session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param contactId <p>
+     *            The contactId on which the transcript item was originally
+     *            sent. This field is populated only when the transcript item is
+     *            from the current chat session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withContactId(String contactId) {
+        this.contactId = contactId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -775,7 +1007,13 @@ public class Item implements Serializable {
         if (getParticipantRole() != null)
             sb.append("ParticipantRole: " + getParticipantRole() + ",");
         if (getAttachments() != null)
-            sb.append("Attachments: " + getAttachments());
+            sb.append("Attachments: " + getAttachments() + ",");
+        if (getMessageMetadata() != null)
+            sb.append("MessageMetadata: " + getMessageMetadata() + ",");
+        if (getRelatedContactId() != null)
+            sb.append("RelatedContactId: " + getRelatedContactId() + ",");
+        if (getContactId() != null)
+            sb.append("ContactId: " + getContactId());
         sb.append("}");
         return sb.toString();
     }
@@ -800,6 +1038,11 @@ public class Item implements Serializable {
                 + ((getParticipantRole() == null) ? 0 : getParticipantRole().hashCode());
         hashCode = prime * hashCode
                 + ((getAttachments() == null) ? 0 : getAttachments().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageMetadata() == null) ? 0 : getMessageMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
+        hashCode = prime * hashCode + ((getContactId() == null) ? 0 : getContactId().hashCode());
         return hashCode;
     }
 
@@ -855,6 +1098,21 @@ public class Item implements Serializable {
             return false;
         if (other.getAttachments() != null
                 && other.getAttachments().equals(this.getAttachments()) == false)
+            return false;
+        if (other.getMessageMetadata() == null ^ this.getMessageMetadata() == null)
+            return false;
+        if (other.getMessageMetadata() != null
+                && other.getMessageMetadata().equals(this.getMessageMetadata()) == false)
+            return false;
+        if (other.getRelatedContactId() == null ^ this.getRelatedContactId() == null)
+            return false;
+        if (other.getRelatedContactId() != null
+                && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
+            return false;
+        if (other.getContactId() == null ^ this.getContactId() == null)
+            return false;
+        if (other.getContactId() != null
+                && other.getContactId().equals(this.getContactId()) == false)
             return false;
         return true;
     }

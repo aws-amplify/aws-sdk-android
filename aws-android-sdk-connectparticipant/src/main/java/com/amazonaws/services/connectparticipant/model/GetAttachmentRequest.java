@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides a pre-signed URL for download of a completed attachment. This is an
  * asynchronous API for use with active contacts.
  * </p>
+ * <note>
+ * <p>
+ * <code>ConnectionToken</code> is used for invoking this API instead of
+ * <code>ParticipantToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The Amazon Connect Participant Service APIs do not use <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"

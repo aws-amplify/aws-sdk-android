@@ -35,8 +35,8 @@ import com.amazonaws.services.translate.model.transform.*;
  * client are blocking, and will not return until the service call completes.
  * <p>
  * <p>
- * Provides translation between one source language and another of the same set
- * of languages.
+ * Provides translation of the input content from the source language to the
+ * target language.
  * </p>
  */
 public class AmazonTranslateClient extends AmazonWebServiceClient implements AmazonTranslate {
@@ -826,6 +826,13 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
     }
 
     /**
+     * <p>
+     * Lists all tags associated with a given Amazon Translate resource. For
+     * more information, see <a
+     * href="https://docs.aws.amazon.com/translate/latest/dg/tagging.html">
+     * Tagging your resources</a>.
+     * </p>
+     * 
      * @param listTagsForResourceRequest
      * @return listTagsForResourceResult The response from the
      *         ListTagsForResource service method, as returned by Amazon
@@ -976,9 +983,14 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
 
     /**
      * <p>
-     * Starts an asynchronous batch translation job. Batch translation jobs can
-     * be used to translate large volumes of text across multiple documents at
-     * once. For more information, see <a>async</a>.
+     * Starts an asynchronous batch translation job. Use batch translation jobs
+     * to translate large volumes of text across multiple documents at once. For
+     * batch translation, you can input documents with different source
+     * languages (specify <code>auto</code> as the source language). You can
+     * specify one or more target languages. Batch translation translates each
+     * input document into each of the target languages. For more information,
+     * see <a href="https://docs.aws.amazon.com/translate/latest/dg/async.html">
+     * Asynchronous batch processing</a>.
      * </p>
      * <p>
      * Batch translation jobs can be described with the
@@ -986,12 +998,6 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * <a>ListTextTranslationJobs</a> operation, and stopped with the
      * <a>StopTextTranslationJob</a> operation.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Translate does not support batch translation of multiple source
-     * languages at once.
-     * </p>
-     * </note>
      * 
      * @param startTextTranslationJobRequest
      * @return startTextTranslationJobResult The response from the
@@ -1107,6 +1113,13 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
     }
 
     /**
+     * <p>
+     * Associates a specific tag with a resource. A tag is a key-value pair that
+     * adds as a metadata to a resource. For more information, see <a
+     * href="https://docs.aws.amazon.com/translate/latest/dg/tagging.html">
+     * Tagging your resources</a>.
+     * </p>
+     * 
      * @param tagResourceRequest
      * @return tagResourceResult The response from the TagResource service
      *         method, as returned by Amazon Translate.
@@ -1155,8 +1168,9 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
     /**
      * <p>
      * Translates input text from the source language to the target language.
-     * For a list of available languages and language codes, see
-     * <a>what-is-languages</a>.
+     * For a list of available languages and language codes, see <a href=
+     * "https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html"
+     * >Supported languages</a>.
      * </p>
      * 
      * @param translateTextRequest
@@ -1208,6 +1222,13 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
     }
 
     /**
+     * <p>
+     * Removes a specific tag associated with an Amazon Translate resource. For
+     * more information, see <a
+     * href="https://docs.aws.amazon.com/translate/latest/dg/tagging.html">
+     * Tagging your resources</a>.
+     * </p>
+     * 
      * @param untagResourceRequest
      * @return untagResourceResult The response from the UntagResource service
      *         method, as returned by Amazon Translate.

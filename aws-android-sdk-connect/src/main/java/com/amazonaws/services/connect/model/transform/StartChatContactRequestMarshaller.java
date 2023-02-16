@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -116,6 +116,11 @@ public class StartChatContactRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (startChatContactRequest.getPersistentChat() != null) {
+                PersistentChat persistentChat = startChatContactRequest.getPersistentChat();
+                jsonWriter.name("PersistentChat");
+                PersistentChatJsonMarshaller.getInstance().marshall(persistentChat, jsonWriter);
             }
 
             jsonWriter.endObject();

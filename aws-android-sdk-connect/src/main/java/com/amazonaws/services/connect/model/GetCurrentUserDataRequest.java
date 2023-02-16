@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,10 +39,44 @@ public class GetCurrentUserDataRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Filters up to 100 <code>Queues</code>, or up to 9
-     * <code>ContactStates</code>. The user data is retrieved only for those
-     * users who are associated with the queues and have contacts that are in
-     * the specified <code>ContactState</code>.
+     * The filters to apply to returned user data. You can filter up to the
+     * following limits:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Queues: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Routing profiles: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agents: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Contact states: 9
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User hierarchy groups: 1
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The user data is retrieved for only the specified values/resources in the
+     * filter. A maximum of one filter can be passed from queues, routing
+     * profiles, agents, and user hierarchy groups.
+     * </p>
+     * <p>
+     * Currently tagging is only supported on the resources that are passed in
+     * the filter.
      * </p>
      */
     private UserDataFilters filters;
@@ -128,17 +162,86 @@ public class GetCurrentUserDataRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Filters up to 100 <code>Queues</code>, or up to 9
-     * <code>ContactStates</code>. The user data is retrieved only for those
-     * users who are associated with the queues and have contacts that are in
-     * the specified <code>ContactState</code>.
+     * The filters to apply to returned user data. You can filter up to the
+     * following limits:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Queues: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Routing profiles: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agents: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Contact states: 9
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User hierarchy groups: 1
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The user data is retrieved for only the specified values/resources in the
+     * filter. A maximum of one filter can be passed from queues, routing
+     * profiles, agents, and user hierarchy groups.
+     * </p>
+     * <p>
+     * Currently tagging is only supported on the resources that are passed in
+     * the filter.
      * </p>
      *
      * @return <p>
-     *         Filters up to 100 <code>Queues</code>, or up to 9
-     *         <code>ContactStates</code>. The user data is retrieved only for
-     *         those users who are associated with the queues and have contacts
-     *         that are in the specified <code>ContactState</code>.
+     *         The filters to apply to returned user data. You can filter up to
+     *         the following limits:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Queues: 100
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Routing profiles: 100
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Agents: 100
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Contact states: 9
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         User hierarchy groups: 1
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The user data is retrieved for only the specified
+     *         values/resources in the filter. A maximum of one filter can be
+     *         passed from queues, routing profiles, agents, and user hierarchy
+     *         groups.
+     *         </p>
+     *         <p>
+     *         Currently tagging is only supported on the resources that are
+     *         passed in the filter.
      *         </p>
      */
     public UserDataFilters getFilters() {
@@ -147,17 +250,86 @@ public class GetCurrentUserDataRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Filters up to 100 <code>Queues</code>, or up to 9
-     * <code>ContactStates</code>. The user data is retrieved only for those
-     * users who are associated with the queues and have contacts that are in
-     * the specified <code>ContactState</code>.
+     * The filters to apply to returned user data. You can filter up to the
+     * following limits:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Queues: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Routing profiles: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agents: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Contact states: 9
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User hierarchy groups: 1
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The user data is retrieved for only the specified values/resources in the
+     * filter. A maximum of one filter can be passed from queues, routing
+     * profiles, agents, and user hierarchy groups.
+     * </p>
+     * <p>
+     * Currently tagging is only supported on the resources that are passed in
+     * the filter.
      * </p>
      *
      * @param filters <p>
-     *            Filters up to 100 <code>Queues</code>, or up to 9
-     *            <code>ContactStates</code>. The user data is retrieved only
-     *            for those users who are associated with the queues and have
-     *            contacts that are in the specified <code>ContactState</code>.
+     *            The filters to apply to returned user data. You can filter up
+     *            to the following limits:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Queues: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Routing profiles: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Agents: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Contact states: 9
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            User hierarchy groups: 1
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The user data is retrieved for only the specified
+     *            values/resources in the filter. A maximum of one filter can be
+     *            passed from queues, routing profiles, agents, and user
+     *            hierarchy groups.
+     *            </p>
+     *            <p>
+     *            Currently tagging is only supported on the resources that are
+     *            passed in the filter.
      *            </p>
      */
     public void setFilters(UserDataFilters filters) {
@@ -166,20 +338,89 @@ public class GetCurrentUserDataRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Filters up to 100 <code>Queues</code>, or up to 9
-     * <code>ContactStates</code>. The user data is retrieved only for those
-     * users who are associated with the queues and have contacts that are in
-     * the specified <code>ContactState</code>.
+     * The filters to apply to returned user data. You can filter up to the
+     * following limits:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Queues: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Routing profiles: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Agents: 100
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Contact states: 9
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * User hierarchy groups: 1
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The user data is retrieved for only the specified values/resources in the
+     * filter. A maximum of one filter can be passed from queues, routing
+     * profiles, agents, and user hierarchy groups.
+     * </p>
+     * <p>
+     * Currently tagging is only supported on the resources that are passed in
+     * the filter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filters <p>
-     *            Filters up to 100 <code>Queues</code>, or up to 9
-     *            <code>ContactStates</code>. The user data is retrieved only
-     *            for those users who are associated with the queues and have
-     *            contacts that are in the specified <code>ContactState</code>.
+     *            The filters to apply to returned user data. You can filter up
+     *            to the following limits:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Queues: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Routing profiles: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Agents: 100
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Contact states: 9
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            User hierarchy groups: 1
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The user data is retrieved for only the specified
+     *            values/resources in the filter. A maximum of one filter can be
+     *            passed from queues, routing profiles, agents, and user
+     *            hierarchy groups.
+     *            </p>
+     *            <p>
+     *            Currently tagging is only supported on the resources that are
+     *            passed in the filter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

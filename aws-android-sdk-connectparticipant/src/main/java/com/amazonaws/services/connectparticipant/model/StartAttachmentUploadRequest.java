@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides a pre-signed Amazon S3 URL in response for uploading the file
  * directly to S3.
  * </p>
+ * <note>
+ * <p>
+ * <code>ConnectionToken</code> is used for invoking this API instead of
+ * <code>ParticipantToken</code>.
+ * </p>
+ * </note>
  * <p>
  * The Amazon Connect Participant Service APIs do not use <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
@@ -35,7 +41,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -67,7 +73,12 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A unique case sensitive identifier to support idempotency of request.
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,7 +100,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -100,7 +111,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * @return <p>
      *         Describes the MIME file type of the attachment. For a list of
      *         supported file types, see <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *         >Feature specifications</a> in the <i>Amazon Connect
      *         Administrator Guide</i>.
      *         </p>
@@ -113,7 +124,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -124,7 +135,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * @param contentType <p>
      *            Describes the MIME file type of the attachment. For a list of
      *            supported file types, see <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *            >Feature specifications</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
@@ -137,7 +148,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -151,7 +162,7 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * @param contentType <p>
      *            Describes the MIME file type of the attachment. For a list of
      *            supported file types, see <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *            >Feature specifications</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
@@ -273,15 +284,24 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A unique case sensitive identifier to support idempotency of request.
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
-     *         A unique case sensitive identifier to support idempotency of
-     *         request.
+     *         A unique, case-sensitive identifier that you provide to ensure
+     *         the idempotency of the request. If not provided, the Amazon Web
+     *         Services SDK populates this field. For more information about
+     *         idempotency, see <a href=
+     *         "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *         >Making retries safe with idempotent APIs</a>.
      *         </p>
      */
     public String getClientToken() {
@@ -290,15 +310,24 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A unique case sensitive identifier to support idempotency of request.
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 500<br/>
      *
      * @param clientToken <p>
-     *            A unique case sensitive identifier to support idempotency of
-     *            request.
+     *            A unique, case-sensitive identifier that you provide to ensure
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      */
     public void setClientToken(String clientToken) {
@@ -307,7 +336,12 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A unique case sensitive identifier to support idempotency of request.
+     * A unique, case-sensitive identifier that you provide to ensure the
+     * idempotency of the request. If not provided, the Amazon Web Services SDK
+     * populates this field. For more information about idempotency, see <a
+     * href=
+     * "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     * >Making retries safe with idempotent APIs</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -317,8 +351,12 @@ public class StartAttachmentUploadRequest extends AmazonWebServiceRequest implem
      * <b>Length: </b>1 - 500<br/>
      *
      * @param clientToken <p>
-     *            A unique case sensitive identifier to support idempotency of
-     *            request.
+     *            A unique, case-sensitive identifier that you provide to ensure
+     *            the idempotency of the request. If not provided, the Amazon
+     *            Web Services SDK populates this field. For more information
+     *            about idempotency, see <a href=
+     *            "https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/"
+     *            >Making retries safe with idempotent APIs</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

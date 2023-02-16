@@ -19,9 +19,20 @@ import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
+/**
+ * <p>
+ * Lists all tags associated with a given Amazon Translate resource. For more
+ * information, see <a
+ * href="https://docs.aws.amazon.com/translate/latest/dg/tagging.html"> Tagging
+ * your resources</a>.
+ * </p>
+ */
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The new value for the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+     * are querying.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
@@ -29,32 +40,46 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
     private String resourceArn;
 
     /**
-     * Returns the value of the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+     * are querying.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @return The value of the resourceArn property for this object.
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the given Amazon Translate
+     *         resource you are querying.
+     *         </p>
      */
     public String getResourceArn() {
         return resourceArn;
     }
 
     /**
-     * Sets the value of resourceArn
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+     * are querying.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @param resourceArn The new value for the resourceArn property for this
-     *            object.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the given Amazon Translate
+     *            resource you are querying.
+     *            </p>
      */
     public void setResourceArn(String resourceArn) {
         this.resourceArn = resourceArn;
     }
 
     /**
-     * Sets the value of the resourceArn property for this object.
+     * <p>
+     * The Amazon Resource Name (ARN) of the given Amazon Translate resource you
+     * are querying.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -62,8 +87,10 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 512<br/>
      *
-     * @param resourceArn The new value for the resourceArn property for this
-     *            object.
+     * @param resourceArn <p>
+     *            The Amazon Resource Name (ARN) of the given Amazon Translate
+     *            resource you are querying.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

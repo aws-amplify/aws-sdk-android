@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ public class AttachmentItem implements Serializable {
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -72,7 +72,7 @@ public class AttachmentItem implements Serializable {
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -83,7 +83,7 @@ public class AttachmentItem implements Serializable {
      * @return <p>
      *         Describes the MIME file type of the attachment. For a list of
      *         supported file types, see <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *         >Feature specifications</a> in the <i>Amazon Connect
      *         Administrator Guide</i>.
      *         </p>
@@ -96,7 +96,7 @@ public class AttachmentItem implements Serializable {
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -107,7 +107,7 @@ public class AttachmentItem implements Serializable {
      * @param contentType <p>
      *            Describes the MIME file type of the attachment. For a list of
      *            supported file types, see <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *            >Feature specifications</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
@@ -120,7 +120,7 @@ public class AttachmentItem implements Serializable {
      * <p>
      * Describes the MIME file type of the attachment. For a list of supported
      * file types, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      * >Feature specifications</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
@@ -134,7 +134,7 @@ public class AttachmentItem implements Serializable {
      * @param contentType <p>
      *            Describes the MIME file type of the attachment. For a list of
      *            supported file types, see <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/feature-limits.html"
      *            >Feature specifications</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
