@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Allows the specified Amazon Connect instance to access the specified Amazon
- * Lex bot.
+ * Lex V1 bot. This API only supports the association of Amazon Lex V1 bots.
  * </p>
  */
 public class AssociateLexBotRequest extends AmazonWebServiceRequest implements Serializable {

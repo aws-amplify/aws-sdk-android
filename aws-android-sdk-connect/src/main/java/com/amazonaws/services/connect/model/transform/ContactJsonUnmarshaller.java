@@ -80,6 +80,9 @@ class ContactJsonUnmarshaller implements Unmarshaller<Contact, JsonUnmarshallerC
             } else if (name.equals("RelatedContactId")) {
                 contact.setRelatedContactId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("WisdomInfo")) {
+                contact.setWisdomInfo(WisdomInfoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
