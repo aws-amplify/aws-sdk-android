@@ -186,7 +186,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      */
     private String voiceId;
 
@@ -1498,7 +1498,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @return <p>
      *         Voice ID to use for the synthesis. You can get a list of
@@ -1530,7 +1530,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1565,7 +1565,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1600,7 +1600,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
@@ -1635,7 +1635,7 @@ public class SynthesizeSpeechRequest extends AmazonWebServiceRequest implements 
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis. You can get a list of
