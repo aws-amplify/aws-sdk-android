@@ -101,6 +101,11 @@ class ContactJsonMarshaller {
             jsonWriter.name("RelatedContactId");
             jsonWriter.value(relatedContactId);
         }
+        if (contact.getWisdomInfo() != null) {
+            WisdomInfo wisdomInfo = contact.getWisdomInfo();
+            jsonWriter.name("WisdomInfo");
+            WisdomInfoJsonMarshaller.getInstance().marshall(wisdomInfo, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
