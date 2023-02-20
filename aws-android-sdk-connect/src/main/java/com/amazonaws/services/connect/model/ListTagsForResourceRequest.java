@@ -33,18 +33,31 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the resource.
+     * The Amazon Resource Name (ARN) of the resource. All Amazon Connect
+     * resources (instances, queues, flows, routing profiles, etc) have an ARN.
+     * To locate the ARN for an instance, for example, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >Find your Amazon Connect instance ID/ARN</a>.
      * </p>
      */
     private String resourceArn;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the resource.
+     * The Amazon Resource Name (ARN) of the resource. All Amazon Connect
+     * resources (instances, queues, flows, routing profiles, etc) have an ARN.
+     * To locate the ARN for an instance, for example, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >Find your Amazon Connect instance ID/ARN</a>.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the resource.
+     *         The Amazon Resource Name (ARN) of the resource. All Amazon
+     *         Connect resources (instances, queues, flows, routing profiles,
+     *         etc) have an ARN. To locate the ARN for an instance, for example,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >Find your Amazon Connect instance ID/ARN</a>.
      *         </p>
      */
     public String getResourceArn() {
@@ -53,11 +66,20 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the resource.
+     * The Amazon Resource Name (ARN) of the resource. All Amazon Connect
+     * resources (instances, queues, flows, routing profiles, etc) have an ARN.
+     * To locate the ARN for an instance, for example, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >Find your Amazon Connect instance ID/ARN</a>.
      * </p>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the resource.
+     *            The Amazon Resource Name (ARN) of the resource. All Amazon
+     *            Connect resources (instances, queues, flows, routing profiles,
+     *            etc) have an ARN. To locate the ARN for an instance, for
+     *            example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >Find your Amazon Connect instance ID/ARN</a>.
      *            </p>
      */
     public void setResourceArn(String resourceArn) {
@@ -66,14 +88,23 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the resource.
+     * The Amazon Resource Name (ARN) of the resource. All Amazon Connect
+     * resources (instances, queues, flows, routing profiles, etc) have an ARN.
+     * To locate the ARN for an instance, for example, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >Find your Amazon Connect instance ID/ARN</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the resource.
+     *            The Amazon Resource Name (ARN) of the resource. All Amazon
+     *            Connect resources (instances, queues, flows, routing profiles,
+     *            etc) have an ARN. To locate the ARN for an instance, for
+     *            example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >Find your Amazon Connect instance ID/ARN</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

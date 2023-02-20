@@ -32,8 +32,10 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
         Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,22 +62,26 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      */
     private String resourceType;
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance. You can find the
-     *         instanceId in the ARN of the instance.
+     *         The identifier of the Amazon Connect instance. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -84,16 +90,21 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -102,8 +113,10 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,8 +126,11 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -194,7 +210,7 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      *
      * @return <p>
      *         A valid resource type.
@@ -213,7 +229,7 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -235,7 +251,7 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -257,7 +273,7 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -279,7 +295,7 @@ public class DescribeInstanceStorageConfigRequest extends AmazonWebServiceReques
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
      *
      * @param resourceType <p>
      *            A valid resource type.
