@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -85,15 +85,15 @@ import com.amazonaws.services.kms.model.transform.*;
  * <b>Signing Requests</b>
  * </p>
  * <p>
- * Requests must be signed by using an access key ID and a secret access key. We
- * strongly recommend that you <i>do not</i> use your Amazon Web Services
- * account (root) access key ID and secret access key for everyday work with
- * KMS. Instead, use the access key ID and secret access key for an IAM user.
- * You can also use the Amazon Web Services Security Token Service to generate
- * temporary security credentials that you can use to sign requests.
+ * Requests must be signed using an access key ID and a secret access key. We
+ * strongly recommend that you do not use your Amazon Web Services account root
+ * access key ID and secret access key for everyday work. You can use the access
+ * key ID and secret access key for an IAM user or you can use the Security
+ * Token Service (STS) to generate temporary security credentials and use those
+ * to sign requests.
  * </p>
  * <p>
- * All KMS operations require <a href=
+ * All KMS requests must be signed with <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
  * >Signature Version 4</a>.
  * </p>
@@ -1690,11 +1690,11 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * <p>
      * Whenever possible, use key policies to give users permission to call the
      * <code>Decrypt</code> operation on a particular KMS key, instead of using
-     * IAM policies. Otherwise, you might create an IAM user policy that gives
-     * the user <code>Decrypt</code> permission on all KMS keys. This user could
-     * decrypt ciphertext that was encrypted by KMS keys in other accounts if
-     * the key policy for the cross-account KMS key permits it. If you must use
-     * an IAM policy for <code>Decrypt</code> permissions, limit the user to
+     * &amp;IAM; policies. Otherwise, you might create an &amp;IAM; policy that
+     * gives the user <code>Decrypt</code> permission on all KMS keys. This user
+     * could decrypt ciphertext that was encrypted by KMS keys in other accounts
+     * if the key policy for the cross-account KMS key permits it. If you must
+     * use an IAM policy for <code>Decrypt</code> permissions, limit the user to
      * particular KMS keys or particular trusted accounts. For details, see <a
      * href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html#iam-policies-best-practices"
@@ -1719,9 +1719,9 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * Guide</i>.
      * </p>
      * <p>
-     * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key
-     * in a different Amazon Web Services account, specify the key ARN or alias
-     * ARN in the value of the <code>KeyId</code> parameter.
+     * <b>Cross-account use</b>: Yes. If you use the <code>KeyId</code>
+     * parameter to identify a KMS key in a different Amazon Web Services
+     * account, specify the key ARN or the alias ARN of the KMS key.
      * </p>
      * <p>
      * <b>Required permissions</b>: <a href=
@@ -3183,9 +3183,9 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * parameter.
      * </p>
      * <p>
-     * To generate an SM4 data key (China Regions only), specify a
-     * <code>KeySpec</code> value of <code>AES_128</code> or
-     * <code>NumberOfBytes</code> value of <code>128</code>. The symmetric
+     * To generate a 128-bit SM4 data key (China Regions only), specify a
+     * <code>KeySpec</code> value of <code>AES_128</code> or a
+     * <code>NumberOfBytes</code> value of <code>16</code>. The symmetric
      * encryption key used in China Regions to encrypt your data key is an SM4
      * encryption key.
      * </p>
@@ -7017,9 +7017,12 @@ public class AWSKMSClient extends AmazonWebServiceClient implements AWSKMS {
      * Guide</i>.
      * </p>
      * <p>
-     * To verify a digital signature, you can use the <code>Verify</code>
-     * operation. Specify the same asymmetric KMS key, message, and signing
-     * algorithm that were used to produce the signature.
+     * To use the <code>Verify</code> operation, specify the same asymmetric KMS
+     * key, message, and signing algorithm that were used to produce the
+     * signature. The message type does not need to be the same as the one used
+     * for signing, but it must indicate whether the value of the
+     * <code>Message</code> parameter should be hashed as part of the
+     * verification process.
      * </p>
      * <p>
      * You can also verify the digital signature by using the public key of the
