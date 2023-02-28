@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -81,6 +81,18 @@ public class DocumentClassifierOutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      */
     private String kmsKeyId;
+
+    /**
+     * <p>
+     * The Amazon S3 prefix for the data lake location of the flywheel
+     * statistics.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String flywheelStatsS3Prefix;
 
     /**
      * <p>
@@ -424,6 +436,69 @@ public class DocumentClassifierOutputDataConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon S3 prefix for the data lake location of the flywheel
+     * statistics.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon S3 prefix for the data lake location of the flywheel
+     *         statistics.
+     *         </p>
+     */
+    public String getFlywheelStatsS3Prefix() {
+        return flywheelStatsS3Prefix;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 prefix for the data lake location of the flywheel
+     * statistics.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param flywheelStatsS3Prefix <p>
+     *            The Amazon S3 prefix for the data lake location of the
+     *            flywheel statistics.
+     *            </p>
+     */
+    public void setFlywheelStatsS3Prefix(String flywheelStatsS3Prefix) {
+        this.flywheelStatsS3Prefix = flywheelStatsS3Prefix;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 prefix for the data lake location of the flywheel
+     * statistics.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param flywheelStatsS3Prefix <p>
+     *            The Amazon S3 prefix for the data lake location of the
+     *            flywheel statistics.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierOutputDataConfig withFlywheelStatsS3Prefix(String flywheelStatsS3Prefix) {
+        this.flywheelStatsS3Prefix = flywheelStatsS3Prefix;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -437,7 +512,9 @@ public class DocumentClassifierOutputDataConfig implements Serializable {
         if (getS3Uri() != null)
             sb.append("S3Uri: " + getS3Uri() + ",");
         if (getKmsKeyId() != null)
-            sb.append("KmsKeyId: " + getKmsKeyId());
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
+        if (getFlywheelStatsS3Prefix() != null)
+            sb.append("FlywheelStatsS3Prefix: " + getFlywheelStatsS3Prefix());
         sb.append("}");
         return sb.toString();
     }
@@ -449,6 +526,9 @@ public class DocumentClassifierOutputDataConfig implements Serializable {
 
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getFlywheelStatsS3Prefix() == null) ? 0 : getFlywheelStatsS3Prefix().hashCode());
         return hashCode;
     }
 
@@ -470,6 +550,11 @@ public class DocumentClassifierOutputDataConfig implements Serializable {
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;
         if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
+        if (other.getFlywheelStatsS3Prefix() == null ^ this.getFlywheelStatsS3Prefix() == null)
+            return false;
+        if (other.getFlywheelStatsS3Prefix() != null
+                && other.getFlywheelStatsS3Prefix().equals(this.getFlywheelStatsS3Prefix()) == false)
             return false;
         return true;
     }

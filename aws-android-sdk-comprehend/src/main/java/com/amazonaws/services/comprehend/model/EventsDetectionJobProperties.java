@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,7 +55,8 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -130,7 +131,7 @@ public class EventsDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
@@ -225,7 +226,8 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the events detection job. It is
@@ -268,7 +270,8 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the events detection job. It
@@ -314,7 +317,8 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the events detection job. It
@@ -837,7 +841,7 @@ public class EventsDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
@@ -846,7 +850,7 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identify and Access
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
      *         Management (IAM) role that grants Amazon Comprehend read access
      *         to your input data.
      *         </p>
@@ -857,7 +861,7 @@ public class EventsDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
@@ -866,7 +870,7 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identify and Access
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>
@@ -877,7 +881,7 @@ public class EventsDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identify and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
@@ -889,7 +893,7 @@ public class EventsDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identify and Access
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>

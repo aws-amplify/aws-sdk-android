@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The identifier that Amazon Comprehend generated for the job. The
-     * operation returns this identifier in its response.
+     * <code>StartKeyPhrasesDetectionJob</code> operation returns this
+     * identifier in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +43,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The identifier that Amazon Comprehend generated for the job. The
-     * operation returns this identifier in its response.
+     * <code>StartKeyPhrasesDetectionJob</code> operation returns this
+     * identifier in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +53,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
      *
      * @return <p>
      *         The identifier that Amazon Comprehend generated for the job. The
-     *         operation returns this identifier in its response.
+     *         <code>StartKeyPhrasesDetectionJob</code> operation returns this
+     *         identifier in its response.
      *         </p>
      */
     public String getJobId() {
@@ -61,7 +64,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The identifier that Amazon Comprehend generated for the job. The
-     * operation returns this identifier in its response.
+     * <code>StartKeyPhrasesDetectionJob</code> operation returns this
+     * identifier in its response.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,7 +74,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
      *
      * @param jobId <p>
      *            The identifier that Amazon Comprehend generated for the job.
-     *            The operation returns this identifier in its response.
+     *            The <code>StartKeyPhrasesDetectionJob</code> operation returns
+     *            this identifier in its response.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -80,7 +85,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
     /**
      * <p>
      * The identifier that Amazon Comprehend generated for the job. The
-     * operation returns this identifier in its response.
+     * <code>StartKeyPhrasesDetectionJob</code> operation returns this
+     * identifier in its response.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -92,7 +98,8 @@ public class DescribeKeyPhrasesDetectionJobRequest extends AmazonWebServiceReque
      *
      * @param jobId <p>
      *            The identifier that Amazon Comprehend generated for the job.
-     *            The operation returns this identifier in its response.
+     *            The <code>StartKeyPhrasesDetectionJob</code> operation returns
+     *            this identifier in its response.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

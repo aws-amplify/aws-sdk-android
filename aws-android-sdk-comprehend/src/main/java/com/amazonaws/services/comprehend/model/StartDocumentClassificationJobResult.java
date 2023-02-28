@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of the job, use
-     * this identifier with the operation.
+     * this identifier with the <code>DescribeDocumentClassificationJob</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +52,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -78,7 +80,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -102,8 +105,23 @@ public class StartDocumentClassificationJobResult implements Serializable {
 
     /**
      * <p>
+     * The ARN of the custom classification model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String documentClassifierArn;
+
+    /**
+     * <p>
      * The identifier generated for the job. To get the status of the job, use
-     * this identifier with the operation.
+     * this identifier with the <code>DescribeDocumentClassificationJob</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -112,7 +130,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *
      * @return <p>
      *         The identifier generated for the job. To get the status of the
-     *         job, use this identifier with the operation.
+     *         job, use this identifier with the
+     *         <code>DescribeDocumentClassificationJob</code> operation.
      *         </p>
      */
     public String getJobId() {
@@ -122,7 +141,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of the job, use
-     * this identifier with the operation.
+     * this identifier with the <code>DescribeDocumentClassificationJob</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +151,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of the
-     *            job, use this identifier with the operation.
+     *            job, use this identifier with the
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -141,7 +162,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of the job, use
-     * this identifier with the operation.
+     * this identifier with the <code>DescribeDocumentClassificationJob</code>
+     * operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,7 +175,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of the
-     *            job, use this identifier with the operation.
+     *            job, use this identifier with the
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -184,7 +207,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the document classification
@@ -227,7 +251,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the document classification
@@ -273,7 +298,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the document classification
@@ -321,7 +347,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -364,7 +391,7 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *         <li>
      *         <p>
      *         FAILED - The job did not complete. For details, use the
-     *         operation.
+     *         <code>DescribeDocumentClassificationJob</code> operation.
      *         </p>
      *         </li>
      *         <li>
@@ -408,7 +435,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -452,7 +480,7 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. For details, use the
-     *            operation.
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      *            </li>
      *            <li>
@@ -496,7 +524,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -543,7 +572,7 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. For details, use the
-     *            operation.
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      *            </li>
      *            <li>
@@ -590,7 +619,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -634,7 +664,7 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. For details, use the
-     *            operation.
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      *            </li>
      *            <li>
@@ -678,7 +708,8 @@ public class StartDocumentClassificationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. For details, use the operation.
+     * FAILED - The job did not complete. For details, use the
+     * <code>DescribeDocumentClassificationJob</code> operation.
      * </p>
      * </li>
      * <li>
@@ -725,7 +756,7 @@ public class StartDocumentClassificationJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. For details, use the
-     *            operation.
+     *            <code>DescribeDocumentClassificationJob</code> operation.
      *            </p>
      *            </li>
      *            <li>
@@ -750,6 +781,73 @@ public class StartDocumentClassificationJobResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The ARN of the custom classification model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The ARN of the custom classification model.
+     *         </p>
+     */
+    public String getDocumentClassifierArn() {
+        return documentClassifierArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the custom classification model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param documentClassifierArn <p>
+     *            The ARN of the custom classification model.
+     *            </p>
+     */
+    public void setDocumentClassifierArn(String documentClassifierArn) {
+        this.documentClassifierArn = documentClassifierArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the custom classification model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param documentClassifierArn <p>
+     *            The ARN of the custom classification model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentClassificationJobResult withDocumentClassifierArn(
+            String documentClassifierArn) {
+        this.documentClassifierArn = documentClassifierArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -765,7 +863,9 @@ public class StartDocumentClassificationJobResult implements Serializable {
         if (getJobArn() != null)
             sb.append("JobArn: " + getJobArn() + ",");
         if (getJobStatus() != null)
-            sb.append("JobStatus: " + getJobStatus());
+            sb.append("JobStatus: " + getJobStatus() + ",");
+        if (getDocumentClassifierArn() != null)
+            sb.append("DocumentClassifierArn: " + getDocumentClassifierArn());
         sb.append("}");
         return sb.toString();
     }
@@ -778,6 +878,9 @@ public class StartDocumentClassificationJobResult implements Serializable {
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         hashCode = prime * hashCode + ((getJobArn() == null) ? 0 : getJobArn().hashCode());
         hashCode = prime * hashCode + ((getJobStatus() == null) ? 0 : getJobStatus().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDocumentClassifierArn() == null) ? 0 : getDocumentClassifierArn().hashCode());
         return hashCode;
     }
 
@@ -804,6 +907,11 @@ public class StartDocumentClassificationJobResult implements Serializable {
             return false;
         if (other.getJobStatus() != null
                 && other.getJobStatus().equals(this.getJobStatus()) == false)
+            return false;
+        if (other.getDocumentClassifierArn() == null ^ this.getDocumentClassifierArn() == null)
+            return false;
+        if (other.getDocumentClassifierArn() != null
+                && other.getDocumentClassifierArn().equals(this.getDocumentClassifierArn()) == false)
             return false;
         return true;
     }

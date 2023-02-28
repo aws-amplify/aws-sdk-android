@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -132,10 +132,10 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Tags to be associated with the sentiment detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the sentiment detection job. A tag is a key-value
+     * pair that adds metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -784,15 +784,15 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Tags to be associated with the sentiment detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the sentiment detection job. A tag is a key-value
+     * pair that adds metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the sentiment detection job. A tag is
-     *         a key-value pair that adds metadata to a resource used by Amazon
+     *         Tags to associate with the sentiment detection job. A tag is a
+     *         key-value pair that adds metadata to a resource used by Amazon
      *         Comprehend. For example, a tag with "Sales" as the key might be
      *         added to a resource to indicate its use by the sales department.
      *         </p>
@@ -803,17 +803,17 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Tags to be associated with the sentiment detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the sentiment detection job. A tag is a key-value
+     * pair that adds metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the sentiment detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
+     *            Tags to associate with the sentiment detection job. A tag is a
+     *            key-value pair that adds metadata to a resource used by Amazon
+     *            Comprehend. For example, a tag with "Sales" as the key might
+     *            be added to a resource to indicate its use by the sales
      *            department.
      *            </p>
      */
@@ -828,20 +828,20 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Tags to be associated with the sentiment detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the sentiment detection job. A tag is a key-value
+     * pair that adds metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the sentiment detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
+     *            Tags to associate with the sentiment detection job. A tag is a
+     *            key-value pair that adds metadata to a resource used by Amazon
+     *            Comprehend. For example, a tag with "Sales" as the key might
+     *            be added to a resource to indicate its use by the sales
      *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -859,20 +859,20 @@ public class StartSentimentDetectionJobRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * Tags to be associated with the sentiment detection job. A tag is a
-     * key-value pair that adds metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the sentiment detection job. A tag is a key-value
+     * pair that adds metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the sentiment detection job. A tag
-     *            is a key-value pair that adds metadata to a resource used by
-     *            Amazon Comprehend. For example, a tag with "Sales" as the key
-     *            might be added to a resource to indicate its use by the sales
+     *            Tags to associate with the sentiment detection job. A tag is a
+     *            key-value pair that adds metadata to a resource used by Amazon
+     *            Comprehend. For example, a tag with "Sales" as the key might
+     *            be added to a resource to indicate its use by the sales
      *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be

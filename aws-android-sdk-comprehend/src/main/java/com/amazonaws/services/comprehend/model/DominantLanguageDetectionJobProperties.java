@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,7 +55,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -123,8 +124,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -251,7 +252,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the dominant language detection
@@ -294,7 +296,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the dominant language
@@ -340,7 +343,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the dominant language
@@ -794,8 +798,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -803,8 +807,9 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) that gives Amazon Comprehend read
-     *         access to your input data.
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *         Management (IAM) role that grants Amazon Comprehend read access
+     *         to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -813,8 +818,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -822,8 +827,9 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) that gives Amazon Comprehend
-     *            read access to your input data.
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to your input data.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -832,8 +838,8 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -844,8 +850,9 @@ public class DominantLanguageDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) that gives Amazon Comprehend
-     *            read access to your input data.
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to your input data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

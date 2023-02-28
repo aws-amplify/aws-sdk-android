@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,7 +51,8 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -99,6 +100,20 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * STOP_REQUESTED, STOPPED
      */
     private String jobStatus;
+
+    /**
+     * <p>
+     * The ARN of the custom entity recognition model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String entityRecognizerArn;
 
     /**
      * <p>
@@ -184,7 +199,8 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the entities detection job. It
@@ -227,7 +243,8 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the entities detection job.
@@ -273,7 +290,8 @@ public class StartEntitiesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the entities detection job.
@@ -751,6 +769,72 @@ public class StartEntitiesDetectionJobResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The ARN of the custom entity recognition model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The ARN of the custom entity recognition model.
+     *         </p>
+     */
+    public String getEntityRecognizerArn() {
+        return entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the custom entity recognition model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The ARN of the custom entity recognition model.
+     *            </p>
+     */
+    public void setEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the custom entity recognition model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param entityRecognizerArn <p>
+     *            The ARN of the custom entity recognition model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartEntitiesDetectionJobResult withEntityRecognizerArn(String entityRecognizerArn) {
+        this.entityRecognizerArn = entityRecognizerArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -766,7 +850,9 @@ public class StartEntitiesDetectionJobResult implements Serializable {
         if (getJobArn() != null)
             sb.append("JobArn: " + getJobArn() + ",");
         if (getJobStatus() != null)
-            sb.append("JobStatus: " + getJobStatus());
+            sb.append("JobStatus: " + getJobStatus() + ",");
+        if (getEntityRecognizerArn() != null)
+            sb.append("EntityRecognizerArn: " + getEntityRecognizerArn());
         sb.append("}");
         return sb.toString();
     }
@@ -779,6 +865,8 @@ public class StartEntitiesDetectionJobResult implements Serializable {
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         hashCode = prime * hashCode + ((getJobArn() == null) ? 0 : getJobArn().hashCode());
         hashCode = prime * hashCode + ((getJobStatus() == null) ? 0 : getJobStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getEntityRecognizerArn() == null) ? 0 : getEntityRecognizerArn().hashCode());
         return hashCode;
     }
 
@@ -805,6 +893,11 @@ public class StartEntitiesDetectionJobResult implements Serializable {
             return false;
         if (other.getJobStatus() != null
                 && other.getJobStatus().equals(this.getJobStatus()) == false)
+            return false;
+        if (other.getEntityRecognizerArn() == null ^ this.getEntityRecognizerArn() == null)
+            return false;
+        if (other.getEntityRecognizerArn() != null
+                && other.getEntityRecognizerArn().equals(this.getEntityRecognizerArn()) == false)
             return false;
         return true;
     }

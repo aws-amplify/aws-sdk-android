@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,8 +59,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,10 +71,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -108,10 +108,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -365,8 +364,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -374,9 +373,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Management
-     *         (IAM) role that grants Amazon Comprehend read access to your
-     *         input data.
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *         Management (IAM) role that grants Amazon Comprehend read access
+     *         to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -385,8 +384,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -394,7 +393,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>
@@ -405,8 +404,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -417,7 +416,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>
@@ -431,17 +430,17 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the document classifier being created.
-     *         A tag is a key-value pair that adds as a metadata to a resource
-     *         used by Amazon Comprehend. For example, a tag with "Sales" as the
-     *         key might be added to a resource to indicate its use by the sales
+     *         Tags to associate with the document classifier. A tag is a
+     *         key-value pair that adds as a metadata to a resource used by
+     *         Amazon Comprehend. For example, a tag with "Sales" as the key
+     *         might be added to a resource to indicate its use by the sales
      *         department.
      *         </p>
      */
@@ -451,18 +450,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -476,21 +475,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -507,21 +506,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -696,10 +695,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -707,10 +705,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         following languages supported by Amazon Comprehend: German
-     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *         ("it"), or Portuguese ("pt"). All documents must be in the same
-     *         language.
+     *         languages supported by Amazon Comprehend. All documents must be
+     *         in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -720,10 +716,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -731,10 +726,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -744,10 +737,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -758,10 +750,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -774,10 +764,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -785,10 +774,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -798,10 +785,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -812,10 +798,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

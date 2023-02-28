@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -110,6 +110,18 @@ class EntityRecognizerPropertiesJsonMarshaller {
             String sourceModelArn = entityRecognizerProperties.getSourceModelArn();
             jsonWriter.name("SourceModelArn");
             jsonWriter.value(sourceModelArn);
+        }
+        if (entityRecognizerProperties.getFlywheelArn() != null) {
+            String flywheelArn = entityRecognizerProperties.getFlywheelArn();
+            jsonWriter.name("FlywheelArn");
+            jsonWriter.value(flywheelArn);
+        }
+        if (entityRecognizerProperties.getOutputDataConfig() != null) {
+            EntityRecognizerOutputDataConfig outputDataConfig = entityRecognizerProperties
+                    .getOutputDataConfig();
+            jsonWriter.name("OutputDataConfig");
+            EntityRecognizerOutputDataConfigJsonMarshaller.getInstance().marshall(outputDataConfig,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

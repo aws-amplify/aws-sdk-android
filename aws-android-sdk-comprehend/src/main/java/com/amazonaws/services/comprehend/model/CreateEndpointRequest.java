@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -84,9 +84,9 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Tags associated with the endpoint being created. A tag is a key-value
-     * pair that adds metadata to the endpoint. For example, a tag with "Sales"
-     * as the key might be added to an endpoint to indicate its use by the sales
+     * Tags to associate with the endpoint. A tag is a key-value pair that adds
+     * metadata to the endpoint. For example, a tag with "Sales" as the key
+     * might be added to an endpoint to indicate its use by the sales
      * department.
      * </p>
      */
@@ -94,7 +94,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to trained custom
      * models encrypted with a customer managed key (ModelKmsKeyId).
      * </p>
@@ -104,6 +104,20 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel to which the endpoint
+     * will be attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String flywheelArn;
 
     /**
      * <p>
@@ -388,17 +402,17 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Tags associated with the endpoint being created. A tag is a key-value
-     * pair that adds metadata to the endpoint. For example, a tag with "Sales"
-     * as the key might be added to an endpoint to indicate its use by the sales
+     * Tags to associate with the endpoint. A tag is a key-value pair that adds
+     * metadata to the endpoint. For example, a tag with "Sales" as the key
+     * might be added to an endpoint to indicate its use by the sales
      * department.
      * </p>
      *
      * @return <p>
-     *         Tags associated with the endpoint being created. A tag is a
-     *         key-value pair that adds metadata to the endpoint. For example, a
-     *         tag with "Sales" as the key might be added to an endpoint to
-     *         indicate its use by the sales department.
+     *         Tags to associate with the endpoint. A tag is a key-value pair
+     *         that adds metadata to the endpoint. For example, a tag with
+     *         "Sales" as the key might be added to an endpoint to indicate its
+     *         use by the sales department.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -407,17 +421,17 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Tags associated with the endpoint being created. A tag is a key-value
-     * pair that adds metadata to the endpoint. For example, a tag with "Sales"
-     * as the key might be added to an endpoint to indicate its use by the sales
+     * Tags to associate with the endpoint. A tag is a key-value pair that adds
+     * metadata to the endpoint. For example, a tag with "Sales" as the key
+     * might be added to an endpoint to indicate its use by the sales
      * department.
      * </p>
      *
      * @param tags <p>
-     *            Tags associated with the endpoint being created. A tag is a
-     *            key-value pair that adds metadata to the endpoint. For
-     *            example, a tag with "Sales" as the key might be added to an
-     *            endpoint to indicate its use by the sales department.
+     *            Tags to associate with the endpoint. A tag is a key-value pair
+     *            that adds metadata to the endpoint. For example, a tag with
+     *            "Sales" as the key might be added to an endpoint to indicate
+     *            its use by the sales department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -431,9 +445,9 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Tags associated with the endpoint being created. A tag is a key-value
-     * pair that adds metadata to the endpoint. For example, a tag with "Sales"
-     * as the key might be added to an endpoint to indicate its use by the sales
+     * Tags to associate with the endpoint. A tag is a key-value pair that adds
+     * metadata to the endpoint. For example, a tag with "Sales" as the key
+     * might be added to an endpoint to indicate its use by the sales
      * department.
      * </p>
      * <p>
@@ -441,10 +455,10 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param tags <p>
-     *            Tags associated with the endpoint being created. A tag is a
-     *            key-value pair that adds metadata to the endpoint. For
-     *            example, a tag with "Sales" as the key might be added to an
-     *            endpoint to indicate its use by the sales department.
+     *            Tags to associate with the endpoint. A tag is a key-value pair
+     *            that adds metadata to the endpoint. For example, a tag with
+     *            "Sales" as the key might be added to an endpoint to indicate
+     *            its use by the sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -461,9 +475,9 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Tags associated with the endpoint being created. A tag is a key-value
-     * pair that adds metadata to the endpoint. For example, a tag with "Sales"
-     * as the key might be added to an endpoint to indicate its use by the sales
+     * Tags to associate with the endpoint. A tag is a key-value pair that adds
+     * metadata to the endpoint. For example, a tag with "Sales" as the key
+     * might be added to an endpoint to indicate its use by the sales
      * department.
      * </p>
      * <p>
@@ -471,10 +485,10 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * together.
      *
      * @param tags <p>
-     *            Tags associated with the endpoint being created. A tag is a
-     *            key-value pair that adds metadata to the endpoint. For
-     *            example, a tag with "Sales" as the key might be added to an
-     *            endpoint to indicate its use by the sales department.
+     *            Tags to associate with the endpoint. A tag is a key-value pair
+     *            that adds metadata to the endpoint. For example, a tag with
+     *            "Sales" as the key might be added to an endpoint to indicate
+     *            its use by the sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -486,7 +500,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to trained custom
      * models encrypted with a customer managed key (ModelKmsKeyId).
      * </p>
@@ -496,7 +510,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS identity and Access
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
      *         Management (IAM) role that grants Amazon Comprehend read access
      *         to trained custom models encrypted with a customer managed key
      *         (ModelKmsKeyId).
@@ -508,7 +522,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to trained custom
      * models encrypted with a customer managed key (ModelKmsKeyId).
      * </p>
@@ -518,7 +532,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to trained custom models encrypted with a customer
      *            managed key (ModelKmsKeyId).
@@ -530,7 +544,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
      * (IAM) role that grants Amazon Comprehend read access to trained custom
      * models encrypted with a customer managed key (ModelKmsKeyId).
      * </p>
@@ -543,7 +557,7 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to trained custom models encrypted with a customer
      *            managed key (ModelKmsKeyId).
@@ -553,6 +567,75 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      */
     public CreateEndpointRequest withDataAccessRoleArn(String dataAccessRoleArn) {
         this.dataAccessRoleArn = dataAccessRoleArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel to which the endpoint
+     * will be attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Number (ARN) of the flywheel to which the
+     *         endpoint will be attached.
+     *         </p>
+     */
+    public String getFlywheelArn() {
+        return flywheelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel to which the endpoint
+     * will be attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param flywheelArn <p>
+     *            The Amazon Resource Number (ARN) of the flywheel to which the
+     *            endpoint will be attached.
+     *            </p>
+     */
+    public void setFlywheelArn(String flywheelArn) {
+        this.flywheelArn = flywheelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel to which the endpoint
+     * will be attached.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param flywheelArn <p>
+     *            The Amazon Resource Number (ARN) of the flywheel to which the
+     *            endpoint will be attached.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEndpointRequest withFlywheelArn(String flywheelArn) {
+        this.flywheelArn = flywheelArn;
         return this;
     }
 
@@ -578,7 +661,9 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
         if (getDataAccessRoleArn() != null)
-            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
+        if (getFlywheelArn() != null)
+            sb.append("FlywheelArn: " + getFlywheelArn());
         sb.append("}");
         return sb.toString();
     }
@@ -599,6 +684,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getFlywheelArn() == null) ? 0 : getFlywheelArn().hashCode());
         return hashCode;
     }
 
@@ -640,6 +727,11 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getDataAccessRoleArn() != null
                 && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
+            return false;
+        if (other.getFlywheelArn() == null ^ this.getFlywheelArn() == null)
+            return false;
+        if (other.getFlywheelArn() != null
+                && other.getFlywheelArn().equals(this.getFlywheelArn()) == false)
             return false;
         return true;
     }

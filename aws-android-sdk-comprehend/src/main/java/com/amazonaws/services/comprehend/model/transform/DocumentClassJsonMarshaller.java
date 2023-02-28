@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@ class DocumentClassJsonMarshaller {
             Float score = documentClass.getScore();
             jsonWriter.name("Score");
             jsonWriter.value(score);
+        }
+        if (documentClass.getPage() != null) {
+            Integer page = documentClass.getPage();
+            jsonWriter.name("Page");
+            jsonWriter.value(page);
         }
         jsonWriter.endObject();
     }

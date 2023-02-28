@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates an entity recognizer using submitted files. After your
  * <code>CreateEntityRecognizer</code> request is submitted, you can check job
- * status using the API.
+ * status using the <code>DescribeEntityRecognizer</code> API.
  * </p>
  */
 public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest implements Serializable {
@@ -57,8 +57,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,10 +69,10 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Tags to be associated with the entity recognizer being created. A tag is
-     * a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the entity recognizer. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -100,10 +100,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,7 +154,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats
+     * the following formats:
      * </p>
      * <ul>
      * <li>
@@ -360,8 +361,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -369,9 +370,9 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Management
-     *         (IAM) role that grants Amazon Comprehend read access to your
-     *         input data.
+     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
+     *         Management (IAM) role that grants Amazon Comprehend read access
+     *         to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -380,8 +381,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -389,7 +390,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>
@@ -400,8 +401,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -412,7 +413,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
+     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
      *            Management (IAM) role that grants Amazon Comprehend read
      *            access to your input data.
      *            </p>
@@ -426,17 +427,17 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Tags to be associated with the entity recognizer being created. A tag is
-     * a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the entity recognizer. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the entity recognizer being created. A
-     *         tag is a key-value pair that adds as a metadata to a resource
-     *         used by Amazon Comprehend. For example, a tag with "Sales" as the
-     *         key might be added to a resource to indicate its use by the sales
+     *         Tags to associate with the entity recognizer. A tag is a
+     *         key-value pair that adds as a metadata to a resource used by
+     *         Amazon Comprehend. For example, a tag with "Sales" as the key
+     *         might be added to a resource to indicate its use by the sales
      *         department.
      *         </p>
      */
@@ -446,18 +447,18 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Tags to be associated with the entity recognizer being created. A tag is
-     * a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the entity recognizer. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the entity recognizer being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the entity recognizer. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -471,21 +472,21 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Tags to be associated with the entity recognizer being created. A tag is
-     * a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the entity recognizer. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the entity recognizer being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the entity recognizer. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -502,21 +503,21 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * Tags to be associated with the entity recognizer being created. A tag is
-     * a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the entity recognizer. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the entity recognizer being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the entity recognizer. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -649,20 +650,22 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         You can specify any of the following languages supported by
-     *         Amazon Comprehend: English ("en"), Spanish ("es"), French ("fr"),
-     *         Italian ("it"), German ("de"), or Portuguese ("pt"). All
-     *         documents must be in the same language.
+     *         You can specify any of the following languages: English ("en"),
+     *         Spanish ("es"), French ("fr"), Italian ("it"), German ("de"), or
+     *         Portuguese ("pt"). If you plan to use this entity recognizer with
+     *         PDF, Word, or image input files, you must specify English as the
+     *         language. All training documents must be in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -672,20 +675,23 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            You can specify any of the following languages supported by
-     *            Amazon Comprehend: English ("en"), Spanish ("es"), French
-     *            ("fr"), Italian ("it"), German ("de"), or Portuguese ("pt").
-     *            All documents must be in the same language.
+     *            You can specify any of the following languages: English
+     *            ("en"), Spanish ("es"), French ("fr"), Italian ("it"), German
+     *            ("de"), or Portuguese ("pt"). If you plan to use this entity
+     *            recognizer with PDF, Word, or image input files, you must
+     *            specify English as the language. All training documents must
+     *            be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -695,10 +701,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -708,10 +715,12 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            You can specify any of the following languages supported by
-     *            Amazon Comprehend: English ("en"), Spanish ("es"), French
-     *            ("fr"), Italian ("it"), German ("de"), or Portuguese ("pt").
-     *            All documents must be in the same language.
+     *            You can specify any of the following languages: English
+     *            ("en"), Spanish ("es"), French ("fr"), Italian ("it"), German
+     *            ("de"), or Portuguese ("pt"). If you plan to use this entity
+     *            recognizer with PDF, Word, or image input files, you must
+     *            specify English as the language. All training documents must
+     *            be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -724,20 +733,23 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            You can specify any of the following languages supported by
-     *            Amazon Comprehend: English ("en"), Spanish ("es"), French
-     *            ("fr"), Italian ("it"), German ("de"), or Portuguese ("pt").
-     *            All documents must be in the same language.
+     *            You can specify any of the following languages: English
+     *            ("en"), Spanish ("es"), French ("fr"), Italian ("it"), German
+     *            ("de"), or Portuguese ("pt"). If you plan to use this entity
+     *            recognizer with PDF, Word, or image input files, you must
+     *            specify English as the language. All training documents must
+     *            be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -747,10 +759,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * You can specify any of the following languages supported by Amazon
-     * Comprehend: English ("en"), Spanish ("es"), French ("fr"), Italian
-     * ("it"), German ("de"), or Portuguese ("pt"). All documents must be in the
-     * same language.
+     * You can specify any of the following languages: English ("en"), Spanish
+     * ("es"), French ("fr"), Italian ("it"), German ("de"), or Portuguese
+     * ("pt"). If you plan to use this entity recognizer with PDF, Word, or
+     * image input files, you must specify English as the language. All training
+     * documents must be in the same language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -760,10 +773,12 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            You can specify any of the following languages supported by
-     *            Amazon Comprehend: English ("en"), Spanish ("es"), French
-     *            ("fr"), Italian ("it"), German ("de"), or Portuguese ("pt").
-     *            All documents must be in the same language.
+     *            You can specify any of the following languages: English
+     *            ("en"), Spanish ("es"), French ("fr"), Italian ("it"), German
+     *            ("de"), or Portuguese ("pt"). If you plan to use this entity
+     *            recognizer with PDF, Word, or image input files, you must
+     *            specify English as the language. All training documents must
+     *            be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1004,7 +1019,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats
+     * the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1027,7 +1042,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
      *         Comprehend uses to encrypt trained custom models. The
-     *         ModelKmsKeyId can be either of the following formats
+     *         ModelKmsKeyId can be either of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -1051,7 +1066,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats
+     * the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1074,7 +1089,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
      *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats
+     *            ModelKmsKeyId can be either of the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1099,7 +1114,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * <p>
      * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
      * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats
+     * the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1125,7 +1140,7 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
      *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats
+     *            ModelKmsKeyId can be either of the following formats:
      *            </p>
      *            <ul>
      *            <li>

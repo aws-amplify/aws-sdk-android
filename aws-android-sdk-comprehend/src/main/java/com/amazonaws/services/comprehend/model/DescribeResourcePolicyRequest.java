@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the policy to describe.
+     * The Amazon Resource Name (ARN) of the custom model version that has the
+     * resource policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +44,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the policy to describe.
+     * The Amazon Resource Name (ARN) of the custom model version that has the
+     * resource policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,7 +57,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
      * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the policy to describe.
+     *         The Amazon Resource Name (ARN) of the custom model version that
+     *         has the resource policy.
      *         </p>
      */
     public String getResourceArn() {
@@ -64,7 +67,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the policy to describe.
+     * The Amazon Resource Name (ARN) of the custom model version that has the
+     * resource policy.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +80,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
      * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the policy to describe.
+     *            The Amazon Resource Name (ARN) of the custom model version
+     *            that has the resource policy.
      *            </p>
      */
     public void setResourceArn(String resourceArn) {
@@ -85,7 +90,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the policy to describe.
+     * The Amazon Resource Name (ARN) of the custom model version that has the
+     * resource policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,7 +106,8 @@ public class DescribeResourcePolicyRequest extends AmazonWebServiceRequest imple
      * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the policy to describe.
+     *            The Amazon Resource Name (ARN) of the custom model version
+     *            that has the resource policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
