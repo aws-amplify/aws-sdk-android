@@ -21,48 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SchedulingConfig
+ * JSON unmarshaller for POJO MaintenanceWindow
  */
-class SchedulingConfigJsonUnmarshaller implements
-        Unmarshaller<SchedulingConfig, JsonUnmarshallerContext> {
+class MaintenanceWindowJsonUnmarshaller implements
+        Unmarshaller<MaintenanceWindow, JsonUnmarshallerContext> {
 
-    public SchedulingConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public MaintenanceWindow unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        SchedulingConfig schedulingConfig = new SchedulingConfig();
+        MaintenanceWindow maintenanceWindow = new MaintenanceWindow();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("startTime")) {
-                schedulingConfig.setStartTime(StringJsonUnmarshaller.getInstance()
+                maintenanceWindow.setStartTime(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("endTime")) {
-                schedulingConfig.setEndTime(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("durationInMinutes")) {
+                maintenanceWindow.setDurationInMinutes(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("endBehavior")) {
-                schedulingConfig.setEndBehavior(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("maintenanceWindows")) {
-                schedulingConfig.setMaintenanceWindows(new ListUnmarshaller<MaintenanceWindow>(
-                        MaintenanceWindowJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return schedulingConfig;
+        return maintenanceWindow;
     }
 
-    private static SchedulingConfigJsonUnmarshaller instance;
+    private static MaintenanceWindowJsonUnmarshaller instance;
 
-    public static SchedulingConfigJsonUnmarshaller getInstance() {
+    public static MaintenanceWindowJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SchedulingConfigJsonUnmarshaller();
+            instance = new MaintenanceWindowJsonUnmarshaller();
         return instance;
     }
 }

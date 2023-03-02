@@ -31,7 +31,8 @@ public class SchedulingConfig implements Serializable {
      * The time a job will begin rollout of the job document to all devices in
      * the target group for a job. The <code>startTime</code> can be scheduled
      * up to a year in advance and must be scheduled a minimum of thirty minutes
-     * from the current time.
+     * from the current time. The date and time format for the
+     * <code>startTime</code> is YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +48,8 @@ public class SchedulingConfig implements Serializable {
      * thirty minutes from the current time. The minimum duration between
      * <code>startTime</code> and <code>endTime</code> is thirty minutes. The
      * maximum duration between <code>startTime</code> and <code>endTime</code>
-     * is two years.
+     * is two years. The date and time format for the <code>endTime</code> is
+     * YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,10 +71,21 @@ public class SchedulingConfig implements Serializable {
 
     /**
      * <p>
+     * An optional configuration within the <code>SchedulingConfig</code> to
+     * setup a recurring maintenance window with a predetermined start time and
+     * duration for the rollout of a job document to all devices in a target
+     * group for a job.
+     * </p>
+     */
+    private java.util.List<MaintenanceWindow> maintenanceWindows;
+
+    /**
+     * <p>
      * The time a job will begin rollout of the job document to all devices in
      * the target group for a job. The <code>startTime</code> can be scheduled
      * up to a year in advance and must be scheduled a minimum of thirty minutes
-     * from the current time.
+     * from the current time. The date and time format for the
+     * <code>startTime</code> is YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,7 +95,9 @@ public class SchedulingConfig implements Serializable {
      *         The time a job will begin rollout of the job document to all
      *         devices in the target group for a job. The <code>startTime</code>
      *         can be scheduled up to a year in advance and must be scheduled a
-     *         minimum of thirty minutes from the current time.
+     *         minimum of thirty minutes from the current time. The date and
+     *         time format for the <code>startTime</code> is YYYY-MM-DD for the
+     *         date and HH:MM for the time.
      *         </p>
      */
     public String getStartTime() {
@@ -94,7 +109,8 @@ public class SchedulingConfig implements Serializable {
      * The time a job will begin rollout of the job document to all devices in
      * the target group for a job. The <code>startTime</code> can be scheduled
      * up to a year in advance and must be scheduled a minimum of thirty minutes
-     * from the current time.
+     * from the current time. The date and time format for the
+     * <code>startTime</code> is YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -105,7 +121,9 @@ public class SchedulingConfig implements Serializable {
      *            devices in the target group for a job. The
      *            <code>startTime</code> can be scheduled up to a year in
      *            advance and must be scheduled a minimum of thirty minutes from
-     *            the current time.
+     *            the current time. The date and time format for the
+     *            <code>startTime</code> is YYYY-MM-DD for the date and HH:MM
+     *            for the time.
      *            </p>
      */
     public void setStartTime(String startTime) {
@@ -117,7 +135,8 @@ public class SchedulingConfig implements Serializable {
      * The time a job will begin rollout of the job document to all devices in
      * the target group for a job. The <code>startTime</code> can be scheduled
      * up to a year in advance and must be scheduled a minimum of thirty minutes
-     * from the current time.
+     * from the current time. The date and time format for the
+     * <code>startTime</code> is YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -131,7 +150,9 @@ public class SchedulingConfig implements Serializable {
      *            devices in the target group for a job. The
      *            <code>startTime</code> can be scheduled up to a year in
      *            advance and must be scheduled a minimum of thirty minutes from
-     *            the current time.
+     *            the current time. The date and time format for the
+     *            <code>startTime</code> is YYYY-MM-DD for the date and HH:MM
+     *            for the time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -149,7 +170,8 @@ public class SchedulingConfig implements Serializable {
      * thirty minutes from the current time. The minimum duration between
      * <code>startTime</code> and <code>endTime</code> is thirty minutes. The
      * maximum duration between <code>startTime</code> and <code>endTime</code>
-     * is two years.
+     * is two years. The date and time format for the <code>endTime</code> is
+     * YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +185,8 @@ public class SchedulingConfig implements Serializable {
      *         The minimum duration between <code>startTime</code> and
      *         <code>endTime</code> is thirty minutes. The maximum duration
      *         between <code>startTime</code> and <code>endTime</code> is two
-     *         years.
+     *         years. The date and time format for the <code>endTime</code> is
+     *         YYYY-MM-DD for the date and HH:MM for the time.
      *         </p>
      */
     public String getEndTime() {
@@ -178,7 +201,8 @@ public class SchedulingConfig implements Serializable {
      * thirty minutes from the current time. The minimum duration between
      * <code>startTime</code> and <code>endTime</code> is thirty minutes. The
      * maximum duration between <code>startTime</code> and <code>endTime</code>
-     * is two years.
+     * is two years. The date and time format for the <code>endTime</code> is
+     * YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -192,7 +216,9 @@ public class SchedulingConfig implements Serializable {
      *            minutes from the current time. The minimum duration between
      *            <code>startTime</code> and <code>endTime</code> is thirty
      *            minutes. The maximum duration between <code>startTime</code>
-     *            and <code>endTime</code> is two years.
+     *            and <code>endTime</code> is two years. The date and time
+     *            format for the <code>endTime</code> is YYYY-MM-DD for the date
+     *            and HH:MM for the time.
      *            </p>
      */
     public void setEndTime(String endTime) {
@@ -207,7 +233,8 @@ public class SchedulingConfig implements Serializable {
      * thirty minutes from the current time. The minimum duration between
      * <code>startTime</code> and <code>endTime</code> is thirty minutes. The
      * maximum duration between <code>startTime</code> and <code>endTime</code>
-     * is two years.
+     * is two years. The date and time format for the <code>endTime</code> is
+     * YYYY-MM-DD for the date and HH:MM for the time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -224,7 +251,9 @@ public class SchedulingConfig implements Serializable {
      *            minutes from the current time. The minimum duration between
      *            <code>startTime</code> and <code>endTime</code> is thirty
      *            minutes. The maximum duration between <code>startTime</code>
-     *            and <code>endTime</code> is two years.
+     *            and <code>endTime</code> is two years. The date and time
+     *            format for the <code>endTime</code> is YYYY-MM-DD for the date
+     *            and HH:MM for the time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -357,6 +386,110 @@ public class SchedulingConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * An optional configuration within the <code>SchedulingConfig</code> to
+     * setup a recurring maintenance window with a predetermined start time and
+     * duration for the rollout of a job document to all devices in a target
+     * group for a job.
+     * </p>
+     *
+     * @return <p>
+     *         An optional configuration within the
+     *         <code>SchedulingConfig</code> to setup a recurring maintenance
+     *         window with a predetermined start time and duration for the
+     *         rollout of a job document to all devices in a target group for a
+     *         job.
+     *         </p>
+     */
+    public java.util.List<MaintenanceWindow> getMaintenanceWindows() {
+        return maintenanceWindows;
+    }
+
+    /**
+     * <p>
+     * An optional configuration within the <code>SchedulingConfig</code> to
+     * setup a recurring maintenance window with a predetermined start time and
+     * duration for the rollout of a job document to all devices in a target
+     * group for a job.
+     * </p>
+     *
+     * @param maintenanceWindows <p>
+     *            An optional configuration within the
+     *            <code>SchedulingConfig</code> to setup a recurring maintenance
+     *            window with a predetermined start time and duration for the
+     *            rollout of a job document to all devices in a target group for
+     *            a job.
+     *            </p>
+     */
+    public void setMaintenanceWindows(java.util.Collection<MaintenanceWindow> maintenanceWindows) {
+        if (maintenanceWindows == null) {
+            this.maintenanceWindows = null;
+            return;
+        }
+
+        this.maintenanceWindows = new java.util.ArrayList<MaintenanceWindow>(maintenanceWindows);
+    }
+
+    /**
+     * <p>
+     * An optional configuration within the <code>SchedulingConfig</code> to
+     * setup a recurring maintenance window with a predetermined start time and
+     * duration for the rollout of a job document to all devices in a target
+     * group for a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maintenanceWindows <p>
+     *            An optional configuration within the
+     *            <code>SchedulingConfig</code> to setup a recurring maintenance
+     *            window with a predetermined start time and duration for the
+     *            rollout of a job document to all devices in a target group for
+     *            a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SchedulingConfig withMaintenanceWindows(MaintenanceWindow... maintenanceWindows) {
+        if (getMaintenanceWindows() == null) {
+            this.maintenanceWindows = new java.util.ArrayList<MaintenanceWindow>(
+                    maintenanceWindows.length);
+        }
+        for (MaintenanceWindow value : maintenanceWindows) {
+            this.maintenanceWindows.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An optional configuration within the <code>SchedulingConfig</code> to
+     * setup a recurring maintenance window with a predetermined start time and
+     * duration for the rollout of a job document to all devices in a target
+     * group for a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maintenanceWindows <p>
+     *            An optional configuration within the
+     *            <code>SchedulingConfig</code> to setup a recurring maintenance
+     *            window with a predetermined start time and duration for the
+     *            rollout of a job document to all devices in a target group for
+     *            a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SchedulingConfig withMaintenanceWindows(
+            java.util.Collection<MaintenanceWindow> maintenanceWindows) {
+        setMaintenanceWindows(maintenanceWindows);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -372,7 +505,9 @@ public class SchedulingConfig implements Serializable {
         if (getEndTime() != null)
             sb.append("endTime: " + getEndTime() + ",");
         if (getEndBehavior() != null)
-            sb.append("endBehavior: " + getEndBehavior());
+            sb.append("endBehavior: " + getEndBehavior() + ",");
+        if (getMaintenanceWindows() != null)
+            sb.append("maintenanceWindows: " + getMaintenanceWindows());
         sb.append("}");
         return sb.toString();
     }
@@ -386,6 +521,8 @@ public class SchedulingConfig implements Serializable {
         hashCode = prime * hashCode + ((getEndTime() == null) ? 0 : getEndTime().hashCode());
         hashCode = prime * hashCode
                 + ((getEndBehavior() == null) ? 0 : getEndBehavior().hashCode());
+        hashCode = prime * hashCode
+                + ((getMaintenanceWindows() == null) ? 0 : getMaintenanceWindows().hashCode());
         return hashCode;
     }
 
@@ -413,6 +550,11 @@ public class SchedulingConfig implements Serializable {
             return false;
         if (other.getEndBehavior() != null
                 && other.getEndBehavior().equals(this.getEndBehavior()) == false)
+            return false;
+        if (other.getMaintenanceWindows() == null ^ this.getMaintenanceWindows() == null)
+            return false;
+        if (other.getMaintenanceWindows() != null
+                && other.getMaintenanceWindows().equals(this.getMaintenanceWindows()) == false)
             return false;
         return true;
     }
