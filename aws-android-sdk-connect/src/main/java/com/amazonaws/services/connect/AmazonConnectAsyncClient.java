@@ -5003,10 +5003,11 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Describes the specified user account. You can find the instance ID in the
-     * console (it’s the final part of the ARN). The console does not display
-     * the user IDs. Instead, list the users and note the IDs provided in the
-     * output.
+     * Describes the specified user account. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID in the Amazon Connect console</a> (it’s the final
+     * part of the ARN). The console does not display the user IDs. Instead,
+     * list the users and note the IDs provided in the output.
      * </p>
      * 
      * @param describeUserRequest
@@ -5037,10 +5038,11 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * Describes the specified user account. You can find the instance ID in the
-     * console (it’s the final part of the ARN). The console does not display
-     * the user IDs. Instead, list the users and note the IDs provided in the
-     * output.
+     * Describes the specified user account. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID in the Amazon Connect console</a> (it’s the final
+     * part of the ARN). The console does not display the user IDs. Instead,
+     * list the users and note the IDs provided in the output.
      * </p>
      * 
      * @param describeUserRequest
@@ -6534,6 +6536,117 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(getMetricDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets metric data from the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * <code>GetMetricDataV2</code> offers more features than <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricData.html"
+     * >GetMetricData</a>, the previous version of this API. It has new metrics,
+     * offers filtering at a metric level, and offers the ability to filter and
+     * group data by channels, queues, routing profiles, agents, and agent
+     * hierarchy levels. It can retrieve historical data for last the 14 days,
+     * in 24-hour intervals.
+     * </p>
+     * <p>
+     * For a description of the historical metrics that are supported by
+     * <code>GetMetricDataV2</code> and <code>GetMetricData</code>, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical metrics definitions</a> in the <i>Amazon Connect
+     * Administrator's Guide</i>.
+     * </p>
+     * <p>
+     * This API is not available in the Amazon Web Services GovCloud (US)
+     * Regions.
+     * </p>
+     * 
+     * @param getMetricDataV2Request
+     * @return A Java Future object containing the response from the
+     *         GetMetricDataV2 service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMetricDataV2Result> getMetricDataV2Async(
+            final GetMetricDataV2Request getMetricDataV2Request) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<GetMetricDataV2Result>() {
+            public GetMetricDataV2Result call() throws Exception {
+                return getMetricDataV2(getMetricDataV2Request);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets metric data from the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * <code>GetMetricDataV2</code> offers more features than <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricData.html"
+     * >GetMetricData</a>, the previous version of this API. It has new metrics,
+     * offers filtering at a metric level, and offers the ability to filter and
+     * group data by channels, queues, routing profiles, agents, and agent
+     * hierarchy levels. It can retrieve historical data for last the 14 days,
+     * in 24-hour intervals.
+     * </p>
+     * <p>
+     * For a description of the historical metrics that are supported by
+     * <code>GetMetricDataV2</code> and <code>GetMetricData</code>, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical metrics definitions</a> in the <i>Amazon Connect
+     * Administrator's Guide</i>.
+     * </p>
+     * <p>
+     * This API is not available in the Amazon Web Services GovCloud (US)
+     * Regions.
+     * </p>
+     * 
+     * @param getMetricDataV2Request
+     * @return A Java Future object containing the response from the
+     *         GetMetricDataV2 service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMetricDataV2Result> getMetricDataV2Async(
+            final GetMetricDataV2Request getMetricDataV2Request,
+            final AsyncHandler<GetMetricDataV2Request, GetMetricDataV2Result> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetMetricDataV2Result>() {
+            public GetMetricDataV2Result call() throws Exception {
+                GetMetricDataV2Result result = null;
+                try {
+                    result = getMetricDataV2(getMetricDataV2Request);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getMetricDataV2Request, result);
                 return result;
             }
         });
