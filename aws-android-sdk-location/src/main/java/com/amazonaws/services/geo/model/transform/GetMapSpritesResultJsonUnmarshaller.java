@@ -34,6 +34,8 @@ public class GetMapSpritesResultJsonUnmarshaller implements
             getMapSpritesResult.setBlob(java.nio.ByteBuffer.wrap(com.amazonaws.util.IOUtils
                     .toByteArray(is)));
         }
+        if (context.getHeader("Cache-Control") != null)
+            getMapSpritesResult.setCacheControl(context.getHeader("Cache-Control"));
         if (context.getHeader("Content-Type") != null)
             getMapSpritesResult.setContentType(context.getHeader("Content-Type"));
         return getMapSpritesResult;

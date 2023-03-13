@@ -30,7 +30,7 @@ public class CreateTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -120,7 +120,7 @@ public class CreateTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -139,7 +139,8 @@ public class CreateTrackerResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the tracker resource. Used
-     *         when you need to specify a resource across all AWS.
+     *         when you need to specify a resource across all Amazon Web
+     *         Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -157,7 +158,7 @@ public class CreateTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -176,7 +177,8 @@ public class CreateTrackerResult implements Serializable {
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all AWS.
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -194,7 +196,7 @@ public class CreateTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -216,7 +218,8 @@ public class CreateTrackerResult implements Serializable {
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all AWS.
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
      *            </p>
      *            <ul>
      *            <li>

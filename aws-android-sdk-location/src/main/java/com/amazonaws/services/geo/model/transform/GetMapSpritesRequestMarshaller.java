@@ -58,6 +58,9 @@ public class GetMapSpritesRequestMarshaller implements
                 "{FileName}",
                 (getMapSpritesRequest.getFileName() == null) ? "" : StringUtils
                         .fromString(getMapSpritesRequest.getFileName()));
+        if (getMapSpritesRequest.getKey() != null) {
+            request.addParameter("key", StringUtils.fromString(getMapSpritesRequest.getKey()));
+        }
         uriResourcePath = uriResourcePath.replace(
                 "{MapName}",
                 (getMapSpritesRequest.getMapName() == null) ? "" : StringUtils

@@ -27,8 +27,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class StartTaskContactRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -152,16 +154,32 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String relatedContactId;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance. You can find the
-     *         instanceId in the ARN of the instance.
+     *         The identifier of the Amazon Connect instance. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -170,16 +188,21 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -188,8 +211,10 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -199,8 +224,11 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -958,6 +986,72 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The contactId that is <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     *         >related</a> to this contact.
+     *         </p>
+     */
+    public String getRelatedContactId() {
+        return relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId that is <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     *            >related</a> to this contact.
+     *            </p>
+     */
+    public void setRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId that is <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     * >related</a> to this contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param relatedContactId <p>
+     *            The contactId that is <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html#linked-tasks"
+     *            >related</a> to this contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTaskContactRequest withRelatedContactId(String relatedContactId) {
+        this.relatedContactId = relatedContactId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -989,7 +1083,9 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
         if (getTaskTemplateId() != null)
             sb.append("TaskTemplateId: " + getTaskTemplateId() + ",");
         if (getQuickConnectId() != null)
-            sb.append("QuickConnectId: " + getQuickConnectId());
+            sb.append("QuickConnectId: " + getQuickConnectId() + ",");
+        if (getRelatedContactId() != null)
+            sb.append("RelatedContactId: " + getRelatedContactId());
         sb.append("}");
         return sb.toString();
     }
@@ -1017,6 +1113,8 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
                 + ((getTaskTemplateId() == null) ? 0 : getTaskTemplateId().hashCode());
         hashCode = prime * hashCode
                 + ((getQuickConnectId() == null) ? 0 : getQuickConnectId().hashCode());
+        hashCode = prime * hashCode
+                + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
         return hashCode;
     }
 
@@ -1084,6 +1182,11 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getQuickConnectId() != null
                 && other.getQuickConnectId().equals(this.getQuickConnectId()) == false)
+            return false;
+        if (other.getRelatedContactId() == null ^ this.getRelatedContactId() == null)
+            return false;
+        if (other.getRelatedContactId() != null
+                && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
             return false;
         return true;
     }

@@ -20,9 +20,9 @@ import java.io.Serializable;
 public class ListTrackersResult implements Serializable {
     /**
      * <p>
-     * Contains tracker resources in your AWS account. Details include tracker
-     * name, description and timestamps for when the tracker was created and
-     * last updated.
+     * Contains tracker resources in your Amazon Web Services account. Details
+     * include tracker name, description and timestamps for when the tracker was
+     * created and last updated.
      * </p>
      */
     private java.util.List<ListTrackersResponseEntry> entries;
@@ -41,15 +41,15 @@ public class ListTrackersResult implements Serializable {
 
     /**
      * <p>
-     * Contains tracker resources in your AWS account. Details include tracker
-     * name, description and timestamps for when the tracker was created and
-     * last updated.
+     * Contains tracker resources in your Amazon Web Services account. Details
+     * include tracker name, description and timestamps for when the tracker was
+     * created and last updated.
      * </p>
      *
      * @return <p>
-     *         Contains tracker resources in your AWS account. Details include
-     *         tracker name, description and timestamps for when the tracker was
-     *         created and last updated.
+     *         Contains tracker resources in your Amazon Web Services account.
+     *         Details include tracker name, description and timestamps for when
+     *         the tracker was created and last updated.
      *         </p>
      */
     public java.util.List<ListTrackersResponseEntry> getEntries() {
@@ -58,15 +58,15 @@ public class ListTrackersResult implements Serializable {
 
     /**
      * <p>
-     * Contains tracker resources in your AWS account. Details include tracker
-     * name, description and timestamps for when the tracker was created and
-     * last updated.
+     * Contains tracker resources in your Amazon Web Services account. Details
+     * include tracker name, description and timestamps for when the tracker was
+     * created and last updated.
      * </p>
      *
      * @param entries <p>
-     *            Contains tracker resources in your AWS account. Details
-     *            include tracker name, description and timestamps for when the
-     *            tracker was created and last updated.
+     *            Contains tracker resources in your Amazon Web Services
+     *            account. Details include tracker name, description and
+     *            timestamps for when the tracker was created and last updated.
      *            </p>
      */
     public void setEntries(java.util.Collection<ListTrackersResponseEntry> entries) {
@@ -80,18 +80,18 @@ public class ListTrackersResult implements Serializable {
 
     /**
      * <p>
-     * Contains tracker resources in your AWS account. Details include tracker
-     * name, description and timestamps for when the tracker was created and
-     * last updated.
+     * Contains tracker resources in your Amazon Web Services account. Details
+     * include tracker name, description and timestamps for when the tracker was
+     * created and last updated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Contains tracker resources in your AWS account. Details
-     *            include tracker name, description and timestamps for when the
-     *            tracker was created and last updated.
+     *            Contains tracker resources in your Amazon Web Services
+     *            account. Details include tracker name, description and
+     *            timestamps for when the tracker was created and last updated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -108,18 +108,18 @@ public class ListTrackersResult implements Serializable {
 
     /**
      * <p>
-     * Contains tracker resources in your AWS account. Details include tracker
-     * name, description and timestamps for when the tracker was created and
-     * last updated.
+     * Contains tracker resources in your Amazon Web Services account. Details
+     * include tracker name, description and timestamps for when the tracker was
+     * created and last updated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Contains tracker resources in your AWS account. Details
-     *            include tracker name, description and timestamps for when the
-     *            tracker was created and last updated.
+     *            Contains tracker resources in your Amazon Web Services
+     *            account. Details include tracker name, description and
+     *            timestamps for when the tracker was created and last updated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
