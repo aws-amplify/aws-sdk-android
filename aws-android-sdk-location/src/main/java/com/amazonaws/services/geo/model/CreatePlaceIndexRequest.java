@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a place index resource in your AWS account. Use a place index
- * resource to geocode addresses and other text queries by using the
+ * Creates a place index resource in your Amazon Web Services account. Use a
+ * place index resource to geocode addresses and other text queries by using the
  * <code>SearchPlaceIndexForText</code> operation, and reverse geocode
  * coordinates by using the <code>SearchPlaceIndexForPosition</code> operation,
  * and enable autosuggestions by using the
@@ -33,8 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If your application is tracking or routing assets you use in your business,
  * such as delivery vehicles or employees, you must not use Esri as your
  * geolocation provider. See section 82 of the <a
- * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
- * details.
+ * href="http://aws.amazon.com/service-terms">Amazon Web Services service
+ * terms</a> for more details.
  * </p>
  * </note>
  */
@@ -86,8 +86,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * provider, you may not <a href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      * >store results</a> for locations in Japan. For more information, see the
-     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
+     * <a href="http://aws.amazon.com/service-terms/">Amazon Web Services
+     * Service Terms</a> for Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
@@ -256,8 +256,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * provider, you may not <a href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      * >store results</a> for locations in Japan. For more information, see the
-     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
+     * <a href="http://aws.amazon.com/service-terms/">Amazon Web Services
+     * Service Terms</a> for Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
@@ -315,8 +315,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         provider, you may not <a href=
      *         "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      *         >store results</a> for locations in Japan. For more information,
-     *         see the <a href="https://aws.amazon.com/service-terms/">AWS
-     *         Service Terms</a> for Amazon Location Service.
+     *         see the <a href="http://aws.amazon.com/service-terms/">Amazon Web
+     *         Services Service Terms</a> for Amazon Location Service.
      *         </p>
      *         </important></li>
      *         </ul>
@@ -378,8 +378,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * provider, you may not <a href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      * >store results</a> for locations in Japan. For more information, see the
-     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
+     * <a href="http://aws.amazon.com/service-terms/">Amazon Web Services
+     * Service Terms</a> for Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
@@ -439,8 +439,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      *            >store results</a> for locations in Japan. For more
      *            information, see the <a
-     *            href="https://aws.amazon.com/service-terms/">AWS Service
-     *            Terms</a> for Amazon Location Service.
+     *            href="http://aws.amazon.com/service-terms/">Amazon Web
+     *            Services Service Terms</a> for Amazon Location Service.
      *            </p>
      *            </important></li>
      *            </ul>
@@ -502,8 +502,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * provider, you may not <a href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      * >store results</a> for locations in Japan. For more information, see the
-     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
+     * <a href="http://aws.amazon.com/service-terms/">Amazon Web Services
+     * Service Terms</a> for Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
@@ -566,8 +566,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
      *            >store results</a> for locations in Japan. For more
      *            information, see the <a
-     *            href="https://aws.amazon.com/service-terms/">AWS Service
-     *            Terms</a> for Amazon Location Service.
+     *            href="http://aws.amazon.com/service-terms/">Amazon Web
+     *            Services Service Terms</a> for Amazon Location Service.
      *            </p>
      *            </important></li>
      *            </ul>

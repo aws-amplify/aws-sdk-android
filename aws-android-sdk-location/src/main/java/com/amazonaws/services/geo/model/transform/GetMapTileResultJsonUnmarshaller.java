@@ -34,6 +34,8 @@ public class GetMapTileResultJsonUnmarshaller implements
             getMapTileResult.setBlob(java.nio.ByteBuffer.wrap(com.amazonaws.util.IOUtils
                     .toByteArray(is)));
         }
+        if (context.getHeader("Cache-Control") != null)
+            getMapTileResult.setCacheControl(context.getHeader("Cache-Control"));
         if (context.getHeader("Content-Type") != null)
             getMapTileResult.setContentType(context.getHeader("Content-Type"));
         return getMapTileResult;

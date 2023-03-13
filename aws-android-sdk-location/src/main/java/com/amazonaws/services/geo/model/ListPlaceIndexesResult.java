@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class ListPlaceIndexesResult implements Serializable {
     /**
      * <p>
-     * Lists the place index resources that exist in your AWS account
+     * Lists the place index resources that exist in your Amazon Web Services
+     * account
      * </p>
      */
     private java.util.List<ListPlaceIndexesResponseEntry> entries;
@@ -38,11 +39,13 @@ public class ListPlaceIndexesResult implements Serializable {
 
     /**
      * <p>
-     * Lists the place index resources that exist in your AWS account
+     * Lists the place index resources that exist in your Amazon Web Services
+     * account
      * </p>
      *
      * @return <p>
-     *         Lists the place index resources that exist in your AWS account
+     *         Lists the place index resources that exist in your Amazon Web
+     *         Services account
      *         </p>
      */
     public java.util.List<ListPlaceIndexesResponseEntry> getEntries() {
@@ -51,11 +54,13 @@ public class ListPlaceIndexesResult implements Serializable {
 
     /**
      * <p>
-     * Lists the place index resources that exist in your AWS account
+     * Lists the place index resources that exist in your Amazon Web Services
+     * account
      * </p>
      *
      * @param entries <p>
-     *            Lists the place index resources that exist in your AWS account
+     *            Lists the place index resources that exist in your Amazon Web
+     *            Services account
      *            </p>
      */
     public void setEntries(java.util.Collection<ListPlaceIndexesResponseEntry> entries) {
@@ -69,14 +74,16 @@ public class ListPlaceIndexesResult implements Serializable {
 
     /**
      * <p>
-     * Lists the place index resources that exist in your AWS account
+     * Lists the place index resources that exist in your Amazon Web Services
+     * account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the place index resources that exist in your AWS account
+     *            Lists the place index resources that exist in your Amazon Web
+     *            Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -93,14 +100,16 @@ public class ListPlaceIndexesResult implements Serializable {
 
     /**
      * <p>
-     * Lists the place index resources that exist in your AWS account
+     * Lists the place index resources that exist in your Amazon Web Services
+     * account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the place index resources that exist in your AWS account
+     *            Lists the place index resources that exist in your Amazon Web
+     *            Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
