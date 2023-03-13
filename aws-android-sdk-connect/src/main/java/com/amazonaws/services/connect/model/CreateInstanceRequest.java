@@ -64,7 +64,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      */
     private String instanceAlias;
@@ -251,7 +251,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @return <p>
@@ -268,7 +268,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param instanceAlias <p>
@@ -288,7 +288,7 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param instanceAlias <p>
