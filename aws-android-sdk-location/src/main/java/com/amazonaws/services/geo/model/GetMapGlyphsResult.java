@@ -20,10 +20,17 @@ import java.io.Serializable;
 public class GetMapGlyphsResult implements Serializable {
     /**
      * <p>
-     * The blob's content type.
+     * The glyph, as binary blob.
      * </p>
      */
     private java.nio.ByteBuffer blob;
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     */
+    private String cacheControl;
 
     /**
      * <p>
@@ -35,11 +42,11 @@ public class GetMapGlyphsResult implements Serializable {
 
     /**
      * <p>
-     * The blob's content type.
+     * The glyph, as binary blob.
      * </p>
      *
      * @return <p>
-     *         The blob's content type.
+     *         The glyph, as binary blob.
      *         </p>
      */
     public java.nio.ByteBuffer getBlob() {
@@ -48,11 +55,11 @@ public class GetMapGlyphsResult implements Serializable {
 
     /**
      * <p>
-     * The blob's content type.
+     * The glyph, as binary blob.
      * </p>
      *
      * @param blob <p>
-     *            The blob's content type.
+     *            The glyph, as binary blob.
      *            </p>
      */
     public void setBlob(java.nio.ByteBuffer blob) {
@@ -61,20 +68,65 @@ public class GetMapGlyphsResult implements Serializable {
 
     /**
      * <p>
-     * The blob's content type.
+     * The glyph, as binary blob.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param blob <p>
-     *            The blob's content type.
+     *            The glyph, as binary blob.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public GetMapGlyphsResult withBlob(java.nio.ByteBuffer blob) {
         this.blob = blob;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     *
+     * @return <p>
+     *         The HTTP Cache-Control directive for the value.
+     *         </p>
+     */
+    public String getCacheControl() {
+        return cacheControl;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     *
+     * @param cacheControl <p>
+     *            The HTTP Cache-Control directive for the value.
+     *            </p>
+     */
+    public void setCacheControl(String cacheControl) {
+        this.cacheControl = cacheControl;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param cacheControl <p>
+     *            The HTTP Cache-Control directive for the value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapGlyphsResult withCacheControl(String cacheControl) {
+        this.cacheControl = cacheControl;
         return this;
     }
 
@@ -142,6 +194,8 @@ public class GetMapGlyphsResult implements Serializable {
         sb.append("{");
         if (getBlob() != null)
             sb.append("Blob: " + getBlob() + ",");
+        if (getCacheControl() != null)
+            sb.append("CacheControl: " + getCacheControl() + ",");
         if (getContentType() != null)
             sb.append("ContentType: " + getContentType());
         sb.append("}");
@@ -154,6 +208,8 @@ public class GetMapGlyphsResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getBlob() == null) ? 0 : getBlob().hashCode());
+        hashCode = prime * hashCode
+                + ((getCacheControl() == null) ? 0 : getCacheControl().hashCode());
         hashCode = prime * hashCode
                 + ((getContentType() == null) ? 0 : getContentType().hashCode());
         return hashCode;
@@ -173,6 +229,11 @@ public class GetMapGlyphsResult implements Serializable {
         if (other.getBlob() == null ^ this.getBlob() == null)
             return false;
         if (other.getBlob() != null && other.getBlob().equals(this.getBlob()) == false)
+            return false;
+        if (other.getCacheControl() == null ^ this.getCacheControl() == null)
+            return false;
+        if (other.getCacheControl() != null
+                && other.getCacheControl().equals(this.getCacheControl()) == false)
             return false;
         if (other.getContentType() == null ^ this.getContentType() == null)
             return false;
