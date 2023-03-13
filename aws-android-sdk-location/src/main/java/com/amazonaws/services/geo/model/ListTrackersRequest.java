@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists tracker resources in your AWS account.
+ * Lists tracker resources in your Amazon Web Services account.
  * </p>
  */
 public class ListTrackersRequest extends AmazonWebServiceRequest implements Serializable {

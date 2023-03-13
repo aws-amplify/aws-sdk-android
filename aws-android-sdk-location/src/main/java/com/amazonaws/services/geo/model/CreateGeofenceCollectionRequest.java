@@ -72,8 +72,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a>. Enter a key ID, key ARN, alias name,
-     * or alias ARN.
+     * >Amazon Web Services KMS customer managed key</a>. Enter a key ID, key
+     * ARN, alias name, or alias ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -392,8 +392,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a>. Enter a key ID, key ARN, alias name,
-     * or alias ARN.
+     * >Amazon Web Services KMS customer managed key</a>. Enter a key ID, key
+     * ARN, alias name, or alias ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -402,8 +402,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * @return <p>
      *         A key identifier for an <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *         >AWS KMS customer managed key</a>. Enter a key ID, key ARN, alias
-     *         name, or alias ARN.
+     *         >Amazon Web Services KMS customer managed key</a>. Enter a key
+     *         ID, key ARN, alias name, or alias ARN.
      *         </p>
      */
     public String getKmsKeyId() {
@@ -414,8 +414,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a>. Enter a key ID, key ARN, alias name,
-     * or alias ARN.
+     * >Amazon Web Services KMS customer managed key</a>. Enter a key ID, key
+     * ARN, alias name, or alias ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -424,8 +424,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a>. Enter a key ID, key ARN,
-     *            alias name, or alias ARN.
+     *            >Amazon Web Services KMS customer managed key</a>. Enter a key
+     *            ID, key ARN, alias name, or alias ARN.
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -436,8 +436,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a>. Enter a key ID, key ARN, alias name,
-     * or alias ARN.
+     * >Amazon Web Services KMS customer managed key</a>. Enter a key ID, key
+     * ARN, alias name, or alias ARN.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -449,8 +449,8 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a>. Enter a key ID, key ARN,
-     *            alias name, or alias ARN.
+     *            >Amazon Web Services KMS customer managed key</a>. Enter a key
+     *            ID, key ARN, alias name, or alias ARN.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

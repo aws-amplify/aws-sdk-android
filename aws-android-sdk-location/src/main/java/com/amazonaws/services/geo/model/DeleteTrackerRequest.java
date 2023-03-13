@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a tracker resource from your AWS account.
+ * Deletes a tracker resource from your Amazon Web Services account.
  * </p>
  * <note>
  * <p>
