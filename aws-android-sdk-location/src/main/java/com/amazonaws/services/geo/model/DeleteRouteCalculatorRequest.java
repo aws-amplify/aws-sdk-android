@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a route calculator resource from your AWS account.
+ * Deletes a route calculator resource from your Amazon Web Services account.
  * </p>
  * <note>
  * <p>

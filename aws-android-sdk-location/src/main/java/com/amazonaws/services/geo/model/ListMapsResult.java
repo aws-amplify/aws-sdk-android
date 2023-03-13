@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListMapsResult implements Serializable {
     /**
      * <p>
-     * Contains a list of maps in your AWS account
+     * Contains a list of maps in your Amazon Web Services account
      * </p>
      */
     private java.util.List<ListMapsResponseEntry> entries;
@@ -39,11 +39,11 @@ public class ListMapsResult implements Serializable {
 
     /**
      * <p>
-     * Contains a list of maps in your AWS account
+     * Contains a list of maps in your Amazon Web Services account
      * </p>
      *
      * @return <p>
-     *         Contains a list of maps in your AWS account
+     *         Contains a list of maps in your Amazon Web Services account
      *         </p>
      */
     public java.util.List<ListMapsResponseEntry> getEntries() {
@@ -52,11 +52,11 @@ public class ListMapsResult implements Serializable {
 
     /**
      * <p>
-     * Contains a list of maps in your AWS account
+     * Contains a list of maps in your Amazon Web Services account
      * </p>
      *
      * @param entries <p>
-     *            Contains a list of maps in your AWS account
+     *            Contains a list of maps in your Amazon Web Services account
      *            </p>
      */
     public void setEntries(java.util.Collection<ListMapsResponseEntry> entries) {
@@ -70,14 +70,14 @@ public class ListMapsResult implements Serializable {
 
     /**
      * <p>
-     * Contains a list of maps in your AWS account
+     * Contains a list of maps in your Amazon Web Services account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Contains a list of maps in your AWS account
+     *            Contains a list of maps in your Amazon Web Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,14 +94,14 @@ public class ListMapsResult implements Serializable {
 
     /**
      * <p>
-     * Contains a list of maps in your AWS account
+     * Contains a list of maps in your Amazon Web Services account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Contains a list of maps in your AWS account
+     *            Contains a list of maps in your Amazon Web Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

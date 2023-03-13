@@ -27,6 +27,13 @@ public class GetMapSpritesResult implements Serializable {
 
     /**
      * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     */
+    private String cacheControl;
+
+    /**
+     * <p>
      * The content type of the sprite sheet and offsets. For example, the sprite
      * sheet content type is <code>image/png</code>, and the sprite offset JSON
      * document is <code>application/json</code>.
@@ -76,6 +83,51 @@ public class GetMapSpritesResult implements Serializable {
      */
     public GetMapSpritesResult withBlob(java.nio.ByteBuffer blob) {
         this.blob = blob;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     *
+     * @return <p>
+     *         The HTTP Cache-Control directive for the value.
+     *         </p>
+     */
+    public String getCacheControl() {
+        return cacheControl;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     *
+     * @param cacheControl <p>
+     *            The HTTP Cache-Control directive for the value.
+     *            </p>
+     */
+    public void setCacheControl(String cacheControl) {
+        this.cacheControl = cacheControl;
+    }
+
+    /**
+     * <p>
+     * The HTTP Cache-Control directive for the value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param cacheControl <p>
+     *            The HTTP Cache-Control directive for the value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapSpritesResult withCacheControl(String cacheControl) {
+        this.cacheControl = cacheControl;
         return this;
     }
 
@@ -151,6 +203,8 @@ public class GetMapSpritesResult implements Serializable {
         sb.append("{");
         if (getBlob() != null)
             sb.append("Blob: " + getBlob() + ",");
+        if (getCacheControl() != null)
+            sb.append("CacheControl: " + getCacheControl() + ",");
         if (getContentType() != null)
             sb.append("ContentType: " + getContentType());
         sb.append("}");
@@ -163,6 +217,8 @@ public class GetMapSpritesResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getBlob() == null) ? 0 : getBlob().hashCode());
+        hashCode = prime * hashCode
+                + ((getCacheControl() == null) ? 0 : getCacheControl().hashCode());
         hashCode = prime * hashCode
                 + ((getContentType() == null) ? 0 : getContentType().hashCode());
         return hashCode;
@@ -182,6 +238,11 @@ public class GetMapSpritesResult implements Serializable {
         if (other.getBlob() == null ^ this.getBlob() == null)
             return false;
         if (other.getBlob() != null && other.getBlob().equals(this.getBlob()) == false)
+            return false;
+        if (other.getCacheControl() == null ^ this.getCacheControl() == null)
+            return false;
+        if (other.getCacheControl() != null
+                && other.getCacheControl().equals(this.getCacheControl()) == false)
             return false;
         if (other.getContentType() == null ^ this.getContentType() == null)
             return false;

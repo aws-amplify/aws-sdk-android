@@ -56,7 +56,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      */
     private String instanceAlias;
@@ -301,7 +301,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @return <p>
@@ -318,7 +318,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param instanceAlias <p>
@@ -338,7 +338,7 @@ public class InstanceSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param instanceAlias <p>
