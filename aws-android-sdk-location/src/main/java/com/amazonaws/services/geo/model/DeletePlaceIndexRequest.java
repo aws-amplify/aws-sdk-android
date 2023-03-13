@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a place index resource from your AWS account.
+ * Deletes a place index resource from your Amazon Web Services account.
  * </p>
  * <note>
  * <p>

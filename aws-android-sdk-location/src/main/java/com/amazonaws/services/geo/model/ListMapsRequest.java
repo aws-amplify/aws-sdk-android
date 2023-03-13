@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists map resources in your AWS account.
+ * Lists map resources in your Amazon Web Services account.
  * </p>
  */
 public class ListMapsRequest extends AmazonWebServiceRequest implements Serializable {

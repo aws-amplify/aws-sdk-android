@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists geofence collections in your AWS account.
+ * Lists geofence collections in your Amazon Web Services account.
  * </p>
  */
 public class ListGeofenceCollectionsRequest extends AmazonWebServiceRequest implements Serializable {
