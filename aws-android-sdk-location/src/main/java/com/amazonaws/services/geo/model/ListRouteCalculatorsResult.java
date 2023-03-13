@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class ListRouteCalculatorsResult implements Serializable {
     /**
      * <p>
-     * Lists the route calculator resources that exist in your AWS account
+     * Lists the route calculator resources that exist in your Amazon Web
+     * Services account
      * </p>
      */
     private java.util.List<ListRouteCalculatorsResponseEntry> entries;
@@ -39,12 +40,13 @@ public class ListRouteCalculatorsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the route calculator resources that exist in your AWS account
+     * Lists the route calculator resources that exist in your Amazon Web
+     * Services account
      * </p>
      *
      * @return <p>
-     *         Lists the route calculator resources that exist in your AWS
-     *         account
+     *         Lists the route calculator resources that exist in your Amazon
+     *         Web Services account
      *         </p>
      */
     public java.util.List<ListRouteCalculatorsResponseEntry> getEntries() {
@@ -53,12 +55,13 @@ public class ListRouteCalculatorsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the route calculator resources that exist in your AWS account
+     * Lists the route calculator resources that exist in your Amazon Web
+     * Services account
      * </p>
      *
      * @param entries <p>
-     *            Lists the route calculator resources that exist in your AWS
-     *            account
+     *            Lists the route calculator resources that exist in your Amazon
+     *            Web Services account
      *            </p>
      */
     public void setEntries(java.util.Collection<ListRouteCalculatorsResponseEntry> entries) {
@@ -72,15 +75,16 @@ public class ListRouteCalculatorsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the route calculator resources that exist in your AWS account
+     * Lists the route calculator resources that exist in your Amazon Web
+     * Services account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the route calculator resources that exist in your AWS
-     *            account
+     *            Lists the route calculator resources that exist in your Amazon
+     *            Web Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,15 +102,16 @@ public class ListRouteCalculatorsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the route calculator resources that exist in your AWS account
+     * Lists the route calculator resources that exist in your Amazon Web
+     * Services account
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the route calculator resources that exist in your AWS
-     *            account
+     *            Lists the route calculator resources that exist in your Amazon
+     *            Web Services account
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

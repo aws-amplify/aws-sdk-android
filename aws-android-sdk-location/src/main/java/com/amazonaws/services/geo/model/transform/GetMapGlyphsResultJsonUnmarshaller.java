@@ -34,6 +34,8 @@ public class GetMapGlyphsResultJsonUnmarshaller implements
             getMapGlyphsResult.setBlob(java.nio.ByteBuffer.wrap(com.amazonaws.util.IOUtils
                     .toByteArray(is)));
         }
+        if (context.getHeader("Cache-Control") != null)
+            getMapGlyphsResult.setCacheControl(context.getHeader("Cache-Control"));
         if (context.getHeader("Content-Type") != null)
             getMapGlyphsResult.setContentType(context.getHeader("Content-Type"));
         return getMapGlyphsResult;

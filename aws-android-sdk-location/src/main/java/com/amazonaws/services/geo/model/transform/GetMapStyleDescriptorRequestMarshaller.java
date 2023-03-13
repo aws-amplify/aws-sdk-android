@@ -55,6 +55,10 @@ public class GetMapStyleDescriptorRequestMarshaller implements
         request.setHttpMethod(HttpMethodName.GET);
 
         String uriResourcePath = "/maps/v0/maps/{MapName}/style-descriptor";
+        if (getMapStyleDescriptorRequest.getKey() != null) {
+            request.addParameter("key",
+                    StringUtils.fromString(getMapStyleDescriptorRequest.getKey()));
+        }
         uriResourcePath = uriResourcePath.replace(
                 "{MapName}",
                 (getMapStyleDescriptorRequest.getMapName() == null) ? "" : StringUtils
