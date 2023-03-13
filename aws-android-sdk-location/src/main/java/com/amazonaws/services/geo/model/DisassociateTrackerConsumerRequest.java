@@ -36,7 +36,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection to be
      * disassociated from the tracker resource. Used when you need to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -70,7 +70,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection to be
      * disassociated from the tracker resource. Used when you need to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -90,7 +90,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * @return <p>
      *         The Amazon Resource Name (ARN) for the geofence collection to be
      *         disassociated from the tracker resource. Used when you need to
-     *         specify a resource across all AWS.
+     *         specify a resource across all Amazon Web Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -109,7 +109,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection to be
      * disassociated from the tracker resource. Used when you need to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -129,7 +129,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * @param consumerArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection to
      *            be disassociated from the tracker resource. Used when you need
-     *            to specify a resource across all AWS.
+     *            to specify a resource across all Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -148,7 +148,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection to be
      * disassociated from the tracker resource. Used when you need to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -171,7 +171,7 @@ public class DisassociateTrackerConsumerRequest extends AmazonWebServiceRequest 
      * @param consumerArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection to
      *            be disassociated from the tracker resource. Used when you need
-     *            to specify a resource across all AWS.
+     *            to specify a resource across all Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists route calculator resources in your AWS account.
+ * Lists route calculator resources in your Amazon Web Services account.
  * </p>
  */
 public class ListRouteCalculatorsRequest extends AmazonWebServiceRequest implements Serializable {

@@ -32,12 +32,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * Customer AWS account
+ * Customer Amazon Web Services account
  * </p>
  * </li>
  * <li>
  * <p>
- * AWS Region
+ * Amazon Web Services Region
  * </p>
  * </li>
  * <li>

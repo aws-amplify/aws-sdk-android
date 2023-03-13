@@ -543,16 +543,53 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Creates a map resource in your AWS account, which provides map tiles of
-     * different styles sourced from global location data providers.
+     * Creates an API key resource in your Amazon Web Services account, which
+     * lets you grant <code>geo:GetMap*</code> actions for Amazon Location Map
+     * resources to the API key bearer.
+     * </p>
+     * <important>
+     * <p>
+     * The API keys feature is in preview. We may add, change, or remove
+     * features before announcing general availability. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >Using API keys</a>.
+     * </p>
+     * </important>
+     * 
+     * @param createKeyRequest
+     * @return createKeyResult The response from the CreateKey service method,
+     *         as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ConflictException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    CreateKeyResult createKey(CreateKeyRequest createKeyRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a map resource in your Amazon Web Services account, which
+     * provides map tiles of different styles sourced from global location data
+     * providers.
      * </p>
      * <note>
      * <p>
      * If your application is tracking or routing assets you use in your
      * business, such as delivery vehicles or employees, you must not use Esri
      * as your geolocation provider. See section 82 of the <a
-     * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
-     * details.
+     * href="http://aws.amazon.com/service-terms">Amazon Web Services service
+     * terms</a> for more details.
      * </p>
      * </note>
      * 
@@ -578,9 +615,9 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Creates a place index resource in your AWS account. Use a place index
-     * resource to geocode addresses and other text queries by using the
-     * <code>SearchPlaceIndexForText</code> operation, and reverse geocode
+     * Creates a place index resource in your Amazon Web Services account. Use a
+     * place index resource to geocode addresses and other text queries by using
+     * the <code>SearchPlaceIndexForText</code> operation, and reverse geocode
      * coordinates by using the <code>SearchPlaceIndexForPosition</code>
      * operation, and enable autosuggestions by using the
      * <code>SearchPlaceIndexForSuggestions</code> operation.
@@ -590,8 +627,8 @@ public interface AmazonLocation {
      * If your application is tracking or routing assets you use in your
      * business, such as delivery vehicles or employees, you must not use Esri
      * as your geolocation provider. See section 82 of the <a
-     * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
-     * details.
+     * href="http://aws.amazon.com/service-terms">Amazon Web Services service
+     * terms</a> for more details.
      * </p>
      * </note>
      * 
@@ -617,7 +654,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Creates a route calculator resource in your AWS account.
+     * Creates a route calculator resource in your Amazon Web Services account.
      * </p>
      * <p>
      * You can send requests to a route calculator resource to estimate travel
@@ -629,8 +666,8 @@ public interface AmazonLocation {
      * If your application is tracking or routing assets you use in your
      * business, such as delivery vehicles or employees, you must not use Esri
      * as your geolocation provider. See section 82 of the <a
-     * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
-     * details.
+     * href="http://aws.amazon.com/service-terms">Amazon Web Services service
+     * terms</a> for more details.
      * </p>
      * </note>
      * 
@@ -658,8 +695,8 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Creates a tracker resource in your AWS account, which lets you retrieve
-     * current and historical location of devices.
+     * Creates a tracker resource in your Amazon Web Services account, which
+     * lets you retrieve current and historical location of devices.
      * </p>
      * 
      * @param createTrackerRequest
@@ -683,7 +720,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a geofence collection from your AWS account.
+     * Deletes a geofence collection from your Amazon Web Services account.
      * </p>
      * <note>
      * <p>
@@ -716,7 +753,32 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a map resource from your AWS account.
+     * Deletes the specified API key. The API key must have been deactivated
+     * more than 90 days previously.
+     * </p>
+     * 
+     * @param deleteKeyRequest
+     * @return deleteKeyResult The response from the DeleteKey service method,
+     *         as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    DeleteKeyResult deleteKey(DeleteKeyRequest deleteKeyRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a map resource from your Amazon Web Services account.
      * </p>
      * <note>
      * <p>
@@ -746,7 +808,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a place index resource from your AWS account.
+     * Deletes a place index resource from your Amazon Web Services account.
      * </p>
      * <note>
      * <p>
@@ -775,7 +837,8 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a route calculator resource from your AWS account.
+     * Deletes a route calculator resource from your Amazon Web Services
+     * account.
      * </p>
      * <note>
      * <p>
@@ -806,7 +869,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a tracker resource from your AWS account.
+     * Deletes a tracker resource from your Amazon Web Services account.
      * </p>
      * <note>
      * <p>
@@ -859,6 +922,39 @@ public interface AmazonLocation {
      */
     DescribeGeofenceCollectionResult describeGeofenceCollection(
             DescribeGeofenceCollectionRequest describeGeofenceCollectionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves the API key resource details.
+     * </p>
+     * <important>
+     * <p>
+     * The API keys feature is in preview. We may add, change, or remove
+     * features before announcing general availability. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >Using API keys</a>.
+     * </p>
+     * </important>
+     * 
+     * @param describeKeyRequest
+     * @return describeKeyResult The response from the DescribeKey service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    DescribeKeyResult describeKey(DescribeKeyRequest describeKeyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1205,12 +1301,12 @@ public interface AmazonLocation {
      * <ul>
      * <li>
      * <p>
-     * Customer AWS account
+     * Customer Amazon Web Services account
      * </p>
      * </li>
      * <li>
      * <p>
-     * AWS Region
+     * Amazon Web Services Region
      * </p>
      * </li>
      * <li>
@@ -1267,7 +1363,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists geofence collections in your AWS account.
+     * Lists geofence collections in your Amazon Web Services account.
      * </p>
      * 
      * @param listGeofenceCollectionsRequest
@@ -1316,7 +1412,39 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists map resources in your AWS account.
+     * Lists API key resources in your Amazon Web Services account.
+     * </p>
+     * <important>
+     * <p>
+     * The API keys feature is in preview. We may add, change, or remove
+     * features before announcing general availability. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >Using API keys</a>.
+     * </p>
+     * </important>
+     * 
+     * @param listKeysRequest
+     * @return listKeysResult The response from the ListKeys service method, as
+     *         returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ListKeysResult listKeys(ListKeysRequest listKeysRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists map resources in your Amazon Web Services account.
      * </p>
      * 
      * @param listMapsRequest
@@ -1339,7 +1467,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists place index resources in your AWS account.
+     * Lists place index resources in your Amazon Web Services account.
      * </p>
      * 
      * @param listPlaceIndexesRequest
@@ -1362,7 +1490,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists route calculator resources in your AWS account.
+     * Lists route calculator resources in your Amazon Web Services account.
      * </p>
      * 
      * @param listRouteCalculatorsRequest
@@ -1441,7 +1569,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists tracker resources in your AWS account.
+     * Lists tracker resources in your Amazon Web Services account.
      * </p>
      * 
      * @param listTrackersRequest
@@ -1689,6 +1817,39 @@ public interface AmazonLocation {
     UpdateGeofenceCollectionResult updateGeofenceCollection(
             UpdateGeofenceCollectionRequest updateGeofenceCollectionRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties of a given API key resource.
+     * </p>
+     * <important>
+     * <p>
+     * The API keys feature is in preview. We may add, change, or remove
+     * features before announcing general availability. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >Using API keys</a>.
+     * </p>
+     * </important>
+     * 
+     * @param updateKeyRequest
+     * @return updateKeyResult The response from the UpdateKey service method,
+     *         as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdateKeyResult updateKey(UpdateKeyRequest updateKeyRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
