@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a route calculator resource in your AWS account.
+ * Creates a route calculator resource in your Amazon Web Services account.
  * </p>
  * <p>
  * You can send requests to a route calculator resource to estimate travel time,
@@ -33,8 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If your application is tracking or routing assets you use in your business,
  * such as delivery vehicles or employees, you must not use Esri as your
  * geolocation provider. See section 82 of the <a
- * href="http://aws.amazon.com/service-terms">AWS service terms</a> for more
- * details.
+ * href="http://aws.amazon.com/service-terms">Amazon Web Services service
+ * terms</a> for more details.
  * </p>
  * </note>
  */

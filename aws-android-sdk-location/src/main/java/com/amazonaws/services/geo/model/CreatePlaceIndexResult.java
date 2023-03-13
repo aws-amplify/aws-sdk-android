@@ -30,7 +30,7 @@ public class CreatePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across AWS.
+     * specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -122,7 +122,7 @@ public class CreatePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across AWS.
+     * specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -141,7 +141,7 @@ public class CreatePlaceIndexResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the place index resource. Used
-     *         to specify a resource across AWS.
+     *         to specify a resource across Amazon Web Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -159,7 +159,7 @@ public class CreatePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across AWS.
+     * specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -178,7 +178,7 @@ public class CreatePlaceIndexResult implements Serializable {
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across AWS.
+     *            Used to specify a resource across Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -196,7 +196,7 @@ public class CreatePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across AWS.
+     * specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -218,7 +218,7 @@ public class CreatePlaceIndexResult implements Serializable {
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across AWS.
+     *            Used to specify a resource across Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>

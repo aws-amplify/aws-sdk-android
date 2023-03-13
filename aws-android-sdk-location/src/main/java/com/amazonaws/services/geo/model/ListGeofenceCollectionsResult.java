@@ -20,7 +20,8 @@ import java.io.Serializable;
 public class ListGeofenceCollectionsResult implements Serializable {
     /**
      * <p>
-     * Lists the geofence collections that exist in your AWS account.
+     * Lists the geofence collections that exist in your Amazon Web Services
+     * account.
      * </p>
      */
     private java.util.List<ListGeofenceCollectionsResponseEntry> entries;
@@ -39,11 +40,13 @@ public class ListGeofenceCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the geofence collections that exist in your AWS account.
+     * Lists the geofence collections that exist in your Amazon Web Services
+     * account.
      * </p>
      *
      * @return <p>
-     *         Lists the geofence collections that exist in your AWS account.
+     *         Lists the geofence collections that exist in your Amazon Web
+     *         Services account.
      *         </p>
      */
     public java.util.List<ListGeofenceCollectionsResponseEntry> getEntries() {
@@ -52,11 +55,13 @@ public class ListGeofenceCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the geofence collections that exist in your AWS account.
+     * Lists the geofence collections that exist in your Amazon Web Services
+     * account.
      * </p>
      *
      * @param entries <p>
-     *            Lists the geofence collections that exist in your AWS account.
+     *            Lists the geofence collections that exist in your Amazon Web
+     *            Services account.
      *            </p>
      */
     public void setEntries(java.util.Collection<ListGeofenceCollectionsResponseEntry> entries) {
@@ -70,14 +75,16 @@ public class ListGeofenceCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the geofence collections that exist in your AWS account.
+     * Lists the geofence collections that exist in your Amazon Web Services
+     * account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the geofence collections that exist in your AWS account.
+     *            Lists the geofence collections that exist in your Amazon Web
+     *            Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -96,14 +103,16 @@ public class ListGeofenceCollectionsResult implements Serializable {
 
     /**
      * <p>
-     * Lists the geofence collections that exist in your AWS account.
+     * Lists the geofence collections that exist in your Amazon Web Services
+     * account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param entries <p>
-     *            Lists the geofence collections that exist in your AWS account.
+     *            Lists the geofence collections that exist in your Amazon Web
+     *            Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
