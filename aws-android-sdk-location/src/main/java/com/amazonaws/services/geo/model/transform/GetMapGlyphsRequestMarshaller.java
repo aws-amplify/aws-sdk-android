@@ -62,6 +62,9 @@ public class GetMapGlyphsRequestMarshaller implements
                 "{FontUnicodeRange}",
                 (getMapGlyphsRequest.getFontUnicodeRange() == null) ? "" : StringUtils
                         .fromString(getMapGlyphsRequest.getFontUnicodeRange()));
+        if (getMapGlyphsRequest.getKey() != null) {
+            request.addParameter("key", StringUtils.fromString(getMapGlyphsRequest.getKey()));
+        }
         uriResourcePath = uriResourcePath.replace(
                 "{MapName}",
                 (getMapGlyphsRequest.getMapName() == null) ? "" : StringUtils

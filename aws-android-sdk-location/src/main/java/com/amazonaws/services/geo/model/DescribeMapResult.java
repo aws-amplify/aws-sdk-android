@@ -54,7 +54,7 @@ public class DescribeMapResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -319,7 +319,7 @@ public class DescribeMapResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -337,7 +337,7 @@ public class DescribeMapResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the map resource. Used to
-     *         specify a resource across all AWS.
+     *         specify a resource across all Amazon Web Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -355,7 +355,7 @@ public class DescribeMapResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -373,7 +373,7 @@ public class DescribeMapResult implements Serializable {
      *
      * @param mapArn <p>
      *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all AWS.
+     *            specify a resource across all Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -391,7 +391,7 @@ public class DescribeMapResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -412,7 +412,7 @@ public class DescribeMapResult implements Serializable {
      *
      * @param mapArn <p>
      *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all AWS.
+     *            specify a resource across all Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>

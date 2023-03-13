@@ -54,6 +54,9 @@ public class GetMapTileRequestMarshaller implements
         request.setHttpMethod(HttpMethodName.GET);
 
         String uriResourcePath = "/maps/v0/maps/{MapName}/tiles/{Z}/{X}/{Y}";
+        if (getMapTileRequest.getKey() != null) {
+            request.addParameter("key", StringUtils.fromString(getMapTileRequest.getKey()));
+        }
         uriResourcePath = uriResourcePath.replace(
                 "{MapName}",
                 (getMapTileRequest.getMapName() == null) ? "" : StringUtils

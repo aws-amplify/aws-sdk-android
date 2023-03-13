@@ -21,7 +21,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -74,8 +74,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +120,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -140,7 +140,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) for the geofence collection
      *         resource. Used when you need to specify a resource across all
-     *         AWS.
+     *         Amazon Web Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -158,7 +158,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -178,7 +178,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
      *            resource. Used when you need to specify a resource across all
-     *            AWS.
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -196,7 +196,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -219,7 +219,7 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
      *            resource. Used when you need to specify a resource across all
-     *            AWS.
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -411,8 +411,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -421,8 +421,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @return <p>
      *         A key identifier for an <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *         >AWS KMS customer managed key</a> assigned to the Amazon Location
-     *         resource
+     *         >Amazon Web Services KMS customer managed key</a> assigned to the
+     *         Amazon Location resource
      *         </p>
      */
     public String getKmsKeyId() {
@@ -433,8 +433,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -443,8 +443,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a> assigned to the Amazon
-     *            Location resource
+     *            >Amazon Web Services KMS customer managed key</a> assigned to
+     *            the Amazon Location resource
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -455,8 +455,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -468,8 +468,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a> assigned to the Amazon
-     *            Location resource
+     *            >Amazon Web Services KMS customer managed key</a> assigned to
+     *            the Amazon Location resource
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains details of an existing map resource in your AWS account.
+ * Contains details of an existing map resource in your Amazon Web Services
+ * account.
  * </p>
  */
 public class ListMapsResponseEntry implements Serializable {
