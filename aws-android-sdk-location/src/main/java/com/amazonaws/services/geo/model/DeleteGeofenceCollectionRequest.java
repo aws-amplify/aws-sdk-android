@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a geofence collection from your AWS account.
+ * Deletes a geofence collection from your Amazon Web Services account.
  * </p>
  * <note>
  * <p>

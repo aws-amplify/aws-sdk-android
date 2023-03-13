@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a map resource from your AWS account.
+ * Deletes a map resource from your Amazon Web Services account.
  * </p>
  * <note>
  * <p>

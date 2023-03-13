@@ -21,7 +21,7 @@ public class DescribeRouteCalculatorResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the Route calculator resource. Use the
-     * ARN when you specify a resource across AWS.
+     * ARN when you specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -144,7 +144,7 @@ public class DescribeRouteCalculatorResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the Route calculator resource. Use the
-     * ARN when you specify a resource across AWS.
+     * ARN when you specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -163,7 +163,8 @@ public class DescribeRouteCalculatorResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the Route calculator resource.
-     *         Use the ARN when you specify a resource across AWS.
+     *         Use the ARN when you specify a resource across Amazon Web
+     *         Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -181,7 +182,7 @@ public class DescribeRouteCalculatorResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the Route calculator resource. Use the
-     * ARN when you specify a resource across AWS.
+     * ARN when you specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -200,7 +201,8 @@ public class DescribeRouteCalculatorResult implements Serializable {
      *
      * @param calculatorArn <p>
      *            The Amazon Resource Name (ARN) for the Route calculator
-     *            resource. Use the ARN when you specify a resource across AWS.
+     *            resource. Use the ARN when you specify a resource across
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -218,7 +220,7 @@ public class DescribeRouteCalculatorResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the Route calculator resource. Use the
-     * ARN when you specify a resource across AWS.
+     * ARN when you specify a resource across Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -240,7 +242,8 @@ public class DescribeRouteCalculatorResult implements Serializable {
      *
      * @param calculatorArn <p>
      *            The Amazon Resource Name (ARN) for the Route calculator
-     *            resource. Use the ARN when you specify a resource across AWS.
+     *            resource. Use the ARN when you specify a resource across
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>

@@ -21,7 +21,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -63,7 +63,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -83,7 +83,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) for the geofence collection
      *         resource. Used when you need to specify a resource across all
-     *         AWS.
+     *         Amazon Web Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -101,7 +101,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -121,7 +121,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
      *            resource. Used when you need to specify a resource across all
-     *            AWS.
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -139,7 +139,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
-     * when you need to specify a resource across all AWS.
+     * when you need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -162,7 +162,7 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * @param collectionArn <p>
      *            The Amazon Resource Name (ARN) for the geofence collection
      *            resource. Used when you need to specify a resource across all
-     *            AWS.
+     *            Amazon Web Services.
      *            </p>
      *            <ul>
      *            <li>

@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A place index resource listed in your AWS account.
+ * A place index resource listed in your Amazon Web Services account.
  * </p>
  */
 public class ListPlaceIndexesResponseEntry implements Serializable {
