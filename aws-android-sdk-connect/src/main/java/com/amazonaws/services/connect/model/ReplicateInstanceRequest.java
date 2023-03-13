@@ -35,9 +35,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance. You can provide the
-     * <code>InstanceId</code>, or the entire ARN.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You can provide the <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,16 +84,17 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      */
     private String replicaAlias;
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance. You can provide the
-     * <code>InstanceId</code>, or the entire ARN.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You can provide the <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,9 +105,11 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * /)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance. You can find the
-     *         instanceId in the ARN of the instance. You can provide the
-     *         <code>InstanceId</code>, or the entire ARN.
+     *         The identifier of the Amazon Connect instance. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance. You can provide the <code>InstanceId</code>, or the
+     *         entire ARN.
      *         </p>
      */
     public String getInstanceId() {
@@ -114,9 +118,10 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance. You can provide the
-     * <code>InstanceId</code>, or the entire ARN.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You can provide the <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,9 +132,12 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * /)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance. You can provide the
-     *            <code>InstanceId</code>, or the entire ARN.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You can provide the <code>InstanceId</code>, or
+     *            the entire ARN.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -138,9 +146,10 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance. You can provide the
-     * <code>InstanceId</code>, or the entire ARN.
+     * The identifier of the Amazon Connect instance. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance. You can provide the <code>InstanceId</code>, or the entire ARN.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -154,9 +163,12 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * /)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance. You can provide the
-     *            <code>InstanceId</code>, or the entire ARN.
+     *            The identifier of the Amazon Connect instance. You can <a
+     *            href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance. You can provide the <code>InstanceId</code>, or
+     *            the entire ARN.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -320,7 +332,7 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @return <p>
@@ -339,7 +351,7 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param replicaAlias <p>
@@ -361,7 +373,7 @@ public class ReplicateInstanceRequest extends AmazonWebServiceRequest implements
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 62<br/>
+     * <b>Length: </b>1 - 45<br/>
      * <b>Pattern: </b>^(?!d-)([\da-zA-Z]+)([-]*[\da-zA-Z])*$<br/>
      *
      * @param replicaAlias <p>
