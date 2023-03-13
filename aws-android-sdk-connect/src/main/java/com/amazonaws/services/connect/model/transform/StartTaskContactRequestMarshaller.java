@@ -132,6 +132,11 @@ public class StartTaskContactRequestMarshaller implements
                 jsonWriter.name("QuickConnectId");
                 jsonWriter.value(quickConnectId);
             }
+            if (startTaskContactRequest.getRelatedContactId() != null) {
+                String relatedContactId = startTaskContactRequest.getRelatedContactId();
+                jsonWriter.name("RelatedContactId");
+                jsonWriter.value(relatedContactId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
