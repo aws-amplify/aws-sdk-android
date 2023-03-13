@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,11 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Before creating a new custom medical vocabulary, you must first upload a text
- * file that contains your new entries, phrases, and terms into an Amazon S3
- * bucket. Note that this differs from , where you can include a list of terms
- * within your request using the <code>Phrases</code> flag;
- * <code>CreateMedicalVocabulary</code> does not support the
- * <code>Phrases</code> flag.
+ * file that contains your vocabulary table into an Amazon S3 bucket. Note that
+ * this differs from , where you can include a list of terms within your request
+ * using the <code>Phrases</code> flag; <code>CreateMedicalVocabulary</code>
+ * does not support the <code>Phrases</code> flag and only accepts vocabularies
+ * in table format.
  * </p>
  * <p>
  * Each language has a character set that contains all allowed characters for

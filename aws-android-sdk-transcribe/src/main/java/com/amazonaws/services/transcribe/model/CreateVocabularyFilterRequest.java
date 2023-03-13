@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -148,6 +148,33 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * </p>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files (in this case,
+     * your custom vocabulary filter). If the role that you specify doesn’t have
+     * the appropriate permissions to access the specified Amazon S3 location,
+     * your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
+     */
+    private String dataAccessRoleArn;
 
     /**
      * <p>
@@ -996,6 +1023,157 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files (in this case,
+     * your custom vocabulary filter). If the role that you specify doesn’t have
+     * the appropriate permissions to access the specified Amazon S3 location,
+     * your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of an IAM role that has
+     *         permissions to access the Amazon S3 bucket that contains your
+     *         input files (in this case, your custom vocabulary filter). If the
+     *         role that you specify doesn’t have the appropriate permissions to
+     *         access the specified Amazon S3 location, your request fails.
+     *         </p>
+     *         <p>
+     *         IAM role ARNs have the format
+     *         <code>arn:partition:iam::account:role/role-name-with-path</code>.
+     *         For example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *         >IAM ARNs</a>.
+     *         </p>
+     */
+    public String getDataAccessRoleArn() {
+        return dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files (in this case,
+     * your custom vocabulary filter). If the role that you specify doesn’t have
+     * the appropriate permissions to access the specified Amazon S3 location,
+     * your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of an IAM role that has
+     *            permissions to access the Amazon S3 bucket that contains your
+     *            input files (in this case, your custom vocabulary filter). If
+     *            the role that you specify doesn’t have the appropriate
+     *            permissions to access the specified Amazon S3 location, your
+     *            request fails.
+     *            </p>
+     *            <p>
+     *            IAM role ARNs have the format
+     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
+     *            . For example:
+     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a>.
+     *            </p>
+     */
+    public void setDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an IAM role that has permissions to
+     * access the Amazon S3 bucket that contains your input files (in this case,
+     * your custom vocabulary filter). If the role that you specify doesn’t have
+     * the appropriate permissions to access the specified Amazon S3 location,
+     * your request fails.
+     * </p>
+     * <p>
+     * IAM role ARNs have the format
+     * <code>arn:partition:iam::account:role/role-name-with-path</code>. For
+     * example: <code>arn:aws:iam::111122223333:role/Admin</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of an IAM role that has
+     *            permissions to access the Amazon S3 bucket that contains your
+     *            input files (in this case, your custom vocabulary filter). If
+     *            the role that you specify doesn’t have the appropriate
+     *            permissions to access the specified Amazon S3 location, your
+     *            request fails.
+     *            </p>
+     *            <p>
+     *            IAM role ARNs have the format
+     *            <code>arn:partition:iam::account:role/role-name-with-path</code>
+     *            . For example:
+     *            <code>arn:aws:iam::111122223333:role/Admin</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateVocabularyFilterRequest withDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1015,7 +1193,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
         if (getVocabularyFilterFileUri() != null)
             sb.append("VocabularyFilterFileUri: " + getVocabularyFilterFileUri() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getDataAccessRoleArn() != null)
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
         sb.append("}");
         return sb.toString();
     }
@@ -1035,6 +1215,8 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
                 + ((getVocabularyFilterFileUri() == null) ? 0 : getVocabularyFilterFileUri()
                         .hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         return hashCode;
     }
 
@@ -1071,6 +1253,11 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getDataAccessRoleArn() == null ^ this.getDataAccessRoleArn() == null)
+            return false;
+        if (other.getDataAccessRoleArn() != null
+                && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
             return false;
         return true;
     }
