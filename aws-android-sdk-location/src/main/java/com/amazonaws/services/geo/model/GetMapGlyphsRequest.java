@@ -151,6 +151,18 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
+
+    /**
+     * <p>
      * The map resource associated with the glyph ﬁle.
      * </p>
      * <p>
@@ -909,6 +921,72 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetMapGlyphsRequest withKey(String key) {
+        this.key = key;
+        return this;
+    }
+
+    /**
+     * <p>
      * The map resource associated with the glyph ﬁle.
      * </p>
      * <p>
@@ -979,6 +1057,8 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
             sb.append("FontStack: " + getFontStack() + ",");
         if (getFontUnicodeRange() != null)
             sb.append("FontUnicodeRange: " + getFontUnicodeRange() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName());
         sb.append("}");
@@ -993,6 +1073,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
         hashCode = prime * hashCode + ((getFontStack() == null) ? 0 : getFontStack().hashCode());
         hashCode = prime * hashCode
                 + ((getFontUnicodeRange() == null) ? 0 : getFontUnicodeRange().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
         return hashCode;
     }
@@ -1017,6 +1098,10 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
             return false;
         if (other.getFontUnicodeRange() != null
                 && other.getFontUnicodeRange().equals(this.getFontUnicodeRange()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;

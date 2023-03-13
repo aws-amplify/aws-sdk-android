@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A route calculator resource listed in your AWS account.
+ * A route calculator resource listed in your Amazon Web Services account.
  * </p>
  */
 public class ListRouteCalculatorsResponseEntry implements Serializable {
