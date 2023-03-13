@@ -438,22 +438,22 @@ public class EventRecorder {
         } catch (final AmazonServiceException amazonServiceException) {
             // This is service level exception, we also have item level exception.
             log.error("AmazonServiceException occurred during send of put event ", amazonServiceException);
-            final String errorCode = amazonServiceException.getErrorCode();
+            final int statusCode = amazonServiceException.getStatusCode();
 
             // If the error is not a retryable error, delete the events from the local database.
             // Else if the error is a retryable error, keep the events in the local database.
-            if (isRetryable(errorCode)) {
+            if (isRetryable(statusCode)) {
                 log.error(
                         String.format("AmazonServiceException: Unable to successfully deliver events to server. " +
                                         "Events will be saved, error is likely recoverable. " +
                                         "Response Status code: %s, Response Error Code: %s",
-                                amazonServiceException.getStatusCode(), amazonServiceException.getErrorCode()),
+                                statusCode, amazonServiceException.getErrorCode()),
                         amazonServiceException);
                 batchIdsAndSizeToDelete.clear();
             } else {
                 log.error(
                         String.format(Locale.getDefault(), "Failed to submit events to EventService: statusCode: " +
-                                amazonServiceException.getStatusCode() + " errorCode: ", errorCode),
+                                statusCode + " errorCode: ", amazonServiceException.getErrorCode()),
                         amazonServiceException);
                 log.error(
                         String.format(Locale.getDefault(), "Failed submission of %d events, events will be " +
@@ -531,7 +531,7 @@ public class EventRecorder {
                 // so the event does not get deleted from the local database.
                 if (responseMessage.getMessage().equalsIgnoreCase("Accepted")) {
                     log.info(String.format("Successful submit event with event id %s", eventId));
-                } else if (isRetryable(responseMessage.getMessage())) {
+                } else if (isRetryable(responseMessage.getStatusCode())) {
                     log.warn(String.format("Unable to successfully deliver event to server. " +
                             "Event will be saved. Event id %s", eventId));
                     batchIdsAndSizeToDelete.remove(eventArray.getJSONObject(i).getInt(DATABASE_ID_KEY));
@@ -548,13 +548,8 @@ public class EventRecorder {
         }
     }
 
-    private boolean isRetryable(String responseCode) {
-        if (responseCode.equalsIgnoreCase("ValidationException") ||
-            responseCode.equalsIgnoreCase("SerializationException") ||
-            responseCode.equalsIgnoreCase("BadRequestException")) {
-            return false;
-        }
-        return true;
+    private boolean isRetryable(int httpCode) {
+        return httpCode >= 500 && httpCode <= 599;
     }
 
     private boolean isClientExceptionRetryable(Throwable amazonClientException) {

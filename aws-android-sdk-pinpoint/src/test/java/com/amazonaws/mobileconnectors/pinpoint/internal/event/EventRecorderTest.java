@@ -53,6 +53,7 @@ import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
 import com.amazonaws.services.pinpoint.model.Event;
 import com.amazonaws.services.pinpoint.model.EventItemResponse;
 import com.amazonaws.services.pinpoint.model.EventsResponse;
+import com.amazonaws.services.pinpoint.model.InternalServerErrorException;
 import com.amazonaws.services.pinpoint.model.ItemResponse;
 import com.amazonaws.services.pinpoint.model.PutEventsRequest;
 import com.amazonaws.services.pinpoint.model.PutEventsResult;
@@ -194,6 +195,7 @@ public class EventRecorderTest {
     public void testProcessEventWithAPIError() {
         BadRequestException badRequestException = new BadRequestException("BadRequestException");
         badRequestException.setErrorCode("BadRequestException");
+        badRequestException.setStatusCode(400);
         eventRecorder.recordEvent(analyticsEvent);
         final ArrayList<String> attrValues = new ArrayList<String>();
         attrValues.add("TestValue");
@@ -207,6 +209,26 @@ public class EventRecorderTest {
         eventRecorder.processEvents();
         //not retryable, removed from db.
         assertTrue(dbUtil.queryAllEvents().getCount() == 0);
+    }
+
+    @Test
+    public void testProcessEventWithRetryableAPIError() {
+        InternalServerErrorException internalServerErrorException = new InternalServerErrorException("InternalServerErrorException");
+        internalServerErrorException.setErrorCode("InternalServerErrorException");
+        internalServerErrorException.setStatusCode(500);
+        eventRecorder.recordEvent(analyticsEvent);
+        final ArrayList<String> attrValues = new ArrayList<String>();
+        attrValues.add("TestValue");
+        mockContext.getTargetingClient().addAttribute("Test", attrValues);
+        //mock endpoint profile
+        when(mockContext.getTargetingClient().currentEndpoint()).thenReturn(endpointProfile);
+        //mock putEvents API response;
+        when(mockContext.getPinpointServiceClient().putEvents(any(PutEventsRequest.class))).thenThrow(internalServerErrorException);
+        //before processing events
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
+        eventRecorder.processEvents();
+        //retryable, not removed from db.
+        assertTrue(dbUtil.queryAllEvents().getCount() == 1);
     }
 
     @Test

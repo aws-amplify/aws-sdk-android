@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Allows the specified Amazon Connect instance to access the specified Amazon
- * Lex bot.
+ * Lex V1 bot. This API only supports the association of Amazon Lex V1 bots.
  * </p>
  */
 public class AssociateLexBotRequest extends AmazonWebServiceRequest implements Serializable {

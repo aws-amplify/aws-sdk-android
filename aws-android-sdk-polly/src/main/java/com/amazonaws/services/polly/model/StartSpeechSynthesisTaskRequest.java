@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -180,7 +180,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      */
     private String voiceId;
 
@@ -1272,7 +1273,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1297,7 +1299,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1325,7 +1328,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1353,7 +1357,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1381,7 +1386,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
-     * Elin, Ida, Suvi, Ola, Hala
+     * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
+     * Stephen, Kazuha, Tomoko
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.

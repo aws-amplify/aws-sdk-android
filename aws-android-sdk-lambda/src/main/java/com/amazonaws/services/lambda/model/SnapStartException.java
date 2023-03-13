@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,10 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The runtime restore hook encountered an error. For more information, check
- * the Amazon CloudWatch logs.
+ * The <code>afterRestore()</code> <a href=
+ * "https://docs.aws.amazon.com/lambda/latest/dg/snapstart-runtime-hooks.html"
+ * >runtime hook</a> encountered an error. For more information, check the
+ * Amazon CloudWatch logs.
  * </p>
  */
 public class SnapStartException extends AmazonServiceException {

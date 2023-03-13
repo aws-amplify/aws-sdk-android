@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,6 +51,17 @@ public class StartChatContactResult implements Serializable {
      * <b>Length: </b>1 - 1000<br/>
      */
     private String participantToken;
+
+    /**
+     * <p>
+     * The contactId from which a persistent chat session is started. This field
+     * is populated only for persistent chats.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     */
+    private String continuedFromContactId;
 
     /**
      * <p>
@@ -242,6 +253,66 @@ public class StartChatContactResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The contactId from which a persistent chat session is started. This field
+     * is populated only for persistent chats.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @return <p>
+     *         The contactId from which a persistent chat session is started.
+     *         This field is populated only for persistent chats.
+     *         </p>
+     */
+    public String getContinuedFromContactId() {
+        return continuedFromContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId from which a persistent chat session is started. This field
+     * is populated only for persistent chats.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param continuedFromContactId <p>
+     *            The contactId from which a persistent chat session is started.
+     *            This field is populated only for persistent chats.
+     *            </p>
+     */
+    public void setContinuedFromContactId(String continuedFromContactId) {
+        this.continuedFromContactId = continuedFromContactId;
+    }
+
+    /**
+     * <p>
+     * The contactId from which a persistent chat session is started. This field
+     * is populated only for persistent chats.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
+     *
+     * @param continuedFromContactId <p>
+     *            The contactId from which a persistent chat session is started.
+     *            This field is populated only for persistent chats.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactResult withContinuedFromContactId(String continuedFromContactId) {
+        this.continuedFromContactId = continuedFromContactId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -257,7 +328,9 @@ public class StartChatContactResult implements Serializable {
         if (getParticipantId() != null)
             sb.append("ParticipantId: " + getParticipantId() + ",");
         if (getParticipantToken() != null)
-            sb.append("ParticipantToken: " + getParticipantToken());
+            sb.append("ParticipantToken: " + getParticipantToken() + ",");
+        if (getContinuedFromContactId() != null)
+            sb.append("ContinuedFromContactId: " + getContinuedFromContactId());
         sb.append("}");
         return sb.toString();
     }
@@ -272,6 +345,10 @@ public class StartChatContactResult implements Serializable {
                 + ((getParticipantId() == null) ? 0 : getParticipantId().hashCode());
         hashCode = prime * hashCode
                 + ((getParticipantToken() == null) ? 0 : getParticipantToken().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getContinuedFromContactId() == null) ? 0 : getContinuedFromContactId()
+                        .hashCode());
         return hashCode;
     }
 
@@ -300,6 +377,11 @@ public class StartChatContactResult implements Serializable {
             return false;
         if (other.getParticipantToken() != null
                 && other.getParticipantToken().equals(this.getParticipantToken()) == false)
+            return false;
+        if (other.getContinuedFromContactId() == null ^ this.getContinuedFromContactId() == null)
+            return false;
+        if (other.getContinuedFromContactId() != null
+                && other.getContinuedFromContactId().equals(this.getContinuedFromContactId()) == false)
             return false;
         return true;
     }

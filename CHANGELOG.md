@@ -1,3 +1,59 @@
+## [Release 2.64.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.64.0)
+
+### Features
+- **aws-android-sdk-sns:** update models to latest ([#3186](https://github.com/aws-amplify/aws-sdk-android/issues/3186))
+- **aws-android-sdk-connect:** update models to latest ([#3193](https://github.com/aws-amplify/aws-sdk-android/issues/3193))
+- **aws-android-sdk-sns:** update models to latest ([#3194](https://github.com/aws-amplify/aws-sdk-android/issues/3194))
+- **aws-android-sdk-polly:** update models to latest ([#3195](https://github.com/aws-amplify/aws-sdk-android/issues/3195))
+
+### Bug Fixes
+- when setPreviewSurfaces is not called startEncoding gives a null pointer ([#3125](https://github.com/aws-amplify/aws-sdk-android/issues/3125))
+
+### Miscellaneous
+- chore(analytics): Simplify error code checking, uniformly across platforms ([#3191](https://github.com/aws-amplify/aws-sdk-android/pull/3191))
+
+[See all changes between 2.63.0 and 2.64.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.63.0...release_v2.64.0)
+
+## [Release 2.63.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.63.0)
+
+### Features
+- **aws-android-sdk-connectparticipant:** update models to latest (#3182)
+- **aws-android-sdk-iot:** update models to latest (#3181)
+- **aws-android-sdk-polly:** update models to latest (#3180)
+- **aws-android-sdk-core:** update models to latest (#3176)
+- **aws-android-sdk-lambda:** update models to latest (#3170)
+- **aws-android-sdk-connect:** update models to latest (#3165)
+
+### Bug Fixes
+- **core:** add us-gov-east-1 region to list of regions (#3179)
+- **auth:** Dismiss custom tab on signout for all browsers (#3184)
+- **analytics:** If event collection is disabled, opening a notification will also cause a crash (#3169)
+
+[See all changes between 2.62.2 and 2.63.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.2...release_v2.63.0)
+
+## [Release 2.62.2](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.2)
+
+### Miscellaneous
+- added mel region (#3173)
+
+[See all changes between 2.62.1 and 2.62.2](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.1...release_v2.62.2)
+
+## [Release 2.62.1](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.1)
+
+### Miscellaneous
+- Clear in memory hosted ui userId after signout (#3168)
+
+[See all changes between 2.62.0 and 2.62.1](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.62.0...release_v2.62.1)
+
+## [Release 2.62.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.62.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#3157)
+- **aws-android-sdk-lambda:** update models to latest (#3159)
+- **aws-android-sdk-location:** update models to latest (#3160)
+
+[See all changes between 2.61.0 and 2.62.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.61.0...release_v2.62.0)
+
 ## [Release 2.61.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.61.0)
 
 ### Features

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -153,11 +153,27 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      */
     private java.util.List<String> supportedMessagingContentTypes;
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     */
+    private PersistentChat persistentChat;
 
     /**
      * <p>
@@ -711,13 +727,23 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      *
      * @return <p>
-     *         The supported chat message content types. Content types can be
-     *         text/plain or both text/plain and text/markdown.
+     *         The supported chat message content types. Content types must
+     *         always contain <code>text/plain</code>. You can then put any
+     *         other supported type in the list. For example, all the following
+     *         lists are valid because they contain <code>text/plain</code>:
+     *         <code>[text/plain, text/markdown, application/json]</code>,
+     *         <code>[text/markdown, text/plain]</code>,
+     *         <code>[text/plain, application/json]</code>.
      *         </p>
      */
     public java.util.List<String> getSupportedMessagingContentTypes() {
@@ -726,13 +752,24 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      */
     public void setSupportedMessagingContentTypes(
@@ -748,16 +785,27 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -776,16 +824,27 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The supported chat message content types. Content types can be text/plain
-     * or both text/plain and text/markdown.
+     * The supported chat message content types. Content types must always
+     * contain <code>text/plain</code>. You can then put any other supported
+     * type in the list. For example, all the following lists are valid because
+     * they contain <code>text/plain</code>:
+     * <code>[text/plain, text/markdown, application/json]</code>,
+     * <code>[text/markdown, text/plain]</code>,
+     * <code>[text/plain, application/json]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param supportedMessagingContentTypes <p>
-     *            The supported chat message content types. Content types can be
-     *            text/plain or both text/plain and text/markdown.
+     *            The supported chat message content types. Content types must
+     *            always contain <code>text/plain</code>. You can then put any
+     *            other supported type in the list. For example, all the
+     *            following lists are valid because they contain
+     *            <code>text/plain</code>:
+     *            <code>[text/plain, text/markdown, application/json]</code>,
+     *            <code>[text/markdown, text/plain]</code>,
+     *            <code>[text/plain, application/json]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -793,6 +852,75 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     public StartChatContactRequest withSupportedMessagingContentTypes(
             java.util.Collection<String> supportedMessagingContentTypes) {
         setSupportedMessagingContentTypes(supportedMessagingContentTypes);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Enable persistent chats. For more information about enabling
+     *         persistent chat, and for example use cases and how to configure
+     *         for them, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *         >Enable persistent chat</a>.
+     *         </p>
+     */
+    public PersistentChat getPersistentChat() {
+        return persistentChat;
+    }
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     *
+     * @param persistentChat <p>
+     *            Enable persistent chats. For more information about enabling
+     *            persistent chat, and for example use cases and how to
+     *            configure for them, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     */
+    public void setPersistentChat(PersistentChat persistentChat) {
+        this.persistentChat = persistentChat;
+    }
+
+    /**
+     * <p>
+     * Enable persistent chats. For more information about enabling persistent
+     * chat, and for example use cases and how to configure for them, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param persistentChat <p>
+     *            Enable persistent chats. For more information about enabling
+     *            persistent chat, and for example use cases and how to
+     *            configure for them, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     *            >Enable persistent chat</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactRequest withPersistentChat(PersistentChat persistentChat) {
+        this.persistentChat = persistentChat;
         return this;
     }
 
@@ -822,7 +950,10 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (getChatDurationInMinutes() != null)
             sb.append("ChatDurationInMinutes: " + getChatDurationInMinutes() + ",");
         if (getSupportedMessagingContentTypes() != null)
-            sb.append("SupportedMessagingContentTypes: " + getSupportedMessagingContentTypes());
+            sb.append("SupportedMessagingContentTypes: " + getSupportedMessagingContentTypes()
+                    + ",");
+        if (getPersistentChat() != null)
+            sb.append("PersistentChat: " + getPersistentChat());
         sb.append("}");
         return sb.toString();
     }
@@ -849,6 +980,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
                 * hashCode
                 + ((getSupportedMessagingContentTypes() == null) ? 0
                         : getSupportedMessagingContentTypes().hashCode());
+        hashCode = prime * hashCode
+                + ((getPersistentChat() == null) ? 0 : getPersistentChat().hashCode());
         return hashCode;
     }
 
@@ -904,6 +1037,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (other.getSupportedMessagingContentTypes() != null
                 && other.getSupportedMessagingContentTypes().equals(
                         this.getSupportedMessagingContentTypes()) == false)
+            return false;
+        if (other.getPersistentChat() == null ^ this.getPersistentChat() == null)
+            return false;
+        if (other.getPersistentChat() != null
+                && other.getPersistentChat().equals(this.getPersistentChat()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -95,6 +95,16 @@ class ContactJsonMarshaller {
             java.util.Date scheduledTimestamp = contact.getScheduledTimestamp();
             jsonWriter.name("ScheduledTimestamp");
             jsonWriter.value(scheduledTimestamp);
+        }
+        if (contact.getRelatedContactId() != null) {
+            String relatedContactId = contact.getRelatedContactId();
+            jsonWriter.name("RelatedContactId");
+            jsonWriter.value(relatedContactId);
+        }
+        if (contact.getWisdomInfo() != null) {
+            WisdomInfo wisdomInfo = contact.getWisdomInfo();
+            jsonWriter.name("WisdomInfo");
+            WisdomInfoJsonMarshaller.getInstance().marshall(wisdomInfo, jsonWriter);
         }
         jsonWriter.endObject();
     }
