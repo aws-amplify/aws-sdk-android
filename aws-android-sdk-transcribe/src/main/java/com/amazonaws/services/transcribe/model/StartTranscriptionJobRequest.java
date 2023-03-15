@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -329,7 +329,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -1975,7 +1975,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -2048,7 +2048,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         parameter.
      *         </p>
      *         <p>
-     *         Note that the user making the request must have permission to use
+     *         Note that the role making the request must have permission to use
      *         the specified KMS key.
      *         </p>
      */
@@ -2120,7 +2120,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -2195,7 +2195,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <code>OutputLocation</code> parameter.
      *            </p>
      *            <p>
-     *            Note that the user making the request must have permission to
+     *            Note that the role making the request must have permission to
      *            use the specified KMS key.
      *            </p>
      */
@@ -2267,7 +2267,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -2345,7 +2345,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <code>OutputLocation</code> parameter.
      *            </p>
      *            <p>
-     *            Note that the user making the request must have permission to
+     *            Note that the role making the request must have permission to
      *            use the specified KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
