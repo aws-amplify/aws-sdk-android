@@ -4764,6 +4764,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                         clientConfiguration);
             }
         }
+        else {
+            if (clientOptions.isDualstackEnabled()) {
+                endpoint = RuntimeHttpUtils.toUri(Constants.S3_DUALSTACK_HOSTNAME, clientConfiguration);
+            }
+        }
 
         request.setHttpMethod(httpMethod);
         resolveRequestEndpoint(request, bucketName, key, endpoint);
