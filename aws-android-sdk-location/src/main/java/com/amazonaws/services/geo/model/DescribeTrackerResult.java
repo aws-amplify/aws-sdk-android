@@ -41,8 +41,8 @@ public class DescribeTrackerResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource.
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -88,7 +88,7 @@ public class DescribeTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -242,8 +242,8 @@ public class DescribeTrackerResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource.
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -252,8 +252,8 @@ public class DescribeTrackerResult implements Serializable {
      * @return <p>
      *         A key identifier for an <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *         >AWS KMS customer managed key</a> assigned to the Amazon Location
-     *         resource.
+     *         >Amazon Web Services KMS customer managed key</a> assigned to the
+     *         Amazon Location resource.
      *         </p>
      */
     public String getKmsKeyId() {
@@ -264,8 +264,8 @@ public class DescribeTrackerResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource.
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -274,8 +274,8 @@ public class DescribeTrackerResult implements Serializable {
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a> assigned to the Amazon
-     *            Location resource.
+     *            >Amazon Web Services KMS customer managed key</a> assigned to
+     *            the Amazon Location resource.
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -286,8 +286,8 @@ public class DescribeTrackerResult implements Serializable {
      * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     * >AWS KMS customer managed key</a> assigned to the Amazon Location
-     * resource.
+     * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
+     * Location resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -299,8 +299,8 @@ public class DescribeTrackerResult implements Serializable {
      * @param kmsKeyId <p>
      *            A key identifier for an <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
-     *            >AWS KMS customer managed key</a> assigned to the Amazon
-     *            Location resource.
+     *            >Amazon Web Services KMS customer managed key</a> assigned to
+     *            the Amazon Location resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -637,7 +637,7 @@ public class DescribeTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -656,7 +656,8 @@ public class DescribeTrackerResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the tracker resource. Used
-     *         when you need to specify a resource across all AWS.
+     *         when you need to specify a resource across all Amazon Web
+     *         Services.
      *         </p>
      *         <ul>
      *         <li>
@@ -674,7 +675,7 @@ public class DescribeTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -693,7 +694,8 @@ public class DescribeTrackerResult implements Serializable {
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all AWS.
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
      *            </p>
      *            <ul>
      *            <li>
@@ -711,7 +713,7 @@ public class DescribeTrackerResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
-     * need to specify a resource across all AWS.
+     * need to specify a resource across all Amazon Web Services.
      * </p>
      * <ul>
      * <li>
@@ -733,7 +735,8 @@ public class DescribeTrackerResult implements Serializable {
      *
      * @param trackerArn <p>
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
-     *            when you need to specify a resource across all AWS.
+     *            when you need to specify a resource across all Amazon Web
+     *            Services.
      *            </p>
      *            <ul>
      *            <li>

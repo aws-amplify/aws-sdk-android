@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,9 +40,6 @@ public class JobExecutionSettings implements Serializable {
      * <code>AllowDeferredExecution</code> is set to <code>false</code> and the
      * number of transcription job requests exceed the concurrent request limit,
      * you get a <code>LimitExceededException</code> error.
-     * </p>
-     * <p>
-     * Note that job queuing is enabled by default for Call Analytics jobs.
      * </p>
      * <p>
      * If you include <code>AllowDeferredExecution</code> in your request, you
@@ -90,9 +87,6 @@ public class JobExecutionSettings implements Serializable {
      * you get a <code>LimitExceededException</code> error.
      * </p>
      * <p>
-     * Note that job queuing is enabled by default for Call Analytics jobs.
-     * </p>
-     * <p>
      * If you include <code>AllowDeferredExecution</code> in your request, you
      * must also include <code>DataAccessRoleArn</code>.
      * </p>
@@ -107,10 +101,6 @@ public class JobExecutionSettings implements Serializable {
      *         and the number of transcription job requests exceed the
      *         concurrent request limit, you get a
      *         <code>LimitExceededException</code> error.
-     *         </p>
-     *         <p>
-     *         Note that job queuing is enabled by default for Call Analytics
-     *         jobs.
      *         </p>
      *         <p>
      *         If you include <code>AllowDeferredExecution</code> in your
@@ -132,9 +122,6 @@ public class JobExecutionSettings implements Serializable {
      * you get a <code>LimitExceededException</code> error.
      * </p>
      * <p>
-     * Note that job queuing is enabled by default for Call Analytics jobs.
-     * </p>
-     * <p>
      * If you include <code>AllowDeferredExecution</code> in your request, you
      * must also include <code>DataAccessRoleArn</code>.
      * </p>
@@ -149,10 +136,6 @@ public class JobExecutionSettings implements Serializable {
      *         and the number of transcription job requests exceed the
      *         concurrent request limit, you get a
      *         <code>LimitExceededException</code> error.
-     *         </p>
-     *         <p>
-     *         Note that job queuing is enabled by default for Call Analytics
-     *         jobs.
      *         </p>
      *         <p>
      *         If you include <code>AllowDeferredExecution</code> in your
@@ -174,9 +157,6 @@ public class JobExecutionSettings implements Serializable {
      * you get a <code>LimitExceededException</code> error.
      * </p>
      * <p>
-     * Note that job queuing is enabled by default for Call Analytics jobs.
-     * </p>
-     * <p>
      * If you include <code>AllowDeferredExecution</code> in your request, you
      * must also include <code>DataAccessRoleArn</code>.
      * </p>
@@ -191,10 +171,6 @@ public class JobExecutionSettings implements Serializable {
      *            to <code>false</code> and the number of transcription job
      *            requests exceed the concurrent request limit, you get a
      *            <code>LimitExceededException</code> error.
-     *            </p>
-     *            <p>
-     *            Note that job queuing is enabled by default for Call Analytics
-     *            jobs.
      *            </p>
      *            <p>
      *            If you include <code>AllowDeferredExecution</code> in your
@@ -216,9 +192,6 @@ public class JobExecutionSettings implements Serializable {
      * you get a <code>LimitExceededException</code> error.
      * </p>
      * <p>
-     * Note that job queuing is enabled by default for Call Analytics jobs.
-     * </p>
-     * <p>
      * If you include <code>AllowDeferredExecution</code> in your request, you
      * must also include <code>DataAccessRoleArn</code>.
      * </p>
@@ -236,10 +209,6 @@ public class JobExecutionSettings implements Serializable {
      *            to <code>false</code> and the number of transcription job
      *            requests exceed the concurrent request limit, you get a
      *            <code>LimitExceededException</code> error.
-     *            </p>
-     *            <p>
-     *            Note that job queuing is enabled by default for Call Analytics
-     *            jobs.
      *            </p>
      *            <p>
      *            If you include <code>AllowDeferredExecution</code> in your

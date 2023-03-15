@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,14 +39,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * applied to a job. To create a new category, use the operation. To learn more
  * about Call Analytics categories, see <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html"
- * >Creating categories for batch transcriptions</a> and <a href=
+ * >Creating categories for post-call transcriptions</a> and <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html"
- * >Creating categories for streaming transcriptions</a>.
+ * >Creating categories for real-time transcriptions</a>.
  * </p>
  * <p>
  * To make a <code>StartCallAnalyticsJob</code> request, you must first upload
  * your media file into an Amazon S3 bucket; you can then specify the Amazon S3
  * location of the file using the <code>Media</code> parameter.
+ * </p>
+ * <p>
+ * Note that job queuing is enabled by default for Call Analytics jobs.
  * </p>
  * <p>
  * You must include the following parameters in your
@@ -230,7 +233,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -767,7 +770,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -841,7 +844,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *         parameter.
      *         </p>
      *         <p>
-     *         Note that the user making the request must have permission to use
+     *         Note that the role making the request must have permission to use
      *         the specified KMS key.
      *         </p>
      */
@@ -913,7 +916,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -988,7 +991,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            <code>OutputLocation</code> parameter.
      *            </p>
      *            <p>
-     *            Note that the user making the request must have permission to
+     *            Note that the role making the request must have permission to
      *            use the specified KMS key.
      *            </p>
      */
@@ -1060,7 +1063,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      * output location using the <code>OutputLocation</code> parameter.
      * </p>
      * <p>
-     * Note that the user making the request must have permission to use the
+     * Note that the role making the request must have permission to use the
      * specified KMS key.
      * </p>
      * <p>
@@ -1138,7 +1141,7 @@ public class StartCallAnalyticsJobRequest extends AmazonWebServiceRequest implem
      *            <code>OutputLocation</code> parameter.
      *            </p>
      *            <p>
-     *            Note that the user making the request must have permission to
+     *            Note that the role making the request must have permission to
      *            use the specified KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be

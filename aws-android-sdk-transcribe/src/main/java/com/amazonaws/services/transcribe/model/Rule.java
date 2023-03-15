@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import java.io.Serializable;
  * <p>
  * To learn more about Call Analytics rules and categories, see <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-batch.html"
- * >Creating categories for batch transcriptions</a> and <a href=
+ * >Creating categories for post-call transcriptions</a> and <a href=
  * "https://docs.aws.amazon.com/transcribe/latest/dg/tca-categories-stream.html"
- * >Creating categories for streaming transcriptions</a>.
+ * >Creating categories for real-time transcriptions</a>.
  * </p>
  * <p>
  * To learn more about Call Analytics, see <a
