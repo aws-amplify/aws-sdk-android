@@ -159,6 +159,19 @@ class JobJsonMarshaller {
             jsonWriter.name("schedulingConfig");
             SchedulingConfigJsonMarshaller.getInstance().marshall(schedulingConfig, jsonWriter);
         }
+        if (job.getScheduledJobRollouts() != null) {
+            java.util.List<ScheduledJobRollout> scheduledJobRollouts = job
+                    .getScheduledJobRollouts();
+            jsonWriter.name("scheduledJobRollouts");
+            jsonWriter.beginArray();
+            for (ScheduledJobRollout scheduledJobRolloutsItem : scheduledJobRollouts) {
+                if (scheduledJobRolloutsItem != null) {
+                    ScheduledJobRolloutJsonMarshaller.getInstance().marshall(
+                            scheduledJobRolloutsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

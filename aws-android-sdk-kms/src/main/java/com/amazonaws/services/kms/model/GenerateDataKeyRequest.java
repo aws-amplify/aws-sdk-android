@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,11 +40,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For 128-bit and 256-bit data keys, use the <code>KeySpec</code> parameter.
  * </p>
  * <p>
- * To generate an SM4 data key (China Regions only), specify a
- * <code>KeySpec</code> value of <code>AES_128</code> or
- * <code>NumberOfBytes</code> value of <code>128</code>. The symmetric
- * encryption key used in China Regions to encrypt your data key is an SM4
- * encryption key.
+ * To generate a 128-bit SM4 data key (China Regions only), specify a
+ * <code>KeySpec</code> value of <code>AES_128</code> or a
+ * <code>NumberOfBytes</code> value of <code>16</code>. The symmetric encryption
+ * key used in China Regions to encrypt your data key is an SM4 encryption key.
  * </p>
  * <p>
  * To get only an encrypted copy of the data key, use

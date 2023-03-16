@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,11 +55,11 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -222,22 +222,22 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REAL_TIME, POST_CALL
      *
      * @return <p>
-     *         Choose whether you want to update a streaming or a batch Call
-     *         Analytics category. The input type you specify must match the
-     *         input type specified when the category was created. For example,
-     *         if you created a category with the <code>POST_CALL</code> input
-     *         type, you must use <code>POST_CALL</code> as the input type when
+     *         Choose whether you want to update a real-time or a post-call
+     *         category. The input type you specify must match the input type
+     *         specified when the category was created. For example, if you
+     *         created a category with the <code>POST_CALL</code> input type,
+     *         you must use <code>POST_CALL</code> as the input type when
      *         updating this category.
      *         </p>
      * @see InputType
@@ -248,24 +248,23 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REAL_TIME, POST_CALL
      *
      * @param inputType <p>
-     *            Choose whether you want to update a streaming or a batch Call
-     *            Analytics category. The input type you specify must match the
-     *            input type specified when the category was created. For
-     *            example, if you created a category with the
-     *            <code>POST_CALL</code> input type, you must use
-     *            <code>POST_CALL</code> as the input type when updating this
-     *            category.
+     *            Choose whether you want to update a real-time or a post-call
+     *            category. The input type you specify must match the input type
+     *            specified when the category was created. For example, if you
+     *            created a category with the <code>POST_CALL</code> input type,
+     *            you must use <code>POST_CALL</code> as the input type when
+     *            updating this category.
      *            </p>
      * @see InputType
      */
@@ -275,11 +274,11 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -289,13 +288,12 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>REAL_TIME, POST_CALL
      *
      * @param inputType <p>
-     *            Choose whether you want to update a streaming or a batch Call
-     *            Analytics category. The input type you specify must match the
-     *            input type specified when the category was created. For
-     *            example, if you created a category with the
-     *            <code>POST_CALL</code> input type, you must use
-     *            <code>POST_CALL</code> as the input type when updating this
-     *            category.
+     *            Choose whether you want to update a real-time or a post-call
+     *            category. The input type you specify must match the input type
+     *            specified when the category was created. For example, if you
+     *            created a category with the <code>POST_CALL</code> input type,
+     *            you must use <code>POST_CALL</code> as the input type when
+     *            updating this category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -308,24 +306,23 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>REAL_TIME, POST_CALL
      *
      * @param inputType <p>
-     *            Choose whether you want to update a streaming or a batch Call
-     *            Analytics category. The input type you specify must match the
-     *            input type specified when the category was created. For
-     *            example, if you created a category with the
-     *            <code>POST_CALL</code> input type, you must use
-     *            <code>POST_CALL</code> as the input type when updating this
-     *            category.
+     *            Choose whether you want to update a real-time or a post-call
+     *            category. The input type you specify must match the input type
+     *            specified when the category was created. For example, if you
+     *            created a category with the <code>POST_CALL</code> input type,
+     *            you must use <code>POST_CALL</code> as the input type when
+     *            updating this category.
      *            </p>
      * @see InputType
      */
@@ -335,11 +332,11 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Choose whether you want to update a streaming or a batch Call Analytics
-     * category. The input type you specify must match the input type specified
-     * when the category was created. For example, if you created a category
-     * with the <code>POST_CALL</code> input type, you must use
-     * <code>POST_CALL</code> as the input type when updating this category.
+     * Choose whether you want to update a real-time or a post-call category.
+     * The input type you specify must match the input type specified when the
+     * category was created. For example, if you created a category with the
+     * <code>POST_CALL</code> input type, you must use <code>POST_CALL</code> as
+     * the input type when updating this category.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -349,13 +346,12 @@ public class UpdateCallAnalyticsCategoryRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>REAL_TIME, POST_CALL
      *
      * @param inputType <p>
-     *            Choose whether you want to update a streaming or a batch Call
-     *            Analytics category. The input type you specify must match the
-     *            input type specified when the category was created. For
-     *            example, if you created a category with the
-     *            <code>POST_CALL</code> input type, you must use
-     *            <code>POST_CALL</code> as the input type when updating this
-     *            category.
+     *            Choose whether you want to update a real-time or a post-call
+     *            category. The input type you specify must match the input type
+     *            specified when the category was created. For example, if you
+     *            created a category with the <code>POST_CALL</code> input type,
+     *            you must use <code>POST_CALL</code> as the input type when
+     *            updating this category.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
