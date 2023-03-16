@@ -21,48 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SchedulingConfig
+ * JSON unmarshaller for POJO ScheduledJobRollout
  */
-class SchedulingConfigJsonUnmarshaller implements
-        Unmarshaller<SchedulingConfig, JsonUnmarshallerContext> {
+class ScheduledJobRolloutJsonUnmarshaller implements
+        Unmarshaller<ScheduledJobRollout, JsonUnmarshallerContext> {
 
-    public SchedulingConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ScheduledJobRollout unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        SchedulingConfig schedulingConfig = new SchedulingConfig();
+        ScheduledJobRollout scheduledJobRollout = new ScheduledJobRollout();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("startTime")) {
-                schedulingConfig.setStartTime(StringJsonUnmarshaller.getInstance()
+                scheduledJobRollout.setStartTime(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("endTime")) {
-                schedulingConfig.setEndTime(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("endBehavior")) {
-                schedulingConfig.setEndBehavior(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("maintenanceWindows")) {
-                schedulingConfig.setMaintenanceWindows(new ListUnmarshaller<MaintenanceWindow>(
-                        MaintenanceWindowJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return schedulingConfig;
+        return scheduledJobRollout;
     }
 
-    private static SchedulingConfigJsonUnmarshaller instance;
+    private static ScheduledJobRolloutJsonUnmarshaller instance;
 
-    public static SchedulingConfigJsonUnmarshaller getInstance() {
+    public static ScheduledJobRolloutJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SchedulingConfigJsonUnmarshaller();
+            instance = new ScheduledJobRolloutJsonUnmarshaller();
         return instance;
     }
 }

@@ -114,7 +114,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -665,7 +665,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -680,7 +680,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * @return <p>
      *         Used to support unit transformation such as milliseconds to
      *         seconds. The unit must be supported by <a href=
-     *         "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     *         "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      *         >CW metric</a>.
      *         </p>
      * @see FleetMetricUnit
@@ -693,7 +693,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -708,7 +708,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * @param unit <p>
      *            Used to support unit transformation such as milliseconds to
      *            seconds. The unit must be supported by <a href=
-     *            "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      *            >CW metric</a>.
      *            </p>
      * @see FleetMetricUnit
@@ -721,7 +721,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -739,7 +739,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * @param unit <p>
      *            Used to support unit transformation such as milliseconds to
      *            seconds. The unit must be supported by <a href=
-     *            "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      *            >CW metric</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -755,7 +755,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -770,7 +770,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * @param unit <p>
      *            Used to support unit transformation such as milliseconds to
      *            seconds. The unit must be supported by <a href=
-     *            "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      *            >CW metric</a>.
      *            </p>
      * @see FleetMetricUnit
@@ -783,7 +783,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * <p>
      * Used to support unit transformation such as milliseconds to seconds. The
      * unit must be supported by <a href=
-     * "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     * "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      * >CW metric</a>.
      * </p>
      * <p>
@@ -801,7 +801,7 @@ public class DescribeFleetMetricResult implements Serializable {
      * @param unit <p>
      *            Used to support unit transformation such as milliseconds to
      *            seconds. The unit must be supported by <a href=
-     *            "https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
+     *            "https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html"
      *            >CW metric</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

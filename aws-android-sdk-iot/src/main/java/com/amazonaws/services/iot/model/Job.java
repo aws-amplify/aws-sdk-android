@@ -262,6 +262,14 @@ public class Job implements Serializable {
 
     /**
      * <p>
+     * Displays the next seven maintenance window occurrences and their start
+     * times.
+     * </p>
+     */
+    private java.util.List<ScheduledJobRollout> scheduledJobRollouts;
+
+    /**
+     * <p>
      * An ARN identifying the job with format
      * "arn:aws:iot:region:account:job/jobId".
      * </p>
@@ -1953,6 +1961,92 @@ public class Job implements Serializable {
     }
 
     /**
+     * <p>
+     * Displays the next seven maintenance window occurrences and their start
+     * times.
+     * </p>
+     *
+     * @return <p>
+     *         Displays the next seven maintenance window occurrences and their
+     *         start times.
+     *         </p>
+     */
+    public java.util.List<ScheduledJobRollout> getScheduledJobRollouts() {
+        return scheduledJobRollouts;
+    }
+
+    /**
+     * <p>
+     * Displays the next seven maintenance window occurrences and their start
+     * times.
+     * </p>
+     *
+     * @param scheduledJobRollouts <p>
+     *            Displays the next seven maintenance window occurrences and
+     *            their start times.
+     *            </p>
+     */
+    public void setScheduledJobRollouts(
+            java.util.Collection<ScheduledJobRollout> scheduledJobRollouts) {
+        if (scheduledJobRollouts == null) {
+            this.scheduledJobRollouts = null;
+            return;
+        }
+
+        this.scheduledJobRollouts = new java.util.ArrayList<ScheduledJobRollout>(
+                scheduledJobRollouts);
+    }
+
+    /**
+     * <p>
+     * Displays the next seven maintenance window occurrences and their start
+     * times.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledJobRollouts <p>
+     *            Displays the next seven maintenance window occurrences and
+     *            their start times.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withScheduledJobRollouts(ScheduledJobRollout... scheduledJobRollouts) {
+        if (getScheduledJobRollouts() == null) {
+            this.scheduledJobRollouts = new java.util.ArrayList<ScheduledJobRollout>(
+                    scheduledJobRollouts.length);
+        }
+        for (ScheduledJobRollout value : scheduledJobRollouts) {
+            this.scheduledJobRollouts.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Displays the next seven maintenance window occurrences and their start
+     * times.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledJobRollouts <p>
+     *            Displays the next seven maintenance window occurrences and
+     *            their start times.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withScheduledJobRollouts(
+            java.util.Collection<ScheduledJobRollout> scheduledJobRollouts) {
+        setScheduledJobRollouts(scheduledJobRollouts);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2008,7 +2102,9 @@ public class Job implements Serializable {
         if (getIsConcurrent() != null)
             sb.append("isConcurrent: " + getIsConcurrent() + ",");
         if (getSchedulingConfig() != null)
-            sb.append("schedulingConfig: " + getSchedulingConfig());
+            sb.append("schedulingConfig: " + getSchedulingConfig() + ",");
+        if (getScheduledJobRollouts() != null)
+            sb.append("scheduledJobRollouts: " + getScheduledJobRollouts());
         sb.append("}");
         return sb.toString();
     }
@@ -2061,6 +2157,8 @@ public class Job implements Serializable {
                 + ((getIsConcurrent() == null) ? 0 : getIsConcurrent().hashCode());
         hashCode = prime * hashCode
                 + ((getSchedulingConfig() == null) ? 0 : getSchedulingConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getScheduledJobRollouts() == null) ? 0 : getScheduledJobRollouts().hashCode());
         return hashCode;
     }
 
@@ -2187,6 +2285,11 @@ public class Job implements Serializable {
             return false;
         if (other.getSchedulingConfig() != null
                 && other.getSchedulingConfig().equals(this.getSchedulingConfig()) == false)
+            return false;
+        if (other.getScheduledJobRollouts() == null ^ this.getScheduledJobRollouts() == null)
+            return false;
+        if (other.getScheduledJobRollouts() != null
+                && other.getScheduledJobRollouts().equals(this.getScheduledJobRollouts()) == false)
             return false;
         return true;
     }
