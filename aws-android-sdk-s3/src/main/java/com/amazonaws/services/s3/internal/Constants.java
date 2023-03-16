@@ -36,6 +36,8 @@ public class Constants {
     public static final String S3_EXTERNAL_1_HOSTNAME = "s3-external-1.amazonaws.com";
     /** Service hostname for accessing accelerated S3 buckets */
     public static final String S3_ACCELERATE_HOSTNAME = "s3-accelerate.amazonaws.com";
+    /** Service hostname for accessing dualstack S3 buckets; format argument is the region */
+    public static final String S3_DUALSTACK_HOSTNAME = "s3.dualstack.%s.amazonaws.com";
     /** Service hostname for accessing dualstack accelerated S3 buckets */
     public static final String S3_ACCELERATE_DUALSTACK_HOSTNAME = "s3-accelerate.dualstack.amazonaws.com";
 
