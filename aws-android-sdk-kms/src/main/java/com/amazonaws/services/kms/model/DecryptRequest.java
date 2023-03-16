@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -86,13 +86,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Whenever possible, use key policies to give users permission to call the
- * <code>Decrypt</code> operation on a particular KMS key, instead of using IAM
- * policies. Otherwise, you might create an IAM user policy that gives the user
- * <code>Decrypt</code> permission on all KMS keys. This user could decrypt
- * ciphertext that was encrypted by KMS keys in other accounts if the key policy
- * for the cross-account KMS key permits it. If you must use an IAM policy for
- * <code>Decrypt</code> permissions, limit the user to particular KMS keys or
- * particular trusted accounts. For details, see <a href=
+ * <code>Decrypt</code> operation on a particular KMS key, instead of using
+ * &amp;IAM; policies. Otherwise, you might create an &amp;IAM; policy that
+ * gives the user <code>Decrypt</code> permission on all KMS keys. This user
+ * could decrypt ciphertext that was encrypted by KMS keys in other accounts if
+ * the key policy for the cross-account KMS key permits it. If you must use an
+ * IAM policy for <code>Decrypt</code> permissions, limit the user to particular
+ * KMS keys or particular trusted accounts. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html#iam-policies-best-practices"
  * >Best practices for IAM policies</a> in the <i>Key Management Service
  * Developer Guide</i>.
@@ -114,9 +114,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a
- * different Amazon Web Services account, specify the key ARN or alias ARN in
- * the value of the <code>KeyId</code> parameter.
+ * <b>Cross-account use</b>: Yes. If you use the <code>KeyId</code> parameter to
+ * identify a KMS key in a different Amazon Web Services account, specify the
+ * key ARN or the alias ARN of the KMS key.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=

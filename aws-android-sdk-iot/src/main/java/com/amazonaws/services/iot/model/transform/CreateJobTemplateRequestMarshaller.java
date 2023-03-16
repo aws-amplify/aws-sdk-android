@@ -127,6 +127,19 @@ public class CreateJobTemplateRequestMarshaller implements
                 JobExecutionsRetryConfigJsonMarshaller.getInstance().marshall(
                         jobExecutionsRetryConfig, jsonWriter);
             }
+            if (createJobTemplateRequest.getMaintenanceWindows() != null) {
+                java.util.List<MaintenanceWindow> maintenanceWindows = createJobTemplateRequest
+                        .getMaintenanceWindows();
+                jsonWriter.name("maintenanceWindows");
+                jsonWriter.beginArray();
+                for (MaintenanceWindow maintenanceWindowsItem : maintenanceWindows) {
+                    if (maintenanceWindowsItem != null) {
+                        MaintenanceWindowJsonMarshaller.getInstance().marshall(
+                                maintenanceWindowsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -72,6 +72,12 @@ public class DescribeJobTemplateResultJsonUnmarshaller implements
                         .setJobExecutionsRetryConfig(JobExecutionsRetryConfigJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("maintenanceWindows")) {
+                describeJobTemplateResult
+                        .setMaintenanceWindows(new ListUnmarshaller<MaintenanceWindow>(
+                                MaintenanceWindowJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

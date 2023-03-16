@@ -146,6 +146,14 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
+     * Allows you to configure an optional maintenance window for the rollout of
+     * a job document to all devices in the target group for a job.
+     * </p>
+     */
+    private java.util.List<MaintenanceWindow> maintenanceWindows;
+
+    /**
+     * <p>
      * A unique identifier for the job template. We recommend using a UUID.
      * Alpha-numeric characters, "-", and "_" are valid for use here.
      * </p>
@@ -860,6 +868,94 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
     }
 
     /**
+     * <p>
+     * Allows you to configure an optional maintenance window for the rollout of
+     * a job document to all devices in the target group for a job.
+     * </p>
+     *
+     * @return <p>
+     *         Allows you to configure an optional maintenance window for the
+     *         rollout of a job document to all devices in the target group for
+     *         a job.
+     *         </p>
+     */
+    public java.util.List<MaintenanceWindow> getMaintenanceWindows() {
+        return maintenanceWindows;
+    }
+
+    /**
+     * <p>
+     * Allows you to configure an optional maintenance window for the rollout of
+     * a job document to all devices in the target group for a job.
+     * </p>
+     *
+     * @param maintenanceWindows <p>
+     *            Allows you to configure an optional maintenance window for the
+     *            rollout of a job document to all devices in the target group
+     *            for a job.
+     *            </p>
+     */
+    public void setMaintenanceWindows(java.util.Collection<MaintenanceWindow> maintenanceWindows) {
+        if (maintenanceWindows == null) {
+            this.maintenanceWindows = null;
+            return;
+        }
+
+        this.maintenanceWindows = new java.util.ArrayList<MaintenanceWindow>(maintenanceWindows);
+    }
+
+    /**
+     * <p>
+     * Allows you to configure an optional maintenance window for the rollout of
+     * a job document to all devices in the target group for a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maintenanceWindows <p>
+     *            Allows you to configure an optional maintenance window for the
+     *            rollout of a job document to all devices in the target group
+     *            for a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobTemplateRequest withMaintenanceWindows(MaintenanceWindow... maintenanceWindows) {
+        if (getMaintenanceWindows() == null) {
+            this.maintenanceWindows = new java.util.ArrayList<MaintenanceWindow>(
+                    maintenanceWindows.length);
+        }
+        for (MaintenanceWindow value : maintenanceWindows) {
+            this.maintenanceWindows.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Allows you to configure an optional maintenance window for the rollout of
+     * a job document to all devices in the target group for a job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maintenanceWindows <p>
+     *            Allows you to configure an optional maintenance window for the
+     *            rollout of a job document to all devices in the target group
+     *            for a job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobTemplateRequest withMaintenanceWindows(
+            java.util.Collection<MaintenanceWindow> maintenanceWindows) {
+        setMaintenanceWindows(maintenanceWindows);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -891,7 +987,9 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
         if (getTags() != null)
             sb.append("tags: " + getTags() + ",");
         if (getJobExecutionsRetryConfig() != null)
-            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig());
+            sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
+        if (getMaintenanceWindows() != null)
+            sb.append("maintenanceWindows: " + getMaintenanceWindows());
         sb.append("}");
         return sb.toString();
     }
@@ -924,6 +1022,8 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
                 * hashCode
                 + ((getJobExecutionsRetryConfig() == null) ? 0 : getJobExecutionsRetryConfig()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getMaintenanceWindows() == null) ? 0 : getMaintenanceWindows().hashCode());
         return hashCode;
     }
 
@@ -992,6 +1092,11 @@ public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements
             return false;
         if (other.getJobExecutionsRetryConfig() != null
                 && other.getJobExecutionsRetryConfig().equals(this.getJobExecutionsRetryConfig()) == false)
+            return false;
+        if (other.getMaintenanceWindows() == null ^ this.getMaintenanceWindows() == null)
+            return false;
+        if (other.getMaintenanceWindows() != null
+                && other.getMaintenanceWindows().equals(this.getMaintenanceWindows()) == false)
             return false;
         return true;
     }
