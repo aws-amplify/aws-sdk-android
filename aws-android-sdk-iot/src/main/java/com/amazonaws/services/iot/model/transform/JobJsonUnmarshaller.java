@@ -109,6 +109,11 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
             } else if (name.equals("schedulingConfig")) {
                 job.setSchedulingConfig(SchedulingConfigJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("scheduledJobRollouts")) {
+                job.setScheduledJobRollouts(new ListUnmarshaller<ScheduledJobRollout>(
+                        ScheduledJobRolloutJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

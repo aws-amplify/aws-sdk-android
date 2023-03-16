@@ -42,6 +42,19 @@ class SchedulingConfigJsonMarshaller {
             jsonWriter.name("endBehavior");
             jsonWriter.value(endBehavior);
         }
+        if (schedulingConfig.getMaintenanceWindows() != null) {
+            java.util.List<MaintenanceWindow> maintenanceWindows = schedulingConfig
+                    .getMaintenanceWindows();
+            jsonWriter.name("maintenanceWindows");
+            jsonWriter.beginArray();
+            for (MaintenanceWindow maintenanceWindowsItem : maintenanceWindows) {
+                if (maintenanceWindowsItem != null) {
+                    MaintenanceWindowJsonMarshaller.getInstance().marshall(maintenanceWindowsItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

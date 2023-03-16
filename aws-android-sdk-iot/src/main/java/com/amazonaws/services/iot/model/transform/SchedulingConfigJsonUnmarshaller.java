@@ -45,6 +45,11 @@ class SchedulingConfigJsonUnmarshaller implements
             } else if (name.equals("endBehavior")) {
                 schedulingConfig.setEndBehavior(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("maintenanceWindows")) {
+                schedulingConfig.setMaintenanceWindows(new ListUnmarshaller<MaintenanceWindow>(
+                        MaintenanceWindowJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

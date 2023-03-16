@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -158,16 +158,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
-     * To specify the principal, use the <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, IAM roles, federated users, and assumed role users.
-     * For examples of the ARN syntax to use for specifying a principal, see <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * To specify the grantee principal, use the Amazon Resource Name (ARN) of
+     * an Amazon Web Services principal. Valid principals include Amazon Web
+     * Services accounts, IAM users, IAM roles, federated users, and assumed
+     * role users. For help with the ARN syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,12 +182,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * To specify the principal, use the <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, federated users, and assumed role users. For examples
-     * of the ARN syntax to use for specifying a principal, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * Valid principals include Amazon Web Services accounts, IAM users, IAM
+     * roles, federated users, and assumed role users. For help with the ARN
+     * syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * The grant determines the retiring principal. Other principals might have
@@ -526,16 +523,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
-     * To specify the principal, use the <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, IAM roles, federated users, and assumed role users.
-     * For examples of the ARN syntax to use for specifying a principal, see <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * To specify the grantee principal, use the Amazon Resource Name (ARN) of
+     * an Amazon Web Services principal. Valid principals include Amazon Web
+     * Services accounts, IAM users, IAM roles, federated users, and assumed
+     * role users. For help with the ARN syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -546,17 +540,14 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *         The identity that gets the permissions specified in the grant.
      *         </p>
      *         <p>
-     *         To specify the principal, use the <a href=
-     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *         >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *         principal. Valid Amazon Web Services principals include Amazon
-     *         Web Services accounts (root), IAM users, IAM roles, federated
-     *         users, and assumed role users. For examples of the ARN syntax to
-     *         use for specifying a principal, see <a href=
-     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *         >Amazon Web Services Identity and Access Management (IAM)</a> in
-     *         the Example ARNs section of the <i>Amazon Web Services General
-     *         Reference</i>.
+     *         To specify the grantee principal, use the Amazon Resource Name
+     *         (ARN) of an Amazon Web Services principal. Valid principals
+     *         include Amazon Web Services accounts, IAM users, IAM roles,
+     *         federated users, and assumed role users. For help with the ARN
+     *         syntax for a principal, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *         >IAM ARNs</a> in the <i> <i>Identity and Access Management User
+     *         Guide</i> </i>.
      *         </p>
      */
     public String getGranteePrincipal() {
@@ -568,16 +559,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
-     * To specify the principal, use the <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, IAM roles, federated users, and assumed role users.
-     * For examples of the ARN syntax to use for specifying a principal, see <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * To specify the grantee principal, use the Amazon Resource Name (ARN) of
+     * an Amazon Web Services principal. Valid principals include Amazon Web
+     * Services accounts, IAM users, IAM roles, federated users, and assumed
+     * role users. For help with the ARN syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -588,17 +576,14 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            The identity that gets the permissions specified in the grant.
      *            </p>
      *            <p>
-     *            To specify the principal, use the <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *            principal. Valid Amazon Web Services principals include Amazon
-     *            Web Services accounts (root), IAM users, IAM roles, federated
-     *            users, and assumed role users. For examples of the ARN syntax
-     *            to use for specifying a principal, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *            >Amazon Web Services Identity and Access Management (IAM)</a>
-     *            in the Example ARNs section of the <i>Amazon Web Services
-     *            General Reference</i>.
+     *            To specify the grantee principal, use the Amazon Resource Name
+     *            (ARN) of an Amazon Web Services principal. Valid principals
+     *            include Amazon Web Services accounts, IAM users, IAM roles,
+     *            federated users, and assumed role users. For help with the ARN
+     *            syntax for a principal, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a> in the <i> <i>Identity and Access Management
+     *            User Guide</i> </i>.
      *            </p>
      */
     public void setGranteePrincipal(String granteePrincipal) {
@@ -610,16 +595,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
-     * To specify the principal, use the <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, IAM roles, federated users, and assumed role users.
-     * For examples of the ARN syntax to use for specifying a principal, see <a
-     * href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * To specify the grantee principal, use the Amazon Resource Name (ARN) of
+     * an Amazon Web Services principal. Valid principals include Amazon Web
+     * Services accounts, IAM users, IAM roles, federated users, and assumed
+     * role users. For help with the ARN syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -633,17 +615,14 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            The identity that gets the permissions specified in the grant.
      *            </p>
      *            <p>
-     *            To specify the principal, use the <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *            principal. Valid Amazon Web Services principals include Amazon
-     *            Web Services accounts (root), IAM users, IAM roles, federated
-     *            users, and assumed role users. For examples of the ARN syntax
-     *            to use for specifying a principal, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *            >Amazon Web Services Identity and Access Management (IAM)</a>
-     *            in the Example ARNs section of the <i>Amazon Web Services
-     *            General Reference</i>.
+     *            To specify the grantee principal, use the Amazon Resource Name
+     *            (ARN) of an Amazon Web Services principal. Valid principals
+     *            include Amazon Web Services accounts, IAM users, IAM roles,
+     *            federated users, and assumed role users. For help with the ARN
+     *            syntax for a principal, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a> in the <i> <i>Identity and Access Management
+     *            User Guide</i> </i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -662,12 +641,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * To specify the principal, use the <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, federated users, and assumed role users. For examples
-     * of the ARN syntax to use for specifying a principal, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * Valid principals include Amazon Web Services accounts, IAM users, IAM
+     * roles, federated users, and assumed role users. For help with the ARN
+     * syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * The grant determines the retiring principal. Other principals might have
@@ -690,14 +669,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *         To specify the principal, use the <a href=
      *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      *         >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *         principal. Valid Amazon Web Services principals include Amazon
-     *         Web Services accounts (root), IAM users, federated users, and
-     *         assumed role users. For examples of the ARN syntax to use for
-     *         specifying a principal, see <a href=
-     *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *         >Amazon Web Services Identity and Access Management (IAM)</a> in
-     *         the Example ARNs section of the <i>Amazon Web Services General
-     *         Reference</i>.
+     *         principal. Valid principals include Amazon Web Services accounts,
+     *         IAM users, IAM roles, federated users, and assumed role users.
+     *         For help with the ARN syntax for a principal, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *         >IAM ARNs</a> in the <i> <i>Identity and Access Management User
+     *         Guide</i> </i>.
      *         </p>
      *         <p>
      *         The grant determines the retiring principal. Other principals
@@ -721,12 +698,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * To specify the principal, use the <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, federated users, and assumed role users. For examples
-     * of the ARN syntax to use for specifying a principal, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * Valid principals include Amazon Web Services accounts, IAM users, IAM
+     * roles, federated users, and assumed role users. For help with the ARN
+     * syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * The grant determines the retiring principal. Other principals might have
@@ -749,14 +726,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            To specify the principal, use the <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      *            >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *            principal. Valid Amazon Web Services principals include Amazon
-     *            Web Services accounts (root), IAM users, federated users, and
-     *            assumed role users. For examples of the ARN syntax to use for
-     *            specifying a principal, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *            >Amazon Web Services Identity and Access Management (IAM)</a>
-     *            in the Example ARNs section of the <i>Amazon Web Services
-     *            General Reference</i>.
+     *            principal. Valid principals include Amazon Web Services
+     *            accounts, IAM users, IAM roles, federated users, and assumed
+     *            role users. For help with the ARN syntax for a principal, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a> in the <i> <i>Identity and Access Management
+     *            User Guide</i> </i>.
      *            </p>
      *            <p>
      *            The grant determines the retiring principal. Other principals
@@ -780,12 +756,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * To specify the principal, use the <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      * >Amazon Resource Name (ARN)</a> of an Amazon Web Services principal.
-     * Valid Amazon Web Services principals include Amazon Web Services accounts
-     * (root), IAM users, federated users, and assumed role users. For examples
-     * of the ARN syntax to use for specifying a principal, see <a href=
-     * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     * >Amazon Web Services Identity and Access Management (IAM)</a> in the
-     * Example ARNs section of the <i>Amazon Web Services General Reference</i>.
+     * Valid principals include Amazon Web Services accounts, IAM users, IAM
+     * roles, federated users, and assumed role users. For help with the ARN
+     * syntax for a principal, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     * >IAM ARNs</a> in the <i> <i>Identity and Access Management User Guide</i>
+     * </i>.
      * </p>
      * <p>
      * The grant determines the retiring principal. Other principals might have
@@ -811,14 +787,13 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            To specify the principal, use the <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
      *            >Amazon Resource Name (ARN)</a> of an Amazon Web Services
-     *            principal. Valid Amazon Web Services principals include Amazon
-     *            Web Services accounts (root), IAM users, federated users, and
-     *            assumed role users. For examples of the ARN syntax to use for
-     *            specifying a principal, see <a href=
-     *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-iam"
-     *            >Amazon Web Services Identity and Access Management (IAM)</a>
-     *            in the Example ARNs section of the <i>Amazon Web Services
-     *            General Reference</i>.
+     *            principal. Valid principals include Amazon Web Services
+     *            accounts, IAM users, IAM roles, federated users, and assumed
+     *            role users. For help with the ARN syntax for a principal, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns"
+     *            >IAM ARNs</a> in the <i> <i>Identity and Access Management
+     *            User Guide</i> </i>.
      *            </p>
      *            <p>
      *            The grant determines the retiring principal. Other principals

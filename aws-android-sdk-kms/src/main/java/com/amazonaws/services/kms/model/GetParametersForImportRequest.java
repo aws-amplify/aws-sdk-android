@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -118,12 +118,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSAES_PKCS1_V1_5, RSAES_OAEP_SHA_1,
@@ -348,12 +360,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSAES_PKCS1_V1_5, RSAES_OAEP_SHA_1,
@@ -361,12 +385,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The algorithm you will use to encrypt the key material before
-     *         importing it with <a>ImportKeyMaterial</a>. For more information,
-     *         see <a href=
+     *         using the <a>ImportKeyMaterial</a> operation to import it. For
+     *         more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *         >Encrypt the Key Material</a> in the <i>Key Management Service
+     *         >Encrypt the key material</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
+     *         <important>
+     *         <p>
+     *         The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is
+     *         deprecated. We recommend that you begin using a different
+     *         wrapping algorithm immediately. KMS will end support for
+     *         <code>RSAES_PKCS1_V1_5</code> by October 1, 2023 pursuant to <a
+     *         href=
+     *         "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     *         >cryptographic key management guidance</a> from the National
+     *         Institute of Standards and Technology (NIST).
+     *         </p>
+     *         </important>
      * @see AlgorithmSpec
      */
     public String getWrappingAlgorithm() {
@@ -375,12 +411,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSAES_PKCS1_V1_5, RSAES_OAEP_SHA_1,
@@ -388,12 +436,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *
      * @param wrappingAlgorithm <p>
      *            The algorithm you will use to encrypt the key material before
-     *            importing it with <a>ImportKeyMaterial</a>. For more
-     *            information, see <a href=
+     *            using the <a>ImportKeyMaterial</a> operation to import it. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            >Encrypt the key material</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is
+     *            deprecated. We recommend that you begin using a different
+     *            wrapping algorithm immediately. KMS will end support for
+     *            <code>RSAES_PKCS1_V1_5</code> by October 1, 2023 pursuant to
+     *            <a href=
+     *            "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     *            >cryptographic key management guidance</a> from the National
+     *            Institute of Standards and Technology (NIST).
+     *            </p>
+     *            </important>
      * @see AlgorithmSpec
      */
     public void setWrappingAlgorithm(String wrappingAlgorithm) {
@@ -402,12 +462,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -418,12 +490,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *
      * @param wrappingAlgorithm <p>
      *            The algorithm you will use to encrypt the key material before
-     *            importing it with <a>ImportKeyMaterial</a>. For more
-     *            information, see <a href=
+     *            using the <a>ImportKeyMaterial</a> operation to import it. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            >Encrypt the key material</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is
+     *            deprecated. We recommend that you begin using a different
+     *            wrapping algorithm immediately. KMS will end support for
+     *            <code>RSAES_PKCS1_V1_5</code> by October 1, 2023 pursuant to
+     *            <a href=
+     *            "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     *            >cryptographic key management guidance</a> from the National
+     *            Institute of Standards and Technology (NIST).
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AlgorithmSpec
@@ -435,12 +519,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>RSAES_PKCS1_V1_5, RSAES_OAEP_SHA_1,
@@ -448,12 +544,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *
      * @param wrappingAlgorithm <p>
      *            The algorithm you will use to encrypt the key material before
-     *            importing it with <a>ImportKeyMaterial</a>. For more
-     *            information, see <a href=
+     *            using the <a>ImportKeyMaterial</a> operation to import it. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            >Encrypt the key material</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is
+     *            deprecated. We recommend that you begin using a different
+     *            wrapping algorithm immediately. KMS will end support for
+     *            <code>RSAES_PKCS1_V1_5</code> by October 1, 2023 pursuant to
+     *            <a href=
+     *            "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     *            >cryptographic key management guidance</a> from the National
+     *            Institute of Standards and Technology (NIST).
+     *            </p>
+     *            </important>
      * @see AlgorithmSpec
      */
     public void setWrappingAlgorithm(AlgorithmSpec wrappingAlgorithm) {
@@ -462,12 +570,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The algorithm you will use to encrypt the key material before importing
-     * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
+     * The algorithm you will use to encrypt the key material before using the
+     * <a>ImportKeyMaterial</a> operation to import it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * >Encrypt the key material</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is deprecated. We
+     * recommend that you begin using a different wrapping algorithm
+     * immediately. KMS will end support for <code>RSAES_PKCS1_V1_5</code> by
+     * October 1, 2023 pursuant to <a href=
+     * "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     * >cryptographic key management guidance</a> from the National Institute of
+     * Standards and Technology (NIST).
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -478,12 +598,24 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *
      * @param wrappingAlgorithm <p>
      *            The algorithm you will use to encrypt the key material before
-     *            importing it with <a>ImportKeyMaterial</a>. For more
-     *            information, see <a href=
+     *            using the <a>ImportKeyMaterial</a> operation to import it. For
+     *            more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            >Encrypt the key material</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>RSAES_PKCS1_V1_5</code> wrapping algorithm is
+     *            deprecated. We recommend that you begin using a different
+     *            wrapping algorithm immediately. KMS will end support for
+     *            <code>RSAES_PKCS1_V1_5</code> by October 1, 2023 pursuant to
+     *            <a href=
+     *            "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-131Ar2.pdf"
+     *            >cryptographic key management guidance</a> from the National
+     *            Institute of Standards and Technology (NIST).
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see AlgorithmSpec
