@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -678,6 +678,33 @@ public interface AmazonChimeSDKMessaging {
 
     /**
      * <p>
+     * Deletes the streaming configurations for an <code>AppInstance</code>. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param deleteMessagingStreamingConfigurationsRequest
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    void deleteMessagingStreamingConfigurations(
+            DeleteMessagingStreamingConfigurationsRequest deleteMessagingStreamingConfigurationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns the full details of a channel in an Amazon Chime
      * <code>AppInstance</code>.
      * </p>
@@ -1121,6 +1148,38 @@ public interface AmazonChimeSDKMessaging {
 
     /**
      * <p>
+     * Retrieves the data streaming configuration for an
+     * <code>AppInstance</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param getMessagingStreamingConfigurationsRequest
+     * @return getMessagingStreamingConfigurationsResult The response from the
+     *         GetMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    GetMessagingStreamingConfigurationsResult getMessagingStreamingConfigurations(
+            GetMessagingStreamingConfigurationsRequest getMessagingStreamingConfigurationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists all the users banned from a particular channel.
      * </p>
      * <note>
@@ -1527,6 +1586,39 @@ public interface AmazonChimeSDKMessaging {
      */
     PutChannelMembershipPreferencesResult putChannelMembershipPreferences(
             PutChannelMembershipPreferencesRequest putChannelMembershipPreferencesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Sets the data streaming configuration for an <code>AppInstance</code>.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param putMessagingStreamingConfigurationsRequest
+     * @return putMessagingStreamingConfigurationsResult The response from the
+     *         PutMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    PutMessagingStreamingConfigurationsResult putMessagingStreamingConfigurations(
+            PutMessagingStreamingConfigurationsRequest putMessagingStreamingConfigurationsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

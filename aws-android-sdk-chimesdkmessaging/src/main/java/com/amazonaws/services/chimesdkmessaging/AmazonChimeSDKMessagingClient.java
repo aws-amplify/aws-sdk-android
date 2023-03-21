@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1294,6 +1294,55 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Deletes the streaming configurations for an <code>AppInstance</code>. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param deleteMessagingStreamingConfigurationsRequest
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void deleteMessagingStreamingConfigurations(
+            DeleteMessagingStreamingConfigurationsRequest deleteMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteMessagingStreamingConfigurationsRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(deleteMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the full details of a channel in an Amazon Chime
      * <code>AppInstance</code>.
      * </p>
@@ -2058,6 +2107,65 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Retrieves the data streaming configuration for an
+     * <code>AppInstance</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param getMessagingStreamingConfigurationsRequest
+     * @return getMessagingStreamingConfigurationsResult The response from the
+     *         GetMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetMessagingStreamingConfigurationsResult getMessagingStreamingConfigurations(
+            GetMessagingStreamingConfigurationsRequest getMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetMessagingStreamingConfigurationsRequest> request = null;
+        Response<GetMessagingStreamingConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(getMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetMessagingStreamingConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new GetMessagingStreamingConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<GetMessagingStreamingConfigurationsResult> responseHandler = new JsonResponseHandler<GetMessagingStreamingConfigurationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists all the users banned from a particular channel.
      * </p>
      * <note>
@@ -2775,6 +2883,66 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<PutChannelMembershipPreferencesResult, JsonUnmarshallerContext> unmarshaller = new PutChannelMembershipPreferencesResultJsonUnmarshaller();
             JsonResponseHandler<PutChannelMembershipPreferencesResult> responseHandler = new JsonResponseHandler<PutChannelMembershipPreferencesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the data streaming configuration for an <code>AppInstance</code>.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param putMessagingStreamingConfigurationsRequest
+     * @return putMessagingStreamingConfigurationsResult The response from the
+     *         PutMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public PutMessagingStreamingConfigurationsResult putMessagingStreamingConfigurations(
+            PutMessagingStreamingConfigurationsRequest putMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutMessagingStreamingConfigurationsRequest> request = null;
+        Response<PutMessagingStreamingConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(putMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutMessagingStreamingConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new PutMessagingStreamingConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<PutMessagingStreamingConfigurationsResult> responseHandler = new JsonResponseHandler<PutMessagingStreamingConfigurationsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
