@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,13 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sets the membership preferences of an <code>AppInstanceUser</code> for the
- * specified channel. The <code>AppInstanceUser</code> must be a member of the
- * channel. Only the <code>AppInstanceUser</code> who owns the membership can
- * set preferences. Users in the <code>AppInstanceAdmin</code> and channel
- * moderator roles can't set preferences for other users. Banned users can't set
- * membership preferences for the channel from which they are banned.
+ * Sets the membership preferences of an <code>AppInstanceUser</code> or
+ * <code>AppIntanceBot</code> for the specified channel. The user or bot must be
+ * a member of the channel. Only the user or bot who owns the membership can set
+ * preferences. Users or bots in the <code>AppInstanceAdmin</code> and channel
+ * moderator roles can't set preferences for other users or users. Banned users
+ * or bots can't set membership preferences for the channel from which they are
+ * banned.
  * </p>
+ * <note>
+ * <p>
+ * The x-amz-chime-bearer request header is mandatory. Use the ARN of an
+ * <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes the
+ * API call as the value in the header.
+ * </p>
+ * </note>
  */
 public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -46,8 +54,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member setting the
-     * preferences.
+     * The ARN of the member setting the preferences.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,7 +67,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,8 +151,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member setting the
-     * preferences.
+     * The ARN of the member setting the preferences.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,8 +161,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the member setting the
-     *         preferences.
+     *         The ARN of the member setting the preferences.
      *         </p>
      */
     public String getMemberArn() {
@@ -164,8 +170,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member setting the
-     * preferences.
+     * The ARN of the member setting the preferences.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -175,8 +180,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The <code>AppInstanceUserArn</code> of the member setting the
-     *            preferences.
+     *            The ARN of the member setting the preferences.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -185,8 +189,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the member setting the
-     * preferences.
+     * The ARN of the member setting the preferences.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -199,8 +202,7 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The <code>AppInstanceUserArn</code> of the member setting the
-     *            preferences.
+     *            The ARN of the member setting the preferences.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -212,7 +214,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -222,8 +225,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserARN</code> of the user making the API
-     *         call.
+     *         The ARN of the <code>AppInstanceUser</code> or
+     *         <code>AppInstanceBot</code> that makes the API call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -232,7 +235,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -242,8 +246,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserARN</code> of the user making the API
-     *            call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -252,7 +256,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,8 +270,8 @@ public class PutChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserARN</code> of the user making the API
-     *            call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

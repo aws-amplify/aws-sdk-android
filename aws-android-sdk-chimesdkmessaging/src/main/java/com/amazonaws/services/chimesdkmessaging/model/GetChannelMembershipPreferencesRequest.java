@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,14 +21,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the membership preferences of an <code>AppInstanceUser</code> for the
- * specified channel. The <code>AppInstanceUser</code> must be a member of the
- * channel. Only the <code>AppInstanceUser</code> who owns the membership can
- * retrieve preferences. Users in the <code>AppInstanceAdmin</code> and channel
- * moderator roles can't retrieve preferences for other users. Banned users
- * can't retrieve membership preferences for the channel from which they are
- * banned.
+ * Gets the membership preferences of an <code>AppInstanceUser</code> or
+ * <code>AppInstanceBot</code> for the specified channel. A user or a bot must
+ * be a member of the channel and own the membership to be able to retrieve
+ * membership preferences. Users or bots in the <code>AppInstanceAdmin</code>
+ * and channel moderator roles can't retrieve preferences for other users or
+ * bots. Banned users or bots can't retrieve membership preferences for the
+ * channel from which they are banned.
  * </p>
+ * <note>
+ * <p>
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
+ * </p>
+ * </note>
  */
 public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -61,7 +68,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,7 +214,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,8 +225,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserARN</code> of the user making the API
-     *         call.
+     *         The ARN of the <code>AppInstanceUser</code> or
+     *         <code>AppInstanceBot</code> that makes the API call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -226,7 +235,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -236,8 +246,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserARN</code> of the user making the API
-     *            call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -246,7 +256,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The <code>AppInstanceUserARN</code> of the user making the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -259,8 +270,8 @@ public class GetChannelMembershipPreferencesRequest extends AmazonWebServiceRequ
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserARN</code> of the user making the API
-     *            call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

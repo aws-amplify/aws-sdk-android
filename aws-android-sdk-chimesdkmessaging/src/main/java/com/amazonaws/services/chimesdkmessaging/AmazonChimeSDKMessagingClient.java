@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -377,8 +377,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <p>
      * Only administrators or channel moderators can associate a channel flow.
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -426,7 +426,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Adds a specified number of users to a channel.
+     * Adds a specified number of users and bots to a channel.
      * </p>
      * 
      * @param batchCreateChannelMembershipRequest
@@ -566,8 +566,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -634,8 +634,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -777,7 +777,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Adds a user to a channel. The <code>InvitedBy</code> field in
+     * Adds a member to a channel. The <code>InvitedBy</code> field in
      * <code>ChannelMembership</code> is derived from the request header. A
      * channel member can:
      * </p>
@@ -827,8 +827,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUserArn</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -918,8 +918,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>of
+     * the user that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -982,8 +982,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUserArn</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1028,13 +1028,13 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Removes a user from a channel's ban list.
+     * Removes a member from a channel's ban list.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1195,8 +1195,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1247,8 +1247,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1294,14 +1294,63 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Deletes the streaming configurations for an <code>AppInstance</code>. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param deleteMessagingStreamingConfigurationsRequest
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void deleteMessagingStreamingConfigurations(
+            DeleteMessagingStreamingConfigurationsRequest deleteMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteMessagingStreamingConfigurationsRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(deleteMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the full details of a channel in an Amazon Chime
      * <code>AppInstance</code>.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1358,8 +1407,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1474,8 +1523,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1532,13 +1581,13 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
     /**
      * <p>
      * Returns the details of a channel based on the membership of the specified
-     * <code>AppInstanceUser</code>.
+     * <code>AppInstanceUser</code> or <code>AppInstanceBot</code>.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1594,13 +1643,13 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
     /**
      * <p>
      * Returns the full details of a channel moderated by the specified
-     * <code>AppInstanceUser</code>.
+     * <code>AppInstanceUser</code> or <code>AppInstanceBot</code>.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1724,9 +1773,12 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * Only administrators or channel moderators can disassociate a channel
-     * flow. The <code>x-amz-chime-bearer</code> request header is mandatory.
-     * Use the <code>AppInstanceUserArn</code> of the user that makes the API
-     * call as the value in the header.
+     * flow.
+     * </p>
+     * <p>
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1775,14 +1827,21 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Gets the membership preferences of an <code>AppInstanceUser</code> for
-     * the specified channel. The <code>AppInstanceUser</code> must be a member
-     * of the channel. Only the <code>AppInstanceUser</code> who owns the
-     * membership can retrieve preferences. Users in the
+     * Gets the membership preferences of an <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> for the specified channel. A user or a bot
+     * must be a member of the channel and own the membership to be able to
+     * retrieve membership preferences. Users or bots in the
      * <code>AppInstanceAdmin</code> and channel moderator roles can't retrieve
-     * preferences for other users. Banned users can't retrieve membership
-     * preferences for the channel from which they are banned.
+     * preferences for other users or bots. Banned users or bots can't retrieve
+     * membership preferences for the channel from which they are banned.
      * </p>
+     * <note>
+     * <p>
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
+     * </p>
+     * </note>
      * 
      * @param getChannelMembershipPreferencesRequest
      * @return getChannelMembershipPreferencesResult The response from the
@@ -1839,9 +1898,9 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * </p>
      * <note>
      * <p>
-     * The x-amz-chime-bearer request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -1947,8 +2006,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <li>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </li>
      * </ul>
@@ -2058,13 +2117,72 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Lists all the users banned from a particular channel.
+     * Retrieves the data streaming configuration for an
+     * <code>AppInstance</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param getMessagingStreamingConfigurationsRequest
+     * @return getMessagingStreamingConfigurationsResult The response from the
+     *         GetMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetMessagingStreamingConfigurationsResult getMessagingStreamingConfigurations(
+            GetMessagingStreamingConfigurationsRequest getMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetMessagingStreamingConfigurationsRequest> request = null;
+        Response<GetMessagingStreamingConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(getMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetMessagingStreamingConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new GetMessagingStreamingConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<GetMessagingStreamingConfigurationsResult> responseHandler = new JsonResponseHandler<GetMessagingStreamingConfigurationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all the users and bots banned from a particular channel.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2173,8 +2291,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * <p>
@@ -2235,15 +2353,16 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Lists all channels that a particular <code>AppInstanceUser</code> is a
-     * part of. Only an <code>AppInstanceAdmin</code> can call the API with a
-     * user ARN that is not their own.
+     * Lists all channels that anr <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> is a part of. Only an
+     * <code>AppInstanceAdmin</code> can call the API with a user ARN that is
+     * not their own.
      * </p>
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2309,9 +2428,10 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * This action always returns the latest version of an edited message.
      * </p>
      * <p>
-     * Also, the x-amz-chime-bearer request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * Also, the <code>x-amz-chime-bearer</code> request header is mandatory.
+     * Use the ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call as the value in the
+     * header.
      * </p>
      * </note>
      * 
@@ -2371,8 +2491,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2450,8 +2570,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2564,8 +2684,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2727,14 +2847,99 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Sets the membership preferences of an <code>AppInstanceUser</code> for
-     * the specified channel. The <code>AppInstanceUser</code> must be a member
-     * of the channel. Only the <code>AppInstanceUser</code> who owns the
-     * membership can set preferences. Users in the
-     * <code>AppInstanceAdmin</code> and channel moderator roles can't set
-     * preferences for other users. Banned users can't set membership
-     * preferences for the channel from which they are banned.
+     * Sets the number of days before the channel is automatically deleted.
      * </p>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * A background process deletes expired channels within 6 hours of
+     * expiration. Actual deletion times may vary.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Expired channels that have not yet been deleted appear as active, and you
+     * can update their expiration settings. The system honors the new settings.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param putChannelExpirationSettingsRequest
+     * @return putChannelExpirationSettingsResult The response from the
+     *         PutChannelExpirationSettings service method, as returned by
+     *         Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ConflictException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public PutChannelExpirationSettingsResult putChannelExpirationSettings(
+            PutChannelExpirationSettingsRequest putChannelExpirationSettingsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putChannelExpirationSettingsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutChannelExpirationSettingsRequest> request = null;
+        Response<PutChannelExpirationSettingsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutChannelExpirationSettingsRequestMarshaller()
+                        .marshall(putChannelExpirationSettingsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutChannelExpirationSettingsResult, JsonUnmarshallerContext> unmarshaller = new PutChannelExpirationSettingsResultJsonUnmarshaller();
+            JsonResponseHandler<PutChannelExpirationSettingsResult> responseHandler = new JsonResponseHandler<PutChannelExpirationSettingsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the membership preferences of an <code>AppInstanceUser</code> or
+     * <code>AppIntanceBot</code> for the specified channel. The user or bot
+     * must be a member of the channel. Only the user or bot who owns the
+     * membership can set preferences. Users or bots in the
+     * <code>AppInstanceAdmin</code> and channel moderator roles can't set
+     * preferences for other users or users. Banned users or bots can't set
+     * membership preferences for the channel from which they are banned.
+     * </p>
+     * <note>
+     * <p>
+     * The x-amz-chime-bearer request header is mandatory. Use the ARN of an
+     * <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+     * the API call as the value in the header.
+     * </p>
+     * </note>
      * 
      * @param putChannelMembershipPreferencesRequest
      * @return putChannelMembershipPreferencesResult The response from the
@@ -2788,6 +2993,66 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Sets the data streaming configuration for an <code>AppInstance</code>.
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html"
+     * >Streaming messaging data</a> in the <i>Amazon Chime SDK Developer
+     * Guide</i>.
+     * </p>
+     * 
+     * @param putMessagingStreamingConfigurationsRequest
+     * @return putMessagingStreamingConfigurationsResult The response from the
+     *         PutMessagingStreamingConfigurations service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws NotFoundException
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public PutMessagingStreamingConfigurationsResult putMessagingStreamingConfigurations(
+            PutMessagingStreamingConfigurationsRequest putMessagingStreamingConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putMessagingStreamingConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutMessagingStreamingConfigurationsRequest> request = null;
+        Response<PutMessagingStreamingConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutMessagingStreamingConfigurationsRequestMarshaller()
+                        .marshall(putMessagingStreamingConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutMessagingStreamingConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new PutMessagingStreamingConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<PutMessagingStreamingConfigurationsResult> responseHandler = new JsonResponseHandler<PutMessagingStreamingConfigurationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Redacts message content, but not metadata. The message exists in the back
      * end, but the action returns null content, and the state shows as
      * redacted.
@@ -2795,8 +3060,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -2852,9 +3117,15 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Allows <code>ChimeBearer</code> to search channels by channel members.
-     * AppInstanceUsers can search across the channels that they belong to.
-     * AppInstanceAdmins can search across all channels.
+     * Allows the <code>ChimeBearer</code> to search channels by channel
+     * members. Users or bots can search across the channels that they belong
+     * to. Users in the <code>AppInstanceAdmin</code> role can search across all
+     * channels.
+     * </p>
+     * <p>
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * 
      * @param searchChannelsRequest
@@ -2910,8 +3181,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * <p>
      * Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB
@@ -3070,8 +3341,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -3183,8 +3454,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 
@@ -3245,8 +3516,8 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * <note>
      * <p>
      * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
-     * <code>AppInstanceUserArn</code> of the user that makes the API call as
-     * the value in the header.
+     * ARN of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * that makes the API call as the value in the header.
      * </p>
      * </note>
      * 

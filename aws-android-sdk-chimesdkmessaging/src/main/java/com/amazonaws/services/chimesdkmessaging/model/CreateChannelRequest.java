@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,9 +28,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
  * </p>
  * </note>
  */
@@ -116,7 +116,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,6 +161,14 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      */
     private ElasticChannelConfiguration elasticChannelConfiguration;
+
+    /**
+     * <p>
+     * Settings that control the interval after which the channel is
+     * automatically deleted.
+     * </p>
+     */
+    private ExpirationSettings expirationSettings;
 
     /**
      * <p>
@@ -733,7 +742,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -743,8 +753,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the user that makes the
-     *         API call.
+     *         The ARN of the <code>AppInstanceUser</code> or
+     *         <code>AppInstanceBot</code> that makes the API call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -753,7 +763,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -763,8 +774,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -773,7 +784,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -786,8 +798,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1062,6 +1074,57 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * Settings that control the interval after which the channel is
+     * automatically deleted.
+     * </p>
+     *
+     * @return <p>
+     *         Settings that control the interval after which the channel is
+     *         automatically deleted.
+     *         </p>
+     */
+    public ExpirationSettings getExpirationSettings() {
+        return expirationSettings;
+    }
+
+    /**
+     * <p>
+     * Settings that control the interval after which the channel is
+     * automatically deleted.
+     * </p>
+     *
+     * @param expirationSettings <p>
+     *            Settings that control the interval after which the channel is
+     *            automatically deleted.
+     *            </p>
+     */
+    public void setExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+    }
+
+    /**
+     * <p>
+     * Settings that control the interval after which the channel is
+     * automatically deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param expirationSettings <p>
+     *            Settings that control the interval after which the channel is
+     *            automatically deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateChannelRequest withExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1095,7 +1158,9 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         if (getModeratorArns() != null)
             sb.append("ModeratorArns: " + getModeratorArns() + ",");
         if (getElasticChannelConfiguration() != null)
-            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration());
+            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration() + ",");
+        if (getExpirationSettings() != null)
+            sb.append("ExpirationSettings: " + getExpirationSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -1124,6 +1189,8 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
                 * hashCode
                 + ((getElasticChannelConfiguration() == null) ? 0
                         : getElasticChannelConfiguration().hashCode());
+        hashCode = prime * hashCode
+                + ((getExpirationSettings() == null) ? 0 : getExpirationSettings().hashCode());
         return hashCode;
     }
 
@@ -1194,6 +1261,11 @@ public class CreateChannelRequest extends AmazonWebServiceRequest implements Ser
         if (other.getElasticChannelConfiguration() != null
                 && other.getElasticChannelConfiguration().equals(
                         this.getElasticChannelConfiguration()) == false)
+            return false;
+        if (other.getExpirationSettings() == null ^ this.getExpirationSettings() == null)
+            return false;
+        if (other.getExpirationSettings() != null
+                && other.getExpirationSettings().equals(this.getExpirationSettings()) == false)
             return false;
         return true;
     }
