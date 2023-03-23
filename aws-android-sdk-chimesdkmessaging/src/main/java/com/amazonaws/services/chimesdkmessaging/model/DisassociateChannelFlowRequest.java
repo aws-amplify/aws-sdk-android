@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,9 +27,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * Only administrators or channel moderators can disassociate a channel flow.
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
+ * </p>
+ * <p>
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
  * </p>
  * </note>
  */

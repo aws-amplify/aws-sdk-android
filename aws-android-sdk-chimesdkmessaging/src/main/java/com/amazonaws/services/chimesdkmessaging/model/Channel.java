@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -127,6 +127,13 @@ public class Channel implements Serializable {
      * </p>
      */
     private ElasticChannelConfiguration elasticChannelConfiguration;
+
+    /**
+     * <p>
+     * Settings that control when a channel expires.
+     * </p>
+     */
+    private ExpirationSettings expirationSettings;
 
     /**
      * <p>
@@ -807,6 +814,51 @@ public class Channel implements Serializable {
     }
 
     /**
+     * <p>
+     * Settings that control when a channel expires.
+     * </p>
+     *
+     * @return <p>
+     *         Settings that control when a channel expires.
+     *         </p>
+     */
+    public ExpirationSettings getExpirationSettings() {
+        return expirationSettings;
+    }
+
+    /**
+     * <p>
+     * Settings that control when a channel expires.
+     * </p>
+     *
+     * @param expirationSettings <p>
+     *            Settings that control when a channel expires.
+     *            </p>
+     */
+    public void setExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+    }
+
+    /**
+     * <p>
+     * Settings that control when a channel expires.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param expirationSettings <p>
+     *            Settings that control when a channel expires.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Channel withExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -838,7 +890,9 @@ public class Channel implements Serializable {
         if (getChannelFlowArn() != null)
             sb.append("ChannelFlowArn: " + getChannelFlowArn() + ",");
         if (getElasticChannelConfiguration() != null)
-            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration());
+            sb.append("ElasticChannelConfiguration: " + getElasticChannelConfiguration() + ",");
+        if (getExpirationSettings() != null)
+            sb.append("ExpirationSettings: " + getExpirationSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -866,6 +920,8 @@ public class Channel implements Serializable {
                 * hashCode
                 + ((getElasticChannelConfiguration() == null) ? 0
                         : getElasticChannelConfiguration().hashCode());
+        hashCode = prime * hashCode
+                + ((getExpirationSettings() == null) ? 0 : getExpirationSettings().hashCode());
         return hashCode;
     }
 
@@ -932,6 +988,11 @@ public class Channel implements Serializable {
         if (other.getElasticChannelConfiguration() != null
                 && other.getElasticChannelConfiguration().equals(
                         this.getElasticChannelConfiguration()) == false)
+            return false;
+        if (other.getExpirationSettings() == null ^ this.getExpirationSettings() == null)
+            return false;
+        if (other.getExpirationSettings() != null
+                && other.getExpirationSettings().equals(this.getExpirationSettings()) == false)
             return false;
         return true;
     }
