@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -106,7 +106,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The idempotency token for each client request.
+     * The unique ID assigned to the request. Use different tokens to register
+     * other endpoints.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -690,7 +691,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The idempotency token for each client request.
+     * The unique ID assigned to the request. Use different tokens to register
+     * other endpoints.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -698,7 +700,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @return <p>
-     *         The idempotency token for each client request.
+     *         The unique ID assigned to the request. Use different tokens to
+     *         register other endpoints.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -707,7 +710,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The idempotency token for each client request.
+     * The unique ID assigned to the request. Use different tokens to register
+     * other endpoints.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -715,7 +719,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @param clientRequestToken <p>
-     *            The idempotency token for each client request.
+     *            The unique ID assigned to the request. Use different tokens to
+     *            register other endpoints.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -724,7 +729,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The idempotency token for each client request.
+     * The unique ID assigned to the request. Use different tokens to register
+     * other endpoints.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -735,7 +741,8 @@ public class RegisterAppInstanceUserEndpointRequest extends AmazonWebServiceRequ
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @param clientRequestToken <p>
-     *            The idempotency token for each client request.
+     *            The unique ID assigned to the request. Use different tokens to
+     *            register other endpoints.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -71,6 +71,14 @@ public class AppInstanceUser implements Serializable {
      * </p>
      */
     private java.util.Date lastUpdatedTimestamp;
+
+    /**
+     * <p>
+     * The interval after which an <code>AppInstanceUser</code> is automatically
+     * deleted.
+     * </p>
+     */
+    private ExpirationSettings expirationSettings;
 
     /**
      * <p>
@@ -345,6 +353,57 @@ public class AppInstanceUser implements Serializable {
     }
 
     /**
+     * <p>
+     * The interval after which an <code>AppInstanceUser</code> is automatically
+     * deleted.
+     * </p>
+     *
+     * @return <p>
+     *         The interval after which an <code>AppInstanceUser</code> is
+     *         automatically deleted.
+     *         </p>
+     */
+    public ExpirationSettings getExpirationSettings() {
+        return expirationSettings;
+    }
+
+    /**
+     * <p>
+     * The interval after which an <code>AppInstanceUser</code> is automatically
+     * deleted.
+     * </p>
+     *
+     * @param expirationSettings <p>
+     *            The interval after which an <code>AppInstanceUser</code> is
+     *            automatically deleted.
+     *            </p>
+     */
+    public void setExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+    }
+
+    /**
+     * <p>
+     * The interval after which an <code>AppInstanceUser</code> is automatically
+     * deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param expirationSettings <p>
+     *            The interval after which an <code>AppInstanceUser</code> is
+     *            automatically deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AppInstanceUser withExpirationSettings(ExpirationSettings expirationSettings) {
+        this.expirationSettings = expirationSettings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -364,7 +423,9 @@ public class AppInstanceUser implements Serializable {
         if (getCreatedTimestamp() != null)
             sb.append("CreatedTimestamp: " + getCreatedTimestamp() + ",");
         if (getLastUpdatedTimestamp() != null)
-            sb.append("LastUpdatedTimestamp: " + getLastUpdatedTimestamp());
+            sb.append("LastUpdatedTimestamp: " + getLastUpdatedTimestamp() + ",");
+        if (getExpirationSettings() != null)
+            sb.append("ExpirationSettings: " + getExpirationSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -382,6 +443,8 @@ public class AppInstanceUser implements Serializable {
                 + ((getCreatedTimestamp() == null) ? 0 : getCreatedTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getLastUpdatedTimestamp() == null) ? 0 : getLastUpdatedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getExpirationSettings() == null) ? 0 : getExpirationSettings().hashCode());
         return hashCode;
     }
 
@@ -418,6 +481,11 @@ public class AppInstanceUser implements Serializable {
             return false;
         if (other.getLastUpdatedTimestamp() != null
                 && other.getLastUpdatedTimestamp().equals(this.getLastUpdatedTimestamp()) == false)
+            return false;
+        if (other.getExpirationSettings() == null ^ this.getExpirationSettings() == null)
+            return false;
+        if (other.getExpirationSettings() != null
+                && other.getExpirationSettings().equals(this.getExpirationSettings()) == false)
             return false;
         return true;
     }

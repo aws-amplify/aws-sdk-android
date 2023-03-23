@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code>.
- * This action does not delete the user.
+ * Demotes an <code>AppInstanceAdmin</code> to an <code>AppInstanceUser</code>
+ * or <code>AppInstanceBot</code>. This action does not delete the user.
  * </p>
  */
 public class DeleteAppInstanceAdminRequest extends AmazonWebServiceRequest implements Serializable {
