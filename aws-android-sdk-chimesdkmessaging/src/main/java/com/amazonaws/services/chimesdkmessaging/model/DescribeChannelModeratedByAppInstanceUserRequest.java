@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,13 +22,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns the full details of a channel moderated by the specified
- * <code>AppInstanceUser</code>.
+ * <code>AppInstanceUser</code> or <code>AppInstanceBot</code>.
  * </p>
  * <note>
  * <p>
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
  * </p>
  * </note>
  */
@@ -49,7 +49,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The ARN of the <code>AppInstanceUser</code> in the moderated channel.
+     * The ARN of the user or bot in the moderated channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,7 +139,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The ARN of the <code>AppInstanceUser</code> in the moderated channel.
+     * The ARN of the user or bot in the moderated channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -148,8 +149,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the <code>AppInstanceUser</code> in the moderated
-     *         channel.
+     *         The ARN of the user or bot in the moderated channel.
      *         </p>
      */
     public String getAppInstanceUserArn() {
@@ -158,7 +158,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The ARN of the <code>AppInstanceUser</code> in the moderated channel.
+     * The ARN of the user or bot in the moderated channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,8 +168,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param appInstanceUserArn <p>
-     *            The ARN of the <code>AppInstanceUser</code> in the moderated
-     *            channel.
+     *            The ARN of the user or bot in the moderated channel.
      *            </p>
      */
     public void setAppInstanceUserArn(String appInstanceUserArn) {
@@ -178,7 +177,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The ARN of the <code>AppInstanceUser</code> in the moderated channel.
+     * The ARN of the user or bot in the moderated channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -191,8 +190,7 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param appInstanceUserArn <p>
-     *            The ARN of the <code>AppInstanceUser</code> in the moderated
-     *            channel.
+     *            The ARN of the user or bot in the moderated channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -205,7 +203,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -215,8 +214,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the user that makes the
-     *         API call.
+     *         The ARN of the <code>AppInstanceUser</code> or
+     *         <code>AppInstanceBot</code> that makes the API call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -225,7 +224,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -235,8 +235,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -245,7 +245,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -258,8 +259,8 @@ public class DescribeChannelModeratedByAppInstanceUserRequest extends AmazonWebS
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 50<br/>
+     * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>.*<br/>
      */
     private String title;
@@ -40,7 +40,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 150<br/>
+     * <b>Length: </b>1 - 150<br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String body;
@@ -63,7 +63,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 50<br/>
+     * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
@@ -80,7 +80,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 50<br/>
+     * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>.*<br/>
      *
      * @param title <p>
@@ -100,7 +100,7 @@ public class PushNotificationConfiguration implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 50<br/>
+     * <b>Length: </b>1 - 50<br/>
      * <b>Pattern: </b>.*<br/>
      *
      * @param title <p>
@@ -120,7 +120,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 150<br/>
+     * <b>Length: </b>1 - 150<br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
@@ -137,7 +137,7 @@ public class PushNotificationConfiguration implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 150<br/>
+     * <b>Length: </b>1 - 150<br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param body <p>
@@ -157,7 +157,7 @@ public class PushNotificationConfiguration implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 150<br/>
+     * <b>Length: </b>1 - 150<br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param body <p>

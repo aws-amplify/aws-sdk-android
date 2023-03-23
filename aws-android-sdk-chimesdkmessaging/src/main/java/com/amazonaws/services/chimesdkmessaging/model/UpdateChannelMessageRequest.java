@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,9 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
- * <code>AppInstanceUserArn</code> of the user that makes the API call as the
- * value in the header.
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
  * </p>
  * </note>
  */
@@ -62,7 +62,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      */
     private String content;
@@ -80,7 +80,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,6 +108,17 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      */
     private String subChannelId;
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     */
+    private String contentType;
 
     /**
      * <p>
@@ -234,7 +246,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
@@ -251,7 +263,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param content <p>
@@ -271,7 +283,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 4096<br/>
+     * <b>Length: </b>1 - <br/>
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param content <p>
@@ -344,7 +356,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -354,8 +367,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The <code>AppInstanceUserArn</code> of the user that makes the
-     *         API call.
+     *         The ARN of the <code>AppInstanceUser</code> or
+     *         <code>AppInstanceBot</code> that makes the API call.
      *         </p>
      */
     public String getChimeBearer() {
@@ -364,7 +377,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -374,8 +388,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      */
     public void setChimeBearer(String chimeBearer) {
@@ -384,7 +398,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The <code>AppInstanceUserArn</code> of the user that makes the API call.
+     * The ARN of the <code>AppInstanceUser</code> or
+     * <code>AppInstanceBot</code> that makes the API call.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -397,8 +412,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param chimeBearer <p>
-     *            The <code>AppInstanceUserArn</code> of the user that makes the
-     *            API call.
+     *            The ARN of the <code>AppInstanceUser</code> or
+     *            <code>AppInstanceBot</code> that makes the API call.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -502,6 +517,63 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @return <p>
+     *         The content type of the channel message.
+     *         </p>
+     */
+    public String getContentType() {
+        return contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel message.
+     *            </p>
+     */
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateChannelMessageRequest withContentType(String contentType) {
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -523,7 +595,9 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
         if (getChimeBearer() != null)
             sb.append("ChimeBearer: " + getChimeBearer() + ",");
         if (getSubChannelId() != null)
-            sb.append("SubChannelId: " + getSubChannelId());
+            sb.append("SubChannelId: " + getSubChannelId() + ",");
+        if (getContentType() != null)
+            sb.append("ContentType: " + getContentType());
         sb.append("}");
         return sb.toString();
     }
@@ -541,6 +615,8 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
                 + ((getChimeBearer() == null) ? 0 : getChimeBearer().hashCode());
         hashCode = prime * hashCode
                 + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentType() == null) ? 0 : getContentType().hashCode());
         return hashCode;
     }
 
@@ -582,6 +658,11 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getSubChannelId() != null
                 && other.getSubChannelId().equals(this.getSubChannelId()) == false)
+            return false;
+        if (other.getContentType() == null ^ this.getContentType() == null)
+            return false;
+        if (other.getContentType() != null
+                && other.getContentType().equals(this.getContentType()) == false)
             return false;
         return true;
     }

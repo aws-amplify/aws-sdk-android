@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Allows <code>ChimeBearer</code> to search channels by channel members.
- * AppInstanceUsers can search across the channels that they belong to.
- * AppInstanceAdmins can search across all channels.
+ * Allows the <code>ChimeBearer</code> to search channels by channel members.
+ * Users or bots can search across the channels that they belong to. Users in
+ * the <code>AppInstanceAdmin</code> role can search across all channels.
+ * </p>
+ * <p>
+ * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the ARN
+ * of the <code>AppInstanceUser</code> or <code>AppInstanceBot</code> that makes
+ * the API call as the value in the header.
  * </p>
  */
 public class SearchChannelsRequest extends AmazonWebServiceRequest implements Serializable {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -68,6 +68,9 @@ class ChannelJsonUnmarshaller implements Unmarshaller<Channel, JsonUnmarshallerC
             } else if (name.equals("ElasticChannelConfiguration")) {
                 channel.setElasticChannelConfiguration(ElasticChannelConfigurationJsonUnmarshaller
                         .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("ExpirationSettings")) {
+                channel.setExpirationSettings(ExpirationSettingsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

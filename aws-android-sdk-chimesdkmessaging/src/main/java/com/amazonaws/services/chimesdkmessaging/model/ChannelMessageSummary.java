@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -116,6 +116,17 @@ public class ChannelMessageSummary implements Serializable {
      * </p>
      */
     private java.util.Map<String, MessageAttributeValue> messageAttributes;
+
+    /**
+     * <p>
+     * The content type of the channel messsage listed in the summary.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     */
+    private String contentType;
 
     /**
      * <p>
@@ -770,6 +781,65 @@ public class ChannelMessageSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The content type of the channel messsage listed in the summary.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @return <p>
+     *         The content type of the channel messsage listed in the summary.
+     *         </p>
+     */
+    public String getContentType() {
+        return contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel messsage listed in the summary.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel messsage listed in the
+     *            summary.
+     *            </p>
+     */
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel messsage listed in the summary.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel messsage listed in the
+     *            summary.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageSummary withContentType(String contentType) {
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -801,7 +871,9 @@ public class ChannelMessageSummary implements Serializable {
         if (getStatus() != null)
             sb.append("Status: " + getStatus() + ",");
         if (getMessageAttributes() != null)
-            sb.append("MessageAttributes: " + getMessageAttributes());
+            sb.append("MessageAttributes: " + getMessageAttributes() + ",");
+        if (getContentType() != null)
+            sb.append("ContentType: " + getContentType());
         sb.append("}");
         return sb.toString();
     }
@@ -826,6 +898,8 @@ public class ChannelMessageSummary implements Serializable {
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentType() == null) ? 0 : getContentType().hashCode());
         return hashCode;
     }
 
@@ -888,6 +962,11 @@ public class ChannelMessageSummary implements Serializable {
             return false;
         if (other.getMessageAttributes() != null
                 && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
+            return false;
+        if (other.getContentType() == null ^ this.getContentType() == null)
+            return false;
+        if (other.getContentType() != null
+                && other.getContentType().equals(this.getContentType()) == false)
             return false;
         return true;
     }
