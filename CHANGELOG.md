@@ -1,3 +1,21 @@
+## [Release 2.65.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.65.0)
+
+### Features
+- **storage:** Add support for dualside encryption even if acceleration is off ([#3220](https://github.com/aws-amplify/aws-sdk-android/issues/3220))
+- **aws-android-sdk-location:** update models to latest ([#3201](https://github.com/aws-amplify/aws-sdk-android/issues/3201))
+- **aws-android-sdk-connect:** update models to latest ([#3205](https://github.com/aws-amplify/aws-sdk-android/issues/3205))
+- **aws-android-sdk-connect:** update models to latest ([#3218](https://github.com/aws-amplify/aws-sdk-android/issues/3218))
+- **aws-android-sdk-lambda:** update models to latest ([#3207](https://github.com/aws-amplify/aws-sdk-android/issues/3207))
+- **aws-android-sdk-transcribe:** update models to latest ([#3214](https://github.com/aws-amplify/aws-sdk-android/issues/3214))
+- **aws-android-sdk-kms:** update models to latest ([#3210](https://github.com/aws-amplify/aws-sdk-android/issues/3210))
+- **aws-android-sdk-iot:** update models to latest ([#3212](https://github.com/aws-amplify/aws-sdk-android/issues/3212))
+- **aws-android-sdk-location:** update models to latest ([#3216](https://github.com/aws-amplify/aws-sdk-android/issues/3216))
+
+### Miscellaneous
+- remove buildspec files ([#3211](https://github.com/aws-amplify/aws-sdk-android/issues/3211))
+
+[See all changes between 2.64.0 and 2.65.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.64.0...release_v2.65.0)
+
 ## [Release 2.64.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.64.0)
 
 ### Features
