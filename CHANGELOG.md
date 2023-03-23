@@ -1,3 +1,13 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---textract
+---chimesdkmessaging
+---chimesdkidentity
 ## [Release 2.65.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.65.0)
 
 ### Features
