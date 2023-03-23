@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -605,7 +605,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Analyzes identity documents for relevant information. This information is
      * extracted and returned as <code>IdentityDocumentFields</code>, which
-     * records both the normalized field and value of the extracted text.Unlike
+     * records both the normalized field and value of the extracted text. Unlike
      * other Amazon Textract operations, <code>AnalyzeID</code> doesn't return
      * any Geometry data.
      * </p>
@@ -643,7 +643,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * <p>
      * Analyzes identity documents for relevant information. This information is
      * extracted and returned as <code>IdentityDocumentFields</code>, which
-     * records both the normalized field and value of the extracted text.Unlike
+     * records both the normalized field and value of the extracted text. Unlike
      * other Amazon Textract operations, <code>AnalyzeID</code> doesn't return
      * any Geometry data.
      * </p>
