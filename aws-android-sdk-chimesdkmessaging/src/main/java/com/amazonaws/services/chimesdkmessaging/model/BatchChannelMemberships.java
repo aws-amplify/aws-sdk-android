@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,7 +50,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The ARN of the channel to which you're adding users.
+     * The ARN of the channel to which you're adding members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,14 +119,14 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, HIDDEN
      *
      * @return <p>
-     *         The membership types set for the channel users.
+     *         The membership types set for the channel members.
      *         </p>
      * @see ChannelMembershipType
      */
@@ -136,14 +136,14 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, HIDDEN
      *
      * @param type <p>
-     *            The membership types set for the channel users.
+     *            The membership types set for the channel members.
      *            </p>
      * @see ChannelMembershipType
      */
@@ -153,7 +153,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -163,7 +163,7 @@ public class BatchChannelMemberships implements Serializable {
      * <b>Allowed Values: </b>DEFAULT, HIDDEN
      *
      * @param type <p>
-     *            The membership types set for the channel users.
+     *            The membership types set for the channel members.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -176,14 +176,14 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, HIDDEN
      *
      * @param type <p>
-     *            The membership types set for the channel users.
+     *            The membership types set for the channel members.
      *            </p>
      * @see ChannelMembershipType
      */
@@ -193,7 +193,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The membership types set for the channel users.
+     * The membership types set for the channel members.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -203,7 +203,7 @@ public class BatchChannelMemberships implements Serializable {
      * <b>Allowed Values: </b>DEFAULT, HIDDEN
      *
      * @param type <p>
-     *            The membership types set for the channel users.
+     *            The membership types set for the channel members.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -290,7 +290,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The ARN of the channel to which you're adding users.
+     * The ARN of the channel to which you're adding members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -300,7 +300,7 @@ public class BatchChannelMemberships implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the channel to which you're adding users.
+     *         The ARN of the channel to which you're adding members.
      *         </p>
      */
     public String getChannelArn() {
@@ -309,7 +309,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The ARN of the channel to which you're adding users.
+     * The ARN of the channel to which you're adding members.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -319,7 +319,7 @@ public class BatchChannelMemberships implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel to which you're adding users.
+     *            The ARN of the channel to which you're adding members.
      *            </p>
      */
     public void setChannelArn(String channelArn) {
@@ -328,7 +328,7 @@ public class BatchChannelMemberships implements Serializable {
 
     /**
      * <p>
-     * The ARN of the channel to which you're adding users.
+     * The ARN of the channel to which you're adding members.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -341,7 +341,7 @@ public class BatchChannelMemberships implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelArn <p>
-     *            The ARN of the channel to which you're adding users.
+     *            The ARN of the channel to which you're adding members.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,18 +31,58 @@ import java.io.Serializable;
 public class Relationship implements Serializable {
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      */
     private String type;
 
@@ -56,29 +96,109 @@ public class Relationship implements Serializable {
 
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      *
      * @return <p>
-     *         The type of relationship that the blocks in the IDs array have
-     *         with the current block. The relationship can be
-     *         <code>VALUE</code> or <code>CHILD</code>. A relationship of type
-     *         VALUE is a list that contains the ID of the VALUE block that's
-     *         associated with the KEY of a key-value pair. A relationship of
-     *         type CHILD is a list of IDs that identify WORD blocks in the case
-     *         of lines Cell blocks in the case of Tables, and WORD blocks in
-     *         the case of Selection Elements.
+     *         The type of relationship between the blocks in the IDs array and
+     *         the current block. The following list describes the relationship
+     *         types that can be returned.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <i>VALUE</i> - A list that contains the ID of the VALUE block
+     *         that's associated with the KEY of a key-value pair.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>CHILD</i> - A list of IDs that identify blocks found within
+     *         the current block object. For example, WORD blocks have a CHILD
+     *         relationship to the LINE block type.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>MERGED_CELL</i> - A list of IDs that identify each of the
+     *         MERGED_CELL block types in a table.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT
+     *         block that’s associated with the corresponding QUERY block.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>TABLE</i> - A list of IDs that identify associated TABLE block
+     *         types.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>TABLE_TITLE</i> - A list that contains the ID for the
+     *         TABLE_TITLE block type in a table.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <i>TABLE_FOOTER</i> - A list of IDs that identify the
+     *         TABLE_FOOTER block types in a table.
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see RelationshipType
      */
     public String getType() {
@@ -87,29 +207,110 @@ public class Relationship implements Serializable {
 
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      *
      * @param type <p>
-     *            The type of relationship that the blocks in the IDs array have
-     *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
-     *            type VALUE is a list that contains the ID of the VALUE block
-     *            that's associated with the KEY of a key-value pair. A
-     *            relationship of type CHILD is a list of IDs that identify WORD
-     *            blocks in the case of lines Cell blocks in the case of Tables,
-     *            and WORD blocks in the case of Selection Elements.
+     *            The type of relationship between the blocks in the IDs array
+     *            and the current block. The following list describes the
+     *            relationship types that can be returned.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <i>VALUE</i> - A list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>CHILD</i> - A list of IDs that identify blocks found within
+     *            the current block object. For example, WORD blocks have a
+     *            CHILD relationship to the LINE block type.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>MERGED_CELL</i> - A list of IDs that identify each of the
+     *            MERGED_CELL block types in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>ANSWER</i> - A list that contains the ID of the
+     *            QUERY_RESULT block that’s associated with the corresponding
+     *            QUERY block.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE</i> - A list of IDs that identify associated TABLE
+     *            block types.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_TITLE</i> - A list that contains the ID for the
+     *            TABLE_TITLE block type in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_FOOTER</i> - A list of IDs that identify the
+     *            TABLE_FOOTER block types in a table.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see RelationshipType
      */
     public void setType(String type) {
@@ -118,32 +319,113 @@ public class Relationship implements Serializable {
 
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      *
      * @param type <p>
-     *            The type of relationship that the blocks in the IDs array have
-     *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
-     *            type VALUE is a list that contains the ID of the VALUE block
-     *            that's associated with the KEY of a key-value pair. A
-     *            relationship of type CHILD is a list of IDs that identify WORD
-     *            blocks in the case of lines Cell blocks in the case of Tables,
-     *            and WORD blocks in the case of Selection Elements.
+     *            The type of relationship between the blocks in the IDs array
+     *            and the current block. The following list describes the
+     *            relationship types that can be returned.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <i>VALUE</i> - A list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>CHILD</i> - A list of IDs that identify blocks found within
+     *            the current block object. For example, WORD blocks have a
+     *            CHILD relationship to the LINE block type.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>MERGED_CELL</i> - A list of IDs that identify each of the
+     *            MERGED_CELL block types in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>ANSWER</i> - A list that contains the ID of the
+     *            QUERY_RESULT block that’s associated with the corresponding
+     *            QUERY block.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE</i> - A list of IDs that identify associated TABLE
+     *            block types.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_TITLE</i> - A list that contains the ID for the
+     *            TABLE_TITLE block type in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_FOOTER</i> - A list of IDs that identify the
+     *            TABLE_FOOTER block types in a table.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see RelationshipType
@@ -155,29 +437,110 @@ public class Relationship implements Serializable {
 
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      *
      * @param type <p>
-     *            The type of relationship that the blocks in the IDs array have
-     *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
-     *            type VALUE is a list that contains the ID of the VALUE block
-     *            that's associated with the KEY of a key-value pair. A
-     *            relationship of type CHILD is a list of IDs that identify WORD
-     *            blocks in the case of lines Cell blocks in the case of Tables,
-     *            and WORD blocks in the case of Selection Elements.
+     *            The type of relationship between the blocks in the IDs array
+     *            and the current block. The following list describes the
+     *            relationship types that can be returned.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <i>VALUE</i> - A list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>CHILD</i> - A list of IDs that identify blocks found within
+     *            the current block object. For example, WORD blocks have a
+     *            CHILD relationship to the LINE block type.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>MERGED_CELL</i> - A list of IDs that identify each of the
+     *            MERGED_CELL block types in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>ANSWER</i> - A list that contains the ID of the
+     *            QUERY_RESULT block that’s associated with the corresponding
+     *            QUERY block.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE</i> - A list of IDs that identify associated TABLE
+     *            block types.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_TITLE</i> - A list that contains the ID for the
+     *            TABLE_TITLE block type in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_FOOTER</i> - A list of IDs that identify the
+     *            TABLE_FOOTER block types in a table.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see RelationshipType
      */
     public void setType(RelationshipType type) {
@@ -186,32 +549,113 @@ public class Relationship implements Serializable {
 
     /**
      * <p>
-     * The type of relationship that the blocks in the IDs array have with the
-     * current block. The relationship can be <code>VALUE</code> or
-     * <code>CHILD</code>. A relationship of type VALUE is a list that contains
-     * the ID of the VALUE block that's associated with the KEY of a key-value
-     * pair. A relationship of type CHILD is a list of IDs that identify WORD
-     * blocks in the case of lines Cell blocks in the case of Tables, and WORD
-     * blocks in the case of Selection Elements.
+     * The type of relationship between the blocks in the IDs array and the
+     * current block. The following list describes the relationship types that
+     * can be returned.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <i>VALUE</i> - A list that contains the ID of the VALUE block that's
+     * associated with the KEY of a key-value pair.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>CHILD</i> - A list of IDs that identify blocks found within the
+     * current block object. For example, WORD blocks have a CHILD relationship
+     * to the LINE block type.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>MERGED_CELL</i> - A list of IDs that identify each of the MERGED_CELL
+     * block types in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>ANSWER</i> - A list that contains the ID of the QUERY_RESULT block
+     * that’s associated with the corresponding QUERY block.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE</i> - A list of IDs that identify associated TABLE block types.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_TITLE</i> - A list that contains the ID for the TABLE_TITLE
+     * block type in a table.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <i>TABLE_FOOTER</i> - A list of IDs that identify the TABLE_FOOTER block
+     * types in a table.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>VALUE, CHILD, COMPLEX_FEATURES, MERGED_CELL,
-     * TITLE, ANSWER
+     * TITLE, ANSWER, TABLE, TABLE_TITLE, TABLE_FOOTER
      *
      * @param type <p>
-     *            The type of relationship that the blocks in the IDs array have
-     *            with the current block. The relationship can be
-     *            <code>VALUE</code> or <code>CHILD</code>. A relationship of
-     *            type VALUE is a list that contains the ID of the VALUE block
-     *            that's associated with the KEY of a key-value pair. A
-     *            relationship of type CHILD is a list of IDs that identify WORD
-     *            blocks in the case of lines Cell blocks in the case of Tables,
-     *            and WORD blocks in the case of Selection Elements.
+     *            The type of relationship between the blocks in the IDs array
+     *            and the current block. The following list describes the
+     *            relationship types that can be returned.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <i>VALUE</i> - A list that contains the ID of the VALUE block
+     *            that's associated with the KEY of a key-value pair.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>CHILD</i> - A list of IDs that identify blocks found within
+     *            the current block object. For example, WORD blocks have a
+     *            CHILD relationship to the LINE block type.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>MERGED_CELL</i> - A list of IDs that identify each of the
+     *            MERGED_CELL block types in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>ANSWER</i> - A list that contains the ID of the
+     *            QUERY_RESULT block that’s associated with the corresponding
+     *            QUERY block.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE</i> - A list of IDs that identify associated TABLE
+     *            block types.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_TITLE</i> - A list that contains the ID for the
+     *            TABLE_TITLE block type in a table.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <i>TABLE_FOOTER</i> - A list of IDs that identify the
+     *            TABLE_FOOTER block types in a table.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see RelationshipType

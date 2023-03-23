@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,10 @@ import java.io.Serializable;
 public class DocumentGroup implements Serializable {
     /**
      * <p>
-     * The type of document that Amazon Textract has detected. See LINK for a
-     * list of all types returned by Textract.
+     * The type of document that Amazon Textract has detected. See <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     * >Analyze Lending Response Objects</a> for a list of all types returned by
+     * Textract.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,16 +60,21 @@ public class DocumentGroup implements Serializable {
 
     /**
      * <p>
-     * The type of document that Amazon Textract has detected. See LINK for a
-     * list of all types returned by Textract.
+     * The type of document that Amazon Textract has detected. See <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     * >Analyze Lending Response Objects</a> for a list of all types returned by
+     * Textract.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @return <p>
-     *         The type of document that Amazon Textract has detected. See LINK
-     *         for a list of all types returned by Textract.
+     *         The type of document that Amazon Textract has detected. See <a
+     *         href=
+     *         "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     *         >Analyze Lending Response Objects</a> for a list of all types
+     *         returned by Textract.
      *         </p>
      */
     public String getType() {
@@ -76,16 +83,21 @@ public class DocumentGroup implements Serializable {
 
     /**
      * <p>
-     * The type of document that Amazon Textract has detected. See LINK for a
-     * list of all types returned by Textract.
+     * The type of document that Amazon Textract has detected. See <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     * >Analyze Lending Response Objects</a> for a list of all types returned by
+     * Textract.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param type <p>
-     *            The type of document that Amazon Textract has detected. See
-     *            LINK for a list of all types returned by Textract.
+     *            The type of document that Amazon Textract has detected. See <a
+     *            href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     *            >Analyze Lending Response Objects</a> for a list of all types
+     *            returned by Textract.
      *            </p>
      */
     public void setType(String type) {
@@ -94,8 +106,10 @@ public class DocumentGroup implements Serializable {
 
     /**
      * <p>
-     * The type of document that Amazon Textract has detected. See LINK for a
-     * list of all types returned by Textract.
+     * The type of document that Amazon Textract has detected. See <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     * >Analyze Lending Response Objects</a> for a list of all types returned by
+     * Textract.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,8 +119,11 @@ public class DocumentGroup implements Serializable {
      * <b>Pattern: </b>.*\S.*<br/>
      *
      * @param type <p>
-     *            The type of document that Amazon Textract has detected. See
-     *            LINK for a list of all types returned by Textract.
+     *            The type of document that Amazon Textract has detected. See <a
+     *            href=
+     *            "https://docs.aws.amazon.com/textract/latest/dg/lending-response-objects.html"
+     *            >Analyze Lending Response Objects</a> for a list of all types
+     *            returned by Textract.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

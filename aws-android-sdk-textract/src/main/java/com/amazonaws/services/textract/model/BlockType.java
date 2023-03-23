@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,7 +34,9 @@ public enum BlockType {
     TITLE("TITLE"),
     QUERY("QUERY"),
     QUERY_RESULT("QUERY_RESULT"),
-    SIGNATURE("SIGNATURE");
+    SIGNATURE("SIGNATURE"),
+    TABLE_TITLE("TABLE_TITLE"),
+    TABLE_FOOTER("TABLE_FOOTER");
 
     private String value;
 
@@ -62,6 +64,8 @@ public enum BlockType {
         enumMap.put("QUERY", QUERY);
         enumMap.put("QUERY_RESULT", QUERY_RESULT);
         enumMap.put("SIGNATURE", SIGNATURE);
+        enumMap.put("TABLE_TITLE", TABLE_TITLE);
+        enumMap.put("TABLE_FOOTER", TABLE_FOOTER);
     }
 
     /**

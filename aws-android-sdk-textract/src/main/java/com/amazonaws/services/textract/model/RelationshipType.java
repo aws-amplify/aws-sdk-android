@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,10 @@ public enum RelationshipType {
     COMPLEX_FEATURES("COMPLEX_FEATURES"),
     MERGED_CELL("MERGED_CELL"),
     TITLE("TITLE"),
-    ANSWER("ANSWER");
+    ANSWER("ANSWER"),
+    TABLE("TABLE"),
+    TABLE_TITLE("TABLE_TITLE"),
+    TABLE_FOOTER("TABLE_FOOTER");
 
     private String value;
 
@@ -50,6 +53,9 @@ public enum RelationshipType {
         enumMap.put("MERGED_CELL", MERGED_CELL);
         enumMap.put("TITLE", TITLE);
         enumMap.put("ANSWER", ANSWER);
+        enumMap.put("TABLE", TABLE);
+        enumMap.put("TABLE_TITLE", TABLE_TITLE);
+        enumMap.put("TABLE_FOOTER", TABLE_FOOTER);
     }
 
     /**

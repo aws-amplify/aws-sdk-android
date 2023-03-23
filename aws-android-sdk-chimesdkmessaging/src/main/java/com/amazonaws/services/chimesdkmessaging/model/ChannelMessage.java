@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -150,6 +150,17 @@ public class ChannelMessage implements Serializable {
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      */
     private String subChannelId;
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     */
+    private String contentType;
 
     /**
      * <p>
@@ -1017,6 +1028,63 @@ public class ChannelMessage implements Serializable {
     }
 
     /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @return <p>
+     *         The content type of the channel message.
+     *         </p>
+     */
+    public String getContentType() {
+        return contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel message.
+     *            </p>
+     */
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    /**
+     * <p>
+     * The content type of the channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 45<br/>
+     * <b>Pattern: </b>[\s\S]*<br/>
+     *
+     * @param contentType <p>
+     *            The content type of the channel message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessage withContentType(String contentType) {
+        this.contentType = contentType;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1054,7 +1122,9 @@ public class ChannelMessage implements Serializable {
         if (getMessageAttributes() != null)
             sb.append("MessageAttributes: " + getMessageAttributes() + ",");
         if (getSubChannelId() != null)
-            sb.append("SubChannelId: " + getSubChannelId());
+            sb.append("SubChannelId: " + getSubChannelId() + ",");
+        if (getContentType() != null)
+            sb.append("ContentType: " + getContentType());
         sb.append("}");
         return sb.toString();
     }
@@ -1084,6 +1154,8 @@ public class ChannelMessage implements Serializable {
                 + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getSubChannelId() == null) ? 0 : getSubChannelId().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentType() == null) ? 0 : getContentType().hashCode());
         return hashCode;
     }
 
@@ -1161,6 +1233,11 @@ public class ChannelMessage implements Serializable {
             return false;
         if (other.getSubChannelId() != null
                 && other.getSubChannelId().equals(this.getSubChannelId()) == false)
+            return false;
+        if (other.getContentType() == null ^ this.getContentType() == null)
+            return false;
+        if (other.getContentType() != null
+                && other.getContentType().equals(this.getContentType()) == false)
             return false;
         return true;
     }
