@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,13 @@ public enum EntityType {
 
     KEY("KEY"),
     VALUE("VALUE"),
-    COLUMN_HEADER("COLUMN_HEADER");
+    COLUMN_HEADER("COLUMN_HEADER"),
+    TABLE_TITLE("TABLE_TITLE"),
+    TABLE_FOOTER("TABLE_FOOTER"),
+    TABLE_SECTION_TITLE("TABLE_SECTION_TITLE"),
+    TABLE_SUMMARY("TABLE_SUMMARY"),
+    STRUCTURED_TABLE("STRUCTURED_TABLE"),
+    SEMI_STRUCTURED_TABLE("SEMI_STRUCTURED_TABLE");
 
     private String value;
 
@@ -44,6 +50,12 @@ public enum EntityType {
         enumMap.put("KEY", KEY);
         enumMap.put("VALUE", VALUE);
         enumMap.put("COLUMN_HEADER", COLUMN_HEADER);
+        enumMap.put("TABLE_TITLE", TABLE_TITLE);
+        enumMap.put("TABLE_FOOTER", TABLE_FOOTER);
+        enumMap.put("TABLE_SECTION_TITLE", TABLE_SECTION_TITLE);
+        enumMap.put("TABLE_SUMMARY", TABLE_SUMMARY);
+        enumMap.put("STRUCTURED_TABLE", STRUCTURED_TABLE);
+        enumMap.put("SEMI_STRUCTURED_TABLE", SEMI_STRUCTURED_TABLE);
     }
 
     /**
