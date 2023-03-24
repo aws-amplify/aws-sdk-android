@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ public class ListEntityRecognizerSummariesResult implements Serializable {
 
     /**
      * <p>
-     * The list entity recognizer summaries.
+     * Identifies the next page of results to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -116,14 +116,14 @@ public class ListEntityRecognizerSummariesResult implements Serializable {
 
     /**
      * <p>
-     * The list entity recognizer summaries.
+     * Identifies the next page of results to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The list entity recognizer summaries.
+     *         Identifies the next page of results to return.
      *         </p>
      */
     public String getNextToken() {
@@ -132,14 +132,14 @@ public class ListEntityRecognizerSummariesResult implements Serializable {
 
     /**
      * <p>
-     * The list entity recognizer summaries.
+     * Identifies the next page of results to return.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param nextToken <p>
-     *            The list entity recognizer summaries.
+     *            Identifies the next page of results to return.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -148,7 +148,7 @@ public class ListEntityRecognizerSummariesResult implements Serializable {
 
     /**
      * <p>
-     * The list entity recognizer summaries.
+     * Identifies the next page of results to return.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +158,7 @@ public class ListEntityRecognizerSummariesResult implements Serializable {
      * <b>Length: </b>1 - <br/>
      *
      * @param nextToken <p>
-     *            The list entity recognizer summaries.
+     *            Identifies the next page of results to return.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

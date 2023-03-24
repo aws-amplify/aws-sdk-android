@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ import com.amazonaws.services.comprehend.model.*;
 /**
  * Interface for accessing Amazon Comprehend asynchronously.
  * <p>
- * Amazon Comprehend is an AWS service for gaining insight into the content of
- * documents. Use these actions to determine the topics contained in your
- * documents, the topics they discuss, the predominant sentiment expressed in
- * them, the predominant language used, and more.
+ * Amazon Comprehend is an Amazon Web Services service for gaining insight into
+ * the content of documents. Use these actions to determine the topics contained
+ * in your documents, the topics they discuss, the predominant sentiment
+ * expressed in them, the predominant language used, and more.
  * </p>
  **/
 public class AmazonComprehendAsyncClient extends AmazonComprehendClient implements
@@ -742,6 +742,23 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * document in real-time, using a previously created and trained custom
      * model and an endpoint.
      * </p>
+     * <p>
+     * You can input plain text or you can upload a single-page input document
+     * (text, PDF, Word, or image).
+     * </p>
+     * <p>
+     * If the system detects errors while processing a page in the input
+     * document, the API response includes an entry in <code>Errors</code> that
+     * describes the errors.
+     * </p>
+     * <p>
+     * If the system detects a document-level error in your input document, the
+     * API returns an <code>InvalidRequestException</code> error response. For
+     * details about this exception, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html"
+     * > Errors in semi-structured documents</a> in the Comprehend Developer
+     * Guide.
+     * </p>
      * 
      * @param classifyDocumentRequest
      * @return A Java Future object containing the response from the
@@ -774,6 +791,23 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * Creates a new document classification request to analyze a single
      * document in real-time, using a previously created and trained custom
      * model and an endpoint.
+     * </p>
+     * <p>
+     * You can input plain text or you can upload a single-page input document
+     * (text, PDF, Word, or image).
+     * </p>
+     * <p>
+     * If the system detects errors while processing a page in the input
+     * document, the API response includes an entry in <code>Errors</code> that
+     * describes the errors.
+     * </p>
+     * <p>
+     * If the system detects a document-level error in your input document, the
+     * API returns an <code>InvalidRequestException</code> error response. For
+     * details about this exception, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html"
+     * > Errors in semi-structured documents</a> in the Comprehend Developer
+     * Guide.
      * </p>
      * 
      * @param classifyDocumentRequest
@@ -881,6 +915,87 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(containsPiiEntitiesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a dataset to upload training or test data for a model associated
+     * with a flywheel. For more information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param createDatasetRequest
+     * @return A Java Future object containing the response from the
+     *         CreateDataset service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateDatasetResult> createDatasetAsync(
+            final CreateDatasetRequest createDatasetRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<CreateDatasetResult>() {
+            public CreateDatasetResult call() throws Exception {
+                return createDataset(createDatasetRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a dataset to upload training or test data for a model associated
+     * with a flywheel. For more information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param createDatasetRequest
+     * @return A Java Future object containing the response from the
+     *         CreateDataset service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateDatasetResult> createDatasetAsync(
+            final CreateDatasetRequest createDatasetRequest,
+            final AsyncHandler<CreateDatasetRequest, CreateDatasetResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateDatasetResult>() {
+            public CreateDatasetResult call() throws Exception {
+                CreateDatasetResult result = null;
+                try {
+                    result = createDataset(createDatasetRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createDatasetRequest, result);
                 return result;
             }
         });
@@ -1066,7 +1181,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * Creates an entity recognizer using submitted files. After your
      * <code>CreateEntityRecognizer</code> request is submitted, you can check
-     * job status using the API.
+     * job status using the <code>DescribeEntityRecognizer</code> API.
      * </p>
      * 
      * @param createEntityRecognizerRequest
@@ -1103,7 +1218,7 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
      * <p>
      * Creates an entity recognizer using submitted files. After your
      * <code>CreateEntityRecognizer</code> request is submitted, you can check
-     * job status using the API.
+     * job status using the <code>DescribeEntityRecognizer</code> API.
      * </p>
      * 
      * @param createEntityRecognizerRequest
@@ -1140,6 +1255,131 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(createEntityRecognizerRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * A flywheel is an Amazon Web Services resource that orchestrates the
+     * ongoing training of a model for custom classification or custom entity
+     * recognition. You can create a flywheel to start with an existing trained
+     * model, or Comprehend can create and train a new model.
+     * </p>
+     * <p>
+     * When you create the flywheel, Comprehend creates a data lake in your
+     * account. The data lake holds the training data and test data for all
+     * versions of the model.
+     * </p>
+     * <p>
+     * To use a flywheel with an existing trained model, you specify the active
+     * model version. Comprehend copies the model's training data and test data
+     * into the flywheel's data lake.
+     * </p>
+     * <p>
+     * To use the flywheel with a new model, you need to provide a dataset for
+     * training data (and optional test data) when you create the flywheel.
+     * </p>
+     * <p>
+     * For more information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param createFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         CreateFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateFlywheelResult> createFlywheelAsync(
+            final CreateFlywheelRequest createFlywheelRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<CreateFlywheelResult>() {
+            public CreateFlywheelResult call() throws Exception {
+                return createFlywheel(createFlywheelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * A flywheel is an Amazon Web Services resource that orchestrates the
+     * ongoing training of a model for custom classification or custom entity
+     * recognition. You can create a flywheel to start with an existing trained
+     * model, or Comprehend can create and train a new model.
+     * </p>
+     * <p>
+     * When you create the flywheel, Comprehend creates a data lake in your
+     * account. The data lake holds the training data and test data for all
+     * versions of the model.
+     * </p>
+     * <p>
+     * To use a flywheel with an existing trained model, you specify the active
+     * model version. Comprehend copies the model's training data and test data
+     * into the flywheel's data lake.
+     * </p>
+     * <p>
+     * To use the flywheel with a new model, you need to provide a dataset for
+     * training data (and optional test data) when you create the flywheel.
+     * </p>
+     * <p>
+     * For more information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param createFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         CreateFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws ResourceInUseException
+     * @throws TooManyTagsException
+     * @throws TooManyRequestsException
+     * @throws ResourceLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws KmsKeyValidationException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateFlywheelResult> createFlywheelAsync(
+            final CreateFlywheelRequest createFlywheelRequest,
+            final AsyncHandler<CreateFlywheelRequest, CreateFlywheelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateFlywheelResult>() {
+            public CreateFlywheelResult call() throws Exception {
+                CreateFlywheelResult result = null;
+                try {
+                    result = createFlywheel(createFlywheelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createFlywheelRequest, result);
                 return result;
             }
         });
@@ -1420,6 +1660,91 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Deletes a flywheel. When you delete the flywheel, Amazon Comprehend does
+     * not delete the data lake or the model associated with the flywheel.
+     * </p>
+     * <p>
+     * For more information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param deleteFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteFlywheelResult> deleteFlywheelAsync(
+            final DeleteFlywheelRequest deleteFlywheelRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DeleteFlywheelResult>() {
+            public DeleteFlywheelResult call() throws Exception {
+                return deleteFlywheel(deleteFlywheelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a flywheel. When you delete the flywheel, Amazon Comprehend does
+     * not delete the data lake or the model associated with the flywheel.
+     * </p>
+     * <p>
+     * For more information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param deleteFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws ResourceUnavailableException
+     * @throws ResourceInUseException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteFlywheelResult> deleteFlywheelAsync(
+            final DeleteFlywheelRequest deleteFlywheelRequest,
+            final AsyncHandler<DeleteFlywheelRequest, DeleteFlywheelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteFlywheelResult>() {
+            public DeleteFlywheelResult call() throws Exception {
+                DeleteFlywheelResult result = null;
+                try {
+                    result = deleteFlywheel(deleteFlywheelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteFlywheelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Deletes a resource-based policy that is attached to a custom model.
      * </p>
      * 
@@ -1482,6 +1807,81 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteResourcePolicyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns information about the dataset that you specify. For more
+     * information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeDatasetRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeDataset service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeDatasetResult> describeDatasetAsync(
+            final DescribeDatasetRequest describeDatasetRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DescribeDatasetResult>() {
+            public DescribeDatasetResult call() throws Exception {
+                return describeDataset(describeDatasetRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns information about the dataset that you specify. For more
+     * information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeDatasetRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeDataset service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeDatasetResult> describeDatasetAsync(
+            final DescribeDatasetRequest describeDatasetRequest,
+            final AsyncHandler<DescribeDatasetRequest, DescribeDatasetResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeDatasetResult>() {
+            public DescribeDatasetResult call() throws Exception {
+                DescribeDatasetResult result = null;
+                try {
+                    result = describeDataset(describeDatasetRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeDatasetRequest, result);
                 return result;
             }
         });
@@ -2002,6 +2402,160 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Provides configuration information about the flywheel. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeFlywheel service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeFlywheelResult> describeFlywheelAsync(
+            final DescribeFlywheelRequest describeFlywheelRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlywheelResult>() {
+            public DescribeFlywheelResult call() throws Exception {
+                return describeFlywheel(describeFlywheelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides configuration information about the flywheel. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeFlywheel service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeFlywheelResult> describeFlywheelAsync(
+            final DescribeFlywheelRequest describeFlywheelRequest,
+            final AsyncHandler<DescribeFlywheelRequest, DescribeFlywheelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlywheelResult>() {
+            public DescribeFlywheelResult call() throws Exception {
+                DescribeFlywheelResult result = null;
+                try {
+                    result = describeFlywheel(describeFlywheelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeFlywheelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieve the configuration properties of a flywheel iteration. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeFlywheelIterationRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeFlywheelIteration service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeFlywheelIterationResult> describeFlywheelIterationAsync(
+            final DescribeFlywheelIterationRequest describeFlywheelIterationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlywheelIterationResult>() {
+            public DescribeFlywheelIterationResult call() throws Exception {
+                return describeFlywheelIteration(describeFlywheelIterationRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieve the configuration properties of a flywheel iteration. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param describeFlywheelIterationRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeFlywheelIteration service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeFlywheelIterationResult> describeFlywheelIterationAsync(
+            final DescribeFlywheelIterationRequest describeFlywheelIterationRequest,
+            final AsyncHandler<DescribeFlywheelIterationRequest, DescribeFlywheelIterationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeFlywheelIterationResult>() {
+            public DescribeFlywheelIterationResult call() throws Exception {
+                DescribeFlywheelIterationResult result = null;
+                try {
+                    result = describeFlywheelIteration(describeFlywheelIterationRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeFlywheelIterationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a key phrases detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -2513,10 +3067,32 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Inspects text for named entities, and returns information about them. For
-     * more information, about named entities, see <a href=
+     * Detects named entities in input text when you use the pre-trained model.
+     * Detects custom entities if you have a custom entity recognition model.
+     * </p>
+     * <p>
+     * When detecting named entities using the pre-trained model, use plain text
+     * as the input. For more information about named entities, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
      * >Entities</a> in the Comprehend Developer Guide.
+     * </p>
+     * <p>
+     * When you use a custom entity recognition model, you can input plain text
+     * or you can upload a single-page input document (text, PDF, Word, or
+     * image).
+     * </p>
+     * <p>
+     * If the system detects errors while processing a page in the input
+     * document, the API response includes an entry in <code>Errors</code> for
+     * each error.
+     * </p>
+     * <p>
+     * If the system detects a document-level error in your input document, the
+     * API returns an <code>InvalidRequestException</code> error response. For
+     * details about this exception, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html"
+     * > Errors in semi-structured documents</a> in the Comprehend Developer
+     * Guide.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -2547,10 +3123,32 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Inspects text for named entities, and returns information about them. For
-     * more information, about named entities, see <a href=
+     * Detects named entities in input text when you use the pre-trained model.
+     * Detects custom entities if you have a custom entity recognition model.
+     * </p>
+     * <p>
+     * When detecting named entities using the pre-trained model, use plain text
+     * as the input. For more information about named entities, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-entities.html"
      * >Entities</a> in the Comprehend Developer Guide.
+     * </p>
+     * <p>
+     * When you use a custom entity recognition model, you can input plain text
+     * or you can upload a single-page input document (text, PDF, Word, or
+     * image).
+     * </p>
+     * <p>
+     * If the system detects errors while processing a page in the input
+     * document, the API response includes an entry in <code>Errors</code> for
+     * each error.
+     * </p>
+     * <p>
+     * If the system detects a document-level error in your input document, the
+     * API returns an <code>InvalidRequestException</code> error response. For
+     * details about this exception, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-inputs-sync-err.html"
+     * > Errors in semi-structured documents</a> in the Comprehend Developer
+     * Guide.
      * </p>
      * 
      * @param detectEntitiesRequest
@@ -2966,15 +3564,17 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Creates a new custom model that replicates a source custom model that you
-     * import. The source model can be in your AWS account or another one.
+     * import. The source model can be in your Amazon Web Services account or
+     * another one.
      * </p>
      * <p>
-     * If the source model is in another AWS account, then it must have a
-     * resource-based policy that authorizes you to import it.
+     * If the source model is in another Amazon Web Services account, then it
+     * must have a resource-based policy that authorizes you to import it.
      * </p>
      * <p>
-     * The source model must be in the same AWS region that you're using when
-     * you import. You can't import a model that's in a different region.
+     * The source model must be in the same Amazon Web Services Region that
+     * you're using when you import. You can't import a model that's in a
+     * different Region.
      * </p>
      * 
      * @param importModelRequest
@@ -3009,15 +3609,17 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Creates a new custom model that replicates a source custom model that you
-     * import. The source model can be in your AWS account or another one.
+     * import. The source model can be in your Amazon Web Services account or
+     * another one.
      * </p>
      * <p>
-     * If the source model is in another AWS account, then it must have a
-     * resource-based policy that authorizes you to import it.
+     * If the source model is in another Amazon Web Services account, then it
+     * must have a resource-based policy that authorizes you to import it.
      * </p>
      * <p>
-     * The source model must be in the same AWS region that you're using when
-     * you import. You can't import a model that's in a different region.
+     * The source model must be in the same Amazon Web Services Region that
+     * you're using when you import. You can't import a model that's in a
+     * different Region.
      * </p>
      * 
      * @param importModelRequest
@@ -3053,6 +3655,83 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(importModelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * List the datasets that you have configured in this Region. For more
+     * information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param listDatasetsRequest
+     * @return A Java Future object containing the response from the
+     *         ListDatasets service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDatasetsResult> listDatasetsAsync(
+            final ListDatasetsRequest listDatasetsRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListDatasetsResult>() {
+            public ListDatasetsResult call() throws Exception {
+                return listDatasets(listDatasetsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * List the datasets that you have configured in this Region. For more
+     * information about datasets, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param listDatasetsRequest
+     * @return A Java Future object containing the response from the
+     *         ListDatasets service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDatasetsResult> listDatasetsAsync(
+            final ListDatasetsRequest listDatasetsRequest,
+            final AsyncHandler<ListDatasetsRequest, ListDatasetsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDatasetsResult>() {
+            public ListDatasetsResult call() throws Exception {
+                ListDatasetsResult result = null;
+                try {
+                    result = listDatasets(listDatasetsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listDatasetsRequest, result);
                 return result;
             }
         });
@@ -3721,6 +4400,154 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Information about the history of a flywheel iteration. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param listFlywheelIterationHistoryRequest
+     * @return A Java Future object containing the response from the
+     *         ListFlywheelIterationHistory service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListFlywheelIterationHistoryResult> listFlywheelIterationHistoryAsync(
+            final ListFlywheelIterationHistoryRequest listFlywheelIterationHistoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListFlywheelIterationHistoryResult>() {
+            public ListFlywheelIterationHistoryResult call() throws Exception {
+                return listFlywheelIterationHistory(listFlywheelIterationHistoryRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Information about the history of a flywheel iteration. For more
+     * information about flywheels, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param listFlywheelIterationHistoryRequest
+     * @return A Java Future object containing the response from the
+     *         ListFlywheelIterationHistory service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListFlywheelIterationHistoryResult> listFlywheelIterationHistoryAsync(
+            final ListFlywheelIterationHistoryRequest listFlywheelIterationHistoryRequest,
+            final AsyncHandler<ListFlywheelIterationHistoryRequest, ListFlywheelIterationHistoryResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListFlywheelIterationHistoryResult>() {
+            public ListFlywheelIterationHistoryResult call() throws Exception {
+                ListFlywheelIterationHistoryResult result = null;
+                try {
+                    result = listFlywheelIterationHistory(listFlywheelIterationHistoryRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listFlywheelIterationHistoryRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of the flywheels that you have created.
+     * </p>
+     * 
+     * @param listFlywheelsRequest
+     * @return A Java Future object containing the response from the
+     *         ListFlywheels service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListFlywheelsResult> listFlywheelsAsync(
+            final ListFlywheelsRequest listFlywheelsRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListFlywheelsResult>() {
+            public ListFlywheelsResult call() throws Exception {
+                return listFlywheels(listFlywheelsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of the flywheels that you have created.
+     * </p>
+     * 
+     * @param listFlywheelsRequest
+     * @return A Java Future object containing the response from the
+     *         ListFlywheels service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListFlywheelsResult> listFlywheelsAsync(
+            final ListFlywheelsRequest listFlywheelsRequest,
+            final AsyncHandler<ListFlywheelsRequest, ListFlywheelsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListFlywheelsResult>() {
+            public ListFlywheelsResult call() throws Exception {
+                ListFlywheelsResult result = null;
+                try {
+                    result = listFlywheels(listFlywheelsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listFlywheelsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Get a list of key phrase detection jobs that you have submitted.
      * </p>
      * 
@@ -4146,8 +4973,9 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Attaches a resource-based policy to a custom model. You can use this
-     * policy to authorize an entity in another AWS account to import the custom
-     * model, which replicates it in Amazon Comprehend in their account.
+     * policy to authorize an entity in another Amazon Web Services account to
+     * import the custom model, which replicates it in Amazon Comprehend in
+     * their account.
      * </p>
      * 
      * @param putResourcePolicyRequest
@@ -4178,8 +5006,9 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Attaches a resource-based policy to a custom model. You can use this
-     * policy to authorize an entity in another AWS account to import the custom
-     * model, which replicates it in Amazon Comprehend in their account.
+     * policy to authorize an entity in another Amazon Web Services account to
+     * import the custom model, which replicates it in Amazon Comprehend in
+     * their account.
      * </p>
      * 
      * @param putResourcePolicyRequest
@@ -4218,8 +5047,9 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous document classification job. Use the operation to
-     * track the progress of the job.
+     * Starts an asynchronous document classification job. Use the
+     * <code>DescribeDocumentClassificationJob</code> operation to track the
+     * progress of the job.
      * </p>
      * 
      * @param startDocumentClassificationJobRequest
@@ -4253,8 +5083,9 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
-     * Starts an asynchronous document classification job. Use the operation to
-     * track the progress of the job.
+     * Starts an asynchronous document classification job. Use the
+     * <code>DescribeDocumentClassificationJob</code> operation to track the
+     * progress of the job.
      * </p>
      * 
      * @param startDocumentClassificationJobRequest
@@ -4536,6 +5367,87 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Start the flywheel iteration.This operation uses any new datasets to
+     * train a new model version. For more information about flywheels, see <a
+     * href
+     * ="https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param startFlywheelIterationRequest
+     * @return A Java Future object containing the response from the
+     *         StartFlywheelIteration service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartFlywheelIterationResult> startFlywheelIterationAsync(
+            final StartFlywheelIterationRequest startFlywheelIterationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartFlywheelIterationResult>() {
+            public StartFlywheelIterationResult call() throws Exception {
+                return startFlywheelIteration(startFlywheelIterationRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Start the flywheel iteration.This operation uses any new datasets to
+     * train a new model version. For more information about flywheels, see <a
+     * href
+     * ="https://docs.aws.amazon.com/comprehend/latest/dg/flywheels-about.html">
+     * Flywheel overview</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param startFlywheelIterationRequest
+     * @return A Java Future object containing the response from the
+     *         StartFlywheelIteration service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartFlywheelIterationResult> startFlywheelIterationAsync(
+            final StartFlywheelIterationRequest startFlywheelIterationRequest,
+            final AsyncHandler<StartFlywheelIterationRequest, StartFlywheelIterationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartFlywheelIterationResult>() {
+            public StartFlywheelIterationResult call() throws Exception {
+                StartFlywheelIterationResult result = null;
+                try {
+                    result = startFlywheelIteration(startFlywheelIterationRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startFlywheelIterationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Starts an asynchronous key phrase detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
@@ -4762,7 +5674,8 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Starts an asynchronous targeted sentiment detection job for a collection
-     * of documents. Use the operation to track the status of a job.
+     * of documents. Use the <code>DescribeTargetedSentimentDetectionJob</code>
+     * operation to track the status of a job.
      * </p>
      * 
      * @param startTargetedSentimentDetectionJobRequest
@@ -4795,7 +5708,8 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
     /**
      * <p>
      * Starts an asynchronous targeted sentiment detection job for a collection
-     * of documents. Use the operation to track the status of a job.
+     * of documents. Use the <code>DescribeTargetedSentimentDetectionJob</code>
+     * operation to track the status of a job.
      * </p>
      * 
      * @param startTargetedSentimentDetectionJobRequest
@@ -5950,6 +6864,77 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(updateEndpointRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Update the configuration information for an existing flywheel.
+     * </p>
+     * 
+     * @param updateFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateFlywheelResult> updateFlywheelAsync(
+            final UpdateFlywheelRequest updateFlywheelRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<UpdateFlywheelResult>() {
+            public UpdateFlywheelResult call() throws Exception {
+                return updateFlywheel(updateFlywheelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Update the configuration information for an existing flywheel.
+     * </p>
+     * 
+     * @param updateFlywheelRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateFlywheel service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateFlywheelResult> updateFlywheelAsync(
+            final UpdateFlywheelRequest updateFlywheelRequest,
+            final AsyncHandler<UpdateFlywheelRequest, UpdateFlywheelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateFlywheelResult>() {
+            public UpdateFlywheelResult call() throws Exception {
+                UpdateFlywheelResult result = null;
+                try {
+                    result = updateFlywheel(updateFlywheelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateFlywheelRequest, result);
                 return result;
             }
         });

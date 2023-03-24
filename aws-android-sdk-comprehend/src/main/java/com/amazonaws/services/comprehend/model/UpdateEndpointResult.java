@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,6 +19,90 @@ import java.io.Serializable;
 
 public class UpdateEndpointResult implements Serializable {
     /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the new model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String desiredModelArn;
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the new model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Number (ARN) of the new model.
+     *         </p>
+     */
+    public String getDesiredModelArn() {
+        return desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the new model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            The Amazon Resource Number (ARN) of the new model.
+     *            </p>
+     */
+    public void setDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the new model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            The Amazon Resource Number (ARN) of the new model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateEndpointResult withDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -29,6 +113,8 @@ public class UpdateEndpointResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getDesiredModelArn() != null)
+            sb.append("DesiredModelArn: " + getDesiredModelArn());
         sb.append("}");
         return sb.toString();
     }
@@ -38,6 +124,8 @@ public class UpdateEndpointResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getDesiredModelArn() == null) ? 0 : getDesiredModelArn().hashCode());
         return hashCode;
     }
 
@@ -52,6 +140,11 @@ public class UpdateEndpointResult implements Serializable {
             return false;
         UpdateEndpointResult other = (UpdateEndpointResult) obj;
 
+        if (other.getDesiredModelArn() == null ^ this.getDesiredModelArn() == null)
+            return false;
+        if (other.getDesiredModelArn() != null
+                && other.getDesiredModelArn().equals(this.getDesiredModelArn()) == false)
+            return false;
         return true;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,13 @@ import java.io.Serializable;
 public class DetectDominantLanguageResult implements Serializable {
     /**
      * <p>
-     * The languages that Amazon Comprehend detected in the input text. For each
-     * language, the response returns the RFC 5646 language code and the level
-     * of confidence that Amazon Comprehend has in the accuracy of its
+     * Array of languages that Amazon Comprehend detected in the input text. The
+     * array is sorted in descending order of the score (the dominant language
+     * is always the first element in the array).
+     * </p>
+     * <p>
+     * For each language, the response returns the RFC 5646 language code and
+     * the level of confidence that Amazon Comprehend has in the accuracy of its
      * inference. For more information about RFC 5646, see <a
      * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
      * Languages</a> on the <i>IETF Tools</i> web site.
@@ -32,16 +36,24 @@ public class DetectDominantLanguageResult implements Serializable {
 
     /**
      * <p>
-     * The languages that Amazon Comprehend detected in the input text. For each
-     * language, the response returns the RFC 5646 language code and the level
-     * of confidence that Amazon Comprehend has in the accuracy of its
+     * Array of languages that Amazon Comprehend detected in the input text. The
+     * array is sorted in descending order of the score (the dominant language
+     * is always the first element in the array).
+     * </p>
+     * <p>
+     * For each language, the response returns the RFC 5646 language code and
+     * the level of confidence that Amazon Comprehend has in the accuracy of its
      * inference. For more information about RFC 5646, see <a
      * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
      * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      *
      * @return <p>
-     *         The languages that Amazon Comprehend detected in the input text.
+     *         Array of languages that Amazon Comprehend detected in the input
+     *         text. The array is sorted in descending order of the score (the
+     *         dominant language is always the first element in the array).
+     *         </p>
+     *         <p>
      *         For each language, the response returns the RFC 5646 language
      *         code and the level of confidence that Amazon Comprehend has in
      *         the accuracy of its inference. For more information about RFC
@@ -55,22 +67,31 @@ public class DetectDominantLanguageResult implements Serializable {
 
     /**
      * <p>
-     * The languages that Amazon Comprehend detected in the input text. For each
-     * language, the response returns the RFC 5646 language code and the level
-     * of confidence that Amazon Comprehend has in the accuracy of its
+     * Array of languages that Amazon Comprehend detected in the input text. The
+     * array is sorted in descending order of the score (the dominant language
+     * is always the first element in the array).
+     * </p>
+     * <p>
+     * For each language, the response returns the RFC 5646 language code and
+     * the level of confidence that Amazon Comprehend has in the accuracy of its
      * inference. For more information about RFC 5646, see <a
      * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
      * Languages</a> on the <i>IETF Tools</i> web site.
      * </p>
      *
      * @param languages <p>
-     *            The languages that Amazon Comprehend detected in the input
-     *            text. For each language, the response returns the RFC 5646
-     *            language code and the level of confidence that Amazon
-     *            Comprehend has in the accuracy of its inference. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            Array of languages that Amazon Comprehend detected in the
+     *            input text. The array is sorted in descending order of the
+     *            score (the dominant language is always the first element in
+     *            the array).
+     *            </p>
+     *            <p>
+     *            For each language, the response returns the RFC 5646 language
+     *            code and the level of confidence that Amazon Comprehend has in
+     *            the accuracy of its inference. For more information about RFC
+     *            5646, see <a href="https://tools.ietf.org/html/rfc5646">Tags
+     *            for Identifying Languages</a> on the <i>IETF Tools</i> web
+     *            site.
      *            </p>
      */
     public void setLanguages(java.util.Collection<DominantLanguage> languages) {
@@ -84,9 +105,13 @@ public class DetectDominantLanguageResult implements Serializable {
 
     /**
      * <p>
-     * The languages that Amazon Comprehend detected in the input text. For each
-     * language, the response returns the RFC 5646 language code and the level
-     * of confidence that Amazon Comprehend has in the accuracy of its
+     * Array of languages that Amazon Comprehend detected in the input text. The
+     * array is sorted in descending order of the score (the dominant language
+     * is always the first element in the array).
+     * </p>
+     * <p>
+     * For each language, the response returns the RFC 5646 language code and
+     * the level of confidence that Amazon Comprehend has in the accuracy of its
      * inference. For more information about RFC 5646, see <a
      * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
      * Languages</a> on the <i>IETF Tools</i> web site.
@@ -96,13 +121,18 @@ public class DetectDominantLanguageResult implements Serializable {
      * together.
      *
      * @param languages <p>
-     *            The languages that Amazon Comprehend detected in the input
-     *            text. For each language, the response returns the RFC 5646
-     *            language code and the level of confidence that Amazon
-     *            Comprehend has in the accuracy of its inference. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            Array of languages that Amazon Comprehend detected in the
+     *            input text. The array is sorted in descending order of the
+     *            score (the dominant language is always the first element in
+     *            the array).
+     *            </p>
+     *            <p>
+     *            For each language, the response returns the RFC 5646 language
+     *            code and the level of confidence that Amazon Comprehend has in
+     *            the accuracy of its inference. For more information about RFC
+     *            5646, see <a href="https://tools.ietf.org/html/rfc5646">Tags
+     *            for Identifying Languages</a> on the <i>IETF Tools</i> web
+     *            site.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,9 +149,13 @@ public class DetectDominantLanguageResult implements Serializable {
 
     /**
      * <p>
-     * The languages that Amazon Comprehend detected in the input text. For each
-     * language, the response returns the RFC 5646 language code and the level
-     * of confidence that Amazon Comprehend has in the accuracy of its
+     * Array of languages that Amazon Comprehend detected in the input text. The
+     * array is sorted in descending order of the score (the dominant language
+     * is always the first element in the array).
+     * </p>
+     * <p>
+     * For each language, the response returns the RFC 5646 language code and
+     * the level of confidence that Amazon Comprehend has in the accuracy of its
      * inference. For more information about RFC 5646, see <a
      * href="https://tools.ietf.org/html/rfc5646">Tags for Identifying
      * Languages</a> on the <i>IETF Tools</i> web site.
@@ -131,13 +165,18 @@ public class DetectDominantLanguageResult implements Serializable {
      * together.
      *
      * @param languages <p>
-     *            The languages that Amazon Comprehend detected in the input
-     *            text. For each language, the response returns the RFC 5646
-     *            language code and the level of confidence that Amazon
-     *            Comprehend has in the accuracy of its inference. For more
-     *            information about RFC 5646, see <a
-     *            href="https://tools.ietf.org/html/rfc5646">Tags for
-     *            Identifying Languages</a> on the <i>IETF Tools</i> web site.
+     *            Array of languages that Amazon Comprehend detected in the
+     *            input text. The array is sorted in descending order of the
+     *            score (the dominant language is always the first element in
+     *            the array).
+     *            </p>
+     *            <p>
+     *            For each language, the response returns the RFC 5646 language
+     *            code and the level of confidence that Amazon Comprehend has in
+     *            the accuracy of its inference. For more information about RFC
+     *            5646, see <a href="https://tools.ietf.org/html/rfc5646">Tags
+     *            for Identifying Languages</a> on the <i>IETF Tools</i> web
+     *            site.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

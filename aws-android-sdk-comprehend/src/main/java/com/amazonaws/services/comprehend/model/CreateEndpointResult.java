@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,22 @@ public class CreateEndpointResult implements Serializable {
      * -endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      */
     private String endpointArn;
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the model to which the endpoint is
+     * attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String modelArn;
 
     /**
      * <p>
@@ -101,6 +117,81 @@ public class CreateEndpointResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the model to which the endpoint is
+     * attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Number (ARN) of the model to which the
+     *         endpoint is attached.
+     *         </p>
+     */
+    public String getModelArn() {
+        return modelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the model to which the endpoint is
+     * attached.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param modelArn <p>
+     *            The Amazon Resource Number (ARN) of the model to which the
+     *            endpoint is attached.
+     *            </p>
+     */
+    public void setModelArn(String modelArn) {
+        this.modelArn = modelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the model to which the endpoint is
+     * attached.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param modelArn <p>
+     *            The Amazon Resource Number (ARN) of the model to which the
+     *            endpoint is attached.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEndpointResult withModelArn(String modelArn) {
+        this.modelArn = modelArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -112,7 +203,9 @@ public class CreateEndpointResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getEndpointArn() != null)
-            sb.append("EndpointArn: " + getEndpointArn());
+            sb.append("EndpointArn: " + getEndpointArn() + ",");
+        if (getModelArn() != null)
+            sb.append("ModelArn: " + getModelArn());
         sb.append("}");
         return sb.toString();
     }
@@ -124,6 +217,7 @@ public class CreateEndpointResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getEndpointArn() == null) ? 0 : getEndpointArn().hashCode());
+        hashCode = prime * hashCode + ((getModelArn() == null) ? 0 : getModelArn().hashCode());
         return hashCode;
     }
 
@@ -142,6 +236,10 @@ public class CreateEndpointResult implements Serializable {
             return false;
         if (other.getEndpointArn() != null
                 && other.getEndpointArn().equals(this.getEndpointArn()) == false)
+            return false;
+        if (other.getModelArn() == null ^ this.getModelArn() == null)
+            return false;
+        if (other.getModelArn() != null && other.getModelArn().equals(this.getModelArn()) == false)
             return false;
         return true;
     }

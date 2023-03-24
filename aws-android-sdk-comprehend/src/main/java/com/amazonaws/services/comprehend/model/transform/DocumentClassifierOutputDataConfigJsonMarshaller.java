@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,6 +36,12 @@ class DocumentClassifierOutputDataConfigJsonMarshaller {
             String kmsKeyId = documentClassifierOutputDataConfig.getKmsKeyId();
             jsonWriter.name("KmsKeyId");
             jsonWriter.value(kmsKeyId);
+        }
+        if (documentClassifierOutputDataConfig.getFlywheelStatsS3Prefix() != null) {
+            String flywheelStatsS3Prefix = documentClassifierOutputDataConfig
+                    .getFlywheelStatsS3Prefix();
+            jsonWriter.name("FlywheelStatsS3Prefix");
+            jsonWriter.value(flywheelStatsS3Prefix);
         }
         jsonWriter.endObject();
     }

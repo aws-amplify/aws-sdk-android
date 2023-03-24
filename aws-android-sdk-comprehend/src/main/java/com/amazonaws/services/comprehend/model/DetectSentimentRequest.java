@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,13 +31,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <p>
      * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -60,13 +53,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <p>
      * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -74,13 +60,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * @return <p>
      *         A UTF-8 text string. The maximum string size is 5 KB.
      *         </p>
-     *         <note>
-     *         <p>
-     *         Amazon Comprehend performs real-time sentiment analysis on the
-     *         first 500 characters of the input text and ignores any additional
-     *         text in the input.
-     *         </p>
-     *         </note>
      */
     public String getText() {
         return text;
@@ -90,13 +69,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <p>
      * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
@@ -104,13 +76,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * @param text <p>
      *            A UTF-8 text string. The maximum string size is 5 KB.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Amazon Comprehend performs real-time sentiment analysis on the
-     *            first 500 characters of the input text and ignores any
-     *            additional text in the input.
-     *            </p>
-     *            </note>
      */
     public void setText(String text) {
         this.text = text;
@@ -120,13 +85,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * <p>
      * A UTF-8 text string. The maximum string size is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -137,13 +95,6 @@ public class DetectSentimentRequest extends AmazonWebServiceRequest implements S
      * @param text <p>
      *            A UTF-8 text string. The maximum string size is 5 KB.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Amazon Comprehend performs real-time sentiment analysis on the
-     *            first 500 characters of the input text and ignores any
-     *            additional text in the input.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

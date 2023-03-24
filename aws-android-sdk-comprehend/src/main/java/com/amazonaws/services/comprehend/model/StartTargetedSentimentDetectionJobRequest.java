@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,14 +22,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Starts an asynchronous targeted sentiment detection job for a collection of
- * documents. Use the operation to track the status of a job.
+ * documents. Use the <code>DescribeTargetedSentimentDetectionJob</code>
+ * operation to track the status of a job.
  * </p>
  */
 public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      */
     private InputDataConfig inputDataConfig;
@@ -43,9 +45,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
@@ -129,8 +131,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * Tags to be associated with the targeted sentiment detection job. A tag is
-     * a key-value pair that adds metadata to a resource used by Amazon
+     * Tags to associate with the targeted sentiment detection job. A tag is a
+     * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -139,11 +141,13 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @return <p>
-     *         The input properties for an inference job.
+     *         The input properties for an inference job. The document reader
+     *         config field applies only to non-text inputs for custom analysis.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -152,11 +156,14 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -165,14 +172,17 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -231,9 +241,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
@@ -243,9 +253,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *         Management (IAM) role that grants Amazon Comprehend read access
-     *         to your input data. For more information, see <a href=
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend read access to your input data. For more information,
+     *         see <a href=
      *         "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      *         >Role-based permissions</a>.
      *         </p>
@@ -256,9 +266,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
@@ -268,9 +278,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data. For more information, see <a href=
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      *            >Role-based permissions</a>.
      *            </p>
@@ -281,9 +291,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      * >Role-based permissions</a>.
      * </p>
@@ -296,9 +306,9 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data. For more information, see <a href=
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
      *            >Role-based permissions</a>.
      *            </p>
@@ -761,16 +771,16 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * Tags to be associated with the targeted sentiment detection job. A tag is
-     * a key-value pair that adds metadata to a resource used by Amazon
+     * Tags to associate with the targeted sentiment detection job. A tag is a
+     * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the targeted sentiment detection job.
-     *         A tag is a key-value pair that adds metadata to a resource used
-     *         by Amazon Comprehend. For example, a tag with "Sales" as the key
+     *         Tags to associate with the targeted sentiment detection job. A
+     *         tag is a key-value pair that adds metadata to a resource used by
+     *         Amazon Comprehend. For example, a tag with "Sales" as the key
      *         might be added to a resource to indicate its use by the sales
      *         department.
      *         </p>
@@ -781,18 +791,18 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * Tags to be associated with the targeted sentiment detection job. A tag is
-     * a key-value pair that adds metadata to a resource used by Amazon
+     * Tags to associate with the targeted sentiment detection job. A tag is a
+     * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the targeted sentiment detection
-     *            job. A tag is a key-value pair that adds metadata to a
-     *            resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the targeted sentiment detection job. A
+     *            tag is a key-value pair that adds metadata to a resource used
+     *            by Amazon Comprehend. For example, a tag with "Sales" as the
+     *            key might be added to a resource to indicate its use by the
+     *            sales department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -806,8 +816,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * Tags to be associated with the targeted sentiment detection job. A tag is
-     * a key-value pair that adds metadata to a resource used by Amazon
+     * Tags to associate with the targeted sentiment detection job. A tag is a
+     * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -816,11 +826,11 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the targeted sentiment detection
-     *            job. A tag is a key-value pair that adds metadata to a
-     *            resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the targeted sentiment detection job. A
+     *            tag is a key-value pair that adds metadata to a resource used
+     *            by Amazon Comprehend. For example, a tag with "Sales" as the
+     *            key might be added to a resource to indicate its use by the
+     *            sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -837,8 +847,8 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * Tags to be associated with the targeted sentiment detection job. A tag is
-     * a key-value pair that adds metadata to a resource used by Amazon
+     * Tags to associate with the targeted sentiment detection job. A tag is a
+     * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
@@ -847,11 +857,11 @@ public class StartTargetedSentimentDetectionJobRequest extends AmazonWebServiceR
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the targeted sentiment detection
-     *            job. A tag is a key-value pair that adds metadata to a
-     *            resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the targeted sentiment detection job. A
+     *            tag is a key-value pair that adds metadata to a resource used
+     *            by Amazon Comprehend. For example, a tag with "Sales" as the
+     *            key might be added to a resource to indicate its use by the
+     *            sales department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

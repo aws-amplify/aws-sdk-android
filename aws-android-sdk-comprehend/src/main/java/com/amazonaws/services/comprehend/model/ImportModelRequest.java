@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,15 +22,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a new custom model that replicates a source custom model that you
- * import. The source model can be in your AWS account or another one.
+ * import. The source model can be in your Amazon Web Services account or
+ * another one.
  * </p>
  * <p>
- * If the source model is in another AWS account, then it must have a
- * resource-based policy that authorizes you to import it.
+ * If the source model is in another Amazon Web Services account, then it must
+ * have a resource-based policy that authorizes you to import it.
  * </p>
  * <p>
- * The source model must be in the same AWS region that you're using when you
- * import. You can't import a model that's in a different region.
+ * The source model must be in the same Amazon Web Services Region that you're
+ * using when you import. You can't import a model that's in a different Region.
  * </p>
  */
 public class ImportModelRequest extends AmazonWebServiceRequest implements Serializable {
@@ -67,7 +68,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * import. Version names can have a maximum of 256 characters. Alphanumeric
      * characters, hyphens (-) and underscores (_) are allowed. The version name
      * must be unique among all models with the same classifier name in the
-     * account/AWS Region.
+     * account/Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,9 +79,8 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -104,9 +104,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that allows Amazon Comprehend to use Amazon Key Management Service
-     * (KMS) to encrypt or decrypt the custom model.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend permission to use Amazon Key Management Service (KMS) to
+     * encrypt or decrypt the custom model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,10 +117,10 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Tags to be associated with the custom model that is created by this
-     * import. A tag is a key-value pair that adds as a metadata to a resource
-     * used by Amazon Comprehend. For example, a tag with "Sales" as the key
-     * might be added to a resource to indicate its use by the sales department.
+     * Tags to associate with the custom model that is created by this import. A
+     * tag is a key-value pair that adds as a metadata to a resource used by
+     * Amazon Comprehend. For example, a tag with "Sales" as the key might be
+     * added to a resource to indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -263,7 +263,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * import. Version names can have a maximum of 256 characters. Alphanumeric
      * characters, hyphens (-) and underscores (_) are allowed. The version name
      * must be unique among all models with the same classifier name in the
-     * account/AWS Region.
+     * account/Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -275,7 +275,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      *         this import. Version names can have a maximum of 256 characters.
      *         Alphanumeric characters, hyphens (-) and underscores (_) are
      *         allowed. The version name must be unique among all models with
-     *         the same classifier name in the account/AWS Region.
+     *         the same classifier name in the account/Region.
      *         </p>
      */
     public String getVersionName() {
@@ -288,7 +288,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * import. Version names can have a maximum of 256 characters. Alphanumeric
      * characters, hyphens (-) and underscores (_) are allowed. The version name
      * must be unique among all models with the same classifier name in the
-     * account/AWS Region.
+     * account/Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -301,7 +301,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      *            characters. Alphanumeric characters, hyphens (-) and
      *            underscores (_) are allowed. The version name must be unique
      *            among all models with the same classifier name in the
-     *            account/AWS Region.
+     *            account/Region.
      *            </p>
      */
     public void setVersionName(String versionName) {
@@ -314,7 +314,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * import. Version names can have a maximum of 256 characters. Alphanumeric
      * characters, hyphens (-) and underscores (_) are allowed. The version name
      * must be unique among all models with the same classifier name in the
-     * account/AWS Region.
+     * account/Region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -330,7 +330,7 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      *            characters. Alphanumeric characters, hyphens (-) and
      *            underscores (_) are allowed. The version name must be unique
      *            among all models with the same classifier name in the
-     *            account/AWS Region.
+     *            account/Region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -342,9 +342,8 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -365,9 +364,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt trained custom models. The
-     *         ModelKmsKeyId can be either of the following formats:
+     *         ID for the KMS key that Amazon Comprehend uses to encrypt trained
+     *         custom models. The ModelKmsKeyId can be either of the following
+     *         formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -389,9 +388,8 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -412,9 +410,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param modelKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt
+     *            trained custom models. The ModelKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -437,9 +435,8 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -463,9 +460,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param modelKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt
+     *            trained custom models. The ModelKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -491,9 +488,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that allows Amazon Comprehend to use Amazon Key Management Service
-     * (KMS) to encrypt or decrypt the custom model.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend permission to use Amazon Key Management Service (KMS) to
+     * encrypt or decrypt the custom model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -501,9 +498,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Management
-     *         (IAM) role that allows Amazon Comprehend to use Amazon Key
-     *         Management Service (KMS) to encrypt or decrypt the custom model.
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend permission to use Amazon Key Management Service (KMS)
+     *         to encrypt or decrypt the custom model.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -512,9 +509,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that allows Amazon Comprehend to use Amazon Key Management Service
-     * (KMS) to encrypt or decrypt the custom model.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend permission to use Amazon Key Management Service (KMS) to
+     * encrypt or decrypt the custom model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -522,10 +519,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
-     *            Management (IAM) role that allows Amazon Comprehend to use
-     *            Amazon Key Management Service (KMS) to encrypt or decrypt the
-     *            custom model.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend permission to use Amazon Key Management
+     *            Service (KMS) to encrypt or decrypt the custom model.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -534,9 +530,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that allows Amazon Comprehend to use Amazon Key Management Service
-     * (KMS) to encrypt or decrypt the custom model.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend permission to use Amazon Key Management Service (KMS) to
+     * encrypt or decrypt the custom model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -547,10 +543,9 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
-     *            Management (IAM) role that allows Amazon Comprehend to use
-     *            Amazon Key Management Service (KMS) to encrypt or decrypt the
-     *            custom model.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend permission to use Amazon Key Management
+     *            Service (KMS) to encrypt or decrypt the custom model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -562,16 +557,16 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Tags to be associated with the custom model that is created by this
-     * import. A tag is a key-value pair that adds as a metadata to a resource
-     * used by Amazon Comprehend. For example, a tag with "Sales" as the key
-     * might be added to a resource to indicate its use by the sales department.
+     * Tags to associate with the custom model that is created by this import. A
+     * tag is a key-value pair that adds as a metadata to a resource used by
+     * Amazon Comprehend. For example, a tag with "Sales" as the key might be
+     * added to a resource to indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the custom model that is created by
-     *         this import. A tag is a key-value pair that adds as a metadata to
-     *         a resource used by Amazon Comprehend. For example, a tag with
+     *         Tags to associate with the custom model that is created by this
+     *         import. A tag is a key-value pair that adds as a metadata to a
+     *         resource used by Amazon Comprehend. For example, a tag with
      *         "Sales" as the key might be added to a resource to indicate its
      *         use by the sales department.
      *         </p>
@@ -582,14 +577,14 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Tags to be associated with the custom model that is created by this
-     * import. A tag is a key-value pair that adds as a metadata to a resource
-     * used by Amazon Comprehend. For example, a tag with "Sales" as the key
-     * might be added to a resource to indicate its use by the sales department.
+     * Tags to associate with the custom model that is created by this import. A
+     * tag is a key-value pair that adds as a metadata to a resource used by
+     * Amazon Comprehend. For example, a tag with "Sales" as the key might be
+     * added to a resource to indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the custom model that is created by
+     *            Tags to associate with the custom model that is created by
      *            this import. A tag is a key-value pair that adds as a metadata
      *            to a resource used by Amazon Comprehend. For example, a tag
      *            with "Sales" as the key might be added to a resource to
@@ -607,17 +602,17 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Tags to be associated with the custom model that is created by this
-     * import. A tag is a key-value pair that adds as a metadata to a resource
-     * used by Amazon Comprehend. For example, a tag with "Sales" as the key
-     * might be added to a resource to indicate its use by the sales department.
+     * Tags to associate with the custom model that is created by this import. A
+     * tag is a key-value pair that adds as a metadata to a resource used by
+     * Amazon Comprehend. For example, a tag with "Sales" as the key might be
+     * added to a resource to indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the custom model that is created by
+     *            Tags to associate with the custom model that is created by
      *            this import. A tag is a key-value pair that adds as a metadata
      *            to a resource used by Amazon Comprehend. For example, a tag
      *            with "Sales" as the key might be added to a resource to
@@ -638,17 +633,17 @@ public class ImportModelRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Tags to be associated with the custom model that is created by this
-     * import. A tag is a key-value pair that adds as a metadata to a resource
-     * used by Amazon Comprehend. For example, a tag with "Sales" as the key
-     * might be added to a resource to indicate its use by the sales department.
+     * Tags to associate with the custom model that is created by this import. A
+     * tag is a key-value pair that adds as a metadata to a resource used by
+     * Amazon Comprehend. For example, a tag with "Sales" as the key might be
+     * added to a resource to indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the custom model that is created by
+     *            Tags to associate with the custom model that is created by
      *            this import. A tag is a key-value pair that adds as a metadata
      *            to a resource used by Amazon Comprehend. For example, a tag
      *            with "Sales" as the key might be added to a resource to

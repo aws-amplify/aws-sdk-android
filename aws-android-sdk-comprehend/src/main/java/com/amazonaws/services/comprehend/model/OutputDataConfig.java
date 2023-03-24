@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * When you use the <code>OutputDataConfig</code> object with asynchronous
      * operations, you specify the Amazon S3 location where you want to write
-     * the output data. The URI must be in the same region as the API endpoint
+     * the output data. The URI must be in the same Region as the API endpoint
      * that you are calling. The location is used as the prefix for the actual
      * location of the output file.
      * </p>
@@ -53,9 +53,9 @@ public class OutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job. The KmsKeyId can
-     * be one of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job. The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -92,7 +92,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * When you use the <code>OutputDataConfig</code> object with asynchronous
      * operations, you specify the Amazon S3 location where you want to write
-     * the output data. The URI must be in the same region as the API endpoint
+     * the output data. The URI must be in the same Region as the API endpoint
      * that you are calling. The location is used as the prefix for the actual
      * location of the output file.
      * </p>
@@ -117,7 +117,7 @@ public class OutputDataConfig implements Serializable {
      *         When you use the <code>OutputDataConfig</code> object with
      *         asynchronous operations, you specify the Amazon S3 location where
      *         you want to write the output data. The URI must be in the same
-     *         region as the API endpoint that you are calling. The location is
+     *         Region as the API endpoint that you are calling. The location is
      *         used as the prefix for the actual location of the output file.
      *         </p>
      *         <p>
@@ -141,7 +141,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * When you use the <code>OutputDataConfig</code> object with asynchronous
      * operations, you specify the Amazon S3 location where you want to write
-     * the output data. The URI must be in the same region as the API endpoint
+     * the output data. The URI must be in the same Region as the API endpoint
      * that you are calling. The location is used as the prefix for the actual
      * location of the output file.
      * </p>
@@ -166,7 +166,7 @@ public class OutputDataConfig implements Serializable {
      *            When you use the <code>OutputDataConfig</code> object with
      *            asynchronous operations, you specify the Amazon S3 location
      *            where you want to write the output data. The URI must be in
-     *            the same region as the API endpoint that you are calling. The
+     *            the same Region as the API endpoint that you are calling. The
      *            location is used as the prefix for the actual location of the
      *            output file.
      *            </p>
@@ -191,7 +191,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * When you use the <code>OutputDataConfig</code> object with asynchronous
      * operations, you specify the Amazon S3 location where you want to write
-     * the output data. The URI must be in the same region as the API endpoint
+     * the output data. The URI must be in the same Region as the API endpoint
      * that you are calling. The location is used as the prefix for the actual
      * location of the output file.
      * </p>
@@ -219,7 +219,7 @@ public class OutputDataConfig implements Serializable {
      *            When you use the <code>OutputDataConfig</code> object with
      *            asynchronous operations, you specify the Amazon S3 location
      *            where you want to write the output data. The URI must be in
-     *            the same region as the API endpoint that you are calling. The
+     *            the same Region as the API endpoint that you are calling. The
      *            location is used as the prefix for the actual location of the
      *            output file.
      *            </p>
@@ -245,9 +245,9 @@ public class OutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job. The KmsKeyId can
-     * be one of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job. The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -279,9 +279,9 @@ public class OutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt the output results from an analysis
-     *         job. The KmsKeyId can be one of the following formats:
+     *         ID for the Amazon Web Services Key Management Service (KMS) key
+     *         that Amazon Comprehend uses to encrypt the output results from an
+     *         analysis job. The KmsKeyId can be one of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -314,9 +314,9 @@ public class OutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job. The KmsKeyId can
-     * be one of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job. The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -348,9 +348,10 @@ public class OutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt the output results from an analysis
-     *            job. The KmsKeyId can be one of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt the output results
+     *            from an analysis job. The KmsKeyId can be one of the following
+     *            formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -384,9 +385,9 @@ public class OutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job. The KmsKeyId can
-     * be one of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job. The KmsKeyId can be one of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -421,9 +422,10 @@ public class OutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt the output results from an analysis
-     *            job. The KmsKeyId can be one of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt the output results
+     *            from an analysis job. The KmsKeyId can be one of the following
+     *            formats:
      *            </p>
      *            <ul>
      *            <li>
