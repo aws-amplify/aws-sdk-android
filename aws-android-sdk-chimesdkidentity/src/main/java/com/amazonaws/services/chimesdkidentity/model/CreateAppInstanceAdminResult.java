@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,9 @@ import java.io.Serializable;
 public class CreateAppInstanceAdminResult implements Serializable {
     /**
      * <p>
-     * The name and ARN of the admin for the <code>AppInstance</code>.
+     * The ARN and name of the administrator, the ARN of the
+     * <code>AppInstance</code>, and the created and last-updated timestamps.
+     * All timestamps use epoch milliseconds.
      * </p>
      */
     private Identity appInstanceAdmin;
@@ -40,11 +42,15 @@ public class CreateAppInstanceAdminResult implements Serializable {
 
     /**
      * <p>
-     * The name and ARN of the admin for the <code>AppInstance</code>.
+     * The ARN and name of the administrator, the ARN of the
+     * <code>AppInstance</code>, and the created and last-updated timestamps.
+     * All timestamps use epoch milliseconds.
      * </p>
      *
      * @return <p>
-     *         The name and ARN of the admin for the <code>AppInstance</code>.
+     *         The ARN and name of the administrator, the ARN of the
+     *         <code>AppInstance</code>, and the created and last-updated
+     *         timestamps. All timestamps use epoch milliseconds.
      *         </p>
      */
     public Identity getAppInstanceAdmin() {
@@ -53,12 +59,15 @@ public class CreateAppInstanceAdminResult implements Serializable {
 
     /**
      * <p>
-     * The name and ARN of the admin for the <code>AppInstance</code>.
+     * The ARN and name of the administrator, the ARN of the
+     * <code>AppInstance</code>, and the created and last-updated timestamps.
+     * All timestamps use epoch milliseconds.
      * </p>
      *
      * @param appInstanceAdmin <p>
-     *            The name and ARN of the admin for the <code>AppInstance</code>
-     *            .
+     *            The ARN and name of the administrator, the ARN of the
+     *            <code>AppInstance</code>, and the created and last-updated
+     *            timestamps. All timestamps use epoch milliseconds.
      *            </p>
      */
     public void setAppInstanceAdmin(Identity appInstanceAdmin) {
@@ -67,15 +76,18 @@ public class CreateAppInstanceAdminResult implements Serializable {
 
     /**
      * <p>
-     * The name and ARN of the admin for the <code>AppInstance</code>.
+     * The ARN and name of the administrator, the ARN of the
+     * <code>AppInstance</code>, and the created and last-updated timestamps.
+     * All timestamps use epoch milliseconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param appInstanceAdmin <p>
-     *            The name and ARN of the admin for the <code>AppInstance</code>
-     *            .
+     *            The ARN and name of the administrator, the ARN of the
+     *            <code>AppInstance</code>, and the created and last-updated
+     *            timestamps. All timestamps use epoch milliseconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
