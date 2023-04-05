@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Promotes an <code>AppInstanceUser</code> to an <code>AppInstanceAdmin</code>.
- * The promoted user can perform the following actions.
+ * Promotes an <code>AppInstanceUser</code> or <code>AppInstanceBot</code> to an
+ * <code>AppInstanceAdmin</code>. The promoted entity can perform the following
+ * actions.
  * </p>
  * <ul>
  * <li>
@@ -38,8 +39,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * Only an <code>AppInstanceUser</code> can be promoted to an
- * <code>AppInstanceAdmin</code> role.
+ * Only an <code>AppInstanceUser</code> and <code>AppInstanceBot</code> can be
+ * promoted to an <code>AppInstanceAdmin</code> role.
  * </p>
  */
 public class CreateAppInstanceAdminRequest extends AmazonWebServiceRequest implements Serializable {
