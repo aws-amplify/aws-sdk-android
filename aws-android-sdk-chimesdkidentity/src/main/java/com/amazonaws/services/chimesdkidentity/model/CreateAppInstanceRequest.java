@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,7 +57,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The <code>ClientRequestToken</code> of the <code>AppInstance</code>.
+     * The unique ID of the request. Use different tokens to create different
+     * <code>AppInstances</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +69,7 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Tags assigned to the <code>AppInstanceUser</code>.
+     * Tags assigned to the <code>AppInstance</code>.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -198,7 +199,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The <code>ClientRequestToken</code> of the <code>AppInstance</code>.
+     * The unique ID of the request. Use different tokens to create different
+     * <code>AppInstances</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,8 +208,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @return <p>
-     *         The <code>ClientRequestToken</code> of the
-     *         <code>AppInstance</code>.
+     *         The unique ID of the request. Use different tokens to create
+     *         different <code>AppInstances</code>.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -216,7 +218,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The <code>ClientRequestToken</code> of the <code>AppInstance</code>.
+     * The unique ID of the request. Use different tokens to create different
+     * <code>AppInstances</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -224,8 +227,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @param clientRequestToken <p>
-     *            The <code>ClientRequestToken</code> of the
-     *            <code>AppInstance</code>.
+     *            The unique ID of the request. Use different tokens to create
+     *            different <code>AppInstances</code>.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -234,7 +237,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The <code>ClientRequestToken</code> of the <code>AppInstance</code>.
+     * The unique ID of the request. Use different tokens to create different
+     * <code>AppInstances</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -245,8 +249,8 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>[-_a-zA-Z0-9]*<br/>
      *
      * @param clientRequestToken <p>
-     *            The <code>ClientRequestToken</code> of the
-     *            <code>AppInstance</code>.
+     *            The unique ID of the request. Use different tokens to create
+     *            different <code>AppInstances</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -258,11 +262,11 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Tags assigned to the <code>AppInstanceUser</code>.
+     * Tags assigned to the <code>AppInstance</code>.
      * </p>
      *
      * @return <p>
-     *         Tags assigned to the <code>AppInstanceUser</code>.
+     *         Tags assigned to the <code>AppInstance</code>.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -271,11 +275,11 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Tags assigned to the <code>AppInstanceUser</code>.
+     * Tags assigned to the <code>AppInstance</code>.
      * </p>
      *
      * @param tags <p>
-     *            Tags assigned to the <code>AppInstanceUser</code>.
+     *            Tags assigned to the <code>AppInstance</code>.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -289,14 +293,14 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Tags assigned to the <code>AppInstanceUser</code>.
+     * Tags assigned to the <code>AppInstance</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags assigned to the <code>AppInstanceUser</code>.
+     *            Tags assigned to the <code>AppInstance</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -313,14 +317,14 @@ public class CreateAppInstanceRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Tags assigned to the <code>AppInstanceUser</code>.
+     * Tags assigned to the <code>AppInstance</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags assigned to the <code>AppInstanceUser</code>.
+     *            Tags assigned to the <code>AppInstance</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

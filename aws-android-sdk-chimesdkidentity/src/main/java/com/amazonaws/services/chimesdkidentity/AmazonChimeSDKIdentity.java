@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -127,8 +127,8 @@ public interface AmazonChimeSDKIdentity {
 
     /**
      * <p>
-     * Promotes an <code>AppInstanceUser</code> to an
-     * <code>AppInstanceAdmin</code>. The promoted user can perform the
+     * Promotes an <code>AppInstanceUser</code> or <code>AppInstanceBot</code>
+     * to an <code>AppInstanceAdmin</code>. The promoted entity can perform the
      * following actions.
      * </p>
      * <ul>
@@ -145,8 +145,8 @@ public interface AmazonChimeSDKIdentity {
      * </li>
      * </ul>
      * <p>
-     * Only an <code>AppInstanceUser</code> can be promoted to an
-     * <code>AppInstanceAdmin</code> role.
+     * Only an <code>AppInstanceUser</code> and <code>AppInstanceBot</code> can
+     * be promoted to an <code>AppInstanceAdmin</code> role.
      * </p>
      * 
      * @param createAppInstanceAdminRequest
@@ -172,6 +172,37 @@ public interface AmazonChimeSDKIdentity {
     CreateAppInstanceAdminResult createAppInstanceAdmin(
             CreateAppInstanceAdminRequest createAppInstanceAdminRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a bot under an Amazon Chime <code>AppInstance</code>. The request
+     * consists of a unique <code>Configuration</code> and <code>Name</code> for
+     * that bot.
+     * </p>
+     * 
+     * @param createAppInstanceBotRequest
+     * @return createAppInstanceBotResult The response from the
+     *         CreateAppInstanceBot service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    CreateAppInstanceBotResult createAppInstanceBot(
+            CreateAppInstanceBotRequest createAppInstanceBotRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -232,7 +263,8 @@ public interface AmazonChimeSDKIdentity {
     /**
      * <p>
      * Demotes an <code>AppInstanceAdmin</code> to an
-     * <code>AppInstanceUser</code>. This action does not delete the user.
+     * <code>AppInstanceUser</code> or <code>AppInstanceBot</code>. This action
+     * does not delete the user.
      * </p>
      * 
      * @param deleteAppInstanceAdminRequest
@@ -253,6 +285,31 @@ public interface AmazonChimeSDKIdentity {
      *             in the request, or a server side issue.
      */
     void deleteAppInstanceAdmin(DeleteAppInstanceAdminRequest deleteAppInstanceAdminRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an <code>AppInstanceBot</code>.
+     * </p>
+     * 
+     * @param deleteAppInstanceBotRequest
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    void deleteAppInstanceBot(DeleteAppInstanceBotRequest deleteAppInstanceBotRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -356,6 +413,34 @@ public interface AmazonChimeSDKIdentity {
      */
     DescribeAppInstanceAdminResult describeAppInstanceAdmin(
             DescribeAppInstanceAdminRequest describeAppInstanceAdminRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * The <code>AppInstanceBot's</code> information.
+     * </p>
+     * 
+     * @param describeAppInstanceBotRequest
+     * @return describeAppInstanceBotResult The response from the
+     *         DescribeAppInstanceBot service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws NotFoundException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    DescribeAppInstanceBotResult describeAppInstanceBot(
+            DescribeAppInstanceBotRequest describeAppInstanceBotRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -466,6 +551,35 @@ public interface AmazonChimeSDKIdentity {
     ListAppInstanceAdminsResult listAppInstanceAdmins(
             ListAppInstanceAdminsRequest listAppInstanceAdminsRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all <code>AppInstanceBots</code> created under a single
+     * <code>AppInstance</code>.
+     * </p>
+     * 
+     * @param listAppInstanceBotsRequest
+     * @return listAppInstanceBotsResult The response from the
+     *         ListAppInstanceBots service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    ListAppInstanceBotsResult listAppInstanceBots(
+            ListAppInstanceBotsRequest listAppInstanceBotsRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -606,6 +720,46 @@ public interface AmazonChimeSDKIdentity {
 
     /**
      * <p>
+     * Sets the number of days before the <code>AppInstanceUser</code> is
+     * automatically deleted.
+     * </p>
+     * <note>
+     * <p>
+     * A background process deletes expired <code>AppInstanceUsers</code> within
+     * 6 hours of expiration. Actual deletion times may vary.
+     * </p>
+     * <p>
+     * Expired <code>AppInstanceUsers</code> that have not yet been deleted
+     * appear as active, and you can update their expiration settings. The
+     * system honors the new settings.
+     * </p>
+     * </note>
+     * 
+     * @param putAppInstanceUserExpirationSettingsRequest
+     * @return putAppInstanceUserExpirationSettingsResult The response from the
+     *         PutAppInstanceUserExpirationSettings service method, as returned
+     *         by Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    PutAppInstanceUserExpirationSettingsResult putAppInstanceUserExpirationSettings(
+            PutAppInstanceUserExpirationSettingsRequest putAppInstanceUserExpirationSettingsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>.
      * The endpoint receives messages for a user. For push notifications, the
      * endpoint is a mobile device used to receive mobile push notifications for
@@ -710,6 +864,35 @@ public interface AmazonChimeSDKIdentity {
      */
     UpdateAppInstanceResult updateAppInstance(UpdateAppInstanceRequest updateAppInstanceRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the name and metadata of an <code>AppInstanceBot</code>.
+     * </p>
+     * 
+     * @param updateAppInstanceBotRequest
+     * @return updateAppInstanceBotResult The response from the
+     *         UpdateAppInstanceBot service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    UpdateAppInstanceBotResult updateAppInstanceBot(
+            UpdateAppInstanceBotRequest updateAppInstanceBotRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
