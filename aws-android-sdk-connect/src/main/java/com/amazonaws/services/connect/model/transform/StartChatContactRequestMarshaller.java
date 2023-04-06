@@ -122,6 +122,11 @@ public class StartChatContactRequestMarshaller implements
                 jsonWriter.name("PersistentChat");
                 PersistentChatJsonMarshaller.getInstance().marshall(persistentChat, jsonWriter);
             }
+            if (startChatContactRequest.getRelatedContactId() != null) {
+                String relatedContactId = startChatContactRequest.getRelatedContactId();
+                jsonWriter.name("RelatedContactId");
+                jsonWriter.value(relatedContactId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
