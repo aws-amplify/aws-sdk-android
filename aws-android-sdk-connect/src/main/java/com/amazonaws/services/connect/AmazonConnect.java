@@ -2343,7 +2343,7 @@ public interface AmazonConnect {
      * >GetMetricData</a>, the previous version of this API. It has new metrics,
      * offers filtering at a metric level, and offers the ability to filter and
      * group data by channels, queues, routing profiles, agents, and agent
-     * hierarchy levels. It can retrieve historical data for last the 14 days,
+     * hierarchy levels. It can retrieve historical data for the last 14 days,
      * in 24-hour intervals.
      * </p>
      * <p>
