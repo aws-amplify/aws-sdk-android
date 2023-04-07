@@ -292,7 +292,7 @@ public class UrlHttpClient implements HttpClient {
             if (config.getTrustManager() != null) {
                 enableCustomTrustManager(https);
             } else if (tls12SocketFactory != null) {
-                TLS12SocketFactory.fixTLSPre21(https, tls12SocketFactory);
+                TLS12SocketFactory.fixTLSPre22(https, tls12SocketFactory);
             }
         }
     }

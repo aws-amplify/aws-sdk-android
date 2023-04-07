@@ -496,8 +496,7 @@ class HTTPUtil {
         }
 
         final HttpsURLConnection httpsURLConnection = (HttpsURLConnection) uri.openConnection();
-        // Enable TLS 1.2 on Pre SDK 21 devices
-        TLS12SocketFactory.fixTLSPre21(httpsURLConnection);
+        TLS12SocketFactory.fixTLSPre22(httpsURLConnection);
         DataOutputStream httpOutputStream = null;
         BufferedReader br = null;
         try {
