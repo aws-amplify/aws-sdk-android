@@ -17,8 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoauth.util;
 
-import android.content.Context;
-
+import com.amazonaws.http.TLS12SocketFactory;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthClientException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
 
@@ -46,6 +45,8 @@ public final class AuthHttpClient {
 		}
 
 		final HttpsURLConnection httpsURLConnection = (HttpsURLConnection) uri.openConnection();
+		// Enable TLS 1.2 on Pre SDK 21 devices
+		TLS12SocketFactory.fixTLSPre21(httpsURLConnection);
 		DataOutputStream httpOutputStream = null;
 		BufferedReader br = null;
 		try {

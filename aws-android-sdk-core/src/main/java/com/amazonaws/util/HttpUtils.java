@@ -18,6 +18,7 @@ package com.amazonaws.util;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Request;
 import com.amazonaws.http.HttpMethodName;
+import com.amazonaws.http.TLS12SocketFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +31,8 @@ import java.net.URLEncoder;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * HTTP utils class.
@@ -289,6 +292,10 @@ public class HttpUtils {
         final URL url = uri.toURL();
         // TODO: support proxy?
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        if (connection instanceof HttpsURLConnection) {
+            // Enable TLS 1.2 on Pre SDK 21 devices
+            TLS12SocketFactory.fixTLSPre21((HttpsURLConnection) connection);
+        }
         connection.setConnectTimeout(getConnectionTimeout(config));
         connection.setReadTimeout(getSocketTimeout(config));
         connection.addRequestProperty("User-Agent", getUserAgent(config));

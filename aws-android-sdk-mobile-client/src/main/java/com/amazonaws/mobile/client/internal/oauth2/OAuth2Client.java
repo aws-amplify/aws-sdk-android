@@ -12,6 +12,7 @@ import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 import android.util.Log;
 
+import com.amazonaws.http.TLS12SocketFactory;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobile.client.Callback;
@@ -495,6 +496,8 @@ class HTTPUtil {
         }
 
         final HttpsURLConnection httpsURLConnection = (HttpsURLConnection) uri.openConnection();
+        // Enable TLS 1.2 on Pre SDK 21 devices
+        TLS12SocketFactory.fixTLSPre21(httpsURLConnection);
         DataOutputStream httpOutputStream = null;
         BufferedReader br = null;
         try {
