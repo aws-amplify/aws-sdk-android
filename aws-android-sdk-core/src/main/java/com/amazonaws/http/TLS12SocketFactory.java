@@ -24,9 +24,9 @@ import javax.net.ssl.SSLSocketFactory;
 public class TLS12SocketFactory extends SSLSocketFactory {
 
     private static final Object contextLock = new Object();
-    private static SSLContext sslContext = null;
     public static final String TLSv1_2 = "TLSv1.2";
     private static final String[] SUPPORTED_PROTOCOLS = new String[] { TLSv1_2 };
+    private static SSLContext sslContext = null;
     private final SSLSocketFactory delegate;
 
     @Nullable
@@ -48,7 +48,7 @@ public class TLS12SocketFactory extends SSLSocketFactory {
         return null;
     }
 
-    public static void fixTLSPre21(HttpsURLConnection connection) {
+    public static void fixTLSPre21(@NonNull HttpsURLConnection connection) {
         fixTLSPre21(connection, createTLS12SocketFactory());
     }
 
