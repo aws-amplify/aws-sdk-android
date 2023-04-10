@@ -37,6 +37,12 @@ class MediaConcurrencyJsonMarshaller {
             jsonWriter.name("Concurrency");
             jsonWriter.value(concurrency);
         }
+        if (mediaConcurrency.getCrossChannelBehavior() != null) {
+            CrossChannelBehavior crossChannelBehavior = mediaConcurrency.getCrossChannelBehavior();
+            jsonWriter.name("CrossChannelBehavior");
+            CrossChannelBehaviorJsonMarshaller.getInstance().marshall(crossChannelBehavior,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

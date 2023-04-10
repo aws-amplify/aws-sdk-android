@@ -21,44 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO MediaConcurrency
+ * JSON unmarshaller for POJO CrossChannelBehavior
  */
-class MediaConcurrencyJsonUnmarshaller implements
-        Unmarshaller<MediaConcurrency, JsonUnmarshallerContext> {
+class CrossChannelBehaviorJsonUnmarshaller implements
+        Unmarshaller<CrossChannelBehavior, JsonUnmarshallerContext> {
 
-    public MediaConcurrency unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public CrossChannelBehavior unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        MediaConcurrency mediaConcurrency = new MediaConcurrency();
+        CrossChannelBehavior crossChannelBehavior = new CrossChannelBehavior();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Channel")) {
-                mediaConcurrency.setChannel(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Concurrency")) {
-                mediaConcurrency.setConcurrency(IntegerJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("CrossChannelBehavior")) {
-                mediaConcurrency.setCrossChannelBehavior(CrossChannelBehaviorJsonUnmarshaller
-                        .getInstance()
+            if (name.equals("BehaviorType")) {
+                crossChannelBehavior.setBehaviorType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return mediaConcurrency;
+        return crossChannelBehavior;
     }
 
-    private static MediaConcurrencyJsonUnmarshaller instance;
+    private static CrossChannelBehaviorJsonUnmarshaller instance;
 
-    public static MediaConcurrencyJsonUnmarshaller getInstance() {
+    public static CrossChannelBehaviorJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new MediaConcurrencyJsonUnmarshaller();
+            instance = new CrossChannelBehaviorJsonUnmarshaller();
         return instance;
     }
 }
