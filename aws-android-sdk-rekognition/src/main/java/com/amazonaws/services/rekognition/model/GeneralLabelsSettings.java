@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,10 @@ import java.io.Serializable;
  * <p>
  * Contains filters for the object labels returned by DetectLabels. Filters can
  * be inclusive, exclusive, or a combination of both and can be applied to
- * individual l abels or entire label categories.
+ * individual labels or entire label categories. To see a list of label
+ * categories, see <a
+ * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+ * >Detecting Labels</a>.
  * </p>
  */
 public class GeneralLabelsSettings implements Serializable {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To get a list of project policies attached to a project, call
  * <a>ListProjectPolicies</a>. To attach a project policy to a project, call
  * <a>PutProjectPolicy</a>.
+ * </p>
+ * <p>
+ * This operation requires permissions to perform the
+ * <code>rekognition:DeleteProjectPolicy</code> action.
  * </p>
  */
 public class DeleteProjectPolicyRequest extends AmazonWebServiceRequest implements Serializable {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>Status</code> in the <a>ProjectVersionDescription</a> object. The copy
  * operation has finished when the value of <code>Status</code> is
  * <code>COPYING_COMPLETED</code>.
+ * </p>
+ * <p>
+ * This operation requires permissions to perform the
+ * <code>rekognition:CopyProjectVersion</code> action.
  * </p>
  */
 public class CopyProjectVersionRequest extends AmazonWebServiceRequest implements Serializable {
