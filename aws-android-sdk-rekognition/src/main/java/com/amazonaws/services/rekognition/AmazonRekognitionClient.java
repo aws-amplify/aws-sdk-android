@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -791,6 +791,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new SessionNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new VideoTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -979,6 +980,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * <code>Status</code> in the <a>ProjectVersionDescription</a> object. The
      * copy operation has finished when the value of <code>Status</code> is
      * <code>COPYING_COMPLETED</code>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CopyProjectVersion</code> action.
      * </p>
      * 
      * @param copyProjectVersionRequest
@@ -1198,6 +1203,67 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * This API operation initiates a Face Liveness session. It returns a
+     * <code>SessionId</code>, which you can use to start streaming Face
+     * Liveness video and get the results for a Face Liveness session. You can
+     * use the <code>OutputConfig</code> option in the Settings parameter to
+     * provide an Amazon S3 bucket location. The Amazon S3 bucket stores
+     * reference images and audit images. You can use
+     * <code>AuditImagesLimit</code> to limit of audit images returned. This
+     * number is between 0 and 4. By default, it is set to 0. The limit is best
+     * effort and based on the duration of the selfie-video.
+     * </p>
+     * 
+     * @param createFaceLivenessSessionRequest
+     * @return createFaceLivenessSessionResult The response from the
+     *         CreateFaceLivenessSession service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateFaceLivenessSessionResult createFaceLivenessSession(
+            CreateFaceLivenessSessionRequest createFaceLivenessSessionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createFaceLivenessSessionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateFaceLivenessSessionRequest> request = null;
+        Response<CreateFaceLivenessSessionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateFaceLivenessSessionRequestMarshaller()
+                        .marshall(createFaceLivenessSessionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateFaceLivenessSessionResult, JsonUnmarshallerContext> unmarshaller = new CreateFaceLivenessSessionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateFaceLivenessSessionResult> responseHandler = new JsonResponseHandler<CreateFaceLivenessSessionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new Amazon Rekognition Custom Labels project. A project is a
      * group of resources (datasets, model versions) that you use to create and
      * manage Amazon Rekognition Custom Labels models.
@@ -1377,11 +1443,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * <p>
      * If you are creating a stream processor for detecting faces, you provide
      * as input a Kinesis video stream (<code>Input</code>) and a Kinesis data
-     * stream (<code>Output</code>) stream. You also specify the face
-     * recognition criteria in <code>Settings</code>. For example, the
-     * collection containing faces that you want to recognize. After you have
-     * finished analyzing a streaming video, use <a>StopStreamProcessor</a> to
-     * stop processing.
+     * stream (<code>Output</code>) stream for receiving the output. You must
+     * use the <code>FaceSearch</code> option in <code>Settings</code>,
+     * specifying the collection that contains the faces you want to recognize.
+     * After you have finished analyzing a streaming video, use
+     * <a>StopStreamProcessor</a> to stop processing.
      * </p>
      * </li>
      * <li>
@@ -1391,9 +1457,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * information (<code>Output</code>), and an Amazon SNS topic ARN (
      * <code>NotificationChannel</code>). You can also provide a KMS key ID to
      * encrypt the data sent to your Amazon S3 bucket. You specify what you want
-     * to detect in <code>ConnectedHomeSettings</code>, such as people, packages
-     * and people, or pets, people, and packages. You can also specify where in
-     * the frame you want Amazon Rekognition to monitor with
+     * to detect by using the <code>ConnectedHome</code> option in settings, and
+     * selecting one of the following: <code>PERSON</code>, <code>PET</code>,
+     * <code>PACKAGE</code>, <code>ALL</code> You can also specify where in the
+     * frame you want Amazon Rekognition to monitor with
      * <code>RegionsOfInterest</code>. When you run the
      * <a>StartStreamProcessor</a> operation on a label detection stream
      * processor, you input start and stop information to determine the length
@@ -1719,6 +1786,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * To get a list of project policies attached to a project, call
      * <a>ListProjectPolicies</a>. To attach a project policy to a project, call
      * <a>PutProjectPolicy</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DeleteProjectPolicy</code> action.
      * </p>
      * 
      * @param deleteProjectPolicyRequest
@@ -2429,7 +2500,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * </p>
      * <p>
      * For each object, scene, and concept the API returns one or more labels.
-     * The API returns the following types of information regarding labels:
+     * The API returns the following types of information about labels:
      * </p>
      * <ul>
      * <li>
@@ -2545,8 +2616,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * </p>
      * </note>
      * <p>
-     * This is a stateless API operation. That is, the operation does not
-     * persist any data.
+     * This is a stateless API operation that doesn't return any data.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -3329,6 +3399,66 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<GetFaceDetectionResult, JsonUnmarshallerContext> unmarshaller = new GetFaceDetectionResultJsonUnmarshaller();
             JsonResponseHandler<GetFaceDetectionResult> responseHandler = new JsonResponseHandler<GetFaceDetectionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the results of a specific Face Liveness session. It requires
+     * the <code>sessionId</code> as input, which was created using
+     * <code>CreateFaceLivenessSession</code>. Returns the corresponding Face
+     * Liveness confidence score, a reference image that includes a face
+     * bounding box, and audit images that also contain face bounding boxes. The
+     * Face Liveness confidence score ranges from 0 to 100. The reference image
+     * can optionally be returned.
+     * </p>
+     * 
+     * @param getFaceLivenessSessionResultsRequest
+     * @return getFaceLivenessSessionResultsResult The response from the
+     *         GetFaceLivenessSessionResults service method, as returned by
+     *         Amazon Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws SessionNotFoundException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetFaceLivenessSessionResultsResult getFaceLivenessSessionResults(
+            GetFaceLivenessSessionResultsRequest getFaceLivenessSessionResultsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getFaceLivenessSessionResultsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetFaceLivenessSessionResultsRequest> request = null;
+        Response<GetFaceLivenessSessionResultsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetFaceLivenessSessionResultsRequestMarshaller()
+                        .marshall(getFaceLivenessSessionResultsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetFaceLivenessSessionResultsResult, JsonUnmarshallerContext> unmarshaller = new GetFaceLivenessSessionResultsResultJsonUnmarshaller();
+            JsonResponseHandler<GetFaceLivenessSessionResultsResult> responseHandler = new JsonResponseHandler<GetFaceLivenessSessionResultsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4365,6 +4495,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * To attach a project policy to a project, call <a>PutProjectPolicy</a>. To
      * remove a project policy from a project, call <a>DeleteProjectPolicy</a>.
      * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:ListProjectPolicies</code> action.
+     * </p>
      * 
      * @param listProjectPoliciesRequest
      * @return listProjectPoliciesResult The response from the
@@ -4556,6 +4690,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * </p>
      * <p>
      * You copy a model version by calling <a>CopyProjectVersion</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:PutProjectPolicy</code> action.
      * </p>
      * 
      * @param putProjectPolicyRequest
@@ -5673,6 +5811,10 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * Stops a running model. The operation might take a while to complete. To
      * check the current status, call <a>DescribeProjectVersions</a>.
      * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:StopProjectVersion</code> action.
+     * </p>
      * 
      * @param stopProjectVersionRequest
      * @return stopProjectVersionResult The response from the StopProjectVersion
@@ -6002,6 +6144,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws ProvisionedThroughputExceededException
+     * @throws ResourceInUseException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

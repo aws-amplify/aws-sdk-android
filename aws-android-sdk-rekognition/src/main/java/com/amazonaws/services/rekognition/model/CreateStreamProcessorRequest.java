@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,10 +34,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * If you are creating a stream processor for detecting faces, you provide as
  * input a Kinesis video stream (<code>Input</code>) and a Kinesis data stream (
- * <code>Output</code>) stream. You also specify the face recognition criteria
- * in <code>Settings</code>. For example, the collection containing faces that
- * you want to recognize. After you have finished analyzing a streaming video,
- * use <a>StopStreamProcessor</a> to stop processing.
+ * <code>Output</code>) stream for receiving the output. You must use the
+ * <code>FaceSearch</code> option in <code>Settings</code>, specifying the
+ * collection that contains the faces you want to recognize. After you have
+ * finished analyzing a streaming video, use <a>StopStreamProcessor</a> to stop
+ * processing.
  * </p>
  * </li>
  * <li>
@@ -47,8 +48,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>Output</code>), and an Amazon SNS topic ARN (
  * <code>NotificationChannel</code>). You can also provide a KMS key ID to
  * encrypt the data sent to your Amazon S3 bucket. You specify what you want to
- * detect in <code>ConnectedHomeSettings</code>, such as people, packages and
- * people, or pets, people, and packages. You can also specify where in the
+ * detect by using the <code>ConnectedHome</code> option in settings, and
+ * selecting one of the following: <code>PERSON</code>, <code>PET</code>,
+ * <code>PACKAGE</code>, <code>ALL</code> You can also specify where in the
  * frame you want Amazon Rekognition to monitor with
  * <code>RegionsOfInterest</code>. When you run the <a>StartStreamProcessor</a>
  * operation on a label detection stream processor, you input start and stop

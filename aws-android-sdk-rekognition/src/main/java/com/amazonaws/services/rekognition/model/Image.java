@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,7 +57,8 @@ import java.io.Serializable;
 public class Image implements Serializable {
     /**
      * <p>
-     * Blob of image bytes up to 5 MBs.
+     * Blob of image bytes up to 5 MBs. Note that the maximum image size you can
+     * pass to <code>DetectCustomLabels</code> is 4MB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,14 +75,16 @@ public class Image implements Serializable {
 
     /**
      * <p>
-     * Blob of image bytes up to 5 MBs.
+     * Blob of image bytes up to 5 MBs. Note that the maximum image size you can
+     * pass to <code>DetectCustomLabels</code> is 4MB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 5242880<br/>
      *
      * @return <p>
-     *         Blob of image bytes up to 5 MBs.
+     *         Blob of image bytes up to 5 MBs. Note that the maximum image size
+     *         you can pass to <code>DetectCustomLabels</code> is 4MB.
      *         </p>
      */
     public java.nio.ByteBuffer getBytes() {
@@ -90,14 +93,16 @@ public class Image implements Serializable {
 
     /**
      * <p>
-     * Blob of image bytes up to 5 MBs.
+     * Blob of image bytes up to 5 MBs. Note that the maximum image size you can
+     * pass to <code>DetectCustomLabels</code> is 4MB.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 5242880<br/>
      *
      * @param bytes <p>
-     *            Blob of image bytes up to 5 MBs.
+     *            Blob of image bytes up to 5 MBs. Note that the maximum image
+     *            size you can pass to <code>DetectCustomLabels</code> is 4MB.
      *            </p>
      */
     public void setBytes(java.nio.ByteBuffer bytes) {
@@ -106,7 +111,8 @@ public class Image implements Serializable {
 
     /**
      * <p>
-     * Blob of image bytes up to 5 MBs.
+     * Blob of image bytes up to 5 MBs. Note that the maximum image size you can
+     * pass to <code>DetectCustomLabels</code> is 4MB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -116,7 +122,8 @@ public class Image implements Serializable {
      * <b>Length: </b>1 - 5242880<br/>
      *
      * @param bytes <p>
-     *            Blob of image bytes up to 5 MBs.
+     *            Blob of image bytes up to 5 MBs. Note that the maximum image
+     *            size you can pass to <code>DetectCustomLabels</code> is 4MB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
