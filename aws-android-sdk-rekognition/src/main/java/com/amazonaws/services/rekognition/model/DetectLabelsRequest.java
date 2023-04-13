@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For each object, scene, and concept the API returns one or more labels. The
- * API returns the following types of information regarding labels:
+ * API returns the following types of information about labels:
  * </p>
  * <ul>
  * <li>
@@ -183,8 +183,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * This is a stateless API operation. That is, the operation does not persist
- * any data.
+ * This is a stateless API operation that doesn't return any data.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -251,7 +250,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * properties. Specified filters can be inclusive, exclusive, or a
      * combination of both. Filters can be used for individual labels or label
      * categories. The exact label names or label categories must be supplied.
-     * For a full list of labels and label categories, see LINK HERE.
+     * For a full list of labels and label categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting labels</a>.
      * </p>
      */
     private DetectLabelsSettings settings;
@@ -649,7 +650,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * properties. Specified filters can be inclusive, exclusive, or a
      * combination of both. Filters can be used for individual labels or label
      * categories. The exact label names or label categories must be supplied.
-     * For a full list of labels and label categories, see LINK HERE.
+     * For a full list of labels and label categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting labels</a>.
      * </p>
      *
      * @return <p>
@@ -658,7 +661,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *         exclusive, or a combination of both. Filters can be used for
      *         individual labels or label categories. The exact label names or
      *         label categories must be supplied. For a full list of labels and
-     *         label categories, see LINK HERE.
+     *         label categories, see <a href=
+     *         "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *         >Detecting labels</a>.
      *         </p>
      */
     public DetectLabelsSettings getSettings() {
@@ -671,7 +676,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * properties. Specified filters can be inclusive, exclusive, or a
      * combination of both. Filters can be used for individual labels or label
      * categories. The exact label names or label categories must be supplied.
-     * For a full list of labels and label categories, see LINK HERE.
+     * For a full list of labels and label categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting labels</a>.
      * </p>
      *
      * @param settings <p>
@@ -680,7 +687,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            inclusive, exclusive, or a combination of both. Filters can be
      *            used for individual labels or label categories. The exact
      *            label names or label categories must be supplied. For a full
-     *            list of labels and label categories, see LINK HERE.
+     *            list of labels and label categories, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *            >Detecting labels</a>.
      *            </p>
      */
     public void setSettings(DetectLabelsSettings settings) {
@@ -693,7 +702,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * properties. Specified filters can be inclusive, exclusive, or a
      * combination of both. Filters can be used for individual labels or label
      * categories. The exact label names or label categories must be supplied.
-     * For a full list of labels and label categories, see LINK HERE.
+     * For a full list of labels and label categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting labels</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -705,7 +716,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            inclusive, exclusive, or a combination of both. Filters can be
      *            used for individual labels or label categories. The exact
      *            label names or label categories must be supplied. For a full
-     *            list of labels and label categories, see LINK HERE.
+     *            list of labels and label categories, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *            >Detecting labels</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -69,6 +69,13 @@ public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
+     * An object that specifies the TLS configuration for a domain.
+     * </p>
+     */
+    private TlsConfig tlsConfig;
+
+    /**
+     * <p>
      * The name of the domain configuration to be updated.
      * </p>
      * <p>
@@ -335,6 +342,51 @@ public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
+     * An object that specifies the TLS configuration for a domain.
+     * </p>
+     *
+     * @return <p>
+     *         An object that specifies the TLS configuration for a domain.
+     *         </p>
+     */
+    public TlsConfig getTlsConfig() {
+        return tlsConfig;
+    }
+
+    /**
+     * <p>
+     * An object that specifies the TLS configuration for a domain.
+     * </p>
+     *
+     * @param tlsConfig <p>
+     *            An object that specifies the TLS configuration for a domain.
+     *            </p>
+     */
+    public void setTlsConfig(TlsConfig tlsConfig) {
+        this.tlsConfig = tlsConfig;
+    }
+
+    /**
+     * <p>
+     * An object that specifies the TLS configuration for a domain.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tlsConfig <p>
+     *            An object that specifies the TLS configuration for a domain.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateDomainConfigurationRequest withTlsConfig(TlsConfig tlsConfig) {
+        this.tlsConfig = tlsConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -352,7 +404,9 @@ public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest im
         if (getDomainConfigurationStatus() != null)
             sb.append("domainConfigurationStatus: " + getDomainConfigurationStatus() + ",");
         if (getRemoveAuthorizerConfig() != null)
-            sb.append("removeAuthorizerConfig: " + getRemoveAuthorizerConfig());
+            sb.append("removeAuthorizerConfig: " + getRemoveAuthorizerConfig() + ",");
+        if (getTlsConfig() != null)
+            sb.append("tlsConfig: " + getTlsConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -376,6 +430,7 @@ public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest im
                 * hashCode
                 + ((getRemoveAuthorizerConfig() == null) ? 0 : getRemoveAuthorizerConfig()
                         .hashCode());
+        hashCode = prime * hashCode + ((getTlsConfig() == null) ? 0 : getTlsConfig().hashCode());
         return hashCode;
     }
 
@@ -410,6 +465,11 @@ public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getRemoveAuthorizerConfig() != null
                 && other.getRemoveAuthorizerConfig().equals(this.getRemoveAuthorizerConfig()) == false)
+            return false;
+        if (other.getTlsConfig() == null ^ this.getTlsConfig() == null)
+            return false;
+        if (other.getTlsConfig() != null
+                && other.getTlsConfig().equals(this.getTlsConfig()) == false)
             return false;
         return true;
     }
