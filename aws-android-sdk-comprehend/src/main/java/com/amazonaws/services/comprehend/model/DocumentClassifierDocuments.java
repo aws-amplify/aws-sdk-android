@@ -1,0 +1,231 @@
+/*
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.comprehend.model;
+
+import java.io.Serializable;
+
+/**
+ * <p>
+ * The location of the training documents. This parameter is required in a
+ * request to create a native classifier model.
+ * </p>
+ */
+public class DocumentClassifierDocuments implements Serializable {
+    /**
+     * <p>
+     * The S3 URI location of the training documents specified in the S3Uri CSV
+     * file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String s3Uri;
+
+    /**
+     * <p>
+     * The S3 URI location of the test documents included in the TestS3Uri CSV
+     * file. This field is not required if you do not specify a test CSV file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String testS3Uri;
+
+    /**
+     * <p>
+     * The S3 URI location of the training documents specified in the S3Uri CSV
+     * file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         The S3 URI location of the training documents specified in the
+     *         S3Uri CSV file.
+     *         </p>
+     */
+    public String getS3Uri() {
+        return s3Uri;
+    }
+
+    /**
+     * <p>
+     * The S3 URI location of the training documents specified in the S3Uri CSV
+     * file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param s3Uri <p>
+     *            The S3 URI location of the training documents specified in the
+     *            S3Uri CSV file.
+     *            </p>
+     */
+    public void setS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
+    }
+
+    /**
+     * <p>
+     * The S3 URI location of the training documents specified in the S3Uri CSV
+     * file.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param s3Uri <p>
+     *            The S3 URI location of the training documents specified in the
+     *            S3Uri CSV file.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierDocuments withS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The S3 URI location of the test documents included in the TestS3Uri CSV
+     * file. This field is not required if you do not specify a test CSV file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         The S3 URI location of the test documents included in the
+     *         TestS3Uri CSV file. This field is not required if you do not
+     *         specify a test CSV file.
+     *         </p>
+     */
+    public String getTestS3Uri() {
+        return testS3Uri;
+    }
+
+    /**
+     * <p>
+     * The S3 URI location of the test documents included in the TestS3Uri CSV
+     * file. This field is not required if you do not specify a test CSV file.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            The S3 URI location of the test documents included in the
+     *            TestS3Uri CSV file. This field is not required if you do not
+     *            specify a test CSV file.
+     *            </p>
+     */
+    public void setTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+    }
+
+    /**
+     * <p>
+     * The S3 URI location of the test documents included in the TestS3Uri CSV
+     * file. This field is not required if you do not specify a test CSV file.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            The S3 URI location of the test documents included in the
+     *            TestS3Uri CSV file. This field is not required if you do not
+     *            specify a test CSV file.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierDocuments withTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getS3Uri() != null)
+            sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getTestS3Uri() != null)
+            sb.append("TestS3Uri: " + getTestS3Uri());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getTestS3Uri() == null) ? 0 : getTestS3Uri().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof DocumentClassifierDocuments == false)
+            return false;
+        DocumentClassifierDocuments other = (DocumentClassifierDocuments) obj;
+
+        if (other.getS3Uri() == null ^ this.getS3Uri() == null)
+            return false;
+        if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getTestS3Uri() == null ^ this.getTestS3Uri() == null)
+            return false;
+        if (other.getTestS3Uri() != null
+                && other.getTestS3Uri().equals(this.getTestS3Uri()) == false)
+            return false;
+        return true;
+    }
+}

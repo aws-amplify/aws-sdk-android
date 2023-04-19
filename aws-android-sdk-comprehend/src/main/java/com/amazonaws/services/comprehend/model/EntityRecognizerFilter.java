@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * <p>
  * Provides information for filtering a list of entity recognizers. You can only
  * specify one filtering parameter in a request. For more information, see the
- * operation./&gt;
+ * <code>ListEntityRecognizers</code> operation./&gt;
  * </p>
  */
 public class EntityRecognizerFilter implements Serializable {
@@ -32,7 +32,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      */
     private String status;
 
@@ -72,7 +72,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @return <p>
      *         The status of an entity recognizer.
@@ -90,7 +90,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -111,7 +111,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -132,7 +132,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param status <p>
      *            The status of an entity recognizer.
@@ -153,7 +153,7 @@ public class EntityRecognizerFilter implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param status <p>
      *            The status of an entity recognizer.

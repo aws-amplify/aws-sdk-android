@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,8 +44,9 @@ public class PiiOutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job.
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -155,8 +156,9 @@ public class PiiOutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job.
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -164,9 +166,9 @@ public class PiiOutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt the output results from an analysis
-     *         job.
+     *         ID for the Amazon Web Services Key Management Service (KMS) key
+     *         that Amazon Comprehend uses to encrypt the output results from an
+     *         analysis job.
      *         </p>
      */
     public String getKmsKeyId() {
@@ -175,8 +177,9 @@ public class PiiOutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job.
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,9 +187,9 @@ public class PiiOutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt the output results from an analysis
-     *            job.
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt the output results
+     *            from an analysis job.
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -195,8 +198,9 @@ public class PiiOutputDataConfig implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt the output results from an analysis job.
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt the output results from an analysis
+     * job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -207,9 +211,9 @@ public class PiiOutputDataConfig implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param kmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt the output results from an analysis
-     *            job.
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt the output results
+     *            from an analysis job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

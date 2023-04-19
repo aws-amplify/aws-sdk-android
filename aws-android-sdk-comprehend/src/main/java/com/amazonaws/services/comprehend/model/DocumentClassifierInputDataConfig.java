@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
-     * region as the API endpoint that you are calling. The URI can point to a
+     * Region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
      * files.
      * </p>
@@ -91,8 +91,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same AWS Region as
-     * the API endpoint that you are calling.
+     * entity recognizer are located. The URI must be in the same Amazon Web
+     * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,6 +130,66 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * </p>
      */
     private java.util.List<AugmentedManifestsListItem> augmentedManifests;
+
+    /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     */
+    private String documentType;
+
+    /**
+     * <p>
+     * The S3 location of the training documents. This parameter is required in
+     * a request to create a native classifier model.
+     * </p>
+     */
+    private DocumentClassifierDocuments documents;
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     * <p>
+     * By default, Amazon Comprehend performs the following actions to extract
+     * text from files, based on the input file type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Word files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the
+     * Amazon Textract <code>DetectDocumentText</code> API to extract the text.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>DocumentReaderConfig</code> does not apply to plain text files or
+     * Word files.
+     * </p>
+     * <p>
+     * For image files and PDF documents, you can override these default actions
+     * using the fields listed below. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     * > Setting text extraction options</a> in the Comprehend Developer Guide.
+     * </p>
+     */
+    private DocumentReaderConfig documentReaderConfig;
 
     /**
      * <p>
@@ -491,7 +551,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
-     * region as the API endpoint that you are calling. The URI can point to a
+     * Region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
      * files.
      * </p>
@@ -512,7 +572,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *
      * @return <p>
      *         The Amazon S3 URI for the input data. The S3 bucket must be in
-     *         the same region as the API endpoint that you are calling. The URI
+     *         the same Region as the API endpoint that you are calling. The URI
      *         can point to a single input file or it can provide the prefix for
      *         a collection of input files.
      *         </p>
@@ -535,7 +595,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
-     * region as the API endpoint that you are calling. The URI can point to a
+     * Region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
      * files.
      * </p>
@@ -556,7 +616,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *
      * @param s3Uri <p>
      *            The Amazon S3 URI for the input data. The S3 bucket must be in
-     *            the same region as the API endpoint that you are calling. The
+     *            the same Region as the API endpoint that you are calling. The
      *            URI can point to a single input file or it can provide the
      *            prefix for a collection of input files.
      *            </p>
@@ -579,7 +639,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
-     * region as the API endpoint that you are calling. The URI can point to a
+     * Region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
      * files.
      * </p>
@@ -603,7 +663,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *
      * @param s3Uri <p>
      *            The Amazon S3 URI for the input data. The S3 bucket must be in
-     *            the same region as the API endpoint that you are calling. The
+     *            the same Region as the API endpoint that you are calling. The
      *            URI can point to a single input file or it can provide the
      *            prefix for a collection of input files.
      *            </p>
@@ -629,8 +689,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same AWS Region as
-     * the API endpoint that you are calling.
+     * entity recognizer are located. The URI must be in the same Amazon Web
+     * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -640,7 +700,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @return <p>
      *         This specifies the Amazon S3 location where the test annotations
      *         for an entity recognizer are located. The URI must be in the same
-     *         AWS Region as the API endpoint that you are calling.
+     *         Amazon Web Services Region as the API endpoint that you are
+     *         calling.
      *         </p>
      */
     public String getTestS3Uri() {
@@ -650,8 +711,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same AWS Region as
-     * the API endpoint that you are calling.
+     * entity recognizer are located. The URI must be in the same Amazon Web
+     * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -661,8 +722,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param testS3Uri <p>
      *            This specifies the Amazon S3 location where the test
      *            annotations for an entity recognizer are located. The URI must
-     *            be in the same AWS Region as the API endpoint that you are
-     *            calling.
+     *            be in the same Amazon Web Services Region as the API endpoint
+     *            that you are calling.
      *            </p>
      */
     public void setTestS3Uri(String testS3Uri) {
@@ -672,8 +733,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same AWS Region as
-     * the API endpoint that you are calling.
+     * entity recognizer are located. The URI must be in the same Amazon Web
+     * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -686,8 +747,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param testS3Uri <p>
      *            This specifies the Amazon S3 location where the test
      *            annotations for an entity recognizer are located. The URI must
-     *            be in the same AWS Region as the API endpoint that you are
-     *            calling.
+     *            be in the same Amazon Web Services Region as the API endpoint
+     *            that you are calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -923,6 +984,435 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     *
+     * @return <p>
+     *         The type of input documents for training the model. Provide
+     *         plain-text documents to create a plain-text model, and provide
+     *         semi-structured documents to create a native model.
+     *         </p>
+     * @see DocumentClassifierDocumentTypeFormat
+     */
+    public String getDocumentType() {
+        return documentType;
+    }
+
+    /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     *
+     * @param documentType <p>
+     *            The type of input documents for training the model. Provide
+     *            plain-text documents to create a plain-text model, and provide
+     *            semi-structured documents to create a native model.
+     *            </p>
+     * @see DocumentClassifierDocumentTypeFormat
+     */
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
+
+    /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     *
+     * @param documentType <p>
+     *            The type of input documents for training the model. Provide
+     *            plain-text documents to create a plain-text model, and provide
+     *            semi-structured documents to create a native model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierDocumentTypeFormat
+     */
+    public DocumentClassifierInputDataConfig withDocumentType(String documentType) {
+        this.documentType = documentType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     *
+     * @param documentType <p>
+     *            The type of input documents for training the model. Provide
+     *            plain-text documents to create a plain-text model, and provide
+     *            semi-structured documents to create a native model.
+     *            </p>
+     * @see DocumentClassifierDocumentTypeFormat
+     */
+    public void setDocumentType(DocumentClassifierDocumentTypeFormat documentType) {
+        this.documentType = documentType.toString();
+    }
+
+    /**
+     * <p>
+     * The type of input documents for training the model. Provide plain-text
+     * documents to create a plain-text model, and provide semi-structured
+     * documents to create a native model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PLAIN_TEXT_DOCUMENT, SEMI_STRUCTURED_DOCUMENT
+     *
+     * @param documentType <p>
+     *            The type of input documents for training the model. Provide
+     *            plain-text documents to create a plain-text model, and provide
+     *            semi-structured documents to create a native model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierDocumentTypeFormat
+     */
+    public DocumentClassifierInputDataConfig withDocumentType(
+            DocumentClassifierDocumentTypeFormat documentType) {
+        this.documentType = documentType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The S3 location of the training documents. This parameter is required in
+     * a request to create a native classifier model.
+     * </p>
+     *
+     * @return <p>
+     *         The S3 location of the training documents. This parameter is
+     *         required in a request to create a native classifier model.
+     *         </p>
+     */
+    public DocumentClassifierDocuments getDocuments() {
+        return documents;
+    }
+
+    /**
+     * <p>
+     * The S3 location of the training documents. This parameter is required in
+     * a request to create a native classifier model.
+     * </p>
+     *
+     * @param documents <p>
+     *            The S3 location of the training documents. This parameter is
+     *            required in a request to create a native classifier model.
+     *            </p>
+     */
+    public void setDocuments(DocumentClassifierDocuments documents) {
+        this.documents = documents;
+    }
+
+    /**
+     * <p>
+     * The S3 location of the training documents. This parameter is required in
+     * a request to create a native classifier model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documents <p>
+     *            The S3 location of the training documents. This parameter is
+     *            required in a request to create a native classifier model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierInputDataConfig withDocuments(DocumentClassifierDocuments documents) {
+        this.documents = documents;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     * <p>
+     * By default, Amazon Comprehend performs the following actions to extract
+     * text from files, based on the input file type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Word files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the
+     * Amazon Textract <code>DetectDocumentText</code> API to extract the text.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>DocumentReaderConfig</code> does not apply to plain text files or
+     * Word files.
+     * </p>
+     * <p>
+     * For image files and PDF documents, you can override these default actions
+     * using the fields listed below. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     * > Setting text extraction options</a> in the Comprehend Developer Guide.
+     * </p>
+     *
+     * @return <p>
+     *         Provides configuration parameters to override the default actions
+     *         for extracting text from PDF documents and image files.
+     *         </p>
+     *         <p>
+     *         By default, Amazon Comprehend performs the following actions to
+     *         extract text from files, based on the input file type:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <b>Word files</b> - Amazon Comprehend parser extracts the text.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <b>Digital PDF files</b> - Amazon Comprehend parser extracts the
+     *         text.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <b>Image files and scanned PDF files</b> - Amazon Comprehend uses
+     *         the Amazon Textract <code>DetectDocumentText</code> API to
+     *         extract the text.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         <code>DocumentReaderConfig</code> does not apply to plain text
+     *         files or Word files.
+     *         </p>
+     *         <p>
+     *         For image files and PDF documents, you can override these default
+     *         actions using the fields listed below. For more information, see
+     *         <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     *         > Setting text extraction options</a> in the Comprehend Developer
+     *         Guide.
+     *         </p>
+     */
+    public DocumentReaderConfig getDocumentReaderConfig() {
+        return documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     * <p>
+     * By default, Amazon Comprehend performs the following actions to extract
+     * text from files, based on the input file type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Word files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the
+     * Amazon Textract <code>DetectDocumentText</code> API to extract the text.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>DocumentReaderConfig</code> does not apply to plain text files or
+     * Word files.
+     * </p>
+     * <p>
+     * For image files and PDF documents, you can override these default actions
+     * using the fields listed below. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     * > Setting text extraction options</a> in the Comprehend Developer Guide.
+     * </p>
+     *
+     * @param documentReaderConfig <p>
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
+     *            </p>
+     *            <p>
+     *            By default, Amazon Comprehend performs the following actions
+     *            to extract text from files, based on the input file type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <b>Word files</b> - Amazon Comprehend parser extracts the
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <b>Digital PDF files</b> - Amazon Comprehend parser extracts
+     *            the text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <b>Image files and scanned PDF files</b> - Amazon Comprehend
+     *            uses the Amazon Textract <code>DetectDocumentText</code> API
+     *            to extract the text.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            <code>DocumentReaderConfig</code> does not apply to plain text
+     *            files or Word files.
+     *            </p>
+     *            <p>
+     *            For image files and PDF documents, you can override these
+     *            default actions using the fields listed below. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     *            > Setting text extraction options</a> in the Comprehend
+     *            Developer Guide.
+     *            </p>
+     */
+    public void setDocumentReaderConfig(DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * Provides configuration parameters to override the default actions for
+     * extracting text from PDF documents and image files.
+     * </p>
+     * <p>
+     * By default, Amazon Comprehend performs the following actions to extract
+     * text from files, based on the input file type:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <b>Word files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Digital PDF files</b> - Amazon Comprehend parser extracts the text.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <b>Image files and scanned PDF files</b> - Amazon Comprehend uses the
+     * Amazon Textract <code>DetectDocumentText</code> API to extract the text.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>DocumentReaderConfig</code> does not apply to plain text files or
+     * Word files.
+     * </p>
+     * <p>
+     * For image files and PDF documents, you can override these default actions
+     * using the fields listed below. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     * > Setting text extraction options</a> in the Comprehend Developer Guide.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentReaderConfig <p>
+     *            Provides configuration parameters to override the default
+     *            actions for extracting text from PDF documents and image
+     *            files.
+     *            </p>
+     *            <p>
+     *            By default, Amazon Comprehend performs the following actions
+     *            to extract text from files, based on the input file type:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <b>Word files</b> - Amazon Comprehend parser extracts the
+     *            text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <b>Digital PDF files</b> - Amazon Comprehend parser extracts
+     *            the text.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <b>Image files and scanned PDF files</b> - Amazon Comprehend
+     *            uses the Amazon Textract <code>DetectDocumentText</code> API
+     *            to extract the text.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            <code>DocumentReaderConfig</code> does not apply to plain text
+     *            files or Word files.
+     *            </p>
+     *            <p>
+     *            For image files and PDF documents, you can override these
+     *            default actions using the fields listed below. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/idp-set-textract-options.html"
+     *            > Setting text extraction options</a> in the Comprehend
+     *            Developer Guide.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierInputDataConfig withDocumentReaderConfig(
+            DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -942,7 +1432,13 @@ public class DocumentClassifierInputDataConfig implements Serializable {
         if (getLabelDelimiter() != null)
             sb.append("LabelDelimiter: " + getLabelDelimiter() + ",");
         if (getAugmentedManifests() != null)
-            sb.append("AugmentedManifests: " + getAugmentedManifests());
+            sb.append("AugmentedManifests: " + getAugmentedManifests() + ",");
+        if (getDocumentType() != null)
+            sb.append("DocumentType: " + getDocumentType() + ",");
+        if (getDocuments() != null)
+            sb.append("Documents: " + getDocuments() + ",");
+        if (getDocumentReaderConfig() != null)
+            sb.append("DocumentReaderConfig: " + getDocumentReaderConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -959,6 +1455,11 @@ public class DocumentClassifierInputDataConfig implements Serializable {
                 + ((getLabelDelimiter() == null) ? 0 : getLabelDelimiter().hashCode());
         hashCode = prime * hashCode
                 + ((getAugmentedManifests() == null) ? 0 : getAugmentedManifests().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentType() == null) ? 0 : getDocumentType().hashCode());
+        hashCode = prime * hashCode + ((getDocuments() == null) ? 0 : getDocuments().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentReaderConfig() == null) ? 0 : getDocumentReaderConfig().hashCode());
         return hashCode;
     }
 
@@ -996,6 +1497,21 @@ public class DocumentClassifierInputDataConfig implements Serializable {
             return false;
         if (other.getAugmentedManifests() != null
                 && other.getAugmentedManifests().equals(this.getAugmentedManifests()) == false)
+            return false;
+        if (other.getDocumentType() == null ^ this.getDocumentType() == null)
+            return false;
+        if (other.getDocumentType() != null
+                && other.getDocumentType().equals(this.getDocumentType()) == false)
+            return false;
+        if (other.getDocuments() == null ^ this.getDocuments() == null)
+            return false;
+        if (other.getDocuments() != null
+                && other.getDocuments().equals(this.getDocuments()) == false)
+            return false;
+        if (other.getDocumentReaderConfig() == null ^ this.getDocumentReaderConfig() == null)
+            return false;
+        if (other.getDocumentReaderConfig() != null
+                && other.getDocumentReaderConfig().equals(this.getDocumentReaderConfig()) == false)
             return false;
         return true;
     }
