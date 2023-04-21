@@ -1778,6 +1778,85 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Adds a new participant into an on-going chat contact. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html"
+     * >Customize chat flow experiences by integrating custom participants</a>.
+     * </p>
+     * 
+     * @param createParticipantRequest
+     * @return A Java Future object containing the response from the
+     *         CreateParticipant service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateParticipantResult> createParticipantAsync(
+            final CreateParticipantRequest createParticipantRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<CreateParticipantResult>() {
+            public CreateParticipantResult call() throws Exception {
+                return createParticipant(createParticipantRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Adds a new participant into an on-going chat contact. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html"
+     * >Customize chat flow experiences by integrating custom participants</a>.
+     * </p>
+     * 
+     * @param createParticipantRequest
+     * @return A Java Future object containing the response from the
+     *         CreateParticipant service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateParticipantResult> createParticipantAsync(
+            final CreateParticipantRequest createParticipantRequest,
+            final AsyncHandler<CreateParticipantRequest, CreateParticipantResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateParticipantResult>() {
+            public CreateParticipantResult call() throws Exception {
+                CreateParticipantResult result = null;
+                try {
+                    result = createParticipant(createParticipantRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createParticipantRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>

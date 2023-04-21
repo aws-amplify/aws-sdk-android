@@ -651,6 +651,34 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Adds a new participant into an on-going chat contact. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html"
+     * >Customize chat flow experiences by integrating custom participants</a>.
+     * </p>
+     * 
+     * @param createParticipantRequest
+     * @return createParticipantResult The response from the CreateParticipant
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateParticipantResult createParticipant(CreateParticipantRequest createParticipantRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
