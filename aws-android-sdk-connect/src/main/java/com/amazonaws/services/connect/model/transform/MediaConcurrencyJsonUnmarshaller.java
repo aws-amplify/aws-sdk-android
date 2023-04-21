@@ -42,6 +42,10 @@ class MediaConcurrencyJsonUnmarshaller implements
             } else if (name.equals("Concurrency")) {
                 mediaConcurrency.setConcurrency(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CrossChannelBehavior")) {
+                mediaConcurrency.setCrossChannelBehavior(CrossChannelBehaviorJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

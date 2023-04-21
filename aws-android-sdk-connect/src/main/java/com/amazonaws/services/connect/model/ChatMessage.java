@@ -26,7 +26,9 @@ public class ChatMessage implements Serializable {
     /**
      * <p>
      * The type of the content. Supported types are <code>text/plain</code>,
-     * <code>text/markdown</code>, and <code>application/json</code>.
+     * <code>text/markdown</code>, <code>application/json</code>, and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,6 +53,13 @@ public class ChatMessage implements Serializable {
      * 1, Maximum of 12000.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * For
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * , the Length Constraints are Minimum of 1, Maximum of 12288.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +70,9 @@ public class ChatMessage implements Serializable {
     /**
      * <p>
      * The type of the content. Supported types are <code>text/plain</code>,
-     * <code>text/markdown</code>, and <code>application/json</code>.
+     * <code>text/markdown</code>, <code>application/json</code>, and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,8 +80,10 @@ public class ChatMessage implements Serializable {
      *
      * @return <p>
      *         The type of the content. Supported types are
-     *         <code>text/plain</code>, <code>text/markdown</code>, and
-     *         <code>application/json</code>.
+     *         <code>text/plain</code>, <code>text/markdown</code>,
+     *         <code>application/json</code>, and
+     *         <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *         .
      *         </p>
      */
     public String getContentType() {
@@ -80,7 +93,9 @@ public class ChatMessage implements Serializable {
     /**
      * <p>
      * The type of the content. Supported types are <code>text/plain</code>,
-     * <code>text/markdown</code>, and <code>application/json</code>.
+     * <code>text/markdown</code>, <code>application/json</code>, and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -88,8 +103,10 @@ public class ChatMessage implements Serializable {
      *
      * @param contentType <p>
      *            The type of the content. Supported types are
-     *            <code>text/plain</code>, <code>text/markdown</code>, and
-     *            <code>application/json</code>.
+     *            <code>text/plain</code>, <code>text/markdown</code>,
+     *            <code>application/json</code>, and
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            .
      *            </p>
      */
     public void setContentType(String contentType) {
@@ -99,7 +116,9 @@ public class ChatMessage implements Serializable {
     /**
      * <p>
      * The type of the content. Supported types are <code>text/plain</code>,
-     * <code>text/markdown</code>, and <code>application/json</code>.
+     * <code>text/markdown</code>, <code>application/json</code>, and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -110,8 +129,10 @@ public class ChatMessage implements Serializable {
      *
      * @param contentType <p>
      *            The type of the content. Supported types are
-     *            <code>text/plain</code>, <code>text/markdown</code>, and
-     *            <code>application/json</code>.
+     *            <code>text/plain</code>, <code>text/markdown</code>,
+     *            <code>application/json</code>, and
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,6 +159,13 @@ public class ChatMessage implements Serializable {
      * 1, Maximum of 12000.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * For
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * , the Length Constraints are Minimum of 1, Maximum of 12288.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -157,6 +185,13 @@ public class ChatMessage implements Serializable {
      *         <p>
      *         For <code>application/json</code>, the Length Constraints are
      *         Minimum of 1, Maximum of 12000.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For
+     *         <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *         , the Length Constraints are Minimum of 1, Maximum of 12288.
      *         </p>
      *         </li>
      *         </ul>
@@ -182,6 +217,13 @@ public class ChatMessage implements Serializable {
      * 1, Maximum of 12000.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * For
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * , the Length Constraints are Minimum of 1, Maximum of 12288.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -201,6 +243,13 @@ public class ChatMessage implements Serializable {
      *            <p>
      *            For <code>application/json</code>, the Length Constraints are
      *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            , the Length Constraints are Minimum of 1, Maximum of 12288.
      *            </p>
      *            </li>
      *            </ul>
@@ -226,6 +275,13 @@ public class ChatMessage implements Serializable {
      * 1, Maximum of 12000.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * For
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * , the Length Constraints are Minimum of 1, Maximum of 12288.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -248,6 +304,13 @@ public class ChatMessage implements Serializable {
      *            <p>
      *            For <code>application/json</code>, the Length Constraints are
      *            Minimum of 1, Maximum of 12000.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            , the Length Constraints are Minimum of 1, Maximum of 12288.
      *            </p>
      *            </li>
      *            </ul>

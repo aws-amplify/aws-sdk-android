@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,10 @@ public class LabelDetectionSettings implements Serializable {
      * <p>
      * Contains filters for the object labels returned by DetectLabels. Filters
      * can be inclusive, exclusive, or a combination of both and can be applied
-     * to individual l abels or entire label categories.
+     * to individual labels or entire label categories. To see a list of label
+     * categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting Labels</a>.
      * </p>
      */
     private GeneralLabelsSettings generalLabels;
@@ -37,13 +40,19 @@ public class LabelDetectionSettings implements Serializable {
      * <p>
      * Contains filters for the object labels returned by DetectLabels. Filters
      * can be inclusive, exclusive, or a combination of both and can be applied
-     * to individual l abels or entire label categories.
+     * to individual labels or entire label categories. To see a list of label
+     * categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting Labels</a>.
      * </p>
      *
      * @return <p>
      *         Contains filters for the object labels returned by DetectLabels.
      *         Filters can be inclusive, exclusive, or a combination of both and
-     *         can be applied to individual l abels or entire label categories.
+     *         can be applied to individual labels or entire label categories.
+     *         To see a list of label categories, see <a href=
+     *         "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *         >Detecting Labels</a>.
      *         </p>
      */
     public GeneralLabelsSettings getGeneralLabels() {
@@ -54,14 +63,20 @@ public class LabelDetectionSettings implements Serializable {
      * <p>
      * Contains filters for the object labels returned by DetectLabels. Filters
      * can be inclusive, exclusive, or a combination of both and can be applied
-     * to individual l abels or entire label categories.
+     * to individual labels or entire label categories. To see a list of label
+     * categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting Labels</a>.
      * </p>
      *
      * @param generalLabels <p>
      *            Contains filters for the object labels returned by
      *            DetectLabels. Filters can be inclusive, exclusive, or a
-     *            combination of both and can be applied to individual l abels
-     *            or entire label categories.
+     *            combination of both and can be applied to individual labels or
+     *            entire label categories. To see a list of label categories,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *            >Detecting Labels</a>.
      *            </p>
      */
     public void setGeneralLabels(GeneralLabelsSettings generalLabels) {
@@ -72,7 +87,10 @@ public class LabelDetectionSettings implements Serializable {
      * <p>
      * Contains filters for the object labels returned by DetectLabels. Filters
      * can be inclusive, exclusive, or a combination of both and can be applied
-     * to individual l abels or entire label categories.
+     * to individual labels or entire label categories. To see a list of label
+     * categories, see <a
+     * href="https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     * >Detecting Labels</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -81,8 +99,11 @@ public class LabelDetectionSettings implements Serializable {
      * @param generalLabels <p>
      *            Contains filters for the object labels returned by
      *            DetectLabels. Filters can be inclusive, exclusive, or a
-     *            combination of both and can be applied to individual l abels
-     *            or entire label categories.
+     *            combination of both and can be applied to individual labels or
+     *            entire label categories. To see a list of label categories,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/labels.html"
+     *            >Detecting Labels</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
