@@ -29,10 +29,14 @@ public class LoggingHandshakeCompletedListener implements HandshakeCompletedList
             LogFactory.getLog(LoggingHandshakeCompletedListener.class);
     @Override
     public void handshakeCompleted(HandshakeCompletedEvent event) {
-        SSLSession session = event.getSession();
-        String protocol = session.getProtocol();
-        String cipherSuite = session.getCipherSuite();
+        try {
+            SSLSession session = event.getSession();
+            String protocol = session.getProtocol();
+            String cipherSuite = session.getCipherSuite();
 
-        log.debug("Protocol: " + protocol + ", CipherSuite: " + cipherSuite);
+            log.debug("Protocol: " + protocol + ", CipherSuite: " + cipherSuite);
+        } catch (Exception exception) {
+            log.debug("Failed to log connection protocol/cipher suite", exception);
+        }
     }
 }
