@@ -303,7 +303,7 @@ public class UrlHttpClient implements HttpClient {
                     config.getTrustManager()
             };
             try {
-                customTrustSSLContext = SSLContext.getInstance(TLS12SocketFactory.TLSv1_2);
+                customTrustSSLContext = SSLContext.getInstance("TLS");
                 customTrustSSLContext.init(null, customTrustManagers, null);
 
                 if (customTrustTls12SocketFactory == null) {

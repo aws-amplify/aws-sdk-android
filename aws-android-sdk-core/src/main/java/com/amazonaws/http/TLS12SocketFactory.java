@@ -38,10 +38,11 @@ import javax.net.ssl.SSLSocketFactory;
 public class TLS12SocketFactory extends SSLSocketFactory {
 
     private static final Object contextLock = new Object();
-    public static final String TLSv1_2 = "TLSv1.2";
-    private static final String[] SUPPORTED_PROTOCOLS = new String[] { TLSv1_2 };
+    private static final String[] SUPPORTED_PROTOCOLS =
+            new String[] { "TLSv1", "TLSv1.1", "TLSv1.2" };
     private static SSLContext sslContext = null;
     private final SSLSocketFactory delegate;
+    private LoggingHandshakeCompletedListener handshakeCompletedListener;
 
     @Nullable
     public static TLS12SocketFactory createTLS12SocketFactory() {
@@ -89,12 +90,13 @@ public class TLS12SocketFactory extends SSLSocketFactory {
             // Cache SSLContext due to weight and hold static
             synchronized (contextLock) {
                 if (sslContext == null) {
-                    sslContext = SSLContext.getInstance(TLSv1_2);
+                    sslContext = SSLContext.getInstance("TLS");
                     sslContext.init(null, null, null);
                 }
             }
             delegate = sslContext.getSocketFactory();
         }
+        this.handshakeCompletedListener = new LoggingHandshakeCompletedListener();
     }
 
     @Override
@@ -109,32 +111,44 @@ public class TLS12SocketFactory extends SSLSocketFactory {
 
     @Override
     public Socket createSocket() throws IOException {
-        return updateTLSProtocols(delegate.createSocket());
+        SSLSocket socket = (SSLSocket) delegate.createSocket();
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     @Override
     public Socket createSocket(Socket s, String host, int port, boolean autoClose) throws IOException {
-        return updateTLSProtocols(delegate.createSocket(s, host, port, autoClose));
+        SSLSocket socket = (SSLSocket) delegate.createSocket(s, host, port, autoClose);
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     @Override
     public Socket createSocket(String host, int port) throws IOException, UnknownHostException {
-        return updateTLSProtocols(delegate.createSocket(host, port));
+        SSLSocket socket = (SSLSocket) delegate.createSocket(host, port);
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     @Override
     public Socket createSocket(String host, int port, InetAddress localHost, int localPort) throws IOException, UnknownHostException {
-        return updateTLSProtocols(delegate.createSocket(host, port, localHost, localPort));
+        SSLSocket socket = (SSLSocket) delegate.createSocket(host, port, localHost, localPort);
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     @Override
     public Socket createSocket(InetAddress host, int port) throws IOException {
-        return updateTLSProtocols(delegate.createSocket(host, port));
+        SSLSocket socket = (SSLSocket) delegate.createSocket(host, port);
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     @Override
     public Socket createSocket(InetAddress address, int port, InetAddress localAddress, int localPort) throws IOException {
-        return updateTLSProtocols(delegate.createSocket(address, port, localAddress, localPort));
+        SSLSocket socket = (SSLSocket) delegate.createSocket(address, port, localAddress, localPort);
+        socket.addHandshakeCompletedListener(handshakeCompletedListener);
+        return updateTLSProtocols(socket);
     }
 
     private Socket updateTLSProtocols(Socket socket) {
