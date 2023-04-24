@@ -24,7 +24,7 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      */
@@ -36,7 +36,7 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -54,7 +54,7 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -75,7 +75,7 @@ public class CreateFaceLivenessSessionResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
