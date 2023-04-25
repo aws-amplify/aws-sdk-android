@@ -237,7 +237,7 @@ public class AWSIotMqttManager {
 
 
     /**
-     * Holds cached SocketFactory for non-keystore connect calls on Android versions < 22
+     * Holds cached SocketFactory for non-keystore connect calls on Android versions < 21
      * Set upon initial connect then reused on reconnect.
      */
     private TLS12SocketFactory tls12SocketFactory;
