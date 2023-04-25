@@ -293,7 +293,7 @@ public class HttpUtils {
         // TODO: support proxy?
         final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         if (connection instanceof HttpsURLConnection) {
-            TLS12SocketFactory.fixTLSPre22((HttpsURLConnection) connection);
+            TLS12SocketFactory.fixTLSPre21((HttpsURLConnection) connection);
         }
         connection.setConnectTimeout(getConnectionTimeout(config));
         connection.setReadTimeout(getSocketTimeout(config));

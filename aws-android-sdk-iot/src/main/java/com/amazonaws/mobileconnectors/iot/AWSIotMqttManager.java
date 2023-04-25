@@ -1146,7 +1146,7 @@ public class AWSIotMqttManager {
     private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
 
-        fixTLSPre22(options);
+        fixTLSPre21(options);
         options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
@@ -1333,7 +1333,7 @@ public class AWSIotMqttManager {
                     handleConnectionFailure(new IllegalStateException("Unexpected value: " + authMode));
             }
 
-            fixTLSPre22(options);
+            fixTLSPre21(options);
 
             setupCallbackForMqttClient();
             try {
@@ -2068,11 +2068,11 @@ public class AWSIotMqttManager {
     }
 
     /**
-     * Injects a SocketFactory that supports TLSv1.2 on pre 22 devices.
+     * Injects a SocketFactory that supports TLSv1.2 on pre 21 devices.
      * If a SocketFactory is already specified (ex keystore connect uses its own), call is ignored.
      * @param options for connect call
      */
-    private void fixTLSPre22(MqttConnectOptions options) {
+    private void fixTLSPre21(MqttConnectOptions options) {
         if (options.getSocketFactory() == null &&
                 Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1
         ) {

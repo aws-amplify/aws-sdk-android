@@ -53,7 +53,7 @@ public class TLS12SocketFactory extends SSLSocketFactory {
     public static TLS12SocketFactory createTLS12SocketFactory(
             @Nullable SSLContext sslContext
     ) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             try {
                 return new TLS12SocketFactory(sslContext);
             } catch (Exception e) {
@@ -63,20 +63,20 @@ public class TLS12SocketFactory extends SSLSocketFactory {
         return null;
     }
 
-    public static void fixTLSPre22(@NonNull HttpsURLConnection connection) {
-        fixTLSPre22(connection, createTLS12SocketFactory());
+    public static void fixTLSPre21(@NonNull HttpsURLConnection connection) {
+        fixTLSPre21(connection, createTLS12SocketFactory());
     }
 
-    public static void fixTLSPre22(
+    public static void fixTLSPre21(
             @NonNull HttpsURLConnection connection,
             @Nullable TLS12SocketFactory tls12SocketFactory
     ) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1 &&
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP &&
                 tls12SocketFactory != null) {
             try {
                 connection.setSSLSocketFactory(tls12SocketFactory);
             } catch (Exception e) {
-                // Failed to enabled TLS1.2 on <= Android 22 device
+                // Failed to enabled TLS1.2 on < Android 21 device
             }
         }
     }

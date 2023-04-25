@@ -1087,7 +1087,7 @@ abstract class NotificationClientBase {
             try {
                 URLConnection connection = new URL(urls[0]).openConnection();
                 if (connection instanceof HttpsURLConnection) {
-                    TLS12SocketFactory.fixTLSPre22((HttpsURLConnection) connection);
+                    TLS12SocketFactory.fixTLSPre21((HttpsURLConnection) connection);
                 }
                 return BitmapFactory.decodeStream(connection.getInputStream());
             } catch (final IOException ex) {

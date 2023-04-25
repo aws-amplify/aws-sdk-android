@@ -45,7 +45,7 @@ public final class AuthHttpClient {
 		}
 
 		final HttpsURLConnection httpsURLConnection = (HttpsURLConnection) uri.openConnection();
-		TLS12SocketFactory.fixTLSPre22(httpsURLConnection);
+		TLS12SocketFactory.fixTLSPre21(httpsURLConnection);
 		DataOutputStream httpOutputStream = null;
 		BufferedReader br = null;
 		try {

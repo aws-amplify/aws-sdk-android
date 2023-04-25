@@ -55,13 +55,13 @@ public class UrlHttpClient implements HttpClient {
     private static final int BUFFER_SIZE_MULTIPLIER = 8;
     private final ClientConfiguration config;
 
-    // SocketFactory for Pre SDK 22 devices to enforce TLS 1.2
+    // SocketFactory for Pre SDK 21 devices to enforce TLS 1.2
     private final TLS12SocketFactory tls12SocketFactory;
 
     // Cached SSLContext for connections using custom TrustManagers.
     private SSLContext customTrustSSLContext = null;
 
-    // SocketFactory for Pre SDK 22 devices to enforce TLS 1.2 that also holds custom TrustManagers.
+    // SocketFactory for Pre SDK 21 devices to enforce TLS 1.2 that also holds custom TrustManagers.
     private TLS12SocketFactory customTrustTls12SocketFactory;
 
     /**
@@ -71,7 +71,7 @@ public class UrlHttpClient implements HttpClient {
     public UrlHttpClient(ClientConfiguration config) {
         this.config = config;
 
-        // will return null if SDK > 22
+        // will return null if SDK >= 21
         tls12SocketFactory = TLS12SocketFactory.createTLS12SocketFactory();
     }
 
@@ -292,7 +292,7 @@ public class UrlHttpClient implements HttpClient {
             if (config.getTrustManager() != null) {
                 enableCustomTrustManager(https);
             } else if (tls12SocketFactory != null) {
-                TLS12SocketFactory.fixTLSPre22(https, tls12SocketFactory);
+                TLS12SocketFactory.fixTLSPre21(https, tls12SocketFactory);
             }
         }
     }
