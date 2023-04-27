@@ -26,7 +26,8 @@ public enum LivenessSessionStatus {
     CREATED("CREATED"),
     IN_PROGRESS("IN_PROGRESS"),
     SUCCEEDED("SUCCEEDED"),
-    FAILED("FAILED");
+    FAILED("FAILED"),
+    EXPIRED("EXPIRED");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum LivenessSessionStatus {
         enumMap.put("IN_PROGRESS", IN_PROGRESS);
         enumMap.put("SUCCEEDED", SUCCEEDED);
         enumMap.put("FAILED", FAILED);
+        enumMap.put("EXPIRED", EXPIRED);
     }
 
     /**

@@ -52,6 +52,67 @@ import com.amazonaws.services.connect.model.*;
 public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
+     * Activates an evaluation form in the specified Amazon Connect instance.
+     * After the evaluation form is activated, it is available to start new
+     * evaluations based on the form.
+     * </p>
+     * 
+     * @param activateEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         ActivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ActivateEvaluationFormResult> activateEvaluationFormAsync(
+            ActivateEvaluationFormRequest activateEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Activates an evaluation form in the specified Amazon Connect instance.
+     * After the evaluation form is activated, it is available to start new
+     * evaluations based on the form.
+     * </p>
+     * 
+     * @param activateEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ActivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ActivateEvaluationFormResult> activateEvaluationFormAsync(
+            ActivateEvaluationFormRequest activateEvaluationFormRequest,
+            AsyncHandler<ActivateEvaluationFormRequest, ActivateEvaluationFormResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1058,6 +1119,73 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<CreateContactFlowModuleResult> createContactFlowModuleAsync(
             CreateContactFlowModuleRequest createContactFlowModuleRequest,
             AsyncHandler<CreateContactFlowModuleRequest, CreateContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an evaluation form in the specified Amazon Connect instance. The
+     * form can be used to define questions related to agent performance, and
+     * create sections to organize such questions. An evaluation form must have
+     * a unique title within an instance. Question and section identifiers
+     * cannot be duplicated within the same evaluation form.
+     * </p>
+     * 
+     * @param createEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         CreateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEvaluationFormResult> createEvaluationFormAsync(
+            CreateEvaluationFormRequest createEvaluationFormRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Creates an evaluation form in the specified Amazon Connect instance. The
+     * form can be used to define questions related to agent performance, and
+     * create sections to organize such questions. An evaluation form must have
+     * a unique title within an instance. Question and section identifiers
+     * cannot be duplicated within the same evaluation form.
+     * </p>
+     * 
+     * @param createEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateEvaluationFormResult> createEvaluationFormAsync(
+            CreateEvaluationFormRequest createEvaluationFormRequest,
+            AsyncHandler<CreateEvaluationFormRequest, CreateEvaluationFormResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2071,6 +2199,124 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Deactivates an evaluation form in the specified Amazon Connect instance.
+     * After a form is deactivated, it is no longer available for users to start
+     * new evaluations based on the form.
+     * </p>
+     * 
+     * @param deactivateEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         DeactivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeactivateEvaluationFormResult> deactivateEvaluationFormAsync(
+            DeactivateEvaluationFormRequest deactivateEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deactivates an evaluation form in the specified Amazon Connect instance.
+     * After a form is deactivated, it is no longer available for users to start
+     * new evaluations based on the form.
+     * </p>
+     * 
+     * @param deactivateEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeactivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeactivateEvaluationFormResult> deactivateEvaluationFormAsync(
+            DeactivateEvaluationFormRequest deactivateEvaluationFormRequest,
+            AsyncHandler<DeactivateEvaluationFormRequest, DeactivateEvaluationFormResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactEvaluationRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteContactEvaluationAsync(
+            DeleteContactEvaluationRequest deleteContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactEvaluationRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteContactEvaluationAsync(
+            DeleteContactEvaluationRequest deleteContactEvaluationRequest,
+            AsyncHandler<DeleteContactEvaluationRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes a flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -2183,6 +2429,87 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DeleteContactFlowModuleResult> deleteContactFlowModuleAsync(
             DeleteContactFlowModuleRequest deleteContactFlowModuleRequest,
             AsyncHandler<DeleteContactFlowModuleRequest, DeleteContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an evaluation form in the specified Amazon Connect instance.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the version property is provided, only the specified version of the
+     * evaluation form is deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If no version is provided, then the full form (all versions) is deleted.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param deleteEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteEvaluationFormAsync(DeleteEvaluationFormRequest deleteEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes an evaluation form in the specified Amazon Connect instance.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the version property is provided, only the specified version of the
+     * evaluation form is deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If no version is provided, then the full form (all versions) is deleted.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param deleteEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteEvaluationFormAsync(DeleteEvaluationFormRequest deleteEvaluationFormRequest,
+            AsyncHandler<DeleteEvaluationFormRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3066,6 +3393,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Describes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeContactEvaluationRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactEvaluationResult> describeContactEvaluationAsync(
+            DescribeContactEvaluationRequest describeContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeContactEvaluationRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactEvaluationResult> describeContactEvaluationAsync(
+            DescribeContactEvaluationRequest describeContactEvaluationRequest,
+            AsyncHandler<DescribeContactEvaluationRequest, DescribeContactEvaluationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the specified flow.
      * </p>
      * <p>
@@ -3190,6 +3572,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribeContactFlowModuleResult> describeContactFlowModuleAsync(
             DescribeContactFlowModuleRequest describeContactFlowModuleRequest,
             AsyncHandler<DescribeContactFlowModuleRequest, DescribeContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes an evaluation form in the specified Amazon Connect instance. If
+     * the version property is not provided, the latest version of the
+     * evaluation form is described.
+     * </p>
+     * 
+     * @param describeEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEvaluationFormResult> describeEvaluationFormAsync(
+            DescribeEvaluationFormRequest describeEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes an evaluation form in the specified Amazon Connect instance. If
+     * the version property is not provided, the latest version of the
+     * evaluation form is described.
+     * </p>
+     * 
+     * @param describeEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeEvaluationFormResult> describeEvaluationFormAsync(
+            DescribeEvaluationFormRequest describeEvaluationFormRequest,
+            AsyncHandler<DescribeEvaluationFormRequest, DescribeEvaluationFormResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5524,6 +5965,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Lists contact evaluations in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactEvaluationsRequest
+     * @return A Java Future object containing the response from the
+     *         ListContactEvaluations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactEvaluationsResult> listContactEvaluationsAsync(
+            ListContactEvaluationsRequest listContactEvaluationsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists contact evaluations in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactEvaluationsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListContactEvaluations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactEvaluationsResult> listContactEvaluationsAsync(
+            ListContactEvaluationsRequest listContactEvaluationsRequest,
+            AsyncHandler<ListContactEvaluationsRequest, ListContactEvaluationsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Provides information about the flow modules for the specified Amazon
      * Connect instance.
      * </p>
@@ -5780,6 +6276,118 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<ListDefaultVocabulariesResult> listDefaultVocabulariesAsync(
             ListDefaultVocabulariesRequest listDefaultVocabulariesRequest,
             AsyncHandler<ListDefaultVocabulariesRequest, ListDefaultVocabulariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists versions of an evaluation form in the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listEvaluationFormVersionsRequest
+     * @return A Java Future object containing the response from the
+     *         ListEvaluationFormVersions service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEvaluationFormVersionsResult> listEvaluationFormVersionsAsync(
+            ListEvaluationFormVersionsRequest listEvaluationFormVersionsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists versions of an evaluation form in the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listEvaluationFormVersionsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListEvaluationFormVersions service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEvaluationFormVersionsResult> listEvaluationFormVersionsAsync(
+            ListEvaluationFormVersionsRequest listEvaluationFormVersionsRequest,
+            AsyncHandler<ListEvaluationFormVersionsRequest, ListEvaluationFormVersionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Lists evaluation forms in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listEvaluationFormsRequest
+     * @return A Java Future object containing the response from the
+     *         ListEvaluationForms service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEvaluationFormsResult> listEvaluationFormsAsync(
+            ListEvaluationFormsRequest listEvaluationFormsRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Lists evaluation forms in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listEvaluationFormsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListEvaluationForms service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListEvaluationFormsResult> listEvaluationFormsAsync(
+            ListEvaluationFormsRequest listEvaluationFormsRequest,
+            AsyncHandler<ListEvaluationFormsRequest, ListEvaluationFormsResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -8285,6 +8893,85 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Starts an empty evaluation in the specified Amazon Connect instance,
+     * using the given evaluation form for the particular contact. The
+     * evaluation form version used for the contact evaluation corresponds to
+     * the currently activated version. If no version is activated for the
+     * evaluation form, the contact evaluation cannot be started.
+     * </p>
+     * <note>
+     * <p>
+     * Evaluations created through the public API do not contain answer values
+     * suggested from automation.
+     * </p>
+     * </note>
+     * 
+     * @param startContactEvaluationRequest
+     * @return A Java Future object containing the response from the
+     *         StartContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartContactEvaluationResult> startContactEvaluationAsync(
+            StartContactEvaluationRequest startContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Starts an empty evaluation in the specified Amazon Connect instance,
+     * using the given evaluation form for the particular contact. The
+     * evaluation form version used for the contact evaluation corresponds to
+     * the currently activated version. If no version is activated for the
+     * evaluation form, the contact evaluation cannot be started.
+     * </p>
+     * <note>
+     * <p>
+     * Evaluations created through the public API do not contain answer values
+     * suggested from automation.
+     * </p>
+     * </note>
+     * 
+     * @param startContactEvaluationRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartContactEvaluationResult> startContactEvaluationAsync(
+            StartContactEvaluationRequest startContactEvaluationRequest,
+            AsyncHandler<StartContactEvaluationRequest, StartContactEvaluationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Starts recording the contact:
      * </p>
      * <ul>
@@ -8870,6 +9557,81 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Submits a contact evaluation in the specified Amazon Connect instance.
+     * Answers included in the request are merged with existing answers for the
+     * given evaluation. If no answers or notes are passed, the evaluation is
+     * submitted with the existing answers and notes. You can delete an answer
+     * or note by passing an empty object (<code>{}</code>) to the question
+     * identifier.
+     * </p>
+     * <p>
+     * If a contact evaluation is already in submitted state, this operation
+     * will trigger a resubmission.
+     * </p>
+     * 
+     * @param submitContactEvaluationRequest
+     * @return A Java Future object containing the response from the
+     *         SubmitContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SubmitContactEvaluationResult> submitContactEvaluationAsync(
+            SubmitContactEvaluationRequest submitContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Submits a contact evaluation in the specified Amazon Connect instance.
+     * Answers included in the request are merged with existing answers for the
+     * given evaluation. If no answers or notes are passed, the evaluation is
+     * submitted with the existing answers and notes. You can delete an answer
+     * or note by passing an empty object (<code>{}</code>) to the question
+     * identifier.
+     * </p>
+     * <p>
+     * If a contact evaluation is already in submitted state, this operation
+     * will trigger a resubmission.
+     * </p>
+     * 
+     * @param submitContactEvaluationRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         SubmitContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<SubmitContactEvaluationResult> submitContactEvaluationAsync(
+            SubmitContactEvaluationRequest submitContactEvaluationRequest,
+            AsyncHandler<SubmitContactEvaluationRequest, SubmitContactEvaluationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * When a contact is being recorded, this API suspends recording the call.
      * For example, you might suspend the call recording while collecting
      * sensitive information, such as a credit card number. Then use
@@ -9446,6 +10208,71 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Updates details about a contact evaluation in the specified Amazon
+     * Connect instance. A contact evaluation must be in draft state. Answers
+     * included in the request are merged with existing answers for the given
+     * evaluation. An answer or note can be deleted by passing an empty object (
+     * <code>{}</code>) to the question identifier.
+     * </p>
+     * 
+     * @param updateContactEvaluationRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactEvaluationResult> updateContactEvaluationAsync(
+            UpdateContactEvaluationRequest updateContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates details about a contact evaluation in the specified Amazon
+     * Connect instance. A contact evaluation must be in draft state. Answers
+     * included in the request are merged with existing answers for the given
+     * evaluation. An answer or note can be deleted by passing an empty object (
+     * <code>{}</code>) to the question identifier.
+     * </p>
+     * 
+     * @param updateContactEvaluationRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactEvaluationResult> updateContactEvaluationAsync(
+            UpdateContactEvaluationRequest updateContactEvaluationRequest,
+            AsyncHandler<UpdateContactEvaluationRequest, UpdateContactEvaluationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Updates the specified flow.
      * </p>
      * <p>
@@ -9818,6 +10645,79 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<UpdateContactScheduleResult> updateContactScheduleAsync(
             UpdateContactScheduleRequest updateContactScheduleRequest,
             AsyncHandler<UpdateContactScheduleRequest, UpdateContactScheduleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates details about a specific evaluation form version in the specified
+     * Amazon Connect instance. An evaluation form must have a unique title
+     * within an instance. Question and section identifiers cannot be duplicated
+     * within the same evaluation form.
+     * </p>
+     * <p>
+     * This operation does not support partial updates. Instead it does a full
+     * update of evaluation form content.
+     * </p>
+     * 
+     * @param updateEvaluationFormRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateEvaluationFormResult> updateEvaluationFormAsync(
+            UpdateEvaluationFormRequest updateEvaluationFormRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Updates details about a specific evaluation form version in the specified
+     * Amazon Connect instance. An evaluation form must have a unique title
+     * within an instance. Question and section identifiers cannot be duplicated
+     * within the same evaluation form.
+     * </p>
+     * <p>
+     * This operation does not support partial updates. Instead it does a full
+     * update of evaluation form content.
+     * </p>
+     * 
+     * @param updateEvaluationFormRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateEvaluationFormResult> updateEvaluationFormAsync(
+            UpdateEvaluationFormRequest updateEvaluationFormRequest,
+            AsyncHandler<UpdateEvaluationFormRequest, UpdateEvaluationFormResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

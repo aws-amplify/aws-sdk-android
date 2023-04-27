@@ -824,9 +824,9 @@ public interface AmazonRekognition {
      * use the <code>OutputConfig</code> option in the Settings parameter to
      * provide an Amazon S3 bucket location. The Amazon S3 bucket stores
      * reference images and audit images. You can use
-     * <code>AuditImagesLimit</code> to limit of audit images returned. This
-     * number is between 0 and 4. By default, it is set to 0. The limit is best
-     * effort and based on the duration of the selfie-video.
+     * <code>AuditImagesLimit</code> to limit the number of audit images
+     * returned. This number is between 0 and 4. By default, it is set to 0. The
+     * limit is best effort and based on the duration of the selfie-video.
      * </p>
      * 
      * @param createFaceLivenessSessionRequest
