@@ -24,7 +24,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      */
@@ -37,7 +37,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      */
     private String status;
 
@@ -82,7 +82,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -100,7 +100,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -121,7 +121,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -143,7 +143,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      *
      * @return <p>
      *         Represents a status corresponding to the state of the session.
@@ -163,7 +163,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      *
      * @param status <p>
      *            Represents a status corresponding to the state of the session.
@@ -186,7 +186,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      *
      * @param status <p>
      *            Represents a status corresponding to the state of the session.
@@ -209,7 +209,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      *
      * @param status <p>
      *            Represents a status corresponding to the state of the session.
@@ -232,7 +232,7 @@ public class GetFaceLivenessSessionResultsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED
+     * <b>Allowed Values: </b>CREATED, IN_PROGRESS, SUCCEEDED, FAILED, EXPIRED
      *
      * @param status <p>
      *            Represents a status corresponding to the state of the session.
