@@ -124,13 +124,6 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     */
-    private TlsConfig tlsConfig;
-
-    /**
-     * <p>
      * The name of the domain configuration. This value must be unique to a
      * region.
      * </p>
@@ -816,51 +809,6 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     *
-     * @return <p>
-     *         An object that specifies the TLS configuration for a domain.
-     *         </p>
-     */
-    public TlsConfig getTlsConfig() {
-        return tlsConfig;
-    }
-
-    /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     *
-     * @param tlsConfig <p>
-     *            An object that specifies the TLS configuration for a domain.
-     *            </p>
-     */
-    public void setTlsConfig(TlsConfig tlsConfig) {
-        this.tlsConfig = tlsConfig;
-    }
-
-    /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tlsConfig <p>
-     *            An object that specifies the TLS configuration for a domain.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateDomainConfigurationRequest withTlsConfig(TlsConfig tlsConfig) {
-        this.tlsConfig = tlsConfig;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -884,9 +832,7 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
         if (getServiceType() != null)
             sb.append("serviceType: " + getServiceType() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags() + ",");
-        if (getTlsConfig() != null)
-            sb.append("tlsConfig: " + getTlsConfig());
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -913,7 +859,6 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
         hashCode = prime * hashCode
                 + ((getServiceType() == null) ? 0 : getServiceType().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
-        hashCode = prime * hashCode + ((getTlsConfig() == null) ? 0 : getTlsConfig().hashCode());
         return hashCode;
     }
 
@@ -962,11 +907,6 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
-            return false;
-        if (other.getTlsConfig() == null ^ this.getTlsConfig() == null)
-            return false;
-        if (other.getTlsConfig() != null
-                && other.getTlsConfig().equals(this.getTlsConfig()) == false)
             return false;
         return true;
     }

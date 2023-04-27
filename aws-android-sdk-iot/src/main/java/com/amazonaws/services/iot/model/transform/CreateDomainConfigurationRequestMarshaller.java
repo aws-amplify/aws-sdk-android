@@ -111,11 +111,6 @@ public class CreateDomainConfigurationRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (createDomainConfigurationRequest.getTlsConfig() != null) {
-                TlsConfig tlsConfig = createDomainConfigurationRequest.getTlsConfig();
-                jsonWriter.name("tlsConfig");
-                TlsConfigJsonMarshaller.getInstance().marshall(tlsConfig, jsonWriter);
-            }
 
             jsonWriter.endObject();
             jsonWriter.close();

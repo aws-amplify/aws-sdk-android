@@ -102,13 +102,6 @@ public class DescribeDomainConfigurationResult implements Serializable {
 
     /**
      * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     */
-    private TlsConfig tlsConfig;
-
-    /**
-     * <p>
      * The name of the domain configuration.
      * </p>
      * <p>
@@ -755,51 +748,6 @@ public class DescribeDomainConfigurationResult implements Serializable {
     }
 
     /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     *
-     * @return <p>
-     *         An object that specifies the TLS configuration for a domain.
-     *         </p>
-     */
-    public TlsConfig getTlsConfig() {
-        return tlsConfig;
-    }
-
-    /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     *
-     * @param tlsConfig <p>
-     *            An object that specifies the TLS configuration for a domain.
-     *            </p>
-     */
-    public void setTlsConfig(TlsConfig tlsConfig) {
-        this.tlsConfig = tlsConfig;
-    }
-
-    /**
-     * <p>
-     * An object that specifies the TLS configuration for a domain.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param tlsConfig <p>
-     *            An object that specifies the TLS configuration for a domain.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public DescribeDomainConfigurationResult withTlsConfig(TlsConfig tlsConfig) {
-        this.tlsConfig = tlsConfig;
-        return this;
-    }
-
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -827,9 +775,7 @@ public class DescribeDomainConfigurationResult implements Serializable {
         if (getDomainType() != null)
             sb.append("domainType: " + getDomainType() + ",");
         if (getLastStatusChangeDate() != null)
-            sb.append("lastStatusChangeDate: " + getLastStatusChangeDate() + ",");
-        if (getTlsConfig() != null)
-            sb.append("tlsConfig: " + getTlsConfig());
+            sb.append("lastStatusChangeDate: " + getLastStatusChangeDate());
         sb.append("}");
         return sb.toString();
     }
@@ -861,7 +807,6 @@ public class DescribeDomainConfigurationResult implements Serializable {
         hashCode = prime * hashCode + ((getDomainType() == null) ? 0 : getDomainType().hashCode());
         hashCode = prime * hashCode
                 + ((getLastStatusChangeDate() == null) ? 0 : getLastStatusChangeDate().hashCode());
-        hashCode = prime * hashCode + ((getTlsConfig() == null) ? 0 : getTlsConfig().hashCode());
         return hashCode;
     }
 
@@ -921,11 +866,6 @@ public class DescribeDomainConfigurationResult implements Serializable {
             return false;
         if (other.getLastStatusChangeDate() != null
                 && other.getLastStatusChangeDate().equals(this.getLastStatusChangeDate()) == false)
-            return false;
-        if (other.getTlsConfig() == null ^ this.getTlsConfig() == null)
-            return false;
-        if (other.getTlsConfig() != null
-                && other.getTlsConfig().equals(this.getTlsConfig()) == false)
             return false;
         return true;
     }
