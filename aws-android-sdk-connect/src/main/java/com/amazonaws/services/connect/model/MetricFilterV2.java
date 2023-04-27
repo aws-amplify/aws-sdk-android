@@ -32,7 +32,12 @@ public class MetricFilterV2 implements Serializable {
      * </p>
      * <p>
      * Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     * <code>DISCONNECT_REASON</code>
+     * <code>DISCONNECT_REASON</code>. These are the same values as the
+     * <code>InitiationMethod</code> and <code>DisconnectReason</code> in the
+     * contact record. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     * >ContactTraceRecord</a> in the <i>Amazon Connect Administrator's
+     * Guide</i>.
      * </p>
      */
     private String metricFilterKey;
@@ -62,7 +67,12 @@ public class MetricFilterV2 implements Serializable {
      * </p>
      * <p>
      * Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     * <code>DISCONNECT_REASON</code>
+     * <code>DISCONNECT_REASON</code>. These are the same values as the
+     * <code>InitiationMethod</code> and <code>DisconnectReason</code> in the
+     * contact record. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     * >ContactTraceRecord</a> in the <i>Amazon Connect Administrator's
+     * Guide</i>.
      * </p>
      *
      * @return <p>
@@ -70,7 +80,12 @@ public class MetricFilterV2 implements Serializable {
      *         </p>
      *         <p>
      *         Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     *         <code>DISCONNECT_REASON</code>
+     *         <code>DISCONNECT_REASON</code>. These are the same values as the
+     *         <code>InitiationMethod</code> and <code>DisconnectReason</code>
+     *         in the contact record. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     *         >ContactTraceRecord</a> in the <i>Amazon Connect Administrator's
+     *         Guide</i>.
      *         </p>
      */
     public String getMetricFilterKey() {
@@ -83,7 +98,12 @@ public class MetricFilterV2 implements Serializable {
      * </p>
      * <p>
      * Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     * <code>DISCONNECT_REASON</code>
+     * <code>DISCONNECT_REASON</code>. These are the same values as the
+     * <code>InitiationMethod</code> and <code>DisconnectReason</code> in the
+     * contact record. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     * >ContactTraceRecord</a> in the <i>Amazon Connect Administrator's
+     * Guide</i>.
      * </p>
      *
      * @param metricFilterKey <p>
@@ -91,7 +111,13 @@ public class MetricFilterV2 implements Serializable {
      *            </p>
      *            <p>
      *            Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     *            <code>DISCONNECT_REASON</code>
+     *            <code>DISCONNECT_REASON</code>. These are the same values as
+     *            the <code>InitiationMethod</code> and
+     *            <code>DisconnectReason</code> in the contact record. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     *            >ContactTraceRecord</a> in the <i>Amazon Connect
+     *            Administrator's Guide</i>.
      *            </p>
      */
     public void setMetricFilterKey(String metricFilterKey) {
@@ -104,7 +130,12 @@ public class MetricFilterV2 implements Serializable {
      * </p>
      * <p>
      * Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     * <code>DISCONNECT_REASON</code>
+     * <code>DISCONNECT_REASON</code>. These are the same values as the
+     * <code>InitiationMethod</code> and <code>DisconnectReason</code> in the
+     * contact record. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     * >ContactTraceRecord</a> in the <i>Amazon Connect Administrator's
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -115,7 +146,13 @@ public class MetricFilterV2 implements Serializable {
      *            </p>
      *            <p>
      *            Valid metric filter keys: <code>INITIATION_METHOD</code>,
-     *            <code>DISCONNECT_REASON</code>
+     *            <code>DISCONNECT_REASON</code>. These are the same values as
+     *            the <code>InitiationMethod</code> and
+     *            <code>DisconnectReason</code> in the contact record. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/ctr-data-model.html#ctr-ContactTraceRecord"
+     *            >ContactTraceRecord</a> in the <i>Amazon Connect
+     *            Administrator's Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
