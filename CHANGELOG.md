@@ -1,3 +1,17 @@
+## [Release 2.66.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.66.0)
+
+### Features
+- **aws-android-sdk-chimesdkmessaging:** update models to latest ([#3223](https://github.com/aws-amplify/aws-sdk-android/issues/3223))
+- **aws-android-sdk-textract:** update models to latest ([#3224](https://github.com/aws-amplify/aws-sdk-android/issues/3224))
+- **aws-android-sdk-chimesdkidentity:** update models to latest ([#3225](https://github.com/aws-amplify/aws-sdk-android/issues/3225))
+- **aws-android-sdk-connectparticipant:** update models to latest ([#3230](https://github.com/aws-amplify/aws-sdk-android/issues/3230))
+- **aws-android-sdk-connect:** update models to latest ([#3229](https://github.com/aws-amplify/aws-sdk-android/issues/3229))
+- **aws-android-sdk-iot:** update models to latest ([#3238](https://github.com/aws-amplify/aws-sdk-android/issues/3238))
+- **aws-android-sdk-rekognition:** update models to latest ([#3236](https://github.com/aws-amplify/aws-sdk-android/issues/3236))
+- **aws-android-sdk-connect:** update models to latest ([#3235](https://github.com/aws-amplify/aws-sdk-android/issues/3235))
+
+[See all changes between 2.65.0 and 2.66.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.65.0...release_v2.66.0)
+
 ## [Release 2.65.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.65.0)
 
 ### Features
