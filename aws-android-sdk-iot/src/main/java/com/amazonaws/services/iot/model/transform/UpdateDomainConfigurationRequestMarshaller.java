@@ -84,6 +84,11 @@ public class UpdateDomainConfigurationRequestMarshaller implements
                 jsonWriter.name("removeAuthorizerConfig");
                 jsonWriter.value(removeAuthorizerConfig);
             }
+            if (updateDomainConfigurationRequest.getTlsConfig() != null) {
+                TlsConfig tlsConfig = updateDomainConfigurationRequest.getTlsConfig();
+                jsonWriter.name("tlsConfig");
+                TlsConfigJsonMarshaller.getInstance().marshall(tlsConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
