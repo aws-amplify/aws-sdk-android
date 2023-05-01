@@ -53,6 +53,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      */
     private String cloudHsmClusterId;
 
@@ -535,6 +536,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @return <p>
      *         A unique identifier for the CloudHSM cluster that is associated
@@ -555,6 +557,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            A unique identifier for the CloudHSM cluster that is
@@ -579,6 +582,7 @@ public class CustomKeyStoresListEntry implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            A unique identifier for the CloudHSM cluster that is

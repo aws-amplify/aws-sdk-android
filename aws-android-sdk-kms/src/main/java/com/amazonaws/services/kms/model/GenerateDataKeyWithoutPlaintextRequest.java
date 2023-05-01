@@ -64,9 +64,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To generate an SM4 data key (China Regions only), specify a
  * <code>KeySpec</code> value of <code>AES_128</code> or
- * <code>NumberOfBytes</code> value of <code>128</code>. The symmetric
- * encryption key used in China Regions to encrypt your data key is an SM4
- * encryption key.
+ * <code>NumberOfBytes</code> value of <code>16</code>. The symmetric encryption
+ * key used in China Regions to encrypt your data key is an SM4 encryption key.
  * </p>
  * <p>
  * If the operation succeeds, you will find the encrypted copy of the data key
@@ -188,6 +187,12 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * Specifies the encryption context that will be used when encrypting the
      * data key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -555,6 +560,12 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * Specifies the encryption context that will be used when encrypting the
      * data key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -575,6 +586,13 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *         Specifies the encryption context that will be used when
      *         encrypting the data key.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
      *         key-value pairs that represent additional authenticated data.
@@ -601,6 +619,12 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * Specifies the encryption context that will be used when encrypting the
      * data key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -621,6 +645,13 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            Specifies the encryption context that will be used when
      *            encrypting the data key.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
      *            key-value pairs that represent additional authenticated data.
@@ -648,6 +679,12 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * Specifies the encryption context that will be used when encrypting the
      * data key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -671,6 +708,13 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      *            Specifies the encryption context that will be used when
      *            encrypting the data key.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
      *            key-value pairs that represent additional authenticated data.
@@ -702,6 +746,12 @@ public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequ
      * Specifies the encryption context that will be used when encrypting the
      * data key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an

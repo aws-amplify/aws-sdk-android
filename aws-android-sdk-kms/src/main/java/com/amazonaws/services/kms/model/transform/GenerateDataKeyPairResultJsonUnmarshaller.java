@@ -50,6 +50,10 @@ public class GenerateDataKeyPairResultJsonUnmarshaller implements
             } else if (name.equals("KeyPairSpec")) {
                 generateDataKeyPairResult.setKeyPairSpec(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CiphertextForRecipient")) {
+                generateDataKeyPairResult.setCiphertextForRecipient(ByteBufferJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -354,13 +354,16 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A description of the KMS key.
+     * A description of the KMS key. Use a description that helps you decide
+     * whether the KMS key is appropriate for a task. The default value is an
+     * empty string (no description).
      * </p>
+     * <important>
      * <p>
-     * Use a description that helps you decide whether the KMS key is
-     * appropriate for a task. The default value is an empty string (no
-     * description).
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * To set or change the description after the key is created, use
      * <a>UpdateKeyDescription</a>.
@@ -695,7 +698,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -1152,13 +1160,16 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A description of the KMS key.
+     * A description of the KMS key. Use a description that helps you decide
+     * whether the KMS key is appropriate for a task. The default value is an
+     * empty string (no description).
      * </p>
+     * <important>
      * <p>
-     * Use a description that helps you decide whether the KMS key is
-     * appropriate for a task. The default value is an empty string (no
-     * description).
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * To set or change the description after the key is created, use
      * <a>UpdateKeyDescription</a>.
@@ -1168,13 +1179,17 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>0 - 8192<br/>
      *
      * @return <p>
-     *         A description of the KMS key.
+     *         A description of the KMS key. Use a description that helps you
+     *         decide whether the KMS key is appropriate for a task. The default
+     *         value is an empty string (no description).
      *         </p>
+     *         <important>
      *         <p>
-     *         Use a description that helps you decide whether the KMS key is
-     *         appropriate for a task. The default value is an empty string (no
-     *         description).
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
      *         </p>
+     *         </important>
      *         <p>
      *         To set or change the description after the key is created, use
      *         <a>UpdateKeyDescription</a>.
@@ -1186,13 +1201,16 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A description of the KMS key.
+     * A description of the KMS key. Use a description that helps you decide
+     * whether the KMS key is appropriate for a task. The default value is an
+     * empty string (no description).
      * </p>
+     * <important>
      * <p>
-     * Use a description that helps you decide whether the KMS key is
-     * appropriate for a task. The default value is an empty string (no
-     * description).
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * To set or change the description after the key is created, use
      * <a>UpdateKeyDescription</a>.
@@ -1202,13 +1220,17 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            A description of the KMS key.
+     *            A description of the KMS key. Use a description that helps you
+     *            decide whether the KMS key is appropriate for a task. The
+     *            default value is an empty string (no description).
      *            </p>
+     *            <important>
      *            <p>
-     *            Use a description that helps you decide whether the KMS key is
-     *            appropriate for a task. The default value is an empty string
-     *            (no description).
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
      *            </p>
+     *            </important>
      *            <p>
      *            To set or change the description after the key is created, use
      *            <a>UpdateKeyDescription</a>.
@@ -1220,13 +1242,16 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A description of the KMS key.
+     * A description of the KMS key. Use a description that helps you decide
+     * whether the KMS key is appropriate for a task. The default value is an
+     * empty string (no description).
      * </p>
+     * <important>
      * <p>
-     * Use a description that helps you decide whether the KMS key is
-     * appropriate for a task. The default value is an empty string (no
-     * description).
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * To set or change the description after the key is created, use
      * <a>UpdateKeyDescription</a>.
@@ -1239,13 +1264,17 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Length: </b>0 - 8192<br/>
      *
      * @param description <p>
-     *            A description of the KMS key.
+     *            A description of the KMS key. Use a description that helps you
+     *            decide whether the KMS key is appropriate for a task. The
+     *            default value is an empty string (no description).
      *            </p>
+     *            <important>
      *            <p>
-     *            Use a description that helps you decide whether the KMS key is
-     *            appropriate for a task. The default value is an empty string
-     *            (no description).
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
      *            </p>
+     *            </important>
      *            <p>
      *            To set or change the description after the key is created, use
      *            <a>UpdateKeyDescription</a>.
@@ -4302,7 +4331,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -4336,7 +4370,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         tag the KMS key when it is created. To tag an existing KMS key,
      *         use the <a>TagResource</a> operation.
      *         </p>
-     *         <note>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important> <note>
      *         <p>
      *         Tagging or untagging a KMS key can allow or deny permission to
      *         the KMS key. For details, see <a href=
@@ -4377,7 +4417,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -4411,7 +4456,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            tag the KMS key when it is created. To tag an existing KMS
      *            key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
@@ -4457,7 +4508,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -4494,7 +4550,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            tag the KMS key when it is created. To tag an existing KMS
      *            key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
@@ -4543,7 +4605,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -4580,7 +4647,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            tag the KMS key when it is created. To tag an existing KMS
      *            key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=

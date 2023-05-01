@@ -102,6 +102,11 @@ public class DecryptRequestMarshaller implements
                 jsonWriter.name("EncryptionAlgorithm");
                 jsonWriter.value(encryptionAlgorithm);
             }
+            if (decryptRequest.getRecipient() != null) {
+                RecipientInfo recipient = decryptRequest.getRecipient();
+                jsonWriter.name("Recipient");
+                RecipientInfoJsonMarshaller.getInstance().marshall(recipient, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
