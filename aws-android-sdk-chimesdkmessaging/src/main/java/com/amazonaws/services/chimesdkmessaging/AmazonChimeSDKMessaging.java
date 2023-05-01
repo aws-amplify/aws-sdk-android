@@ -505,6 +505,7 @@ public interface AmazonChimeSDKMessaging {
      * @param deleteChannelRequest
      * @throws BadRequestException
      * @throws ForbiddenException
+     * @throws ConflictException
      * @throws UnauthorizedClientException
      * @throws ThrottledClientException
      * @throws ServiceUnavailableException
@@ -686,6 +687,7 @@ public interface AmazonChimeSDKMessaging {
      * </p>
      * 
      * @param deleteMessagingStreamingConfigurationsRequest
+     * @throws BadRequestException
      * @throws ForbiddenException
      * @throws UnauthorizedClientException
      * @throws ThrottledClientException

@@ -386,7 +386,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
-        setServiceNameIntern("execute-api");
+        setServiceNameIntern("iot");
         this.setEndpoint("iot.us-east-1.amazonaws.com");
         this.endpointPrefix = "iot";
 

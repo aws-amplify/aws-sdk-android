@@ -990,6 +990,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * @param deleteChannelRequest
      * @throws BadRequestException
      * @throws ForbiddenException
+     * @throws ConflictException
      * @throws UnauthorizedClientException
      * @throws ThrottledClientException
      * @throws ServiceUnavailableException
@@ -1302,6 +1303,7 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * </p>
      * 
      * @param deleteMessagingStreamingConfigurationsRequest
+     * @throws BadRequestException
      * @throws ForbiddenException
      * @throws UnauthorizedClientException
      * @throws ThrottledClientException
