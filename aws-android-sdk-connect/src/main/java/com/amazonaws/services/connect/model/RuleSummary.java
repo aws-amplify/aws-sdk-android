@@ -60,7 +60,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      */
     private String eventSourceName;
 
@@ -260,7 +260,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      *
      * @return <p>
      *         The name of the event source.
@@ -280,7 +280,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -303,7 +303,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -326,7 +326,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -349,7 +349,7 @@ public class RuleSummary implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
      *
      * @param eventSourceName <p>
      *            The name of the event source.
