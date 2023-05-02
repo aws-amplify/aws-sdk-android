@@ -41,7 +41,7 @@ public class LivenessOutputConfig implements Serializable {
 
     /**
      * <p>
-     * The prefix appended to the output files for the Face Liveness session
+     * The prefix prepended to the output files for the Face Liveness session
      * results.
      * </p>
      * <p>
@@ -116,7 +116,7 @@ public class LivenessOutputConfig implements Serializable {
 
     /**
      * <p>
-     * The prefix appended to the output files for the Face Liveness session
+     * The prefix prepended to the output files for the Face Liveness session
      * results.
      * </p>
      * <p>
@@ -125,7 +125,7 @@ public class LivenessOutputConfig implements Serializable {
      * <b>Pattern: </b>\S*<br/>
      *
      * @return <p>
-     *         The prefix appended to the output files for the Face Liveness
+     *         The prefix prepended to the output files for the Face Liveness
      *         session results.
      *         </p>
      */
@@ -135,7 +135,7 @@ public class LivenessOutputConfig implements Serializable {
 
     /**
      * <p>
-     * The prefix appended to the output files for the Face Liveness session
+     * The prefix prepended to the output files for the Face Liveness session
      * results.
      * </p>
      * <p>
@@ -144,7 +144,7 @@ public class LivenessOutputConfig implements Serializable {
      * <b>Pattern: </b>\S*<br/>
      *
      * @param s3KeyPrefix <p>
-     *            The prefix appended to the output files for the Face Liveness
+     *            The prefix prepended to the output files for the Face Liveness
      *            session results.
      *            </p>
      */
@@ -154,7 +154,7 @@ public class LivenessOutputConfig implements Serializable {
 
     /**
      * <p>
-     * The prefix appended to the output files for the Face Liveness session
+     * The prefix prepended to the output files for the Face Liveness session
      * results.
      * </p>
      * <p>
@@ -166,7 +166,7 @@ public class LivenessOutputConfig implements Serializable {
      * <b>Pattern: </b>\S*<br/>
      *
      * @param s3KeyPrefix <p>
-     *            The prefix appended to the output files for the Face Liveness
+     *            The prefix prepended to the output files for the Face Liveness
      *            session results.
      *            </p>
      * @return A reference to this updated object so that method calls can be

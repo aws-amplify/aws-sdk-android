@@ -40,7 +40,7 @@ public class GetFaceLivenessSessionResultsRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      */
@@ -54,7 +54,7 @@ public class GetFaceLivenessSessionResultsRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -76,7 +76,7 @@ public class GetFaceLivenessSessionResultsRequest extends AmazonWebServiceReques
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *
@@ -101,7 +101,7 @@ public class GetFaceLivenessSessionResultsRequest extends AmazonWebServiceReques
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 255<br/>
+     * <b>Length: </b>36 - 36<br/>
      * <b>Pattern:
      * </b>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}<br/>
      *

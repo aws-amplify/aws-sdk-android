@@ -387,6 +387,61 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Activates an evaluation form in the specified Amazon Connect instance.
+     * After the evaluation form is activated, it is available to start new
+     * evaluations based on the form.
+     * </p>
+     * 
+     * @param activateEvaluationFormRequest
+     * @return activateEvaluationFormResult The response from the
+     *         ActivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ActivateEvaluationFormResult activateEvaluationForm(
+            ActivateEvaluationFormRequest activateEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(activateEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ActivateEvaluationFormRequest> request = null;
+        Response<ActivateEvaluationFormResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ActivateEvaluationFormRequestMarshaller()
+                        .marshall(activateEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ActivateEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new ActivateEvaluationFormResultJsonUnmarshaller();
+            JsonResponseHandler<ActivateEvaluationFormResult> responseHandler = new JsonResponseHandler<ActivateEvaluationFormResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1177,6 +1232,64 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Creates an evaluation form in the specified Amazon Connect instance. The
+     * form can be used to define questions related to agent performance, and
+     * create sections to organize such questions. An evaluation form must have
+     * a unique title within an instance. Question and section identifiers
+     * cannot be duplicated within the same evaluation form.
+     * </p>
+     * 
+     * @param createEvaluationFormRequest
+     * @return createEvaluationFormResult The response from the
+     *         CreateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateEvaluationFormResult createEvaluationForm(
+            CreateEvaluationFormRequest createEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateEvaluationFormRequest> request = null;
+        Response<CreateEvaluationFormResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateEvaluationFormRequestMarshaller()
+                        .marshall(createEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new CreateEvaluationFormResultJsonUnmarshaller();
+            JsonResponseHandler<CreateEvaluationFormResult> responseHandler = new JsonResponseHandler<CreateEvaluationFormResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1341,6 +1454,62 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<CreateIntegrationAssociationResult, JsonUnmarshallerContext> unmarshaller = new CreateIntegrationAssociationResultJsonUnmarshaller();
             JsonResponseHandler<CreateIntegrationAssociationResult> responseHandler = new JsonResponseHandler<CreateIntegrationAssociationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds a new participant into an on-going chat contact. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html"
+     * >Customize chat flow experiences by integrating custom participants</a>.
+     * </p>
+     * 
+     * @param createParticipantRequest
+     * @return createParticipantResult The response from the CreateParticipant
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateParticipantResult createParticipant(
+            CreateParticipantRequest createParticipantRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createParticipantRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateParticipantRequest> request = null;
+        Response<CreateParticipantResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateParticipantRequestMarshaller()
+                        .marshall(createParticipantRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateParticipantResult, JsonUnmarshallerContext> unmarshaller = new CreateParticipantResultJsonUnmarshaller();
+            JsonResponseHandler<CreateParticipantResult> responseHandler = new JsonResponseHandler<CreateParticipantResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1986,6 +2155,106 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Deactivates an evaluation form in the specified Amazon Connect instance.
+     * After a form is deactivated, it is no longer available for users to start
+     * new evaluations based on the form.
+     * </p>
+     * 
+     * @param deactivateEvaluationFormRequest
+     * @return deactivateEvaluationFormResult The response from the
+     *         DeactivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeactivateEvaluationFormResult deactivateEvaluationForm(
+            DeactivateEvaluationFormRequest deactivateEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deactivateEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeactivateEvaluationFormRequest> request = null;
+        Response<DeactivateEvaluationFormResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeactivateEvaluationFormRequestMarshaller()
+                        .marshall(deactivateEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeactivateEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new DeactivateEvaluationFormResultJsonUnmarshaller();
+            JsonResponseHandler<DeactivateEvaluationFormResult> responseHandler = new JsonResponseHandler<DeactivateEvaluationFormResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactEvaluationRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteContactEvaluation(
+            DeleteContactEvaluationRequest deleteContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteContactEvaluationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteContactEvaluationRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteContactEvaluationRequestMarshaller()
+                        .marshall(deleteContactEvaluationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -2085,6 +2354,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             response = invoke(request, responseHandler, executionContext);
 
             return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an evaluation form in the specified Amazon Connect instance.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the version property is provided, only the specified version of the
+     * evaluation form is deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If no version is provided, then the full form (all versions) is deleted.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param deleteEvaluationFormRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteEvaluationForm(DeleteEvaluationFormRequest deleteEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteEvaluationFormRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteEvaluationFormRequestMarshaller()
+                        .marshall(deleteEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -2799,6 +3125,58 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Describes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeContactEvaluationRequest
+     * @return describeContactEvaluationResult The response from the
+     *         DescribeContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeContactEvaluationResult describeContactEvaluation(
+            DescribeContactEvaluationRequest describeContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeContactEvaluationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeContactEvaluationRequest> request = null;
+        Response<DescribeContactEvaluationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeContactEvaluationRequestMarshaller()
+                        .marshall(describeContactEvaluationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeContactEvaluationResult, JsonUnmarshallerContext> unmarshaller = new DescribeContactEvaluationResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeContactEvaluationResult> responseHandler = new JsonResponseHandler<DescribeContactEvaluationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Describes the specified flow.
      * </p>
      * <p>
@@ -2899,6 +3277,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DescribeContactFlowModuleResult, JsonUnmarshallerContext> unmarshaller = new DescribeContactFlowModuleResultJsonUnmarshaller();
             JsonResponseHandler<DescribeContactFlowModuleResult> responseHandler = new JsonResponseHandler<DescribeContactFlowModuleResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes an evaluation form in the specified Amazon Connect instance. If
+     * the version property is not provided, the latest version of the
+     * evaluation form is described.
+     * </p>
+     * 
+     * @param describeEvaluationFormRequest
+     * @return describeEvaluationFormResult The response from the
+     *         DescribeEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeEvaluationFormResult describeEvaluationForm(
+            DescribeEvaluationFormRequest describeEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeEvaluationFormRequest> request = null;
+        Response<DescribeEvaluationFormResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeEvaluationFormRequestMarshaller()
+                        .marshall(describeEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new DescribeEvaluationFormResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeEvaluationFormResult> responseHandler = new JsonResponseHandler<DescribeEvaluationFormResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4878,6 +5310,58 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Lists contact evaluations in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactEvaluationsRequest
+     * @return listContactEvaluationsResult The response from the
+     *         ListContactEvaluations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListContactEvaluationsResult listContactEvaluations(
+            ListContactEvaluationsRequest listContactEvaluationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listContactEvaluationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListContactEvaluationsRequest> request = null;
+        Response<ListContactEvaluationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListContactEvaluationsRequestMarshaller()
+                        .marshall(listContactEvaluationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListContactEvaluationsResult, JsonUnmarshallerContext> unmarshaller = new ListContactEvaluationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListContactEvaluationsResult> responseHandler = new JsonResponseHandler<ListContactEvaluationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provides information about the flow modules for the specified Amazon
      * Connect instance.
      * </p>
@@ -5091,6 +5575,111 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListDefaultVocabulariesResult, JsonUnmarshallerContext> unmarshaller = new ListDefaultVocabulariesResultJsonUnmarshaller();
             JsonResponseHandler<ListDefaultVocabulariesResult> responseHandler = new JsonResponseHandler<ListDefaultVocabulariesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists versions of an evaluation form in the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listEvaluationFormVersionsRequest
+     * @return listEvaluationFormVersionsResult The response from the
+     *         ListEvaluationFormVersions service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListEvaluationFormVersionsResult listEvaluationFormVersions(
+            ListEvaluationFormVersionsRequest listEvaluationFormVersionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listEvaluationFormVersionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListEvaluationFormVersionsRequest> request = null;
+        Response<ListEvaluationFormVersionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListEvaluationFormVersionsRequestMarshaller()
+                        .marshall(listEvaluationFormVersionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListEvaluationFormVersionsResult, JsonUnmarshallerContext> unmarshaller = new ListEvaluationFormVersionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListEvaluationFormVersionsResult> responseHandler = new JsonResponseHandler<ListEvaluationFormVersionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists evaluation forms in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listEvaluationFormsRequest
+     * @return listEvaluationFormsResult The response from the
+     *         ListEvaluationForms service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListEvaluationFormsResult listEvaluationForms(
+            ListEvaluationFormsRequest listEvaluationFormsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listEvaluationFormsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListEvaluationFormsRequest> request = null;
+        Response<ListEvaluationFormsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListEvaluationFormsRequestMarshaller()
+                        .marshall(listEvaluationFormsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListEvaluationFormsResult, JsonUnmarshallerContext> unmarshaller = new ListEvaluationFormsResultJsonUnmarshaller();
+            JsonResponseHandler<ListEvaluationFormsResult> responseHandler = new JsonResponseHandler<ListEvaluationFormsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7237,6 +7826,70 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Starts an empty evaluation in the specified Amazon Connect instance,
+     * using the given evaluation form for the particular contact. The
+     * evaluation form version used for the contact evaluation corresponds to
+     * the currently activated version. If no version is activated for the
+     * evaluation form, the contact evaluation cannot be started.
+     * </p>
+     * <note>
+     * <p>
+     * Evaluations created through the public API do not contain answer values
+     * suggested from automation.
+     * </p>
+     * </note>
+     * 
+     * @param startContactEvaluationRequest
+     * @return startContactEvaluationResult The response from the
+     *         StartContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartContactEvaluationResult startContactEvaluation(
+            StartContactEvaluationRequest startContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startContactEvaluationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartContactEvaluationRequest> request = null;
+        Response<StartContactEvaluationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartContactEvaluationRequestMarshaller()
+                        .marshall(startContactEvaluationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartContactEvaluationResult, JsonUnmarshallerContext> unmarshaller = new StartContactEvaluationResultJsonUnmarshaller();
+            JsonResponseHandler<StartContactEvaluationResult> responseHandler = new JsonResponseHandler<StartContactEvaluationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts recording the contact:
      * </p>
      * <ul>
@@ -7698,6 +8351,68 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Submits a contact evaluation in the specified Amazon Connect instance.
+     * Answers included in the request are merged with existing answers for the
+     * given evaluation. If no answers or notes are passed, the evaluation is
+     * submitted with the existing answers and notes. You can delete an answer
+     * or note by passing an empty object (<code>{}</code>) to the question
+     * identifier.
+     * </p>
+     * <p>
+     * If a contact evaluation is already in submitted state, this operation
+     * will trigger a resubmission.
+     * </p>
+     * 
+     * @param submitContactEvaluationRequest
+     * @return submitContactEvaluationResult The response from the
+     *         SubmitContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SubmitContactEvaluationResult submitContactEvaluation(
+            SubmitContactEvaluationRequest submitContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(submitContactEvaluationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SubmitContactEvaluationRequest> request = null;
+        Response<SubmitContactEvaluationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SubmitContactEvaluationRequestMarshaller()
+                        .marshall(submitContactEvaluationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SubmitContactEvaluationResult, JsonUnmarshallerContext> unmarshaller = new SubmitContactEvaluationResultJsonUnmarshaller();
+            JsonResponseHandler<SubmitContactEvaluationResult> responseHandler = new JsonResponseHandler<SubmitContactEvaluationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * When a contact is being recorded, this API suspends recording the call.
      * For example, you might suspend the call recording while collecting
      * sensitive information, such as a credit card number. Then use
@@ -8132,6 +8847,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Updates details about a contact evaluation in the specified Amazon
+     * Connect instance. A contact evaluation must be in draft state. Answers
+     * included in the request are merged with existing answers for the given
+     * evaluation. An answer or note can be deleted by passing an empty object (
+     * <code>{}</code>) to the question identifier.
+     * </p>
+     * 
+     * @param updateContactEvaluationRequest
+     * @return updateContactEvaluationResult The response from the
+     *         UpdateContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateContactEvaluationResult updateContactEvaluation(
+            UpdateContactEvaluationRequest updateContactEvaluationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateContactEvaluationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateContactEvaluationRequest> request = null;
+        Response<UpdateContactEvaluationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateContactEvaluationRequestMarshaller()
+                        .marshall(updateContactEvaluationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateContactEvaluationResult, JsonUnmarshallerContext> unmarshaller = new UpdateContactEvaluationResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateContactEvaluationResult> responseHandler = new JsonResponseHandler<UpdateContactEvaluationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates the specified flow.
      * </p>
      * <p>
@@ -8454,6 +9226,67 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<UpdateContactScheduleResult, JsonUnmarshallerContext> unmarshaller = new UpdateContactScheduleResultJsonUnmarshaller();
             JsonResponseHandler<UpdateContactScheduleResult> responseHandler = new JsonResponseHandler<UpdateContactScheduleResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates details about a specific evaluation form version in the specified
+     * Amazon Connect instance. An evaluation form must have a unique title
+     * within an instance. Question and section identifiers cannot be duplicated
+     * within the same evaluation form.
+     * </p>
+     * <p>
+     * This operation does not support partial updates. Instead it does a full
+     * update of evaluation form content.
+     * </p>
+     * 
+     * @param updateEvaluationFormRequest
+     * @return updateEvaluationFormResult The response from the
+     *         UpdateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateEvaluationFormResult updateEvaluationForm(
+            UpdateEvaluationFormRequest updateEvaluationFormRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateEvaluationFormRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateEvaluationFormRequest> request = null;
+        Response<UpdateEvaluationFormResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateEvaluationFormRequestMarshaller()
+                        .marshall(updateEvaluationFormRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new UpdateEvaluationFormResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateEvaluationFormResult> responseHandler = new JsonResponseHandler<UpdateEvaluationFormResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
