@@ -108,6 +108,34 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Activates an evaluation form in the specified Amazon Connect instance.
+     * After the evaluation form is activated, it is available to start new
+     * evaluations based on the form.
+     * </p>
+     * 
+     * @param activateEvaluationFormRequest
+     * @return activateEvaluationFormResult The response from the
+     *         ActivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ActivateEvaluationFormResult activateEvaluationForm(
+            ActivateEvaluationFormRequest activateEvaluationFormRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -554,6 +582,37 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Creates an evaluation form in the specified Amazon Connect instance. The
+     * form can be used to define questions related to agent performance, and
+     * create sections to organize such questions. An evaluation form must have
+     * a unique title within an instance. Question and section identifiers
+     * cannot be duplicated within the same evaluation form.
+     * </p>
+     * 
+     * @param createEvaluationFormRequest
+     * @return createEvaluationFormResult The response from the
+     *         CreateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateEvaluationFormResult createEvaluationForm(
+            CreateEvaluationFormRequest createEvaluationFormRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -647,6 +706,34 @@ public interface AmazonConnect {
      */
     CreateIntegrationAssociationResult createIntegrationAssociation(
             CreateIntegrationAssociationRequest createIntegrationAssociationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Adds a new participant into an on-going chat contact. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-customize-flow.html"
+     * >Customize chat flow experiences by integrating custom participants</a>.
+     * </p>
+     * 
+     * @param createParticipantRequest
+     * @return createParticipantResult The response from the CreateParticipant
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateParticipantResult createParticipant(CreateParticipantRequest createParticipantRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -989,6 +1076,56 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Deactivates an evaluation form in the specified Amazon Connect instance.
+     * After a form is deactivated, it is no longer available for users to start
+     * new evaluations based on the form.
+     * </p>
+     * 
+     * @param deactivateEvaluationFormRequest
+     * @return deactivateEvaluationFormResult The response from the
+     *         DeactivateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeactivateEvaluationFormResult deactivateEvaluationForm(
+            DeactivateEvaluationFormRequest deactivateEvaluationFormRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactEvaluationRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteContactEvaluation(DeleteContactEvaluationRequest deleteContactEvaluationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a flow for the specified Amazon Connect instance.
      * </p>
      * 
@@ -1037,6 +1174,41 @@ public interface AmazonConnect {
      */
     DeleteContactFlowModuleResult deleteContactFlowModule(
             DeleteContactFlowModuleRequest deleteContactFlowModuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an evaluation form in the specified Amazon Connect instance.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If the version property is provided, only the specified version of the
+     * evaluation form is deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If no version is provided, then the full form (all versions) is deleted.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param deleteEvaluationFormRequest
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteEvaluationForm(DeleteEvaluationFormRequest deleteEvaluationFormRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1418,6 +1590,31 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Describes a contact evaluation in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param describeContactEvaluationRequest
+     * @return describeContactEvaluationResult The response from the
+     *         DescribeContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeContactEvaluationResult describeContactEvaluation(
+            DescribeContactEvaluationRequest describeContactEvaluationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Describes the specified flow.
      * </p>
      * <p>
@@ -1473,6 +1670,33 @@ public interface AmazonConnect {
      */
     DescribeContactFlowModuleResult describeContactFlowModule(
             DescribeContactFlowModuleRequest describeContactFlowModuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes an evaluation form in the specified Amazon Connect instance. If
+     * the version property is not provided, the latest version of the
+     * evaluation form is described.
+     * </p>
+     * 
+     * @param describeEvaluationFormRequest
+     * @return describeEvaluationFormResult The response from the
+     *         DescribeEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeEvaluationFormResult describeEvaluationForm(
+            DescribeEvaluationFormRequest describeEvaluationFormRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2519,6 +2743,31 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Lists contact evaluations in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactEvaluationsRequest
+     * @return listContactEvaluationsResult The response from the
+     *         ListContactEvaluations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListContactEvaluationsResult listContactEvaluations(
+            ListContactEvaluationsRequest listContactEvaluationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides information about the flow modules for the specified Amazon
      * Connect instance.
      * </p>
@@ -2635,6 +2884,57 @@ public interface AmazonConnect {
     ListDefaultVocabulariesResult listDefaultVocabularies(
             ListDefaultVocabulariesRequest listDefaultVocabulariesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists versions of an evaluation form in the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listEvaluationFormVersionsRequest
+     * @return listEvaluationFormVersionsResult The response from the
+     *         ListEvaluationFormVersions service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListEvaluationFormVersionsResult listEvaluationFormVersions(
+            ListEvaluationFormVersionsRequest listEvaluationFormVersionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists evaluation forms in the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listEvaluationFormsRequest
+     * @return listEvaluationFormsResult The response from the
+     *         ListEvaluationForms service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListEvaluationFormsResult listEvaluationForms(
+            ListEvaluationFormsRequest listEvaluationFormsRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -3786,6 +4086,43 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Starts an empty evaluation in the specified Amazon Connect instance,
+     * using the given evaluation form for the particular contact. The
+     * evaluation form version used for the contact evaluation corresponds to
+     * the currently activated version. If no version is activated for the
+     * evaluation form, the contact evaluation cannot be started.
+     * </p>
+     * <note>
+     * <p>
+     * Evaluations created through the public API do not contain answer values
+     * suggested from automation.
+     * </p>
+     * </note>
+     * 
+     * @param startContactEvaluationRequest
+     * @return startContactEvaluationResult The response from the
+     *         StartContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartContactEvaluationResult startContactEvaluation(
+            StartContactEvaluationRequest startContactEvaluationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts recording the contact:
      * </p>
      * <ul>
@@ -4060,6 +4397,41 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Submits a contact evaluation in the specified Amazon Connect instance.
+     * Answers included in the request are merged with existing answers for the
+     * given evaluation. If no answers or notes are passed, the evaluation is
+     * submitted with the existing answers and notes. You can delete an answer
+     * or note by passing an empty object (<code>{}</code>) to the question
+     * identifier.
+     * </p>
+     * <p>
+     * If a contact evaluation is already in submitted state, this operation
+     * will trigger a resubmission.
+     * </p>
+     * 
+     * @param submitContactEvaluationRequest
+     * @return submitContactEvaluationResult The response from the
+     *         SubmitContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SubmitContactEvaluationResult submitContactEvaluation(
+            SubmitContactEvaluationRequest submitContactEvaluationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * When a contact is being recorded, this API suspends recording the call.
      * For example, you might suspend the call recording while collecting
      * sensitive information, such as a credit card number. Then use
@@ -4324,6 +4696,36 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Updates details about a contact evaluation in the specified Amazon
+     * Connect instance. A contact evaluation must be in draft state. Answers
+     * included in the request are merged with existing answers for the given
+     * evaluation. An answer or note can be deleted by passing an empty object (
+     * <code>{}</code>) to the question identifier.
+     * </p>
+     * 
+     * @param updateContactEvaluationRequest
+     * @return updateContactEvaluationResult The response from the
+     *         UpdateContactEvaluation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateContactEvaluationResult updateContactEvaluation(
+            UpdateContactEvaluationRequest updateContactEvaluationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates the specified flow.
      * </p>
      * <p>
@@ -4494,6 +4896,40 @@ public interface AmazonConnect {
     UpdateContactScheduleResult updateContactSchedule(
             UpdateContactScheduleRequest updateContactScheduleRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates details about a specific evaluation form version in the specified
+     * Amazon Connect instance. An evaluation form must have a unique title
+     * within an instance. Question and section identifiers cannot be duplicated
+     * within the same evaluation form.
+     * </p>
+     * <p>
+     * This operation does not support partial updates. Instead it does a full
+     * update of evaluation form content.
+     * </p>
+     * 
+     * @param updateEvaluationFormRequest
+     * @return updateEvaluationFormResult The response from the
+     *         UpdateEvaluationForm service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateEvaluationFormResult updateEvaluationForm(
+            UpdateEvaluationFormRequest updateEvaluationFormRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>

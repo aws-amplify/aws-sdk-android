@@ -57,7 +57,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      */
     private String otaUpdateStatus;
 
@@ -260,7 +260,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      *
      * @return <p>
      *         The OTA update status.
@@ -278,7 +278,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      *
      * @param otaUpdateStatus <p>
      *            The OTA update status.
@@ -299,7 +299,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      *
      * @param otaUpdateStatus <p>
      *            The OTA update status.
@@ -320,7 +320,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      *
      * @param otaUpdateStatus <p>
      *            The OTA update status.
@@ -341,7 +341,7 @@ public class CreateOTAUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CREATE_PENDING, CREATE_IN_PROGRESS,
-     * CREATE_COMPLETE, CREATE_FAILED
+     * CREATE_COMPLETE, CREATE_FAILED, DELETE_IN_PROGRESS, DELETE_FAILED
      *
      * @param otaUpdateStatus <p>
      *            The OTA update status.

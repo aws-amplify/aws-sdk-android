@@ -1,3 +1,15 @@
+## [Release 2.67.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.67.0)
+
+### Features
+- **kinesisvideowebrtcstorage:** update models to latest ([#3254](https://github.com/aws-amplify/aws-sdk-android/issues/3254))
+- **aws-android-sdk-connect:** update models to latest ([#3262](https://github.com/aws-amplify/aws-sdk-android/issues/3262))
+- **aws-android-sdk-rekognition:** update models to latest ([#3259](https://github.com/aws-amplify/aws-sdk-android/issues/3259))
+- **aws-android-sdk-connect:** update models to latest ([#3257](https://github.com/aws-amplify/aws-sdk-android/issues/3257))
+- **aws-android-sdk-iot:** update models to latest ([#3251](https://github.com/aws-amplify/aws-sdk-android/issues/3251))
+- **aws-android-sdk-chimesdkmessaging:** update models to latest ([#3261](https://github.com/aws-amplify/aws-sdk-android/issues/3261))
+
+[See all changes between 2.66.0 and 2.67.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.66.0...release_v2.67.0)
+
 ## [Release 2.66.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.66.0)
 
 ### Features
