@@ -83,6 +83,11 @@ public class GetContentModerationRequestMarshaller implements
                 jsonWriter.name("SortBy");
                 jsonWriter.value(sortBy);
             }
+            if (getContentModerationRequest.getAggregateBy() != null) {
+                String aggregateBy = getContentModerationRequest.getAggregateBy();
+                jsonWriter.name("AggregateBy");
+                jsonWriter.value(aggregateBy);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
