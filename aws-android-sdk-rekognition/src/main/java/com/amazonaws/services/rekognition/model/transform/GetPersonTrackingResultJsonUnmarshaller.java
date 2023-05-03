@@ -51,6 +51,15 @@ public class GetPersonTrackingResultJsonUnmarshaller implements
                         PersonDetectionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getPersonTrackingResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getPersonTrackingResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getPersonTrackingResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

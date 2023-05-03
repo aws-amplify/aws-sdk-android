@@ -50,6 +50,15 @@ public class GetFaceDetectionResultJsonUnmarshaller implements
                         FaceDetectionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getFaceDetectionResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getFaceDetectionResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getFaceDetectionResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
