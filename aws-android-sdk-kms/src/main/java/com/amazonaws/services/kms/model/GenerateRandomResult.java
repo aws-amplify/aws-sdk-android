@@ -25,6 +25,10 @@ public class GenerateRandomResult implements Serializable {
      * Base64-encoded.
      * </p>
      * <p>
+     * If the response includes the <code>CiphertextForRecipient</code> field,
+     * the <code>Plaintext</code> field is null or empty.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      */
@@ -32,9 +36,35 @@ public class GenerateRandomResult implements Serializable {
 
     /**
      * <p>
+     * The plaintext random bytes encrypted with the public key from the Nitro
+     * enclave. This ciphertext can be decrypted only by using a private key in
+     * the Nitro enclave.
+     * </p>
+     * <p>
+     * This field is included in the response only when the
+     * <code>Recipient</code> parameter in the request includes a valid
+     * attestation document from an Amazon Web Services Nitro enclave. For
+     * information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 6144<br/>
+     */
+    private java.nio.ByteBuffer ciphertextForRecipient;
+
+    /**
+     * <p>
      * The random byte string. When you use the HTTP API or the Amazon Web
      * Services CLI, the value is Base64-encoded. Otherwise, it is not
      * Base64-encoded.
+     * </p>
+     * <p>
+     * If the response includes the <code>CiphertextForRecipient</code> field,
+     * the <code>Plaintext</code> field is null or empty.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,6 +74,10 @@ public class GenerateRandomResult implements Serializable {
      *         The random byte string. When you use the HTTP API or the Amazon
      *         Web Services CLI, the value is Base64-encoded. Otherwise, it is
      *         not Base64-encoded.
+     *         </p>
+     *         <p>
+     *         If the response includes the <code>CiphertextForRecipient</code>
+     *         field, the <code>Plaintext</code> field is null or empty.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -57,6 +91,10 @@ public class GenerateRandomResult implements Serializable {
      * Base64-encoded.
      * </p>
      * <p>
+     * If the response includes the <code>CiphertextForRecipient</code> field,
+     * the <code>Plaintext</code> field is null or empty.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
@@ -64,6 +102,11 @@ public class GenerateRandomResult implements Serializable {
      *            The random byte string. When you use the HTTP API or the
      *            Amazon Web Services CLI, the value is Base64-encoded.
      *            Otherwise, it is not Base64-encoded.
+     *            </p>
+     *            <p>
+     *            If the response includes the
+     *            <code>CiphertextForRecipient</code> field, the
+     *            <code>Plaintext</code> field is null or empty.
      *            </p>
      */
     public void setPlaintext(java.nio.ByteBuffer plaintext) {
@@ -77,6 +120,10 @@ public class GenerateRandomResult implements Serializable {
      * Base64-encoded.
      * </p>
      * <p>
+     * If the response includes the <code>CiphertextForRecipient</code> field,
+     * the <code>Plaintext</code> field is null or empty.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -88,11 +135,143 @@ public class GenerateRandomResult implements Serializable {
      *            Amazon Web Services CLI, the value is Base64-encoded.
      *            Otherwise, it is not Base64-encoded.
      *            </p>
+     *            <p>
+     *            If the response includes the
+     *            <code>CiphertextForRecipient</code> field, the
+     *            <code>Plaintext</code> field is null or empty.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public GenerateRandomResult withPlaintext(java.nio.ByteBuffer plaintext) {
         this.plaintext = plaintext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The plaintext random bytes encrypted with the public key from the Nitro
+     * enclave. This ciphertext can be decrypted only by using a private key in
+     * the Nitro enclave.
+     * </p>
+     * <p>
+     * This field is included in the response only when the
+     * <code>Recipient</code> parameter in the request includes a valid
+     * attestation document from an Amazon Web Services Nitro enclave. For
+     * information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 6144<br/>
+     *
+     * @return <p>
+     *         The plaintext random bytes encrypted with the public key from the
+     *         Nitro enclave. This ciphertext can be decrypted only by using a
+     *         private key in the Nitro enclave.
+     *         </p>
+     *         <p>
+     *         This field is included in the response only when the
+     *         <code>Recipient</code> parameter in the request includes a valid
+     *         attestation document from an Amazon Web Services Nitro enclave.
+     *         For information about the interaction between KMS and Amazon Web
+     *         Services Nitro Enclaves, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *         >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *         <i>Key Management Service Developer Guide</i>.
+     *         </p>
+     */
+    public java.nio.ByteBuffer getCiphertextForRecipient() {
+        return ciphertextForRecipient;
+    }
+
+    /**
+     * <p>
+     * The plaintext random bytes encrypted with the public key from the Nitro
+     * enclave. This ciphertext can be decrypted only by using a private key in
+     * the Nitro enclave.
+     * </p>
+     * <p>
+     * This field is included in the response only when the
+     * <code>Recipient</code> parameter in the request includes a valid
+     * attestation document from an Amazon Web Services Nitro enclave. For
+     * information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 6144<br/>
+     *
+     * @param ciphertextForRecipient <p>
+     *            The plaintext random bytes encrypted with the public key from
+     *            the Nitro enclave. This ciphertext can be decrypted only by
+     *            using a private key in the Nitro enclave.
+     *            </p>
+     *            <p>
+     *            This field is included in the response only when the
+     *            <code>Recipient</code> parameter in the request includes a
+     *            valid attestation document from an Amazon Web Services Nitro
+     *            enclave. For information about the interaction between KMS and
+     *            Amazon Web Services Nitro Enclaves, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *            >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *            <i>Key Management Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setCiphertextForRecipient(java.nio.ByteBuffer ciphertextForRecipient) {
+        this.ciphertextForRecipient = ciphertextForRecipient;
+    }
+
+    /**
+     * <p>
+     * The plaintext random bytes encrypted with the public key from the Nitro
+     * enclave. This ciphertext can be decrypted only by using a private key in
+     * the Nitro enclave.
+     * </p>
+     * <p>
+     * This field is included in the response only when the
+     * <code>Recipient</code> parameter in the request includes a valid
+     * attestation document from an Amazon Web Services Nitro enclave. For
+     * information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 6144<br/>
+     *
+     * @param ciphertextForRecipient <p>
+     *            The plaintext random bytes encrypted with the public key from
+     *            the Nitro enclave. This ciphertext can be decrypted only by
+     *            using a private key in the Nitro enclave.
+     *            </p>
+     *            <p>
+     *            This field is included in the response only when the
+     *            <code>Recipient</code> parameter in the request includes a
+     *            valid attestation document from an Amazon Web Services Nitro
+     *            enclave. For information about the interaction between KMS and
+     *            Amazon Web Services Nitro Enclaves, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *            >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *            <i>Key Management Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GenerateRandomResult withCiphertextForRecipient(
+            java.nio.ByteBuffer ciphertextForRecipient) {
+        this.ciphertextForRecipient = ciphertextForRecipient;
         return this;
     }
 
@@ -108,7 +287,9 @@ public class GenerateRandomResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getPlaintext() != null)
-            sb.append("Plaintext: " + getPlaintext());
+            sb.append("Plaintext: " + getPlaintext() + ",");
+        if (getCiphertextForRecipient() != null)
+            sb.append("CiphertextForRecipient: " + getCiphertextForRecipient());
         sb.append("}");
         return sb.toString();
     }
@@ -119,6 +300,10 @@ public class GenerateRandomResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getPlaintext() == null) ? 0 : getPlaintext().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getCiphertextForRecipient() == null) ? 0 : getCiphertextForRecipient()
+                        .hashCode());
         return hashCode;
     }
 
@@ -137,6 +322,11 @@ public class GenerateRandomResult implements Serializable {
             return false;
         if (other.getPlaintext() != null
                 && other.getPlaintext().equals(this.getPlaintext()) == false)
+            return false;
+        if (other.getCiphertextForRecipient() == null ^ this.getCiphertextForRecipient() == null)
+            return false;
+        if (other.getCiphertextForRecipient() != null
+                && other.getCiphertextForRecipient().equals(this.getCiphertextForRecipient()) == false)
             return false;
         return true;
     }

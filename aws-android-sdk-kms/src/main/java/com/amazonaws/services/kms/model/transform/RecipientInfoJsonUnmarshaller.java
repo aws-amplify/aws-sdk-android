@@ -21,39 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response GenerateRandomResult
+ * JSON unmarshaller for POJO RecipientInfo
  */
-public class GenerateRandomResultJsonUnmarshaller implements
-        Unmarshaller<GenerateRandomResult, JsonUnmarshallerContext> {
+class RecipientInfoJsonUnmarshaller implements Unmarshaller<RecipientInfo, JsonUnmarshallerContext> {
 
-    public GenerateRandomResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        GenerateRandomResult generateRandomResult = new GenerateRandomResult();
-
+    public RecipientInfo unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        RecipientInfo recipientInfo = new RecipientInfo();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Plaintext")) {
-                generateRandomResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance()
+            if (name.equals("KeyEncryptionAlgorithm")) {
+                recipientInfo.setKeyEncryptionAlgorithm(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("CiphertextForRecipient")) {
-                generateRandomResult.setCiphertextForRecipient(ByteBufferJsonUnmarshaller
-                        .getInstance()
+            } else if (name.equals("AttestationDocument")) {
+                recipientInfo.setAttestationDocument(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return generateRandomResult;
+        return recipientInfo;
     }
 
-    private static GenerateRandomResultJsonUnmarshaller instance;
+    private static RecipientInfoJsonUnmarshaller instance;
 
-    public static GenerateRandomResultJsonUnmarshaller getInstance() {
+    public static RecipientInfoJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new GenerateRandomResultJsonUnmarshaller();
+            instance = new RecipientInfoJsonUnmarshaller();
         return instance;
     }
 }

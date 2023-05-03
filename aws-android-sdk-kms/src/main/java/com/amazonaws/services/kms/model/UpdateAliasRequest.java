@@ -125,6 +125,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
      * to change the alias name.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -187,6 +193,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
      * to change the alias name.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -198,6 +210,13 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *         such as <code>alias/ExampleAlias</code>. You cannot use
      *         <code>UpdateAlias</code> to change the alias name.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      */
     public String getAliasName() {
         return aliasName;
@@ -210,6 +229,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
      * to change the alias name.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -221,6 +246,13 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            name, such as <code>alias/ExampleAlias</code>. You cannot use
      *            <code>UpdateAlias</code> to change the alias name.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      */
     public void setAliasName(String aliasName) {
         this.aliasName = aliasName;
@@ -233,6 +265,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/ExampleAlias</code>. You cannot use <code>UpdateAlias</code>
      * to change the alias name.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -247,6 +285,13 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            name, such as <code>alias/ExampleAlias</code>. You cannot use
      *            <code>UpdateAlias</code> to change the alias name.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

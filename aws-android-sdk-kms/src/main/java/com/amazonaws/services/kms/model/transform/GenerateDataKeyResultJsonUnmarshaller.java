@@ -42,6 +42,10 @@ public class GenerateDataKeyResultJsonUnmarshaller implements
             } else if (name.equals("KeyId")) {
                 generateDataKeyResult.setKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CiphertextForRecipient")) {
+                generateDataKeyResult.setCiphertextForRecipient(ByteBufferJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

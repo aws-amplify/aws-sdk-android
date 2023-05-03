@@ -42,6 +42,9 @@ public class DecryptResultJsonUnmarshaller implements
             } else if (name.equals("EncryptionAlgorithm")) {
                 decryptResult.setEncryptionAlgorithm(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CiphertextForRecipient")) {
+                decryptResult.setCiphertextForRecipient(ByteBufferJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
