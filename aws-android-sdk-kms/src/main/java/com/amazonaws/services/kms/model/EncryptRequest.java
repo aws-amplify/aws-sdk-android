@@ -246,6 +246,12 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * standard asymmetric encryption algorithms and HMAC algorithms that KMS
      * uses do not support an encryption context.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -670,6 +676,12 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * standard asymmetric encryption algorithms and HMAC algorithms that KMS
      * uses do not support an encryption context.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -694,6 +706,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         key. The standard asymmetric encryption algorithms and HMAC
      *         algorithms that KMS uses do not support an encryption context.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
      *         key-value pairs that represent additional authenticated data.
@@ -724,6 +743,12 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * standard asymmetric encryption algorithms and HMAC algorithms that KMS
      * uses do not support an encryption context.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -748,6 +773,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            key. The standard asymmetric encryption algorithms and HMAC
      *            algorithms that KMS uses do not support an encryption context.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
      *            key-value pairs that represent additional authenticated data.
@@ -779,6 +811,12 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * standard asymmetric encryption algorithms and HMAC algorithms that KMS
      * uses do not support an encryption context.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an
@@ -806,6 +844,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            key. The standard asymmetric encryption algorithms and HMAC
      *            algorithms that KMS uses do not support an encryption context.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
      *            key-value pairs that represent additional authenticated data.
@@ -840,6 +885,12 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * standard asymmetric encryption algorithms and HMAC algorithms that KMS
      * uses do not support an encryption context.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
      * pairs that represent additional authenticated data. When you use an

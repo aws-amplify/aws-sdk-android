@@ -38,38 +38,33 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for JoinStorageSessionAsViewerRequest
+ * JSON request marshaller for JoinStorageSessionRequest
  */
-public class JoinStorageSessionAsViewerRequestMarshaller implements
-        Marshaller<Request<JoinStorageSessionAsViewerRequest>, JoinStorageSessionAsViewerRequest> {
+public class JoinStorageSessionRequestMarshaller implements
+        Marshaller<Request<JoinStorageSessionRequest>, JoinStorageSessionRequest> {
 
-    public Request<JoinStorageSessionAsViewerRequest> marshall(
-            JoinStorageSessionAsViewerRequest joinStorageSessionAsViewerRequest) {
-        if (joinStorageSessionAsViewerRequest == null) {
+    public Request<JoinStorageSessionRequest> marshall(
+            JoinStorageSessionRequest joinStorageSessionRequest) {
+        if (joinStorageSessionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(JoinStorageSessionAsViewerRequest)");
+                    "Invalid argument passed to marshall(JoinStorageSessionRequest)");
         }
 
-        Request<JoinStorageSessionAsViewerRequest> request = new DefaultRequest<JoinStorageSessionAsViewerRequest>(
-                joinStorageSessionAsViewerRequest, "AmazonKinesisVideoWebRTCStorage");
+        Request<JoinStorageSessionRequest> request = new DefaultRequest<JoinStorageSessionRequest>(
+                joinStorageSessionRequest, "AWSKinesisVideoWebRTCStorage");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/joinStorageSessionAsViewer";
+        String uriResourcePath = "/joinStorageSession";
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (joinStorageSessionAsViewerRequest.getChannelArn() != null) {
-                String channelArn = joinStorageSessionAsViewerRequest.getChannelArn();
+            if (joinStorageSessionRequest.getChannelArn() != null) {
+                String channelArn = joinStorageSessionRequest.getChannelArn();
                 jsonWriter.name("channelArn");
                 jsonWriter.value(channelArn);
-            }
-            if (joinStorageSessionAsViewerRequest.getClientId() != null) {
-                String clientId = joinStorageSessionAsViewerRequest.getClientId();
-                jsonWriter.name("clientId");
-                jsonWriter.value(clientId);
             }
 
             jsonWriter.endObject();

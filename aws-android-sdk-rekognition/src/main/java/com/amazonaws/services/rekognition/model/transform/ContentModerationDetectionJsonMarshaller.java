@@ -37,6 +37,21 @@ class ContentModerationDetectionJsonMarshaller {
             jsonWriter.name("ModerationLabel");
             ModerationLabelJsonMarshaller.getInstance().marshall(moderationLabel, jsonWriter);
         }
+        if (contentModerationDetection.getStartTimestampMillis() != null) {
+            Long startTimestampMillis = contentModerationDetection.getStartTimestampMillis();
+            jsonWriter.name("StartTimestampMillis");
+            jsonWriter.value(startTimestampMillis);
+        }
+        if (contentModerationDetection.getEndTimestampMillis() != null) {
+            Long endTimestampMillis = contentModerationDetection.getEndTimestampMillis();
+            jsonWriter.name("EndTimestampMillis");
+            jsonWriter.value(endTimestampMillis);
+        }
+        if (contentModerationDetection.getDurationMillis() != null) {
+            Long durationMillis = contentModerationDetection.getDurationMillis();
+            jsonWriter.name("DurationMillis");
+            jsonWriter.value(durationMillis);
+        }
         jsonWriter.endObject();
     }
 

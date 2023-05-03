@@ -94,6 +94,12 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * New description for the KMS key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
@@ -296,6 +302,12 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * New description for the KMS key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
@@ -303,6 +315,13 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * @return <p>
      *         New description for the KMS key.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      */
     public String getDescription() {
         return description;
@@ -312,6 +331,12 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * New description for the KMS key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 8192<br/>
@@ -319,6 +344,13 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * @param description <p>
      *            New description for the KMS key.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      */
     public void setDescription(String description) {
         this.description = description;
@@ -328,6 +360,12 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * New description for the KMS key.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -338,6 +376,13 @@ public class UpdateKeyDescriptionRequest extends AmazonWebServiceRequest impleme
      * @param description <p>
      *            New description for the KMS key.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
