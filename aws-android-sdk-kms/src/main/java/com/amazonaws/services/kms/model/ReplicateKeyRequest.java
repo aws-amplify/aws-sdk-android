@@ -353,6 +353,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * A description of the KMS key. The default value is an empty string (no
      * description).
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * The description is not a shared property of multi-Region keys. You can
      * specify the same description or a different description for each key in a
@@ -370,7 +376,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * the KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -1616,6 +1627,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * A description of the KMS key. The default value is an empty string (no
      * description).
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * The description is not a shared property of multi-Region keys. You can
      * specify the same description or a different description for each key in a
@@ -1629,6 +1646,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         A description of the KMS key. The default value is an empty
      *         string (no description).
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      *         <p>
      *         The description is not a shared property of multi-Region keys.
      *         You can specify the same description or a different description
@@ -1645,6 +1669,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * A description of the KMS key. The default value is an empty string (no
      * description).
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * The description is not a shared property of multi-Region keys. You can
      * specify the same description or a different description for each key in a
@@ -1658,6 +1688,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            A description of the KMS key. The default value is an empty
      *            string (no description).
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            The description is not a shared property of multi-Region keys.
      *            You can specify the same description or a different
@@ -1674,6 +1711,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * A description of the KMS key. The default value is an empty string (no
      * description).
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * The description is not a shared property of multi-Region keys. You can
      * specify the same description or a different description for each key in a
@@ -1690,6 +1733,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            A description of the KMS key. The default value is an empty
      *            string (no description).
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            The description is not a shared property of multi-Region keys.
      *            You can specify the same description or a different
@@ -1710,7 +1760,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * the KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -1749,7 +1804,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *         to tag the KMS key when it is created. To tag an existing KMS
      *         key, use the <a>TagResource</a> operation.
      *         </p>
-     *         <note>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important> <note>
      *         <p>
      *         Tagging or untagging a KMS key can allow or deny permission to
      *         the KMS key. For details, see <a href=
@@ -1796,7 +1857,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * the KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -1835,7 +1901,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            parameter to tag the KMS key when it is created. To tag an
      *            existing KMS key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
@@ -1887,7 +1959,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * the KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -1929,7 +2006,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            parameter to tag the KMS key when it is created. To tag an
      *            existing KMS key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=
@@ -1984,7 +2067,12 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      * the KMS key when it is created. To tag an existing KMS key, use the
      * <a>TagResource</a> operation.
      * </p>
-     * <note>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important> <note>
      * <p>
      * Tagging or untagging a KMS key can allow or deny permission to the KMS
      * key. For details, see <a
@@ -2026,7 +2114,13 @@ public class ReplicateKeyRequest extends AmazonWebServiceRequest implements Seri
      *            parameter to tag the KMS key when it is created. To tag an
      *            existing KMS key, use the <a>TagResource</a> operation.
      *            </p>
-     *            <note>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important> <note>
      *            <p>
      *            Tagging or untagging a KMS key can allow or deny permission to
      *            the KMS key. For details, see <a href=

@@ -106,8 +106,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:+=\/]+<br/>
      */
     private String jobTag;
 
@@ -447,8 +447,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:+=\/]+<br/>
      *
      * @return <p>
      *         An identifier you specify that's returned in the completion
@@ -471,8 +471,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:+=\/]+<br/>
      *
      * @param jobTag <p>
      *            An identifier you specify that's returned in the completion
@@ -498,8 +498,8 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 256<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:+=\/]+<br/>
      *
      * @param jobTag <p>
      *            An identifier you specify that's returned in the completion

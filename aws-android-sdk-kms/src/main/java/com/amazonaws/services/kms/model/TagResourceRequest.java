@@ -143,12 +143,15 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags.
+     * One or more tags. Each tag consists of a tag key and a tag value. The tag
+     * value can be an empty (null) string.
      * </p>
+     * <important>
      * <p>
-     * Each tag consists of a tag key and a tag value. The tag value can be an
-     * empty (null) string.
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * You cannot have more than one tag on a KMS key with the same tag key. If
      * you specify an existing tag key with a different tag value, KMS replaces
@@ -351,12 +354,15 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags.
+     * One or more tags. Each tag consists of a tag key and a tag value. The tag
+     * value can be an empty (null) string.
      * </p>
+     * <important>
      * <p>
-     * Each tag consists of a tag key and a tag value. The tag value can be an
-     * empty (null) string.
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * You cannot have more than one tag on a KMS key with the same tag key. If
      * you specify an existing tag key with a different tag value, KMS replaces
@@ -364,12 +370,16 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      *
      * @return <p>
-     *         One or more tags.
+     *         One or more tags. Each tag consists of a tag key and a tag value.
+     *         The tag value can be an empty (null) string.
      *         </p>
+     *         <important>
      *         <p>
-     *         Each tag consists of a tag key and a tag value. The tag value can
-     *         be an empty (null) string.
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
      *         </p>
+     *         </important>
      *         <p>
      *         You cannot have more than one tag on a KMS key with the same tag
      *         key. If you specify an existing tag key with a different tag
@@ -382,12 +392,15 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags.
+     * One or more tags. Each tag consists of a tag key and a tag value. The tag
+     * value can be an empty (null) string.
      * </p>
+     * <important>
      * <p>
-     * Each tag consists of a tag key and a tag value. The tag value can be an
-     * empty (null) string.
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * You cannot have more than one tag on a KMS key with the same tag key. If
      * you specify an existing tag key with a different tag value, KMS replaces
@@ -395,12 +408,16 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      *
      * @param tags <p>
-     *            One or more tags.
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. The tag value can be an empty (null) string.
      *            </p>
+     *            <important>
      *            <p>
-     *            Each tag consists of a tag key and a tag value. The tag value
-     *            can be an empty (null) string.
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
      *            </p>
+     *            </important>
      *            <p>
      *            You cannot have more than one tag on a KMS key with the same
      *            tag key. If you specify an existing tag key with a different
@@ -419,12 +436,15 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags.
+     * One or more tags. Each tag consists of a tag key and a tag value. The tag
+     * value can be an empty (null) string.
      * </p>
+     * <important>
      * <p>
-     * Each tag consists of a tag key and a tag value. The tag value can be an
-     * empty (null) string.
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * You cannot have more than one tag on a KMS key with the same tag key. If
      * you specify an existing tag key with a different tag value, KMS replaces
@@ -435,12 +455,16 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. The tag value can be an empty (null) string.
      *            </p>
+     *            <important>
      *            <p>
-     *            Each tag consists of a tag key and a tag value. The tag value
-     *            can be an empty (null) string.
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
      *            </p>
+     *            </important>
      *            <p>
      *            You cannot have more than one tag on a KMS key with the same
      *            tag key. If you specify an existing tag key with a different
@@ -462,12 +486,15 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * One or more tags.
+     * One or more tags. Each tag consists of a tag key and a tag value. The tag
+     * value can be an empty (null) string.
      * </p>
+     * <important>
      * <p>
-     * Each tag consists of a tag key and a tag value. The tag value can be an
-     * empty (null) string.
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
      * </p>
+     * </important>
      * <p>
      * You cannot have more than one tag on a KMS key with the same tag key. If
      * you specify an existing tag key with a different tag value, KMS replaces
@@ -478,12 +505,16 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            One or more tags. Each tag consists of a tag key and a tag
+     *            value. The tag value can be an empty (null) string.
      *            </p>
+     *            <important>
      *            <p>
-     *            Each tag consists of a tag key and a tag value. The tag value
-     *            can be an empty (null) string.
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
      *            </p>
+     *            </important>
      *            <p>
      *            You cannot have more than one tag on a KMS key with the same
      *            tag key. If you specify an existing tag key with a different

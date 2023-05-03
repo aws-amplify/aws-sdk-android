@@ -56,6 +56,20 @@ public class GetContentModerationResultJsonUnmarshaller implements
                 getContentModerationResult.setModerationModelVersion(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getContentModerationResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getContentModerationResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getContentModerationResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("GetRequestMetadata")) {
+                getContentModerationResult
+                        .setGetRequestMetadata(GetContentModerationRequestMetadataJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

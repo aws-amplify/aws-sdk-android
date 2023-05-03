@@ -24,7 +24,7 @@ import com.amazonaws.services.kinesisvideowebrtcstorage.model.*;
  * <p>
  * </p>
  **/
-public interface AmazonKinesisVideoWebRTCStorage {
+public interface AWSKinesisVideoWebRTCStorage {
 
     /**
      * Overrides the default endpoint for this client
@@ -60,7 +60,7 @@ public interface AmazonKinesisVideoWebRTCStorage {
 
     /**
      * An alternative to
-     * {@link AmazonKinesisVideoWebRTCStorage#setEndpoint(String)}, sets the
+     * {@link AWSKinesisVideoWebRTCStorage#setEndpoint(String)}, sets the
      * regional endpoint for this client's service calls. Callers can use this
      * method to control which AWS region they want to work with.
      * <p>

@@ -36,6 +36,10 @@ public class GenerateRandomResultJsonUnmarshaller implements
             if (name.equals("Plaintext")) {
                 generateRandomResult.setPlaintext(ByteBufferJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CiphertextForRecipient")) {
+                generateRandomResult.setCiphertextForRecipient(ByteBufferJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

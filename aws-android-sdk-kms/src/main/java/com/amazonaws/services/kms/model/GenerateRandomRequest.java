@@ -33,12 +33,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>CustomKeyStoreId</code> parameter.
  * </p>
  * <p>
- * Applications in Amazon Web Services Nitro Enclaves can call this operation by
- * using the <a href="https://github.com/aws/aws-nitro-enclaves-sdk-c">Amazon
- * Web Services Nitro Enclaves Development Kit</a>. For information about the
- * supporting parameters, see <a href=
+ * <code>GenerateRandom</code> also supports <a href=
+ * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html"
+ * >Amazon Web Services Nitro Enclaves</a>, which provide an isolated compute
+ * environment in Amazon EC2. To call <code>GenerateRandom</code> for a Nitro
+ * enclave, use the <a href=
+ * "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+ * >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web Services SDK.
+ * Use the <code>Recipient</code> parameter to provide the attestation document
+ * for the enclave. Instead of plaintext bytes, the response includes the
+ * plaintext bytes encrypted under the public key from the attestation document
+ * (<code>CiphertextForRecipient</code>).For information about the interaction
+ * between KMS and Amazon Web Services Nitro Enclaves, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
- * >How Amazon Web Services Nitro Enclaves use KMS</a> in the <i>Key Management
+ * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key Management
  * Service Developer Guide</i>.
  * </p>
  * <p>
@@ -83,6 +91,39 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 64<br/>
      */
     private String customKeyStoreId;
+
+    /**
+     * <p>
+     * A signed <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * >attestation document</a> from an Amazon Web Services Nitro enclave and
+     * the encryption algorithm to use with the enclave's public key. The only
+     * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
+     * </p>
+     * <p>
+     * This parameter only supports attestation documents for Amazon Web
+     * Services Nitro Enclaves. To include this parameter, use the <a href=
+     * "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     * >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web Services
+     * SDK.
+     * </p>
+     * <p>
+     * When you use this parameter, instead of returning plaintext bytes, KMS
+     * encrypts the plaintext bytes under the public key in the attestation
+     * document, and returns the resulting ciphertext in the
+     * <code>CiphertextForRecipient</code> field in the response. This
+     * ciphertext can be decrypted only with the private key in the enclave. The
+     * <code>Plaintext</code> field in the response is null or empty.
+     * </p>
+     * <p>
+     * For information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     */
+    private RecipientInfo recipient;
 
     /**
      * <p>
@@ -243,6 +284,216 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * A signed <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * >attestation document</a> from an Amazon Web Services Nitro enclave and
+     * the encryption algorithm to use with the enclave's public key. The only
+     * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
+     * </p>
+     * <p>
+     * This parameter only supports attestation documents for Amazon Web
+     * Services Nitro Enclaves. To include this parameter, use the <a href=
+     * "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     * >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web Services
+     * SDK.
+     * </p>
+     * <p>
+     * When you use this parameter, instead of returning plaintext bytes, KMS
+     * encrypts the plaintext bytes under the public key in the attestation
+     * document, and returns the resulting ciphertext in the
+     * <code>CiphertextForRecipient</code> field in the response. This
+     * ciphertext can be decrypted only with the private key in the enclave. The
+     * <code>Plaintext</code> field in the response is null or empty.
+     * </p>
+     * <p>
+     * For information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         A signed <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *         >attestation document</a> from an Amazon Web Services Nitro
+     *         enclave and the encryption algorithm to use with the enclave's
+     *         public key. The only valid encryption algorithm is
+     *         <code>RSAES_OAEP_SHA_256</code>.
+     *         </p>
+     *         <p>
+     *         This parameter only supports attestation documents for Amazon Web
+     *         Services Nitro Enclaves. To include this parameter, use the <a
+     *         href=
+     *         "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     *         >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web
+     *         Services SDK.
+     *         </p>
+     *         <p>
+     *         When you use this parameter, instead of returning plaintext
+     *         bytes, KMS encrypts the plaintext bytes under the public key in
+     *         the attestation document, and returns the resulting ciphertext in
+     *         the <code>CiphertextForRecipient</code> field in the response.
+     *         This ciphertext can be decrypted only with the private key in the
+     *         enclave. The <code>Plaintext</code> field in the response is null
+     *         or empty.
+     *         </p>
+     *         <p>
+     *         For information about the interaction between KMS and Amazon Web
+     *         Services Nitro Enclaves, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *         >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *         <i>Key Management Service Developer Guide</i>.
+     *         </p>
+     */
+    public RecipientInfo getRecipient() {
+        return recipient;
+    }
+
+    /**
+     * <p>
+     * A signed <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * >attestation document</a> from an Amazon Web Services Nitro enclave and
+     * the encryption algorithm to use with the enclave's public key. The only
+     * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
+     * </p>
+     * <p>
+     * This parameter only supports attestation documents for Amazon Web
+     * Services Nitro Enclaves. To include this parameter, use the <a href=
+     * "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     * >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web Services
+     * SDK.
+     * </p>
+     * <p>
+     * When you use this parameter, instead of returning plaintext bytes, KMS
+     * encrypts the plaintext bytes under the public key in the attestation
+     * document, and returns the resulting ciphertext in the
+     * <code>CiphertextForRecipient</code> field in the response. This
+     * ciphertext can be decrypted only with the private key in the enclave. The
+     * <code>Plaintext</code> field in the response is null or empty.
+     * </p>
+     * <p>
+     * For information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     *
+     * @param recipient <p>
+     *            A signed <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *            >attestation document</a> from an Amazon Web Services Nitro
+     *            enclave and the encryption algorithm to use with the enclave's
+     *            public key. The only valid encryption algorithm is
+     *            <code>RSAES_OAEP_SHA_256</code>.
+     *            </p>
+     *            <p>
+     *            This parameter only supports attestation documents for Amazon
+     *            Web Services Nitro Enclaves. To include this parameter, use
+     *            the <a href=
+     *            "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     *            >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web
+     *            Services SDK.
+     *            </p>
+     *            <p>
+     *            When you use this parameter, instead of returning plaintext
+     *            bytes, KMS encrypts the plaintext bytes under the public key
+     *            in the attestation document, and returns the resulting
+     *            ciphertext in the <code>CiphertextForRecipient</code> field in
+     *            the response. This ciphertext can be decrypted only with the
+     *            private key in the enclave. The <code>Plaintext</code> field
+     *            in the response is null or empty.
+     *            </p>
+     *            <p>
+     *            For information about the interaction between KMS and Amazon
+     *            Web Services Nitro Enclaves, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *            >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *            <i>Key Management Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setRecipient(RecipientInfo recipient) {
+        this.recipient = recipient;
+    }
+
+    /**
+     * <p>
+     * A signed <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     * >attestation document</a> from an Amazon Web Services Nitro enclave and
+     * the encryption algorithm to use with the enclave's public key. The only
+     * valid encryption algorithm is <code>RSAES_OAEP_SHA_256</code>.
+     * </p>
+     * <p>
+     * This parameter only supports attestation documents for Amazon Web
+     * Services Nitro Enclaves. To include this parameter, use the <a href=
+     * "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     * >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web Services
+     * SDK.
+     * </p>
+     * <p>
+     * When you use this parameter, instead of returning plaintext bytes, KMS
+     * encrypts the plaintext bytes under the public key in the attestation
+     * document, and returns the resulting ciphertext in the
+     * <code>CiphertextForRecipient</code> field in the response. This
+     * ciphertext can be decrypted only with the private key in the enclave. The
+     * <code>Plaintext</code> field in the response is null or empty.
+     * </p>
+     * <p>
+     * For information about the interaction between KMS and Amazon Web Services
+     * Nitro Enclaves, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     * >How Amazon Web Services Nitro Enclaves uses KMS</a> in the <i>Key
+     * Management Service Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param recipient <p>
+     *            A signed <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave-how.html#term-attestdoc"
+     *            >attestation document</a> from an Amazon Web Services Nitro
+     *            enclave and the encryption algorithm to use with the enclave's
+     *            public key. The only valid encryption algorithm is
+     *            <code>RSAES_OAEP_SHA_256</code>.
+     *            </p>
+     *            <p>
+     *            This parameter only supports attestation documents for Amazon
+     *            Web Services Nitro Enclaves. To include this parameter, use
+     *            the <a href=
+     *            "https://docs.aws.amazon.com/enclaves/latest/user/developing-applications.html#sdk"
+     *            >Amazon Web Services Nitro Enclaves SDK</a> or any Amazon Web
+     *            Services SDK.
+     *            </p>
+     *            <p>
+     *            When you use this parameter, instead of returning plaintext
+     *            bytes, KMS encrypts the plaintext bytes under the public key
+     *            in the attestation document, and returns the resulting
+     *            ciphertext in the <code>CiphertextForRecipient</code> field in
+     *            the response. This ciphertext can be decrypted only with the
+     *            private key in the enclave. The <code>Plaintext</code> field
+     *            in the response is null or empty.
+     *            </p>
+     *            <p>
+     *            For information about the interaction between KMS and Amazon
+     *            Web Services Nitro Enclaves, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+     *            >How Amazon Web Services Nitro Enclaves uses KMS</a> in the
+     *            <i>Key Management Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GenerateRandomRequest withRecipient(RecipientInfo recipient) {
+        this.recipient = recipient;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -256,7 +507,9 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
         if (getNumberOfBytes() != null)
             sb.append("NumberOfBytes: " + getNumberOfBytes() + ",");
         if (getCustomKeyStoreId() != null)
-            sb.append("CustomKeyStoreId: " + getCustomKeyStoreId());
+            sb.append("CustomKeyStoreId: " + getCustomKeyStoreId() + ",");
+        if (getRecipient() != null)
+            sb.append("Recipient: " + getRecipient());
         sb.append("}");
         return sb.toString();
     }
@@ -270,6 +523,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
                 + ((getNumberOfBytes() == null) ? 0 : getNumberOfBytes().hashCode());
         hashCode = prime * hashCode
                 + ((getCustomKeyStoreId() == null) ? 0 : getCustomKeyStoreId().hashCode());
+        hashCode = prime * hashCode + ((getRecipient() == null) ? 0 : getRecipient().hashCode());
         return hashCode;
     }
 
@@ -293,6 +547,11 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getCustomKeyStoreId() != null
                 && other.getCustomKeyStoreId().equals(this.getCustomKeyStoreId()) == false)
+            return false;
+        if (other.getRecipient() == null ^ this.getRecipient() == null)
+            return false;
+        if (other.getRecipient() != null
+                && other.getRecipient().equals(this.getRecipient()) == false)
             return false;
         return true;
     }

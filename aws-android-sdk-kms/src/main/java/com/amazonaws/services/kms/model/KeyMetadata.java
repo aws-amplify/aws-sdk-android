@@ -181,6 +181,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      */
     private String cloudHsmClusterId;
 
@@ -1424,6 +1425,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @return <p>
      *         The cluster ID of the CloudHSM cluster that contains the key
@@ -1451,6 +1453,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the CloudHSM cluster that contains the key
@@ -1482,6 +1485,7 @@ public class KeyMetadata implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            The cluster ID of the CloudHSM cluster that contains the key

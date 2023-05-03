@@ -165,6 +165,12 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * unique in your Amazon Web Services account and Region. This parameter is
      * required for all custom key stores.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -187,6 +193,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      */
     private String cloudHsmClusterId;
 
@@ -458,6 +465,12 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * unique in your Amazon Web Services account and Region. This parameter is
      * required for all custom key stores.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -467,6 +480,13 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *         be unique in your Amazon Web Services account and Region. This
      *         parameter is required for all custom key stores.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      */
     public String getCustomKeyStoreName() {
         return customKeyStoreName;
@@ -478,6 +498,12 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * unique in your Amazon Web Services account and Region. This parameter is
      * required for all custom key stores.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
@@ -487,6 +513,13 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *            must be unique in your Amazon Web Services account and Region.
      *            This parameter is required for all custom key stores.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      */
     public void setCustomKeyStoreName(String customKeyStoreName) {
         this.customKeyStoreName = customKeyStoreName;
@@ -498,6 +531,12 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * unique in your Amazon Web Services account and Region. This parameter is
      * required for all custom key stores.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -510,6 +549,13 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      *            must be unique in your Amazon Web Services account and Region.
      *            This parameter is required for all custom key stores.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -534,6 +580,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @return <p>
      *         Identifies the CloudHSM cluster for an CloudHSM key store. This
@@ -568,6 +615,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            Identifies the CloudHSM cluster for an CloudHSM key store.
@@ -605,6 +653,7 @@ public class CreateCustomKeyStoreRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>19 - 24<br/>
+     * <b>Pattern: </b>cluster-[2-7a-zA-Z]{11,16}<br/>
      *
      * @param cloudHsmClusterId <p>
      *            Identifies the CloudHSM cluster for an CloudHSM key store.
