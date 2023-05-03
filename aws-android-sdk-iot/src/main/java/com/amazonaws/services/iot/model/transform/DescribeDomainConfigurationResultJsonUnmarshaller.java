@@ -72,6 +72,10 @@ public class DescribeDomainConfigurationResultJsonUnmarshaller implements
                 describeDomainConfigurationResult.setLastStatusChangeDate(DateJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("tlsConfig")) {
+                describeDomainConfigurationResult.setTlsConfig(TlsConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

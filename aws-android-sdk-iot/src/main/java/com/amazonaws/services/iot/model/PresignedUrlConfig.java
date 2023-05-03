@@ -25,9 +25,9 @@ import java.io.Serializable;
 public class PresignedUrlConfig implements Serializable {
     /**
      * <p>
-     * The ARN of an IAM role that grants grants permission to download files
-     * from the S3 bucket where the job data/updates are stored. The role must
-     * also grant permission for IoT to download the files.
+     * The ARN of an IAM role that grants permission to download files from the
+     * S3 bucket where the job data/updates are stored. The role must also grant
+     * permission for IoT to download the files.
      * </p>
      * <important>
      * <p>
@@ -58,9 +58,9 @@ public class PresignedUrlConfig implements Serializable {
 
     /**
      * <p>
-     * The ARN of an IAM role that grants grants permission to download files
-     * from the S3 bucket where the job data/updates are stored. The role must
-     * also grant permission for IoT to download the files.
+     * The ARN of an IAM role that grants permission to download files from the
+     * S3 bucket where the job data/updates are stored. The role must also grant
+     * permission for IoT to download the files.
      * </p>
      * <important>
      * <p>
@@ -76,10 +76,9 @@ public class PresignedUrlConfig implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The ARN of an IAM role that grants grants permission to download
-     *         files from the S3 bucket where the job data/updates are stored.
-     *         The role must also grant permission for IoT to download the
-     *         files.
+     *         The ARN of an IAM role that grants permission to download files
+     *         from the S3 bucket where the job data/updates are stored. The
+     *         role must also grant permission for IoT to download the files.
      *         </p>
      *         <important>
      *         <p>
@@ -97,9 +96,9 @@ public class PresignedUrlConfig implements Serializable {
 
     /**
      * <p>
-     * The ARN of an IAM role that grants grants permission to download files
-     * from the S3 bucket where the job data/updates are stored. The role must
-     * also grant permission for IoT to download the files.
+     * The ARN of an IAM role that grants permission to download files from the
+     * S3 bucket where the job data/updates are stored. The role must also grant
+     * permission for IoT to download the files.
      * </p>
      * <important>
      * <p>
@@ -115,9 +114,9 @@ public class PresignedUrlConfig implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The ARN of an IAM role that grants grants permission to
-     *            download files from the S3 bucket where the job data/updates
-     *            are stored. The role must also grant permission for IoT to
+     *            The ARN of an IAM role that grants permission to download
+     *            files from the S3 bucket where the job data/updates are
+     *            stored. The role must also grant permission for IoT to
      *            download the files.
      *            </p>
      *            <important>
@@ -136,9 +135,9 @@ public class PresignedUrlConfig implements Serializable {
 
     /**
      * <p>
-     * The ARN of an IAM role that grants grants permission to download files
-     * from the S3 bucket where the job data/updates are stored. The role must
-     * also grant permission for IoT to download the files.
+     * The ARN of an IAM role that grants permission to download files from the
+     * S3 bucket where the job data/updates are stored. The role must also grant
+     * permission for IoT to download the files.
      * </p>
      * <important>
      * <p>
@@ -157,9 +156,9 @@ public class PresignedUrlConfig implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The ARN of an IAM role that grants grants permission to
-     *            download files from the S3 bucket where the job data/updates
-     *            are stored. The role must also grant permission for IoT to
+     *            The ARN of an IAM role that grants permission to download
+     *            files from the S3 bucket where the job data/updates are
+     *            stored. The role must also grant permission for IoT to
      *            download the files.
      *            </p>
      *            <important>
