@@ -38,8 +38,8 @@ import com.amazonaws.services.kinesisvideowebrtcstorage.model.transform.*;
  * <p>
  * </p>
  */
-public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClient implements
-        AmazonKinesisVideoWebRTCStorage {
+public class AWSKinesisVideoWebRTCStorageClient extends AmazonWebServiceClient implements
+        AWSKinesisVideoWebRTCStorage {
     /** Provider for AWS credentials. */
     private AWSCredentialsProvider awsCredentialsProvider;
 
@@ -51,8 +51,8 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage. A credentials provider chain will be
-     * used that searches for credentials in this order:
+     * AWSKinesisVideoWebRTCStorage. A credentials provider chain will be used
+     * that searches for credentials in this order:
      * <ul>
      * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
      * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
@@ -66,14 +66,14 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * @see DefaultAWSCredentialsProviderChain
      */
     @Deprecated
-    public AmazonKinesisVideoWebRTCStorageClient() {
+    public AWSKinesisVideoWebRTCStorageClient() {
         this(new DefaultAWSCredentialsProviderChain(), new ClientConfiguration());
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage. A credentials provider chain will be
-     * used that searches for credentials in this order:
+     * AWSKinesisVideoWebRTCStorage. A credentials provider chain will be used
+     * that searches for credentials in this order:
      * <ul>
      * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
      * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
@@ -85,19 +85,18 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * will not return until the service call completes.
      *
      * @param clientConfiguration The client configuration options controlling
-     *            how this client connects to AmazonKinesisVideoWebRTCStorage
-     *            (ex: proxy settings, retry counts, etc.).
+     *            how this client connects to AWSKinesisVideoWebRTCStorage (ex:
+     *            proxy settings, retry counts, etc.).
      * @see DefaultAWSCredentialsProviderChain
      */
     @Deprecated
-    public AmazonKinesisVideoWebRTCStorageClient(ClientConfiguration clientConfiguration) {
+    public AWSKinesisVideoWebRTCStorageClient(ClientConfiguration clientConfiguration) {
         this(new DefaultAWSCredentialsProviderChain(), clientConfiguration);
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
      * provided in this constructor. Static AWSCredentials can be passed for
@@ -111,7 +110,7 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
      *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
-     *         AmazonKinesisVideoWebRTCStorageClient client = new AmazonKinesisVideoWebRTCStorageClient(
+     *         AWSKinesisVideoWebRTCStorageClient client = new AWSKinesisVideoWebRTCStorageClient(
      *                 AWSMobileClient.getInstance());
      *     }
      * 
@@ -128,14 +127,14 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * @param awsCredentials The AWS credentials (access key ID and secret key)
      *            to use when authenticating with AWS services.
      */
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentials awsCredentials) {
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentials awsCredentials) {
         this(awsCredentials, new ClientConfiguration());
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials and client configuration options.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials
+     * and client configuration options.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
      * provided in this constructor. Static AWSCredentials can be passed for
@@ -149,7 +148,7 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
      *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
-     *         AmazonKinesisVideoWebRTCStorageClient client = new AmazonKinesisVideoWebRTCStorageClient(
+     *         AWSKinesisVideoWebRTCStorageClient client = new AWSKinesisVideoWebRTCStorageClient(
      *                 AWSMobileClient.getInstance());
      *     }
      * 
@@ -166,18 +165,18 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * @param awsCredentials The AWS credentials (access key ID and secret key)
      *            to use when authenticating with AWS services.
      * @param clientConfiguration The client configuration options controlling
-     *            how this client connects to AmazonKinesisVideoWebRTCStorage
-     *            (ex: proxy settings, retry counts, etc.).
+     *            how this client connects to AWSKinesisVideoWebRTCStorage (ex:
+     *            proxy settings, retry counts, etc.).
      */
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentials awsCredentials,
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentials awsCredentials,
             ClientConfiguration clientConfiguration) {
         this(new StaticCredentialsProvider(awsCredentials), clientConfiguration);
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials provider.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials
+     * provider.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
      * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
@@ -191,7 +190,7 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
      *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
-     *         AmazonKinesisVideoWebRTCStorageClient client = new AmazonKinesisVideoWebRTCStorageClient(
+     *         AWSKinesisVideoWebRTCStorageClient client = new AWSKinesisVideoWebRTCStorageClient(
      *                 AWSMobileClient.getInstance());
      *     }
      * 
@@ -209,14 +208,14 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      *            provide credentials to authenticate requests with AWS
      *            services.
      */
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider) {
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider) {
         this(awsCredentialsProvider, new ClientConfiguration());
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials provider and client configuration options.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials
+     * provider and client configuration options.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
      * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
@@ -230,7 +229,7 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
      *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
-     *         AmazonKinesisVideoWebRTCStorageClient client = new AmazonKinesisVideoWebRTCStorageClient(
+     *         AWSKinesisVideoWebRTCStorageClient client = new AWSKinesisVideoWebRTCStorageClient(
      *                 AWSMobileClient.getInstance());
      *     }
      * 
@@ -248,19 +247,18 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      *            provide credentials to authenticate requests with AWS
      *            services.
      * @param clientConfiguration The client configuration options controlling
-     *            how this client connects to AmazonKinesisVideoWebRTCStorage
-     *            (ex: proxy settings, retry counts, etc.).
+     *            how this client connects to AWSKinesisVideoWebRTCStorage (ex:
+     *            proxy settings, retry counts, etc.).
      */
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
             ClientConfiguration clientConfiguration) {
         this(awsCredentialsProvider, clientConfiguration, new UrlHttpClient(clientConfiguration));
     }
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials provider, client configuration options and request metric
-     * collector.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials
+     * provider, client configuration options and request metric collector.
      * <p>
      * All service calls made using this new client object are blocking, and
      * will not return until the service call completes.
@@ -269,12 +267,12 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      *            provide credentials to authenticate requests with AWS
      *            services.
      * @param clientConfiguration The client configuration options controlling
-     *            how this client connects to AmazonKinesisVideoWebRTCStorage
-     *            (ex: proxy settings, retry counts, etc.).
+     *            how this client connects to AWSKinesisVideoWebRTCStorage (ex:
+     *            proxy settings, retry counts, etc.).
      * @param requestMetricCollector optional request metric collector
      */
     @Deprecated
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
             ClientConfiguration clientConfiguration,
             RequestMetricCollector requestMetricCollector) {
         super(adjustClientConfiguration(clientConfiguration), requestMetricCollector);
@@ -286,9 +284,8 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
 
     /**
      * Constructs a new client to invoke service methods on
-     * AmazonKinesisVideoWebRTCStorage using the specified AWS account
-     * credentials provider, client configuration options and request metric
-     * collector.
+     * AWSKinesisVideoWebRTCStorage using the specified AWS account credentials
+     * provider, client configuration options and request metric collector.
      * <p>
      * The client requests are authenticated using the {@link AWSCredentials}
      * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
@@ -302,7 +299,7 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
      *     &#064;Override
      *     public void onResult(final UserStateDetails details) {
-     *         AmazonKinesisVideoWebRTCStorageClient client = new AmazonKinesisVideoWebRTCStorageClient(
+     *         AWSKinesisVideoWebRTCStorageClient client = new AWSKinesisVideoWebRTCStorageClient(
      *                 AWSMobileClient.getInstance());
      *     }
      * 
@@ -320,11 +317,11 @@ public class AmazonKinesisVideoWebRTCStorageClient extends AmazonWebServiceClien
      *            provide credentials to authenticate requests with AWS
      *            services.
      * @param clientConfiguration The client configuration options controlling
-     *            how this client connects to AmazonKinesisVideoWebRTCStorage
-     *            (ex: proxy settings, retry counts, etc.).
+     *            how this client connects to AWSKinesisVideoWebRTCStorage (ex:
+     *            proxy settings, retry counts, etc.).
      * @param httpClient A http client
      */
-    public AmazonKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
+    public AWSKinesisVideoWebRTCStorageClient(AWSCredentialsProvider awsCredentialsProvider,
             ClientConfiguration clientConfiguration, HttpClient httpClient) {
         super(adjustClientConfiguration(clientConfiguration), httpClient);
 

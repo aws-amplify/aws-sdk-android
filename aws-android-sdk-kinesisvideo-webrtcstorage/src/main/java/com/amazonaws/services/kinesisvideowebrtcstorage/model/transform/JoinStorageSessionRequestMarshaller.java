@@ -51,7 +51,7 @@ public class JoinStorageSessionRequestMarshaller implements
         }
 
         Request<JoinStorageSessionRequest> request = new DefaultRequest<JoinStorageSessionRequest>(
-                joinStorageSessionRequest, "AmazonKinesisVideoWebRTCStorage");
+                joinStorageSessionRequest, "AWSKinesisVideoWebRTCStorage");
         request.setHttpMethod(HttpMethodName.POST);
 
         String uriResourcePath = "/joinStorageSession";
