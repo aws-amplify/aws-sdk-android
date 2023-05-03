@@ -556,9 +556,11 @@ public class EventRecorder {
         if (!isNetworkAvailable(pinpointContext.getApplicationContext())) {
             return true;
         }
-        return amazonClientException.getCause() != null &&
-            (amazonClientException.getCause() instanceof UnknownHostException ||
-                amazonClientException.getCause() instanceof SocketException);
+        return amazonClientException != null &&
+            amazonClientException.getCause() != null &&
+            ( amazonClientException.getCause() instanceof UnknownHostException ||
+                amazonClientException.getCause() instanceof SocketException
+            );
     }
 
     /**
