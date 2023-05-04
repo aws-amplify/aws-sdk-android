@@ -50,7 +50,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
 
     /**
      * <p>
-     * The identifier of the answer option tha
+     * The identifier of the answer option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -252,14 +252,14 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
 
     /**
      * <p>
-     * The identifier of the answer option tha
+     * The identifier of the answer option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 40<br/>
      *
      * @return <p>
-     *         The identifier of the answer option tha
+     *         The identifier of the answer option.
      *         </p>
      */
     public String getOptionRefId() {
@@ -268,14 +268,14 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
 
     /**
      * <p>
-     * The identifier of the answer option tha
+     * The identifier of the answer option.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 40<br/>
      *
      * @param optionRefId <p>
-     *            The identifier of the answer option tha
+     *            The identifier of the answer option.
      *            </p>
      */
     public void setOptionRefId(String optionRefId) {
@@ -284,7 +284,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
 
     /**
      * <p>
-     * The identifier of the answer option tha
+     * The identifier of the answer option.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -294,7 +294,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
      * <b>Length: </b>0 - 40<br/>
      *
      * @param optionRefId <p>
-     *            The identifier of the answer option tha
+     *            The identifier of the answer option.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
