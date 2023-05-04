@@ -113,6 +113,11 @@ class FaceDetailJsonMarshaller {
             jsonWriter.name("Confidence");
             jsonWriter.value(confidence);
         }
+        if (faceDetail.getFaceOccluded() != null) {
+            FaceOccluded faceOccluded = faceDetail.getFaceOccluded();
+            jsonWriter.name("FaceOccluded");
+            FaceOccludedJsonMarshaller.getInstance().marshall(faceOccluded, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
