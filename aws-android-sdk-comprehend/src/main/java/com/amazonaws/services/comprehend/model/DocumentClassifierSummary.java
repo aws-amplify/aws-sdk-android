@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      */
     private String latestVersionStatus;
 
@@ -292,7 +292,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @return <p>
      *         Provides the status of the latest document classifier version.
@@ -310,7 +310,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param latestVersionStatus <p>
      *            Provides the status of the latest document classifier version.
@@ -331,7 +331,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param latestVersionStatus <p>
      *            Provides the status of the latest document classifier version.
@@ -352,7 +352,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param latestVersionStatus <p>
      *            Provides the status of the latest document classifier version.
@@ -373,7 +373,7 @@ public class DocumentClassifierSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUBMITTED, TRAINING, DELETING, STOP_REQUESTED,
-     * STOPPED, IN_ERROR, TRAINED
+     * STOPPED, IN_ERROR, TRAINED, TRAINED_WITH_WARNING
      *
      * @param latestVersionStatus <p>
      *            Provides the status of the latest document classifier version.

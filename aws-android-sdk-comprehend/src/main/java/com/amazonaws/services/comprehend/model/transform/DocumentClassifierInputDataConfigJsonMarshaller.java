@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,6 +59,24 @@ class DocumentClassifierInputDataConfigJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (documentClassifierInputDataConfig.getDocumentType() != null) {
+            String documentType = documentClassifierInputDataConfig.getDocumentType();
+            jsonWriter.name("DocumentType");
+            jsonWriter.value(documentType);
+        }
+        if (documentClassifierInputDataConfig.getDocuments() != null) {
+            DocumentClassifierDocuments documents = documentClassifierInputDataConfig
+                    .getDocuments();
+            jsonWriter.name("Documents");
+            DocumentClassifierDocumentsJsonMarshaller.getInstance().marshall(documents, jsonWriter);
+        }
+        if (documentClassifierInputDataConfig.getDocumentReaderConfig() != null) {
+            DocumentReaderConfig documentReaderConfig = documentClassifierInputDataConfig
+                    .getDocumentReaderConfig();
+            jsonWriter.name("DocumentReaderConfig");
+            DocumentReaderConfigJsonMarshaller.getInstance().marshall(documentReaderConfig,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

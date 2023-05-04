@@ -1,0 +1,50 @@
+/*
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.comprehend.model.transform;
+
+import com.amazonaws.services.comprehend.model.*;
+import com.amazonaws.util.DateUtils;
+import com.amazonaws.util.json.AwsJsonWriter;
+
+/**
+ * JSON marshaller for POJO FlywheelIterationFilter
+ */
+class FlywheelIterationFilterJsonMarshaller {
+
+    public void marshall(FlywheelIterationFilter flywheelIterationFilter, AwsJsonWriter jsonWriter)
+            throws Exception {
+        jsonWriter.beginObject();
+        if (flywheelIterationFilter.getCreationTimeAfter() != null) {
+            java.util.Date creationTimeAfter = flywheelIterationFilter.getCreationTimeAfter();
+            jsonWriter.name("CreationTimeAfter");
+            jsonWriter.value(creationTimeAfter);
+        }
+        if (flywheelIterationFilter.getCreationTimeBefore() != null) {
+            java.util.Date creationTimeBefore = flywheelIterationFilter.getCreationTimeBefore();
+            jsonWriter.name("CreationTimeBefore");
+            jsonWriter.value(creationTimeBefore);
+        }
+        jsonWriter.endObject();
+    }
+
+    private static FlywheelIterationFilterJsonMarshaller instance;
+
+    public static FlywheelIterationFilterJsonMarshaller getInstance() {
+        if (instance == null)
+            instance = new FlywheelIterationFilterJsonMarshaller();
+        return instance;
+    }
+}

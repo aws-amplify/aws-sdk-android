@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,13 +33,6 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      * can contain a maximum of 25 documents. The maximum size of each document
      * is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      */
     private java.util.List<String> textList;
 
@@ -61,26 +54,12 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      * can contain a maximum of 25 documents. The maximum size of each document
      * is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      *
      * @return <p>
      *         A list containing the UTF-8 encoded text of the input documents.
      *         The list can contain a maximum of 25 documents. The maximum size
      *         of each document is 5 KB.
      *         </p>
-     *         <note>
-     *         <p>
-     *         Amazon Comprehend performs real-time sentiment analysis on the
-     *         first 500 characters of the input text and ignores any additional
-     *         text in the input.
-     *         </p>
-     *         </note>
      */
     public java.util.List<String> getTextList() {
         return textList;
@@ -92,26 +71,12 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      * can contain a maximum of 25 documents. The maximum size of each document
      * is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      *
      * @param textList <p>
      *            A list containing the UTF-8 encoded text of the input
      *            documents. The list can contain a maximum of 25 documents. The
      *            maximum size of each document is 5 KB.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Amazon Comprehend performs real-time sentiment analysis on the
-     *            first 500 characters of the input text and ignores any
-     *            additional text in the input.
-     *            </p>
-     *            </note>
      */
     public void setTextList(java.util.Collection<String> textList) {
         if (textList == null) {
@@ -128,13 +93,6 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      * can contain a maximum of 25 documents. The maximum size of each document
      * is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -144,13 +102,6 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      *            documents. The list can contain a maximum of 25 documents. The
      *            maximum size of each document is 5 KB.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Amazon Comprehend performs real-time sentiment analysis on the
-     *            first 500 characters of the input text and ignores any
-     *            additional text in the input.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -170,13 +121,6 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      * can contain a maximum of 25 documents. The maximum size of each document
      * is 5 KB.
      * </p>
-     * <note>
-     * <p>
-     * Amazon Comprehend performs real-time sentiment analysis on the first 500
-     * characters of the input text and ignores any additional text in the
-     * input.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -186,13 +130,6 @@ public class BatchDetectSentimentRequest extends AmazonWebServiceRequest impleme
      *            documents. The list can contain a maximum of 25 documents. The
      *            maximum size of each document is 5 KB.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Amazon Comprehend performs real-time sentiment analysis on the
-     *            first 500 characters of the input text and ignores any
-     *            additional text in the input.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
