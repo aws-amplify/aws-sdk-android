@@ -54,6 +54,20 @@ public class GetLabelDetectionResultJsonUnmarshaller implements
             } else if (name.equals("LabelModelVersion")) {
                 getLabelDetectionResult.setLabelModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getLabelDetectionResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getLabelDetectionResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getLabelDetectionResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("GetRequestMetadata")) {
+                getLabelDetectionResult
+                        .setGetRequestMetadata(GetLabelDetectionRequestMetadataJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

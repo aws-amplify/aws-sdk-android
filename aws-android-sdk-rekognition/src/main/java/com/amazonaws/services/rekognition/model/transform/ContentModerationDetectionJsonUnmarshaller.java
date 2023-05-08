@@ -43,6 +43,16 @@ class ContentModerationDetectionJsonUnmarshaller implements
                 contentModerationDetection.setModerationLabel(ModerationLabelJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartTimestampMillis")) {
+                contentModerationDetection.setStartTimestampMillis(LongJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EndTimestampMillis")) {
+                contentModerationDetection.setEndTimestampMillis(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DurationMillis")) {
+                contentModerationDetection.setDurationMillis(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

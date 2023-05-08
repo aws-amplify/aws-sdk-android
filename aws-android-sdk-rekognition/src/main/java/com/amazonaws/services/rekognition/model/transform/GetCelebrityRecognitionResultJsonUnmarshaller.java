@@ -53,6 +53,15 @@ public class GetCelebrityRecognitionResultJsonUnmarshaller implements
                                 CelebrityRecognitionJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getCelebrityRecognitionResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getCelebrityRecognitionResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getCelebrityRecognitionResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

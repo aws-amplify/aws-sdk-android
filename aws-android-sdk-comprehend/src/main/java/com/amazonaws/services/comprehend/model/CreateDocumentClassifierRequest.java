@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,12 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a new document classifier that you can use to categorize documents.
- * To create a classifier, you provide a set of training documents that labeled
- * with the categories that you want to use. After the classifier is trained you
- * can use it to categorize a set of labeled documents into the categories. For
- * more information, see <a href=
- * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
- * >Document Classification</a> in the Comprehend Developer Guide.
+ * To create a classifier, you provide a set of training documents that are
+ * labeled with the categories that you want to use. For more information, see
+ * <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/training-classifier-model.html"
+ * >Training classifier models</a> in the Comprehend Developer Guide.
  * </p>
  */
 public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest implements
@@ -48,7 +47,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * The version name given to the newly created classifier. Version names can
      * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
      * and underscores (_) are allowed. The version name must be unique among
-     * all models with the same classifier name in the account/AWS Region.
+     * all models with the same classifier name in the Amazon Web Services
+     * account/Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,8 +59,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,10 +71,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
@@ -88,8 +88,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Enables the addition of output results configuration parameters for
-     * custom classifier jobs.
+     * Specifies the location for the output files from a custom classifier job.
+     * This parameter is required for a request that creates a native classifier
+     * model.
      * </p>
      */
     private DocumentClassifierOutputDataConfig outputDataConfig;
@@ -108,10 +109,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -121,10 +121,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -174,9 +174,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -201,8 +200,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The resource-based policy to attach to your custom document classifier
-     * model. You can use this policy to allow another AWS account to import
-     * your custom model.
+     * model. You can use this policy to allow another Amazon Web Services
+     * account to import your custom model.
      * </p>
      * <p>
      * Provide your policy as a JSON body that you enter as a UTF-8 encoded
@@ -290,7 +289,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * The version name given to the newly created classifier. Version names can
      * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
      * and underscores (_) are allowed. The version name must be unique among
-     * all models with the same classifier name in the account/AWS Region.
+     * all models with the same classifier name in the Amazon Web Services
+     * account/Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,7 +302,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *         names can have a maximum of 256 characters. Alphanumeric
      *         characters, hyphens (-) and underscores (_) are allowed. The
      *         version name must be unique among all models with the same
-     *         classifier name in the account/AWS Region.
+     *         classifier name in the Amazon Web Services account/Amazon Web
+     *         Services Region.
      *         </p>
      */
     public String getVersionName() {
@@ -314,7 +315,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * The version name given to the newly created classifier. Version names can
      * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
      * and underscores (_) are allowed. The version name must be unique among
-     * all models with the same classifier name in the account/AWS Region.
+     * all models with the same classifier name in the Amazon Web Services
+     * account/Amazon Web Services Region.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -326,7 +328,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *            Version names can have a maximum of 256 characters.
      *            Alphanumeric characters, hyphens (-) and underscores (_) are
      *            allowed. The version name must be unique among all models with
-     *            the same classifier name in the account/AWS Region.
+     *            the same classifier name in the Amazon Web Services
+     *            account/Amazon Web Services Region.
      *            </p>
      */
     public void setVersionName(String versionName) {
@@ -338,7 +341,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * The version name given to the newly created classifier. Version names can
      * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
      * and underscores (_) are allowed. The version name must be unique among
-     * all models with the same classifier name in the account/AWS Region.
+     * all models with the same classifier name in the Amazon Web Services
+     * account/Amazon Web Services Region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -353,7 +357,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *            Version names can have a maximum of 256 characters.
      *            Alphanumeric characters, hyphens (-) and underscores (_) are
      *            allowed. The version name must be unique among all models with
-     *            the same classifier name in the account/AWS Region.
+     *            the same classifier name in the Amazon Web Services
+     *            account/Amazon Web Services Region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -365,8 +370,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -374,9 +379,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Management
-     *         (IAM) role that grants Amazon Comprehend read access to your
-     *         input data.
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend read access to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -385,8 +389,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -394,9 +398,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -405,8 +408,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
-     * role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -417,9 +420,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -431,17 +433,17 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the document classifier being created.
-     *         A tag is a key-value pair that adds as a metadata to a resource
-     *         used by Amazon Comprehend. For example, a tag with "Sales" as the
-     *         key might be added to a resource to indicate its use by the sales
+     *         Tags to associate with the document classifier. A tag is a
+     *         key-value pair that adds as a metadata to a resource used by
+     *         Amazon Comprehend. For example, a tag with "Sales" as the key
+     *         might be added to a resource to indicate its use by the sales
      *         department.
      *         </p>
      */
@@ -451,18 +453,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -476,21 +478,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -507,21 +509,21 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Tags to be associated with the document classifier being created. A tag
-     * is a key-value pair that adds as a metadata to a resource used by Amazon
-     * Comprehend. For example, a tag with "Sales" as the key might be added to
-     * a resource to indicate its use by the sales department.
+     * Tags to associate with the document classifier. A tag is a key-value pair
+     * that adds as a metadata to a resource used by Amazon Comprehend. For
+     * example, a tag with "Sales" as the key might be added to a resource to
+     * indicate its use by the sales department.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classifier being
-     *            created. A tag is a key-value pair that adds as a metadata to
-     *            a resource used by Amazon Comprehend. For example, a tag with
-     *            "Sales" as the key might be added to a resource to indicate
-     *            its use by the sales department.
+     *            Tags to associate with the document classifier. A tag is a
+     *            key-value pair that adds as a metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -581,13 +583,15 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Enables the addition of output results configuration parameters for
-     * custom classifier jobs.
+     * Specifies the location for the output files from a custom classifier job.
+     * This parameter is required for a request that creates a native classifier
+     * model.
      * </p>
      *
      * @return <p>
-     *         Enables the addition of output results configuration parameters
-     *         for custom classifier jobs.
+     *         Specifies the location for the output files from a custom
+     *         classifier job. This parameter is required for a request that
+     *         creates a native classifier model.
      *         </p>
      */
     public DocumentClassifierOutputDataConfig getOutputDataConfig() {
@@ -596,13 +600,15 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Enables the addition of output results configuration parameters for
-     * custom classifier jobs.
+     * Specifies the location for the output files from a custom classifier job.
+     * This parameter is required for a request that creates a native classifier
+     * model.
      * </p>
      *
      * @param outputDataConfig <p>
-     *            Enables the addition of output results configuration
-     *            parameters for custom classifier jobs.
+     *            Specifies the location for the output files from a custom
+     *            classifier job. This parameter is required for a request that
+     *            creates a native classifier model.
      *            </p>
      */
     public void setOutputDataConfig(DocumentClassifierOutputDataConfig outputDataConfig) {
@@ -611,16 +617,18 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Enables the addition of output results configuration parameters for
-     * custom classifier jobs.
+     * Specifies the location for the output files from a custom classifier job.
+     * This parameter is required for a request that creates a native classifier
+     * model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outputDataConfig <p>
-     *            Enables the addition of output results configuration
-     *            parameters for custom classifier jobs.
+     *            Specifies the location for the output files from a custom
+     *            classifier job. This parameter is required for a request that
+     *            creates a native classifier model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -696,10 +704,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -707,10 +714,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @return <p>
      *         The language of the input documents. You can specify any of the
-     *         following languages supported by Amazon Comprehend: German
-     *         ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *         ("it"), or Portuguese ("pt"). All documents must be in the same
-     *         language.
+     *         languages supported by Amazon Comprehend. All documents must be
+     *         in the same language.
      *         </p>
      * @see LanguageCode
      */
@@ -720,10 +725,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -731,10 +735,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -744,10 +746,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -758,10 +759,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -774,10 +773,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -785,10 +783,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @see LanguageCode
      */
@@ -798,10 +794,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The language of the input documents. You can specify any of the following
-     * languages supported by Amazon Comprehend: German ("de"), English ("en"),
-     * Spanish ("es"), French ("fr"), Italian ("it"), or Portuguese ("pt"). All
-     * documents must be in the same language.
+     * The language of the input documents. You can specify any of the languages
+     * supported by Amazon Comprehend. All documents must be in the same
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -812,10 +807,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param languageCode <p>
      *            The language of the input documents. You can specify any of
-     *            the following languages supported by Amazon Comprehend: German
-     *            ("de"), English ("en"), Spanish ("es"), French ("fr"), Italian
-     *            ("it"), or Portuguese ("pt"). All documents must be in the
-     *            same language.
+     *            the languages supported by Amazon Comprehend. All documents
+     *            must be in the same language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -828,10 +821,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -852,10 +845,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the analysis job. The
-     *         VolumeKmsKeyId can be either of the following formats:
+     *         ID for the Amazon Web Services Key Management Service (KMS) key
+     *         that Amazon Comprehend uses to encrypt data on the storage volume
+     *         attached to the ML compute instance(s) that process the analysis
+     *         job. The VolumeKmsKeyId can be either of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -877,10 +870,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -901,10 +894,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -927,10 +921,10 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -954,10 +948,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1204,9 +1199,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1227,9 +1221,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt trained custom models. The
-     *         ModelKmsKeyId can be either of the following formats:
+     *         ID for the KMS key that Amazon Comprehend uses to encrypt trained
+     *         custom models. The ModelKmsKeyId can be either of the following
+     *         formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -1251,9 +1245,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1274,9 +1267,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param modelKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt
+     *            trained custom models. The ModelKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1299,9 +1292,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
-     * the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt trained custom
+     * models. The ModelKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -1325,9 +1317,9 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param modelKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt trained custom models. The
-     *            ModelKmsKeyId can be either of the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt
+     *            trained custom models. The ModelKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1354,8 +1346,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The resource-based policy to attach to your custom document classifier
-     * model. You can use this policy to allow another AWS account to import
-     * your custom model.
+     * model. You can use this policy to allow another Amazon Web Services
+     * account to import your custom model.
      * </p>
      * <p>
      * Provide your policy as a JSON body that you enter as a UTF-8 encoded
@@ -1381,8 +1373,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @return <p>
      *         The resource-based policy to attach to your custom document
-     *         classifier model. You can use this policy to allow another AWS
-     *         account to import your custom model.
+     *         classifier model. You can use this policy to allow another Amazon
+     *         Web Services account to import your custom model.
      *         </p>
      *         <p>
      *         Provide your policy as a JSON body that you enter as a UTF-8
@@ -1410,8 +1402,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The resource-based policy to attach to your custom document classifier
-     * model. You can use this policy to allow another AWS account to import
-     * your custom model.
+     * model. You can use this policy to allow another Amazon Web Services
+     * account to import your custom model.
      * </p>
      * <p>
      * Provide your policy as a JSON body that you enter as a UTF-8 encoded
@@ -1437,8 +1429,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param modelPolicy <p>
      *            The resource-based policy to attach to your custom document
-     *            classifier model. You can use this policy to allow another AWS
-     *            account to import your custom model.
+     *            classifier model. You can use this policy to allow another
+     *            Amazon Web Services account to import your custom model.
      *            </p>
      *            <p>
      *            Provide your policy as a JSON body that you enter as a UTF-8
@@ -1466,8 +1458,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The resource-based policy to attach to your custom document classifier
-     * model. You can use this policy to allow another AWS account to import
-     * your custom model.
+     * model. You can use this policy to allow another Amazon Web Services
+     * account to import your custom model.
      * </p>
      * <p>
      * Provide your policy as a JSON body that you enter as a UTF-8 encoded
@@ -1496,8 +1488,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      *
      * @param modelPolicy <p>
      *            The resource-based policy to attach to your custom document
-     *            classifier model. You can use this policy to allow another AWS
-     *            account to import your custom model.
+     *            classifier model. You can use this policy to allow another
+     *            Amazon Web Services account to import your custom model.
      *            </p>
      *            <p>
      *            Provide your policy as a JSON body that you enter as a UTF-8

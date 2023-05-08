@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of a job, use
-     * this identifier with the operation.
+     * this identifier with the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -34,7 +35,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -51,7 +53,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -78,7 +81,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -92,7 +96,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of a job, use
-     * this identifier with the operation.
+     * this identifier with the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,7 +106,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *
      * @return <p>
      *         The identifier generated for the job. To get the status of a job,
-     *         use this identifier with the operation.
+     *         use this identifier with the
+     *         <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *         </p>
      */
     public String getJobId() {
@@ -111,7 +117,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of a job, use
-     * this identifier with the operation.
+     * this identifier with the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -120,7 +127,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of a
-     *            job, use this identifier with the operation.
+     *            job, use this identifier with the
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -130,7 +138,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
     /**
      * <p>
      * The identifier generated for the job. To get the status of a job, use
-     * this identifier with the operation.
+     * this identifier with the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -142,7 +151,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *
      * @param jobId <p>
      *            The identifier generated for the job. To get the status of a
-     *            job, use this identifier with the operation.
+     *            job, use this identifier with the
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -156,7 +166,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -173,13 +184,15 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the targeted sentiment
      *         detection job. It is a unique, fully qualified identifier for the
-     *         job. It includes the AWS account, Region, and the job ID. The
-     *         format of the ARN is as follows:
+     *         job. It includes the Amazon Web Services account, Amazon Web
+     *         Services Region, and the job ID. The format of the ARN is as
+     *         follows:
      *         </p>
      *         <p>
      *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -199,7 +212,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -216,13 +230,15 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the targeted sentiment
      *            detection job. It is a unique, fully qualified identifier for
-     *            the job. It includes the AWS account, Region, and the job ID.
-     *            The format of the ARN is as follows:
+     *            the job. It includes the Amazon Web Services account, Amazon
+     *            Web Services Region, and the job ID. The format of the ARN is
+     *            as follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -242,7 +258,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -262,13 +279,15 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the targeted sentiment
      *            detection job. It is a unique, fully qualified identifier for
-     *            the job. It includes the AWS account, Region, and the job ID.
-     *            The format of the ARN is as follows:
+     *            the job. It includes the Amazon Web Services account, Amazon
+     *            Web Services Region, and the job ID. The format of the ARN is
+     *            as follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -310,7 +329,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -343,7 +363,7 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *         <li>
      *         <p>
      *         FAILED - The job did not complete. To get details, use the
-     *         operation.
+     *         <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *         </p>
      *         </li>
      *         </ul>
@@ -376,7 +396,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -409,7 +430,7 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
-     *            operation.
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -442,7 +463,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -478,7 +500,7 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
-     *            operation.
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -514,7 +536,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -547,7 +570,7 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
-     *            operation.
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      *            </li>
      *            </ul>
@@ -580,7 +603,8 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * FAILED - The job did not complete. To get details, use the operation.
+     * FAILED - The job did not complete. To get details, use the
+     * <code>DescribeTargetedSentimentDetectionJob</code> operation.
      * </p>
      * </li>
      * </ul>
@@ -616,7 +640,7 @@ public class StartTargetedSentimentDetectionJobResult implements Serializable {
      *            <li>
      *            <p>
      *            FAILED - The job did not complete. To get details, use the
-     *            operation.
+     *            <code>DescribeTargetedSentimentDetectionJob</code> operation.
      *            </p>
      *            </li>
      *            </ul>

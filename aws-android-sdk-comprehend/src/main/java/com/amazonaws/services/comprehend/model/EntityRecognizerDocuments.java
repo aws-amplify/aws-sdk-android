@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the training documents for an
-     * entity recognizer are located. The URI must be in the same region as the
+     * entity recognizer are located. The URI must be in the same Region as the
      * API endpoint that you are calling.
      * </p>
      * <p>
@@ -39,8 +39,8 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the test documents for an entity
-     * recognizer are located. The URI must be in the same AWS Region as the API
-     * endpoint that you are calling.
+     * recognizer are located. The URI must be in the same Amazon Web Services
+     * Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +68,7 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the training documents for an
-     * entity recognizer are located. The URI must be in the same region as the
+     * entity recognizer are located. The URI must be in the same Region as the
      * API endpoint that you are calling.
      * </p>
      * <p>
@@ -79,7 +79,7 @@ public class EntityRecognizerDocuments implements Serializable {
      * @return <p>
      *         Specifies the Amazon S3 location where the training documents for
      *         an entity recognizer are located. The URI must be in the same
-     *         region as the API endpoint that you are calling.
+     *         Region as the API endpoint that you are calling.
      *         </p>
      */
     public String getS3Uri() {
@@ -89,7 +89,7 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the training documents for an
-     * entity recognizer are located. The URI must be in the same region as the
+     * entity recognizer are located. The URI must be in the same Region as the
      * API endpoint that you are calling.
      * </p>
      * <p>
@@ -100,7 +100,7 @@ public class EntityRecognizerDocuments implements Serializable {
      * @param s3Uri <p>
      *            Specifies the Amazon S3 location where the training documents
      *            for an entity recognizer are located. The URI must be in the
-     *            same region as the API endpoint that you are calling.
+     *            same Region as the API endpoint that you are calling.
      *            </p>
      */
     public void setS3Uri(String s3Uri) {
@@ -110,7 +110,7 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the training documents for an
-     * entity recognizer are located. The URI must be in the same region as the
+     * entity recognizer are located. The URI must be in the same Region as the
      * API endpoint that you are calling.
      * </p>
      * <p>
@@ -124,7 +124,7 @@ public class EntityRecognizerDocuments implements Serializable {
      * @param s3Uri <p>
      *            Specifies the Amazon S3 location where the training documents
      *            for an entity recognizer are located. The URI must be in the
-     *            same region as the API endpoint that you are calling.
+     *            same Region as the API endpoint that you are calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -137,8 +137,8 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the test documents for an entity
-     * recognizer are located. The URI must be in the same AWS Region as the API
-     * endpoint that you are calling.
+     * recognizer are located. The URI must be in the same Amazon Web Services
+     * Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,8 +147,8 @@ public class EntityRecognizerDocuments implements Serializable {
      *
      * @return <p>
      *         Specifies the Amazon S3 location where the test documents for an
-     *         entity recognizer are located. The URI must be in the same AWS
-     *         Region as the API endpoint that you are calling.
+     *         entity recognizer are located. The URI must be in the same Amazon
+     *         Web Services Region as the API endpoint that you are calling.
      *         </p>
      */
     public String getTestS3Uri() {
@@ -158,8 +158,8 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the test documents for an entity
-     * recognizer are located. The URI must be in the same AWS Region as the API
-     * endpoint that you are calling.
+     * recognizer are located. The URI must be in the same Amazon Web Services
+     * Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,7 +169,8 @@ public class EntityRecognizerDocuments implements Serializable {
      * @param testS3Uri <p>
      *            Specifies the Amazon S3 location where the test documents for
      *            an entity recognizer are located. The URI must be in the same
-     *            AWS Region as the API endpoint that you are calling.
+     *            Amazon Web Services Region as the API endpoint that you are
+     *            calling.
      *            </p>
      */
     public void setTestS3Uri(String testS3Uri) {
@@ -179,8 +180,8 @@ public class EntityRecognizerDocuments implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the test documents for an entity
-     * recognizer are located. The URI must be in the same AWS Region as the API
-     * endpoint that you are calling.
+     * recognizer are located. The URI must be in the same Amazon Web Services
+     * Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +194,8 @@ public class EntityRecognizerDocuments implements Serializable {
      * @param testS3Uri <p>
      *            Specifies the Amazon S3 location where the test documents for
      *            an entity recognizer are located. The URI must be in the same
-     *            AWS Region as the API endpoint that you are calling.
+     *            Amazon Web Services Region as the API endpoint that you are
+     *            calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

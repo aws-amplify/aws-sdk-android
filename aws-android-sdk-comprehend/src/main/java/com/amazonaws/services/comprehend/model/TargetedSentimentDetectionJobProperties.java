@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -55,7 +56,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -107,7 +109,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      */
     private InputDataConfig inputDataConfig;
@@ -132,8 +135,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,10 +147,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the targeted sentiment detection job. The
-     * VolumeKmsKeyId can be either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt the data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * targeted sentiment detection job. The VolumeKmsKeyId can be either of the
+     * following formats:
      * </p>
      * <ul>
      * <li>
@@ -243,7 +246,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -260,13 +264,15 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the targeted sentiment
      *         detection job. It is a unique, fully qualified identifier for the
-     *         job. It includes the AWS account, Region, and the job ID. The
-     *         format of the ARN is as follows:
+     *         job. It includes the Amazon Web Services account, Amazon Web
+     *         Services Region, and the job ID. The format of the ARN is as
+     *         follows:
      *         </p>
      *         <p>
      *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -286,7 +292,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -303,13 +310,15 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the targeted sentiment
      *            detection job. It is a unique, fully qualified identifier for
-     *            the job. It includes the AWS account, Region, and the job ID.
-     *            The format of the ARN is as follows:
+     *            the job. It includes the Amazon Web Services account, Amazon
+     *            Web Services Region, and the job ID. The format of the ARN is
+     *            as follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -329,7 +338,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the targeted sentiment detection job.
      * It is a unique, fully qualified identifier for the job. It includes the
-     * AWS account, Region, and the job ID. The format of the ARN is as follows:
+     * Amazon Web Services account, Amazon Web Services Region, and the job ID.
+     * The format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -349,13 +359,15 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the targeted sentiment
      *            detection job. It is a unique, fully qualified identifier for
-     *            the job. It includes the AWS account, Region, and the job ID.
-     *            The format of the ARN is as follows:
+     *            the job. It includes the Amazon Web Services account, Amazon
+     *            Web Services Region, and the job ID. The format of the ARN is
+     *            as follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:targeted-sentiment-detection-job/&lt;job-id&gt;</code>
@@ -699,11 +711,13 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @return <p>
-     *         The input properties for an inference job.
+     *         The input properties for an inference job. The document reader
+     *         config field applies only to non-text inputs for custom analysis.
      *         </p>
      */
     public InputDataConfig getInputDataConfig() {
@@ -712,11 +726,14 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      */
     public void setInputDataConfig(InputDataConfig inputDataConfig) {
@@ -725,14 +742,17 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The input properties for an inference job.
+     * The input properties for an inference job. The document reader config
+     * field applies only to non-text inputs for custom analysis.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inputDataConfig <p>
-     *            The input properties for an inference job.
+     *            The input properties for an inference job. The document reader
+     *            config field applies only to non-text inputs for custom
+     *            analysis.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -897,8 +917,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -906,8 +926,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) that gives Amazon Comprehend read
-     *         access to your input data.
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend read access to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -916,8 +936,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -925,8 +945,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) that gives Amazon Comprehend
-     *            read access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -935,8 +955,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) that gives Amazon Comprehend read access
-     * to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -947,8 +967,8 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) that gives Amazon Comprehend
-     *            read access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -960,10 +980,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the targeted sentiment detection job. The
-     * VolumeKmsKeyId can be either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt the data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * targeted sentiment detection job. The VolumeKmsKeyId can be either of the
+     * following formats:
      * </p>
      * <ul>
      * <li>
@@ -984,11 +1004,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the targeted sentiment
-     *         detection job. The VolumeKmsKeyId can be either of the following
-     *         formats:
+     *         ID for the KMS key that Amazon Comprehend uses to encrypt the
+     *         data on the storage volume attached to the ML compute instance(s)
+     *         that process the targeted sentiment detection job. The
+     *         VolumeKmsKeyId can be either of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -1010,10 +1029,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the targeted sentiment detection job. The
-     * VolumeKmsKeyId can be either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt the data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * targeted sentiment detection job. The VolumeKmsKeyId can be either of the
+     * following formats:
      * </p>
      * <ul>
      * <li>
@@ -1034,11 +1053,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the targeted
-     *            sentiment detection job. The VolumeKmsKeyId can be either of
-     *            the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt the
+     *            data on the storage volume attached to the ML compute
+     *            instance(s) that process the targeted sentiment detection job.
+     *            The VolumeKmsKeyId can be either of the following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -1061,10 +1079,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the targeted sentiment detection job. The
-     * VolumeKmsKeyId can be either of the following formats:
+     * ID for the KMS key that Amazon Comprehend uses to encrypt the data on the
+     * storage volume attached to the ML compute instance(s) that process the
+     * targeted sentiment detection job. The VolumeKmsKeyId can be either of the
+     * following formats:
      * </p>
      * <ul>
      * <li>
@@ -1088,11 +1106,10 @@ public class TargetedSentimentDetectionJobProperties implements Serializable {
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the targeted
-     *            sentiment detection job. The VolumeKmsKeyId can be either of
-     *            the following formats:
+     *            ID for the KMS key that Amazon Comprehend uses to encrypt the
+     *            data on the storage volume attached to the ML compute
+     *            instance(s) that process the targeted sentiment detection job.
+     *            The VolumeKmsKeyId can be either of the following formats:
      *            </p>
      *            <ul>
      *            <li>

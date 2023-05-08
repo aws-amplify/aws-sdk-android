@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,12 +43,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,10 +93,10 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -132,7 +131,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Tags to be associated with the key phrases detection job. A tag is a
+     * Tags to associate with the key phrases detection job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
@@ -234,12 +233,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -247,12 +245,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *         Management (IAM) role that grants Amazon Comprehend read access
-     *         to your input data. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *         >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-
-     *         managing-permissions.html#auth-role-permissions</a>.
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend read access to your input data. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     *         >Role-based permissions</a>.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -261,12 +258,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -274,12 +270,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *            >https://docs.aws.amazon.com/comprehend/latest/dg/access-
-     *            control-managing-permissions.html#auth-role-permissions</a>.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     *            >Role-based permissions</a>.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -288,12 +283,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     * >https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing
-     * -permissions.html#auth-role-permissions</a>.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     * >Role-based permissions</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -304,12 +298,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions"
-     *            >https://docs.aws.amazon.com/comprehend/latest/dg/access-
-     *            control-managing-permissions.html#auth-role-permissions</a>.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/comprehend/latest/dg/security_iam_id-based-policy-examples.html#auth-role-permissions"
+     *            >Role-based permissions</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -558,10 +551,10 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -582,10 +575,10 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the analysis job. The
-     *         VolumeKmsKeyId can be either of the following formats:
+     *         ID for the Amazon Web Services Key Management Service (KMS) key
+     *         that Amazon Comprehend uses to encrypt data on the storage volume
+     *         attached to the ML compute instance(s) that process the analysis
+     *         job. The VolumeKmsKeyId can be either of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -607,10 +600,10 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -631,10 +624,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -657,10 +651,10 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -684,10 +678,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -784,18 +779,17 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Tags to be associated with the key phrases detection job. A tag is a
+     * Tags to associate with the key phrases detection job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the key phrases detection job. A tag
-     *         is a key-value pair that adds metadata to a resource used by
-     *         Amazon Comprehend. For example, a tag with "Sales" as the key
-     *         might be added to a resource to indicate its use by the sales
-     *         department.
+     *         Tags to associate with the key phrases detection job. A tag is a
+     *         key-value pair that adds metadata to a resource used by Amazon
+     *         Comprehend. For example, a tag with "Sales" as the key might be
+     *         added to a resource to indicate its use by the sales department.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -804,18 +798,18 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Tags to be associated with the key phrases detection job. A tag is a
+     * Tags to associate with the key phrases detection job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the key phrases detection job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the key phrases detection job. A tag is
+     *            a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -829,7 +823,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Tags to be associated with the key phrases detection job. A tag is a
+     * Tags to associate with the key phrases detection job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
@@ -839,11 +833,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the key phrases detection job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the key phrases detection job. A tag is
+     *            a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -860,7 +854,7 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Tags to be associated with the key phrases detection job. A tag is a
+     * Tags to associate with the key phrases detection job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
@@ -870,11 +864,11 @@ public class StartKeyPhrasesDetectionJobRequest extends AmazonWebServiceRequest 
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the key phrases detection job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the key phrases detection job. A tag is
+     *            a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

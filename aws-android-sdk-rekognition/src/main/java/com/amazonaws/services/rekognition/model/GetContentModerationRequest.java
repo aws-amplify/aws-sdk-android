@@ -127,6 +127,18 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     */
+    private String aggregateBy;
+
+    /**
+     * <p>
      * The identifier for the inappropriate, unwanted, or offensive content
      * moderation job. Use <code>JobId</code> to identify the job in a
      * subsequent call to <code>GetContentModeration</code>.
@@ -488,6 +500,123 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @return <p>
+     *         Defines how to aggregate results of the StartContentModeration
+     *         request. Default aggregation option is TIMESTAMPS. SEGMENTS mode
+     *         aggregates moderation labels over time.
+     *         </p>
+     * @see ContentModerationAggregateBy
+     */
+    public String getAggregateBy() {
+        return aggregateBy;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate results of the StartContentModeration
+     *            request. Default aggregation option is TIMESTAMPS. SEGMENTS
+     *            mode aggregates moderation labels over time.
+     *            </p>
+     * @see ContentModerationAggregateBy
+     */
+    public void setAggregateBy(String aggregateBy) {
+        this.aggregateBy = aggregateBy;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate results of the StartContentModeration
+     *            request. Default aggregation option is TIMESTAMPS. SEGMENTS
+     *            mode aggregates moderation labels over time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContentModerationAggregateBy
+     */
+    public GetContentModerationRequest withAggregateBy(String aggregateBy) {
+        this.aggregateBy = aggregateBy;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate results of the StartContentModeration
+     *            request. Default aggregation option is TIMESTAMPS. SEGMENTS
+     *            mode aggregates moderation labels over time.
+     *            </p>
+     * @see ContentModerationAggregateBy
+     */
+    public void setAggregateBy(ContentModerationAggregateBy aggregateBy) {
+        this.aggregateBy = aggregateBy.toString();
+    }
+
+    /**
+     * <p>
+     * Defines how to aggregate results of the StartContentModeration request.
+     * Default aggregation option is TIMESTAMPS. SEGMENTS mode aggregates
+     * moderation labels over time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIMESTAMPS, SEGMENTS
+     *
+     * @param aggregateBy <p>
+     *            Defines how to aggregate results of the StartContentModeration
+     *            request. Default aggregation option is TIMESTAMPS. SEGMENTS
+     *            mode aggregates moderation labels over time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContentModerationAggregateBy
+     */
+    public GetContentModerationRequest withAggregateBy(ContentModerationAggregateBy aggregateBy) {
+        this.aggregateBy = aggregateBy.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -505,7 +634,9 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getSortBy() != null)
-            sb.append("SortBy: " + getSortBy());
+            sb.append("SortBy: " + getSortBy() + ",");
+        if (getAggregateBy() != null)
+            sb.append("AggregateBy: " + getAggregateBy());
         sb.append("}");
         return sb.toString();
     }
@@ -519,6 +650,8 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getSortBy() == null) ? 0 : getSortBy().hashCode());
+        hashCode = prime * hashCode
+                + ((getAggregateBy() == null) ? 0 : getAggregateBy().hashCode());
         return hashCode;
     }
 
@@ -550,6 +683,11 @@ public class GetContentModerationRequest extends AmazonWebServiceRequest impleme
         if (other.getSortBy() == null ^ this.getSortBy() == null)
             return false;
         if (other.getSortBy() != null && other.getSortBy().equals(this.getSortBy()) == false)
+            return false;
+        if (other.getAggregateBy() == null ^ this.getAggregateBy() == null)
+            return false;
+        if (other.getAggregateBy() != null
+                && other.getAggregateBy().equals(this.getAggregateBy()) == false)
             return false;
         return true;
     }

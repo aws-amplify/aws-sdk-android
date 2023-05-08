@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,8 +33,9 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the key phrase detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * unique, fully qualified identifier for the job. It includes the Amazon
+     * Web Services account, Amazon Web Services Region, and the job ID. The
+     * format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -51,7 +52,8 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      */
     private String jobArn;
 
@@ -155,8 +157,9 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the key phrase detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * unique, fully qualified identifier for the job. It includes the Amazon
+     * Web Services account, Amazon Web Services Region, and the job ID. The
+     * format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -173,13 +176,14 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the key phrase detection job.
      *         It is a unique, fully qualified identifier for the job. It
-     *         includes the AWS account, Region, and the job ID. The format of
-     *         the ARN is as follows:
+     *         includes the Amazon Web Services account, Amazon Web Services
+     *         Region, and the job ID. The format of the ARN is as follows:
      *         </p>
      *         <p>
      *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -198,8 +202,9 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the key phrase detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * unique, fully qualified identifier for the job. It includes the Amazon
+     * Web Services account, Amazon Web Services Region, and the job ID. The
+     * format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -216,13 +221,15 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the key phrase detection
      *            job. It is a unique, fully qualified identifier for the job.
-     *            It includes the AWS account, Region, and the job ID. The
-     *            format of the ARN is as follows:
+     *            It includes the Amazon Web Services account, Amazon Web
+     *            Services Region, and the job ID. The format of the ARN is as
+     *            follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -241,8 +248,9 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the key phrase detection job. It is a
-     * unique, fully qualified identifier for the job. It includes the AWS
-     * account, Region, and the job ID. The format of the ARN is as follows:
+     * unique, fully qualified identifier for the job. It includes the Amazon
+     * Web Services account, Amazon Web Services Region, and the job ID. The
+     * format of the ARN is as follows:
      * </p>
      * <p>
      * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>
@@ -262,13 +270,15 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
      * Z0-9-]{1,64}
-     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*((/dataset/[a-zA-Z0-9](-*[a-zA-Z0-
+     * 9])*)|(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*))?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the key phrase detection
      *            job. It is a unique, fully qualified identifier for the job.
-     *            It includes the AWS account, Region, and the job ID. The
-     *            format of the ARN is as follows:
+     *            It includes the Amazon Web Services account, Amazon Web
+     *            Services Region, and the job ID. The format of the ARN is as
+     *            follows:
      *            </p>
      *            <p>
      *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:key-phrases-detection-job/&lt;job-id&gt;</code>

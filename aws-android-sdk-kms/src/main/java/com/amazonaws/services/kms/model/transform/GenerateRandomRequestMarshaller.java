@@ -72,6 +72,11 @@ public class GenerateRandomRequestMarshaller implements
                 jsonWriter.name("CustomKeyStoreId");
                 jsonWriter.value(customKeyStoreId);
             }
+            if (generateRandomRequest.getRecipient() != null) {
+                RecipientInfo recipient = generateRandomRequest.getRecipient();
+                jsonWriter.name("Recipient");
+                RecipientInfoJsonMarshaller.getInstance().marshall(recipient, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

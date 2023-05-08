@@ -315,6 +315,12 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * Specifies that encryption context to use when the reencrypting the data.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * A destination encryption context is valid only when the destination KMS
      * key is a symmetric encryption KMS key. The standard ciphertext format for
@@ -1334,6 +1340,12 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * Specifies that encryption context to use when the reencrypting the data.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * A destination encryption context is valid only when the destination KMS
      * key is a symmetric encryption KMS key. The standard ciphertext format for
@@ -1359,6 +1371,13 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *         Specifies that encryption context to use when the reencrypting
      *         the data.
      *         </p>
+     *         <important>
+     *         <p>
+     *         Do not include confidential or sensitive information in this
+     *         field. This field may be displayed in plaintext in CloudTrail
+     *         logs and other output.
+     *         </p>
+     *         </important>
      *         <p>
      *         A destination encryption context is valid only when the
      *         destination KMS key is a symmetric encryption KMS key. The
@@ -1390,6 +1409,12 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * Specifies that encryption context to use when the reencrypting the data.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * A destination encryption context is valid only when the destination KMS
      * key is a symmetric encryption KMS key. The standard ciphertext format for
@@ -1415,6 +1440,13 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies that encryption context to use when the reencrypting
      *            the data.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            A destination encryption context is valid only when the
      *            destination KMS key is a symmetric encryption KMS key. The
@@ -1448,6 +1480,12 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * Specifies that encryption context to use when the reencrypting the data.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * A destination encryption context is valid only when the destination KMS
      * key is a symmetric encryption KMS key. The standard ciphertext format for
@@ -1476,6 +1514,13 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      *            Specifies that encryption context to use when the reencrypting
      *            the data.
      *            </p>
+     *            <important>
+     *            <p>
+     *            Do not include confidential or sensitive information in this
+     *            field. This field may be displayed in plaintext in CloudTrail
+     *            logs and other output.
+     *            </p>
+     *            </important>
      *            <p>
      *            A destination encryption context is valid only when the
      *            destination KMS key is a symmetric encryption KMS key. The
@@ -1512,6 +1557,12 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * Specifies that encryption context to use when the reencrypting the data.
      * </p>
+     * <important>
+     * <p>
+     * Do not include confidential or sensitive information in this field. This
+     * field may be displayed in plaintext in CloudTrail logs and other output.
+     * </p>
+     * </important>
      * <p>
      * A destination encryption context is valid only when the destination KMS
      * key is a symmetric encryption KMS key. The standard ciphertext format for

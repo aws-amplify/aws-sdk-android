@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,6 +41,25 @@ public class ClassifyDocumentResultJsonUnmarshaller implements
             } else if (name.equals("Labels")) {
                 classifyDocumentResult.setLabels(new ListUnmarshaller<DocumentLabel>(
                         DocumentLabelJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("DocumentMetadata")) {
+                classifyDocumentResult.setDocumentMetadata(DocumentMetadataJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DocumentType")) {
+                classifyDocumentResult.setDocumentType(new ListUnmarshaller<DocumentTypeListItem>(
+                        DocumentTypeListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Errors")) {
+                classifyDocumentResult.setErrors(new ListUnmarshaller<ErrorsListItem>(
+                        ErrorsListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Warnings")) {
+                classifyDocumentResult.setWarnings(new ListUnmarshaller<WarningsListItem>(
+                        WarningsListItemJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else {

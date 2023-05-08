@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the entity recognizer submitted with an entity recognizer.
+ * Describes the entity list submitted with an entity recognizer.
  * </p>
  */
 public class EntityRecognizerEntityList implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the entity list is located. The
-     * URI must be in the same region as the API endpoint that you are calling.
+     * URI must be in the same Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +38,7 @@ public class EntityRecognizerEntityList implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the entity list is located. The
-     * URI must be in the same region as the API endpoint that you are calling.
+     * URI must be in the same Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,7 +47,7 @@ public class EntityRecognizerEntityList implements Serializable {
      *
      * @return <p>
      *         Specifies the Amazon S3 location where the entity list is
-     *         located. The URI must be in the same region as the API endpoint
+     *         located. The URI must be in the same Region as the API endpoint
      *         that you are calling.
      *         </p>
      */
@@ -58,7 +58,7 @@ public class EntityRecognizerEntityList implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the entity list is located. The
-     * URI must be in the same region as the API endpoint that you are calling.
+     * URI must be in the same Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +67,7 @@ public class EntityRecognizerEntityList implements Serializable {
      *
      * @param s3Uri <p>
      *            Specifies the Amazon S3 location where the entity list is
-     *            located. The URI must be in the same region as the API
+     *            located. The URI must be in the same Region as the API
      *            endpoint that you are calling.
      *            </p>
      */
@@ -78,7 +78,7 @@ public class EntityRecognizerEntityList implements Serializable {
     /**
      * <p>
      * Specifies the Amazon S3 location where the entity list is located. The
-     * URI must be in the same region as the API endpoint that you are calling.
+     * URI must be in the same Region as the API endpoint that you are calling.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +90,7 @@ public class EntityRecognizerEntityList implements Serializable {
      *
      * @param s3Uri <p>
      *            Specifies the Amazon S3 location where the entity list is
-     *            located. The URI must be in the same region as the API
+     *            located. The URI must be in the same Region as the API
      *            endpoint that you are calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be

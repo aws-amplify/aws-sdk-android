@@ -99,6 +99,11 @@ public class GenerateDataKeyPairRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (generateDataKeyPairRequest.getRecipient() != null) {
+                RecipientInfo recipient = generateDataKeyPairRequest.getRecipient();
+                jsonWriter.name("Recipient");
+                RecipientInfoJsonMarshaller.getInstance().marshall(recipient, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

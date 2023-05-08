@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Starts an asynchronous document classification job. Use the operation to
- * track the progress of the job.
+ * Starts an asynchronous document classification job. Use the
+ * <code>DescribeDocumentClassificationJob</code> operation to track the
+ * progress of the job.
  * </p>
  */
 public class StartDocumentClassificationJobRequest extends AmazonWebServiceRequest implements
@@ -69,8 +70,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,10 +94,10 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -131,13 +132,27 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * Tags to be associated with the document classification job. A tag is a
+     * Tags to associate with the document classification job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel associated with the
+     * model to use.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String flywheelArn;
 
     /**
      * <p>
@@ -364,8 +379,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -373,9 +388,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *         Management (IAM) role that grants Amazon Comprehend read access
-     *         to your input data.
+     *         The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     *         Comprehend read access to your input data.
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -384,8 +398,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -393,9 +407,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -404,8 +417,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-     * (IAM) role that grants Amazon Comprehend read access to your input data.
+     * The Amazon Resource Name (ARN) of the IAM role that grants Amazon
+     * Comprehend read access to your input data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -416,9 +429,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Identity and Access
-     *            Management (IAM) role that grants Amazon Comprehend read
-     *            access to your input data.
+     *            The Amazon Resource Name (ARN) of the IAM role that grants
+     *            Amazon Comprehend read access to your input data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -493,10 +505,10 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -517,10 +529,10 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @return <p>
-     *         ID for the AWS Key Management Service (KMS) key that Amazon
-     *         Comprehend uses to encrypt data on the storage volume attached to
-     *         the ML compute instance(s) that process the analysis job. The
-     *         VolumeKmsKeyId can be either of the following formats:
+     *         ID for the Amazon Web Services Key Management Service (KMS) key
+     *         that Amazon Comprehend uses to encrypt data on the storage volume
+     *         attached to the ML compute instance(s) that process the analysis
+     *         job. The VolumeKmsKeyId can be either of the following formats:
      *         </p>
      *         <ul>
      *         <li>
@@ -542,10 +554,10 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -566,10 +578,11 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -592,10 +605,10 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
-     * uses to encrypt data on the storage volume attached to the ML compute
-     * instance(s) that process the analysis job. The VolumeKmsKeyId can be
-     * either of the following formats:
+     * ID for the Amazon Web Services Key Management Service (KMS) key that
+     * Amazon Comprehend uses to encrypt data on the storage volume attached to
+     * the ML compute instance(s) that process the analysis job. The
+     * VolumeKmsKeyId can be either of the following formats:
      * </p>
      * <ul>
      * <li>
@@ -619,10 +632,11 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * <b>Pattern: </b>^\p{ASCII}+$<br/>
      *
      * @param volumeKmsKeyId <p>
-     *            ID for the AWS Key Management Service (KMS) key that Amazon
-     *            Comprehend uses to encrypt data on the storage volume attached
-     *            to the ML compute instance(s) that process the analysis job.
-     *            The VolumeKmsKeyId can be either of the following formats:
+     *            ID for the Amazon Web Services Key Management Service (KMS)
+     *            key that Amazon Comprehend uses to encrypt data on the storage
+     *            volume attached to the ML compute instance(s) that process the
+     *            analysis job. The VolumeKmsKeyId can be either of the
+     *            following formats:
      *            </p>
      *            <ul>
      *            <li>
@@ -719,18 +733,17 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * Tags to be associated with the document classification job. A tag is a
+     * Tags to associate with the document classification job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @return <p>
-     *         Tags to be associated with the document classification job. A tag
-     *         is a key-value pair that adds metadata to a resource used by
-     *         Amazon Comprehend. For example, a tag with "Sales" as the key
-     *         might be added to a resource to indicate its use by the sales
-     *         department.
+     *         Tags to associate with the document classification job. A tag is
+     *         a key-value pair that adds metadata to a resource used by Amazon
+     *         Comprehend. For example, a tag with "Sales" as the key might be
+     *         added to a resource to indicate its use by the sales department.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -739,18 +752,18 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * Tags to be associated with the document classification job. A tag is a
+     * Tags to associate with the document classification job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
      * </p>
      *
      * @param tags <p>
-     *            Tags to be associated with the document classification job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the document classification job. A tag
+     *            is a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -764,7 +777,7 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * Tags to be associated with the document classification job. A tag is a
+     * Tags to associate with the document classification job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
@@ -774,11 +787,11 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classification job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the document classification job. A tag
+     *            is a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -795,7 +808,7 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * Tags to be associated with the document classification job. A tag is a
+     * Tags to associate with the document classification job. A tag is a
      * key-value pair that adds metadata to a resource used by Amazon
      * Comprehend. For example, a tag with "Sales" as the key might be added to
      * a resource to indicate its use by the sales department.
@@ -805,17 +818,86 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
      * together.
      *
      * @param tags <p>
-     *            Tags to be associated with the document classification job. A
-     *            tag is a key-value pair that adds metadata to a resource used
-     *            by Amazon Comprehend. For example, a tag with "Sales" as the
-     *            key might be added to a resource to indicate its use by the
-     *            sales department.
+     *            Tags to associate with the document classification job. A tag
+     *            is a key-value pair that adds metadata to a resource used by
+     *            Amazon Comprehend. For example, a tag with "Sales" as the key
+     *            might be added to a resource to indicate its use by the sales
+     *            department.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public StartDocumentClassificationJobRequest withTags(java.util.Collection<Tag> tags) {
         setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel associated with the
+     * model to use.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Number (ARN) of the flywheel associated with
+     *         the model to use.
+     *         </p>
+     */
+    public String getFlywheelArn() {
+        return flywheelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel associated with the
+     * model to use.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param flywheelArn <p>
+     *            The Amazon Resource Number (ARN) of the flywheel associated
+     *            with the model to use.
+     *            </p>
+     */
+    public void setFlywheelArn(String flywheelArn) {
+        this.flywheelArn = flywheelArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Number (ARN) of the flywheel associated with the
+     * model to use.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:flywheel
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param flywheelArn <p>
+     *            The Amazon Resource Number (ARN) of the flywheel associated
+     *            with the model to use.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentClassificationJobRequest withFlywheelArn(String flywheelArn) {
+        this.flywheelArn = flywheelArn;
         return this;
     }
 
@@ -847,7 +929,9 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
         if (getVpcConfig() != null)
             sb.append("VpcConfig: " + getVpcConfig() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getFlywheelArn() != null)
+            sb.append("FlywheelArn: " + getFlywheelArn());
         sb.append("}");
         return sb.toString();
     }
@@ -873,6 +957,8 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
         hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getFlywheelArn() == null) ? 0 : getFlywheelArn().hashCode());
         return hashCode;
     }
 
@@ -929,6 +1015,11 @@ public class StartDocumentClassificationJobRequest extends AmazonWebServiceReque
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getFlywheelArn() == null ^ this.getFlywheelArn() == null)
+            return false;
+        if (other.getFlywheelArn() != null
+                && other.getFlywheelArn().equals(this.getFlywheelArn()) == false)
             return false;
         return true;
     }

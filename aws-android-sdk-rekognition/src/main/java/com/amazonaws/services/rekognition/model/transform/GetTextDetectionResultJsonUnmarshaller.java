@@ -53,6 +53,15 @@ public class GetTextDetectionResultJsonUnmarshaller implements
             } else if (name.equals("TextModelVersion")) {
                 getTextDetectionResult.setTextModelVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobId")) {
+                getTextDetectionResult.setJobId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Video")) {
+                getTextDetectionResult.setVideo(VideoJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("JobTag")) {
+                getTextDetectionResult.setJobTag(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

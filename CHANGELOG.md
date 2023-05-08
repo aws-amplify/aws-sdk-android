@@ -1,3 +1,21 @@
+## [Release 2.68.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.68.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest ([#3266](https://github.com/aws-amplify/aws-sdk-android/issues/3266))
+- **aws-android-sdk-rekognition:** update models to latest ([#3267](https://github.com/aws-amplify/aws-sdk-android/issues/3267))
+- **aws-android-sdk-kms:** update models to latest ([#3269](https://github.com/aws-amplify/aws-sdk-android/issues/3269))
+- **aws-android-sdk-connect:** update models to latest ([#3275](https://github.com/aws-amplify/aws-sdk-android/issues/3275))
+- **aws-android-sdk-comprehend:** update models to latest ([#3248](https://github.com/aws-amplify/aws-sdk-android/issues/3248))
+
+### Bug Fixes
+- **kinesis:** KV WebRTC Storage module ([#3272](https://github.com/aws-amplify/aws-sdk-android/issues/3272))
+- **pinpoint:** Add null check to prevent NPE ([#3274](https://github.com/aws-amplify/aws-sdk-android/issues/3274))
+
+### Miscellaneous
+- kinesisvideowebrtcstorage models updates ([#3277](https://github.com/aws-amplify/aws-sdk-android/issues/3277))
+
+[See all changes between 2.67.0 and 2.68.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.67.0...release_v2.68.0)
+
 ## [Release 2.67.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.67.0)
 
 ### Features
