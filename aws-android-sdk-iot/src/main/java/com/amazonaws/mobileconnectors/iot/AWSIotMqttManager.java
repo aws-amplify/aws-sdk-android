@@ -2074,7 +2074,7 @@ public class AWSIotMqttManager {
      */
     private void fixTLSPre21(MqttConnectOptions options) {
         if (options.getSocketFactory() == null &&
-                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP
         ) {
             this.tls12SocketFactory = TLS12SocketFactory.createTLS12SocketFactory();
             options.setSocketFactory(tls12SocketFactory);
