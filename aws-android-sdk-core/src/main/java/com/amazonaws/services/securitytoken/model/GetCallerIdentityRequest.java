@@ -27,11 +27,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * No permissions are required to perform this operation. If an administrator
- * adds a policy to your IAM user or role that explicitly denies access to the
+ * attaches a policy to your identity that explicitly denies access to the
  * <code>sts:GetCallerIdentity</code> action, you can still perform this
  * operation. Permissions are not required because the same information is
- * returned when an IAM user or role is denied access. To view an example
- * response, see <a href=
+ * returned when access is denied. To view an example response, see <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_general.html#troubleshoot_general_access-denied-delete-mfa"
  * >I Am Not Authorized to Perform: iam:DeleteVirtualMFADevice</a> in the <i>IAM
  * User Guide</i>.
