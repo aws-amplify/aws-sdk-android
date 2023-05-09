@@ -4,7 +4,7 @@
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
 
-For new projects, we recommend using the latest v2 version of [AWS Amplify Library for Android](https://docs.amplify.aws/start/q/integration/android/) to quickly implement common app use cases like Authentication, Storage, Push Notifications and more that follow patterns idiomatic to Swift like async/await.
+For new projects, we recommend using the latest v2 version of [AWS Amplify Library for Android](https://docs.amplify.aws/start/q/integration/android/) to quickly implement common app use cases like Authentication, Storage, Push Notifications and more.
 
 Note: v2 of Amplify Library for Android (currently GA) is built on top of [the AWS SDK for Kotlin](https://github.com/awslabs/aws-sdk-kotlin). You can access this underlying SDK via the Escape Hatch from AWS Amplify.
 
