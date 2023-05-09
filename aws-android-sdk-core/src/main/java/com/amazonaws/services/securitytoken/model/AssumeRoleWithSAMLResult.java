@@ -125,7 +125,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </ul>
      * <p>
      * The combination of <code>NameQualifier</code> and <code>Subject</code>
-     * can be used to uniquely identify a federated user.
+     * can be used to uniquely identify a user.
      * </p>
      * <p>
      * The following pseudocode shows how the hash value is calculated:
@@ -680,7 +680,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </ul>
      * <p>
      * The combination of <code>NameQualifier</code> and <code>Subject</code>
-     * can be used to uniquely identify a federated user.
+     * can be used to uniquely identify a user.
      * </p>
      * <p>
      * The following pseudocode shows how the hash value is calculated:
@@ -712,8 +712,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *         </ul>
      *         <p>
      *         The combination of <code>NameQualifier</code> and
-     *         <code>Subject</code> can be used to uniquely identify a federated
-     *         user.
+     *         <code>Subject</code> can be used to uniquely identify a user.
      *         </p>
      *         <p>
      *         The following pseudocode shows how the hash value is calculated:
@@ -749,7 +748,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </ul>
      * <p>
      * The combination of <code>NameQualifier</code> and <code>Subject</code>
-     * can be used to uniquely identify a federated user.
+     * can be used to uniquely identify a user.
      * </p>
      * <p>
      * The following pseudocode shows how the hash value is calculated:
@@ -781,8 +780,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *            </ul>
      *            <p>
      *            The combination of <code>NameQualifier</code> and
-     *            <code>Subject</code> can be used to uniquely identify a
-     *            federated user.
+     *            <code>Subject</code> can be used to uniquely identify a user.
      *            </p>
      *            <p>
      *            The following pseudocode shows how the hash value is
@@ -819,7 +817,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </ul>
      * <p>
      * The combination of <code>NameQualifier</code> and <code>Subject</code>
-     * can be used to uniquely identify a federated user.
+     * can be used to uniquely identify a user.
      * </p>
      * <p>
      * The following pseudocode shows how the hash value is calculated:
@@ -854,8 +852,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *            </ul>
      *            <p>
      *            The combination of <code>NameQualifier</code> and
-     *            <code>Subject</code> can be used to uniquely identify a
-     *            federated user.
+     *            <code>Subject</code> can be used to uniquely identify a user.
      *            </p>
      *            <p>
      *            The following pseudocode shows how the hash value is

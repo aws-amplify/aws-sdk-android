@@ -62,10 +62,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Session Policies</a> in the <i>IAM User Guide</i>.
  * </p>
  * <p>
- * When you create a role, you create two policies: A role trust policy that
- * specifies <i>who</i> can assume the role and a permissions policy that
+ * When you create a role, you create two policies: a role trust policy that
+ * specifies <i>who</i> can assume the role, and a permissions policy that
  * specifies <i>what</i> can be done with the role. You specify the trusted
- * principal who is allowed to assume the role in the role trust policy.
+ * principal that is allowed to assume the role in the role trust policy.
  * </p>
  * <p>
  * To assume a role from a different account, your Amazon Web Services account
@@ -75,7 +75,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * A user who wants to access a role in a different account must also have
- * permissions that are delegated from the user account administrator. The
+ * permissions that are delegated from the account administrator. The
  * administrator must attach a policy that allows the user to call
  * <code>AssumeRole</code> for the ARN of the role in the other account.
  * </p>
