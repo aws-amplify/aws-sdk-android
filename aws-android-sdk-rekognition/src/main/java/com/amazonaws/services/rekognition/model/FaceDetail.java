@@ -187,6 +187,19 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
+     * <code>FaceOccluded</code> should return "true" with a high confidence
+     * score if a detected face’s eyes, nose, and mouth are partially captured
+     * or if they are covered by masks, dark sunglasses, cell phones, hands, or
+     * other objects. <code>FaceOccluded</code> should return "false" with a
+     * high confidence score if common occurrences that do not impact face
+     * verification are detected, such as eye glasses, lightly tinted
+     * sunglasses, strands of hair, and others.
+     * </p>
+     */
+    private FaceOccluded faceOccluded;
+
+    /**
+     * <p>
      * Bounding box of the face. Default attribute.
      * </p>
      *
@@ -1038,6 +1051,90 @@ public class FaceDetail implements Serializable {
     }
 
     /**
+     * <p>
+     * <code>FaceOccluded</code> should return "true" with a high confidence
+     * score if a detected face’s eyes, nose, and mouth are partially captured
+     * or if they are covered by masks, dark sunglasses, cell phones, hands, or
+     * other objects. <code>FaceOccluded</code> should return "false" with a
+     * high confidence score if common occurrences that do not impact face
+     * verification are detected, such as eye glasses, lightly tinted
+     * sunglasses, strands of hair, and others.
+     * </p>
+     *
+     * @return <p>
+     *         <code>FaceOccluded</code> should return "true" with a high
+     *         confidence score if a detected face’s eyes, nose, and mouth are
+     *         partially captured or if they are covered by masks, dark
+     *         sunglasses, cell phones, hands, or other objects.
+     *         <code>FaceOccluded</code> should return "false" with a high
+     *         confidence score if common occurrences that do not impact face
+     *         verification are detected, such as eye glasses, lightly tinted
+     *         sunglasses, strands of hair, and others.
+     *         </p>
+     */
+    public FaceOccluded getFaceOccluded() {
+        return faceOccluded;
+    }
+
+    /**
+     * <p>
+     * <code>FaceOccluded</code> should return "true" with a high confidence
+     * score if a detected face’s eyes, nose, and mouth are partially captured
+     * or if they are covered by masks, dark sunglasses, cell phones, hands, or
+     * other objects. <code>FaceOccluded</code> should return "false" with a
+     * high confidence score if common occurrences that do not impact face
+     * verification are detected, such as eye glasses, lightly tinted
+     * sunglasses, strands of hair, and others.
+     * </p>
+     *
+     * @param faceOccluded <p>
+     *            <code>FaceOccluded</code> should return "true" with a high
+     *            confidence score if a detected face’s eyes, nose, and mouth
+     *            are partially captured or if they are covered by masks, dark
+     *            sunglasses, cell phones, hands, or other objects.
+     *            <code>FaceOccluded</code> should return "false" with a high
+     *            confidence score if common occurrences that do not impact face
+     *            verification are detected, such as eye glasses, lightly tinted
+     *            sunglasses, strands of hair, and others.
+     *            </p>
+     */
+    public void setFaceOccluded(FaceOccluded faceOccluded) {
+        this.faceOccluded = faceOccluded;
+    }
+
+    /**
+     * <p>
+     * <code>FaceOccluded</code> should return "true" with a high confidence
+     * score if a detected face’s eyes, nose, and mouth are partially captured
+     * or if they are covered by masks, dark sunglasses, cell phones, hands, or
+     * other objects. <code>FaceOccluded</code> should return "false" with a
+     * high confidence score if common occurrences that do not impact face
+     * verification are detected, such as eye glasses, lightly tinted
+     * sunglasses, strands of hair, and others.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceOccluded <p>
+     *            <code>FaceOccluded</code> should return "true" with a high
+     *            confidence score if a detected face’s eyes, nose, and mouth
+     *            are partially captured or if they are covered by masks, dark
+     *            sunglasses, cell phones, hands, or other objects.
+     *            <code>FaceOccluded</code> should return "false" with a high
+     *            confidence score if common occurrences that do not impact face
+     *            verification are detected, such as eye glasses, lightly tinted
+     *            sunglasses, strands of hair, and others.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public FaceDetail withFaceOccluded(FaceOccluded faceOccluded) {
+        this.faceOccluded = faceOccluded;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1077,7 +1174,9 @@ public class FaceDetail implements Serializable {
         if (getQuality() != null)
             sb.append("Quality: " + getQuality() + ",");
         if (getConfidence() != null)
-            sb.append("Confidence: " + getConfidence());
+            sb.append("Confidence: " + getConfidence() + ",");
+        if (getFaceOccluded() != null)
+            sb.append("FaceOccluded: " + getFaceOccluded());
         sb.append("}");
         return sb.toString();
     }
@@ -1103,6 +1202,8 @@ public class FaceDetail implements Serializable {
         hashCode = prime * hashCode + ((getPose() == null) ? 0 : getPose().hashCode());
         hashCode = prime * hashCode + ((getQuality() == null) ? 0 : getQuality().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
+        hashCode = prime * hashCode
+                + ((getFaceOccluded() == null) ? 0 : getFaceOccluded().hashCode());
         return hashCode;
     }
 
@@ -1182,6 +1283,11 @@ public class FaceDetail implements Serializable {
             return false;
         if (other.getConfidence() != null
                 && other.getConfidence().equals(this.getConfidence()) == false)
+            return false;
+        if (other.getFaceOccluded() == null ^ this.getFaceOccluded() == null)
+            return false;
+        if (other.getFaceOccluded() != null
+                && other.getFaceOccluded().equals(this.getFaceOccluded()) == false)
             return false;
         return true;
     }
