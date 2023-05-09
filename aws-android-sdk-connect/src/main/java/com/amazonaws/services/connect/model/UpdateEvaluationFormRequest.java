@@ -22,9 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Updates details about a specific evaluation form version in the specified
- * Amazon Connect instance. An evaluation form must have a unique title within
- * an instance. Question and section identifiers cannot be duplicated within the
- * same evaluation form.
+ * Amazon Connect instance. Question and section identifiers cannot be
+ * duplicated within the same evaluation form.
  * </p>
  * <p>
  * This operation does not support partial updates. Instead it does a full
@@ -74,7 +73,7 @@ public class UpdateEvaluationFormRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -369,14 +368,14 @@ public class UpdateEvaluationFormRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 128<br/>
      *
      * @return <p>
-     *         A unique title of the evaluation form.
+     *         A title of the evaluation form.
      *         </p>
      */
     public String getTitle() {
@@ -385,14 +384,14 @@ public class UpdateEvaluationFormRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 128<br/>
      *
      * @param title <p>
-     *            A unique title of the evaluation form.
+     *            A title of the evaluation form.
      *            </p>
      */
     public void setTitle(String title) {
@@ -401,7 +400,7 @@ public class UpdateEvaluationFormRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -411,7 +410,7 @@ public class UpdateEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * <b>Length: </b>0 - 128<br/>
      *
      * @param title <p>
-     *            A unique title of the evaluation form.
+     *            A title of the evaluation form.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

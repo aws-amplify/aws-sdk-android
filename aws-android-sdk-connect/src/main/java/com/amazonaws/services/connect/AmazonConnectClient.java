@@ -1234,9 +1234,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * <p>
      * Creates an evaluation form in the specified Amazon Connect instance. The
      * form can be used to define questions related to agent performance, and
-     * create sections to organize such questions. An evaluation form must have
-     * a unique title within an instance. Question and section identifiers
-     * cannot be duplicated within the same evaluation form.
+     * create sections to organize such questions. Question and section
+     * identifiers cannot be duplicated within the same evaluation form.
      * </p>
      * 
      * @param createEvaluationFormRequest
@@ -1477,7 +1476,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * @return createParticipantResult The response from the CreateParticipant
      *         service method, as returned by Amazon Connect.
      * @throws InvalidRequestException
-     * @throws InvalidParameterException
      * @throws ResourceNotFoundException
      * @throws InternalServiceException
      * @throws ServiceQuotaExceededException
@@ -9240,9 +9238,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Updates details about a specific evaluation form version in the specified
-     * Amazon Connect instance. An evaluation form must have a unique title
-     * within an instance. Question and section identifiers cannot be duplicated
-     * within the same evaluation form.
+     * Amazon Connect instance. Question and section identifiers cannot be
+     * duplicated within the same evaluation form.
      * </p>
      * <p>
      * This operation does not support partial updates. Instead it does a full

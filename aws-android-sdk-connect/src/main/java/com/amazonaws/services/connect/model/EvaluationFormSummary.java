@@ -42,7 +42,7 @@ public class EvaluationFormSummary implements Serializable {
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -218,14 +218,14 @@ public class EvaluationFormSummary implements Serializable {
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 128<br/>
      *
      * @return <p>
-     *         A unique title of the evaluation form.
+     *         A title of the evaluation form.
      *         </p>
      */
     public String getTitle() {
@@ -234,14 +234,14 @@ public class EvaluationFormSummary implements Serializable {
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 128<br/>
      *
      * @param title <p>
-     *            A unique title of the evaluation form.
+     *            A title of the evaluation form.
      *            </p>
      */
     public void setTitle(String title) {
@@ -250,7 +250,7 @@ public class EvaluationFormSummary implements Serializable {
 
     /**
      * <p>
-     * A unique title of the evaluation form.
+     * A title of the evaluation form.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -260,7 +260,7 @@ public class EvaluationFormSummary implements Serializable {
      * <b>Length: </b>0 - 128<br/>
      *
      * @param title <p>
-     *            A unique title of the evaluation form.
+     *            A title of the evaluation form.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

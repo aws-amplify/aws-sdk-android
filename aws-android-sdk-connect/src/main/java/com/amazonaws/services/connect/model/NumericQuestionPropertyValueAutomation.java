@@ -39,13 +39,13 @@ import java.io.Serializable;
  * </li>
  * <li>
  * <p>
- * Percantages have a minimum value of 0 and maximum value of 100.
+ * Percentages have a minimum value of 0 and maximum value of 100.
  * </p>
  * </li>
  * <li>
  * <p>
  * <code>NUMBER_OF_INTERRUPTIONS</code> has a minimum value of 0 and maximum
- * value of 100.
+ * value of 1000.
  * </p>
  * </li>
  * </ul>
