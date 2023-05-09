@@ -55,12 +55,24 @@ public class UrlHttpClient implements HttpClient {
     private static final int BUFFER_SIZE_MULTIPLIER = 8;
     private final ClientConfiguration config;
 
+    // SocketFactory for Pre SDK 21 devices to enforce TLS 1.2
+    private final TLS12SocketFactory tls12SocketFactory;
+
+    // Cached SSLContext for connections using custom TrustManagers.
+    private SSLContext customTrustSSLContext = null;
+
+    // SocketFactory for Pre SDK 21 devices to enforce TLS 1.2 that also holds custom TrustManagers.
+    private TLS12SocketFactory customTrustTls12SocketFactory;
+
     /**
      * Constructor.
      * @param config the client config.
      */
     public UrlHttpClient(ClientConfiguration config) {
         this.config = config;
+
+        // will return null if SDK >= 21
+        tls12SocketFactory = TLS12SocketFactory.createTLS12SocketFactory();
     }
 
     @Override
@@ -279,26 +291,35 @@ public class UrlHttpClient implements HttpClient {
 
             if (config.getTrustManager() != null) {
                 enableCustomTrustManager(https);
+            } else if (tls12SocketFactory != null) {
+                TLS12SocketFactory.fixTLSPre21(https, tls12SocketFactory);
             }
         }
     }
 
-    private SSLContext sc = null;
-
     private void enableCustomTrustManager(HttpsURLConnection connection) {
-        if (sc == null) {
+        if (customTrustSSLContext == null) {
             final TrustManager[] customTrustManagers = new TrustManager[] {
                     config.getTrustManager()
             };
             try {
-                sc = SSLContext.getInstance("TLS");
-                sc.init(null, customTrustManagers, null);
+                customTrustSSLContext = SSLContext.getInstance("TLS");
+                customTrustSSLContext.init(null, customTrustManagers, null);
+
+                if (customTrustTls12SocketFactory == null) {
+                    customTrustTls12SocketFactory = TLS12SocketFactory
+                            .createTLS12SocketFactory(customTrustSSLContext);
+                }
             } catch (final GeneralSecurityException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        connection.setSSLSocketFactory(sc.getSocketFactory());
+        if (customTrustTls12SocketFactory != null) {
+            connection.setSSLSocketFactory(customTrustTls12SocketFactory);
+        } else {
+            connection.setSSLSocketFactory(customTrustSSLContext.getSocketFactory());
+        }
     }
 
     /*

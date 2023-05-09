@@ -34,6 +34,7 @@ import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.amazonaws.http.TLS12SocketFactory;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.AndroidPreferences;
@@ -48,11 +49,14 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * NotificationClientBase is the entry point into the Amazon Mobile Analytics SDK to
@@ -1081,7 +1085,11 @@ abstract class NotificationClientBase {
         @Override
         protected Bitmap doInBackground(String... urls) {
             try {
-                return BitmapFactory.decodeStream((new URL(urls[0])).openConnection().getInputStream());
+                URLConnection connection = new URL(urls[0]).openConnection();
+                if (connection instanceof HttpsURLConnection) {
+                    TLS12SocketFactory.fixTLSPre21((HttpsURLConnection) connection);
+                }
+                return BitmapFactory.decodeStream(connection.getInputStream());
             } catch (final IOException ex) {
                 log.error("Cannot download or find image for rich notification.", ex);
                 return null;
