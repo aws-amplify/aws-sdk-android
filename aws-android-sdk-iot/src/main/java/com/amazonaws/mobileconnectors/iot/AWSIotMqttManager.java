@@ -24,6 +24,7 @@ import android.text.TextUtils;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.SDKGlobalConfiguration;
 import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.http.TLS12SocketFactory;
 import com.amazonaws.regions.Region;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
@@ -229,10 +230,17 @@ public class AWSIotMqttManager {
         return metricsIsEnabled;
     }
     /**
-     * Holds client socket factory. Set upon initial connect then reused on
+     * Holds client socket factory for keystore connect. Set upon initial connect then reused on
      * reconnect.
      */
     private SocketFactory clientSocketFactory;
+
+
+    /**
+     * Holds cached SocketFactory for non-keystore connect calls on Android versions < 21
+     * Set upon initial connect then reused on reconnect.
+     */
+    private TLS12SocketFactory tls12SocketFactory;
     /**
      * Holds client provided AWS credentials provider.
      * Set upon initial connect.
@@ -1138,6 +1146,7 @@ public class AWSIotMqttManager {
     private void mqttConnect(MqttConnectOptions options) {
         LOGGER.debug("ready to do mqtt connect");
 
+        fixTLSPre21(options);
         options.setCleanSession(cleanSession);
         options.setKeepAliveInterval(userKeepAlive);
 
@@ -1323,6 +1332,8 @@ public class AWSIotMqttManager {
                 default:
                     handleConnectionFailure(new IllegalStateException("Unexpected value: " + authMode));
             }
+
+            fixTLSPre21(options);
 
             setupCallbackForMqttClient();
             try {
@@ -2054,5 +2065,19 @@ public class AWSIotMqttManager {
      */
     public boolean getSessionPresent() {
         return sessionPresent;
+    }
+
+    /**
+     * Injects a SocketFactory that supports TLSv1.2 on pre 21 devices.
+     * If a SocketFactory is already specified (ex keystore connect uses its own), call is ignored.
+     * @param options for connect call
+     */
+    private void fixTLSPre21(MqttConnectOptions options) {
+        if (options.getSocketFactory() == null &&
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP
+        ) {
+            this.tls12SocketFactory = TLS12SocketFactory.createTLS12SocketFactory();
+            options.setSocketFactory(tls12SocketFactory);
+        }
     }
 }
