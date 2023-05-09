@@ -84,6 +84,9 @@ class FaceDetailJsonUnmarshaller implements Unmarshaller<FaceDetail, JsonUnmarsh
             } else if (name.equals("Confidence")) {
                 faceDetail.setConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("FaceOccluded")) {
+                faceDetail.setFaceOccluded(FaceOccludedJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
