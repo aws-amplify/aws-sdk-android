@@ -41,12 +41,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * To learn more about Amazon Cognito, see <a href=
- * "https://docs.aws.amazon.com/mobile/sdkforandroid/developerguide/cognito-auth.html#d0e840"
- * >Amazon Cognito Overview</a> in <i>Amazon Web Services SDK for Android
- * Developer Guide</i> and <a href=
- * "https://docs.aws.amazon.com/mobile/sdkforios/developerguide/cognito-auth.html#d0e664"
- * >Amazon Cognito Overview</a> in the <i>Amazon Web Services SDK for iOS
- * Developer Guide</i>.
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html"
+ * >Amazon Cognito identity pools</a> in <i>Amazon Cognito Developer Guide</i>.
  * </p>
  * </note>
  * <p>
