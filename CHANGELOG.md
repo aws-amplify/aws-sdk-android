@@ -5,6 +5,9 @@
 - **aws-android-sdk-core:** update models to latest ([#3282](https://github.com/aws-amplify/aws-sdk-android/issues/3282))
 - **aws-android-sdk-connect:** update models to latest ([#3280](https://github.com/aws-amplify/aws-sdk-android/issues/3280))
 
+### Miscellaneous
+- Enable TLSv1.2 support for older devices ([#3258](https://github.com/aws-amplify/aws-sdk-android/issues/3258))
+
 [See all changes between 2.68.0 and 2.69.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.68.0...release_v2.69.0)
 
 ## [Release 2.68.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.68.0)
