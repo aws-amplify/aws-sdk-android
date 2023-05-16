@@ -27,6 +27,11 @@ public class MetricV2 implements Serializable {
      * <p>
      * The name of the metric.
      * </p>
+     * <important>
+     * <p>
+     * This parameter is required. The following Required = No is incorrect.
+     * </p>
+     * </important>
      */
     private String name;
 
@@ -48,10 +53,21 @@ public class MetricV2 implements Serializable {
      * <p>
      * The name of the metric.
      * </p>
+     * <important>
+     * <p>
+     * This parameter is required. The following Required = No is incorrect.
+     * </p>
+     * </important>
      *
      * @return <p>
      *         The name of the metric.
      *         </p>
+     *         <important>
+     *         <p>
+     *         This parameter is required. The following Required = No is
+     *         incorrect.
+     *         </p>
+     *         </important>
      */
     public String getName() {
         return name;
@@ -61,10 +77,21 @@ public class MetricV2 implements Serializable {
      * <p>
      * The name of the metric.
      * </p>
+     * <important>
+     * <p>
+     * This parameter is required. The following Required = No is incorrect.
+     * </p>
+     * </important>
      *
      * @param name <p>
      *            The name of the metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            This parameter is required. The following Required = No is
+     *            incorrect.
+     *            </p>
+     *            </important>
      */
     public void setName(String name) {
         this.name = name;
@@ -74,6 +101,11 @@ public class MetricV2 implements Serializable {
      * <p>
      * The name of the metric.
      * </p>
+     * <important>
+     * <p>
+     * This parameter is required. The following Required = No is incorrect.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -81,6 +113,12 @@ public class MetricV2 implements Serializable {
      * @param name <p>
      *            The name of the metric.
      *            </p>
+     *            <important>
+     *            <p>
+     *            This parameter is required. The following Required = No is
+     *            incorrect.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
