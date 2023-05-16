@@ -118,6 +118,11 @@ class FaceDetailJsonMarshaller {
             jsonWriter.name("FaceOccluded");
             FaceOccludedJsonMarshaller.getInstance().marshall(faceOccluded, jsonWriter);
         }
+        if (faceDetail.getEyeDirection() != null) {
+            EyeDirection eyeDirection = faceDetail.getEyeDirection();
+            jsonWriter.name("EyeDirection");
+            EyeDirectionJsonMarshaller.getInstance().marshall(eyeDirection, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

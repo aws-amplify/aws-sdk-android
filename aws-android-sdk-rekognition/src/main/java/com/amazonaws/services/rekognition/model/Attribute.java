@@ -28,6 +28,7 @@ public enum Attribute {
     AGE_RANGE("AGE_RANGE"),
     BEARD("BEARD"),
     EMOTIONS("EMOTIONS"),
+    EYE_DIRECTION("EYE_DIRECTION"),
     EYEGLASSES("EYEGLASSES"),
     EYES_OPEN("EYES_OPEN"),
     GENDER("GENDER"),
@@ -56,6 +57,7 @@ public enum Attribute {
         enumMap.put("AGE_RANGE", AGE_RANGE);
         enumMap.put("BEARD", BEARD);
         enumMap.put("EMOTIONS", EMOTIONS);
+        enumMap.put("EYE_DIRECTION", EYE_DIRECTION);
         enumMap.put("EYEGLASSES", EYEGLASSES);
         enumMap.put("EYES_OPEN", EYES_OPEN);
         enumMap.put("GENDER", GENDER);

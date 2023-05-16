@@ -200,6 +200,14 @@ public class FaceDetail implements Serializable {
 
     /**
      * <p>
+     * Indicates the direction the eyes are gazing in, as defined by pitch and
+     * yaw.
+     * </p>
+     */
+    private EyeDirection eyeDirection;
+
+    /**
+     * <p>
      * Bounding box of the face. Default attribute.
      * </p>
      *
@@ -1135,6 +1143,57 @@ public class FaceDetail implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates the direction the eyes are gazing in, as defined by pitch and
+     * yaw.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates the direction the eyes are gazing in, as defined by
+     *         pitch and yaw.
+     *         </p>
+     */
+    public EyeDirection getEyeDirection() {
+        return eyeDirection;
+    }
+
+    /**
+     * <p>
+     * Indicates the direction the eyes are gazing in, as defined by pitch and
+     * yaw.
+     * </p>
+     *
+     * @param eyeDirection <p>
+     *            Indicates the direction the eyes are gazing in, as defined by
+     *            pitch and yaw.
+     *            </p>
+     */
+    public void setEyeDirection(EyeDirection eyeDirection) {
+        this.eyeDirection = eyeDirection;
+    }
+
+    /**
+     * <p>
+     * Indicates the direction the eyes are gazing in, as defined by pitch and
+     * yaw.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param eyeDirection <p>
+     *            Indicates the direction the eyes are gazing in, as defined by
+     *            pitch and yaw.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public FaceDetail withEyeDirection(EyeDirection eyeDirection) {
+        this.eyeDirection = eyeDirection;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1176,7 +1235,9 @@ public class FaceDetail implements Serializable {
         if (getConfidence() != null)
             sb.append("Confidence: " + getConfidence() + ",");
         if (getFaceOccluded() != null)
-            sb.append("FaceOccluded: " + getFaceOccluded());
+            sb.append("FaceOccluded: " + getFaceOccluded() + ",");
+        if (getEyeDirection() != null)
+            sb.append("EyeDirection: " + getEyeDirection());
         sb.append("}");
         return sb.toString();
     }
@@ -1204,6 +1265,8 @@ public class FaceDetail implements Serializable {
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
         hashCode = prime * hashCode
                 + ((getFaceOccluded() == null) ? 0 : getFaceOccluded().hashCode());
+        hashCode = prime * hashCode
+                + ((getEyeDirection() == null) ? 0 : getEyeDirection().hashCode());
         return hashCode;
     }
 
@@ -1288,6 +1351,11 @@ public class FaceDetail implements Serializable {
             return false;
         if (other.getFaceOccluded() != null
                 && other.getFaceOccluded().equals(this.getFaceOccluded()) == false)
+            return false;
+        if (other.getEyeDirection() == null ^ this.getEyeDirection() == null)
+            return false;
+        if (other.getEyeDirection() != null
+                && other.getEyeDirection().equals(this.getEyeDirection()) == false)
             return false;
         return true;
     }
