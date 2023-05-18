@@ -1458,6 +1458,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Creates a prompt. For more information about prompts, such as supported
+     * file types and maximum length, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html"
+     * >Create prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.
+     * </p>
+     * 
+     * @param createPromptRequest
+     * @return A Java Future object containing the response from the
+     *         CreatePrompt service method, as returned by Amazon Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreatePromptResult> createPromptAsync(CreatePromptRequest createPromptRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a prompt. For more information about prompts, such as supported
+     * file types and maximum length, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html"
+     * >Create prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.
+     * </p>
+     * 
+     * @param createPromptRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreatePrompt service method, as returned by Amazon Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreatePromptResult> createPromptAsync(CreatePromptRequest createPromptRequest,
+            AsyncHandler<CreatePromptRequest, CreatePromptResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -2702,6 +2763,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
             DeleteIntegrationAssociationRequest deleteIntegrationAssociationRequest,
             AsyncHandler<DeleteIntegrationAssociationRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a prompt.
+     * </p>
+     * 
+     * @param deletePromptRequest
+     * @return A Java Future object containing the response from the
+     *         DeletePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deletePromptAsync(DeletePromptRequest deletePromptRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a prompt.
+     * </p>
+     * 
+     * @param deletePromptRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeletePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deletePromptAsync(DeletePromptRequest deletePromptRequest,
+            AsyncHandler<DeletePromptRequest, Void> asyncHandler) throws AmazonServiceException,
+            AmazonClientException;
 
     /**
      * <p>
@@ -3984,6 +4098,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribePhoneNumberResult> describePhoneNumberAsync(
             DescribePhoneNumberRequest describePhoneNumberRequest,
             AsyncHandler<DescribePhoneNumberRequest, DescribePhoneNumberResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the prompt.
+     * </p>
+     * 
+     * @param describePromptRequest
+     * @return A Java Future object containing the response from the
+     *         DescribePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribePromptResult> describePromptAsync(DescribePromptRequest describePromptRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the prompt.
+     * </p>
+     * 
+     * @param describePromptRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribePromptResult> describePromptAsync(DescribePromptRequest describePromptRequest,
+            AsyncHandler<DescribePromptRequest, DescribePromptResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -5649,6 +5816,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<GetMetricDataV2Result> getMetricDataV2Async(
             GetMetricDataV2Request getMetricDataV2Request,
             AsyncHandler<GetMetricDataV2Request, GetMetricDataV2Result> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the prompt file.
+     * </p>
+     * 
+     * @param getPromptFileRequest
+     * @return A Java Future object containing the response from the
+     *         GetPromptFile service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetPromptFileResult> getPromptFileAsync(GetPromptFileRequest getPromptFileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Gets the prompt file.
+     * </p>
+     * 
+     * @param getPromptFileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetPromptFile service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetPromptFileResult> getPromptFileAsync(GetPromptFileRequest getPromptFileRequest,
+            AsyncHandler<GetPromptFileRequest, GetPromptFileResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -11123,6 +11343,59 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<UpdatePhoneNumberResult> updatePhoneNumberAsync(
             UpdatePhoneNumberRequest updatePhoneNumberRequest,
             AsyncHandler<UpdatePhoneNumberRequest, UpdatePhoneNumberResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates a prompt.
+     * </p>
+     * 
+     * @param updatePromptRequest
+     * @return A Java Future object containing the response from the
+     *         UpdatePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdatePromptResult> updatePromptAsync(UpdatePromptRequest updatePromptRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates a prompt.
+     * </p>
+     * 
+     * @param updatePromptRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdatePrompt service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdatePromptResult> updatePromptAsync(UpdatePromptRequest updatePromptRequest,
+            AsyncHandler<UpdatePromptRequest, UpdatePromptResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
