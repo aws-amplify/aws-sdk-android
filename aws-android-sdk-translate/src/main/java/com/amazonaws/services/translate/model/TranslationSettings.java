@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Optional settings that configure the translation output. Use these settings
- * for real time translations and asynchronous translation jobs.
+ * Settings to configure your translation output, including the option to set
+ * the formality level of the output text and the option to mask profane words
+ * and phrases.
  * </p>
  */
 public class TranslationSettings implements Serializable {

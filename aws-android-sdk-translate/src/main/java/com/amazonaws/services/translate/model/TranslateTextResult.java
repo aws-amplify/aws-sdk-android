@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * Settings that configure the translation output.
+     * Optional settings that modify the translation output.
      * </p>
      */
     private TranslationSettings appliedSettings;
@@ -317,11 +317,11 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * Settings that configure the translation output.
+     * Optional settings that modify the translation output.
      * </p>
      *
      * @return <p>
-     *         Settings that configure the translation output.
+     *         Optional settings that modify the translation output.
      *         </p>
      */
     public TranslationSettings getAppliedSettings() {
@@ -330,11 +330,11 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * Settings that configure the translation output.
+     * Optional settings that modify the translation output.
      * </p>
      *
      * @param appliedSettings <p>
-     *            Settings that configure the translation output.
+     *            Optional settings that modify the translation output.
      *            </p>
      */
     public void setAppliedSettings(TranslationSettings appliedSettings) {
@@ -343,14 +343,14 @@ public class TranslateTextResult implements Serializable {
 
     /**
      * <p>
-     * Settings that configure the translation output.
+     * Optional settings that modify the translation output.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param appliedSettings <p>
-     *            Settings that configure the translation output.
+     *            Optional settings that modify the translation output.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
