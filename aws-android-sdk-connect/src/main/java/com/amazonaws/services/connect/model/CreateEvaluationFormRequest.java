@@ -47,7 +47,7 @@ public class CreateEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      */
     private String title;
 
@@ -172,7 +172,7 @@ public class CreateEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @return <p>
      *         A title of the evaluation form.
@@ -188,7 +188,7 @@ public class CreateEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @param title <p>
      *            A title of the evaluation form.
@@ -207,7 +207,7 @@ public class CreateEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @param title <p>
      *            A title of the evaluation form.

@@ -29,7 +29,7 @@ public class Evaluation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String evaluationId;
 
@@ -106,7 +106,7 @@ public class Evaluation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         A unique identifier for the contact evaluation.
@@ -122,7 +122,7 @@ public class Evaluation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationId <p>
      *            A unique identifier for the contact evaluation.
@@ -141,7 +141,7 @@ public class Evaluation implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationId <p>
      *            A unique identifier for the contact evaluation.

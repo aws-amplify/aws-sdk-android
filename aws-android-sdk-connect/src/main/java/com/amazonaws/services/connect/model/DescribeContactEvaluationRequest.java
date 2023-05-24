@@ -45,7 +45,7 @@ public class DescribeContactEvaluationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String evaluationId;
 
@@ -129,7 +129,7 @@ public class DescribeContactEvaluationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         A unique identifier for the contact evaluation.
@@ -145,7 +145,7 @@ public class DescribeContactEvaluationRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationId <p>
      *            A unique identifier for the contact evaluation.
@@ -164,7 +164,7 @@ public class DescribeContactEvaluationRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationId <p>
      *            A unique identifier for the contact evaluation.

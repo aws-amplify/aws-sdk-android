@@ -24,7 +24,7 @@ public class UpdateEvaluationFormResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String evaluationFormId;
 
@@ -51,7 +51,7 @@ public class UpdateEvaluationFormResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         The unique identifier for the evaluation form.
@@ -67,7 +67,7 @@ public class UpdateEvaluationFormResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            The unique identifier for the evaluation form.
@@ -86,7 +86,7 @@ public class UpdateEvaluationFormResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            The unique identifier for the evaluation form.

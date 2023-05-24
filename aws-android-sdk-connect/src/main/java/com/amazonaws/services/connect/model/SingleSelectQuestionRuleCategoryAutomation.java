@@ -54,7 +54,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      */
     private String optionRefId;
 
@@ -256,7 +256,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @return <p>
      *         The identifier of the answer option.
@@ -272,7 +272,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param optionRefId <p>
      *            The identifier of the answer option.
@@ -291,7 +291,7 @@ public class SingleSelectQuestionRuleCategoryAutomation implements Serializable 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param optionRefId <p>
      *            The identifier of the answer option.

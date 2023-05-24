@@ -30,7 +30,7 @@ public class EvaluationFormSingleSelectQuestionOption implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      */
     private String refId;
 
@@ -69,7 +69,7 @@ public class EvaluationFormSingleSelectQuestionOption implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @return <p>
      *         The identifier of the answer option. An identifier must be unique
@@ -87,7 +87,7 @@ public class EvaluationFormSingleSelectQuestionOption implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param refId <p>
      *            The identifier of the answer option. An identifier must be
@@ -108,7 +108,7 @@ public class EvaluationFormSingleSelectQuestionOption implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param refId <p>
      *            The identifier of the answer option. An identifier must be

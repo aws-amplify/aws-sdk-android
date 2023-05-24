@@ -21,23 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an evaluation form in the specified Amazon Connect instance.
+ * Updates a prompt.
  * </p>
- * <ul>
- * <li>
- * <p>
- * If the version property is provided, only the specified version of the
- * evaluation form is deleted.
- * </p>
- * </li>
- * <li>
- * <p>
- * If no version is provided, then the full form (all versions) is deleted.
- * </p>
- * </li>
- * </ul>
  */
-public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest implements Serializable {
+public class UpdatePromptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
@@ -53,23 +40,44 @@ public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private String evaluationFormId;
+    private String promptId;
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Length: </b>1 - 127<br/>
      */
-    private Integer evaluationFormVersion;
+    private String name;
+
+    /**
+     * <p>
+     * A description of the prompt.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     */
+    private String s3Uri;
 
     /**
      * <p>
@@ -140,116 +148,227 @@ public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteEvaluationFormRequest withInstanceId(String instanceId) {
+    public UpdatePromptRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The unique identifier for the evaluation form.
+     *         A unique identifier for the prompt.
      *         </p>
      */
-    public String getEvaluationFormId() {
-        return evaluationFormId;
+    public String getPromptId() {
+        return promptId;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param evaluationFormId <p>
-     *            The unique identifier for the evaluation form.
+     * @param promptId <p>
+     *            A unique identifier for the prompt.
      *            </p>
      */
-    public void setEvaluationFormId(String evaluationFormId) {
-        this.evaluationFormId = evaluationFormId;
+    public void setPromptId(String promptId) {
+        this.promptId = promptId;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param evaluationFormId <p>
-     *            The unique identifier for the evaluation form.
+     * @param promptId <p>
+     *            A unique identifier for the prompt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteEvaluationFormRequest withEvaluationFormId(String evaluationFormId) {
-        this.evaluationFormId = evaluationFormId;
+    public UpdatePromptRequest withPromptId(String promptId) {
+        this.promptId = promptId;
         return this;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The unique identifier for the evaluation form.
+     *         The name of the prompt.
      *         </p>
      */
-    public Integer getEvaluationFormVersion() {
-        return evaluationFormVersion;
+    public String getName() {
+        return name;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param evaluationFormVersion <p>
-     *            The unique identifier for the evaluation form.
+     * @param name <p>
+     *            The name of the prompt.
      *            </p>
      */
-    public void setEvaluationFormVersion(Integer evaluationFormVersion) {
-        this.evaluationFormVersion = evaluationFormVersion;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * <p>
-     * The unique identifier for the evaluation form.
+     * The name of the prompt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param evaluationFormVersion <p>
-     *            The unique identifier for the evaluation form.
+     * @param name <p>
+     *            The name of the prompt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteEvaluationFormRequest withEvaluationFormVersion(Integer evaluationFormVersion) {
-        this.evaluationFormVersion = evaluationFormVersion;
+    public UpdatePromptRequest withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A description of the prompt.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @return <p>
+     *         A description of the prompt.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * A description of the prompt.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @param description <p>
+     *            A description of the prompt.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * A description of the prompt.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @param description <p>
+     *            A description of the prompt.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdatePromptRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @return <p>
+     *         The URI for the S3 bucket where the prompt is stored.
+     *         </p>
+     */
+    public String getS3Uri() {
+        return s3Uri;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @param s3Uri <p>
+     *            The URI for the S3 bucket where the prompt is stored.
+     *            </p>
+     */
+    public void setS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @param s3Uri <p>
+     *            The URI for the S3 bucket where the prompt is stored.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdatePromptRequest withS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
         return this;
     }
 
@@ -266,10 +385,14 @@ public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest impleme
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getEvaluationFormId() != null)
-            sb.append("EvaluationFormId: " + getEvaluationFormId() + ",");
-        if (getEvaluationFormVersion() != null)
-            sb.append("EvaluationFormVersion: " + getEvaluationFormVersion());
+        if (getPromptId() != null)
+            sb.append("PromptId: " + getPromptId() + ",");
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getS3Uri() != null)
+            sb.append("S3Uri: " + getS3Uri());
         sb.append("}");
         return sb.toString();
     }
@@ -280,11 +403,11 @@ public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest impleme
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode + ((getPromptId() == null) ? 0 : getPromptId().hashCode());
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
-                + ((getEvaluationFormId() == null) ? 0 : getEvaluationFormId().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getEvaluationFormVersion() == null) ? 0 : getEvaluationFormVersion().hashCode());
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
         return hashCode;
     }
 
@@ -295,24 +418,31 @@ public class DeleteEvaluationFormRequest extends AmazonWebServiceRequest impleme
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteEvaluationFormRequest == false)
+        if (obj instanceof UpdatePromptRequest == false)
             return false;
-        DeleteEvaluationFormRequest other = (DeleteEvaluationFormRequest) obj;
+        UpdatePromptRequest other = (UpdatePromptRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getEvaluationFormId() == null ^ this.getEvaluationFormId() == null)
+        if (other.getPromptId() == null ^ this.getPromptId() == null)
             return false;
-        if (other.getEvaluationFormId() != null
-                && other.getEvaluationFormId().equals(this.getEvaluationFormId()) == false)
+        if (other.getPromptId() != null && other.getPromptId().equals(this.getPromptId()) == false)
             return false;
-        if (other.getEvaluationFormVersion() == null ^ this.getEvaluationFormVersion() == null)
+        if (other.getName() == null ^ this.getName() == null)
             return false;
-        if (other.getEvaluationFormVersion() != null
-                && other.getEvaluationFormVersion().equals(this.getEvaluationFormVersion()) == false)
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getS3Uri() == null ^ this.getS3Uri() == null)
+            return false;
+        if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
             return false;
         return true;
     }
