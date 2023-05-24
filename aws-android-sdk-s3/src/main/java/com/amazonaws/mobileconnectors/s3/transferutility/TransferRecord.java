@@ -28,6 +28,7 @@ import com.amazonaws.logging.LogFactory;
 
 import com.google.gson.Gson;
 
+import com.google.gson.JsonSyntaxException;
 import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -156,12 +157,18 @@ class TransferRecord {
         this.cannedAcl = c.getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_CANNED_ACL));
         this.headerStorageClass = c
                 .getString(c.getColumnIndexOrThrow(TransferTable.COLUMN_HEADER_STORAGE_CLASS));
-        this.transferUtilityOptions = gson.fromJson(c.getString(c
-                .getColumnIndexOrThrow(TransferTable.COLUMN_TRANSFER_UTILITY_OPTIONS)), TransferUtilityOptions.class);
+        String options = c.getString(c
+            .getColumnIndexOrThrow(TransferTable.COLUMN_TRANSFER_UTILITY_OPTIONS));
+        try {
+            this.transferUtilityOptions = gson.fromJson(options, TransferUtilityOptions.class);
+        } catch (JsonSyntaxException jsonSyntaxException) {
+            LOGGER.error(String.format("Failed to deserialize: %s, setting to default", options), jsonSyntaxException);
+            this.transferUtilityOptions = new TransferUtilityOptions();
+        }
     }
 
     /**
-     * Start a new transfer when 
+     * Start a new transfer when
      * 1) there is no existing transfer for the same transfer record
      * 2) the transfer is not completed
      * 3) the preferred network is available
@@ -172,12 +179,12 @@ class TransferRecord {
      * @param connManager the android network connectivity manager
      * @return Whether the task is running.
      */
-    public boolean start(final AmazonS3 s3, 
-                         final TransferDBUtil dbUtil, 
+    public boolean start(final AmazonS3 s3,
+                         final TransferDBUtil dbUtil,
                          final TransferStatusUpdater updater,
                          final ConnectivityManager connManager) {
-        if (!isRunning() && 
-            checkIsReadyToRun() && 
+        if (!isRunning() &&
+            checkIsReadyToRun() &&
             checkPreferredNetworkAvailability(updater, connManager)) {
             if (type.equals(TransferType.DOWNLOAD)) {
                 submittedTask = TransferThreadPool
@@ -222,10 +229,10 @@ class TransferRecord {
      * @return true if the transfer is running and is paused successfully, false
      *         otherwise
      */
-    boolean pauseIfRequiredForNetworkInterruption(final AmazonS3 s3, 
+    boolean pauseIfRequiredForNetworkInterruption(final AmazonS3 s3,
                                 final TransferStatusUpdater updater,
                                 final ConnectivityManager connManager) {
-        // Check if the transfer needs to be paused 
+        // Check if the transfer needs to be paused
         if (!checkPreferredNetworkAvailability(updater, connManager)) {
             // the preferred network is not available. pause the transfer.
             if (!isFinalState(state)) {
@@ -241,13 +248,13 @@ class TransferRecord {
 
     /**
      * Cancels a running transfer.
-     * 
+     *
      * @param s3 s3 instance
      * @param updater status updater
      * @return true if the transfer is running and is canceled successfully,
      *         false otherwise
      */
-    public boolean cancel(final AmazonS3 s3, 
+    public boolean cancel(final AmazonS3 s3,
                           final TransferStatusUpdater updater) {
         if (!isFinalState(state)) {
             // Update the state to PENDING_CANCEL in the TransferStatusUpdater
@@ -266,8 +273,8 @@ class TransferRecord {
                         try {
                             // abort the multi part upload operation
                             s3.abortMultipartUpload(
-                                new AbortMultipartUploadRequest(bucketName, 
-                                    key, 
+                                new AbortMultipartUploadRequest(bucketName,
+                                    key,
                                     multipartId));
                             LOGGER.debug("Successfully clean up multipart upload: " + id);
                         } catch (final AmazonClientException e) {
@@ -360,7 +367,7 @@ class TransferRecord {
     protected boolean checkPreferredNetworkAvailability(final TransferStatusUpdater updater,
                                                       final ConnectivityManager connManager) {
 
-        if (connManager == null) { 
+        if (connManager == null) {
             // Unable to get the details of the network, we will start the transfer.
             return true;
         }
