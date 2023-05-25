@@ -1,3 +1,16 @@
+## [Release 2.70.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.70.0)
+
+### Features
+- **aws-android-sdk-rekognition:** update models to latest ([#3290](https://github.com/aws-amplify/aws-sdk-android/issues/3290))
+- **aws-android-sdk-connect:** update models to latest ([#3287](https://github.com/aws-amplify/aws-sdk-android/issues/3287))
+- **aws-android-sdk-translate:** update models to latest ([#3298](https://github.com/aws-amplify/aws-sdk-android/issues/3298))
+- **aws-android-sdk-connect:** update models to latest ([#3300](https://github.com/aws-amplify/aws-sdk-android/issues/3300))
+
+### Bug Fixes
+- set transferUtilityOptions to default in case of deserialization exception ([#3296](https://github.com/aws-amplify/aws-sdk-android/issues/3296))
+
+[See all changes between 2.69.0 and 2.70.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.69.0...release_v2.70.0)
+
 ## [Release 2.69.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.69.0)
 
 ### Features
