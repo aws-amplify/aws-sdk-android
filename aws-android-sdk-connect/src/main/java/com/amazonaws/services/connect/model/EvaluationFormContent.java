@@ -39,7 +39,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String evaluationFormId;
 
@@ -56,7 +56,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      */
     private String title;
 
@@ -146,7 +146,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         The unique identifier for the evaluation form.
@@ -162,7 +162,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            The unique identifier for the evaluation form.
@@ -181,7 +181,7 @@ public class EvaluationFormContent implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            The unique identifier for the evaluation form.
@@ -247,7 +247,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @return <p>
      *         A title of the evaluation form.
@@ -263,7 +263,7 @@ public class EvaluationFormContent implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @param title <p>
      *            A title of the evaluation form.
@@ -282,7 +282,7 @@ public class EvaluationFormContent implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 128<br/>
+     * <b>Length: </b>1 - 128<br/>
      *
      * @param title <p>
      *            A title of the evaluation form.

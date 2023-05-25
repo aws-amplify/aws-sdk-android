@@ -736,6 +736,34 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Creates a prompt. For more information about prompts, such as supported
+     * file types and maximum length, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html"
+     * >Create prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.
+     * </p>
+     * 
+     * @param createPromptRequest
+     * @return createPromptResult The response from the CreatePrompt service
+     *         method, as returned by Amazon Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreatePromptResult createPrompt(CreatePromptRequest createPromptRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -1289,6 +1317,28 @@ public interface AmazonConnect {
     void deleteIntegrationAssociation(
             DeleteIntegrationAssociationRequest deleteIntegrationAssociationRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a prompt.
+     * </p>
+     * 
+     * @param deletePromptRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deletePrompt(DeletePromptRequest deletePromptRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1861,6 +1911,30 @@ public interface AmazonConnect {
     DescribePhoneNumberResult describePhoneNumber(
             DescribePhoneNumberRequest describePhoneNumberRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes the prompt.
+     * </p>
+     * 
+     * @param describePromptRequest
+     * @return describePromptResult The response from the DescribePrompt service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribePromptResult describePrompt(DescribePromptRequest describePromptRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2597,6 +2671,30 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     GetMetricDataV2Result getMetricDataV2(GetMetricDataV2Request getMetricDataV2Request)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets the prompt file.
+     * </p>
+     * 
+     * @param getPromptFileRequest
+     * @return getPromptFileResult The response from the GetPromptFile service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetPromptFileResult getPromptFile(GetPromptFileRequest getPromptFileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -5107,6 +5205,30 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     UpdatePhoneNumberResult updatePhoneNumber(UpdatePhoneNumberRequest updatePhoneNumberRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a prompt.
+     * </p>
+     * 
+     * @param updatePromptRequest
+     * @return updatePromptResult The response from the UpdatePrompt service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdatePromptResult updatePrompt(UpdatePromptRequest updatePromptRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

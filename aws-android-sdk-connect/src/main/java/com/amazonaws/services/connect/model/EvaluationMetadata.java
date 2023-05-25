@@ -47,7 +47,7 @@ public class EvaluationMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String contactAgentId;
 
@@ -171,7 +171,7 @@ public class EvaluationMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         The identifier of the agent who performed the contact.
@@ -187,7 +187,7 @@ public class EvaluationMetadata implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param contactAgentId <p>
      *            The identifier of the agent who performed the contact.
@@ -206,7 +206,7 @@ public class EvaluationMetadata implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param contactAgentId <p>
      *            The identifier of the agent who performed the contact.

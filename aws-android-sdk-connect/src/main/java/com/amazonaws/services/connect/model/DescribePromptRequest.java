@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a contact evaluation in the specified Amazon Connect instance.
+ * Describes the prompt.
  * </p>
  */
-public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest implements Serializable {
+public class DescribePromptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
@@ -40,13 +40,13 @@ public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private String evaluationId;
+    private String promptId;
 
     /**
      * <p>
@@ -117,62 +117,62 @@ public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteContactEvaluationRequest withInstanceId(String instanceId) {
+    public DescribePromptRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         A unique identifier for the contact evaluation.
+     *         A unique identifier for the prompt.
      *         </p>
      */
-    public String getEvaluationId() {
-        return evaluationId;
+    public String getPromptId() {
+        return promptId;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param evaluationId <p>
-     *            A unique identifier for the contact evaluation.
+     * @param promptId <p>
+     *            A unique identifier for the prompt.
      *            </p>
      */
-    public void setEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId;
+    public void setPromptId(String promptId) {
+        this.promptId = promptId;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * A unique identifier for the prompt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param evaluationId <p>
-     *            A unique identifier for the contact evaluation.
+     * @param promptId <p>
+     *            A unique identifier for the prompt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteContactEvaluationRequest withEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId;
+    public DescribePromptRequest withPromptId(String promptId) {
+        this.promptId = promptId;
         return this;
     }
 
@@ -189,8 +189,8 @@ public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest impl
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getEvaluationId() != null)
-            sb.append("EvaluationId: " + getEvaluationId());
+        if (getPromptId() != null)
+            sb.append("PromptId: " + getPromptId());
         sb.append("}");
         return sb.toString();
     }
@@ -201,8 +201,7 @@ public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest impl
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime * hashCode
-                + ((getEvaluationId() == null) ? 0 : getEvaluationId().hashCode());
+        hashCode = prime * hashCode + ((getPromptId() == null) ? 0 : getPromptId().hashCode());
         return hashCode;
     }
 
@@ -213,19 +212,18 @@ public class DeleteContactEvaluationRequest extends AmazonWebServiceRequest impl
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteContactEvaluationRequest == false)
+        if (obj instanceof DescribePromptRequest == false)
             return false;
-        DeleteContactEvaluationRequest other = (DeleteContactEvaluationRequest) obj;
+        DescribePromptRequest other = (DescribePromptRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getEvaluationId() == null ^ this.getEvaluationId() == null)
+        if (other.getPromptId() == null ^ this.getPromptId() == null)
             return false;
-        if (other.getEvaluationId() != null
-                && other.getEvaluationId().equals(this.getEvaluationId()) == false)
+        if (other.getPromptId() != null && other.getPromptId().equals(this.getPromptId()) == false)
             return false;
         return true;
     }

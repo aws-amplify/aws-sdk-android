@@ -42,7 +42,7 @@ public class EvaluationFormSection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      */
     private String refId;
 
@@ -134,7 +134,7 @@ public class EvaluationFormSection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @return <p>
      *         The identifier of the section. An identifier must be unique
@@ -152,7 +152,7 @@ public class EvaluationFormSection implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param refId <p>
      *            The identifier of the section. An identifier must be unique
@@ -173,7 +173,7 @@ public class EvaluationFormSection implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param refId <p>
      *            The identifier of the section. An identifier must be unique

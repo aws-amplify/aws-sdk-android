@@ -46,7 +46,7 @@ public class DescribeEvaluationFormRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String evaluationFormId;
 
@@ -140,7 +140,7 @@ public class DescribeEvaluationFormRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         A unique identifier for the contact evaluation.
@@ -156,7 +156,7 @@ public class DescribeEvaluationFormRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            A unique identifier for the contact evaluation.
@@ -175,7 +175,7 @@ public class DescribeEvaluationFormRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 50<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param evaluationFormId <p>
      *            A unique identifier for the contact evaluation.

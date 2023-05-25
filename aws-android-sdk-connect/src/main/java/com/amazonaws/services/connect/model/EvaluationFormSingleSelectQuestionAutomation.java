@@ -40,7 +40,7 @@ public class EvaluationFormSingleSelectQuestionAutomation implements Serializabl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      */
     private String defaultOptionRefId;
 
@@ -130,7 +130,7 @@ public class EvaluationFormSingleSelectQuestionAutomation implements Serializabl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @return <p>
      *         The identifier of the default answer option, when none of the
@@ -148,7 +148,7 @@ public class EvaluationFormSingleSelectQuestionAutomation implements Serializabl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param defaultOptionRefId <p>
      *            The identifier of the default answer option, when none of the
@@ -169,7 +169,7 @@ public class EvaluationFormSingleSelectQuestionAutomation implements Serializabl
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 40<br/>
+     * <b>Length: </b>1 - 40<br/>
      *
      * @param defaultOptionRefId <p>
      *            The identifier of the default answer option, when none of the

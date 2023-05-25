@@ -21,18 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Submits a contact evaluation in the specified Amazon Connect instance.
- * Answers included in the request are merged with existing answers for the
- * given evaluation. If no answers or notes are passed, the evaluation is
- * submitted with the existing answers and notes. You can delete an answer or
- * note by passing an empty object (<code>{}</code>) to the question identifier.
- * </p>
- * <p>
- * If a contact evaluation is already in submitted state, this operation will
- * trigger a resubmission.
+ * Creates a prompt. For more information about prompts, such as supported file
+ * types and maximum length, see <a
+ * href="https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html"
+ * >Create prompts</a> in the <i>Amazon Connect Administrator's Guide</i>.
  * </p>
  */
-public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest implements Serializable {
+public class CreatePromptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
@@ -48,27 +43,42 @@ public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 127<br/>
      */
-    private String evaluationId;
+    private String name;
 
     /**
      * <p>
-     * A map of question identifiers to answer value.
+     * The description of the prompt.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
      */
-    private java.util.Map<String, EvaluationAnswerInput> answers;
+    private String description;
 
     /**
      * <p>
-     * A map of question identifiers to note value.
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     */
+    private String s3Uri;
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
-    private java.util.Map<String, EvaluationNote> notes;
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -139,224 +149,263 @@ public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SubmitContactEvaluationRequest withInstanceId(String instanceId) {
+    public CreatePromptRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         A unique identifier for the contact evaluation.
+     *         The name of the prompt.
      *         </p>
      */
-    public String getEvaluationId() {
-        return evaluationId;
+    public String getName() {
+        return name;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * The name of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param evaluationId <p>
-     *            A unique identifier for the contact evaluation.
+     * @param name <p>
+     *            The name of the prompt.
      *            </p>
      */
-    public void setEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
      * <p>
-     * A unique identifier for the contact evaluation.
+     * The name of the prompt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 500<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param evaluationId <p>
-     *            A unique identifier for the contact evaluation.
+     * @param name <p>
+     *            The name of the prompt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SubmitContactEvaluationRequest withEvaluationId(String evaluationId) {
-        this.evaluationId = evaluationId;
+    public CreatePromptRequest withName(String name) {
+        this.name = name;
         return this;
     }
 
     /**
      * <p>
-     * A map of question identifiers to answer value.
+     * The description of the prompt.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @return <p>
+     *         The description of the prompt.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The description of the prompt.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @param description <p>
+     *            The description of the prompt.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The description of the prompt.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 250<br/>
+     *
+     * @param description <p>
+     *            The description of the prompt.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreatePromptRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @return <p>
+     *         The URI for the S3 bucket where the prompt is stored.
+     *         </p>
+     */
+    public String getS3Uri() {
+        return s3Uri;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @param s3Uri <p>
+     *            The URI for the S3 bucket where the prompt is stored.
+     *            </p>
+     */
+    public void setS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
+    }
+
+    /**
+     * <p>
+     * The URI for the S3 bucket where the prompt is stored.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 512<br/>
+     * <b>Pattern: </b>s3://\S+/.+<br/>
+     *
+     * @param s3Uri <p>
+     *            The URI for the S3 bucket where the prompt is stored.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreatePromptRequest withS3Uri(String s3Uri) {
+        this.s3Uri = s3Uri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
-     *         A map of question identifiers to answer value.
+     *         The tags used to organize, track, or control access for this
+     *         resource. For example, { "tags": {"key1":"value1",
+     *         "key2":"value2"} }.
      *         </p>
      */
-    public java.util.Map<String, EvaluationAnswerInput> getAnswers() {
-        return answers;
+    public java.util.Map<String, String> getTags() {
+        return tags;
     }
 
     /**
      * <p>
-     * A map of question identifiers to answer value.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
-     * @param answers <p>
-     *            A map of question identifiers to answer value.
+     * @param tags <p>
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      */
-    public void setAnswers(java.util.Map<String, EvaluationAnswerInput> answers) {
-        this.answers = answers;
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
     }
 
     /**
      * <p>
-     * A map of question identifiers to answer value.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param answers <p>
-     *            A map of question identifiers to answer value.
+     * @param tags <p>
+     *            The tags used to organize, track, or control access for this
+     *            resource. For example, { "tags": {"key1":"value1",
+     *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SubmitContactEvaluationRequest withAnswers(
-            java.util.Map<String, EvaluationAnswerInput> answers) {
-        this.answers = answers;
+    public CreatePromptRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
         return this;
     }
 
     /**
      * <p>
-     * A map of question identifiers to answer value.
+     * The tags used to organize, track, or control access for this resource.
+     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
-     * The method adds a new key-value pair into Answers parameter, and returns
-     * a reference to this object so that method calls can be chained together.
-     *
-     * @param key The key of the entry to be added into Answers.
-     * @param value The corresponding value of the entry to be added into
-     *            Answers.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SubmitContactEvaluationRequest addAnswersEntry(String key, EvaluationAnswerInput value) {
-        if (null == this.answers) {
-            this.answers = new java.util.HashMap<String, EvaluationAnswerInput>();
-        }
-        if (this.answers.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.answers.put(key, value);
-        return this;
-    }
-
-    /**
-     * Removes all the entries added into Answers.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     */
-    public SubmitContactEvaluationRequest clearAnswersEntries() {
-        this.answers = null;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A map of question identifiers to note value.
-     * </p>
-     *
-     * @return <p>
-     *         A map of question identifiers to note value.
-     *         </p>
-     */
-    public java.util.Map<String, EvaluationNote> getNotes() {
-        return notes;
-    }
-
-    /**
-     * <p>
-     * A map of question identifiers to note value.
-     * </p>
-     *
-     * @param notes <p>
-     *            A map of question identifiers to note value.
-     *            </p>
-     */
-    public void setNotes(java.util.Map<String, EvaluationNote> notes) {
-        this.notes = notes;
-    }
-
-    /**
-     * <p>
-     * A map of question identifiers to note value.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param notes <p>
-     *            A map of question identifiers to note value.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SubmitContactEvaluationRequest withNotes(java.util.Map<String, EvaluationNote> notes) {
-        this.notes = notes;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A map of question identifiers to note value.
-     * </p>
-     * <p>
-     * The method adds a new key-value pair into Notes parameter, and returns a
+     * The method adds a new key-value pair into Tags parameter, and returns a
      * reference to this object so that method calls can be chained together.
      *
-     * @param key The key of the entry to be added into Notes.
-     * @param value The corresponding value of the entry to be added into Notes.
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SubmitContactEvaluationRequest addNotesEntry(String key, EvaluationNote value) {
-        if (null == this.notes) {
-            this.notes = new java.util.HashMap<String, EvaluationNote>();
+    public CreatePromptRequest addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
         }
-        if (this.notes.containsKey(key))
+        if (this.tags.containsKey(key))
             throw new IllegalArgumentException("Duplicated keys (" + key.toString()
                     + ") are provided.");
-        this.notes.put(key, value);
+        this.tags.put(key, value);
         return this;
     }
 
     /**
-     * Removes all the entries added into Notes.
+     * Removes all the entries added into Tags.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      */
-    public SubmitContactEvaluationRequest clearNotesEntries() {
-        this.notes = null;
+    public CreatePromptRequest clearTagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -373,12 +422,14 @@ public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest impl
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getEvaluationId() != null)
-            sb.append("EvaluationId: " + getEvaluationId() + ",");
-        if (getAnswers() != null)
-            sb.append("Answers: " + getAnswers() + ",");
-        if (getNotes() != null)
-            sb.append("Notes: " + getNotes());
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getS3Uri() != null)
+            sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -389,10 +440,11 @@ public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest impl
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
-                + ((getEvaluationId() == null) ? 0 : getEvaluationId().hashCode());
-        hashCode = prime * hashCode + ((getAnswers() == null) ? 0 : getAnswers().hashCode());
-        hashCode = prime * hashCode + ((getNotes() == null) ? 0 : getNotes().hashCode());
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -403,27 +455,31 @@ public class SubmitContactEvaluationRequest extends AmazonWebServiceRequest impl
         if (obj == null)
             return false;
 
-        if (obj instanceof SubmitContactEvaluationRequest == false)
+        if (obj instanceof CreatePromptRequest == false)
             return false;
-        SubmitContactEvaluationRequest other = (SubmitContactEvaluationRequest) obj;
+        CreatePromptRequest other = (CreatePromptRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getEvaluationId() == null ^ this.getEvaluationId() == null)
+        if (other.getName() == null ^ this.getName() == null)
             return false;
-        if (other.getEvaluationId() != null
-                && other.getEvaluationId().equals(this.getEvaluationId()) == false)
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
             return false;
-        if (other.getAnswers() == null ^ this.getAnswers() == null)
+        if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
-        if (other.getAnswers() != null && other.getAnswers().equals(this.getAnswers()) == false)
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
-        if (other.getNotes() == null ^ this.getNotes() == null)
+        if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
-        if (other.getNotes() != null && other.getNotes().equals(this.getNotes()) == false)
+        if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }
