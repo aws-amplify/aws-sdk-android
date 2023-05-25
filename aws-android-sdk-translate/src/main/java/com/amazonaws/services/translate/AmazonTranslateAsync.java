@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -940,6 +940,97 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
      */
     Future<TagResourceResult> tagResourceAsync(TagResourceRequest tagResourceRequest,
             AsyncHandler<TagResourceRequest, TagResourceResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Translates the input document from the source language to the target
+     * language. This synchronous operation supports plain text or HTML for the
+     * input document. <code>TranslateDocument</code> supports translations from
+     * English to any supported language, and from any supported language to
+     * English. Therefore, specify either the source language code or the target
+     * language code as “en” (English).
+     * </p>
+     * <p>
+     * <code>TranslateDocument</code> does not support language auto-detection.
+     * </p>
+     * <p>
+     * If you set the <code>Formality</code> parameter, the request will fail if
+     * the target language does not support formality. For a list of target
+     * languages that support formality, see <a href=
+     * "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html"
+     * >Setting formality</a>.
+     * </p>
+     * 
+     * @param translateDocumentRequest
+     * @return A Java Future object containing the response from the
+     *         TranslateDocument service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws UnsupportedLanguagePairException
+     * @throws InternalServerException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<TranslateDocumentResult> translateDocumentAsync(
+            TranslateDocumentRequest translateDocumentRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Translates the input document from the source language to the target
+     * language. This synchronous operation supports plain text or HTML for the
+     * input document. <code>TranslateDocument</code> supports translations from
+     * English to any supported language, and from any supported language to
+     * English. Therefore, specify either the source language code or the target
+     * language code as “en” (English).
+     * </p>
+     * <p>
+     * <code>TranslateDocument</code> does not support language auto-detection.
+     * </p>
+     * <p>
+     * If you set the <code>Formality</code> parameter, the request will fail if
+     * the target language does not support formality. For a list of target
+     * languages that support formality, see <a href=
+     * "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html"
+     * >Setting formality</a>.
+     * </p>
+     * 
+     * @param translateDocumentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         TranslateDocument service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws UnsupportedLanguagePairException
+     * @throws InternalServerException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<TranslateDocumentResult> translateDocumentAsync(
+            TranslateDocumentRequest translateDocumentRequest,
+            AsyncHandler<TranslateDocumentRequest, TranslateDocumentResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -1154,6 +1154,75 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
             JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Translates the input document from the source language to the target
+     * language. This synchronous operation supports plain text or HTML for the
+     * input document. <code>TranslateDocument</code> supports translations from
+     * English to any supported language, and from any supported language to
+     * English. Therefore, specify either the source language code or the target
+     * language code as “en” (English).
+     * </p>
+     * <p>
+     * <code>TranslateDocument</code> does not support language auto-detection.
+     * </p>
+     * <p>
+     * If you set the <code>Formality</code> parameter, the request will fail if
+     * the target language does not support formality. For a list of target
+     * languages that support formality, see <a href=
+     * "https://docs.aws.amazon.com/translate/latest/dg/customizing-translations-formality.html"
+     * >Setting formality</a>.
+     * </p>
+     * 
+     * @param translateDocumentRequest
+     * @return translateDocumentResult The response from the TranslateDocument
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceNotFoundException
+     * @throws UnsupportedLanguagePairException
+     * @throws InternalServerException
+     * @throws ServiceUnavailableException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public TranslateDocumentResult translateDocument(
+            TranslateDocumentRequest translateDocumentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(translateDocumentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TranslateDocumentRequest> request = null;
+        Response<TranslateDocumentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TranslateDocumentRequestMarshaller()
+                        .marshall(translateDocumentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TranslateDocumentResult, JsonUnmarshallerContext> unmarshaller = new TranslateDocumentResultJsonUnmarshaller();
+            JsonResponseHandler<TranslateDocumentResult> responseHandler = new JsonResponseHandler<TranslateDocumentResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
