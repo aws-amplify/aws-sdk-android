@@ -30,7 +30,8 @@ public enum ContactInitiationMethod {
     CALLBACK("CALLBACK"),
     API("API"),
     DISCONNECT("DISCONNECT"),
-    MONITOR("MONITOR");
+    MONITOR("MONITOR"),
+    EXTERNAL_OUTBOUND("EXTERNAL_OUTBOUND");
 
     private String value;
 
@@ -54,6 +55,7 @@ public enum ContactInitiationMethod {
         enumMap.put("API", API);
         enumMap.put("DISCONNECT", DISCONNECT);
         enumMap.put("MONITOR", MONITOR);
+        enumMap.put("EXTERNAL_OUTBOUND", EXTERNAL_OUTBOUND);
     }
 
     /**
