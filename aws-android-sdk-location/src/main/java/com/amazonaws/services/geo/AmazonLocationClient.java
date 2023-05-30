@@ -1344,6 +1344,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * @throws ConflictException
      * @throws AccessDeniedException
      * @throws ValidationException
+     * @throws ServiceQuotaExceededException
      * @throws ThrottlingException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

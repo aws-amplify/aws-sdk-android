@@ -63,6 +63,13 @@ public class UpdateMapRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (updateMapRequest.getConfigurationUpdate() != null) {
+                MapConfigurationUpdate configurationUpdate = updateMapRequest
+                        .getConfigurationUpdate();
+                jsonWriter.name("ConfigurationUpdate");
+                MapConfigurationUpdateJsonMarshaller.getInstance().marshall(configurationUpdate,
+                        jsonWriter);
+            }
             if (updateMapRequest.getDescription() != null) {
                 String description = updateMapRequest.getDescription();
                 jsonWriter.name("Description");

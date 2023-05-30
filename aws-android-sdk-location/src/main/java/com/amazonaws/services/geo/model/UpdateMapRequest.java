@@ -27,6 +27,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateMapRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     */
+    private MapConfigurationUpdate configurationUpdate;
+
+    /**
+     * <p>
      * Updates the description for the map resource.
      * </p>
      * <p>
@@ -57,6 +65,57 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      */
     private String pricingPlan;
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     *
+     * @return <p>
+     *         Updates the parts of the map configuration that can be updated,
+     *         including the political view.
+     *         </p>
+     */
+    public MapConfigurationUpdate getConfigurationUpdate() {
+        return configurationUpdate;
+    }
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     *
+     * @param configurationUpdate <p>
+     *            Updates the parts of the map configuration that can be
+     *            updated, including the political view.
+     *            </p>
+     */
+    public void setConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
+        this.configurationUpdate = configurationUpdate;
+    }
+
+    /**
+     * <p>
+     * Updates the parts of the map configuration that can be updated, including
+     * the political view.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configurationUpdate <p>
+     *            Updates the parts of the map configuration that can be
+     *            updated, including the political view.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateMapRequest withConfigurationUpdate(MapConfigurationUpdate configurationUpdate) {
+        this.configurationUpdate = configurationUpdate;
+        return this;
+    }
 
     /**
      * <p>
@@ -292,6 +351,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getConfigurationUpdate() != null)
+            sb.append("ConfigurationUpdate: " + getConfigurationUpdate() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getMapName() != null)
@@ -307,6 +368,8 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getConfigurationUpdate() == null) ? 0 : getConfigurationUpdate().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
@@ -326,6 +389,11 @@ public class UpdateMapRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         UpdateMapRequest other = (UpdateMapRequest) obj;
 
+        if (other.getConfigurationUpdate() == null ^ this.getConfigurationUpdate() == null)
+            return false;
+        if (other.getConfigurationUpdate() != null
+                && other.getConfigurationUpdate().equals(this.getConfigurationUpdate()) == false)
+            return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null

@@ -25,6 +25,30 @@ import java.io.Serializable;
 public class MapConfiguration implements Serializable {
     /**
      * <p>
+     * Specifies the political view for the style. Leave unset to not use a
+     * political view, or, for styles that support specific political views, you
+     * can choose a view, such as <code>IND</code> for the Indian view.
+     * </p>
+     * <p>
+     * Default is unset.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support political view styles. See <a
+     * href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     * >Political views</a> for more information.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>3 - 3<br/>
+     * <b>Pattern: </b>^[A-Z]{3}$<br/>
+     */
+    private String politicalView;
+
+    /**
+     * <p>
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
@@ -64,7 +88,7 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriStreets</code> – The Esri World Streets map style, which
+     * <code>VectorEsriStreets</code> – The Esri Street Map style, which
      * provides a detailed vector basemap for the world symbolized with a
      * classic Esri street map style. The vector tile layer is similar in
      * content and style to the World Street Map raster map.
@@ -72,8 +96,8 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriNavigation</code> – The Esri World Navigation map style,
-     * which provides a detailed basemap for the world symbolized with a custom
+     * <code>VectorEsriNavigation</code> – The Esri Navigation map style, which
+     * provides a detailed basemap for the world symbolized with a custom
      * navigation map style that's designed for use during the day in mobile
      * devices.
      * </p>
@@ -214,6 +238,144 @@ public class MapConfiguration implements Serializable {
 
     /**
      * <p>
+     * Specifies the political view for the style. Leave unset to not use a
+     * political view, or, for styles that support specific political views, you
+     * can choose a view, such as <code>IND</code> for the Indian view.
+     * </p>
+     * <p>
+     * Default is unset.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support political view styles. See <a
+     * href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     * >Political views</a> for more information.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>3 - 3<br/>
+     * <b>Pattern: </b>^[A-Z]{3}$<br/>
+     *
+     * @return <p>
+     *         Specifies the political view for the style. Leave unset to not
+     *         use a political view, or, for styles that support specific
+     *         political views, you can choose a view, such as <code>IND</code>
+     *         for the Indian view.
+     *         </p>
+     *         <p>
+     *         Default is unset.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Not all map resources or styles support political view styles.
+     *         See <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     *         >Political views</a> for more information.
+     *         </p>
+     *         </note>
+     */
+    public String getPoliticalView() {
+        return politicalView;
+    }
+
+    /**
+     * <p>
+     * Specifies the political view for the style. Leave unset to not use a
+     * political view, or, for styles that support specific political views, you
+     * can choose a view, such as <code>IND</code> for the Indian view.
+     * </p>
+     * <p>
+     * Default is unset.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support political view styles. See <a
+     * href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     * >Political views</a> for more information.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>3 - 3<br/>
+     * <b>Pattern: </b>^[A-Z]{3}$<br/>
+     *
+     * @param politicalView <p>
+     *            Specifies the political view for the style. Leave unset to not
+     *            use a political view, or, for styles that support specific
+     *            political views, you can choose a view, such as
+     *            <code>IND</code> for the Indian view.
+     *            </p>
+     *            <p>
+     *            Default is unset.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Not all map resources or styles support political view styles.
+     *            See <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     *            >Political views</a> for more information.
+     *            </p>
+     *            </note>
+     */
+    public void setPoliticalView(String politicalView) {
+        this.politicalView = politicalView;
+    }
+
+    /**
+     * <p>
+     * Specifies the political view for the style. Leave unset to not use a
+     * political view, or, for styles that support specific political views, you
+     * can choose a view, such as <code>IND</code> for the Indian view.
+     * </p>
+     * <p>
+     * Default is unset.
+     * </p>
+     * <note>
+     * <p>
+     * Not all map resources or styles support political view styles. See <a
+     * href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     * >Political views</a> for more information.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>3 - 3<br/>
+     * <b>Pattern: </b>^[A-Z]{3}$<br/>
+     *
+     * @param politicalView <p>
+     *            Specifies the political view for the style. Leave unset to not
+     *            use a political view, or, for styles that support specific
+     *            political views, you can choose a view, such as
+     *            <code>IND</code> for the Indian view.
+     *            </p>
+     *            <p>
+     *            Default is unset.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Not all map resources or styles support political view styles.
+     *            See <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/map-concepts.html#political-views"
+     *            >Political views</a> for more information.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MapConfiguration withPoliticalView(String politicalView) {
+        this.politicalView = politicalView;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
@@ -253,7 +415,7 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriStreets</code> – The Esri World Streets map style, which
+     * <code>VectorEsriStreets</code> – The Esri Street Map style, which
      * provides a detailed vector basemap for the world symbolized with a
      * classic Esri street map style. The vector tile layer is similar in
      * content and style to the World Street Map raster map.
@@ -261,8 +423,8 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriNavigation</code> – The Esri World Navigation map style,
-     * which provides a detailed basemap for the world symbolized with a custom
+     * <code>VectorEsriNavigation</code> – The Esri Navigation map style, which
+     * provides a detailed basemap for the world symbolized with a custom
      * navigation map style that's designed for use during the day in mobile
      * devices.
      * </p>
@@ -442,16 +604,15 @@ public class MapConfiguration implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>VectorEsriStreets</code> – The Esri World Streets map
-     *         style, which provides a detailed vector basemap for the world
-     *         symbolized with a classic Esri street map style. The vector tile
-     *         layer is similar in content and style to the World Street Map
-     *         raster map.
+     *         <code>VectorEsriStreets</code> – The Esri Street Map style, which
+     *         provides a detailed vector basemap for the world symbolized with
+     *         a classic Esri street map style. The vector tile layer is similar
+     *         in content and style to the World Street Map raster map.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>VectorEsriNavigation</code> – The Esri World Navigation map
+     *         <code>VectorEsriNavigation</code> – The Esri Navigation map
      *         style, which provides a detailed basemap for the world symbolized
      *         with a custom navigation map style that's designed for use during
      *         the day in mobile devices.
@@ -637,7 +798,7 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriStreets</code> – The Esri World Streets map style, which
+     * <code>VectorEsriStreets</code> – The Esri Street Map style, which
      * provides a detailed vector basemap for the world symbolized with a
      * classic Esri street map style. The vector tile layer is similar in
      * content and style to the World Street Map raster map.
@@ -645,8 +806,8 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriNavigation</code> – The Esri World Navigation map style,
-     * which provides a detailed basemap for the world symbolized with a custom
+     * <code>VectorEsriNavigation</code> – The Esri Navigation map style, which
+     * provides a detailed basemap for the world symbolized with a custom
      * navigation map style that's designed for use during the day in mobile
      * devices.
      * </p>
@@ -827,8 +988,8 @@ public class MapConfiguration implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VectorEsriStreets</code> – The Esri World Streets map
-     *            style, which provides a detailed vector basemap for the world
+     *            <code>VectorEsriStreets</code> – The Esri Street Map style,
+     *            which provides a detailed vector basemap for the world
      *            symbolized with a classic Esri street map style. The vector
      *            tile layer is similar in content and style to the World Street
      *            Map raster map.
@@ -836,8 +997,8 @@ public class MapConfiguration implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VectorEsriNavigation</code> – The Esri World Navigation
-     *            map style, which provides a detailed basemap for the world
+     *            <code>VectorEsriNavigation</code> – The Esri Navigation map
+     *            style, which provides a detailed basemap for the world
      *            symbolized with a custom navigation map style that's designed
      *            for use during the day in mobile devices.
      *            </p>
@@ -1024,7 +1185,7 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriStreets</code> – The Esri World Streets map style, which
+     * <code>VectorEsriStreets</code> – The Esri Street Map style, which
      * provides a detailed vector basemap for the world symbolized with a
      * classic Esri street map style. The vector tile layer is similar in
      * content and style to the World Street Map raster map.
@@ -1032,8 +1193,8 @@ public class MapConfiguration implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>VectorEsriNavigation</code> – The Esri World Navigation map style,
-     * which provides a detailed basemap for the world symbolized with a custom
+     * <code>VectorEsriNavigation</code> – The Esri Navigation map style, which
+     * provides a detailed basemap for the world symbolized with a custom
      * navigation map style that's designed for use during the day in mobile
      * devices.
      * </p>
@@ -1217,8 +1378,8 @@ public class MapConfiguration implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VectorEsriStreets</code> – The Esri World Streets map
-     *            style, which provides a detailed vector basemap for the world
+     *            <code>VectorEsriStreets</code> – The Esri Street Map style,
+     *            which provides a detailed vector basemap for the world
      *            symbolized with a classic Esri street map style. The vector
      *            tile layer is similar in content and style to the World Street
      *            Map raster map.
@@ -1226,8 +1387,8 @@ public class MapConfiguration implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VectorEsriNavigation</code> – The Esri World Navigation
-     *            map style, which provides a detailed basemap for the world
+     *            <code>VectorEsriNavigation</code> – The Esri Navigation map
+     *            style, which provides a detailed basemap for the world
      *            symbolized with a custom navigation map style that's designed
      *            for use during the day in mobile devices.
      *            </p>
@@ -1387,6 +1548,8 @@ public class MapConfiguration implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getPoliticalView() != null)
+            sb.append("PoliticalView: " + getPoliticalView() + ",");
         if (getStyle() != null)
             sb.append("Style: " + getStyle());
         sb.append("}");
@@ -1398,6 +1561,8 @@ public class MapConfiguration implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getPoliticalView() == null) ? 0 : getPoliticalView().hashCode());
         hashCode = prime * hashCode + ((getStyle() == null) ? 0 : getStyle().hashCode());
         return hashCode;
     }
@@ -1413,6 +1578,11 @@ public class MapConfiguration implements Serializable {
             return false;
         MapConfiguration other = (MapConfiguration) obj;
 
+        if (other.getPoliticalView() == null ^ this.getPoliticalView() == null)
+            return false;
+        if (other.getPoliticalView() != null
+                && other.getPoliticalView().equals(this.getPoliticalView()) == false)
+            return false;
         if (other.getStyle() == null ^ this.getStyle() == null)
             return false;
         if (other.getStyle() != null && other.getStyle().equals(this.getStyle()) == false)
