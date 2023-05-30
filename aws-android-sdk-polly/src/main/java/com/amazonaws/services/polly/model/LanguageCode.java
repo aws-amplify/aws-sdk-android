@@ -58,7 +58,8 @@ public enum LanguageCode {
     DeAT("de-AT"),
     YueCN("yue-CN"),
     ArAE("ar-AE"),
-    FiFI("fi-FI");
+    FiFI("fi-FI"),
+    EnIE("en-IE");
 
     private String value;
 
@@ -110,6 +111,7 @@ public enum LanguageCode {
         enumMap.put("yue-CN", YueCN);
         enumMap.put("ar-AE", ArAE);
         enumMap.put("fi-FI", FiFI);
+        enumMap.put("en-IE", EnIE);
     }
 
     /**
