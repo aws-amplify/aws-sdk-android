@@ -69,7 +69,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      */
     private String initiationMethod;
 
@@ -398,7 +398,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @return <p>
      *         Indicates how the contact was initiated.
@@ -416,7 +416,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -437,7 +437,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -458,7 +458,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.
@@ -479,7 +479,7 @@ public class Contact implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            Indicates how the contact was initiated.

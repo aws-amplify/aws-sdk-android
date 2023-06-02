@@ -52,7 +52,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      */
     private String initiationMethod;
 
@@ -251,7 +251,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @return <p>
      *         How the contact was initiated.
@@ -269,7 +269,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            How the contact was initiated.
@@ -290,7 +290,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            How the contact was initiated.
@@ -311,7 +311,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            How the contact was initiated.
@@ -332,7 +332,7 @@ public class AgentContactReference implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND, OUTBOUND, TRANSFER, QUEUE_TRANSFER,
-     * CALLBACK, API, DISCONNECT, MONITOR
+     * CALLBACK, API, DISCONNECT, MONITOR, EXTERNAL_OUTBOUND
      *
      * @param initiationMethod <p>
      *            How the contact was initiated.
