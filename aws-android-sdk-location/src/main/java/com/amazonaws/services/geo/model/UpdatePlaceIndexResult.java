@@ -35,8 +35,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
+     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
      */
     private String indexArn;
 
@@ -77,8 +77,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
+     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the upated place index
@@ -114,8 +114,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
+     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) of the upated place index
@@ -155,8 +155,8 @@ public class UpdatePlaceIndexResult implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
      * <b>Pattern:
-     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*){2}(:([a-z0-9]+([.-][a-z0-
-     * 9]+)*)?){2}:([^/].*)?$<br/>
+     * </b>^arn(:[a-z0-9]+([.-][a-z0-9]+)*):geo(:([a-z0-9]+([.-][a-z0
+     * -9]+)*))(:[0-9]+):((\*)|([-a-z]+[/][*-._\w]+))$<br/>
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) of the upated place index

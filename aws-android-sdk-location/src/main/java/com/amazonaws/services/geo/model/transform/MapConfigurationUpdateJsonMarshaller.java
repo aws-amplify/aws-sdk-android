@@ -20,31 +20,26 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO MapConfiguration
+ * JSON marshaller for POJO MapConfigurationUpdate
  */
-class MapConfigurationJsonMarshaller {
+class MapConfigurationUpdateJsonMarshaller {
 
-    public void marshall(MapConfiguration mapConfiguration, AwsJsonWriter jsonWriter)
+    public void marshall(MapConfigurationUpdate mapConfigurationUpdate, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (mapConfiguration.getPoliticalView() != null) {
-            String politicalView = mapConfiguration.getPoliticalView();
+        if (mapConfigurationUpdate.getPoliticalView() != null) {
+            String politicalView = mapConfigurationUpdate.getPoliticalView();
             jsonWriter.name("PoliticalView");
             jsonWriter.value(politicalView);
-        }
-        if (mapConfiguration.getStyle() != null) {
-            String style = mapConfiguration.getStyle();
-            jsonWriter.name("Style");
-            jsonWriter.value(style);
         }
         jsonWriter.endObject();
     }
 
-    private static MapConfigurationJsonMarshaller instance;
+    private static MapConfigurationUpdateJsonMarshaller instance;
 
-    public static MapConfigurationJsonMarshaller getInstance() {
+    public static MapConfigurationUpdateJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new MapConfigurationJsonMarshaller();
+            instance = new MapConfigurationUpdateJsonMarshaller();
         return instance;
     }
 }

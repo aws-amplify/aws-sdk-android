@@ -21,40 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO MapConfiguration
+ * JSON unmarshaller for POJO MapConfigurationUpdate
  */
-class MapConfigurationJsonUnmarshaller implements
-        Unmarshaller<MapConfiguration, JsonUnmarshallerContext> {
+class MapConfigurationUpdateJsonUnmarshaller implements
+        Unmarshaller<MapConfigurationUpdate, JsonUnmarshallerContext> {
 
-    public MapConfiguration unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public MapConfigurationUpdate unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        MapConfiguration mapConfiguration = new MapConfiguration();
+        MapConfigurationUpdate mapConfigurationUpdate = new MapConfigurationUpdate();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("PoliticalView")) {
-                mapConfiguration.setPoliticalView(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Style")) {
-                mapConfiguration.setStyle(StringJsonUnmarshaller.getInstance()
+                mapConfigurationUpdate.setPoliticalView(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return mapConfiguration;
+        return mapConfigurationUpdate;
     }
 
-    private static MapConfigurationJsonUnmarshaller instance;
+    private static MapConfigurationUpdateJsonUnmarshaller instance;
 
-    public static MapConfigurationJsonUnmarshaller getInstance() {
+    public static MapConfigurationUpdateJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new MapConfigurationJsonUnmarshaller();
+            instance = new MapConfigurationUpdateJsonUnmarshaller();
         return instance;
     }
 }

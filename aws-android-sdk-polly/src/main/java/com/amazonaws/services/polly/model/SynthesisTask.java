@@ -166,7 +166,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      */
     private String voiceId;
 
@@ -190,7 +190,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      */
     private String languageCode;
 
@@ -1227,7 +1227,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1253,7 +1253,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1282,7 +1282,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1311,7 +1311,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1340,7 +1340,7 @@ public class SynthesisTask implements Serializable {
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1374,7 +1374,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      *
      * @return <p>
      *         Optional language code for a synthesis task. This is only
@@ -1417,7 +1417,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1464,7 +1464,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1511,7 +1511,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
@@ -1558,7 +1558,7 @@ public class SynthesisTask implements Serializable {
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI
+     * sv-SE, tr-TR, en-NZ, en-ZA, ca-ES, de-AT, yue-CN, ar-AE, fi-FI, en-IE
      *
      * @param languageCode <p>
      *            Optional language code for a synthesis task. This is only
