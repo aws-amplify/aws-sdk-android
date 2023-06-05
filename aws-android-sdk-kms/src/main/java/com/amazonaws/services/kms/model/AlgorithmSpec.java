@@ -25,7 +25,9 @@ public enum AlgorithmSpec {
 
     RSAES_PKCS1_V1_5("RSAES_PKCS1_V1_5"),
     RSAES_OAEP_SHA_1("RSAES_OAEP_SHA_1"),
-    RSAES_OAEP_SHA_256("RSAES_OAEP_SHA_256");
+    RSAES_OAEP_SHA_256("RSAES_OAEP_SHA_256"),
+    RSA_AES_KEY_WRAP_SHA_1("RSA_AES_KEY_WRAP_SHA_1"),
+    RSA_AES_KEY_WRAP_SHA_256("RSA_AES_KEY_WRAP_SHA_256");
 
     private String value;
 
@@ -44,6 +46,8 @@ public enum AlgorithmSpec {
         enumMap.put("RSAES_PKCS1_V1_5", RSAES_PKCS1_V1_5);
         enumMap.put("RSAES_OAEP_SHA_1", RSAES_OAEP_SHA_1);
         enumMap.put("RSAES_OAEP_SHA_256", RSAES_OAEP_SHA_256);
+        enumMap.put("RSA_AES_KEY_WRAP_SHA_1", RSA_AES_KEY_WRAP_SHA_1);
+        enumMap.put("RSA_AES_KEY_WRAP_SHA_256", RSA_AES_KEY_WRAP_SHA_256);
     }
 
     /**
