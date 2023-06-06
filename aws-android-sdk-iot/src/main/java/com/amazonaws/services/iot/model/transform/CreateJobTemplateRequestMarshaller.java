@@ -140,6 +140,18 @@ public class CreateJobTemplateRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createJobTemplateRequest.getDestinationPackageVersions() != null) {
+                java.util.List<String> destinationPackageVersions = createJobTemplateRequest
+                        .getDestinationPackageVersions();
+                jsonWriter.name("destinationPackageVersions");
+                jsonWriter.beginArray();
+                for (String destinationPackageVersionsItem : destinationPackageVersions) {
+                    if (destinationPackageVersionsItem != null) {
+                        jsonWriter.value(destinationPackageVersionsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

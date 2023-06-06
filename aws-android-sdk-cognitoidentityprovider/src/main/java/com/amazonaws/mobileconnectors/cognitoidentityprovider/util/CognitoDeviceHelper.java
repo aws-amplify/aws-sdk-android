@@ -334,7 +334,11 @@ public final class CognitoDeviceHelper {
 
         static {
             try {
-                SECURE_RANDOM = SecureRandom.getInstance("SHA1PRNG");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    SECURE_RANDOM = SecureRandom.getInstanceStrong();
+                } else {
+                    SECURE_RANDOM = new SecureRandom();
+                }
             } catch (final NoSuchAlgorithmException e) {
                 throw new ExceptionInInitializerError(e);
             }
@@ -360,7 +364,7 @@ public final class CognitoDeviceHelper {
         /**
          * Helps to start the SRP validation of the device.
          * @param deviceGroupKey REQUIRED: Group assigned to the device.
-         * @param deviceKey REQUIRED: Unique identifier assigned to the device. 
+         * @param deviceKey REQUIRED: Unique identifier assigned to the device.
          * @param password REQUIRED: The device password.
          */
         public deviceSRP(String deviceGroupKey, String deviceKey, String password) {

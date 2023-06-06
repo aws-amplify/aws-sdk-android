@@ -41,7 +41,7 @@ public class MaintenanceWindow implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>30 - 1430<br/>
+     * <b>Range: </b>1 - 1430<br/>
      */
     private Integer durationInMinutes;
 
@@ -105,7 +105,7 @@ public class MaintenanceWindow implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>30 - 1430<br/>
+     * <b>Range: </b>1 - 1430<br/>
      *
      * @return <p>
      *         Displays the duration of the next maintenance window.
@@ -121,7 +121,7 @@ public class MaintenanceWindow implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>30 - 1430<br/>
+     * <b>Range: </b>1 - 1430<br/>
      *
      * @param durationInMinutes <p>
      *            Displays the duration of the next maintenance window.
@@ -140,7 +140,7 @@ public class MaintenanceWindow implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>30 - 1430<br/>
+     * <b>Range: </b>1 - 1430<br/>
      *
      * @param durationInMinutes <p>
      *            Displays the duration of the next maintenance window.

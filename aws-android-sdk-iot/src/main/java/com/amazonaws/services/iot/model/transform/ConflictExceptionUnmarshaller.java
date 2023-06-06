@@ -36,6 +36,7 @@ public class ConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
         ConflictException e = (ConflictException) super.unmarshall(error);
         e.setErrorCode("ConflictException");
+        e.setResourceId(String.valueOf(error.get("resourceId")));
 
         return e;
     }
