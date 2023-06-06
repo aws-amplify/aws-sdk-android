@@ -165,6 +165,18 @@ public class CreateJobRequestMarshaller implements
                 jsonWriter.name("schedulingConfig");
                 SchedulingConfigJsonMarshaller.getInstance().marshall(schedulingConfig, jsonWriter);
             }
+            if (createJobRequest.getDestinationPackageVersions() != null) {
+                java.util.List<String> destinationPackageVersions = createJobRequest
+                        .getDestinationPackageVersions();
+                jsonWriter.name("destinationPackageVersions");
+                jsonWriter.beginArray();
+                for (String destinationPackageVersionsItem : destinationPackageVersions) {
+                    if (destinationPackageVersionsItem != null) {
+                        jsonWriter.value(destinationPackageVersionsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

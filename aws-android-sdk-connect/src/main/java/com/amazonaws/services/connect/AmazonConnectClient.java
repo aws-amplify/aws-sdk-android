@@ -5129,10 +5129,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >Historical metrics definitions</a> in the <i>Amazon Connect
      * Administrator's Guide</i>.
      * </p>
-     * <p>
-     * This API is not available in the Amazon Web Services GovCloud (US)
-     * Regions.
-     * </p>
      * 
      * @param getMetricDataV2Request
      * @return getMetricDataV2Result The response from the GetMetricDataV2

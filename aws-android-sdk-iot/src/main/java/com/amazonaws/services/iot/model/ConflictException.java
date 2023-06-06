@@ -26,11 +26,44 @@ public class ConflictException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
+     * <p>
+     * A resource with the same name already exists.
+     * </p>
+     */
+    private String resourceId;
+
+    /**
      * Constructs a new ConflictException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
     public ConflictException(String message) {
         super(message);
+    }
+
+    /**
+     * <p>
+     * A resource with the same name already exists.
+     * </p>
+     *
+     * @return <p>
+     *         A resource with the same name already exists.
+     *         </p>
+     */
+    public String getResourceId() {
+        return resourceId;
+    }
+
+    /**
+     * <p>
+     * A resource with the same name already exists.
+     * </p>
+     *
+     * @param resourceId <p>
+     *            A resource with the same name already exists.
+     *            </p>
+     */
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 }

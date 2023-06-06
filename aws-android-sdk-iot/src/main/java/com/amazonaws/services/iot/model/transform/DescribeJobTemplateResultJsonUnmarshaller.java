@@ -78,6 +78,12 @@ public class DescribeJobTemplateResultJsonUnmarshaller implements
                                 MaintenanceWindowJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("destinationPackageVersions")) {
+                describeJobTemplateResult
+                        .setDestinationPackageVersions(new ListUnmarshaller<String>(
+                                StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

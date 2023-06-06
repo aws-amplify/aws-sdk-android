@@ -172,6 +172,17 @@ class JobJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (job.getDestinationPackageVersions() != null) {
+            java.util.List<String> destinationPackageVersions = job.getDestinationPackageVersions();
+            jsonWriter.name("destinationPackageVersions");
+            jsonWriter.beginArray();
+            for (String destinationPackageVersionsItem : destinationPackageVersions) {
+                if (destinationPackageVersionsItem != null) {
+                    jsonWriter.value(destinationPackageVersionsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
