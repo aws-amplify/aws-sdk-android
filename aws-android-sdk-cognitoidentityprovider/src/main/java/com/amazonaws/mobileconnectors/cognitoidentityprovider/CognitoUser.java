@@ -18,6 +18,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -4040,7 +4041,11 @@ public class CognitoUser {
 
         static {
             try {
-                SECURE_RANDOM = SecureRandom.getInstance("SHA1PRNG");
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    SECURE_RANDOM = SecureRandom.getInstanceStrong();
+                } else {
+                    SECURE_RANDOM = new SecureRandom();
+                }
 
                 final MessageDigest messageDigest = THREAD_MESSAGE_DIGEST.get();
                 messageDigest.reset();
