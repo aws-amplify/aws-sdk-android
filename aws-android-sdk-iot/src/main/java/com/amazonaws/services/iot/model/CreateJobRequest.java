@@ -59,7 +59,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * For example,
      * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     * .
      * </p>
      * <p>
      * For more information, see <a href=
@@ -221,6 +220,18 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     */
+    private java.util.List<String> destinationPackageVersions;
+
+    /**
+     * <p>
      * A job identifier which must be unique for your Amazon Web Services
      * account. We recommend using a UUID. Alpha-numeric characters, "-" and "_"
      * are valid for use here.
@@ -375,7 +386,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * For example,
      * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     * .
      * </p>
      * <p>
      * For more information, see <a href=
@@ -394,7 +404,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         For example,
      *         <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     *         .
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -415,7 +424,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * For example,
      * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     * .
      * </p>
      * <p>
      * For more information, see <a href=
@@ -434,7 +442,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For example,
      *            <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     *            .
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -455,7 +462,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * For example,
      * <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     * .
      * </p>
      * <p>
      * For more information, see <a href=
@@ -477,7 +483,6 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            For example,
      *            <code>--document-source https://s3.<i>region-code</i>.amazonaws.com/example-firmware/device-firmware.1.0</code>
-     *            .
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1551,6 +1556,124 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     *
+     * @return <p>
+     *         The package version Amazon Resource Names (ARNs) that are
+     *         installed on the device when the job successfully completes.
+     *         </p>
+     *         <p>
+     *         <b>Note:</b>The following Length Constraints relates to a single
+     *         string. Up to five strings are allowed.
+     *         </p>
+     */
+    public java.util.List<String> getDestinationPackageVersions() {
+        return destinationPackageVersions;
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     */
+    public void setDestinationPackageVersions(
+            java.util.Collection<String> destinationPackageVersions) {
+        if (destinationPackageVersions == null) {
+            this.destinationPackageVersions = null;
+            return;
+        }
+
+        this.destinationPackageVersions = new java.util.ArrayList<String>(
+                destinationPackageVersions);
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withDestinationPackageVersions(String... destinationPackageVersions) {
+        if (getDestinationPackageVersions() == null) {
+            this.destinationPackageVersions = new java.util.ArrayList<String>(
+                    destinationPackageVersions.length);
+        }
+        for (String value : destinationPackageVersions) {
+            this.destinationPackageVersions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withDestinationPackageVersions(
+            java.util.Collection<String> destinationPackageVersions) {
+        setDestinationPackageVersions(destinationPackageVersions);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1592,7 +1715,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getDocumentParameters() != null)
             sb.append("documentParameters: " + getDocumentParameters() + ",");
         if (getSchedulingConfig() != null)
-            sb.append("schedulingConfig: " + getSchedulingConfig());
+            sb.append("schedulingConfig: " + getSchedulingConfig() + ",");
+        if (getDestinationPackageVersions() != null)
+            sb.append("destinationPackageVersions: " + getDestinationPackageVersions());
         sb.append("}");
         return sb.toString();
     }
@@ -1634,6 +1759,10 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
                 + ((getDocumentParameters() == null) ? 0 : getDocumentParameters().hashCode());
         hashCode = prime * hashCode
                 + ((getSchedulingConfig() == null) ? 0 : getSchedulingConfig().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDestinationPackageVersions() == null) ? 0 : getDestinationPackageVersions()
+                        .hashCode());
         return hashCode;
     }
 
@@ -1726,6 +1855,13 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getSchedulingConfig() != null
                 && other.getSchedulingConfig().equals(this.getSchedulingConfig()) == false)
+            return false;
+        if (other.getDestinationPackageVersions() == null
+                ^ this.getDestinationPackageVersions() == null)
+            return false;
+        if (other.getDestinationPackageVersions() != null
+                && other.getDestinationPackageVersions().equals(
+                        this.getDestinationPackageVersions()) == false)
             return false;
         return true;
     }

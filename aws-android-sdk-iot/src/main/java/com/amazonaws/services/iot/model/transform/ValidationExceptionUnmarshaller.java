@@ -18,25 +18,24 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.iot.model.ConflictException;
+import com.amazonaws.services.iot.model.ValidationException;
 
-public class ConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
+public class ValidationExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
-    public ConflictExceptionUnmarshaller() {
-        super(ConflictException.class);
+    public ValidationExceptionUnmarshaller() {
+        super(ValidationException.class);
     }
 
     @Override
     public boolean match(JsonErrorResponse error) throws Exception {
-        return error.getErrorCode().equals("ConflictException");
+        return error.getErrorCode().equals("ValidationException");
     }
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
 
-        ConflictException e = (ConflictException) super.unmarshall(error);
-        e.setErrorCode("ConflictException");
-        e.setResourceId(String.valueOf(error.get("resourceId")));
+        ValidationException e = (ValidationException) super.unmarshall(error);
+        e.setErrorCode("ValidationException");
 
         return e;
     }

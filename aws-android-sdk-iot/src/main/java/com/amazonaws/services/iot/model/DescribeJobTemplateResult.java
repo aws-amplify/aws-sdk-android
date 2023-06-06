@@ -128,6 +128,18 @@ public class DescribeJobTemplateResult implements Serializable {
 
     /**
      * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     */
+    private java.util.List<String> destinationPackageVersions;
+
+    /**
+     * <p>
      * The ARN of the job template.
      * </p>
      * <p>
@@ -803,6 +815,125 @@ public class DescribeJobTemplateResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     *
+     * @return <p>
+     *         The package version Amazon Resource Names (ARNs) that are
+     *         installed on the device when the job successfully completes.
+     *         </p>
+     *         <p>
+     *         <b>Note:</b>The following Length Constraints relates to a single
+     *         string. Up to five strings are allowed.
+     *         </p>
+     */
+    public java.util.List<String> getDestinationPackageVersions() {
+        return destinationPackageVersions;
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     */
+    public void setDestinationPackageVersions(
+            java.util.Collection<String> destinationPackageVersions) {
+        if (destinationPackageVersions == null) {
+            this.destinationPackageVersions = null;
+            return;
+        }
+
+        this.destinationPackageVersions = new java.util.ArrayList<String>(
+                destinationPackageVersions);
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeJobTemplateResult withDestinationPackageVersions(
+            String... destinationPackageVersions) {
+        if (getDestinationPackageVersions() == null) {
+            this.destinationPackageVersions = new java.util.ArrayList<String>(
+                    destinationPackageVersions.length);
+        }
+        for (String value : destinationPackageVersions) {
+            this.destinationPackageVersions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The package version Amazon Resource Names (ARNs) that are installed on
+     * the device when the job successfully completes.
+     * </p>
+     * <p>
+     * <b>Note:</b>The following Length Constraints relates to a single string.
+     * Up to five strings are allowed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param destinationPackageVersions <p>
+     *            The package version Amazon Resource Names (ARNs) that are
+     *            installed on the device when the job successfully completes.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b>The following Length Constraints relates to a
+     *            single string. Up to five strings are allowed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeJobTemplateResult withDestinationPackageVersions(
+            java.util.Collection<String> destinationPackageVersions) {
+        setDestinationPackageVersions(destinationPackageVersions);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -836,7 +967,9 @@ public class DescribeJobTemplateResult implements Serializable {
         if (getJobExecutionsRetryConfig() != null)
             sb.append("jobExecutionsRetryConfig: " + getJobExecutionsRetryConfig() + ",");
         if (getMaintenanceWindows() != null)
-            sb.append("maintenanceWindows: " + getMaintenanceWindows());
+            sb.append("maintenanceWindows: " + getMaintenanceWindows() + ",");
+        if (getDestinationPackageVersions() != null)
+            sb.append("destinationPackageVersions: " + getDestinationPackageVersions());
         sb.append("}");
         return sb.toString();
     }
@@ -872,6 +1005,10 @@ public class DescribeJobTemplateResult implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getMaintenanceWindows() == null) ? 0 : getMaintenanceWindows().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDestinationPackageVersions() == null) ? 0 : getDestinationPackageVersions()
+                        .hashCode());
         return hashCode;
     }
 
@@ -947,6 +1084,13 @@ public class DescribeJobTemplateResult implements Serializable {
             return false;
         if (other.getMaintenanceWindows() != null
                 && other.getMaintenanceWindows().equals(this.getMaintenanceWindows()) == false)
+            return false;
+        if (other.getDestinationPackageVersions() == null
+                ^ this.getDestinationPackageVersions() == null)
+            return false;
+        if (other.getDestinationPackageVersions() != null
+                && other.getDestinationPackageVersions().equals(
+                        this.getDestinationPackageVersions()) == false)
             return false;
         return true;
     }
