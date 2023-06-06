@@ -39,9 +39,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Historical metrics definitions</a> in the <i>Amazon Connect Administrator's
  * Guide</i>.
  * </p>
- * <p>
- * This API is not available in the Amazon Web Services GovCloud (US) Regions.
- * </p>
  */
 public class GetMetricDataV2Request extends AmazonWebServiceRequest implements Serializable {
     /**

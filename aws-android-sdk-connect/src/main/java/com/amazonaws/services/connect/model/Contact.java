@@ -125,7 +125,9 @@ public class Contact implements Serializable {
      * <code>CALLBACK</code>, this is when the callback contact was created. For
      * <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the
      * transfer was initiated. For <code>API</code>, this is when the request
-     * arrived.
+     * arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent
+     * started dialing the external participant. For <code>MONITOR</code>, this
+     * is when the supervisor started listening to a contact.
      * </p>
      */
     private java.util.Date initiationTimestamp;
@@ -799,7 +801,9 @@ public class Contact implements Serializable {
      * <code>CALLBACK</code>, this is when the callback contact was created. For
      * <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the
      * transfer was initiated. For <code>API</code>, this is when the request
-     * arrived.
+     * arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent
+     * started dialing the external participant. For <code>MONITOR</code>, this
+     * is when the supervisor started listening to a contact.
      * </p>
      *
      * @return <p>
@@ -810,7 +814,10 @@ public class Contact implements Serializable {
      *         created. For <code>TRANSFER</code> and
      *         <code>QUEUE_TRANSFER</code>, this is when the transfer was
      *         initiated. For <code>API</code>, this is when the request
-     *         arrived.
+     *         arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the
+     *         agent started dialing the external participant. For
+     *         <code>MONITOR</code>, this is when the supervisor started
+     *         listening to a contact.
      *         </p>
      */
     public java.util.Date getInitiationTimestamp() {
@@ -825,7 +832,9 @@ public class Contact implements Serializable {
      * <code>CALLBACK</code>, this is when the callback contact was created. For
      * <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the
      * transfer was initiated. For <code>API</code>, this is when the request
-     * arrived.
+     * arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent
+     * started dialing the external participant. For <code>MONITOR</code>, this
+     * is when the supervisor started listening to a contact.
      * </p>
      *
      * @param initiationTimestamp <p>
@@ -836,7 +845,10 @@ public class Contact implements Serializable {
      *            was created. For <code>TRANSFER</code> and
      *            <code>QUEUE_TRANSFER</code>, this is when the transfer was
      *            initiated. For <code>API</code>, this is when the request
-     *            arrived.
+     *            arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the
+     *            agent started dialing the external participant. For
+     *            <code>MONITOR</code>, this is when the supervisor started
+     *            listening to a contact.
      *            </p>
      */
     public void setInitiationTimestamp(java.util.Date initiationTimestamp) {
@@ -851,7 +863,9 @@ public class Contact implements Serializable {
      * <code>CALLBACK</code>, this is when the callback contact was created. For
      * <code>TRANSFER</code> and <code>QUEUE_TRANSFER</code>, this is when the
      * transfer was initiated. For <code>API</code>, this is when the request
-     * arrived.
+     * arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the agent
+     * started dialing the external participant. For <code>MONITOR</code>, this
+     * is when the supervisor started listening to a contact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -865,7 +879,10 @@ public class Contact implements Serializable {
      *            was created. For <code>TRANSFER</code> and
      *            <code>QUEUE_TRANSFER</code>, this is when the transfer was
      *            initiated. For <code>API</code>, this is when the request
-     *            arrived.
+     *            arrived. For <code>EXTERNAL_OUTBOUND</code>, this is when the
+     *            agent started dialing the external participant. For
+     *            <code>MONITOR</code>, this is when the supervisor started
+     *            listening to a contact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
