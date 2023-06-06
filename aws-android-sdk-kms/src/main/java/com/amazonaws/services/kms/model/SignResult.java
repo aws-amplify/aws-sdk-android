@@ -47,7 +47,7 @@ public class SignResult implements Serializable {
      * <p>
      * When used with the <code>ECDSA_SHA_256</code>, <code>ECDSA_SHA_384</code>
      * , or <code>ECDSA_SHA_512</code> signing algorithms, this value is a
-     * DER-encoded object as defined by ANS X9.62–2005 and <a
+     * DER-encoded object as defined by ANSI X9.62–2005 and <a
      * href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279 Section
      * 2.2.3</a>. This is the most commonly used signature format and is
      * appropriate for most uses.
@@ -165,7 +165,7 @@ public class SignResult implements Serializable {
      * <p>
      * When used with the <code>ECDSA_SHA_256</code>, <code>ECDSA_SHA_384</code>
      * , or <code>ECDSA_SHA_512</code> signing algorithms, this value is a
-     * DER-encoded object as defined by ANS X9.62–2005 and <a
+     * DER-encoded object as defined by ANSI X9.62–2005 and <a
      * href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279 Section
      * 2.2.3</a>. This is the most commonly used signature format and is
      * appropriate for most uses.
@@ -196,7 +196,7 @@ public class SignResult implements Serializable {
      *         <p>
      *         When used with the <code>ECDSA_SHA_256</code>,
      *         <code>ECDSA_SHA_384</code>, or <code>ECDSA_SHA_512</code> signing
-     *         algorithms, this value is a DER-encoded object as defined by ANS
+     *         algorithms, this value is a DER-encoded object as defined by ANSI
      *         X9.62–2005 and <a
      *         href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279
      *         Section 2.2.3</a>. This is the most commonly used signature
@@ -229,7 +229,7 @@ public class SignResult implements Serializable {
      * <p>
      * When used with the <code>ECDSA_SHA_256</code>, <code>ECDSA_SHA_384</code>
      * , or <code>ECDSA_SHA_512</code> signing algorithms, this value is a
-     * DER-encoded object as defined by ANS X9.62–2005 and <a
+     * DER-encoded object as defined by ANSI X9.62–2005 and <a
      * href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279 Section
      * 2.2.3</a>. This is the most commonly used signature format and is
      * appropriate for most uses.
@@ -262,7 +262,7 @@ public class SignResult implements Serializable {
      *            When used with the <code>ECDSA_SHA_256</code>,
      *            <code>ECDSA_SHA_384</code>, or <code>ECDSA_SHA_512</code>
      *            signing algorithms, this value is a DER-encoded object as
-     *            defined by ANS X9.62–2005 and <a
+     *            defined by ANSI X9.62–2005 and <a
      *            href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC
      *            3279 Section 2.2.3</a>. This is the most commonly used
      *            signature format and is appropriate for most uses.
@@ -294,7 +294,7 @@ public class SignResult implements Serializable {
      * <p>
      * When used with the <code>ECDSA_SHA_256</code>, <code>ECDSA_SHA_384</code>
      * , or <code>ECDSA_SHA_512</code> signing algorithms, this value is a
-     * DER-encoded object as defined by ANS X9.62–2005 and <a
+     * DER-encoded object as defined by ANSI X9.62–2005 and <a
      * href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC 3279 Section
      * 2.2.3</a>. This is the most commonly used signature format and is
      * appropriate for most uses.
@@ -330,7 +330,7 @@ public class SignResult implements Serializable {
      *            When used with the <code>ECDSA_SHA_256</code>,
      *            <code>ECDSA_SHA_384</code>, or <code>ECDSA_SHA_512</code>
      *            signing algorithms, this value is a DER-encoded object as
-     *            defined by ANS X9.62–2005 and <a
+     *            defined by ANSI X9.62–2005 and <a
      *            href="https://tools.ietf.org/html/rfc3279#section-2.2.3">RFC
      *            3279 Section 2.2.3</a>. This is the most commonly used
      *            signature format and is appropriate for most uses.

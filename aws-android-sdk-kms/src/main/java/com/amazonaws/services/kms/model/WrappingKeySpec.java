@@ -23,7 +23,9 @@ import java.util.Map;
  */
 public enum WrappingKeySpec {
 
-    RSA_2048("RSA_2048");
+    RSA_2048("RSA_2048"),
+    RSA_3072("RSA_3072"),
+    RSA_4096("RSA_4096");
 
     private String value;
 
@@ -40,6 +42,8 @@ public enum WrappingKeySpec {
     static {
         enumMap = new HashMap<String, WrappingKeySpec>();
         enumMap.put("RSA_2048", RSA_2048);
+        enumMap.put("RSA_3072", RSA_3072);
+        enumMap.put("RSA_4096", RSA_4096);
     }
 
     /**
