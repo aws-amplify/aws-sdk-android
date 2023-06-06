@@ -18,25 +18,24 @@ package com.amazonaws.services.iot.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.iot.model.ConflictException;
+import com.amazonaws.services.iot.model.ServiceQuotaExceededException;
 
-public class ConflictExceptionUnmarshaller extends JsonErrorUnmarshaller {
+public class ServiceQuotaExceededExceptionUnmarshaller extends JsonErrorUnmarshaller {
 
-    public ConflictExceptionUnmarshaller() {
-        super(ConflictException.class);
+    public ServiceQuotaExceededExceptionUnmarshaller() {
+        super(ServiceQuotaExceededException.class);
     }
 
     @Override
     public boolean match(JsonErrorResponse error) throws Exception {
-        return error.getErrorCode().equals("ConflictException");
+        return error.getErrorCode().equals("ServiceQuotaExceededException");
     }
 
     @Override
     public AmazonServiceException unmarshall(JsonErrorResponse error) throws Exception {
 
-        ConflictException e = (ConflictException) super.unmarshall(error);
-        e.setErrorCode("ConflictException");
-        e.setResourceId(String.valueOf(error.get("resourceId")));
+        ServiceQuotaExceededException e = (ServiceQuotaExceededException) super.unmarshall(error);
+        e.setErrorCode("ServiceQuotaExceededException");
 
         return e;
     }

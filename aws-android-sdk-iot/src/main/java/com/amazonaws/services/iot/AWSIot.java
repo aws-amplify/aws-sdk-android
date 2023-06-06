@@ -751,7 +751,7 @@ public interface AWSIot {
      * <note>
      * <p>
      * The CSR must include a public key that is either an RSA key with a length
-     * of at least 2048 bits or an ECC key from NIST P-25 or NIST P-384 curves.
+     * of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
      * For supported certificates, consult <a href=
      * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
      * > Certificate signing algorithms supported by IoT</a>.
@@ -1163,6 +1163,69 @@ public interface AWSIot {
      */
     CreateOTAUpdateResult createOTAUpdate(CreateOTAUpdateRequest createOTAUpdateRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates an IoT software package that can be deployed to your fleet.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreatePackage</a> and <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetIndexingConfiguration</a> actions.
+     * </p>
+     * 
+     * @param createPackageRequest
+     * @return createPackageResult The response from the CreatePackage service
+     *         method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreatePackageResult createPackage(CreatePackageRequest createPackageRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new version for an existing IoT software package.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreatePackageVersion</a> and <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetIndexingConfiguration</a> actions.
+     * </p>
+     * 
+     * @param createPackageVersionRequest
+     * @return createPackageVersionResult The response from the
+     *         CreatePackageVersion service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreatePackageVersionResult createPackageVersion(
+            CreatePackageVersionRequest createPackageVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -2135,6 +2198,65 @@ public interface AWSIot {
      */
     DeleteOTAUpdateResult deleteOTAUpdate(DeleteOTAUpdateRequest deleteOTAUpdateRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a specific version from a software package.
+     * </p>
+     * <p>
+     * <b>Note:</b> All package versions must be deleted before deleting the
+     * software package.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeletePackageVersion</a> action.
+     * </p>
+     * 
+     * @param deletePackageRequest
+     * @return deletePackageResult The response from the DeletePackage service
+     *         method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeletePackageResult deletePackage(DeletePackageRequest deletePackageRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a specific version from a software package.
+     * </p>
+     * <p>
+     * <b>Note:</b> If a package version is designated as default, you must
+     * remove the designation from the package using the <a>UpdatePackage</a>
+     * action.
+     * </p>
+     * 
+     * @param deletePackageVersionRequest
+     * @return deletePackageVersionResult The response from the
+     *         DeletePackageVersion service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeletePackageVersionResult deletePackageVersion(
+            DeletePackageVersionRequest deletePackageVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -4088,6 +4210,89 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about the specified software package.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPackage</a> action.
+     * </p>
+     * 
+     * @param getPackageRequest
+     * @return getPackageResult The response from the GetPackage service method,
+     *         as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetPackageResult getPackage(GetPackageRequest getPackageRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about the specified software package's configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPackageConfiguration</a> action.
+     * </p>
+     * 
+     * @param getPackageConfigurationRequest
+     * @return getPackageConfigurationResult The response from the
+     *         GetPackageConfiguration service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetPackageConfigurationResult getPackageConfiguration(
+            GetPackageConfigurationRequest getPackageConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about the specified package version.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPackageVersion</a> action.
+     * </p>
+     * 
+     * @param getPackageVersionRequest
+     * @return getPackageVersionResult The response from the GetPackageVersion
+     *         service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetPackageVersionResult getPackageVersion(GetPackageVersionRequest getPackageVersionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Groups the aggregated values that match the query into percentile
      * groupings. The default percentile groupings are: 1,5,25,50,75,95,99,
      * although you can specify your own when you call
@@ -5167,6 +5372,61 @@ public interface AWSIot {
      */
     ListOutgoingCertificatesResult listOutgoingCertificates(
             ListOutgoingCertificatesRequest listOutgoingCertificatesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the software package versions associated to the account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPackageVersions</a> action.
+     * </p>
+     * 
+     * @param listPackageVersionsRequest
+     * @return listPackageVersionsResult The response from the
+     *         ListPackageVersions service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListPackageVersionsResult listPackageVersions(
+            ListPackageVersionsRequest listPackageVersionsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the software packages associated to the account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPackages</a> action.
+     * </p>
+     * 
+     * @param listPackagesRequest
+     * @return listPackagesResult The response from the ListPackages service
+     *         method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListPackagesResult listPackages(ListPackagesRequest listPackagesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -7424,6 +7684,98 @@ public interface AWSIot {
     UpdateMitigationActionResult updateMitigationAction(
             UpdateMitigationActionRequest updateMitigationActionRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the supported fields for a specific package.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdatePackage</a> and <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetIndexingConfiguration</a> actions.
+     * </p>
+     * 
+     * @param updatePackageRequest
+     * @return updatePackageResult The response from the UpdatePackage service
+     *         method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdatePackageResult updatePackage(UpdatePackageRequest updatePackageRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the package configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdatePackageConfiguration</a> and <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html"
+     * >iam:PassRole</a> actions.
+     * </p>
+     * 
+     * @param updatePackageConfigurationRequest
+     * @return updatePackageConfigurationResult The response from the
+     *         UpdatePackageConfiguration service method, as returned by AWS
+     *         IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdatePackageConfigurationResult updatePackageConfiguration(
+            UpdatePackageConfigurationRequest updatePackageConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the supported fields for a specific package version.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdatePackageVersion</a> and <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetIndexingConfiguration</a> actions.
+     * </p>
+     * 
+     * @param updatePackageVersionRequest
+     * @return updatePackageVersionResult The response from the
+     *         UpdatePackageVersion service method, as returned by AWS IoT.
+     * @throws ThrottlingException
+     * @throws InternalServerException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdatePackageVersionResult updatePackageVersion(
+            UpdatePackageVersionRequest updatePackageVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
