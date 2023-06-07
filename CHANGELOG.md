@@ -1,3 +1,21 @@
+## [Release 2.71.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.71.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest ([#3305](https://github.com/aws-amplify/aws-sdk-android/issues/3305))
+- **aws-android-sdk-location:** update models to latest ([#3307](https://github.com/aws-amplify/aws-sdk-android/issues/3307))
+- **aws-android-sdk-polly:** update models to latest ([#3308](https://github.com/aws-amplify/aws-sdk-android/issues/3308))
+- **aws-android-sdk-iot:** update models to latest ([#3316](https://github.com/aws-amplify/aws-sdk-android/issues/3316))
+- **aws-android-sdk-connect:** update models to latest ([#3315](https://github.com/aws-amplify/aws-sdk-android/issues/3315))
+- **aws-android-sdk-kms:** update models to latest ([#3311](https://github.com/aws-amplify/aws-sdk-android/issues/3311))
+
+### Bug Fixes
+- replace sha1prng secure random with recommended algorithm ([#3314](https://github.com/aws-amplify/aws-sdk-android/issues/3314))
+
+### Miscellaneous
+- Add Signer classes to consumer proguard rules ([#3310](https://github.com/aws-amplify/aws-sdk-android/issues/3310))
+
+[See all changes between 2.70.0 and 2.71.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.70.0...release_v2.71.0)
+
 ## [Release 2.70.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.70.0)
 
 ### Features
