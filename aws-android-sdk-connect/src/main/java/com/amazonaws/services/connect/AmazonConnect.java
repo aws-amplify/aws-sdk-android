@@ -3968,6 +3968,57 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Searches the hours of operation in an Amazon Connect instance, with
+     * optional filtering.
+     * </p>
+     * 
+     * @param searchHoursOfOperationsRequest
+     * @return searchHoursOfOperationsResult The response from the
+     *         SearchHoursOfOperations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchHoursOfOperationsResult searchHoursOfOperations(
+            SearchHoursOfOperationsRequest searchHoursOfOperationsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches prompts in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchPromptsRequest
+     * @return searchPromptsResult The response from the SearchPrompts service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchPromptsResult searchPrompts(SearchPromptsRequest searchPromptsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -3993,6 +4044,33 @@ public interface AmazonConnect {
      */
     SearchQueuesResult searchQueues(SearchQueuesRequest searchQueuesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches quick connects in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchQuickConnectsRequest
+     * @return searchQuickConnectsResult The response from the
+     *         SearchQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchQuickConnectsResult searchQuickConnects(
+            SearchQuickConnectsRequest searchQuickConnectsRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
