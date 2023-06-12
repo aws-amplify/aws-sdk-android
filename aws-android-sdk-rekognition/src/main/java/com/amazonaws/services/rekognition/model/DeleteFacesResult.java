@@ -27,6 +27,13 @@ public class DeleteFacesResult implements Serializable {
 
     /**
      * <p>
+     * An array of any faces that weren't deleted.
+     * </p>
+     */
+    private java.util.List<UnsuccessfulFaceDeletion> unsuccessfulFaceDeletions;
+
+    /**
+     * <p>
      * An array of strings (face IDs) of the faces that were deleted.
      * </p>
      *
@@ -100,6 +107,85 @@ public class DeleteFacesResult implements Serializable {
     }
 
     /**
+     * <p>
+     * An array of any faces that weren't deleted.
+     * </p>
+     *
+     * @return <p>
+     *         An array of any faces that weren't deleted.
+     *         </p>
+     */
+    public java.util.List<UnsuccessfulFaceDeletion> getUnsuccessfulFaceDeletions() {
+        return unsuccessfulFaceDeletions;
+    }
+
+    /**
+     * <p>
+     * An array of any faces that weren't deleted.
+     * </p>
+     *
+     * @param unsuccessfulFaceDeletions <p>
+     *            An array of any faces that weren't deleted.
+     *            </p>
+     */
+    public void setUnsuccessfulFaceDeletions(
+            java.util.Collection<UnsuccessfulFaceDeletion> unsuccessfulFaceDeletions) {
+        if (unsuccessfulFaceDeletions == null) {
+            this.unsuccessfulFaceDeletions = null;
+            return;
+        }
+
+        this.unsuccessfulFaceDeletions = new java.util.ArrayList<UnsuccessfulFaceDeletion>(
+                unsuccessfulFaceDeletions);
+    }
+
+    /**
+     * <p>
+     * An array of any faces that weren't deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param unsuccessfulFaceDeletions <p>
+     *            An array of any faces that weren't deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteFacesResult withUnsuccessfulFaceDeletions(
+            UnsuccessfulFaceDeletion... unsuccessfulFaceDeletions) {
+        if (getUnsuccessfulFaceDeletions() == null) {
+            this.unsuccessfulFaceDeletions = new java.util.ArrayList<UnsuccessfulFaceDeletion>(
+                    unsuccessfulFaceDeletions.length);
+        }
+        for (UnsuccessfulFaceDeletion value : unsuccessfulFaceDeletions) {
+            this.unsuccessfulFaceDeletions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of any faces that weren't deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param unsuccessfulFaceDeletions <p>
+     *            An array of any faces that weren't deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteFacesResult withUnsuccessfulFaceDeletions(
+            java.util.Collection<UnsuccessfulFaceDeletion> unsuccessfulFaceDeletions) {
+        setUnsuccessfulFaceDeletions(unsuccessfulFaceDeletions);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -111,7 +197,9 @@ public class DeleteFacesResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getDeletedFaces() != null)
-            sb.append("DeletedFaces: " + getDeletedFaces());
+            sb.append("DeletedFaces: " + getDeletedFaces() + ",");
+        if (getUnsuccessfulFaceDeletions() != null)
+            sb.append("UnsuccessfulFaceDeletions: " + getUnsuccessfulFaceDeletions());
         sb.append("}");
         return sb.toString();
     }
@@ -123,6 +211,10 @@ public class DeleteFacesResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getDeletedFaces() == null) ? 0 : getDeletedFaces().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUnsuccessfulFaceDeletions() == null) ? 0 : getUnsuccessfulFaceDeletions()
+                        .hashCode());
         return hashCode;
     }
 
@@ -141,6 +233,12 @@ public class DeleteFacesResult implements Serializable {
             return false;
         if (other.getDeletedFaces() != null
                 && other.getDeletedFaces().equals(this.getDeletedFaces()) == false)
+            return false;
+        if (other.getUnsuccessfulFaceDeletions() == null
+                ^ this.getUnsuccessfulFaceDeletions() == null)
+            return false;
+        if (other.getUnsuccessfulFaceDeletions() != null
+                && other.getUnsuccessfulFaceDeletions().equals(this.getUnsuccessfulFaceDeletions()) == false)
             return false;
         return true;
     }

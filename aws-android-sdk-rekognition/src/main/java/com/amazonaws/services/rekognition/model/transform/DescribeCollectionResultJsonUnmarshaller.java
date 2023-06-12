@@ -45,6 +45,9 @@ public class DescribeCollectionResultJsonUnmarshaller implements
             } else if (name.equals("CreationTimestamp")) {
                 describeCollectionResult.setCreationTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("UserCount")) {
+                describeCollectionResult.setUserCount(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

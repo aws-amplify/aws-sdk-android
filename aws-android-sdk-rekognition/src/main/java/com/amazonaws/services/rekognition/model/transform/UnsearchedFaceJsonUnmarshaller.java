@@ -21,27 +21,27 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DeleteFacesResult
+ * JSON unmarshaller for POJO UnsearchedFace
  */
-public class DeleteFacesResultJsonUnmarshaller implements
-        Unmarshaller<DeleteFacesResult, JsonUnmarshallerContext> {
+class UnsearchedFaceJsonUnmarshaller implements
+        Unmarshaller<UnsearchedFace, JsonUnmarshallerContext> {
 
-    public DeleteFacesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DeleteFacesResult deleteFacesResult = new DeleteFacesResult();
-
+    public UnsearchedFace unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        UnsearchedFace unsearchedFace = new UnsearchedFace();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DeletedFaces")) {
-                deleteFacesResult.setDeletedFaces(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("UnsuccessfulFaceDeletions")) {
-                deleteFacesResult
-                        .setUnsuccessfulFaceDeletions(new ListUnmarshaller<UnsuccessfulFaceDeletion>(
-                                UnsuccessfulFaceDeletionJsonUnmarshaller.getInstance()
+            if (name.equals("FaceDetails")) {
+                unsearchedFace.setFaceDetails(FaceDetailJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Reasons")) {
+                unsearchedFace.setReasons(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
                         )
                                 .unmarshall(context));
             } else {
@@ -49,15 +49,14 @@ public class DeleteFacesResultJsonUnmarshaller implements
             }
         }
         reader.endObject();
-
-        return deleteFacesResult;
+        return unsearchedFace;
     }
 
-    private static DeleteFacesResultJsonUnmarshaller instance;
+    private static UnsearchedFaceJsonUnmarshaller instance;
 
-    public static DeleteFacesResultJsonUnmarshaller getInstance() {
+    public static UnsearchedFaceJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DeleteFacesResultJsonUnmarshaller();
+            instance = new UnsearchedFaceJsonUnmarshaller();
         return instance;
     }
 }

@@ -40,6 +40,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_AssociateFaces.html"
+ * >AssociateFaces</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CompareFaces.html"
  * >CompareFaces</a>
  * </p>
@@ -54,6 +61,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_CreateUser.html"
+ * >CreateUser</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteCollection.html"
  * >DeleteCollection</a>
  * </p>
@@ -63,6 +77,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteFaces.html"
  * >DeleteFaces</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DeleteUser.html"
+ * >DeleteUser</a>
  * </p>
  * </li>
  * <li>
@@ -110,6 +131,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_DisassociateFaces.html"
+ * >DisassociateFaces</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_GetCelebrityInfo.html"
  * >GetCelebrityInfo</a>
  * </p>
@@ -138,6 +166,13 @@ import com.amazonaws.services.rekognition.model.*;
  * <li>
  * <p>
  * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_ListFaces.html"
+ * >ListUsers</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_RecognizeCelebrities.html"
  * >RecognizeCelebrities</a>
  * </p>
@@ -154,6 +189,20 @@ import com.amazonaws.services.rekognition.model.*;
  * <a href=
  * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchFacesByImage.html"
  * >SearchFacesByImage</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsers.html"
+ * >SearchUsers</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/rekognition/latest/APIReference/API_SearchUsersByImage.html"
+ * >SearchUsersByImage</a>
  * </p>
  * </li>
  * </ul>
@@ -533,6 +582,80 @@ public interface AmazonRekognition {
      *      com.amazonaws.auth.AWSCredentialsProvider, ClientConfiguration)
      */
     public void setRegion(Region region) throws java.lang.IllegalArgumentException;
+
+    /**
+     * <p>
+     * Associates one or more faces with an existing UserID. Takes an array of
+     * <code>FaceIds</code>. Each <code>FaceId</code> that are present in the
+     * <code>FaceIds</code> list is associated with the provided UserID. The
+     * maximum number of total <code>FaceIds</code> per UserID is 100.
+     * </p>
+     * <p>
+     * The <code>UserMatchThreshold</code> parameter specifies the minimum user
+     * match confidence required for the face to be associated with a UserID
+     * that has at least one <code>FaceID</code> already associated. This
+     * ensures that the <code>FaceIds</code> are associated with the right
+     * UserID. The value ranges from 0-100 and default value is 75.
+     * </p>
+     * <p>
+     * If successful, an array of <code>AssociatedFace</code> objects containing
+     * the associated <code>FaceIds</code> is returned. If a given face is
+     * already associated with the given <code>UserID</code>, it will be ignored
+     * and will not be returned in the response. If a given face is already
+     * associated to a different <code>UserID</code>, isn't found in the
+     * collection, doesn’t meet the <code>UserMatchThreshold</code>, or there
+     * are already 100 faces associated with the <code>UserID</code>, it will be
+     * returned as part of an array of
+     * <code>UnsuccessfulFaceAssociations.</code>
+     * </p>
+     * <p>
+     * The <code>UserStatus</code> reflects the status of an operation which
+     * updates a UserID representation with a list of given faces. The
+     * <code>UserStatus</code> can be:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * ACTIVE - All associations or disassociations of FaceID(s) for a UserID
+     * are complete.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * CREATED - A UserID has been created, but has no FaceID(s) associated with
+     * it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * UPDATING - A UserID is being updated and there are current associations
+     * or disassociations of FaceID(s) taking place.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param associateFacesRequest
+     * @return associateFacesResult The response from the AssociateFaces service
+     *         method, as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws IdempotentParameterMismatchException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    AssociateFacesResult associateFaces(AssociateFacesRequest associateFacesRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -1042,6 +1165,45 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Creates a new User within a collection specified by
+     * <code>CollectionId</code>. Takes <code>UserId</code> as a parameter,
+     * which is a user provided ID which should be unique within the collection.
+     * The provided <code>UserId</code> will alias the system generated UUID to
+     * make the <code>UserId</code> more user friendly.
+     * </p>
+     * <p>
+     * Uses a <code>ClientToken</code>, an idempotency token that ensures a call
+     * to <code>CreateUser</code> completes only once. If the value is not
+     * supplied, the AWS SDK generates an idempotency token for the requests.
+     * This prevents retries after a network error results from making multiple
+     * <code>CreateUser</code> calls.
+     * </p>
+     * 
+     * @param createUserRequest
+     * @return createUserResult The response from the CreateUser service method,
+     *         as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws ServiceQuotaExceededException
+     * @throws ProvisionedThroughputExceededException
+     * @throws IdempotentParameterMismatchException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateUserResult createUser(CreateUserRequest createUserRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes the specified collection. Note that this operation removes all
      * faces in the collection. For an example, see <a href=
      * "https://docs.aws.amazon.com/rekognition/latest/dg/delete-collection-procedure.html"
@@ -1289,6 +1451,38 @@ public interface AmazonRekognition {
     DeleteStreamProcessorResult deleteStreamProcessor(
             DeleteStreamProcessorRequest deleteStreamProcessorRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes the specified UserID within the collection. Faces that are
+     * associated with the UserID are disassociated from the UserID before
+     * deleting the specified UserID. If the specified <code>Collection</code>
+     * or <code>UserID</code> is already deleted or not found, a
+     * <code>ResourceNotFoundException</code> will be thrown. If the action is
+     * successful with a 200 response, an empty HTTP body is returned.
+     * </p>
+     * 
+     * @param deleteUserRequest
+     * @return deleteUserResult The response from the DeleteUser service method,
+     *         as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws ProvisionedThroughputExceededException
+     * @throws IdempotentParameterMismatchException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteUserResult deleteUser(DeleteUserRequest deleteUserRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1992,6 +2186,41 @@ public interface AmazonRekognition {
      */
     DetectTextResult detectText(DetectTextRequest detectTextRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the association between a <code>Face</code> supplied in an array
+     * of <code>FaceIds</code> and the User. If the User is not present already,
+     * then a <code>ResourceNotFound</code> exception is thrown. If successful,
+     * an array of faces that are disassociated from the User is returned. If a
+     * given face is already disassociated from the given UserID, it will be
+     * ignored and not be returned in the response. If a given face is already
+     * associated with a different User or not found in the collection it will
+     * be returned as part of <code>UnsuccessfulDisassociations</code>. You can
+     * remove 1 - 100 face IDs from a user at one time.
+     * </p>
+     * 
+     * @param disassociateFacesRequest
+     * @return disassociateFacesResult The response from the DisassociateFaces
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws IdempotentParameterMismatchException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DisassociateFacesResult disassociateFaces(DisassociateFacesRequest disassociateFacesRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -3188,6 +3417,37 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Returns metadata of the User such as <code>UserID</code> in the specified
+     * collection. Anonymous User (to reserve faces without any identity) is not
+     * returned as part of this request. The results are sorted by system
+     * generated primary key ID. If the response is truncated,
+     * <code>NextToken</code> is returned in the response that can be used in
+     * the subsequent request to retrieve the next set of identities.
+     * </p>
+     * 
+     * @param listUsersRequest
+     * @return listUsersResult The response from the ListUsers service method,
+     *         as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidPaginationTokenException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListUsersResult listUsers(ListUsersRequest listUsersRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Attaches a project policy to a Amazon Rekognition Custom Labels project
      * in a trusting AWS account. A project policy specifies that a trusted AWS
      * account can copy a model version from a trusting AWS account to a project
@@ -3449,6 +3709,80 @@ public interface AmazonRekognition {
      *             request, or a server side issue.
      */
     SearchFacesByImageResult searchFacesByImage(SearchFacesByImageRequest searchFacesByImageRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches for UserIDs within a collection based on a <code>FaceId</code>
+     * or <code>UserId</code>. This API can be used to find the closest UserID
+     * (with a highest similarity) to associate a face. The request must be
+     * provided with either <code>FaceId</code> or <code>UserId</code>. The
+     * operation returns an array of UserID that match the <code>FaceId</code>
+     * or <code>UserId</code>, ordered by similarity score with the highest
+     * similarity first.
+     * </p>
+     * 
+     * @param searchUsersRequest
+     * @return searchUsersResult The response from the SearchUsers service
+     *         method, as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchUsersResult searchUsers(SearchUsersRequest searchUsersRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Searches for UserIDs using a supplied image. It first detects the largest
+     * face in the image, and then searches a specified collection for matching
+     * UserIDs.
+     * </p>
+     * <p>
+     * The operation returns an array of UserIDs that match the face in the
+     * supplied image, ordered by similarity score with the highest similarity
+     * first. It also returns a bounding box for the face found in the input
+     * image.
+     * </p>
+     * <p>
+     * Information about faces detected in the supplied image, but not used for
+     * the search, is returned in an array of <code>UnsearchedFace</code>
+     * objects. If no valid face is detected in the image, the response will
+     * contain an empty <code>UserMatches</code> list and no
+     * <code>SearchedFace</code> object.
+     * </p>
+     * 
+     * @param searchUsersByImageRequest
+     * @return searchUsersByImageResult The response from the SearchUsersByImage
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InvalidImageFormatException
+     * @throws InvalidS3ObjectException
+     * @throws ImageTooLargeException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SearchUsersByImageResult searchUsersByImage(SearchUsersByImageRequest searchUsersByImageRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

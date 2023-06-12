@@ -38,19 +38,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListFacesRequest
+ * JSON request marshaller for DeleteUserRequest
  */
-public class ListFacesRequestMarshaller implements
-        Marshaller<Request<ListFacesRequest>, ListFacesRequest> {
+public class DeleteUserRequestMarshaller implements
+        Marshaller<Request<DeleteUserRequest>, DeleteUserRequest> {
 
-    public Request<ListFacesRequest> marshall(ListFacesRequest listFacesRequest) {
-        if (listFacesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(ListFacesRequest)");
+    public Request<DeleteUserRequest> marshall(DeleteUserRequest deleteUserRequest) {
+        if (deleteUserRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(DeleteUserRequest)");
         }
 
-        Request<ListFacesRequest> request = new DefaultRequest<ListFacesRequest>(listFacesRequest,
-                "AmazonRekognition");
-        String target = "RekognitionService.ListFaces";
+        Request<DeleteUserRequest> request = new DefaultRequest<DeleteUserRequest>(
+                deleteUserRequest, "AmazonRekognition");
+        String target = "RekognitionService.DeleteUser";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -61,36 +62,20 @@ public class ListFacesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (listFacesRequest.getCollectionId() != null) {
-                String collectionId = listFacesRequest.getCollectionId();
+            if (deleteUserRequest.getCollectionId() != null) {
+                String collectionId = deleteUserRequest.getCollectionId();
                 jsonWriter.name("CollectionId");
                 jsonWriter.value(collectionId);
             }
-            if (listFacesRequest.getNextToken() != null) {
-                String nextToken = listFacesRequest.getNextToken();
-                jsonWriter.name("NextToken");
-                jsonWriter.value(nextToken);
-            }
-            if (listFacesRequest.getMaxResults() != null) {
-                Integer maxResults = listFacesRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
-            if (listFacesRequest.getUserId() != null) {
-                String userId = listFacesRequest.getUserId();
+            if (deleteUserRequest.getUserId() != null) {
+                String userId = deleteUserRequest.getUserId();
                 jsonWriter.name("UserId");
                 jsonWriter.value(userId);
             }
-            if (listFacesRequest.getFaceIds() != null) {
-                java.util.List<String> faceIds = listFacesRequest.getFaceIds();
-                jsonWriter.name("FaceIds");
-                jsonWriter.beginArray();
-                for (String faceIdsItem : faceIds) {
-                    if (faceIdsItem != null) {
-                        jsonWriter.value(faceIdsItem);
-                    }
-                }
-                jsonWriter.endArray();
+            if (deleteUserRequest.getClientRequestToken() != null) {
+                String clientRequestToken = deleteUserRequest.getClientRequestToken();
+                jsonWriter.name("ClientRequestToken");
+                jsonWriter.value(clientRequestToken);
             }
 
             jsonWriter.endObject();

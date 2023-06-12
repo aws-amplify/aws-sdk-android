@@ -21,43 +21,46 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DeleteFacesResult
+ * JSON unmarshaller for response AssociateFacesResult
  */
-public class DeleteFacesResultJsonUnmarshaller implements
-        Unmarshaller<DeleteFacesResult, JsonUnmarshallerContext> {
+public class AssociateFacesResultJsonUnmarshaller implements
+        Unmarshaller<AssociateFacesResult, JsonUnmarshallerContext> {
 
-    public DeleteFacesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DeleteFacesResult deleteFacesResult = new DeleteFacesResult();
+    public AssociateFacesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        AssociateFacesResult associateFacesResult = new AssociateFacesResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DeletedFaces")) {
-                deleteFacesResult.setDeletedFaces(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
+            if (name.equals("AssociatedFaces")) {
+                associateFacesResult.setAssociatedFaces(new ListUnmarshaller<AssociatedFace>(
+                        AssociatedFaceJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("UnsuccessfulFaceDeletions")) {
-                deleteFacesResult
-                        .setUnsuccessfulFaceDeletions(new ListUnmarshaller<UnsuccessfulFaceDeletion>(
-                                UnsuccessfulFaceDeletionJsonUnmarshaller.getInstance()
+            } else if (name.equals("UnsuccessfulFaceAssociations")) {
+                associateFacesResult
+                        .setUnsuccessfulFaceAssociations(new ListUnmarshaller<UnsuccessfulFaceAssociation>(
+                                UnsuccessfulFaceAssociationJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("UserStatus")) {
+                associateFacesResult.setUserStatus(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
 
-        return deleteFacesResult;
+        return associateFacesResult;
     }
 
-    private static DeleteFacesResultJsonUnmarshaller instance;
+    private static AssociateFacesResultJsonUnmarshaller instance;
 
-    public static DeleteFacesResultJsonUnmarshaller getInstance() {
+    public static AssociateFacesResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DeleteFacesResultJsonUnmarshaller();
+            instance = new AssociateFacesResultJsonUnmarshaller();
         return instance;
     }
 }
