@@ -31,6 +31,17 @@ class PlaceJsonMarshaller {
             jsonWriter.name("AddressNumber");
             jsonWriter.value(addressNumber);
         }
+        if (place.getCategories() != null) {
+            java.util.List<String> categories = place.getCategories();
+            jsonWriter.name("Categories");
+            jsonWriter.beginArray();
+            for (String categoriesItem : categories) {
+                if (categoriesItem != null) {
+                    jsonWriter.value(categoriesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         if (place.getCountry() != null) {
             String country = place.getCountry();
             jsonWriter.name("Country");
@@ -80,6 +91,17 @@ class PlaceJsonMarshaller {
             String subRegion = place.getSubRegion();
             jsonWriter.name("SubRegion");
             jsonWriter.value(subRegion);
+        }
+        if (place.getSupplementalCategories() != null) {
+            java.util.List<String> supplementalCategories = place.getSupplementalCategories();
+            jsonWriter.name("SupplementalCategories");
+            jsonWriter.beginArray();
+            for (String supplementalCategoriesItem : supplementalCategories) {
+                if (supplementalCategoriesItem != null) {
+                    jsonWriter.value(supplementalCategoriesItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         if (place.getTimeZone() != null) {
             TimeZone timeZone = place.getTimeZone();

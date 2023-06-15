@@ -40,6 +40,11 @@ public class GetGeofenceResultJsonUnmarshaller implements
             } else if (name.equals("GeofenceId")) {
                 getGeofenceResult.setGeofenceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("GeofenceProperties")) {
+                getGeofenceResult.setGeofenceProperties(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Geometry")) {
                 getGeofenceResult.setGeometry(GeofenceGeometryJsonUnmarshaller.getInstance()
                         .unmarshall(context));

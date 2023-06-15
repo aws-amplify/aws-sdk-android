@@ -37,6 +37,20 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * The Amazon Location categories that describe this Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private java.util.List<String> categories;
+
+    /**
+     * <p>
      * A country/region specified using <a
      * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
      * 3-digit country/region code. For example, <code>CAN</code>.
@@ -128,8 +142,16 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * Categories from the data provider that describe the Place that are not
+     * mapped to any Amazon Location categories.
+     * </p>
+     */
+    private java.util.List<String> supplementalCategories;
+
+    /**
+     * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using HERE as the selected partner.
+     * when using HERE or Grab as the selected partner.
      * </p>
      */
     private TimeZone timeZone;
@@ -142,8 +164,8 @@ public class Place implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Returned only for a place index that uses Esri as a data provider. Is not
-     * returned for <code>SearchPlaceIndexForPosition</code>.
+     * Returned only for a place index that uses Esri or Grab as a data
+     * provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.
      * </p>
      * </note>
      */
@@ -154,6 +176,11 @@ public class Place implements Serializable {
      * For addresses with a <code>UnitNumber</code>, the type of unit. For
      * example, <code>Apartment</code>.
      * </p>
+     * <note>
+     * <p>
+     * Returned only for a place index that uses Esri as a data provider.
+     * </p>
+     * </note>
      */
     private String unitType;
 
@@ -201,6 +228,136 @@ public class Place implements Serializable {
      */
     public Place withAddressNumber(String addressNumber) {
         this.addressNumber = addressNumber;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe this Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon Location categories that describe this Place.
+     *         </p>
+     *         <p>
+     *         For more information about using categories, including a list of
+     *         Amazon Location categories, see <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *         >Categories and filtering</a>, in the <i>Amazon Location Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public java.util.List<String> getCategories() {
+        return categories;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe this Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe this Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setCategories(java.util.Collection<String> categories) {
+        if (categories == null) {
+            this.categories = null;
+            return;
+        }
+
+        this.categories = new java.util.ArrayList<String>(categories);
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe this Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe this Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withCategories(String... categories) {
+        if (getCategories() == null) {
+            this.categories = new java.util.ArrayList<String>(categories.length);
+        }
+        for (String value : categories) {
+            this.categories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Location categories that describe this Place.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param categories <p>
+     *            The Amazon Location categories that describe this Place.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withCategories(java.util.Collection<String> categories) {
+        setCategories(categories);
         return this;
     }
 
@@ -838,13 +995,96 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * Categories from the data provider that describe the Place that are not
+     * mapped to any Amazon Location categories.
+     * </p>
+     *
+     * @return <p>
+     *         Categories from the data provider that describe the Place that
+     *         are not mapped to any Amazon Location categories.
+     *         </p>
+     */
+    public java.util.List<String> getSupplementalCategories() {
+        return supplementalCategories;
+    }
+
+    /**
+     * <p>
+     * Categories from the data provider that describe the Place that are not
+     * mapped to any Amazon Location categories.
+     * </p>
+     *
+     * @param supplementalCategories <p>
+     *            Categories from the data provider that describe the Place that
+     *            are not mapped to any Amazon Location categories.
+     *            </p>
+     */
+    public void setSupplementalCategories(java.util.Collection<String> supplementalCategories) {
+        if (supplementalCategories == null) {
+            this.supplementalCategories = null;
+            return;
+        }
+
+        this.supplementalCategories = new java.util.ArrayList<String>(supplementalCategories);
+    }
+
+    /**
+     * <p>
+     * Categories from the data provider that describe the Place that are not
+     * mapped to any Amazon Location categories.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param supplementalCategories <p>
+     *            Categories from the data provider that describe the Place that
+     *            are not mapped to any Amazon Location categories.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withSupplementalCategories(String... supplementalCategories) {
+        if (getSupplementalCategories() == null) {
+            this.supplementalCategories = new java.util.ArrayList<String>(
+                    supplementalCategories.length);
+        }
+        for (String value : supplementalCategories) {
+            this.supplementalCategories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Categories from the data provider that describe the Place that are not
+     * mapped to any Amazon Location categories.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param supplementalCategories <p>
+     *            Categories from the data provider that describe the Place that
+     *            are not mapped to any Amazon Location categories.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withSupplementalCategories(java.util.Collection<String> supplementalCategories) {
+        setSupplementalCategories(supplementalCategories);
+        return this;
+    }
+
+    /**
+     * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using HERE as the selected partner.
+     * when using HERE or Grab as the selected partner.
      * </p>
      *
      * @return <p>
      *         The time zone in which the <code>Place</code> is located.
-     *         Returned only when using HERE as the selected partner.
+     *         Returned only when using HERE or Grab as the selected partner.
      *         </p>
      */
     public TimeZone getTimeZone() {
@@ -854,12 +1094,12 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using HERE as the selected partner.
+     * when using HERE or Grab as the selected partner.
      * </p>
      *
      * @param timeZone <p>
      *            The time zone in which the <code>Place</code> is located.
-     *            Returned only when using HERE as the selected partner.
+     *            Returned only when using HERE or Grab as the selected partner.
      *            </p>
      */
     public void setTimeZone(TimeZone timeZone) {
@@ -869,7 +1109,7 @@ public class Place implements Serializable {
     /**
      * <p>
      * The time zone in which the <code>Place</code> is located. Returned only
-     * when using HERE as the selected partner.
+     * when using HERE or Grab as the selected partner.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -877,7 +1117,7 @@ public class Place implements Serializable {
      *
      * @param timeZone <p>
      *            The time zone in which the <code>Place</code> is located.
-     *            Returned only when using HERE as the selected partner.
+     *            Returned only when using HERE or Grab as the selected partner.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -895,8 +1135,8 @@ public class Place implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Returned only for a place index that uses Esri as a data provider. Is not
-     * returned for <code>SearchPlaceIndexForPosition</code>.
+     * Returned only for a place index that uses Esri or Grab as a data
+     * provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.
      * </p>
      * </note>
      *
@@ -907,7 +1147,7 @@ public class Place implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         Returned only for a place index that uses Esri as a data
+     *         Returned only for a place index that uses Esri or Grab as a data
      *         provider. Is not returned for
      *         <code>SearchPlaceIndexForPosition</code>.
      *         </p>
@@ -925,8 +1165,8 @@ public class Place implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Returned only for a place index that uses Esri as a data provider. Is not
-     * returned for <code>SearchPlaceIndexForPosition</code>.
+     * Returned only for a place index that uses Esri or Grab as a data
+     * provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.
      * </p>
      * </note>
      *
@@ -937,8 +1177,8 @@ public class Place implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Returned only for a place index that uses Esri as a data
-     *            provider. Is not returned for
+     *            Returned only for a place index that uses Esri or Grab as a
+     *            data provider. Is not returned for
      *            <code>SearchPlaceIndexForPosition</code>.
      *            </p>
      *            </note>
@@ -955,8 +1195,8 @@ public class Place implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Returned only for a place index that uses Esri as a data provider. Is not
-     * returned for <code>SearchPlaceIndexForPosition</code>.
+     * Returned only for a place index that uses Esri or Grab as a data
+     * provider. Is not returned for <code>SearchPlaceIndexForPosition</code>.
      * </p>
      * </note>
      * <p>
@@ -970,8 +1210,8 @@ public class Place implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Returned only for a place index that uses Esri as a data
-     *            provider. Is not returned for
+     *            Returned only for a place index that uses Esri or Grab as a
+     *            data provider. Is not returned for
      *            <code>SearchPlaceIndexForPosition</code>.
      *            </p>
      *            </note>
@@ -988,11 +1228,22 @@ public class Place implements Serializable {
      * For addresses with a <code>UnitNumber</code>, the type of unit. For
      * example, <code>Apartment</code>.
      * </p>
+     * <note>
+     * <p>
+     * Returned only for a place index that uses Esri as a data provider.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         For addresses with a <code>UnitNumber</code>, the type of unit.
      *         For example, <code>Apartment</code>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Returned only for a place index that uses Esri as a data
+     *         provider.
+     *         </p>
+     *         </note>
      */
     public String getUnitType() {
         return unitType;
@@ -1003,11 +1254,22 @@ public class Place implements Serializable {
      * For addresses with a <code>UnitNumber</code>, the type of unit. For
      * example, <code>Apartment</code>.
      * </p>
+     * <note>
+     * <p>
+     * Returned only for a place index that uses Esri as a data provider.
+     * </p>
+     * </note>
      *
      * @param unitType <p>
      *            For addresses with a <code>UnitNumber</code>, the type of
      *            unit. For example, <code>Apartment</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Returned only for a place index that uses Esri as a data
+     *            provider.
+     *            </p>
+     *            </note>
      */
     public void setUnitType(String unitType) {
         this.unitType = unitType;
@@ -1018,6 +1280,11 @@ public class Place implements Serializable {
      * For addresses with a <code>UnitNumber</code>, the type of unit. For
      * example, <code>Apartment</code>.
      * </p>
+     * <note>
+     * <p>
+     * Returned only for a place index that uses Esri as a data provider.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1026,6 +1293,12 @@ public class Place implements Serializable {
      *            For addresses with a <code>UnitNumber</code>, the type of
      *            unit. For example, <code>Apartment</code>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Returned only for a place index that uses Esri as a data
+     *            provider.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1047,6 +1320,8 @@ public class Place implements Serializable {
         sb.append("{");
         if (getAddressNumber() != null)
             sb.append("AddressNumber: " + getAddressNumber() + ",");
+        if (getCategories() != null)
+            sb.append("Categories: " + getCategories() + ",");
         if (getCountry() != null)
             sb.append("Country: " + getCountry() + ",");
         if (getGeometry() != null)
@@ -1067,6 +1342,8 @@ public class Place implements Serializable {
             sb.append("Street: " + getStreet() + ",");
         if (getSubRegion() != null)
             sb.append("SubRegion: " + getSubRegion() + ",");
+        if (getSupplementalCategories() != null)
+            sb.append("SupplementalCategories: " + getSupplementalCategories() + ",");
         if (getTimeZone() != null)
             sb.append("TimeZone: " + getTimeZone() + ",");
         if (getUnitNumber() != null)
@@ -1084,6 +1361,7 @@ public class Place implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getAddressNumber() == null) ? 0 : getAddressNumber().hashCode());
+        hashCode = prime * hashCode + ((getCategories() == null) ? 0 : getCategories().hashCode());
         hashCode = prime * hashCode + ((getCountry() == null) ? 0 : getCountry().hashCode());
         hashCode = prime * hashCode + ((getGeometry() == null) ? 0 : getGeometry().hashCode());
         hashCode = prime * hashCode
@@ -1097,6 +1375,10 @@ public class Place implements Serializable {
         hashCode = prime * hashCode + ((getRegion() == null) ? 0 : getRegion().hashCode());
         hashCode = prime * hashCode + ((getStreet() == null) ? 0 : getStreet().hashCode());
         hashCode = prime * hashCode + ((getSubRegion() == null) ? 0 : getSubRegion().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getSupplementalCategories() == null) ? 0 : getSupplementalCategories()
+                        .hashCode());
         hashCode = prime * hashCode + ((getTimeZone() == null) ? 0 : getTimeZone().hashCode());
         hashCode = prime * hashCode + ((getUnitNumber() == null) ? 0 : getUnitNumber().hashCode());
         hashCode = prime * hashCode + ((getUnitType() == null) ? 0 : getUnitType().hashCode());
@@ -1118,6 +1400,11 @@ public class Place implements Serializable {
             return false;
         if (other.getAddressNumber() != null
                 && other.getAddressNumber().equals(this.getAddressNumber()) == false)
+            return false;
+        if (other.getCategories() == null ^ this.getCategories() == null)
+            return false;
+        if (other.getCategories() != null
+                && other.getCategories().equals(this.getCategories()) == false)
             return false;
         if (other.getCountry() == null ^ this.getCountry() == null)
             return false;
@@ -1163,6 +1450,11 @@ public class Place implements Serializable {
             return false;
         if (other.getSubRegion() != null
                 && other.getSubRegion().equals(this.getSubRegion()) == false)
+            return false;
+        if (other.getSupplementalCategories() == null ^ this.getSupplementalCategories() == null)
+            return false;
+        if (other.getSupplementalCategories() != null
+                && other.getSupplementalCategories().equals(this.getSupplementalCategories()) == false)
             return false;
         if (other.getTimeZone() == null ^ this.getTimeZone() == null)
             return false;

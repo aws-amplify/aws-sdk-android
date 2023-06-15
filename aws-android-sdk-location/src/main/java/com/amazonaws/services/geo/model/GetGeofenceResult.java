@@ -40,6 +40,14 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
+     * Contains additional user-defined properties stored with the geofence. An
+     * array of key-value pairs.
+     * </p>
+     */
+    private java.util.Map<String, String> geofenceProperties;
+
+    /**
+     * <p>
      * Contains the geofence geometry details describing a polygon or a circle.
      * </p>
      */
@@ -204,6 +212,95 @@ public class GetGeofenceResult implements Serializable {
      */
     public GetGeofenceResult withGeofenceId(String geofenceId) {
         this.geofenceId = geofenceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains additional user-defined properties stored with the geofence. An
+     * array of key-value pairs.
+     * </p>
+     *
+     * @return <p>
+     *         Contains additional user-defined properties stored with the
+     *         geofence. An array of key-value pairs.
+     *         </p>
+     */
+    public java.util.Map<String, String> getGeofenceProperties() {
+        return geofenceProperties;
+    }
+
+    /**
+     * <p>
+     * Contains additional user-defined properties stored with the geofence. An
+     * array of key-value pairs.
+     * </p>
+     *
+     * @param geofenceProperties <p>
+     *            Contains additional user-defined properties stored with the
+     *            geofence. An array of key-value pairs.
+     *            </p>
+     */
+    public void setGeofenceProperties(java.util.Map<String, String> geofenceProperties) {
+        this.geofenceProperties = geofenceProperties;
+    }
+
+    /**
+     * <p>
+     * Contains additional user-defined properties stored with the geofence. An
+     * array of key-value pairs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param geofenceProperties <p>
+     *            Contains additional user-defined properties stored with the
+     *            geofence. An array of key-value pairs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetGeofenceResult withGeofenceProperties(java.util.Map<String, String> geofenceProperties) {
+        this.geofenceProperties = geofenceProperties;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains additional user-defined properties stored with the geofence. An
+     * array of key-value pairs.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into GeofenceProperties parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into GeofenceProperties.
+     * @param value The corresponding value of the entry to be added into
+     *            GeofenceProperties.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetGeofenceResult addGeofencePropertiesEntry(String key, String value) {
+        if (null == this.geofenceProperties) {
+            this.geofenceProperties = new java.util.HashMap<String, String>();
+        }
+        if (this.geofenceProperties.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.geofenceProperties.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into GeofenceProperties.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public GetGeofenceResult clearGeofencePropertiesEntries() {
+        this.geofenceProperties = null;
         return this;
     }
 
@@ -564,6 +661,8 @@ public class GetGeofenceResult implements Serializable {
             sb.append("CreateTime: " + getCreateTime() + ",");
         if (getGeofenceId() != null)
             sb.append("GeofenceId: " + getGeofenceId() + ",");
+        if (getGeofenceProperties() != null)
+            sb.append("GeofenceProperties: " + getGeofenceProperties() + ",");
         if (getGeometry() != null)
             sb.append("Geometry: " + getGeometry() + ",");
         if (getStatus() != null)
@@ -581,6 +680,8 @@ public class GetGeofenceResult implements Serializable {
 
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getGeofenceId() == null) ? 0 : getGeofenceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getGeofenceProperties() == null) ? 0 : getGeofenceProperties().hashCode());
         hashCode = prime * hashCode + ((getGeometry() == null) ? 0 : getGeometry().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
@@ -607,6 +708,11 @@ public class GetGeofenceResult implements Serializable {
             return false;
         if (other.getGeofenceId() != null
                 && other.getGeofenceId().equals(this.getGeofenceId()) == false)
+            return false;
+        if (other.getGeofenceProperties() == null ^ this.getGeofenceProperties() == null)
+            return false;
+        if (other.getGeofenceProperties() != null
+                && other.getGeofenceProperties().equals(this.getGeofenceProperties()) == false)
             return false;
         if (other.getGeometry() == null ^ this.getGeometry() == null)
             return false;
