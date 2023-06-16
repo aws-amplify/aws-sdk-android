@@ -51,7 +51,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      */
     private String resourceType;
 
@@ -156,7 +157,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      *
      * @return <p>
      *         A valid resource type.
@@ -175,7 +177,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -197,7 +200,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -219,7 +223,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      *
      * @param resourceType <p>
      *            A valid resource type.
@@ -241,7 +246,8 @@ public class ListInstanceStorageConfigsRequest extends AmazonWebServiceRequest i
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
      * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS,
-     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS
+     * REAL_TIME_CONTACT_ANALYSIS_SEGMENTS, ATTACHMENTS, CONTACT_EVALUATIONS,
+     * SCREEN_RECORDINGS
      *
      * @param resourceType <p>
      *            A valid resource type.
