@@ -68,6 +68,21 @@ public class PutGeofenceRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (putGeofenceRequest.getGeofenceProperties() != null) {
+                java.util.Map<String, String> geofenceProperties = putGeofenceRequest
+                        .getGeofenceProperties();
+                jsonWriter.name("GeofenceProperties");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> geofencePropertiesEntry : geofenceProperties
+                        .entrySet()) {
+                    String geofencePropertiesValue = geofencePropertiesEntry.getValue();
+                    if (geofencePropertiesValue != null) {
+                        jsonWriter.name(geofencePropertiesEntry.getKey());
+                        jsonWriter.value(geofencePropertiesValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
             if (putGeofenceRequest.getGeometry() != null) {
                 GeofenceGeometry geometry = putGeofenceRequest.getGeometry();
                 jsonWriter.name("Geometry");

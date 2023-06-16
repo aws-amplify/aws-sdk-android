@@ -57,6 +57,18 @@ class SearchPlaceIndexForSuggestionsSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (searchPlaceIndexForSuggestionsSummary.getFilterCategories() != null) {
+            java.util.List<String> filterCategories = searchPlaceIndexForSuggestionsSummary
+                    .getFilterCategories();
+            jsonWriter.name("FilterCategories");
+            jsonWriter.beginArray();
+            for (String filterCategoriesItem : filterCategories) {
+                if (filterCategoriesItem != null) {
+                    jsonWriter.value(filterCategoriesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         if (searchPlaceIndexForSuggestionsSummary.getFilterCountries() != null) {
             java.util.List<String> filterCountries = searchPlaceIndexForSuggestionsSummary
                     .getFilterCountries();

@@ -51,6 +51,12 @@ class SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller implements
                         DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("FilterCategories")) {
+                searchPlaceIndexForSuggestionsSummary
+                        .setFilterCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                                .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("FilterCountries")) {
                 searchPlaceIndexForSuggestionsSummary
                         .setFilterCountries(new ListUnmarshaller<String>(StringJsonUnmarshaller

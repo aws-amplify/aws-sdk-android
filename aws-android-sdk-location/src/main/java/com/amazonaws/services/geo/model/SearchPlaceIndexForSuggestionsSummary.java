@@ -81,6 +81,13 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
 
     /**
      * <p>
+     * The optional category filter specified in the request.
+     * </p>
+     */
+    private java.util.List<String> filterCategories;
+
+    /**
+     * <p>
      * Contains the optional country filter specified in the request.
      * </p>
      */
@@ -542,6 +549,81 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
 
     /**
      * <p>
+     * The optional category filter specified in the request.
+     * </p>
+     *
+     * @return <p>
+     *         The optional category filter specified in the request.
+     *         </p>
+     */
+    public java.util.List<String> getFilterCategories() {
+        return filterCategories;
+    }
+
+    /**
+     * <p>
+     * The optional category filter specified in the request.
+     * </p>
+     *
+     * @param filterCategories <p>
+     *            The optional category filter specified in the request.
+     *            </p>
+     */
+    public void setFilterCategories(java.util.Collection<String> filterCategories) {
+        if (filterCategories == null) {
+            this.filterCategories = null;
+            return;
+        }
+
+        this.filterCategories = new java.util.ArrayList<String>(filterCategories);
+    }
+
+    /**
+     * <p>
+     * The optional category filter specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCategories <p>
+     *            The optional category filter specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterCategories(String... filterCategories) {
+        if (getFilterCategories() == null) {
+            this.filterCategories = new java.util.ArrayList<String>(filterCategories.length);
+        }
+        for (String value : filterCategories) {
+            this.filterCategories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional category filter specified in the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCategories <p>
+     *            The optional category filter specified in the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsSummary withFilterCategories(
+            java.util.Collection<String> filterCategories) {
+        setFilterCategories(filterCategories);
+        return this;
+    }
+
+    /**
+     * <p>
      * Contains the optional country filter specified in the request.
      * </p>
      *
@@ -797,6 +879,8 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
             sb.append("DataSource: " + getDataSource() + ",");
         if (getFilterBBox() != null)
             sb.append("FilterBBox: " + getFilterBBox() + ",");
+        if (getFilterCategories() != null)
+            sb.append("FilterCategories: " + getFilterCategories() + ",");
         if (getFilterCountries() != null)
             sb.append("FilterCountries: " + getFilterCountries() + ",");
         if (getLanguage() != null)
@@ -818,6 +902,8 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
                 + ((getBiasPosition() == null) ? 0 : getBiasPosition().hashCode());
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
         hashCode = prime * hashCode + ((getFilterBBox() == null) ? 0 : getFilterBBox().hashCode());
+        hashCode = prime * hashCode
+                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
         hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
         hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
@@ -851,6 +937,11 @@ public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
             return false;
         if (other.getFilterBBox() != null
                 && other.getFilterBBox().equals(this.getFilterBBox()) == false)
+            return false;
+        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
+            return false;
+        if (other.getFilterCategories() != null
+                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
             return false;
         if (other.getFilterCountries() == null ^ this.getFilterCountries() == null)
             return false;

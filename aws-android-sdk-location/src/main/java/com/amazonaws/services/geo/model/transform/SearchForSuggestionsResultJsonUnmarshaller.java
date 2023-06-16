@@ -36,9 +36,19 @@ class SearchForSuggestionsResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("PlaceId")) {
+            if (name.equals("Categories")) {
+                searchForSuggestionsResult.setCategories(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("PlaceId")) {
                 searchForSuggestionsResult.setPlaceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SupplementalCategories")) {
+                searchForSuggestionsResult.setSupplementalCategories(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Text")) {
                 searchForSuggestionsResult.setText(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

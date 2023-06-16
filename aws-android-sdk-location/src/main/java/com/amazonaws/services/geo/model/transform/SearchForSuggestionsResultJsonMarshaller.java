@@ -27,10 +27,33 @@ class SearchForSuggestionsResultJsonMarshaller {
     public void marshall(SearchForSuggestionsResult searchForSuggestionsResult,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (searchForSuggestionsResult.getCategories() != null) {
+            java.util.List<String> categories = searchForSuggestionsResult.getCategories();
+            jsonWriter.name("Categories");
+            jsonWriter.beginArray();
+            for (String categoriesItem : categories) {
+                if (categoriesItem != null) {
+                    jsonWriter.value(categoriesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         if (searchForSuggestionsResult.getPlaceId() != null) {
             String placeId = searchForSuggestionsResult.getPlaceId();
             jsonWriter.name("PlaceId");
             jsonWriter.value(placeId);
+        }
+        if (searchForSuggestionsResult.getSupplementalCategories() != null) {
+            java.util.List<String> supplementalCategories = searchForSuggestionsResult
+                    .getSupplementalCategories();
+            jsonWriter.name("SupplementalCategories");
+            jsonWriter.beginArray();
+            for (String supplementalCategoriesItem : supplementalCategories) {
+                if (supplementalCategoriesItem != null) {
+                    jsonWriter.value(supplementalCategoriesItem);
+                }
+            }
+            jsonWriter.endArray();
         }
         if (searchForSuggestionsResult.getText() != null) {
             String text = searchForSuggestionsResult.getText();

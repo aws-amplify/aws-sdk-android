@@ -43,6 +43,11 @@ class ListGeofenceResponseEntryJsonUnmarshaller implements
             } else if (name.equals("GeofenceId")) {
                 listGeofenceResponseEntry.setGeofenceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("GeofenceProperties")) {
+                listGeofenceResponseEntry.setGeofenceProperties(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Geometry")) {
                 listGeofenceResponseEntry.setGeometry(GeofenceGeometryJsonUnmarshaller
                         .getInstance()

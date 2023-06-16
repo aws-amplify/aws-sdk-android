@@ -40,6 +40,11 @@ class BatchPutGeofenceRequestEntryJsonUnmarshaller implements
             if (name.equals("GeofenceId")) {
                 batchPutGeofenceRequestEntry.setGeofenceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("GeofenceProperties")) {
+                batchPutGeofenceRequestEntry.setGeofenceProperties(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Geometry")) {
                 batchPutGeofenceRequestEntry.setGeometry(GeofenceGeometryJsonUnmarshaller
                         .getInstance()

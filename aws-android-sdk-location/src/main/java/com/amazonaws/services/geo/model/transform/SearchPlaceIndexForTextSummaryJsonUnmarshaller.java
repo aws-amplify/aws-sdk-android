@@ -50,6 +50,11 @@ class SearchPlaceIndexForTextSummaryJsonUnmarshaller implements
                         DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("FilterCategories")) {
+                searchPlaceIndexForTextSummary.setFilterCategories(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("FilterCountries")) {
                 searchPlaceIndexForTextSummary.setFilterCountries(new ListUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()

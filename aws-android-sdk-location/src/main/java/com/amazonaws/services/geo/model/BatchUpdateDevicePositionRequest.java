@@ -21,9 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Uploads position update data for one or more devices to a tracker resource.
- * Amazon Location uses the data when it reports the last known device position
- * and position history. Amazon Location retains location data for 30 days.
+ * Uploads position update data for one or more devices to a tracker resource
+ * (up to 10 devices per batch). Amazon Location uses the data when it reports
+ * the last known device position and position history. Amazon Location retains
+ * location data for 30 days.
  * </p>
  * <note>
  * <p>
@@ -67,7 +68,7 @@ public class BatchUpdateDevicePositionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Contains the position update details for each device.
+     * Contains the position update details for each device, up to 10 devices.
      * </p>
      */
     private java.util.List<DevicePositionUpdate> updates;
@@ -131,11 +132,12 @@ public class BatchUpdateDevicePositionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Contains the position update details for each device.
+     * Contains the position update details for each device, up to 10 devices.
      * </p>
      *
      * @return <p>
-     *         Contains the position update details for each device.
+     *         Contains the position update details for each device, up to 10
+     *         devices.
      *         </p>
      */
     public java.util.List<DevicePositionUpdate> getUpdates() {
@@ -144,11 +146,12 @@ public class BatchUpdateDevicePositionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Contains the position update details for each device.
+     * Contains the position update details for each device, up to 10 devices.
      * </p>
      *
      * @param updates <p>
-     *            Contains the position update details for each device.
+     *            Contains the position update details for each device, up to 10
+     *            devices.
      *            </p>
      */
     public void setUpdates(java.util.Collection<DevicePositionUpdate> updates) {
@@ -162,14 +165,15 @@ public class BatchUpdateDevicePositionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Contains the position update details for each device.
+     * Contains the position update details for each device, up to 10 devices.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param updates <p>
-     *            Contains the position update details for each device.
+     *            Contains the position update details for each device, up to 10
+     *            devices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -186,14 +190,15 @@ public class BatchUpdateDevicePositionRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Contains the position update details for each device.
+     * Contains the position update details for each device, up to 10 devices.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param updates <p>
-     *            Contains the position update details for each device.
+     *            Contains the position update details for each device, up to 10
+     *            devices.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

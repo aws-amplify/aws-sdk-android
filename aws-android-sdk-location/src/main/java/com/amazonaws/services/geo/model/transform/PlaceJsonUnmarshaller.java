@@ -38,6 +38,11 @@ class PlaceJsonUnmarshaller implements Unmarshaller<Place, JsonUnmarshallerConte
             if (name.equals("AddressNumber")) {
                 place.setAddressNumber(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Categories")) {
+                place.setCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Country")) {
                 place.setCountry(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -68,6 +73,11 @@ class PlaceJsonUnmarshaller implements Unmarshaller<Place, JsonUnmarshallerConte
             } else if (name.equals("SubRegion")) {
                 place.setSubRegion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SupplementalCategories")) {
+                place.setSupplementalCategories(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("TimeZone")) {
                 place.setTimeZone(TimeZoneJsonUnmarshaller.getInstance()
                         .unmarshall(context));
