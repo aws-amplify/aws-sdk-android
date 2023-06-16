@@ -52,7 +52,7 @@ public class Prompt implements Serializable {
 
     /**
      * <p>
-     * A description for the prompt.
+     * The description of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -223,14 +223,14 @@ public class Prompt implements Serializable {
 
     /**
      * <p>
-     * A description for the prompt.
+     * The description of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
-     *         A description for the prompt.
+     *         The description of the prompt.
      *         </p>
      */
     public String getDescription() {
@@ -239,14 +239,14 @@ public class Prompt implements Serializable {
 
     /**
      * <p>
-     * A description for the prompt.
+     * The description of the prompt.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
-     *            A description for the prompt.
+     *            The description of the prompt.
      *            </p>
      */
     public void setDescription(String description) {
@@ -255,7 +255,7 @@ public class Prompt implements Serializable {
 
     /**
      * <p>
-     * A description for the prompt.
+     * The description of the prompt.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,7 +265,7 @@ public class Prompt implements Serializable {
      * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
-     *            A description for the prompt.
+     *            The description of the prompt.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

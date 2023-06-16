@@ -7647,6 +7647,110 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Searches the hours of operation in an Amazon Connect instance, with
+     * optional filtering.
+     * </p>
+     * 
+     * @param searchHoursOfOperationsRequest
+     * @return searchHoursOfOperationsResult The response from the
+     *         SearchHoursOfOperations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchHoursOfOperationsResult searchHoursOfOperations(
+            SearchHoursOfOperationsRequest searchHoursOfOperationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchHoursOfOperationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchHoursOfOperationsRequest> request = null;
+        Response<SearchHoursOfOperationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchHoursOfOperationsRequestMarshaller()
+                        .marshall(searchHoursOfOperationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchHoursOfOperationsResult, JsonUnmarshallerContext> unmarshaller = new SearchHoursOfOperationsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchHoursOfOperationsResult> responseHandler = new JsonResponseHandler<SearchHoursOfOperationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Searches prompts in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchPromptsRequest
+     * @return searchPromptsResult The response from the SearchPrompts service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchPromptsResult searchPrompts(SearchPromptsRequest searchPromptsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchPromptsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchPromptsRequest> request = null;
+        Response<SearchPromptsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchPromptsRequestMarshaller().marshall(searchPromptsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchPromptsResult, JsonUnmarshallerContext> unmarshaller = new SearchPromptsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchPromptsResult> responseHandler = new JsonResponseHandler<SearchPromptsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -7688,6 +7792,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<SearchQueuesResult, JsonUnmarshallerContext> unmarshaller = new SearchQueuesResultJsonUnmarshaller();
             JsonResponseHandler<SearchQueuesResult> responseHandler = new JsonResponseHandler<SearchQueuesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Searches quick connects in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchQuickConnectsRequest
+     * @return searchQuickConnectsResult The response from the
+     *         SearchQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchQuickConnectsResult searchQuickConnects(
+            SearchQuickConnectsRequest searchQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchQuickConnectsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchQuickConnectsRequest> request = null;
+        Response<SearchQuickConnectsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchQuickConnectsRequestMarshaller()
+                        .marshall(searchQuickConnectsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchQuickConnectsResult, JsonUnmarshallerContext> unmarshaller = new SearchQuickConnectsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchQuickConnectsResult> responseHandler = new JsonResponseHandler<SearchQuickConnectsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

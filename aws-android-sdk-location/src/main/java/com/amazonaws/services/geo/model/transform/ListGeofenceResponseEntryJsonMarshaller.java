@@ -37,6 +37,21 @@ class ListGeofenceResponseEntryJsonMarshaller {
             jsonWriter.name("GeofenceId");
             jsonWriter.value(geofenceId);
         }
+        if (listGeofenceResponseEntry.getGeofenceProperties() != null) {
+            java.util.Map<String, String> geofenceProperties = listGeofenceResponseEntry
+                    .getGeofenceProperties();
+            jsonWriter.name("GeofenceProperties");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> geofencePropertiesEntry : geofenceProperties
+                    .entrySet()) {
+                String geofencePropertiesValue = geofencePropertiesEntry.getValue();
+                if (geofencePropertiesValue != null) {
+                    jsonWriter.name(geofencePropertiesEntry.getKey());
+                    jsonWriter.value(geofencePropertiesValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
         if (listGeofenceResponseEntry.getGeometry() != null) {
             GeofenceGeometry geometry = listGeofenceResponseEntry.getGeometry();
             jsonWriter.name("Geometry");

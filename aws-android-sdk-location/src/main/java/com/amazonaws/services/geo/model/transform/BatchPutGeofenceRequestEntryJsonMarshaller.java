@@ -32,6 +32,21 @@ class BatchPutGeofenceRequestEntryJsonMarshaller {
             jsonWriter.name("GeofenceId");
             jsonWriter.value(geofenceId);
         }
+        if (batchPutGeofenceRequestEntry.getGeofenceProperties() != null) {
+            java.util.Map<String, String> geofenceProperties = batchPutGeofenceRequestEntry
+                    .getGeofenceProperties();
+            jsonWriter.name("GeofenceProperties");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> geofencePropertiesEntry : geofenceProperties
+                    .entrySet()) {
+                String geofencePropertiesValue = geofencePropertiesEntry.getValue();
+                if (geofencePropertiesValue != null) {
+                    jsonWriter.name(geofencePropertiesEntry.getKey());
+                    jsonWriter.value(geofencePropertiesValue);
+                }
+            }
+            jsonWriter.endObject();
+        }
         if (batchPutGeofenceRequestEntry.getGeometry() != null) {
             GeofenceGeometry geometry = batchPutGeofenceRequestEntry.getGeometry();
             jsonWriter.name("Geometry");

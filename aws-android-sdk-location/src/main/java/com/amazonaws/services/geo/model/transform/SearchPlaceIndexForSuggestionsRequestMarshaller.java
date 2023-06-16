@@ -90,6 +90,18 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
                 }
                 jsonWriter.endArray();
             }
+            if (searchPlaceIndexForSuggestionsRequest.getFilterCategories() != null) {
+                java.util.List<String> filterCategories = searchPlaceIndexForSuggestionsRequest
+                        .getFilterCategories();
+                jsonWriter.name("FilterCategories");
+                jsonWriter.beginArray();
+                for (String filterCategoriesItem : filterCategories) {
+                    if (filterCategoriesItem != null) {
+                        jsonWriter.value(filterCategoriesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (searchPlaceIndexForSuggestionsRequest.getFilterCountries() != null) {
                 java.util.List<String> filterCountries = searchPlaceIndexForSuggestionsRequest
                         .getFilterCountries();

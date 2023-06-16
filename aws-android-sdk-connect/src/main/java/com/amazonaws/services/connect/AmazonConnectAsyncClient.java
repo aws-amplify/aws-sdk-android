@@ -11051,6 +11051,152 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Searches the hours of operation in an Amazon Connect instance, with
+     * optional filtering.
+     * </p>
+     * 
+     * @param searchHoursOfOperationsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchHoursOfOperations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchHoursOfOperationsResult> searchHoursOfOperationsAsync(
+            final SearchHoursOfOperationsRequest searchHoursOfOperationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchHoursOfOperationsResult>() {
+            public SearchHoursOfOperationsResult call() throws Exception {
+                return searchHoursOfOperations(searchHoursOfOperationsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches the hours of operation in an Amazon Connect instance, with
+     * optional filtering.
+     * </p>
+     * 
+     * @param searchHoursOfOperationsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchHoursOfOperations service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchHoursOfOperationsResult> searchHoursOfOperationsAsync(
+            final SearchHoursOfOperationsRequest searchHoursOfOperationsRequest,
+            final AsyncHandler<SearchHoursOfOperationsRequest, SearchHoursOfOperationsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchHoursOfOperationsResult>() {
+            public SearchHoursOfOperationsResult call() throws Exception {
+                SearchHoursOfOperationsResult result = null;
+                try {
+                    result = searchHoursOfOperations(searchHoursOfOperationsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(searchHoursOfOperationsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches prompts in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchPromptsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchPrompts service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchPromptsResult> searchPromptsAsync(
+            final SearchPromptsRequest searchPromptsRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<SearchPromptsResult>() {
+            public SearchPromptsResult call() throws Exception {
+                return searchPrompts(searchPromptsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches prompts in an Amazon Connect instance, with optional filtering.
+     * </p>
+     * 
+     * @param searchPromptsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchPrompts service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchPromptsResult> searchPromptsAsync(
+            final SearchPromptsRequest searchPromptsRequest,
+            final AsyncHandler<SearchPromptsRequest, SearchPromptsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchPromptsResult>() {
+            public SearchPromptsResult call() throws Exception {
+                SearchPromptsResult result = null;
+                try {
+                    result = searchPrompts(searchPromptsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(searchPromptsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -11123,6 +11269,81 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(searchQueuesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches quick connects in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchQuickConnectsResult> searchQuickConnectsAsync(
+            final SearchQuickConnectsRequest searchQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchQuickConnectsResult>() {
+            public SearchQuickConnectsResult call() throws Exception {
+                return searchQuickConnects(searchQuickConnectsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Searches quick connects in an Amazon Connect instance, with optional
+     * filtering.
+     * </p>
+     * 
+     * @param searchQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         SearchQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<SearchQuickConnectsResult> searchQuickConnectsAsync(
+            final SearchQuickConnectsRequest searchQuickConnectsRequest,
+            final AsyncHandler<SearchQuickConnectsRequest, SearchQuickConnectsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<SearchQuickConnectsResult>() {
+            public SearchQuickConnectsResult call() throws Exception {
+                SearchQuickConnectsResult result = null;
+                try {
+                    result = searchQuickConnects(searchQuickConnectsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(searchQuickConnectsRequest, result);
                 return result;
             }
         });

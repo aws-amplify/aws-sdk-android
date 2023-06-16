@@ -88,6 +88,18 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (searchPlaceIndexForTextRequest.getFilterCategories() != null) {
+                java.util.List<String> filterCategories = searchPlaceIndexForTextRequest
+                        .getFilterCategories();
+                jsonWriter.name("FilterCategories");
+                jsonWriter.beginArray();
+                for (String filterCategoriesItem : filterCategories) {
+                    if (filterCategoriesItem != null) {
+                        jsonWriter.value(filterCategoriesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (searchPlaceIndexForTextRequest.getFilterCountries() != null) {
                 java.util.List<String> filterCountries = searchPlaceIndexForTextRequest
                         .getFilterCountries();

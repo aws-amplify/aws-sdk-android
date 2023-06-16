@@ -95,6 +95,22 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
 
     /**
      * <p>
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private java.util.List<String> filterCategories;
+
+    /**
+     * <p>
      * An optional parameter that limits the search results by returning only
      * suggestions within the provided list of countries.
      * </p>
@@ -647,6 +663,157 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
     public SearchPlaceIndexForSuggestionsRequest withFilterBBox(
             java.util.Collection<Double> filterBBox) {
         setFilterBBox(filterBBox);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         A list of one or more Amazon Location categories to filter the
+     *         returned places. If you include more than one category, the
+     *         results will include results that match <i>any</i> of the
+     *         categories listed.
+     *         </p>
+     *         <p>
+     *         For more information about using categories, including a list of
+     *         Amazon Location categories, see <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *         >Categories and filtering</a>, in the <i>Amazon Location Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public java.util.List<String> getFilterCategories() {
+        return filterCategories;
+    }
+
+    /**
+     * <p>
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setFilterCategories(java.util.Collection<String> filterCategories) {
+        if (filterCategories == null) {
+            this.filterCategories = null;
+            return;
+        }
+
+        this.filterCategories = new java.util.ArrayList<String>(filterCategories);
+    }
+
+    /**
+     * <p>
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsRequest withFilterCategories(String... filterCategories) {
+        if (getFilterCategories() == null) {
+            this.filterCategories = new java.util.ArrayList<String>(filterCategories.length);
+        }
+        for (String value : filterCategories) {
+            this.filterCategories.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of one or more Amazon Location categories to filter the returned
+     * places. If you include more than one category, the results will include
+     * results that match <i>any</i> of the categories listed.
+     * </p>
+     * <p>
+     * For more information about using categories, including a list of Amazon
+     * Location categories, see <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     * >Categories and filtering</a>, in the <i>Amazon Location Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterCategories <p>
+     *            A list of one or more Amazon Location categories to filter the
+     *            returned places. If you include more than one category, the
+     *            results will include results that match <i>any</i> of the
+     *            categories listed.
+     *            </p>
+     *            <p>
+     *            For more information about using categories, including a list
+     *            of Amazon Location categories, see <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/category-filtering.html"
+     *            >Categories and filtering</a>, in the <i>Amazon Location
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsRequest withFilterCategories(
+            java.util.Collection<String> filterCategories) {
+        setFilterCategories(filterCategories);
         return this;
     }
 
@@ -1216,6 +1383,8 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
             sb.append("BiasPosition: " + getBiasPosition() + ",");
         if (getFilterBBox() != null)
             sb.append("FilterBBox: " + getFilterBBox() + ",");
+        if (getFilterCategories() != null)
+            sb.append("FilterCategories: " + getFilterCategories() + ",");
         if (getFilterCountries() != null)
             sb.append("FilterCountries: " + getFilterCountries() + ",");
         if (getIndexName() != null)
@@ -1238,6 +1407,8 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
         hashCode = prime * hashCode
                 + ((getBiasPosition() == null) ? 0 : getBiasPosition().hashCode());
         hashCode = prime * hashCode + ((getFilterBBox() == null) ? 0 : getFilterBBox().hashCode());
+        hashCode = prime * hashCode
+                + ((getFilterCategories() == null) ? 0 : getFilterCategories().hashCode());
         hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
@@ -1267,6 +1438,11 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
             return false;
         if (other.getFilterBBox() != null
                 && other.getFilterBBox().equals(this.getFilterBBox()) == false)
+            return false;
+        if (other.getFilterCategories() == null ^ this.getFilterCategories() == null)
+            return false;
+        if (other.getFilterCategories() != null
+                && other.getFilterCategories().equals(this.getFilterCategories()) == false)
             return false;
         if (other.getFilterCountries() == null ^ this.getFilterCountries() == null)
             return false;
