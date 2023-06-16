@@ -21,43 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response DeleteFacesResult
+ * JSON unmarshaller for response ListUsersResult
  */
-public class DeleteFacesResultJsonUnmarshaller implements
-        Unmarshaller<DeleteFacesResult, JsonUnmarshallerContext> {
+public class ListUsersResultJsonUnmarshaller implements
+        Unmarshaller<ListUsersResult, JsonUnmarshallerContext> {
 
-    public DeleteFacesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        DeleteFacesResult deleteFacesResult = new DeleteFacesResult();
+    public ListUsersResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        ListUsersResult listUsersResult = new ListUsersResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DeletedFaces")) {
-                deleteFacesResult.setDeletedFaces(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
+            if (name.equals("Users")) {
+                listUsersResult.setUsers(new ListUnmarshaller<User>(UserJsonUnmarshaller
+                        .getInstance()
                         )
                                 .unmarshall(context));
-            } else if (name.equals("UnsuccessfulFaceDeletions")) {
-                deleteFacesResult
-                        .setUnsuccessfulFaceDeletions(new ListUnmarshaller<UnsuccessfulFaceDeletion>(
-                                UnsuccessfulFaceDeletionJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
+            } else if (name.equals("NextToken")) {
+                listUsersResult.setNextToken(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
 
-        return deleteFacesResult;
+        return listUsersResult;
     }
 
-    private static DeleteFacesResultJsonUnmarshaller instance;
+    private static ListUsersResultJsonUnmarshaller instance;
 
-    public static DeleteFacesResultJsonUnmarshaller getInstance() {
+    public static ListUsersResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new DeleteFacesResultJsonUnmarshaller();
+            instance = new ListUsersResultJsonUnmarshaller();
         return instance;
     }
 }

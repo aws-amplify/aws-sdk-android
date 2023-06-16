@@ -59,6 +59,16 @@ public class DescribeCollectionResult implements Serializable {
 
     /**
      * <p>
+     * The number of UserIDs assigned to the specified colleciton.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Long userCount;
+
+    /**
+     * <p>
      * The number of faces that are indexed into the collection. To index faces
      * into a collection, use <a>IndexFaces</a>.
      * </p>
@@ -295,6 +305,60 @@ public class DescribeCollectionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The number of UserIDs assigned to the specified colleciton.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The number of UserIDs assigned to the specified colleciton.
+     *         </p>
+     */
+    public Long getUserCount() {
+        return userCount;
+    }
+
+    /**
+     * <p>
+     * The number of UserIDs assigned to the specified colleciton.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param userCount <p>
+     *            The number of UserIDs assigned to the specified colleciton.
+     *            </p>
+     */
+    public void setUserCount(Long userCount) {
+        this.userCount = userCount;
+    }
+
+    /**
+     * <p>
+     * The number of UserIDs assigned to the specified colleciton.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param userCount <p>
+     *            The number of UserIDs assigned to the specified colleciton.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeCollectionResult withUserCount(Long userCount) {
+        this.userCount = userCount;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -312,7 +376,9 @@ public class DescribeCollectionResult implements Serializable {
         if (getCollectionARN() != null)
             sb.append("CollectionARN: " + getCollectionARN() + ",");
         if (getCreationTimestamp() != null)
-            sb.append("CreationTimestamp: " + getCreationTimestamp());
+            sb.append("CreationTimestamp: " + getCreationTimestamp() + ",");
+        if (getUserCount() != null)
+            sb.append("UserCount: " + getUserCount());
         sb.append("}");
         return sb.toString();
     }
@@ -329,6 +395,7 @@ public class DescribeCollectionResult implements Serializable {
                 + ((getCollectionARN() == null) ? 0 : getCollectionARN().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationTimestamp() == null) ? 0 : getCreationTimestamp().hashCode());
+        hashCode = prime * hashCode + ((getUserCount() == null) ? 0 : getUserCount().hashCode());
         return hashCode;
     }
 
@@ -362,6 +429,11 @@ public class DescribeCollectionResult implements Serializable {
             return false;
         if (other.getCreationTimestamp() != null
                 && other.getCreationTimestamp().equals(this.getCreationTimestamp()) == false)
+            return false;
+        if (other.getUserCount() == null ^ this.getUserCount() == null)
+            return false;
+        if (other.getUserCount() != null
+                && other.getUserCount().equals(this.getUserCount()) == false)
             return false;
         return true;
     }

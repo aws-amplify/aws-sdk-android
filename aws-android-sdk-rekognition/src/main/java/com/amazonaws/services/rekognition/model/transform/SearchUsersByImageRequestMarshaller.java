@@ -38,19 +38,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListFacesRequest
+ * JSON request marshaller for SearchUsersByImageRequest
  */
-public class ListFacesRequestMarshaller implements
-        Marshaller<Request<ListFacesRequest>, ListFacesRequest> {
+public class SearchUsersByImageRequestMarshaller implements
+        Marshaller<Request<SearchUsersByImageRequest>, SearchUsersByImageRequest> {
 
-    public Request<ListFacesRequest> marshall(ListFacesRequest listFacesRequest) {
-        if (listFacesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(ListFacesRequest)");
+    public Request<SearchUsersByImageRequest> marshall(
+            SearchUsersByImageRequest searchUsersByImageRequest) {
+        if (searchUsersByImageRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(SearchUsersByImageRequest)");
         }
 
-        Request<ListFacesRequest> request = new DefaultRequest<ListFacesRequest>(listFacesRequest,
-                "AmazonRekognition");
-        String target = "RekognitionService.ListFaces";
+        Request<SearchUsersByImageRequest> request = new DefaultRequest<SearchUsersByImageRequest>(
+                searchUsersByImageRequest, "AmazonRekognition");
+        String target = "RekognitionService.SearchUsersByImage";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -61,36 +63,30 @@ public class ListFacesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (listFacesRequest.getCollectionId() != null) {
-                String collectionId = listFacesRequest.getCollectionId();
+            if (searchUsersByImageRequest.getCollectionId() != null) {
+                String collectionId = searchUsersByImageRequest.getCollectionId();
                 jsonWriter.name("CollectionId");
                 jsonWriter.value(collectionId);
             }
-            if (listFacesRequest.getNextToken() != null) {
-                String nextToken = listFacesRequest.getNextToken();
-                jsonWriter.name("NextToken");
-                jsonWriter.value(nextToken);
+            if (searchUsersByImageRequest.getImage() != null) {
+                Image image = searchUsersByImageRequest.getImage();
+                jsonWriter.name("Image");
+                ImageJsonMarshaller.getInstance().marshall(image, jsonWriter);
             }
-            if (listFacesRequest.getMaxResults() != null) {
-                Integer maxResults = listFacesRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
+            if (searchUsersByImageRequest.getUserMatchThreshold() != null) {
+                Float userMatchThreshold = searchUsersByImageRequest.getUserMatchThreshold();
+                jsonWriter.name("UserMatchThreshold");
+                jsonWriter.value(userMatchThreshold);
             }
-            if (listFacesRequest.getUserId() != null) {
-                String userId = listFacesRequest.getUserId();
-                jsonWriter.name("UserId");
-                jsonWriter.value(userId);
+            if (searchUsersByImageRequest.getMaxUsers() != null) {
+                Integer maxUsers = searchUsersByImageRequest.getMaxUsers();
+                jsonWriter.name("MaxUsers");
+                jsonWriter.value(maxUsers);
             }
-            if (listFacesRequest.getFaceIds() != null) {
-                java.util.List<String> faceIds = listFacesRequest.getFaceIds();
-                jsonWriter.name("FaceIds");
-                jsonWriter.beginArray();
-                for (String faceIdsItem : faceIds) {
-                    if (faceIdsItem != null) {
-                        jsonWriter.value(faceIdsItem);
-                    }
-                }
-                jsonWriter.endArray();
+            if (searchUsersByImageRequest.getQualityFilter() != null) {
+                String qualityFilter = searchUsersByImageRequest.getQualityFilter();
+                jsonWriter.name("QualityFilter");
+                jsonWriter.value(qualityFilter);
             }
 
             jsonWriter.endObject();

@@ -38,19 +38,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListFacesRequest
+ * JSON request marshaller for AssociateFacesRequest
  */
-public class ListFacesRequestMarshaller implements
-        Marshaller<Request<ListFacesRequest>, ListFacesRequest> {
+public class AssociateFacesRequestMarshaller implements
+        Marshaller<Request<AssociateFacesRequest>, AssociateFacesRequest> {
 
-    public Request<ListFacesRequest> marshall(ListFacesRequest listFacesRequest) {
-        if (listFacesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(ListFacesRequest)");
+    public Request<AssociateFacesRequest> marshall(AssociateFacesRequest associateFacesRequest) {
+        if (associateFacesRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(AssociateFacesRequest)");
         }
 
-        Request<ListFacesRequest> request = new DefaultRequest<ListFacesRequest>(listFacesRequest,
-                "AmazonRekognition");
-        String target = "RekognitionService.ListFaces";
+        Request<AssociateFacesRequest> request = new DefaultRequest<AssociateFacesRequest>(
+                associateFacesRequest, "AmazonRekognition");
+        String target = "RekognitionService.AssociateFaces";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -61,28 +62,18 @@ public class ListFacesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (listFacesRequest.getCollectionId() != null) {
-                String collectionId = listFacesRequest.getCollectionId();
+            if (associateFacesRequest.getCollectionId() != null) {
+                String collectionId = associateFacesRequest.getCollectionId();
                 jsonWriter.name("CollectionId");
                 jsonWriter.value(collectionId);
             }
-            if (listFacesRequest.getNextToken() != null) {
-                String nextToken = listFacesRequest.getNextToken();
-                jsonWriter.name("NextToken");
-                jsonWriter.value(nextToken);
-            }
-            if (listFacesRequest.getMaxResults() != null) {
-                Integer maxResults = listFacesRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
-            if (listFacesRequest.getUserId() != null) {
-                String userId = listFacesRequest.getUserId();
+            if (associateFacesRequest.getUserId() != null) {
+                String userId = associateFacesRequest.getUserId();
                 jsonWriter.name("UserId");
                 jsonWriter.value(userId);
             }
-            if (listFacesRequest.getFaceIds() != null) {
-                java.util.List<String> faceIds = listFacesRequest.getFaceIds();
+            if (associateFacesRequest.getFaceIds() != null) {
+                java.util.List<String> faceIds = associateFacesRequest.getFaceIds();
                 jsonWriter.name("FaceIds");
                 jsonWriter.beginArray();
                 for (String faceIdsItem : faceIds) {
@@ -91,6 +82,16 @@ public class ListFacesRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (associateFacesRequest.getUserMatchThreshold() != null) {
+                Float userMatchThreshold = associateFacesRequest.getUserMatchThreshold();
+                jsonWriter.name("UserMatchThreshold");
+                jsonWriter.value(userMatchThreshold);
+            }
+            if (associateFacesRequest.getClientRequestToken() != null) {
+                String clientRequestToken = associateFacesRequest.getClientRequestToken();
+                jsonWriter.name("ClientRequestToken");
+                jsonWriter.value(clientRequestToken);
             }
 
             jsonWriter.endObject();

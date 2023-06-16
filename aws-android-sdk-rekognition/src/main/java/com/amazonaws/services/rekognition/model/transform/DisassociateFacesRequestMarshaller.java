@@ -38,19 +38,21 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListFacesRequest
+ * JSON request marshaller for DisassociateFacesRequest
  */
-public class ListFacesRequestMarshaller implements
-        Marshaller<Request<ListFacesRequest>, ListFacesRequest> {
+public class DisassociateFacesRequestMarshaller implements
+        Marshaller<Request<DisassociateFacesRequest>, DisassociateFacesRequest> {
 
-    public Request<ListFacesRequest> marshall(ListFacesRequest listFacesRequest) {
-        if (listFacesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(ListFacesRequest)");
+    public Request<DisassociateFacesRequest> marshall(
+            DisassociateFacesRequest disassociateFacesRequest) {
+        if (disassociateFacesRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(DisassociateFacesRequest)");
         }
 
-        Request<ListFacesRequest> request = new DefaultRequest<ListFacesRequest>(listFacesRequest,
-                "AmazonRekognition");
-        String target = "RekognitionService.ListFaces";
+        Request<DisassociateFacesRequest> request = new DefaultRequest<DisassociateFacesRequest>(
+                disassociateFacesRequest, "AmazonRekognition");
+        String target = "RekognitionService.DisassociateFaces";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -61,28 +63,23 @@ public class ListFacesRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (listFacesRequest.getCollectionId() != null) {
-                String collectionId = listFacesRequest.getCollectionId();
+            if (disassociateFacesRequest.getCollectionId() != null) {
+                String collectionId = disassociateFacesRequest.getCollectionId();
                 jsonWriter.name("CollectionId");
                 jsonWriter.value(collectionId);
             }
-            if (listFacesRequest.getNextToken() != null) {
-                String nextToken = listFacesRequest.getNextToken();
-                jsonWriter.name("NextToken");
-                jsonWriter.value(nextToken);
-            }
-            if (listFacesRequest.getMaxResults() != null) {
-                Integer maxResults = listFacesRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
-            if (listFacesRequest.getUserId() != null) {
-                String userId = listFacesRequest.getUserId();
+            if (disassociateFacesRequest.getUserId() != null) {
+                String userId = disassociateFacesRequest.getUserId();
                 jsonWriter.name("UserId");
                 jsonWriter.value(userId);
             }
-            if (listFacesRequest.getFaceIds() != null) {
-                java.util.List<String> faceIds = listFacesRequest.getFaceIds();
+            if (disassociateFacesRequest.getClientRequestToken() != null) {
+                String clientRequestToken = disassociateFacesRequest.getClientRequestToken();
+                jsonWriter.name("ClientRequestToken");
+                jsonWriter.value(clientRequestToken);
+            }
+            if (disassociateFacesRequest.getFaceIds() != null) {
+                java.util.List<String> faceIds = disassociateFacesRequest.getFaceIds();
                 jsonWriter.name("FaceIds");
                 jsonWriter.beginArray();
                 for (String faceIdsItem : faceIds) {

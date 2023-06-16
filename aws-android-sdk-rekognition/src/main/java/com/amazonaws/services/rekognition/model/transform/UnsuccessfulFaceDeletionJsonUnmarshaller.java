@@ -21,54 +21,45 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Face
+ * JSON unmarshaller for POJO UnsuccessfulFaceDeletion
  */
-class FaceJsonUnmarshaller implements Unmarshaller<Face, JsonUnmarshallerContext> {
+class UnsuccessfulFaceDeletionJsonUnmarshaller implements
+        Unmarshaller<UnsuccessfulFaceDeletion, JsonUnmarshallerContext> {
 
-    public Face unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public UnsuccessfulFaceDeletion unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Face face = new Face();
+        UnsuccessfulFaceDeletion unsuccessfulFaceDeletion = new UnsuccessfulFaceDeletion();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("FaceId")) {
-                face.setFaceId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("BoundingBox")) {
-                face.setBoundingBox(BoundingBoxJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ImageId")) {
-                face.setImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("ExternalImageId")) {
-                face.setExternalImageId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Confidence")) {
-                face.setConfidence(FloatJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("IndexFacesModelVersion")) {
-                face.setIndexFacesModelVersion(StringJsonUnmarshaller.getInstance()
+                unsuccessfulFaceDeletion.setFaceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("UserId")) {
-                face.setUserId(StringJsonUnmarshaller.getInstance()
+                unsuccessfulFaceDeletion.setUserId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Reasons")) {
+                unsuccessfulFaceDeletion.setReasons(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return face;
+        return unsuccessfulFaceDeletion;
     }
 
-    private static FaceJsonUnmarshaller instance;
+    private static UnsuccessfulFaceDeletionJsonUnmarshaller instance;
 
-    public static FaceJsonUnmarshaller getInstance() {
+    public static UnsuccessfulFaceDeletionJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new FaceJsonUnmarshaller();
+            instance = new UnsuccessfulFaceDeletionJsonUnmarshaller();
         return instance;
     }
 }

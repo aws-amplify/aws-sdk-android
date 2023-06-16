@@ -56,6 +56,11 @@ class FaceJsonMarshaller {
             jsonWriter.name("IndexFacesModelVersion");
             jsonWriter.value(indexFacesModelVersion);
         }
+        if (face.getUserId() != null) {
+            String userId = face.getUserId();
+            jsonWriter.name("UserId");
+            jsonWriter.value(userId);
+        }
         jsonWriter.endObject();
     }
 

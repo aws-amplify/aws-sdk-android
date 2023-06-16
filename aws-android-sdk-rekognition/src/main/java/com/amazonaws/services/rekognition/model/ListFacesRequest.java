@@ -66,6 +66,24 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
     private Integer maxResults;
 
     /**
+     * <p>
+     * An array of user IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     */
+    private String userId;
+
+    /**
+     * <p>
+     * An array of face IDs to match when listing faces in a collection.
+     * </p>
+     */
+    private java.util.List<String> faceIds;
+
+    /**
      * Default constructor for ListFacesRequest object. Callers should use the
      * setter or fluent setter (with...) methods to initialize any additional
      * object members.
@@ -267,6 +285,142 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * An array of user IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @return <p>
+     *         An array of user IDs to match when listing faces in a collection.
+     *         </p>
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * <p>
+     * An array of user IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @param userId <p>
+     *            An array of user IDs to match when listing faces in a
+     *            collection.
+     *            </p>
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * <p>
+     * An array of user IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @param userId <p>
+     *            An array of user IDs to match when listing faces in a
+     *            collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListFacesRequest withUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of face IDs to match when listing faces in a collection.
+     * </p>
+     *
+     * @return <p>
+     *         An array of face IDs to match when listing faces in a collection.
+     *         </p>
+     */
+    public java.util.List<String> getFaceIds() {
+        return faceIds;
+    }
+
+    /**
+     * <p>
+     * An array of face IDs to match when listing faces in a collection.
+     * </p>
+     *
+     * @param faceIds <p>
+     *            An array of face IDs to match when listing faces in a
+     *            collection.
+     *            </p>
+     */
+    public void setFaceIds(java.util.Collection<String> faceIds) {
+        if (faceIds == null) {
+            this.faceIds = null;
+            return;
+        }
+
+        this.faceIds = new java.util.ArrayList<String>(faceIds);
+    }
+
+    /**
+     * <p>
+     * An array of face IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceIds <p>
+     *            An array of face IDs to match when listing faces in a
+     *            collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListFacesRequest withFaceIds(String... faceIds) {
+        if (getFaceIds() == null) {
+            this.faceIds = new java.util.ArrayList<String>(faceIds.length);
+        }
+        for (String value : faceIds) {
+            this.faceIds.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * An array of face IDs to match when listing faces in a collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param faceIds <p>
+     *            An array of face IDs to match when listing faces in a
+     *            collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListFacesRequest withFaceIds(java.util.Collection<String> faceIds) {
+        setFaceIds(faceIds);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -282,7 +436,11 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults());
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getUserId() != null)
+            sb.append("UserId: " + getUserId() + ",");
+        if (getFaceIds() != null)
+            sb.append("FaceIds: " + getFaceIds());
         sb.append("}");
         return sb.toString();
     }
@@ -296,6 +454,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
                 + ((getCollectionId() == null) ? 0 : getCollectionId().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        hashCode = prime * hashCode + ((getFaceIds() == null) ? 0 : getFaceIds().hashCode());
         return hashCode;
     }
 
@@ -324,6 +484,14 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getUserId() == null ^ this.getUserId() == null)
+            return false;
+        if (other.getUserId() != null && other.getUserId().equals(this.getUserId()) == false)
+            return false;
+        if (other.getFaceIds() == null ^ this.getFaceIds() == null)
+            return false;
+        if (other.getFaceIds() != null && other.getFaceIds().equals(this.getFaceIds()) == false)
             return false;
         return true;
     }

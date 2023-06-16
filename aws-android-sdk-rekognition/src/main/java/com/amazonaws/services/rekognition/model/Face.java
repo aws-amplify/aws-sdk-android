@@ -88,6 +88,17 @@ public class Face implements Serializable {
 
     /**
      * <p>
+     * Unique identifier assigned to the user.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     */
+    private String userId;
+
+    /**
+     * <p>
      * Unique identifier that Amazon Rekognition assigns to the face.
      * </p>
      * <p>
@@ -428,6 +439,63 @@ public class Face implements Serializable {
     }
 
     /**
+     * <p>
+     * Unique identifier assigned to the user.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @return <p>
+     *         Unique identifier assigned to the user.
+     *         </p>
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * <p>
+     * Unique identifier assigned to the user.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @param userId <p>
+     *            Unique identifier assigned to the user.
+     *            </p>
+     */
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * <p>
+     * Unique identifier assigned to the user.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
+     *
+     * @param userId <p>
+     *            Unique identifier assigned to the user.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Face withUserId(String userId) {
+        this.userId = userId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -449,7 +517,9 @@ public class Face implements Serializable {
         if (getConfidence() != null)
             sb.append("Confidence: " + getConfidence() + ",");
         if (getIndexFacesModelVersion() != null)
-            sb.append("IndexFacesModelVersion: " + getIndexFacesModelVersion());
+            sb.append("IndexFacesModelVersion: " + getIndexFacesModelVersion() + ",");
+        if (getUserId() != null)
+            sb.append("UserId: " + getUserId());
         sb.append("}");
         return sb.toString();
     }
@@ -470,6 +540,7 @@ public class Face implements Serializable {
                 * hashCode
                 + ((getIndexFacesModelVersion() == null) ? 0 : getIndexFacesModelVersion()
                         .hashCode());
+        hashCode = prime * hashCode + ((getUserId() == null) ? 0 : getUserId().hashCode());
         return hashCode;
     }
 
@@ -511,6 +582,10 @@ public class Face implements Serializable {
             return false;
         if (other.getIndexFacesModelVersion() != null
                 && other.getIndexFacesModelVersion().equals(this.getIndexFacesModelVersion()) == false)
+            return false;
+        if (other.getUserId() == null ^ this.getUserId() == null)
+            return false;
+        if (other.getUserId() != null && other.getUserId().equals(this.getUserId()) == false)
             return false;
         return true;
     }
