@@ -449,6 +449,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
         jsonErrorUnmarshallers.add(new KMSDisabledExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new KMSNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new RecursiveInvocationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new RequestTooLargeExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
@@ -576,6 +577,7 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
      * @throws InvalidRuntimeException
      * @throws ResourceConflictException
      * @throws ResourceNotReadyException
+     * @throws RecursiveInvocationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
