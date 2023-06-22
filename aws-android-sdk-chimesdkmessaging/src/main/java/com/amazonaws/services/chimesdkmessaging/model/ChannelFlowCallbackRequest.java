@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Calls back Chime SDK Messaging with a processing response message. This
- * should be invoked from the processor Lambda. This is a developer API.
+ * Calls back Amazon Chime SDK messaging with a processing response message.
+ * This should be invoked from the processor Lambda. This is a developer API.
  * </p>
  * <p>
  * You can return one of the following processing responses:
