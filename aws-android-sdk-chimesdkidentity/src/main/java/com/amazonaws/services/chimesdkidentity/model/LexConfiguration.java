@@ -24,6 +24,11 @@ import java.io.Serializable;
  */
 public class LexConfiguration implements Serializable {
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -33,6 +38,13 @@ public class LexConfiguration implements Serializable {
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      */
     private String respondsTo;
+
+    /**
+     * <p>
+     * Specifies the type of message that triggers a bot.
+     * </p>
+     */
+    private InvokedBy invokedBy;
 
     /**
      * <p>
@@ -72,6 +84,11 @@ public class LexConfiguration implements Serializable {
     private String welcomeIntent;
 
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -80,7 +97,12 @@ public class LexConfiguration implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      *
-     * @return <p>
+     * @return <important>
+     *         <p>
+     *         <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     *         </p>
+     *         </important>
+     *         <p>
      *         Determines whether the Amazon Lex V2 bot responds to all standard
      *         messages. Control messages are not supported.
      *         </p>
@@ -91,6 +113,11 @@ public class LexConfiguration implements Serializable {
     }
 
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -99,7 +126,12 @@ public class LexConfiguration implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      *
-     * @param respondsTo <p>
+     * @param respondsTo <important>
+     *            <p>
+     *            <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     *            </p>
+     *            </important>
+     *            <p>
      *            Determines whether the Amazon Lex V2 bot responds to all
      *            standard messages. Control messages are not supported.
      *            </p>
@@ -110,6 +142,11 @@ public class LexConfiguration implements Serializable {
     }
 
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -121,7 +158,12 @@ public class LexConfiguration implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      *
-     * @param respondsTo <p>
+     * @param respondsTo <important>
+     *            <p>
+     *            <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     *            </p>
+     *            </important>
+     *            <p>
      *            Determines whether the Amazon Lex V2 bot responds to all
      *            standard messages. Control messages are not supported.
      *            </p>
@@ -135,6 +177,11 @@ public class LexConfiguration implements Serializable {
     }
 
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -143,7 +190,12 @@ public class LexConfiguration implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      *
-     * @param respondsTo <p>
+     * @param respondsTo <important>
+     *            <p>
+     *            <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     *            </p>
+     *            </important>
+     *            <p>
      *            Determines whether the Amazon Lex V2 bot responds to all
      *            standard messages. Control messages are not supported.
      *            </p>
@@ -154,6 +206,11 @@ public class LexConfiguration implements Serializable {
     }
 
     /**
+     * <important>
+     * <p>
+     * <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     * </p>
+     * </important>
      * <p>
      * Determines whether the Amazon Lex V2 bot responds to all standard
      * messages. Control messages are not supported.
@@ -165,7 +222,12 @@ public class LexConfiguration implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>STANDARD_MESSAGES
      *
-     * @param respondsTo <p>
+     * @param respondsTo <important>
+     *            <p>
+     *            <b>Deprecated</b>. Use <code>InvokedBy</code> instead.
+     *            </p>
+     *            </important>
+     *            <p>
      *            Determines whether the Amazon Lex V2 bot responds to all
      *            standard messages. Control messages are not supported.
      *            </p>
@@ -175,6 +237,51 @@ public class LexConfiguration implements Serializable {
      */
     public LexConfiguration withRespondsTo(RespondsTo respondsTo) {
         this.respondsTo = respondsTo.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of message that triggers a bot.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the type of message that triggers a bot.
+     *         </p>
+     */
+    public InvokedBy getInvokedBy() {
+        return invokedBy;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of message that triggers a bot.
+     * </p>
+     *
+     * @param invokedBy <p>
+     *            Specifies the type of message that triggers a bot.
+     *            </p>
+     */
+    public void setInvokedBy(InvokedBy invokedBy) {
+        this.invokedBy = invokedBy;
+    }
+
+    /**
+     * <p>
+     * Specifies the type of message that triggers a bot.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param invokedBy <p>
+     *            Specifies the type of message that triggers a bot.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public LexConfiguration withInvokedBy(InvokedBy invokedBy) {
+        this.invokedBy = invokedBy;
         return this;
     }
 
@@ -401,6 +508,8 @@ public class LexConfiguration implements Serializable {
         sb.append("{");
         if (getRespondsTo() != null)
             sb.append("RespondsTo: " + getRespondsTo() + ",");
+        if (getInvokedBy() != null)
+            sb.append("InvokedBy: " + getInvokedBy() + ",");
         if (getLexBotAliasArn() != null)
             sb.append("LexBotAliasArn: " + getLexBotAliasArn() + ",");
         if (getLocaleId() != null)
@@ -417,6 +526,7 @@ public class LexConfiguration implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getRespondsTo() == null) ? 0 : getRespondsTo().hashCode());
+        hashCode = prime * hashCode + ((getInvokedBy() == null) ? 0 : getInvokedBy().hashCode());
         hashCode = prime * hashCode
                 + ((getLexBotAliasArn() == null) ? 0 : getLexBotAliasArn().hashCode());
         hashCode = prime * hashCode + ((getLocaleId() == null) ? 0 : getLocaleId().hashCode());
@@ -440,6 +550,11 @@ public class LexConfiguration implements Serializable {
             return false;
         if (other.getRespondsTo() != null
                 && other.getRespondsTo().equals(this.getRespondsTo()) == false)
+            return false;
+        if (other.getInvokedBy() == null ^ this.getInvokedBy() == null)
+            return false;
+        if (other.getInvokedBy() != null
+                && other.getInvokedBy().equals(this.getInvokedBy()) == false)
             return false;
         if (other.getLexBotAliasArn() == null ^ this.getLexBotAliasArn() == null)
             return false;
