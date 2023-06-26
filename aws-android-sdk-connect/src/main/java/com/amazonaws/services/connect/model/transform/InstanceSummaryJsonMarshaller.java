@@ -72,6 +72,11 @@ class InstanceSummaryJsonMarshaller {
             jsonWriter.name("OutboundCallsEnabled");
             jsonWriter.value(outboundCallsEnabled);
         }
+        if (instanceSummary.getInstanceAccessUrl() != null) {
+            String instanceAccessUrl = instanceSummary.getInstanceAccessUrl();
+            jsonWriter.name("InstanceAccessUrl");
+            jsonWriter.value(instanceAccessUrl);
+        }
         jsonWriter.endObject();
     }
 
