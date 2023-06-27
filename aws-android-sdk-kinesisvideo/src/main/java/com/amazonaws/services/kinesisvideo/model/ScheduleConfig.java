@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,14 @@ import java.io.Serializable;
  * <code>DurationInMinutes</code> attributes.
  * </p>
  * <p>
- * If the <code>ScheduleExpression</code> is not provided, then the Edge Agent
- * will always be set to recording mode.
+ * If the <code>ScheduleConfig</code> is not provided in the
+ * <code>RecorderConfig</code>, then the Edge Agent will always be set to
+ * recording mode.
+ * </p>
+ * <p>
+ * If the <code>ScheduleConfig</code> is not provided in the
+ * <code>UploaderConfig</code>, then the Edge Agent will upload at regular
+ * intervals (every 1 hour).
  * </p>
  */
 public class ScheduleConfig implements Serializable {

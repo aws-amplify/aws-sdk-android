@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ import java.io.Serializable;
 public class MediaSourceConfig implements Serializable {
     /**
      * <p>
-     * The AWS Secrets Manager ARN for the username and password of the camera,
-     * or a local media file location.
+     * The Amazon Web Services Secrets Manager ARN for the username and password
+     * of the camera, or a local media file location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,8 +57,8 @@ public class MediaSourceConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Secrets Manager ARN for the username and password of the camera,
-     * or a local media file location.
+     * The Amazon Web Services Secrets Manager ARN for the username and password
+     * of the camera, or a local media file location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,8 +68,8 @@ public class MediaSourceConfig implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The AWS Secrets Manager ARN for the username and password of the
-     *         camera, or a local media file location.
+     *         The Amazon Web Services Secrets Manager ARN for the username and
+     *         password of the camera, or a local media file location.
      *         </p>
      */
     public String getMediaUriSecretArn() {
@@ -78,8 +78,8 @@ public class MediaSourceConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Secrets Manager ARN for the username and password of the camera,
-     * or a local media file location.
+     * The Amazon Web Services Secrets Manager ARN for the username and password
+     * of the camera, or a local media file location.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,8 +89,8 @@ public class MediaSourceConfig implements Serializable {
      * <br/>
      *
      * @param mediaUriSecretArn <p>
-     *            The AWS Secrets Manager ARN for the username and password of
-     *            the camera, or a local media file location.
+     *            The Amazon Web Services Secrets Manager ARN for the username
+     *            and password of the camera, or a local media file location.
      *            </p>
      */
     public void setMediaUriSecretArn(String mediaUriSecretArn) {
@@ -99,8 +99,8 @@ public class MediaSourceConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Secrets Manager ARN for the username and password of the camera,
-     * or a local media file location.
+     * The Amazon Web Services Secrets Manager ARN for the username and password
+     * of the camera, or a local media file location.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,8 +113,8 @@ public class MediaSourceConfig implements Serializable {
      * <br/>
      *
      * @param mediaUriSecretArn <p>
-     *            The AWS Secrets Manager ARN for the username and password of
-     *            the camera, or a local media file location.
+     *            The Amazon Web Services Secrets Manager ARN for the username
+     *            and password of the camera, or a local media file location.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

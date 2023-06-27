@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -486,6 +486,72 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
 
     /**
      * <p>
+     * An asynchronous API that deletes a stream’s existing edge configuration,
+     * as well as the corresponding media from the Edge Agent.
+     * </p>
+     * <p>
+     * When you invoke this API, the sync status is set to <code>DELETING</code>
+     * . A deletion process starts, in which active edge jobs are stopped and
+     * all media is deleted from the edge device. The time to delete varies,
+     * depending on the total amount of stored media. If the deletion process
+     * fails, the sync status changes to <code>DELETE_FAILED</code>. You will
+     * need to re-try the deletion.
+     * </p>
+     * <p>
+     * When the deletion process has completed successfully, the edge
+     * configuration is no longer accessible.
+     * </p>
+     * 
+     * @param deleteEdgeConfigurationRequest
+     * @return deleteEdgeConfigurationResult The response from the
+     *         DeleteEdgeConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws AccessDeniedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws ResourceNotFoundException
+     * @throws StreamEdgeConfigurationNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DeleteEdgeConfigurationResult deleteEdgeConfiguration(
+            DeleteEdgeConfigurationRequest deleteEdgeConfigurationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteEdgeConfigurationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteEdgeConfigurationRequest> request = null;
+        Response<DeleteEdgeConfigurationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteEdgeConfigurationRequestMarshaller()
+                        .marshall(deleteEdgeConfigurationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteEdgeConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DeleteEdgeConfigurationResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteEdgeConfigurationResult> responseHandler = new JsonResponseHandler<DeleteEdgeConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a specified signaling channel.
      * <code>DeleteSignalingChannel</code> is an asynchronous operation. If you
      * don't specify the channel's current version, the most recent version is
@@ -612,8 +678,10 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
     /**
      * <p>
      * Describes a stream’s edge configuration that was set using the
-     * <code>StartEdgeConfigurationUpdate</code> API. Use this API to get the
-     * status of the configuration if the configuration is in sync with the Edge
+     * <code>StartEdgeConfigurationUpdate</code> API and the latest status of
+     * the edge agent's recorder and uploader jobs. Use this API to get the
+     * status of the configuration to determine if the configuration is in sync
+     * with the Edge Agent. Use this API to evaluate the health of the Edge
      * Agent.
      * </p>
      * 
@@ -719,10 +787,6 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
     }
 
     /**
-     * <p>
-     * Returns the most current information about the stream. Either streamName
-     * or streamARN should be provided in the input.
-     * </p>
      * <p>
      * Returns the most current information about the stream. The
      * <code>streamName</code> or <code>streamARN</code> should be provided in
@@ -1107,6 +1171,62 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
             }
             Unmarshaller<GetSignalingChannelEndpointResult, JsonUnmarshallerContext> unmarshaller = new GetSignalingChannelEndpointResultJsonUnmarshaller();
             JsonResponseHandler<GetSignalingChannelEndpointResult> responseHandler = new JsonResponseHandler<GetSignalingChannelEndpointResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns an array of edge configurations associated with the specified
+     * Edge Agent.
+     * </p>
+     * <p>
+     * In the request, you must specify the Edge Agent <code>HubDeviceArn</code>
+     * .
+     * </p>
+     * 
+     * @param listEdgeAgentConfigurationsRequest
+     * @return listEdgeAgentConfigurationsResult The response from the
+     *         ListEdgeAgentConfigurations service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws NotAuthorizedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListEdgeAgentConfigurationsResult listEdgeAgentConfigurations(
+            ListEdgeAgentConfigurationsRequest listEdgeAgentConfigurationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listEdgeAgentConfigurationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListEdgeAgentConfigurationsRequest> request = null;
+        Response<ListEdgeAgentConfigurationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListEdgeAgentConfigurationsRequestMarshaller()
+                        .marshall(listEdgeAgentConfigurationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListEdgeAgentConfigurationsResult, JsonUnmarshallerContext> unmarshaller = new ListEdgeAgentConfigurationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListEdgeAgentConfigurationsResult> responseHandler = new JsonResponseHandler<ListEdgeAgentConfigurationsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
