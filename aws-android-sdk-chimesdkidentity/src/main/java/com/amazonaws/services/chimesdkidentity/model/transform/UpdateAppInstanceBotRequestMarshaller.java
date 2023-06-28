@@ -84,6 +84,11 @@ public class UpdateAppInstanceBotRequestMarshaller implements
                 jsonWriter.name("Metadata");
                 jsonWriter.value(metadata);
             }
+            if (updateAppInstanceBotRequest.getConfiguration() != null) {
+                Configuration configuration = updateAppInstanceBotRequest.getConfiguration();
+                jsonWriter.name("Configuration");
+                ConfigurationJsonMarshaller.getInstance().marshall(configuration, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
