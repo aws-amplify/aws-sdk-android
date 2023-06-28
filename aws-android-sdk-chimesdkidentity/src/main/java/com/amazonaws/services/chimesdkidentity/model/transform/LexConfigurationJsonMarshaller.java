@@ -32,6 +32,11 @@ class LexConfigurationJsonMarshaller {
             jsonWriter.name("RespondsTo");
             jsonWriter.value(respondsTo);
         }
+        if (lexConfiguration.getInvokedBy() != null) {
+            InvokedBy invokedBy = lexConfiguration.getInvokedBy();
+            jsonWriter.name("InvokedBy");
+            InvokedByJsonMarshaller.getInstance().marshall(invokedBy, jsonWriter);
+        }
         if (lexConfiguration.getLexBotAliasArn() != null) {
             String lexBotAliasArn = lexConfiguration.getLexBotAliasArn();
             jsonWriter.name("LexBotAliasArn");
