@@ -50,7 +50,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * Channel flows don't process Control or System messages. For more information
- * about the message types provided by Chime SDK Messaging, refer to <a href=
+ * about the message types provided by Chime SDK messaging, refer to <a href=
  * "https://docs.aws.amazon.com/chime/latest/dg/using-the-messaging-sdk.html#msg-types"
  * >Message types</a> in the <i>Amazon Chime developer guide</i>.
  * </p>

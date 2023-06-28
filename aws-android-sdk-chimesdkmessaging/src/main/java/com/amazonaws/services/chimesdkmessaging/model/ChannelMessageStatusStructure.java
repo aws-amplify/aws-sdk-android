@@ -35,7 +35,7 @@ public class ChannelMessageStatusStructure implements Serializable {
 
     /**
      * <p>
-     * Contains more details about the messasge status.
+     * Contains more details about the message status.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,7 +143,7 @@ public class ChannelMessageStatusStructure implements Serializable {
 
     /**
      * <p>
-     * Contains more details about the messasge status.
+     * Contains more details about the message status.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -151,7 +151,7 @@ public class ChannelMessageStatusStructure implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         Contains more details about the messasge status.
+     *         Contains more details about the message status.
      *         </p>
      */
     public String getDetail() {
@@ -160,7 +160,7 @@ public class ChannelMessageStatusStructure implements Serializable {
 
     /**
      * <p>
-     * Contains more details about the messasge status.
+     * Contains more details about the message status.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,7 +168,7 @@ public class ChannelMessageStatusStructure implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param detail <p>
-     *            Contains more details about the messasge status.
+     *            Contains more details about the message status.
      *            </p>
      */
     public void setDetail(String detail) {
@@ -177,7 +177,7 @@ public class ChannelMessageStatusStructure implements Serializable {
 
     /**
      * <p>
-     * Contains more details about the messasge status.
+     * Contains more details about the message status.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -188,7 +188,7 @@ public class ChannelMessageStatusStructure implements Serializable {
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param detail <p>
-     *            Contains more details about the messasge status.
+     *            Contains more details about the message status.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
