@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ public class DeletionConfig implements Serializable {
      * <p>
      * Since the default value is set to <code>true</code>, configure the
      * uploader schedule such that the media files are not being deleted before
-     * they are initially uploaded to AWS cloud.
+     * they are initially uploaded to the Amazon Web Services cloud.
      * </p>
      */
     private Boolean deleteAfterUpload;
@@ -190,7 +190,7 @@ public class DeletionConfig implements Serializable {
      * <p>
      * Since the default value is set to <code>true</code>, configure the
      * uploader schedule such that the media files are not being deleted before
-     * they are initially uploaded to AWS cloud.
+     * they are initially uploaded to the Amazon Web Services cloud.
      * </p>
      *
      * @return <p>
@@ -205,7 +205,8 @@ public class DeletionConfig implements Serializable {
      *         <p>
      *         Since the default value is set to <code>true</code>, configure
      *         the uploader schedule such that the media files are not being
-     *         deleted before they are initially uploaded to AWS cloud.
+     *         deleted before they are initially uploaded to the Amazon Web
+     *         Services cloud.
      *         </p>
      */
     public Boolean isDeleteAfterUpload() {
@@ -224,7 +225,7 @@ public class DeletionConfig implements Serializable {
      * <p>
      * Since the default value is set to <code>true</code>, configure the
      * uploader schedule such that the media files are not being deleted before
-     * they are initially uploaded to AWS cloud.
+     * they are initially uploaded to the Amazon Web Services cloud.
      * </p>
      *
      * @return <p>
@@ -239,7 +240,8 @@ public class DeletionConfig implements Serializable {
      *         <p>
      *         Since the default value is set to <code>true</code>, configure
      *         the uploader schedule such that the media files are not being
-     *         deleted before they are initially uploaded to AWS cloud.
+     *         deleted before they are initially uploaded to the Amazon Web
+     *         Services cloud.
      *         </p>
      */
     public Boolean getDeleteAfterUpload() {
@@ -258,7 +260,7 @@ public class DeletionConfig implements Serializable {
      * <p>
      * Since the default value is set to <code>true</code>, configure the
      * uploader schedule such that the media files are not being deleted before
-     * they are initially uploaded to AWS cloud.
+     * they are initially uploaded to the Amazon Web Services cloud.
      * </p>
      *
      * @param deleteAfterUpload <p>
@@ -273,7 +275,8 @@ public class DeletionConfig implements Serializable {
      *            <p>
      *            Since the default value is set to <code>true</code>, configure
      *            the uploader schedule such that the media files are not being
-     *            deleted before they are initially uploaded to AWS cloud.
+     *            deleted before they are initially uploaded to the Amazon Web
+     *            Services cloud.
      *            </p>
      */
     public void setDeleteAfterUpload(Boolean deleteAfterUpload) {
@@ -292,7 +295,7 @@ public class DeletionConfig implements Serializable {
      * <p>
      * Since the default value is set to <code>true</code>, configure the
      * uploader schedule such that the media files are not being deleted before
-     * they are initially uploaded to AWS cloud.
+     * they are initially uploaded to the Amazon Web Services cloud.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -310,7 +313,8 @@ public class DeletionConfig implements Serializable {
      *            <p>
      *            Since the default value is set to <code>true</code>, configure
      *            the uploader schedule such that the media files are not being
-     *            deleted before they are initially uploaded to AWS cloud.
+     *            deleted before they are initially uploaded to the Amazon Web
+     *            Services cloud.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

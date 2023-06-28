@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      */
     private String syncStatus;
 
@@ -82,6 +82,15 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * </p>
      */
     private EdgeConfig edgeConfig;
+
+    /**
+     * <p>
+     * An object that contains the latest status details for an edge agent's
+     * recorder and uploader jobs. Use this information to determine the current
+     * health of an edge agent.
+     * </p>
+     */
+    private EdgeAgentStatus edgeAgentStatus;
 
     /**
      * <p>
@@ -309,7 +318,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @return <p>
      *         The latest status of the edge configuration update.
@@ -327,7 +336,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The latest status of the edge configuration update.
@@ -348,7 +357,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The latest status of the edge configuration update.
@@ -369,7 +378,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The latest status of the edge configuration update.
@@ -390,7 +399,7 @@ public class DescribeEdgeConfigurationResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The latest status of the edge configuration update.
@@ -510,6 +519,63 @@ public class DescribeEdgeConfigurationResult implements Serializable {
     }
 
     /**
+     * <p>
+     * An object that contains the latest status details for an edge agent's
+     * recorder and uploader jobs. Use this information to determine the current
+     * health of an edge agent.
+     * </p>
+     *
+     * @return <p>
+     *         An object that contains the latest status details for an edge
+     *         agent's recorder and uploader jobs. Use this information to
+     *         determine the current health of an edge agent.
+     *         </p>
+     */
+    public EdgeAgentStatus getEdgeAgentStatus() {
+        return edgeAgentStatus;
+    }
+
+    /**
+     * <p>
+     * An object that contains the latest status details for an edge agent's
+     * recorder and uploader jobs. Use this information to determine the current
+     * health of an edge agent.
+     * </p>
+     *
+     * @param edgeAgentStatus <p>
+     *            An object that contains the latest status details for an edge
+     *            agent's recorder and uploader jobs. Use this information to
+     *            determine the current health of an edge agent.
+     *            </p>
+     */
+    public void setEdgeAgentStatus(EdgeAgentStatus edgeAgentStatus) {
+        this.edgeAgentStatus = edgeAgentStatus;
+    }
+
+    /**
+     * <p>
+     * An object that contains the latest status details for an edge agent's
+     * recorder and uploader jobs. Use this information to determine the current
+     * health of an edge agent.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param edgeAgentStatus <p>
+     *            An object that contains the latest status details for an edge
+     *            agent's recorder and uploader jobs. Use this information to
+     *            determine the current health of an edge agent.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeEdgeConfigurationResult withEdgeAgentStatus(EdgeAgentStatus edgeAgentStatus) {
+        this.edgeAgentStatus = edgeAgentStatus;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -533,7 +599,9 @@ public class DescribeEdgeConfigurationResult implements Serializable {
         if (getFailedStatusDetails() != null)
             sb.append("FailedStatusDetails: " + getFailedStatusDetails() + ",");
         if (getEdgeConfig() != null)
-            sb.append("EdgeConfig: " + getEdgeConfig());
+            sb.append("EdgeConfig: " + getEdgeConfig() + ",");
+        if (getEdgeAgentStatus() != null)
+            sb.append("EdgeAgentStatus: " + getEdgeAgentStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -553,6 +621,8 @@ public class DescribeEdgeConfigurationResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getFailedStatusDetails() == null) ? 0 : getFailedStatusDetails().hashCode());
         hashCode = prime * hashCode + ((getEdgeConfig() == null) ? 0 : getEdgeConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getEdgeAgentStatus() == null) ? 0 : getEdgeAgentStatus().hashCode());
         return hashCode;
     }
 
@@ -601,6 +671,11 @@ public class DescribeEdgeConfigurationResult implements Serializable {
             return false;
         if (other.getEdgeConfig() != null
                 && other.getEdgeConfig().equals(this.getEdgeConfig()) == false)
+            return false;
+        if (other.getEdgeAgentStatus() == null ^ this.getEdgeAgentStatus() == null)
+            return false;
+        if (other.getEdgeAgentStatus() != null
+                && other.getEdgeAgentStatus().equals(this.getEdgeAgentStatus()) == false)
             return false;
         return true;
     }

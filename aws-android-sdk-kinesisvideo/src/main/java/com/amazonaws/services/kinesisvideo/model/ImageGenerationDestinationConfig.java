@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,9 +38,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Region of the S3 bucket where images will be delivered. This
-     * <code>DestinationRegion</code> must match the Region where the stream is
-     * located.
+     * The Amazon Web Services Region of the S3 bucket where images will be
+     * delivered. This <code>DestinationRegion</code> must match the Region
+     * where the stream is located.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,9 +114,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Region of the S3 bucket where images will be delivered. This
-     * <code>DestinationRegion</code> must match the Region where the stream is
-     * located.
+     * The Amazon Web Services Region of the S3 bucket where images will be
+     * delivered. This <code>DestinationRegion</code> must match the Region
+     * where the stream is located.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,9 +124,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-z]+(-[a-z]+)?-[a-z]+-[0-9]$<br/>
      *
      * @return <p>
-     *         The AWS Region of the S3 bucket where images will be delivered.
-     *         This <code>DestinationRegion</code> must match the Region where
-     *         the stream is located.
+     *         The Amazon Web Services Region of the S3 bucket where images will
+     *         be delivered. This <code>DestinationRegion</code> must match the
+     *         Region where the stream is located.
      *         </p>
      */
     public String getDestinationRegion() {
@@ -135,9 +135,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Region of the S3 bucket where images will be delivered. This
-     * <code>DestinationRegion</code> must match the Region where the stream is
-     * located.
+     * The Amazon Web Services Region of the S3 bucket where images will be
+     * delivered. This <code>DestinationRegion</code> must match the Region
+     * where the stream is located.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,9 +145,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-z]+(-[a-z]+)?-[a-z]+-[0-9]$<br/>
      *
      * @param destinationRegion <p>
-     *            The AWS Region of the S3 bucket where images will be
-     *            delivered. This <code>DestinationRegion</code> must match the
-     *            Region where the stream is located.
+     *            The Amazon Web Services Region of the S3 bucket where images
+     *            will be delivered. This <code>DestinationRegion</code> must
+     *            match the Region where the stream is located.
      *            </p>
      */
     public void setDestinationRegion(String destinationRegion) {
@@ -156,9 +156,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
 
     /**
      * <p>
-     * The AWS Region of the S3 bucket where images will be delivered. This
-     * <code>DestinationRegion</code> must match the Region where the stream is
-     * located.
+     * The Amazon Web Services Region of the S3 bucket where images will be
+     * delivered. This <code>DestinationRegion</code> must match the Region
+     * where the stream is located.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -169,9 +169,9 @@ public class ImageGenerationDestinationConfig implements Serializable {
      * <b>Pattern: </b>^[a-z]+(-[a-z]+)?-[a-z]+-[0-9]$<br/>
      *
      * @param destinationRegion <p>
-     *            The AWS Region of the S3 bucket where images will be
-     *            delivered. This <code>DestinationRegion</code> must match the
-     *            Region where the stream is located.
+     *            The Amazon Web Services Region of the S3 bucket where images
+     *            will be delivered. This <code>DestinationRegion</code> must
+     *            match the Region where the stream is located.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

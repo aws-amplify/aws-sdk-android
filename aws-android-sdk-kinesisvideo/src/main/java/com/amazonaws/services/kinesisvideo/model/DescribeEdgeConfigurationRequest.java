@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Describes a stream’s edge configuration that was set using the
- * <code>StartEdgeConfigurationUpdate</code> API. Use this API to get the status
- * of the configuration if the configuration is in sync with the Edge Agent.
+ * <code>StartEdgeConfigurationUpdate</code> API and the latest status of the
+ * edge agent's recorder and uploader jobs. Use this API to get the status of
+ * the configuration to determine if the configuration is in sync with the Edge
+ * Agent. Use this API to evaluate the health of the Edge Agent.
  * </p>
  */
 public class DescribeEdgeConfigurationRequest extends AmazonWebServiceRequest implements

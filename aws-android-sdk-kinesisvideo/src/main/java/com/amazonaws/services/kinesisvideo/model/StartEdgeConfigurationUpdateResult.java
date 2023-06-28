@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      */
     private String syncStatus;
 
@@ -315,7 +315,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @return <p>
      *         The current sync status of the stream's edge configuration. When
@@ -340,7 +340,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The current sync status of the stream's edge configuration.
@@ -368,7 +368,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The current sync status of the stream's edge configuration.
@@ -396,7 +396,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The current sync status of the stream's edge configuration.
@@ -424,7 +424,7 @@ public class StartEdgeConfigurationUpdateResult implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SYNCING, ACKNOWLEDGED, IN_SYNC, SYNC_FAILED,
-     * DELETING, DELETE_FAILED
+     * DELETING, DELETE_FAILED, DELETING_ACKNOWLEDGED
      *
      * @param syncStatus <p>
      *            The current sync status of the stream's edge configuration.
