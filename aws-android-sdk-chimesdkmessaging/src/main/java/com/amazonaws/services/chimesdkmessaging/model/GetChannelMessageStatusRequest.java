@@ -51,7 +51,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <dt>DENIED</dt>
  * <dd>
  * <p>
- * Messasge denied by the processor
+ * Message denied by the processor
  * </p>
  * </dd>
  * </dl>

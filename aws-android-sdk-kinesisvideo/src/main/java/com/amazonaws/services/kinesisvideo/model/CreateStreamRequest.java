@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -105,7 +105,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
-     * <code>aws/kinesisvideo</code>) is used.
+     * <code>Amazon Web Services/kinesisvideo</code>) is used.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -471,7 +471,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
-     * <code>aws/kinesisvideo</code>) is used.
+     * <code>Amazon Web Services/kinesisvideo</code>) is used.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -489,7 +489,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *         </p>
      *         <p>
      *         If no key ID is specified, the default, Kinesis Video-managed key
-     *         (<code>aws/kinesisvideo</code>) is used.
+     *         (<code>Amazon Web Services/kinesisvideo</code>) is used.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -508,7 +508,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
-     * <code>aws/kinesisvideo</code>) is used.
+     * <code>Amazon Web Services/kinesisvideo</code>) is used.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -526,7 +526,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            </p>
      *            <p>
      *            If no key ID is specified, the default, Kinesis Video-managed
-     *            key (<code>aws/kinesisvideo</code>) is used.
+     *            key (<code>Amazon Web Services/kinesisvideo</code>) is used.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -545,7 +545,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If no key ID is specified, the default, Kinesis Video-managed key (
-     * <code>aws/kinesisvideo</code>) is used.
+     * <code>Amazon Web Services/kinesisvideo</code>) is used.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -566,7 +566,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      *            </p>
      *            <p>
      *            If no key ID is specified, the default, Kinesis Video-managed
-     *            key (<code>aws/kinesisvideo</code>) is used.
+     *            key (<code>Amazon Web Services/kinesisvideo</code>) is used.
      *            </p>
      *            <p>
      *            For more information, see <a href=

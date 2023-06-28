@@ -22,10 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Sets the membership preferences of an <code>AppInstanceUser</code> or
- * <code>AppIntanceBot</code> for the specified channel. The user or bot must be
- * a member of the channel. Only the user or bot who owns the membership can set
- * preferences. Users or bots in the <code>AppInstanceAdmin</code> and channel
- * moderator roles can't set preferences for other users or users. Banned users
+ * <code>AppInstanceBot</code> for the specified channel. The user or bot must
+ * be a member of the channel. Only the user or bot who owns the membership can
+ * set preferences. Users or bots in the <code>AppInstanceAdmin</code> and
+ * channel moderator roles can't set preferences for other users. Banned users
  * or bots can't set membership preferences for the channel from which they are
  * banned.
  * </p>

@@ -63,6 +63,13 @@ public class UpdateAppInstanceBotRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * The configuration for the bot update.
+     * </p>
+     */
+    private Configuration configuration;
+
+    /**
+     * <p>
      * The ARN of the <code>AppInstanceBot</code>.
      * </p>
      * <p>
@@ -242,6 +249,51 @@ public class UpdateAppInstanceBotRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The configuration for the bot update.
+     * </p>
+     *
+     * @return <p>
+     *         The configuration for the bot update.
+     *         </p>
+     */
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    /**
+     * <p>
+     * The configuration for the bot update.
+     * </p>
+     *
+     * @param configuration <p>
+     *            The configuration for the bot update.
+     *            </p>
+     */
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
+
+    /**
+     * <p>
+     * The configuration for the bot update.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param configuration <p>
+     *            The configuration for the bot update.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateAppInstanceBotRequest withConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -257,7 +309,9 @@ public class UpdateAppInstanceBotRequest extends AmazonWebServiceRequest impleme
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getMetadata() != null)
-            sb.append("Metadata: " + getMetadata());
+            sb.append("Metadata: " + getMetadata() + ",");
+        if (getConfiguration() != null)
+            sb.append("Configuration: " + getConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -271,6 +325,8 @@ public class UpdateAppInstanceBotRequest extends AmazonWebServiceRequest impleme
                 + ((getAppInstanceBotArn() == null) ? 0 : getAppInstanceBotArn().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getMetadata() == null) ? 0 : getMetadata().hashCode());
+        hashCode = prime * hashCode
+                + ((getConfiguration() == null) ? 0 : getConfiguration().hashCode());
         return hashCode;
     }
 
@@ -297,6 +353,11 @@ public class UpdateAppInstanceBotRequest extends AmazonWebServiceRequest impleme
         if (other.getMetadata() == null ^ this.getMetadata() == null)
             return false;
         if (other.getMetadata() != null && other.getMetadata().equals(this.getMetadata()) == false)
+            return false;
+        if (other.getConfiguration() == null ^ this.getConfiguration() == null)
+            return false;
+        if (other.getConfiguration() != null
+                && other.getConfiguration().equals(this.getConfiguration()) == false)
             return false;
         return true;
     }

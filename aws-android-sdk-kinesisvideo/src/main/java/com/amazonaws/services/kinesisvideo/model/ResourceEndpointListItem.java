@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,6 +21,10 @@ import java.io.Serializable;
  * <p>
  * An object that describes the endpoint of the signaling channel returned by
  * the <code>GetSignalingChannelEndpoint</code> API.
+ * </p>
+ * <p>
+ * The media server endpoint will correspond to the <code>WEBRTC</code>
+ * Protocol.
  * </p>
  */
 public class ResourceEndpointListItem implements Serializable {

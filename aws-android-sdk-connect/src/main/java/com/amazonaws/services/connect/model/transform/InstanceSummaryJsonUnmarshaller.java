@@ -63,6 +63,9 @@ class InstanceSummaryJsonUnmarshaller implements
             } else if (name.equals("OutboundCallsEnabled")) {
                 instanceSummary.setOutboundCallsEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InstanceAccessUrl")) {
+                instanceSummary.setInstanceAccessUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

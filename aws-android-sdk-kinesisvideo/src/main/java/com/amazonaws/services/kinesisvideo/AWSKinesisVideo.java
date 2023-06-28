@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -161,6 +161,45 @@ public interface AWSKinesisVideo {
 
     /**
      * <p>
+     * An asynchronous API that deletes a stream’s existing edge configuration,
+     * as well as the corresponding media from the Edge Agent.
+     * </p>
+     * <p>
+     * When you invoke this API, the sync status is set to <code>DELETING</code>
+     * . A deletion process starts, in which active edge jobs are stopped and
+     * all media is deleted from the edge device. The time to delete varies,
+     * depending on the total amount of stored media. If the deletion process
+     * fails, the sync status changes to <code>DELETE_FAILED</code>. You will
+     * need to re-try the deletion.
+     * </p>
+     * <p>
+     * When the deletion process has completed successfully, the edge
+     * configuration is no longer accessible.
+     * </p>
+     * 
+     * @param deleteEdgeConfigurationRequest
+     * @return deleteEdgeConfigurationResult The response from the
+     *         DeleteEdgeConfiguration service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws AccessDeniedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws ResourceNotFoundException
+     * @throws StreamEdgeConfigurationNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    DeleteEdgeConfigurationResult deleteEdgeConfiguration(
+            DeleteEdgeConfigurationRequest deleteEdgeConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a specified signaling channel.
      * <code>DeleteSignalingChannel</code> is an asynchronous operation. If you
      * don't specify the channel's current version, the most recent version is
@@ -234,8 +273,10 @@ public interface AWSKinesisVideo {
     /**
      * <p>
      * Describes a stream’s edge configuration that was set using the
-     * <code>StartEdgeConfigurationUpdate</code> API. Use this API to get the
-     * status of the configuration if the configuration is in sync with the Edge
+     * <code>StartEdgeConfigurationUpdate</code> API and the latest status of
+     * the edge agent's recorder and uploader jobs. Use this API to get the
+     * status of the configuration to determine if the configuration is in sync
+     * with the Edge Agent. Use this API to evaluate the health of the Edge
      * Agent.
      * </p>
      * 
@@ -287,10 +328,6 @@ public interface AWSKinesisVideo {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * Returns the most current information about the stream. Either streamName
-     * or streamARN should be provided in the input.
-     * </p>
      * <p>
      * Returns the most current information about the stream. The
      * <code>streamName</code> or <code>streamARN</code> should be provided in
@@ -497,6 +534,35 @@ public interface AWSKinesisVideo {
      */
     GetSignalingChannelEndpointResult getSignalingChannelEndpoint(
             GetSignalingChannelEndpointRequest getSignalingChannelEndpointRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns an array of edge configurations associated with the specified
+     * Edge Agent.
+     * </p>
+     * <p>
+     * In the request, you must specify the Edge Agent <code>HubDeviceArn</code>
+     * .
+     * </p>
+     * 
+     * @param listEdgeAgentConfigurationsRequest
+     * @return listEdgeAgentConfigurationsResult The response from the
+     *         ListEdgeAgentConfigurations service method, as returned by
+     *         AWSKinesisVideoFrontend.
+     * @throws NotAuthorizedException
+     * @throws ClientLimitExceededException
+     * @throws InvalidArgumentException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by
+     *             AWSKinesisVideoFrontend indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    ListEdgeAgentConfigurationsResult listEdgeAgentConfigurations(
+            ListEdgeAgentConfigurationsRequest listEdgeAgentConfigurationsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

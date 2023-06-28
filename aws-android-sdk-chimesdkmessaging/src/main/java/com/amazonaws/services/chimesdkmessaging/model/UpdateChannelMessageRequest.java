@@ -58,7 +58,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The content of the message being updated.
+     * The content of the channel message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -242,7 +242,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The content of the message being updated.
+     * The content of the channel message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -250,7 +250,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @return <p>
-     *         The content of the message being updated.
+     *         The content of the channel message.
      *         </p>
      */
     public String getContent() {
@@ -259,7 +259,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The content of the message being updated.
+     * The content of the channel message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -267,7 +267,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param content <p>
-     *            The content of the message being updated.
+     *            The content of the channel message.
      *            </p>
      */
     public void setContent(String content) {
@@ -276,7 +276,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The content of the message being updated.
+     * The content of the channel message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -287,7 +287,7 @@ public class UpdateChannelMessageRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[\s\S]*<br/>
      *
      * @param content <p>
-     *            The content of the message being updated.
+     *            The content of the channel message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

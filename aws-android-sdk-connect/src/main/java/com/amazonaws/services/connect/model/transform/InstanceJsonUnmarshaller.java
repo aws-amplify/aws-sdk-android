@@ -65,6 +65,9 @@ class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshalle
             } else if (name.equals("OutboundCallsEnabled")) {
                 instance.setOutboundCallsEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InstanceAccessUrl")) {
+                instance.setInstanceAccessUrl(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
