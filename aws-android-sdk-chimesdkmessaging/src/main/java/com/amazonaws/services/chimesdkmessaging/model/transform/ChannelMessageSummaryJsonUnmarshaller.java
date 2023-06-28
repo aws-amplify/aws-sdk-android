@@ -76,6 +76,11 @@ class ChannelMessageSummaryJsonUnmarshaller implements
             } else if (name.equals("ContentType")) {
                 channelMessageSummary.setContentType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Target")) {
+                channelMessageSummary.setTarget(new ListUnmarshaller<Target>(TargetJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

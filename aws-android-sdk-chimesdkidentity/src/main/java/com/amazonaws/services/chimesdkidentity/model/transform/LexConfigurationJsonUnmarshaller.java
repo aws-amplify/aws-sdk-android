@@ -39,6 +39,9 @@ class LexConfigurationJsonUnmarshaller implements
             if (name.equals("RespondsTo")) {
                 lexConfiguration.setRespondsTo(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InvokedBy")) {
+                lexConfiguration.setInvokedBy(InvokedByJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("LexBotAliasArn")) {
                 lexConfiguration.setLexBotAliasArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

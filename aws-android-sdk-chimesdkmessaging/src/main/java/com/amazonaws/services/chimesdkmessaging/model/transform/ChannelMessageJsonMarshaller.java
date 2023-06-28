@@ -112,6 +112,17 @@ class ChannelMessageJsonMarshaller {
             jsonWriter.name("ContentType");
             jsonWriter.value(contentType);
         }
+        if (channelMessage.getTarget() != null) {
+            java.util.List<Target> target = channelMessage.getTarget();
+            jsonWriter.name("Target");
+            jsonWriter.beginArray();
+            for (Target targetItem : target) {
+                if (targetItem != null) {
+                    TargetJsonMarshaller.getInstance().marshall(targetItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

@@ -111,6 +111,14 @@ public class Instance implements Serializable {
 
     /**
      * <p>
+     * This URL allows contact center users to access Amazon Connect admin
+     * website.
+     * </p>
+     */
+    private String instanceAccessUrl;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
@@ -733,6 +741,57 @@ public class Instance implements Serializable {
     }
 
     /**
+     * <p>
+     * This URL allows contact center users to access Amazon Connect admin
+     * website.
+     * </p>
+     *
+     * @return <p>
+     *         This URL allows contact center users to access Amazon Connect
+     *         admin website.
+     *         </p>
+     */
+    public String getInstanceAccessUrl() {
+        return instanceAccessUrl;
+    }
+
+    /**
+     * <p>
+     * This URL allows contact center users to access Amazon Connect admin
+     * website.
+     * </p>
+     *
+     * @param instanceAccessUrl <p>
+     *            This URL allows contact center users to access Amazon Connect
+     *            admin website.
+     *            </p>
+     */
+    public void setInstanceAccessUrl(String instanceAccessUrl) {
+        this.instanceAccessUrl = instanceAccessUrl;
+    }
+
+    /**
+     * <p>
+     * This URL allows contact center users to access Amazon Connect admin
+     * website.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceAccessUrl <p>
+     *            This URL allows contact center users to access Amazon Connect
+     *            admin website.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Instance withInstanceAccessUrl(String instanceAccessUrl) {
+        this.instanceAccessUrl = instanceAccessUrl;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -762,7 +821,9 @@ public class Instance implements Serializable {
         if (getInboundCallsEnabled() != null)
             sb.append("InboundCallsEnabled: " + getInboundCallsEnabled() + ",");
         if (getOutboundCallsEnabled() != null)
-            sb.append("OutboundCallsEnabled: " + getOutboundCallsEnabled());
+            sb.append("OutboundCallsEnabled: " + getOutboundCallsEnabled() + ",");
+        if (getInstanceAccessUrl() != null)
+            sb.append("InstanceAccessUrl: " + getInstanceAccessUrl());
         sb.append("}");
         return sb.toString();
     }
@@ -792,6 +853,8 @@ public class Instance implements Serializable {
                 + ((getInboundCallsEnabled() == null) ? 0 : getInboundCallsEnabled().hashCode());
         hashCode = prime * hashCode
                 + ((getOutboundCallsEnabled() == null) ? 0 : getOutboundCallsEnabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceAccessUrl() == null) ? 0 : getInstanceAccessUrl().hashCode());
         return hashCode;
     }
 
@@ -853,6 +916,11 @@ public class Instance implements Serializable {
             return false;
         if (other.getOutboundCallsEnabled() != null
                 && other.getOutboundCallsEnabled().equals(this.getOutboundCallsEnabled()) == false)
+            return false;
+        if (other.getInstanceAccessUrl() == null ^ this.getInstanceAccessUrl() == null)
+            return false;
+        if (other.getInstanceAccessUrl() != null
+                && other.getInstanceAccessUrl().equals(this.getInstanceAccessUrl()) == false)
             return false;
         return true;
     }

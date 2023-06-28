@@ -22,10 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * When a contact is being recorded, and the recording has been suspended using
- * SuspendContactRecording, this API resumes recording the call.
+ * SuspendContactRecording, this API resumes recording the call or screen.
  * </p>
  * <p>
- * Only voice recordings are supported at this time.
+ * Voice and screen recordings are supported.
  * </p>
  */
 public class ResumeContactRecordingRequest extends AmazonWebServiceRequest implements Serializable {
