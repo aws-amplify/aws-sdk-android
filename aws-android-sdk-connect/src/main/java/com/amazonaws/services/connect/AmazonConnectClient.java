@@ -356,6 +356,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
         jsonErrorUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidRequestExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new MaximumResultReturnedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new OutboundContactNotPermittedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new PropertyValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
@@ -1007,6 +1008,27 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >ClaimPhoneNumber</a> operation.
      * </p>
      * </important>
+     * <p>
+     * If you plan to claim and release numbers frequently during a 30 day
+     * period, contact us for a service quota exception. Otherwise, it is
+     * possible you will be blocked from claiming and releasing any more numbers
+     * until 30 days past the oldest number released has expired.
+     * </p>
+     * <p>
+     * By default you can claim and release up to 200% of your maximum number of
+     * active phone numbers during any 30 day period. If you claim and release
+     * phone numbers using the UI or API during a rolling 30 day cycle that
+     * exceeds 200% of your phone number service level quota, you will be
+     * blocked from claiming any more numbers until 30 days past the oldest
+     * number released has expired.
+     * </p>
+     * <p>
+     * For example, if you already have 99 claimed numbers and a service level
+     * quota of 99 phone numbers, and in any 30 day period you release 99, claim
+     * 99, and then release 99, you will have exceeded the 200% limit. At that
+     * point you are blocked from claiming any more numbers until you open an
+     * Amazon Web Services support ticket.
+     * </p>
      * 
      * @param claimPhoneNumberRequest
      * @return claimPhoneNumberResult The response from the ClaimPhoneNumber
@@ -7429,6 +7451,27 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Amazon Web Services Support.
      * </p>
      * </important>
+     * <p>
+     * If you plan to claim and release numbers frequently during a 30 day
+     * period, contact us for a service quota exception. Otherwise, it is
+     * possible you will be blocked from claiming and releasing any more numbers
+     * until 30 days past the oldest number released has expired.
+     * </p>
+     * <p>
+     * By default you can claim and release up to 200% of your maximum number of
+     * active phone numbers during any 30 day period. If you claim and release
+     * phone numbers using the UI or API during a rolling 30 day cycle that
+     * exceeds 200% of your phone number service level quota, you will be
+     * blocked from claiming any more numbers until 30 days past the oldest
+     * number released has expired.
+     * </p>
+     * <p>
+     * For example, if you already have 99 claimed numbers and a service level
+     * quota of 99 phone numbers, and in any 30 day period you release 99, claim
+     * 99, and then release 99, you will have exceeded the 200% limit. At that
+     * point you are blocked from claiming any more numbers until you open an
+     * Amazon Web Services support ticket.
+     * </p>
      * 
      * @param releasePhoneNumberRequest
      * @throws InvalidParameterException
@@ -7537,10 +7580,11 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * When a contact is being recorded, and the recording has been suspended
-     * using SuspendContactRecording, this API resumes recording the call.
+     * using SuspendContactRecording, this API resumes recording the call or
+     * screen.
      * </p>
      * <p>
-     * Only voice recordings are supported at this time.
+     * Voice and screen recordings are supported.
      * </p>
      * 
      * @param resumeContactRecordingRequest
@@ -7846,6 +7890,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<SearchQuickConnectsResult, JsonUnmarshallerContext> unmarshaller = new SearchQuickConnectsResultJsonUnmarshaller();
             JsonResponseHandler<SearchQuickConnectsResult> responseHandler = new JsonResponseHandler<SearchQuickConnectsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Searches tags used in an Amazon Connect instance using optional search
+     * criteria.
+     * </p>
+     * 
+     * @param searchResourceTagsRequest
+     * @return searchResourceTagsResult The response from the SearchResourceTags
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws MaximumResultReturnedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchResourceTagsResult searchResourceTags(
+            SearchResourceTagsRequest searchResourceTagsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchResourceTagsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchResourceTagsRequest> request = null;
+        Response<SearchResourceTagsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchResourceTagsRequestMarshaller()
+                        .marshall(searchResourceTagsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchResourceTagsResult, JsonUnmarshallerContext> unmarshaller = new SearchResourceTagsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchResourceTagsResult> responseHandler = new JsonResponseHandler<SearchResourceTagsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -8762,9 +8860,9 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * When a contact is being recorded, this API suspends recording the call.
-     * For example, you might suspend the call recording while collecting
-     * sensitive information, such as a credit card number. Then use
+     * When a contact is being recorded, this API suspends recording the call or
+     * screen. For example, you might suspend the call or screen recording while
+     * collecting sensitive information, such as a credit card number. Then use
      * ResumeContactRecording to restart recording.
      * </p>
      * <p>
@@ -8772,7 +8870,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * in the final recording.
      * </p>
      * <p>
-     * Only voice recordings are supported at this time.
+     * Voice and screen recordings are supported.
      * </p>
      * 
      * @param suspendContactRecordingRequest
