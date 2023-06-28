@@ -21,49 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO LexConfiguration
+ * JSON unmarshaller for POJO InvokedBy
  */
-class LexConfigurationJsonUnmarshaller implements
-        Unmarshaller<LexConfiguration, JsonUnmarshallerContext> {
+class InvokedByJsonUnmarshaller implements Unmarshaller<InvokedBy, JsonUnmarshallerContext> {
 
-    public LexConfiguration unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public InvokedBy unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        LexConfiguration lexConfiguration = new LexConfiguration();
+        InvokedBy invokedBy = new InvokedBy();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("RespondsTo")) {
-                lexConfiguration.setRespondsTo(StringJsonUnmarshaller.getInstance()
+            if (name.equals("StandardMessages")) {
+                invokedBy.setStandardMessages(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("InvokedBy")) {
-                lexConfiguration.setInvokedBy(InvokedByJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("LexBotAliasArn")) {
-                lexConfiguration.setLexBotAliasArn(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("LocaleId")) {
-                lexConfiguration.setLocaleId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("WelcomeIntent")) {
-                lexConfiguration.setWelcomeIntent(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("TargetedMessages")) {
+                invokedBy.setTargetedMessages(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return lexConfiguration;
+        return invokedBy;
     }
 
-    private static LexConfigurationJsonUnmarshaller instance;
+    private static InvokedByJsonUnmarshaller instance;
 
-    public static LexConfigurationJsonUnmarshaller getInstance() {
+    public static InvokedByJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new LexConfigurationJsonUnmarshaller();
+            instance = new InvokedByJsonUnmarshaller();
         return instance;
     }
 }

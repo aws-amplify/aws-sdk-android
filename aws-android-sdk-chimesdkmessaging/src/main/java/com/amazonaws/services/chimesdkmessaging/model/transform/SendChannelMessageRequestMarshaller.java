@@ -136,6 +136,17 @@ public class SendChannelMessageRequestMarshaller implements
                 jsonWriter.name("ContentType");
                 jsonWriter.value(contentType);
             }
+            if (sendChannelMessageRequest.getTarget() != null) {
+                java.util.List<Target> target = sendChannelMessageRequest.getTarget();
+                jsonWriter.name("Target");
+                jsonWriter.beginArray();
+                for (Target targetItem : target) {
+                    if (targetItem != null) {
+                        TargetJsonMarshaller.getInstance().marshall(targetItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
