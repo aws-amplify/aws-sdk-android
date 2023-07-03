@@ -13,6 +13,6 @@ android {
 dependencies {
     api project(':aws-android-sdk-core')
     implementation project(':aws-android-sdk-ddb')
-    implementation 'com.google.guava:guava:32.0.1-android'
+    implementation 'com.google.guava:guava:29.0-android'
 }
 
