@@ -311,6 +311,20 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
      * Identifies the KMS key to use in the encryption operation. The KMS key
      * must have a <code>KeyUsage</code> of <code>ENCRYPT_DECRYPT</code>. To
      * find the <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a>
@@ -1306,6 +1320,120 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     }
 
     /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EncryptRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1325,7 +1453,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
         if (getGrantTokens() != null)
             sb.append("GrantTokens: " + getGrantTokens() + ",");
         if (getEncryptionAlgorithm() != null)
-            sb.append("EncryptionAlgorithm: " + getEncryptionAlgorithm());
+            sb.append("EncryptionAlgorithm: " + getEncryptionAlgorithm() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
@@ -1343,6 +1473,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
                 + ((getGrantTokens() == null) ? 0 : getGrantTokens().hashCode());
         hashCode = prime * hashCode
                 + ((getEncryptionAlgorithm() == null) ? 0 : getEncryptionAlgorithm().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
 
@@ -1380,6 +1511,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
             return false;
         if (other.getEncryptionAlgorithm() != null
                 && other.getEncryptionAlgorithm().equals(this.getEncryptionAlgorithm()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
             return false;
         return true;
     }

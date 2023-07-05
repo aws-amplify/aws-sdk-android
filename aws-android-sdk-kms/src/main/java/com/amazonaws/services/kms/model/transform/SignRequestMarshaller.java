@@ -90,6 +90,11 @@ public class SignRequestMarshaller implements Marshaller<Request<SignRequest>, S
                 jsonWriter.name("SigningAlgorithm");
                 jsonWriter.value(signingAlgorithm);
             }
+            if (signRequest.getDryRun() != null) {
+                Boolean dryRun = signRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

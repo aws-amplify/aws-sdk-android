@@ -95,6 +95,11 @@ public class VerifyRequestMarshaller implements Marshaller<Request<VerifyRequest
                 }
                 jsonWriter.endArray();
             }
+            if (verifyRequest.getDryRun() != null) {
+                Boolean dryRun = verifyRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

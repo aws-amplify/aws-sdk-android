@@ -109,6 +109,11 @@ public class CreateGrantRequestMarshaller implements
                 jsonWriter.name("Name");
                 jsonWriter.value(name);
             }
+            if (createGrantRequest.getDryRun() != null) {
+                Boolean dryRun = createGrantRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
