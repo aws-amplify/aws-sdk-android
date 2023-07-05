@@ -1618,6 +1618,14 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param createQueueRequest
@@ -7795,10 +7803,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
      * 
@@ -7957,10 +7961,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -8014,10 +8014,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -10267,6 +10263,14 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
