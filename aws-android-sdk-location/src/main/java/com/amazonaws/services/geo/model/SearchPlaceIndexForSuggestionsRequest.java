@@ -139,6 +139,18 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
+
+    /**
+     * <p>
      * The preferred language used to return results. The value must be a valid
      * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
      * for example, <code>en</code> for English.
@@ -1041,6 +1053,72 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForSuggestionsRequest withKey(String key) {
+        this.key = key;
+        return this;
+    }
+
+    /**
+     * <p>
      * The preferred language used to return results. The value must be a valid
      * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
      * for example, <code>en</code> for English.
@@ -1389,6 +1467,8 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
             sb.append("FilterCountries: " + getFilterCountries() + ",");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
         if (getLanguage() != null)
             sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
@@ -1412,6 +1492,7 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
         hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
@@ -1453,6 +1534,10 @@ public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceReque
             return false;
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;

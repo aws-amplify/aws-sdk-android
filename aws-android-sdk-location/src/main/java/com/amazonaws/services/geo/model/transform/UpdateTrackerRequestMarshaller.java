@@ -69,6 +69,11 @@ public class UpdateTrackerRequestMarshaller implements
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
+            if (updateTrackerRequest.getEventBridgeEnabled() != null) {
+                Boolean eventBridgeEnabled = updateTrackerRequest.getEventBridgeEnabled();
+                jsonWriter.name("EventBridgeEnabled");
+                jsonWriter.value(eventBridgeEnabled);
+            }
             if (updateTrackerRequest.getPositionFiltering() != null) {
                 String positionFiltering = updateTrackerRequest.getPositionFiltering();
                 jsonWriter.name("PositionFiltering");

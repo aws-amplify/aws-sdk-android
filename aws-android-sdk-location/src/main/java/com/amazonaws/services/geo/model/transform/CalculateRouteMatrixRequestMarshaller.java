@@ -59,6 +59,10 @@ public class CalculateRouteMatrixRequestMarshaller implements
                 "{CalculatorName}",
                 (calculateRouteMatrixRequest.getCalculatorName() == null) ? "" : StringUtils
                         .fromString(calculateRouteMatrixRequest.getCalculatorName()));
+        if (calculateRouteMatrixRequest.getKey() != null) {
+            request.addParameter("key",
+                    StringUtils.fromString(calculateRouteMatrixRequest.getKey()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
