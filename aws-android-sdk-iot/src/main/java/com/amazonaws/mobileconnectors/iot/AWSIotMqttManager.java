@@ -2093,4 +2093,9 @@ public class AWSIotMqttManager {
             options.setSocketFactory(tls12SocketFactory);
         }
     }
+
+    // for testing
+    protected Map<String, AWSIotMqttTopic> getTopicListeners() {
+        return topicListeners;
+    }
 }

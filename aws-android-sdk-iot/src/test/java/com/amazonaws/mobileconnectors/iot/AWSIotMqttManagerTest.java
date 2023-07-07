@@ -1105,6 +1105,163 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testSubscriptionsRetainedForStandardConnectionOnDisconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.setCleanSession(true);
+        testClient.setAutoReconnect(false);
+        testClient.connect(testKeystore, null);
+        mockClient.mockConnectSuccess();
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+        TestAWSIotMqttSubscriptionStatusCallback sscb = new TestAWSIotMqttSubscriptionStatusCallback();
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
+
+        assertEquals(1, testClient.getTopicListeners().size());
+
+        testClient.disconnect();
+
+        assertEquals(0, testClient.getTopicListeners().size());
+    }
+
+    @Test
+    public void testSubscriptionsRetainedForPersistentConnectionOnDisconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.setCleanSession(false);
+        testClient.setAutoReconnect(false);
+        testClient.connect(testKeystore, null);
+        mockClient.mockConnectSuccess();
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+        TestAWSIotMqttSubscriptionStatusCallback sscb = new TestAWSIotMqttSubscriptionStatusCallback();
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
+
+        assertEquals(1, testClient.getTopicListeners().size());
+
+        testClient.disconnect();
+
+        assertEquals(1, testClient.getTopicListeners().size());
+    }
+
+    @Test
+    public void testSubscriptionsNotRetainedOnStandardConnection() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.setCleanSession(true);
+        testClient.setAutoReconnect(false);
+
+        testClient.connect(testKeystore, null);
+
+        mockClient.mockConnectSuccess();
+
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+
+        TestAWSIotMqttSubscriptionStatusCallback sscb = new TestAWSIotMqttSubscriptionStatusCallback();
+
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
+
+        assertEquals(1, testClient.getTopicListeners().size());
+        assertEquals(1, mockClient.connectCalls);
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(sscb.subscribed);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        MqttMessage msg = new MqttMessage();
+        msg.setPayload("test payload".getBytes(StringUtils.UTF8));
+        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+
+        assertEquals(1, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+
+        mockClient.mockDisconnect();
+
+        testClient.connect(testKeystore, null);
+
+        assertEquals(0, testClient.getTopicListeners().size());
+        assertEquals(2, mockClient.connectCalls);
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(sscb.subscribed);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        MqttMessage msg2 = new MqttMessage();
+        msg2.setPayload("test payload".getBytes(StringUtils.UTF8));
+        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+
+        // received still only 1
+        assertEquals(1, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+    }
+
+    @Test
+    public void testSubscriptionsRetainedOnPersistentConnection() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.setCleanSession(false);
+        testClient.setAutoReconnect(false);
+
+        testClient.connect(testKeystore, null);
+
+        mockClient.mockConnectSuccess();
+
+        TestNewMessageCallback mcb = new TestNewMessageCallback();
+
+        TestAWSIotMqttSubscriptionStatusCallback sscb = new TestAWSIotMqttSubscriptionStatusCallback();
+
+        testClient.subscribeToTopic("unit/test/topic", AWSIotMqttQos.QOS0, sscb, mcb);
+
+        assertEquals(1, mockClient.connectCalls);
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(sscb.subscribed);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        MqttMessage msg = new MqttMessage();
+        msg.setPayload("test payload".getBytes(StringUtils.UTF8));
+        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+
+        assertEquals(1, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+
+        mockClient.mockDisconnect();
+
+        testClient.connect(testKeystore, null);
+
+        assertEquals(2, mockClient.connectCalls);
+        assertEquals(1, mockClient.subscribeCalls);
+        assertTrue(sscb.subscribed);
+        assertTrue(mockClient.mockSubscriptions.containsKey("unit/test/topic"));
+        assertEquals((Integer) 0, mockClient.mockSubscriptions.get("unit/test/topic"));
+
+        MqttMessage msg2 = new MqttMessage();
+        msg2.setPayload("test payload".getBytes(StringUtils.UTF8));
+        mockClient.mockCallback.messageArrived("unit/test/topic", msg);
+
+        assertEquals(2, mcb.receivedMessages.size());
+        assertEquals("unit/test/topic" + "test payload", mcb.receivedMessages.get(0));
+    }
+
+    @Test
     public void testSubscribeToTopic() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 
