@@ -1279,7 +1279,7 @@ public class AWSIotMqttManager {
     public boolean disconnect() {
         userDisconnect = true;
         reset();
-        // do not clear topic listeners if persisten connection is enabled
+        // do not clear topic listeners if persistent connection is enabled
         if (cleanSession) {
             topicListeners.clear();
         }
