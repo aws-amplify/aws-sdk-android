@@ -1105,7 +1105,7 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
-    public void testSubscriptionsRetainedForStandardConnectionOnDisconnect() throws Exception {
+    public void testSubscriptionsNotRetainedForStandardConnectionOnDisconnect() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
