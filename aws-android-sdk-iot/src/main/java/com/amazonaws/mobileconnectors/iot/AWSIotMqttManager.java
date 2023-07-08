@@ -1159,7 +1159,7 @@ public class AWSIotMqttManager {
             ", username: " + options.getUserName());
 
         /*
-        If cleanSession is set to false, the server is will treat the subscriptions as durable.
+        If cleanSession is set to false, the server will treat the subscriptions as durable.
         We should not clear out the client listeners, because subscriptions are still maintained
         on the Paho client.
          */
