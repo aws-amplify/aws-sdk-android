@@ -1158,7 +1158,14 @@ public class AWSIotMqttManager {
             (isMetricsEnabled() ? "enabled" : "disabled") + 
             ", username: " + options.getUserName());
 
-        topicListeners.clear();
+        /*
+        If cleanSession is set to false, the server will treat the subscriptions as durable.
+        We should not clear out the client listeners, because subscriptions are still maintained
+        on the Paho client.
+         */
+        if (cleanSession) {
+            topicListeners.clear();
+        }
         mqttMessageQueue.clear();
 
         resetReconnect();
@@ -1272,7 +1279,10 @@ public class AWSIotMqttManager {
     public boolean disconnect() {
         userDisconnect = true;
         reset();
-        topicListeners.clear();
+        // do not clear topic listeners if persistent connection is enabled
+        if (cleanSession) {
+            topicListeners.clear();
+        }
         connectionState = MqttManagerConnectionState.Disconnected;
         userConnectionCallback();
         return true;
@@ -1546,6 +1556,9 @@ public class AWSIotMqttManager {
      * Resubscribe to previously subscribed topics on reconnecting.
      */
     void resubscribeToTopics() {
+        // we do not need to resubscribe to topics if using persistent connections
+        if (!cleanSession) return;
+
         LOGGER.info("Auto-resubscribe is enabled. Resubscribing to previous topics.");
         for (final AWSIotMqttTopic topic : topicListeners.values()) {
             if (mqttClient != null) {
@@ -2079,5 +2092,10 @@ public class AWSIotMqttManager {
             this.tls12SocketFactory = TLS12SocketFactory.createTLS12SocketFactory();
             options.setSocketFactory(tls12SocketFactory);
         }
+    }
+
+    // for testing
+    protected Map<String, AWSIotMqttTopic> getTopicListeners() {
+        return topicListeners;
     }
 }
