@@ -340,6 +340,14 @@ public class TranscriptionJob implements Serializable {
 
     /**
      * <p>
+     * Provides information about the toxicity detection settings applied to
+     * your transcription.
+     * </p>
+     */
+    private java.util.List<ToxicityDetectionSettings> toxicityDetection;
+
+    /**
+     * <p>
      * The name of the transcription job. Job names are case sensitive and must
      * be unique within an Amazon Web Services account.
      * </p>
@@ -2563,6 +2571,92 @@ public class TranscriptionJob implements Serializable {
     }
 
     /**
+     * <p>
+     * Provides information about the toxicity detection settings applied to
+     * your transcription.
+     * </p>
+     *
+     * @return <p>
+     *         Provides information about the toxicity detection settings
+     *         applied to your transcription.
+     *         </p>
+     */
+    public java.util.List<ToxicityDetectionSettings> getToxicityDetection() {
+        return toxicityDetection;
+    }
+
+    /**
+     * <p>
+     * Provides information about the toxicity detection settings applied to
+     * your transcription.
+     * </p>
+     *
+     * @param toxicityDetection <p>
+     *            Provides information about the toxicity detection settings
+     *            applied to your transcription.
+     *            </p>
+     */
+    public void setToxicityDetection(
+            java.util.Collection<ToxicityDetectionSettings> toxicityDetection) {
+        if (toxicityDetection == null) {
+            this.toxicityDetection = null;
+            return;
+        }
+
+        this.toxicityDetection = new java.util.ArrayList<ToxicityDetectionSettings>(
+                toxicityDetection);
+    }
+
+    /**
+     * <p>
+     * Provides information about the toxicity detection settings applied to
+     * your transcription.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param toxicityDetection <p>
+     *            Provides information about the toxicity detection settings
+     *            applied to your transcription.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJob withToxicityDetection(ToxicityDetectionSettings... toxicityDetection) {
+        if (getToxicityDetection() == null) {
+            this.toxicityDetection = new java.util.ArrayList<ToxicityDetectionSettings>(
+                    toxicityDetection.length);
+        }
+        for (ToxicityDetectionSettings value : toxicityDetection) {
+            this.toxicityDetection.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Provides information about the toxicity detection settings applied to
+     * your transcription.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param toxicityDetection <p>
+     *            Provides information about the toxicity detection settings
+     *            applied to your transcription.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJob withToxicityDetection(
+            java.util.Collection<ToxicityDetectionSettings> toxicityDetection) {
+        setToxicityDetection(toxicityDetection);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2618,7 +2712,9 @@ public class TranscriptionJob implements Serializable {
         if (getSubtitles() != null)
             sb.append("Subtitles: " + getSubtitles() + ",");
         if (getLanguageIdSettings() != null)
-            sb.append("LanguageIdSettings: " + getLanguageIdSettings());
+            sb.append("LanguageIdSettings: " + getLanguageIdSettings() + ",");
+        if (getToxicityDetection() != null)
+            sb.append("ToxicityDetection: " + getToxicityDetection());
         sb.append("}");
         return sb.toString();
     }
@@ -2674,6 +2770,8 @@ public class TranscriptionJob implements Serializable {
         hashCode = prime * hashCode + ((getSubtitles() == null) ? 0 : getSubtitles().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageIdSettings() == null) ? 0 : getLanguageIdSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getToxicityDetection() == null) ? 0 : getToxicityDetection().hashCode());
         return hashCode;
     }
 
@@ -2800,6 +2898,11 @@ public class TranscriptionJob implements Serializable {
             return false;
         if (other.getLanguageIdSettings() != null
                 && other.getLanguageIdSettings().equals(this.getLanguageIdSettings()) == false)
+            return false;
+        if (other.getToxicityDetection() == null ^ this.getToxicityDetection() == null)
+            return false;
+        if (other.getToxicityDetection() != null
+                && other.getToxicityDetection().equals(this.getToxicityDetection()) == false)
             return false;
         return true;
     }

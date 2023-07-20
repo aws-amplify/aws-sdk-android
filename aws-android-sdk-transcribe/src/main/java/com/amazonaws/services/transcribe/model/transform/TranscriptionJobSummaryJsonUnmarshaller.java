@@ -86,6 +86,12 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
                         LanguageCodeItemJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("ToxicityDetection")) {
+                transcriptionJobSummary
+                        .setToxicityDetection(new ListUnmarshaller<ToxicityDetectionSettings>(
+                                ToxicityDetectionSettingsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
