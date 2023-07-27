@@ -72,6 +72,11 @@ public class RevokeGrantRequestMarshaller implements
                 jsonWriter.name("GrantId");
                 jsonWriter.value(grantId);
             }
+            if (revokeGrantRequest.getDryRun() != null) {
+                Boolean dryRun = revokeGrantRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

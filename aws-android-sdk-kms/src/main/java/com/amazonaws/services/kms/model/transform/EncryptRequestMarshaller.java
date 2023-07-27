@@ -102,6 +102,11 @@ public class EncryptRequestMarshaller implements
                 jsonWriter.name("EncryptionAlgorithm");
                 jsonWriter.value(encryptionAlgorithm);
             }
+            if (encryptRequest.getDryRun() != null) {
+                Boolean dryRun = encryptRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

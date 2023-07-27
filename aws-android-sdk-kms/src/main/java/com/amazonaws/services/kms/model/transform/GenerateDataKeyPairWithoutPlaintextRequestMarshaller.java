@@ -101,6 +101,11 @@ public class GenerateDataKeyPairWithoutPlaintextRequestMarshaller
                 }
                 jsonWriter.endArray();
             }
+            if (generateDataKeyPairWithoutPlaintextRequest.getDryRun() != null) {
+                Boolean dryRun = generateDataKeyPairWithoutPlaintextRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

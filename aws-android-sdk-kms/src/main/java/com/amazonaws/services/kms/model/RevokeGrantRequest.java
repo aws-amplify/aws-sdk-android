@@ -131,6 +131,20 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
      * A unique identifier for the KMS key associated with the grant. To get the
      * key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
@@ -406,6 +420,120 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RevokeGrantRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -419,7 +547,9 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
         if (getKeyId() != null)
             sb.append("KeyId: " + getKeyId() + ",");
         if (getGrantId() != null)
-            sb.append("GrantId: " + getGrantId());
+            sb.append("GrantId: " + getGrantId() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
@@ -431,6 +561,7 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
 
         hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
         hashCode = prime * hashCode + ((getGrantId() == null) ? 0 : getGrantId().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
 
@@ -452,6 +583,10 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
         if (other.getGrantId() == null ^ this.getGrantId() == null)
             return false;
         if (other.getGrantId() != null && other.getGrantId().equals(this.getGrantId()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
             return false;
         return true;
     }

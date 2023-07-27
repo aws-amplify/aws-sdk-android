@@ -104,6 +104,11 @@ public class GenerateDataKeyPairRequestMarshaller implements
                 jsonWriter.name("Recipient");
                 RecipientInfoJsonMarshaller.getInstance().marshall(recipient, jsonWriter);
             }
+            if (generateDataKeyPairRequest.getDryRun() != null) {
+                Boolean dryRun = generateDataKeyPairRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
