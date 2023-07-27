@@ -21,5 +21,8 @@ jobs:
       - name: Run webhook curl command
         env:
           WEBHOOK_URL: ${{ secrets.SLACK_RELEASE_WEBHOOK_URL }}
+          ACTION_NAME: ${{ github.event.action }}
+          REPO_URL: ${{ github.event.repository.html_url }}
+          VERSION: ${{ github.event.release.html_url }}
         shell: bash
-        run: curl -s POST "$WEBHOOK_URL" -H "Content-Type:application/json" --data '{"action":"${{github.event.action}}", "repo":"${{github.event.repository.html_url}}", "version":"${{github.event.release.html_url}}"}'
+        run: curl -s POST "$WEBHOOK_URL" -H "Content-Type:application/json" --data '{"action":"'$ACTION_NAME'", "repo":"'$REPO_URL'", "version":"'$VERSION'"}'
