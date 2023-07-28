@@ -21,39 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
+ * Deletes a routing profile.
  * </p>
- * <p>
- * Updates the outbound caller ID name, number, and outbound whisper flow for a
- * specified queue.
- * </p>
- * <important>
- * <p>
- * If the number being used in the input is claimed to a traffic distribution
- * group, and you are calling this API using an instance in the Amazon Web
- * Services Region where the traffic distribution group was created, you can use
- * either a full phone number ARN or UUID value for the
- * <code>OutboundCallerIdNumberId</code> value of the <a href=
- * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
- * >OutboundCallerConfig</a> request body parameter. However, if the number is
- * claimed to a traffic distribution group and you are calling this API using an
- * instance in the alternate Amazon Web Services Region associated with the
- * traffic distribution group, you must provide a full phone number ARN. If a
- * UUID is provided in this scenario, you will receive a
- * <code>ResourceNotFoundException</code>.
- * </p>
- * <p>
- * Only use the phone number ARN format that doesn't contain
- * <code>instance</code> in the path, for example,
- * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This is
- * the same ARN format that is returned when you call the <a href=
- * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
- * >ListPhoneNumbersV2</a> API.
- * </p>
- * </important>
  */
-public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class DeleteRoutingProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
@@ -69,17 +40,10 @@ public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The identifier for the queue.
+     * The identifier of the routing profile.
      * </p>
      */
-    private String queueId;
-
-    /**
-     * <p>
-     * The outbound caller ID name, number, and outbound whisper flow.
-     * </p>
-     */
-    private OutboundCallerConfig outboundCallerConfig;
+    private String routingProfileId;
 
     /**
      * <p>
@@ -150,101 +114,53 @@ public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequ
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateQueueOutboundCallerConfigRequest withInstanceId(String instanceId) {
+    public DeleteRoutingProfileRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The identifier for the queue.
+     * The identifier of the routing profile.
      * </p>
      *
      * @return <p>
-     *         The identifier for the queue.
+     *         The identifier of the routing profile.
      *         </p>
      */
-    public String getQueueId() {
-        return queueId;
+    public String getRoutingProfileId() {
+        return routingProfileId;
     }
 
     /**
      * <p>
-     * The identifier for the queue.
+     * The identifier of the routing profile.
      * </p>
      *
-     * @param queueId <p>
-     *            The identifier for the queue.
+     * @param routingProfileId <p>
+     *            The identifier of the routing profile.
      *            </p>
      */
-    public void setQueueId(String queueId) {
-        this.queueId = queueId;
+    public void setRoutingProfileId(String routingProfileId) {
+        this.routingProfileId = routingProfileId;
     }
 
     /**
      * <p>
-     * The identifier for the queue.
+     * The identifier of the routing profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param queueId <p>
-     *            The identifier for the queue.
+     * @param routingProfileId <p>
+     *            The identifier of the routing profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateQueueOutboundCallerConfigRequest withQueueId(String queueId) {
-        this.queueId = queueId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The outbound caller ID name, number, and outbound whisper flow.
-     * </p>
-     *
-     * @return <p>
-     *         The outbound caller ID name, number, and outbound whisper flow.
-     *         </p>
-     */
-    public OutboundCallerConfig getOutboundCallerConfig() {
-        return outboundCallerConfig;
-    }
-
-    /**
-     * <p>
-     * The outbound caller ID name, number, and outbound whisper flow.
-     * </p>
-     *
-     * @param outboundCallerConfig <p>
-     *            The outbound caller ID name, number, and outbound whisper
-     *            flow.
-     *            </p>
-     */
-    public void setOutboundCallerConfig(OutboundCallerConfig outboundCallerConfig) {
-        this.outboundCallerConfig = outboundCallerConfig;
-    }
-
-    /**
-     * <p>
-     * The outbound caller ID name, number, and outbound whisper flow.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param outboundCallerConfig <p>
-     *            The outbound caller ID name, number, and outbound whisper
-     *            flow.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public UpdateQueueOutboundCallerConfigRequest withOutboundCallerConfig(
-            OutboundCallerConfig outboundCallerConfig) {
-        this.outboundCallerConfig = outboundCallerConfig;
+    public DeleteRoutingProfileRequest withRoutingProfileId(String routingProfileId) {
+        this.routingProfileId = routingProfileId;
         return this;
     }
 
@@ -261,10 +177,8 @@ public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequ
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getQueueId() != null)
-            sb.append("QueueId: " + getQueueId() + ",");
-        if (getOutboundCallerConfig() != null)
-            sb.append("OutboundCallerConfig: " + getOutboundCallerConfig());
+        if (getRoutingProfileId() != null)
+            sb.append("RoutingProfileId: " + getRoutingProfileId());
         sb.append("}");
         return sb.toString();
     }
@@ -275,9 +189,8 @@ public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequ
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime * hashCode + ((getQueueId() == null) ? 0 : getQueueId().hashCode());
         hashCode = prime * hashCode
-                + ((getOutboundCallerConfig() == null) ? 0 : getOutboundCallerConfig().hashCode());
+                + ((getRoutingProfileId() == null) ? 0 : getRoutingProfileId().hashCode());
         return hashCode;
     }
 
@@ -288,23 +201,19 @@ public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequ
         if (obj == null)
             return false;
 
-        if (obj instanceof UpdateQueueOutboundCallerConfigRequest == false)
+        if (obj instanceof DeleteRoutingProfileRequest == false)
             return false;
-        UpdateQueueOutboundCallerConfigRequest other = (UpdateQueueOutboundCallerConfigRequest) obj;
+        DeleteRoutingProfileRequest other = (DeleteRoutingProfileRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getQueueId() == null ^ this.getQueueId() == null)
+        if (other.getRoutingProfileId() == null ^ this.getRoutingProfileId() == null)
             return false;
-        if (other.getQueueId() != null && other.getQueueId().equals(this.getQueueId()) == false)
-            return false;
-        if (other.getOutboundCallerConfig() == null ^ this.getOutboundCallerConfig() == null)
-            return false;
-        if (other.getOutboundCallerConfig() != null
-                && other.getOutboundCallerConfig().equals(this.getOutboundCallerConfig()) == false)
+        if (other.getRoutingProfileId() != null
+                && other.getRoutingProfileId().equals(this.getRoutingProfileId()) == false)
             return false;
         return true;
     }

@@ -1582,6 +1582,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param createQueueRequest
@@ -1627,6 +1635,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
@@ -2861,6 +2877,61 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Deletes a queue.
+     * </p>
+     * 
+     * @param deleteQueueRequest
+     * @return A Java Future object containing the response from the DeleteQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteQueueAsync(DeleteQueueRequest deleteQueueRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a queue.
+     * </p>
+     * 
+     * @param deleteQueueRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the DeleteQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteQueueAsync(DeleteQueueRequest deleteQueueRequest,
+            AsyncHandler<DeleteQueueRequest, Void> asyncHandler) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
      * Deletes a quick connect.
      * </p>
      * 
@@ -2910,6 +2981,63 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<Void> deleteQuickConnectAsync(DeleteQuickConnectRequest deleteQuickConnectRequest,
             AsyncHandler<DeleteQuickConnectRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a routing profile.
+     * </p>
+     * 
+     * @param deleteRoutingProfileRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteRoutingProfileAsync(DeleteRoutingProfileRequest deleteRoutingProfileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a routing profile.
+     * </p>
+     * 
+     * @param deleteRoutingProfileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteRoutingProfileAsync(DeleteRoutingProfileRequest deleteRoutingProfileRequest,
+            AsyncHandler<DeleteRoutingProfileRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -8845,10 +8973,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
      * 
@@ -8872,10 +8996,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
@@ -9024,10 +9144,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -9054,10 +9170,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -9091,10 +9203,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -9121,10 +9229,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -11927,6 +12031,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -11973,6 +12085,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
