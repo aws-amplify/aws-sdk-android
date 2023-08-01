@@ -1,3 +1,14 @@
+## [Release 2.73.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.73.0)
+
+### Features
+- **aws-android-sdk-kms:** update models to latest ([#3349](https://github.com/aws-amplify/aws-sdk-android/issues/3349))
+- **misc:** support for Tel Aviv region launch ([#3372](https://github.com/aws-amplify/aws-sdk-android/issues/3372))
+
+### Miscellaneous
+- Move inline values to environment variables in workflows ([#3368](https://github.com/aws-amplify/aws-sdk-android/issues/3368))
+
+[See all changes between 2.72.0 and 2.73.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.72.0...release_v2.73.0)
+
 ## [Release 2.72.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.72.0)
 
 ### Features
