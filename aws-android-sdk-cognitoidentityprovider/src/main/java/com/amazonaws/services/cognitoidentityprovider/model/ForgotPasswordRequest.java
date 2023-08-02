@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,13 +28,27 @@ import com.amazonaws.AmazonWebServiceRequest;
  * AccountRecoverySetting. For more information, see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-recover-a-user-account.html"
  * >Recovering User Accounts</a> in the <i>Amazon Cognito Developer Guide</i>.
- * If neither a verified phone number nor a verified email exists, an
- * <code>InvalidParameterException</code> is thrown. To use the confirmation
- * code for resetting the password, call <a href=
+ * To use the confirmation code for resetting the password, call <a href=
  * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html"
  * >ConfirmForgotPassword</a>.
  * </p>
+ * <p>
+ * If neither a verified phone number nor a verified email exists, this API
+ * returns <code>InvalidParameterException</code>. If your app client has a
+ * client secret and you don't provide a <code>SECRET_HASH</code> parameter,
+ * this API returns <code>NotAuthorizedException</code>.
+ * </p>
  * <note>
+ * <p>
+ * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
+ * in requests for this API operation. For this operation, you can't use IAM
+ * credentials to authorize requests, and you can't grant IAM permissions in
+ * policies. For more information about authorization models in Amazon Cognito,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * </p>
+ * </note> <note>
  * <p>
  * This action might generate an SMS text message. Starting June 1, 2021, US
  * telecom carriers require you to register an origination phone number before
@@ -53,7 +67,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>

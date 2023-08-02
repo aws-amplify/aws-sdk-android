@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ public class NotifyConfigurationType implements Serializable {
      * individually verified with Amazon Simple Email Service, or from a domain
      * that has been verified with Amazon SES.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String from;
 
@@ -36,6 +39,9 @@ public class NotifyConfigurationType implements Serializable {
      * <p>
      * The destination to which the receiver of an email should reply to.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String replyTo;
 
@@ -82,6 +88,9 @@ public class NotifyConfigurationType implements Serializable {
      * individually verified with Amazon Simple Email Service, or from a domain
      * that has been verified with Amazon SES.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The email address that is sending the email. The address must be
@@ -99,6 +108,9 @@ public class NotifyConfigurationType implements Serializable {
      * individually verified with Amazon Simple Email Service, or from a domain
      * that has been verified with Amazon SES.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param from <p>
      *            The email address that is sending the email. The address must
@@ -120,6 +132,9 @@ public class NotifyConfigurationType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param from <p>
      *            The email address that is sending the email. The address must
@@ -139,6 +154,9 @@ public class NotifyConfigurationType implements Serializable {
      * <p>
      * The destination to which the receiver of an email should reply to.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The destination to which the receiver of an email should reply
@@ -153,6 +171,9 @@ public class NotifyConfigurationType implements Serializable {
      * <p>
      * The destination to which the receiver of an email should reply to.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param replyTo <p>
      *            The destination to which the receiver of an email should reply
@@ -170,6 +191,9 @@ public class NotifyConfigurationType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param replyTo <p>
      *            The destination to which the receiver of an email should reply

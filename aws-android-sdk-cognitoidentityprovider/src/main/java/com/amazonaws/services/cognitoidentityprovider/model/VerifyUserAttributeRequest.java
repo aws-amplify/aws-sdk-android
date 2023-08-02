@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,6 +30,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UserAttributeUpdateSettingsType.html"
  * > UserAttributeUpdateSettingsType</a>.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
+ * in requests for this API operation. For this operation, you can't use IAM
+ * credentials to authorize requests, and you can't grant IAM permissions in
+ * policies. For more information about authorization models in Amazon Cognito,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * </p>
+ * </note>
  */
 public class VerifyUserAttributeRequest extends AmazonWebServiceRequest implements Serializable {
     /**

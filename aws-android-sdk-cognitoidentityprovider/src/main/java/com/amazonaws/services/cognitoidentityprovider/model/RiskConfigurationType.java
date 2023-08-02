@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -71,7 +71,9 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The last modified date.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      */
     private java.util.Date lastModifiedDate;
@@ -353,11 +355,15 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The last modified date.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      *
      * @return <p>
-     *         The last modified date.
+     *         The date and time, in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format, when the item was modified.
      *         </p>
      */
     public java.util.Date getLastModifiedDate() {
@@ -366,11 +372,15 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The last modified date.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      *
      * @param lastModifiedDate <p>
-     *            The last modified date.
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was modified.
      *            </p>
      */
     public void setLastModifiedDate(java.util.Date lastModifiedDate) {
@@ -379,14 +389,18 @@ public class RiskConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The last modified date.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lastModifiedDate <p>
-     *            The last modified date.
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was modified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
