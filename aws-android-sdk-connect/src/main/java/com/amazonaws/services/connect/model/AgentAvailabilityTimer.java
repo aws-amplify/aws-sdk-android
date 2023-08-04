@@ -19,20 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Phone Number Type
+ * Agent Availability Timer
  */
-public enum PhoneNumberType {
+public enum AgentAvailabilityTimer {
 
-    TOLL_FREE("TOLL_FREE"),
-    DID("DID"),
-    UIFN("UIFN"),
-    SHARED("SHARED"),
-    THIRD_PARTY_TF("THIRD_PARTY_TF"),
-    THIRD_PARTY_DID("THIRD_PARTY_DID");
+    TIME_SINCE_LAST_ACTIVITY("TIME_SINCE_LAST_ACTIVITY"),
+    TIME_SINCE_LAST_INBOUND("TIME_SINCE_LAST_INBOUND");
 
     private String value;
 
-    private PhoneNumberType(String value) {
+    private AgentAvailabilityTimer(String value) {
         this.value = value;
     }
 
@@ -41,24 +37,20 @@ public enum PhoneNumberType {
         return value;
     }
 
-    private static final Map<String, PhoneNumberType> enumMap;
+    private static final Map<String, AgentAvailabilityTimer> enumMap;
     static {
-        enumMap = new HashMap<String, PhoneNumberType>();
-        enumMap.put("TOLL_FREE", TOLL_FREE);
-        enumMap.put("DID", DID);
-        enumMap.put("UIFN", UIFN);
-        enumMap.put("SHARED", SHARED);
-        enumMap.put("THIRD_PARTY_TF", THIRD_PARTY_TF);
-        enumMap.put("THIRD_PARTY_DID", THIRD_PARTY_DID);
+        enumMap = new HashMap<String, AgentAvailabilityTimer>();
+        enumMap.put("TIME_SINCE_LAST_ACTIVITY", TIME_SINCE_LAST_ACTIVITY);
+        enumMap.put("TIME_SINCE_LAST_INBOUND", TIME_SINCE_LAST_INBOUND);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return PhoneNumberType corresponding to the value
+     * @return AgentAvailabilityTimer corresponding to the value
      */
-    public static PhoneNumberType fromValue(String value) {
+    public static AgentAvailabilityTimer fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

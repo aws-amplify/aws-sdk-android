@@ -2155,6 +2155,14 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param createQueueRequest
@@ -2206,6 +2214,14 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
@@ -3764,6 +3780,78 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Deletes a queue.
+     * </p>
+     * 
+     * @param deleteQueueRequest
+     * @return A Java Future object containing the response from the DeleteQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteQueueAsync(final DeleteQueueRequest deleteQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteQueue(deleteQueueRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a queue.
+     * </p>
+     * 
+     * @param deleteQueueRequest
+     * @return A Java Future object containing the response from the DeleteQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteQueueAsync(final DeleteQueueRequest deleteQueueRequest,
+            final AsyncHandler<DeleteQueueRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteQueue(deleteQueueRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteQueueRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Deletes a quick connect.
      * </p>
      * 
@@ -3829,6 +3917,82 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteQuickConnectRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a routing profile.
+     * </p>
+     * 
+     * @param deleteRoutingProfileRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteRoutingProfileAsync(
+            final DeleteRoutingProfileRequest deleteRoutingProfileRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteRoutingProfile(deleteRoutingProfileRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a routing profile.
+     * </p>
+     * 
+     * @param deleteRoutingProfileRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteRoutingProfileAsync(
+            final DeleteRoutingProfileRequest deleteRoutingProfileRequest,
+            final AsyncHandler<DeleteRoutingProfileRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteRoutingProfile(deleteRoutingProfileRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteRoutingProfileRequest, result);
                 return result;
             }
         });
@@ -11283,10 +11447,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
      * 
@@ -11317,10 +11477,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
@@ -11512,10 +11668,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -11548,10 +11700,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -11595,10 +11743,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -11631,10 +11775,6 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -15039,6 +15179,14 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -15092,6 +15240,14 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
@@ -15358,6 +15514,84 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(updateQuickConnectNameRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * 
+     * @param updateRoutingProfileAgentAvailabilityTimerRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateRoutingProfileAgentAvailabilityTimer service method, as
+     *         returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateRoutingProfileAgentAvailabilityTimerAsync(
+            final UpdateRoutingProfileAgentAvailabilityTimerRequest updateRoutingProfileAgentAvailabilityTimerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateRoutingProfileAgentAvailabilityTimer(updateRoutingProfileAgentAvailabilityTimerRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * 
+     * @param updateRoutingProfileAgentAvailabilityTimerRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateRoutingProfileAgentAvailabilityTimer service method, as
+     *         returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateRoutingProfileAgentAvailabilityTimerAsync(
+            final UpdateRoutingProfileAgentAvailabilityTimerRequest updateRoutingProfileAgentAvailabilityTimerRequest,
+            final AsyncHandler<UpdateRoutingProfileAgentAvailabilityTimerRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateRoutingProfileAgentAvailabilityTimer(updateRoutingProfileAgentAvailabilityTimerRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateRoutingProfileAgentAvailabilityTimerRequest, result);
                 return result;
             }
         });
