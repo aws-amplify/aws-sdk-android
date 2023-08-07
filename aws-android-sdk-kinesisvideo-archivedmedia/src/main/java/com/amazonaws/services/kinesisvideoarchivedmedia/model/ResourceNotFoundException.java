@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * <code>GetMedia</code> throws this error when Kinesis Video Streams can't find
- * the stream that you specified.
+ * <code>GetImages</code> will throw this error when Kinesis Video Streams can't
+ * find the stream that you specified.
  * </p>
  * <p>
  * <code>GetHLSStreamingSessionURL</code> and
