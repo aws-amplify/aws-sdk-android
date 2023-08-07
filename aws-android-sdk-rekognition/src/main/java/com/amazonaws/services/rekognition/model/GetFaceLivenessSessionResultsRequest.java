@@ -26,8 +26,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>CreateFaceLivenessSession</code>. Returns the corresponding Face
  * Liveness confidence score, a reference image that includes a face bounding
  * box, and audit images that also contain face bounding boxes. The Face
- * Liveness confidence score ranges from 0 to 100. The reference image can
- * optionally be returned.
+ * Liveness confidence score ranges from 0 to 100.
+ * </p>
+ * <p>
+ * The number of audit images returned by
+ * <code>GetFaceLivenessSessionResults</code> is defined by the
+ * <code>AuditImagesLimit</code> paramater when calling
+ * <code>CreateFaceLivenessSession</code>. Reference images are always returned
+ * when possible.
  * </p>
  */
 public class GetFaceLivenessSessionResultsRequest extends AmazonWebServiceRequest implements
