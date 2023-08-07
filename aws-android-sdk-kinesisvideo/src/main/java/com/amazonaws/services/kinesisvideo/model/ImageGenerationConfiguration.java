@@ -64,9 +64,6 @@ public class ImageGenerationConfiguration implements Serializable {
      * interval, the Image from the <code>StartTimestamp</code> will be returned
      * if available.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>3000 - 20000<br/>
      */
     private Integer samplingInterval;
 
@@ -412,9 +409,6 @@ public class ImageGenerationConfiguration implements Serializable {
      * interval, the Image from the <code>StartTimestamp</code> will be returned
      * if available.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>3000 - 20000<br/>
      *
      * @return <p>
      *         The time interval in milliseconds (ms) at which the images need
@@ -438,9 +432,6 @@ public class ImageGenerationConfiguration implements Serializable {
      * interval, the Image from the <code>StartTimestamp</code> will be returned
      * if available.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>3000 - 20000<br/>
      *
      * @param samplingInterval <p>
      *            The time interval in milliseconds (ms) at which the images
@@ -468,9 +459,6 @@ public class ImageGenerationConfiguration implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>3000 - 20000<br/>
      *
      * @param samplingInterval <p>
      *            The time interval in milliseconds (ms) at which the images
