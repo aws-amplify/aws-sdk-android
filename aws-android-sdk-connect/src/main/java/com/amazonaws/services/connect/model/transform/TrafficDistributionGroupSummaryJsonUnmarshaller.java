@@ -52,6 +52,9 @@ class TrafficDistributionGroupSummaryJsonUnmarshaller implements
             } else if (name.equals("Status")) {
                 trafficDistributionGroupSummary.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("IsDefault")) {
+                trafficDistributionGroupSummary.setIsDefault(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

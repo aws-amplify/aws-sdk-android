@@ -71,6 +71,16 @@ public class UpdateTrafficDistributionRequestMarshaller implements
                 jsonWriter.name("TelephonyConfig");
                 TelephonyConfigJsonMarshaller.getInstance().marshall(telephonyConfig, jsonWriter);
             }
+            if (updateTrafficDistributionRequest.getSignInConfig() != null) {
+                SignInConfig signInConfig = updateTrafficDistributionRequest.getSignInConfig();
+                jsonWriter.name("SignInConfig");
+                SignInConfigJsonMarshaller.getInstance().marshall(signInConfig, jsonWriter);
+            }
+            if (updateTrafficDistributionRequest.getAgentConfig() != null) {
+                AgentConfig agentConfig = updateTrafficDistributionRequest.getAgentConfig();
+                jsonWriter.name("AgentConfig");
+                AgentConfigJsonMarshaller.getInstance().marshall(agentConfig, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
