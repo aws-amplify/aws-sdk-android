@@ -65,6 +65,11 @@ public class CreateTrackerRequestMarshaller implements
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
+            if (createTrackerRequest.getEventBridgeEnabled() != null) {
+                Boolean eventBridgeEnabled = createTrackerRequest.getEventBridgeEnabled();
+                jsonWriter.name("EventBridgeEnabled");
+                jsonWriter.value(eventBridgeEnabled);
+            }
             if (createTrackerRequest.getKmsKeyId() != null) {
                 String kmsKeyId = createTrackerRequest.getKmsKeyId();
                 jsonWriter.name("KmsKeyId");

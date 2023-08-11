@@ -62,6 +62,18 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
+
+    /**
+     * <p>
      * The preferred language used to return results. The value must be a valid
      * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
      * for example, <code>en</code> for English.
@@ -157,6 +169,72 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
      */
     public GetPlaceRequest withIndexName(String indexName) {
         this.indexName = indexName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetPlaceRequest withKey(String key) {
+        this.key = key;
         return this;
     }
 
@@ -410,6 +488,8 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
         sb.append("{");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
         if (getLanguage() != null)
             sb.append("Language: " + getLanguage() + ",");
         if (getPlaceId() != null)
@@ -424,6 +504,7 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getPlaceId() == null) ? 0 : getPlaceId().hashCode());
         return hashCode;
@@ -444,6 +525,10 @@ public class GetPlaceRequest extends AmazonWebServiceRequest implements Serializ
             return false;
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         if (other.getLanguage() == null ^ this.getLanguage() == null)
             return false;

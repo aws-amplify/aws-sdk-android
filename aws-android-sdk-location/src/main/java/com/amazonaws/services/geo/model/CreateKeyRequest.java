@@ -22,17 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates an API key resource in your Amazon Web Services account, which lets
- * you grant <code>geo:GetMap*</code> actions for Amazon Location Map resources
- * to the API key bearer.
+ * you grant actions for Amazon Location resources to the API key bearer.
  * </p>
- * <important>
+ * <note>
  * <p>
- * The API keys feature is in preview. We may add, change, or remove features
- * before announcing general availability. For more information, see <a href=
+ * For more information, see <a href=
  * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
  * >Using API keys</a>.
  * </p>
- * </important>
+ * </note>
  */
 public class CreateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**

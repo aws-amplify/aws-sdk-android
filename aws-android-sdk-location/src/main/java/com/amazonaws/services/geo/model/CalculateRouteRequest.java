@@ -220,6 +220,18 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     */
+    private String key;
+
+    /**
+     * <p>
      * Specifies the mode of transport when calculating a route. Used in
      * estimating the speed of travel and road compatibility. You can choose
      * <code>Car</code>, <code>Truck</code>, <code>Walking</code>,
@@ -1484,6 +1496,72 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @return <p>
+     *         The optional <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *         >API key</a> to authorize the request.
+     *         </p>
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    /**
+     * <p>
+     * The optional <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     * >API key</a> to authorize the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 1000<br/>
+     *
+     * @param key <p>
+     *            The optional <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/using-apikeys.html"
+     *            >API key</a> to authorize the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CalculateRouteRequest withKey(String key) {
+        this.key = key;
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies the mode of transport when calculating a route. Used in
      * estimating the speed of travel and road compatibility. You can choose
      * <code>Car</code>, <code>Truck</code>, <code>Walking</code>,
@@ -2431,6 +2509,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
             sb.append("DistanceUnit: " + getDistanceUnit() + ",");
         if (getIncludeLegGeometry() != null)
             sb.append("IncludeLegGeometry: " + getIncludeLegGeometry() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
         if (getTravelMode() != null)
             sb.append("TravelMode: " + getTravelMode() + ",");
         if (getTruckModeOptions() != null)
@@ -2461,6 +2541,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
                 + ((getDistanceUnit() == null) ? 0 : getDistanceUnit().hashCode());
         hashCode = prime * hashCode
                 + ((getIncludeLegGeometry() == null) ? 0 : getIncludeLegGeometry().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
         hashCode = prime * hashCode + ((getTravelMode() == null) ? 0 : getTravelMode().hashCode());
         hashCode = prime * hashCode
                 + ((getTruckModeOptions() == null) ? 0 : getTruckModeOptions().hashCode());
@@ -2519,6 +2600,10 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getIncludeLegGeometry() != null
                 && other.getIncludeLegGeometry().equals(this.getIncludeLegGeometry()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
             return false;
         if (other.getTravelMode() == null ^ this.getTravelMode() == null)
             return false;

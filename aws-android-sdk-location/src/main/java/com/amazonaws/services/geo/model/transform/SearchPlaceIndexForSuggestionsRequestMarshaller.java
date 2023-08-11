@@ -60,6 +60,10 @@ public class SearchPlaceIndexForSuggestionsRequestMarshaller
                 "{IndexName}",
                 (searchPlaceIndexForSuggestionsRequest.getIndexName() == null) ? "" : StringUtils
                         .fromString(searchPlaceIndexForSuggestionsRequest.getIndexName()));
+        if (searchPlaceIndexForSuggestionsRequest.getKey() != null) {
+            request.addParameter("key",
+                    StringUtils.fromString(searchPlaceIndexForSuggestionsRequest.getKey()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();

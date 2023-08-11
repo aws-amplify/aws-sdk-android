@@ -59,6 +59,10 @@ public class SearchPlaceIndexForPositionRequestMarshaller implements
                 "{IndexName}",
                 (searchPlaceIndexForPositionRequest.getIndexName() == null) ? "" : StringUtils
                         .fromString(searchPlaceIndexForPositionRequest.getIndexName()));
+        if (searchPlaceIndexForPositionRequest.getKey() != null) {
+            request.addParameter("key",
+                    StringUtils.fromString(searchPlaceIndexForPositionRequest.getKey()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
