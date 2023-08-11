@@ -109,6 +109,18 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     */
+    private String agentAvailabilityTimer;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
@@ -692,6 +704,123 @@ public class RoutingProfile implements Serializable {
     }
 
     /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @return <p>
+     *         Whether agents with this routing profile will have their routing
+     *         order calculated based on <i>time since their last inbound
+     *         contact</i> or <i>longest idle time</i>.
+     *         </p>
+     * @see AgentAvailabilityTimer
+     */
+    public String getAgentAvailabilityTimer() {
+        return agentAvailabilityTimer;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>time since their last
+     *            inbound contact</i> or <i>longest idle time</i>.
+     *            </p>
+     * @see AgentAvailabilityTimer
+     */
+    public void setAgentAvailabilityTimer(String agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>time since their last
+     *            inbound contact</i> or <i>longest idle time</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AgentAvailabilityTimer
+     */
+    public RoutingProfile withAgentAvailabilityTimer(String agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>time since their last
+     *            inbound contact</i> or <i>longest idle time</i>.
+     *            </p>
+     * @see AgentAvailabilityTimer
+     */
+    public void setAgentAvailabilityTimer(AgentAvailabilityTimer agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer.toString();
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>time since their last
+     *            inbound contact</i> or <i>longest idle time</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AgentAvailabilityTimer
+     */
+    public RoutingProfile withAgentAvailabilityTimer(AgentAvailabilityTimer agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -721,7 +850,9 @@ public class RoutingProfile implements Serializable {
         if (getNumberOfAssociatedQueues() != null)
             sb.append("NumberOfAssociatedQueues: " + getNumberOfAssociatedQueues() + ",");
         if (getNumberOfAssociatedUsers() != null)
-            sb.append("NumberOfAssociatedUsers: " + getNumberOfAssociatedUsers());
+            sb.append("NumberOfAssociatedUsers: " + getNumberOfAssociatedUsers() + ",");
+        if (getAgentAvailabilityTimer() != null)
+            sb.append("AgentAvailabilityTimer: " + getAgentAvailabilityTimer());
         sb.append("}");
         return sb.toString();
     }
@@ -753,6 +884,10 @@ public class RoutingProfile implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getNumberOfAssociatedUsers() == null) ? 0 : getNumberOfAssociatedUsers()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAgentAvailabilityTimer() == null) ? 0 : getAgentAvailabilityTimer()
                         .hashCode());
         return hashCode;
     }
@@ -816,6 +951,11 @@ public class RoutingProfile implements Serializable {
             return false;
         if (other.getNumberOfAssociatedUsers() != null
                 && other.getNumberOfAssociatedUsers().equals(this.getNumberOfAssociatedUsers()) == false)
+            return false;
+        if (other.getAgentAvailabilityTimer() == null ^ this.getAgentAvailabilityTimer() == null)
+            return false;
+        if (other.getAgentAvailabilityTimer() != null
+                && other.getAgentAvailabilityTimer().equals(this.getAgentAvailabilityTimer()) == false)
             return false;
         return true;
     }
