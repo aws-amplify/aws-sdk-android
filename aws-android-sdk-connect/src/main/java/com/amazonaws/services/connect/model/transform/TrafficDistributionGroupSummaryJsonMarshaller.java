@@ -52,6 +52,11 @@ class TrafficDistributionGroupSummaryJsonMarshaller {
             jsonWriter.name("Status");
             jsonWriter.value(status);
         }
+        if (trafficDistributionGroupSummary.getIsDefault() != null) {
+            Boolean isDefault = trafficDistributionGroupSummary.getIsDefault();
+            jsonWriter.name("IsDefault");
+            jsonWriter.value(isDefault);
+        }
         jsonWriter.endObject();
     }
 
