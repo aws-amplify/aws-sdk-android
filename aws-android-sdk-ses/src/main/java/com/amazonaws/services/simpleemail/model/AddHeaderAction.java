@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,39 +24,41 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about adding a header using a receipt rule, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-add-header.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-action-add-header.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
 public class AddHeaderAction implements Serializable {
     /**
      * <p>
-     * The name of the header to add. Must be between 1 and 50 characters,
-     * inclusive, and consist of alphanumeric (a-z, A-Z, 0-9) characters and
-     * dashes only.
+     * The name of the header to add to the incoming message. The name must
+     * contain at least one character, and can contain up to 50 characters. It
+     * consists of alphanumeric (a–z, A–Z, 0–9) characters and dashes.
      * </p>
      */
     private String headerName;
 
     /**
      * <p>
-     * Must be less than 2048 characters, and must not contain newline
-     * characters ("\r" or "\n").
+     * The content to include in the header. This value can contain up to 2048
+     * characters. It can't contain newline (<code>\n</code>) or carriage return
+     * (<code>\r</code>) characters.
      * </p>
      */
     private String headerValue;
 
     /**
      * <p>
-     * The name of the header to add. Must be between 1 and 50 characters,
-     * inclusive, and consist of alphanumeric (a-z, A-Z, 0-9) characters and
-     * dashes only.
+     * The name of the header to add to the incoming message. The name must
+     * contain at least one character, and can contain up to 50 characters. It
+     * consists of alphanumeric (a–z, A–Z, 0–9) characters and dashes.
      * </p>
      *
      * @return <p>
-     *         The name of the header to add. Must be between 1 and 50
-     *         characters, inclusive, and consist of alphanumeric (a-z, A-Z,
-     *         0-9) characters and dashes only.
+     *         The name of the header to add to the incoming message. The name
+     *         must contain at least one character, and can contain up to 50
+     *         characters. It consists of alphanumeric (a–z, A–Z, 0–9)
+     *         characters and dashes.
      *         </p>
      */
     public String getHeaderName() {
@@ -65,15 +67,16 @@ public class AddHeaderAction implements Serializable {
 
     /**
      * <p>
-     * The name of the header to add. Must be between 1 and 50 characters,
-     * inclusive, and consist of alphanumeric (a-z, A-Z, 0-9) characters and
-     * dashes only.
+     * The name of the header to add to the incoming message. The name must
+     * contain at least one character, and can contain up to 50 characters. It
+     * consists of alphanumeric (a–z, A–Z, 0–9) characters and dashes.
      * </p>
      *
      * @param headerName <p>
-     *            The name of the header to add. Must be between 1 and 50
-     *            characters, inclusive, and consist of alphanumeric (a-z, A-Z,
-     *            0-9) characters and dashes only.
+     *            The name of the header to add to the incoming message. The
+     *            name must contain at least one character, and can contain up
+     *            to 50 characters. It consists of alphanumeric (a–z, A–Z, 0–9)
+     *            characters and dashes.
      *            </p>
      */
     public void setHeaderName(String headerName) {
@@ -82,18 +85,19 @@ public class AddHeaderAction implements Serializable {
 
     /**
      * <p>
-     * The name of the header to add. Must be between 1 and 50 characters,
-     * inclusive, and consist of alphanumeric (a-z, A-Z, 0-9) characters and
-     * dashes only.
+     * The name of the header to add to the incoming message. The name must
+     * contain at least one character, and can contain up to 50 characters. It
+     * consists of alphanumeric (a–z, A–Z, 0–9) characters and dashes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param headerName <p>
-     *            The name of the header to add. Must be between 1 and 50
-     *            characters, inclusive, and consist of alphanumeric (a-z, A-Z,
-     *            0-9) characters and dashes only.
+     *            The name of the header to add to the incoming message. The
+     *            name must contain at least one character, and can contain up
+     *            to 50 characters. It consists of alphanumeric (a–z, A–Z, 0–9)
+     *            characters and dashes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,13 +109,15 @@ public class AddHeaderAction implements Serializable {
 
     /**
      * <p>
-     * Must be less than 2048 characters, and must not contain newline
-     * characters ("\r" or "\n").
+     * The content to include in the header. This value can contain up to 2048
+     * characters. It can't contain newline (<code>\n</code>) or carriage return
+     * (<code>\r</code>) characters.
      * </p>
      *
      * @return <p>
-     *         Must be less than 2048 characters, and must not contain newline
-     *         characters ("\r" or "\n").
+     *         The content to include in the header. This value can contain up
+     *         to 2048 characters. It can't contain newline (<code>\n</code>) or
+     *         carriage return (<code>\r</code>) characters.
      *         </p>
      */
     public String getHeaderValue() {
@@ -120,13 +126,16 @@ public class AddHeaderAction implements Serializable {
 
     /**
      * <p>
-     * Must be less than 2048 characters, and must not contain newline
-     * characters ("\r" or "\n").
+     * The content to include in the header. This value can contain up to 2048
+     * characters. It can't contain newline (<code>\n</code>) or carriage return
+     * (<code>\r</code>) characters.
      * </p>
      *
      * @param headerValue <p>
-     *            Must be less than 2048 characters, and must not contain
-     *            newline characters ("\r" or "\n").
+     *            The content to include in the header. This value can contain
+     *            up to 2048 characters. It can't contain newline (
+     *            <code>\n</code>) or carriage return (<code>\r</code>)
+     *            characters.
      *            </p>
      */
     public void setHeaderValue(String headerValue) {
@@ -135,16 +144,19 @@ public class AddHeaderAction implements Serializable {
 
     /**
      * <p>
-     * Must be less than 2048 characters, and must not contain newline
-     * characters ("\r" or "\n").
+     * The content to include in the header. This value can contain up to 2048
+     * characters. It can't contain newline (<code>\n</code>) or carriage return
+     * (<code>\r</code>) characters.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param headerValue <p>
-     *            Must be less than 2048 characters, and must not contain
-     *            newline characters ("\r" or "\n").
+     *            The content to include in the header. This value can contain
+     *            up to 2048 characters. It can't contain newline (
+     *            <code>\n</code>) or carriage return (<code>\r</code>)
+     *            characters.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

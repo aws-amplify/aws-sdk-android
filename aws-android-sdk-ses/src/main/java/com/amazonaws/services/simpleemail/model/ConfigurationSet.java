@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@ import java.io.Serializable;
  * Configuration sets let you create groups of rules that you can apply to the
  * emails you send using Amazon SES. For more information about using
  * configuration sets, see <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/using-configuration-sets.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/using-configuration-sets.html"
  * >Using Amazon SES Configuration Sets</a> in the <a
- * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/">Amazon SES
- * Developer Guide</a>.
+ * href="https://docs.aws.amazon.com/ses/latest/dg/">Amazon SES Developer
+ * Guide</a>.
  * </p>
  */
 public class ConfigurationSet implements Serializable {

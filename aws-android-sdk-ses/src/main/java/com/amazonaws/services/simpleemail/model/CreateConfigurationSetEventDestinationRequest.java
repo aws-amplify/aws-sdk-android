@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </note>
  * <p>
- * An event destination is the AWS service to which Amazon SES publishes the
- * email sending events associated with a configuration set. For information
- * about using configuration sets, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * An event destination is the Amazon Web Services service to which Amazon SES
+ * publishes the email sending events associated with a configuration set. For
+ * information about using configuration sets, see the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -53,8 +53,8 @@ public class CreateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * An object that describes the AWS service that email sending event
-     * information will be published to.
+     * An object that describes the Amazon Web Services service that email
+     * sending event where information is published.
      * </p>
      */
     private EventDestination eventDestination;
@@ -113,13 +113,13 @@ public class CreateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * An object that describes the AWS service that email sending event
-     * information will be published to.
+     * An object that describes the Amazon Web Services service that email
+     * sending event where information is published.
      * </p>
      *
      * @return <p>
-     *         An object that describes the AWS service that email sending event
-     *         information will be published to.
+     *         An object that describes the Amazon Web Services service that
+     *         email sending event where information is published.
      *         </p>
      */
     public EventDestination getEventDestination() {
@@ -128,13 +128,13 @@ public class CreateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * An object that describes the AWS service that email sending event
-     * information will be published to.
+     * An object that describes the Amazon Web Services service that email
+     * sending event where information is published.
      * </p>
      *
      * @param eventDestination <p>
-     *            An object that describes the AWS service that email sending
-     *            event information will be published to.
+     *            An object that describes the Amazon Web Services service that
+     *            email sending event where information is published.
      *            </p>
      */
     public void setEventDestination(EventDestination eventDestination) {
@@ -143,16 +143,16 @@ public class CreateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * An object that describes the AWS service that email sending event
-     * information will be published to.
+     * An object that describes the Amazon Web Services service that email
+     * sending event where information is published.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param eventDestination <p>
-     *            An object that describes the AWS service that email sending
-     *            event information will be published to.
+     *            An object that describes the Amazon Web Services service that
+     *            email sending event where information is published.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * To disable your email-receiving through Amazon SES completely, you can call
- * this API with RuleSetName set to null.
+ * this operation with <code>RuleSetName</code> set to null.
  * </p>
  * </note>
  * <p>
  * For information about managing receipt rule sets, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-receipt-rules-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

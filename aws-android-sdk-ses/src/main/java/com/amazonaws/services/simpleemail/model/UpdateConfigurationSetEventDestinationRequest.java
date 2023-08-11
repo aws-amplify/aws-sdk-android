@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * events to Amazon CloudWatch, Amazon Kinesis Firehose, or Amazon Simple
  * Notification Service (Amazon SNS). For information about using configuration
  * sets, see <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity.html"
  * >Monitoring Your Amazon SES Sending Activity</a> in the <i>Amazon SES
  * Developer Guide.</i>
  * </p>
@@ -45,29 +45,26 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
         implements Serializable {
     /**
      * <p>
-     * The name of the configuration set that contains the event destination
-     * that you want to update.
+     * The name of the configuration set that contains the event destination.
      * </p>
      */
     private String configurationSetName;
 
     /**
      * <p>
-     * The event destination object that you want to apply to the specified
-     * configuration set.
+     * The event destination object.
      * </p>
      */
     private EventDestination eventDestination;
 
     /**
      * <p>
-     * The name of the configuration set that contains the event destination
-     * that you want to update.
+     * The name of the configuration set that contains the event destination.
      * </p>
      *
      * @return <p>
      *         The name of the configuration set that contains the event
-     *         destination that you want to update.
+     *         destination.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -76,13 +73,12 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The name of the configuration set that contains the event destination
-     * that you want to update.
+     * The name of the configuration set that contains the event destination.
      * </p>
      *
      * @param configurationSetName <p>
      *            The name of the configuration set that contains the event
-     *            destination that you want to update.
+     *            destination.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -91,8 +87,7 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The name of the configuration set that contains the event destination
-     * that you want to update.
+     * The name of the configuration set that contains the event destination.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,7 +95,7 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
      *
      * @param configurationSetName <p>
      *            The name of the configuration set that contains the event
-     *            destination that you want to update.
+     *            destination.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -113,13 +108,11 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The event destination object that you want to apply to the specified
-     * configuration set.
+     * The event destination object.
      * </p>
      *
      * @return <p>
-     *         The event destination object that you want to apply to the
-     *         specified configuration set.
+     *         The event destination object.
      *         </p>
      */
     public EventDestination getEventDestination() {
@@ -128,13 +121,11 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The event destination object that you want to apply to the specified
-     * configuration set.
+     * The event destination object.
      * </p>
      *
      * @param eventDestination <p>
-     *            The event destination object that you want to apply to the
-     *            specified configuration set.
+     *            The event destination object.
      *            </p>
      */
     public void setEventDestination(EventDestination eventDestination) {
@@ -143,16 +134,14 @@ public class UpdateConfigurationSetEventDestinationRequest extends AmazonWebServ
 
     /**
      * <p>
-     * The event destination object that you want to apply to the specified
-     * configuration set.
+     * The event destination object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param eventDestination <p>
-     *            The event destination object that you want to apply to the
-     *            specified configuration set.
+     *            The event destination object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

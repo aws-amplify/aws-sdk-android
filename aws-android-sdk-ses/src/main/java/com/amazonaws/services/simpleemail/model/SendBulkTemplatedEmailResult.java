@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,21 +20,27 @@ import java.io.Serializable;
 public class SendBulkTemplatedEmailResult implements Serializable {
     /**
      * <p>
-     * The unique message identifier returned from the
-     * <code>SendBulkTemplatedEmail</code> action.
+     * One object per intended recipient. Check each response object and retry
+     * any messages with a failure status. (Note that order of responses will be
+     * respective to order of destinations in the request.)Receipt rules enable
+     * you to specify which actions
      * </p>
      */
     private java.util.List<BulkEmailDestinationStatus> status = new java.util.ArrayList<BulkEmailDestinationStatus>();
 
     /**
      * <p>
-     * The unique message identifier returned from the
-     * <code>SendBulkTemplatedEmail</code> action.
+     * One object per intended recipient. Check each response object and retry
+     * any messages with a failure status. (Note that order of responses will be
+     * respective to order of destinations in the request.)Receipt rules enable
+     * you to specify which actions
      * </p>
      *
      * @return <p>
-     *         The unique message identifier returned from the
-     *         <code>SendBulkTemplatedEmail</code> action.
+     *         One object per intended recipient. Check each response object and
+     *         retry any messages with a failure status. (Note that order of
+     *         responses will be respective to order of destinations in the
+     *         request.)Receipt rules enable you to specify which actions
      *         </p>
      */
     public java.util.List<BulkEmailDestinationStatus> getStatus() {
@@ -43,13 +49,17 @@ public class SendBulkTemplatedEmailResult implements Serializable {
 
     /**
      * <p>
-     * The unique message identifier returned from the
-     * <code>SendBulkTemplatedEmail</code> action.
+     * One object per intended recipient. Check each response object and retry
+     * any messages with a failure status. (Note that order of responses will be
+     * respective to order of destinations in the request.)Receipt rules enable
+     * you to specify which actions
      * </p>
      *
      * @param status <p>
-     *            The unique message identifier returned from the
-     *            <code>SendBulkTemplatedEmail</code> action.
+     *            One object per intended recipient. Check each response object
+     *            and retry any messages with a failure status. (Note that order
+     *            of responses will be respective to order of destinations in
+     *            the request.)Receipt rules enable you to specify which actions
      *            </p>
      */
     public void setStatus(java.util.Collection<BulkEmailDestinationStatus> status) {
@@ -63,16 +73,20 @@ public class SendBulkTemplatedEmailResult implements Serializable {
 
     /**
      * <p>
-     * The unique message identifier returned from the
-     * <code>SendBulkTemplatedEmail</code> action.
+     * One object per intended recipient. Check each response object and retry
+     * any messages with a failure status. (Note that order of responses will be
+     * respective to order of destinations in the request.)Receipt rules enable
+     * you to specify which actions
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param status <p>
-     *            The unique message identifier returned from the
-     *            <code>SendBulkTemplatedEmail</code> action.
+     *            One object per intended recipient. Check each response object
+     *            and retry any messages with a failure status. (Note that order
+     *            of responses will be respective to order of destinations in
+     *            the request.)Receipt rules enable you to specify which actions
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -89,16 +103,20 @@ public class SendBulkTemplatedEmailResult implements Serializable {
 
     /**
      * <p>
-     * The unique message identifier returned from the
-     * <code>SendBulkTemplatedEmail</code> action.
+     * One object per intended recipient. Check each response object and retry
+     * any messages with a failure status. (Note that order of responses will be
+     * respective to order of destinations in the request.)Receipt rules enable
+     * you to specify which actions
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param status <p>
-     *            The unique message identifier returned from the
-     *            <code>SendBulkTemplatedEmail</code> action.
+     *            One object per intended recipient. Check each response object
+     *            and retry any messages with a failure status. (Note that order
+     *            of responses will be respective to order of destinations in
+     *            the request.)Receipt rules enable you to specify which actions
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

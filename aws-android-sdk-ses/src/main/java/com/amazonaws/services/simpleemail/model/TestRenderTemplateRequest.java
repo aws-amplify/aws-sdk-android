@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class TestRenderTemplateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the template that you want to render.
+     * The name of the template to render.
      * </p>
      */
     private String templateName;
@@ -50,11 +50,11 @@ public class TestRenderTemplateRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the template that you want to render.
+     * The name of the template to render.
      * </p>
      *
      * @return <p>
-     *         The name of the template that you want to render.
+     *         The name of the template to render.
      *         </p>
      */
     public String getTemplateName() {
@@ -63,11 +63,11 @@ public class TestRenderTemplateRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the template that you want to render.
+     * The name of the template to render.
      * </p>
      *
      * @param templateName <p>
-     *            The name of the template that you want to render.
+     *            The name of the template to render.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -76,14 +76,14 @@ public class TestRenderTemplateRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the template that you want to render.
+     * The name of the template to render.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templateName <p>
-     *            The name of the template that you want to render.
+     *            The name of the template to render.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

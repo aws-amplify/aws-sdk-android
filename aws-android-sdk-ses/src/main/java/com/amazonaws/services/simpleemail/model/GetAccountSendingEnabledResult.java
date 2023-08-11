@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,14 +20,14 @@ import java.io.Serializable;
 /**
  * <p>
  * Represents a request to return the email sending status for your Amazon SES
- * account in the current AWS Region.
+ * account in the current Amazon Web Services Region.
  * </p>
  */
 public class GetAccountSendingEnabledResult implements Serializable {
     /**
      * <p>
      * Describes whether email sending is enabled or disabled for your Amazon
-     * SES account in the current AWS Region.
+     * SES account in the current Amazon Web Services Region.
      * </p>
      */
     private Boolean enabled;
@@ -35,12 +35,12 @@ public class GetAccountSendingEnabledResult implements Serializable {
     /**
      * <p>
      * Describes whether email sending is enabled or disabled for your Amazon
-     * SES account in the current AWS Region.
+     * SES account in the current Amazon Web Services Region.
      * </p>
      *
      * @return <p>
      *         Describes whether email sending is enabled or disabled for your
-     *         Amazon SES account in the current AWS Region.
+     *         Amazon SES account in the current Amazon Web Services Region.
      *         </p>
      */
     public Boolean isEnabled() {
@@ -50,12 +50,12 @@ public class GetAccountSendingEnabledResult implements Serializable {
     /**
      * <p>
      * Describes whether email sending is enabled or disabled for your Amazon
-     * SES account in the current AWS Region.
+     * SES account in the current Amazon Web Services Region.
      * </p>
      *
      * @return <p>
      *         Describes whether email sending is enabled or disabled for your
-     *         Amazon SES account in the current AWS Region.
+     *         Amazon SES account in the current Amazon Web Services Region.
      *         </p>
      */
     public Boolean getEnabled() {
@@ -65,12 +65,13 @@ public class GetAccountSendingEnabledResult implements Serializable {
     /**
      * <p>
      * Describes whether email sending is enabled or disabled for your Amazon
-     * SES account in the current AWS Region.
+     * SES account in the current Amazon Web Services Region.
      * </p>
      *
      * @param enabled <p>
      *            Describes whether email sending is enabled or disabled for
-     *            your Amazon SES account in the current AWS Region.
+     *            your Amazon SES account in the current Amazon Web Services
+     *            Region.
      *            </p>
      */
     public void setEnabled(Boolean enabled) {
@@ -80,7 +81,7 @@ public class GetAccountSendingEnabledResult implements Serializable {
     /**
      * <p>
      * Describes whether email sending is enabled or disabled for your Amazon
-     * SES account in the current AWS Region.
+     * SES account in the current Amazon Web Services Region.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,7 +89,8 @@ public class GetAccountSendingEnabledResult implements Serializable {
      *
      * @param enabled <p>
      *            Describes whether email sending is enabled or disabled for
-     *            your Amazon SES account in the current AWS Region.
+     *            your Amazon SES account in the current Amazon Web Services
+     *            Region.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

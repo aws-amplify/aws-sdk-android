@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A list of all identities that you have attempted to verify under your AWS
- * account, regardless of verification status.
+ * A list of all identities that you have attempted to verify under your Amazon
+ * Web Services account, regardless of verification status.
  * </p>
  */
 public class ListIdentitiesResult implements Serializable {

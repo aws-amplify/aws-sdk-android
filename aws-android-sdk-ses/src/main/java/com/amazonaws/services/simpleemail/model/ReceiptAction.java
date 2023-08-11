@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about setting up receipt rules, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-receipt-rules-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -57,8 +57,8 @@ public class ReceiptAction implements Serializable {
 
     /**
      * <p>
-     * Calls an AWS Lambda function, and optionally, publishes a notification to
-     * Amazon SNS.
+     * Calls an Amazon Web Services Lambda function, and optionally, publishes a
+     * notification to Amazon SNS.
      * </p>
      */
     private LambdaAction lambdaAction;
@@ -249,13 +249,13 @@ public class ReceiptAction implements Serializable {
 
     /**
      * <p>
-     * Calls an AWS Lambda function, and optionally, publishes a notification to
-     * Amazon SNS.
+     * Calls an Amazon Web Services Lambda function, and optionally, publishes a
+     * notification to Amazon SNS.
      * </p>
      *
      * @return <p>
-     *         Calls an AWS Lambda function, and optionally, publishes a
-     *         notification to Amazon SNS.
+     *         Calls an Amazon Web Services Lambda function, and optionally,
+     *         publishes a notification to Amazon SNS.
      *         </p>
      */
     public LambdaAction getLambdaAction() {
@@ -264,13 +264,13 @@ public class ReceiptAction implements Serializable {
 
     /**
      * <p>
-     * Calls an AWS Lambda function, and optionally, publishes a notification to
-     * Amazon SNS.
+     * Calls an Amazon Web Services Lambda function, and optionally, publishes a
+     * notification to Amazon SNS.
      * </p>
      *
      * @param lambdaAction <p>
-     *            Calls an AWS Lambda function, and optionally, publishes a
-     *            notification to Amazon SNS.
+     *            Calls an Amazon Web Services Lambda function, and optionally,
+     *            publishes a notification to Amazon SNS.
      *            </p>
      */
     public void setLambdaAction(LambdaAction lambdaAction) {
@@ -279,16 +279,16 @@ public class ReceiptAction implements Serializable {
 
     /**
      * <p>
-     * Calls an AWS Lambda function, and optionally, publishes a notification to
-     * Amazon SNS.
+     * Calls an Amazon Web Services Lambda function, and optionally, publishes a
+     * notification to Amazon SNS.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lambdaAction <p>
-     *            Calls an AWS Lambda function, and optionally, publishes a
-     *            notification to Amazon SNS.
+     *            Calls an Amazon Web Services Lambda function, and optionally,
+     *            publishes a notification to Amazon SNS.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

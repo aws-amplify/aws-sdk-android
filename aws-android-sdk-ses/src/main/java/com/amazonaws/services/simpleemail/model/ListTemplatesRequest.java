@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the email templates present in your Amazon SES account in the current
- * AWS Region.
+ * Amazon Web Services Region.
  * </p>
  * <p>
  * You can execute this operation no more than once per second.
@@ -40,9 +40,9 @@ public class ListTemplatesRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The maximum number of templates to return. This value must be at least 1
-     * and less than or equal to 10. If you do not specify a value, or if you
-     * specify a value less than 1 or greater than 10, the operation will return
-     * up to 10 results.
+     * and less than or equal to 100. If more than 100 items are requested, the
+     * page size will automatically set to 100. If you do not specify a value,
+     * 10 is the default page size.
      * </p>
      */
     private Integer maxItems;
@@ -104,16 +104,16 @@ public class ListTemplatesRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The maximum number of templates to return. This value must be at least 1
-     * and less than or equal to 10. If you do not specify a value, or if you
-     * specify a value less than 1 or greater than 10, the operation will return
-     * up to 10 results.
+     * and less than or equal to 100. If more than 100 items are requested, the
+     * page size will automatically set to 100. If you do not specify a value,
+     * 10 is the default page size.
      * </p>
      *
      * @return <p>
      *         The maximum number of templates to return. This value must be at
-     *         least 1 and less than or equal to 10. If you do not specify a
-     *         value, or if you specify a value less than 1 or greater than 10,
-     *         the operation will return up to 10 results.
+     *         least 1 and less than or equal to 100. If more than 100 items are
+     *         requested, the page size will automatically set to 100. If you do
+     *         not specify a value, 10 is the default page size.
      *         </p>
      */
     public Integer getMaxItems() {
@@ -123,16 +123,17 @@ public class ListTemplatesRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The maximum number of templates to return. This value must be at least 1
-     * and less than or equal to 10. If you do not specify a value, or if you
-     * specify a value less than 1 or greater than 10, the operation will return
-     * up to 10 results.
+     * and less than or equal to 100. If more than 100 items are requested, the
+     * page size will automatically set to 100. If you do not specify a value,
+     * 10 is the default page size.
      * </p>
      *
      * @param maxItems <p>
      *            The maximum number of templates to return. This value must be
-     *            at least 1 and less than or equal to 10. If you do not specify
-     *            a value, or if you specify a value less than 1 or greater than
-     *            10, the operation will return up to 10 results.
+     *            at least 1 and less than or equal to 100. If more than 100
+     *            items are requested, the page size will automatically set to
+     *            100. If you do not specify a value, 10 is the default page
+     *            size.
      *            </p>
      */
     public void setMaxItems(Integer maxItems) {
@@ -142,9 +143,9 @@ public class ListTemplatesRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The maximum number of templates to return. This value must be at least 1
-     * and less than or equal to 10. If you do not specify a value, or if you
-     * specify a value less than 1 or greater than 10, the operation will return
-     * up to 10 results.
+     * and less than or equal to 100. If more than 100 items are requested, the
+     * page size will automatically set to 100. If you do not specify a value,
+     * 10 is the default page size.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,9 +153,10 @@ public class ListTemplatesRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param maxItems <p>
      *            The maximum number of templates to return. This value must be
-     *            at least 1 and less than or equal to 10. If you do not specify
-     *            a value, or if you specify a value less than 1 or greater than
-     *            10, the operation will return up to 10 results.
+     *            at least 1 and less than or equal to 100. If more than 100
+     *            items are requested, the page size will automatically set to
+     *            100. If you do not specify a value, 10 is the default page
+     *            size.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -160,8 +160,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -266,8 +266,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>Success</code>: Amazon SES accepted the message, and will
-     *         attempt to deliver it to the recipients.
+     *         <code>Success</code>: Amazon SES accepted the message, and
+     *         attempts to deliver it to the recipients.
      *         </p>
      *         </li>
      *         <li>
@@ -371,8 +371,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -478,7 +478,7 @@ public class BulkEmailDestinationStatus implements Serializable {
      *            <li>
      *            <p>
      *            <code>Success</code>: Amazon SES accepted the message, and
-     *            will attempt to deliver it to the recipients.
+     *            attempts to deliver it to the recipients.
      *            </p>
      *            </li>
      *            <li>
@@ -582,8 +582,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -692,7 +692,7 @@ public class BulkEmailDestinationStatus implements Serializable {
      *            <li>
      *            <p>
      *            <code>Success</code>: Amazon SES accepted the message, and
-     *            will attempt to deliver it to the recipients.
+     *            attempts to deliver it to the recipients.
      *            </p>
      *            </li>
      *            <li>
@@ -799,8 +799,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -906,7 +906,7 @@ public class BulkEmailDestinationStatus implements Serializable {
      *            <li>
      *            <p>
      *            <code>Success</code>: Amazon SES accepted the message, and
-     *            will attempt to deliver it to the recipients.
+     *            attempts to deliver it to the recipients.
      *            </p>
      *            </li>
      *            <li>
@@ -1010,8 +1010,8 @@ public class BulkEmailDestinationStatus implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>Success</code>: Amazon SES accepted the message, and will attempt
-     * to deliver it to the recipients.
+     * <code>Success</code>: Amazon SES accepted the message, and attempts to
+     * deliver it to the recipients.
      * </p>
      * </li>
      * <li>
@@ -1120,7 +1120,7 @@ public class BulkEmailDestinationStatus implements Serializable {
      *            <li>
      *            <p>
      *            <code>Success</code>: Amazon SES accepted the message, and
-     *            will attempt to deliver it to the recipients.
+     *            attempts to deliver it to the recipients.
      *            </p>
      *            </li>
      *            <li>

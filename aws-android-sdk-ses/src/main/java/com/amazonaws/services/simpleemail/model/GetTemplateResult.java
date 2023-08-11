@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,21 +20,21 @@ import java.io.Serializable;
 public class GetTemplateResult implements Serializable {
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      */
     private Template template;
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      *
      * @return <p>
-     *         The content of the email, composed of a subject line, an HTML
-     *         part, and a text-only part.
+     *         The content of the email, composed of a subject line and either
+     *         an HTML part or a text-only part.
      *         </p>
      */
     public Template getTemplate() {
@@ -43,13 +43,13 @@ public class GetTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      *
      * @param template <p>
-     *            The content of the email, composed of a subject line, an HTML
-     *            part, and a text-only part.
+     *            The content of the email, composed of a subject line and
+     *            either an HTML part or a text-only part.
      *            </p>
      */
     public void setTemplate(Template template) {
@@ -58,16 +58,16 @@ public class GetTemplateResult implements Serializable {
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param template <p>
-     *            The content of the email, composed of a subject line, an HTML
-     *            part, and a text-only part.
+     *            The content of the email, composed of a subject line and
+     *            either an HTML part or a text-only part.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

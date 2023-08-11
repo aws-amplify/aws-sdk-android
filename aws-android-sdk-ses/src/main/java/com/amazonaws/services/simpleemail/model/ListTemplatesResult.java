@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ public class ListTemplatesResult implements Serializable {
      * <p>
      * A token indicating that there are additional email templates available to
      * be listed. Pass this token to a subsequent call to
-     * <code>ListTemplates</code> to retrieve the next 50 email templates.
+     * <code>ListTemplates</code> to retrieve the next set of email templates
+     * within your page size.
      * </p>
      */
     private String nextToken;
@@ -123,14 +124,15 @@ public class ListTemplatesResult implements Serializable {
      * <p>
      * A token indicating that there are additional email templates available to
      * be listed. Pass this token to a subsequent call to
-     * <code>ListTemplates</code> to retrieve the next 50 email templates.
+     * <code>ListTemplates</code> to retrieve the next set of email templates
+     * within your page size.
      * </p>
      *
      * @return <p>
      *         A token indicating that there are additional email templates
      *         available to be listed. Pass this token to a subsequent call to
-     *         <code>ListTemplates</code> to retrieve the next 50 email
-     *         templates.
+     *         <code>ListTemplates</code> to retrieve the next set of email
+     *         templates within your page size.
      *         </p>
      */
     public String getNextToken() {
@@ -141,14 +143,15 @@ public class ListTemplatesResult implements Serializable {
      * <p>
      * A token indicating that there are additional email templates available to
      * be listed. Pass this token to a subsequent call to
-     * <code>ListTemplates</code> to retrieve the next 50 email templates.
+     * <code>ListTemplates</code> to retrieve the next set of email templates
+     * within your page size.
      * </p>
      *
      * @param nextToken <p>
      *            A token indicating that there are additional email templates
      *            available to be listed. Pass this token to a subsequent call
-     *            to <code>ListTemplates</code> to retrieve the next 50 email
-     *            templates.
+     *            to <code>ListTemplates</code> to retrieve the next set of
+     *            email templates within your page size.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -159,7 +162,8 @@ public class ListTemplatesResult implements Serializable {
      * <p>
      * A token indicating that there are additional email templates available to
      * be listed. Pass this token to a subsequent call to
-     * <code>ListTemplates</code> to retrieve the next 50 email templates.
+     * <code>ListTemplates</code> to retrieve the next set of email templates
+     * within your page size.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -168,8 +172,8 @@ public class ListTemplatesResult implements Serializable {
      * @param nextToken <p>
      *            A token indicating that there are additional email templates
      *            available to be listed. Pass this token to a subsequent call
-     *            to <code>ListTemplates</code> to retrieve the next 50 email
-     *            templates.
+     *            to <code>ListTemplates</code> to retrieve the next set of
+     *            email templates within your page size.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

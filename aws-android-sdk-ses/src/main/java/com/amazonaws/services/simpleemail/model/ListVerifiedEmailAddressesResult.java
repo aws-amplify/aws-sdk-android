@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * A list of email addresses that you have verified with Amazon SES under your
- * AWS account.
+ * Amazon Web Services account.
  * </p>
  */
 public class ListVerifiedEmailAddressesResult implements Serializable {
