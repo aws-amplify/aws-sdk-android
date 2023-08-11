@@ -70,6 +70,11 @@ class TrafficDistributionGroupJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (trafficDistributionGroup.getIsDefault() != null) {
+            Boolean isDefault = trafficDistributionGroup.getIsDefault();
+            jsonWriter.name("IsDefault");
+            jsonWriter.value(isDefault);
+        }
         jsonWriter.endObject();
     }
 

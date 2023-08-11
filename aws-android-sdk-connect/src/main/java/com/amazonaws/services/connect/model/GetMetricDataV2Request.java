@@ -105,6 +105,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * User hierarchy groups
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Feature
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * At least one filter must be passed from queues, routing profiles, agents,
@@ -129,17 +134,22 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      * <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      * <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Filter values</b>: A maximum of 100 filter values are supported in a
-     * single request. For example, a <code>GetMetricDataV2</code> request can
-     * filter by 50 queues, 35 agents, and 15 routing profiles for a total of
-     * 100 filter values. <code>VOICE</code>, <code>CHAT</code>, and
-     * <code>TASK</code> are valid <code>filterValue</code> for the
-     * <code>CHANNEL</code> filter key.
+     * single request. VOICE, CHAT, and TASK are valid <code>filterValue</code>
+     * for the CHANNEL filter key. They do not count towards limitation of 100
+     * filter values. For example, a GetMetricDataV2 request can filter by 50
+     * queues, 35 agents, and 15 routing profiles for a total of 100 filter
+     * values, along with 3 channel filters.
+     * </p>
+     * <p>
+     * <code>contact_lens_conversational_analytics</code> is a valid filterValue
+     * for the <code>FEATURE</code> filter key. It is available only to contacts
+     * analyzed by Contact Lens conversational analytics.
      * </p>
      * </li>
      * </ul>
@@ -262,6 +272,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
+     * metric only supports the following as <code>INITIATION_METHOD</code>:
+     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     * <code>API</code>
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
      * </dd>
@@ -281,6 +311,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>AVG_CONTACT_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_CONVERSATION_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_GREETING_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HANDLE_TIME</dt>
      * <dd>
      * <p>
@@ -288,9 +356,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -298,9 +370,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_HOLDS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -317,7 +407,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -326,7 +462,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>CONTACTS_ABANDONED</dt>
@@ -348,9 +530,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid metric filter key: <code>INITIATION_METHOD</code>
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HANDLED</dt>
      * <dd>
      * <p>
@@ -362,9 +548,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
      * <dd>
      * <p>
@@ -392,9 +582,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      * <dd>
      * <p>
@@ -760,6 +954,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * User hierarchy groups
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Feature
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * At least one filter must be passed from queues, routing profiles, agents,
@@ -784,17 +983,22 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      * <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      * <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Filter values</b>: A maximum of 100 filter values are supported in a
-     * single request. For example, a <code>GetMetricDataV2</code> request can
-     * filter by 50 queues, 35 agents, and 15 routing profiles for a total of
-     * 100 filter values. <code>VOICE</code>, <code>CHAT</code>, and
-     * <code>TASK</code> are valid <code>filterValue</code> for the
-     * <code>CHANNEL</code> filter key.
+     * single request. VOICE, CHAT, and TASK are valid <code>filterValue</code>
+     * for the CHANNEL filter key. They do not count towards limitation of 100
+     * filter values. For example, a GetMetricDataV2 request can filter by 50
+     * queues, 35 agents, and 15 routing profiles for a total of 100 filter
+     * values, along with 3 channel filters.
+     * </p>
+     * <p>
+     * <code>contact_lens_conversational_analytics</code> is a valid filterValue
+     * for the <code>FEATURE</code> filter key. It is available only to contacts
+     * analyzed by Contact Lens conversational analytics.
      * </p>
      * </li>
      * </ul>
@@ -829,6 +1033,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         User hierarchy groups
      *         </p>
      *         </li>
+     *         <li>
+     *         <p>
+     *         Feature
+     *         </p>
+     *         </li>
      *         </ul>
      *         <p>
      *         At least one filter must be passed from queues, routing profiles,
@@ -853,18 +1062,24 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      *         <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      *         <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     *         <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     *         <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         <b>Filter values</b>: A maximum of 100 filter values are
-     *         supported in a single request. For example, a
-     *         <code>GetMetricDataV2</code> request can filter by 50 queues, 35
-     *         agents, and 15 routing profiles for a total of 100 filter values.
-     *         <code>VOICE</code>, <code>CHAT</code>, and <code>TASK</code> are
-     *         valid <code>filterValue</code> for the <code>CHANNEL</code>
-     *         filter key.
+     *         supported in a single request. VOICE, CHAT, and TASK are valid
+     *         <code>filterValue</code> for the CHANNEL filter key. They do not
+     *         count towards limitation of 100 filter values. For example, a
+     *         GetMetricDataV2 request can filter by 50 queues, 35 agents, and
+     *         15 routing profiles for a total of 100 filter values, along with
+     *         3 channel filters.
+     *         </p>
+     *         <p>
+     *         <code>contact_lens_conversational_analytics</code> is a valid
+     *         filterValue for the <code>FEATURE</code> filter key. It is
+     *         available only to contacts analyzed by Contact Lens
+     *         conversational analytics.
      *         </p>
      *         </li>
      *         </ul>
@@ -904,6 +1119,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * User hierarchy groups
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Feature
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * At least one filter must be passed from queues, routing profiles, agents,
@@ -928,17 +1148,22 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      * <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      * <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Filter values</b>: A maximum of 100 filter values are supported in a
-     * single request. For example, a <code>GetMetricDataV2</code> request can
-     * filter by 50 queues, 35 agents, and 15 routing profiles for a total of
-     * 100 filter values. <code>VOICE</code>, <code>CHAT</code>, and
-     * <code>TASK</code> are valid <code>filterValue</code> for the
-     * <code>CHANNEL</code> filter key.
+     * single request. VOICE, CHAT, and TASK are valid <code>filterValue</code>
+     * for the CHANNEL filter key. They do not count towards limitation of 100
+     * filter values. For example, a GetMetricDataV2 request can filter by 50
+     * queues, 35 agents, and 15 routing profiles for a total of 100 filter
+     * values, along with 3 channel filters.
+     * </p>
+     * <p>
+     * <code>contact_lens_conversational_analytics</code> is a valid filterValue
+     * for the <code>FEATURE</code> filter key. It is available only to contacts
+     * analyzed by Contact Lens conversational analytics.
      * </p>
      * </li>
      * </ul>
@@ -973,6 +1198,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            User hierarchy groups
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            Feature
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            At least one filter must be passed from queues, routing
@@ -997,18 +1227,24 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            | <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Filter values</b>: A maximum of 100 filter values are
-     *            supported in a single request. For example, a
-     *            <code>GetMetricDataV2</code> request can filter by 50 queues,
-     *            35 agents, and 15 routing profiles for a total of 100 filter
-     *            values. <code>VOICE</code>, <code>CHAT</code>, and
-     *            <code>TASK</code> are valid <code>filterValue</code> for the
-     *            <code>CHANNEL</code> filter key.
+     *            supported in a single request. VOICE, CHAT, and TASK are valid
+     *            <code>filterValue</code> for the CHANNEL filter key. They do
+     *            not count towards limitation of 100 filter values. For
+     *            example, a GetMetricDataV2 request can filter by 50 queues, 35
+     *            agents, and 15 routing profiles for a total of 100 filter
+     *            values, along with 3 channel filters.
+     *            </p>
+     *            <p>
+     *            <code>contact_lens_conversational_analytics</code> is a valid
+     *            filterValue for the <code>FEATURE</code> filter key. It is
+     *            available only to contacts analyzed by Contact Lens
+     *            conversational analytics.
      *            </p>
      *            </li>
      *            </ul>
@@ -1053,6 +1289,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * User hierarchy groups
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Feature
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * At least one filter must be passed from queues, routing profiles, agents,
@@ -1077,17 +1318,22 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      * <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      * <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Filter values</b>: A maximum of 100 filter values are supported in a
-     * single request. For example, a <code>GetMetricDataV2</code> request can
-     * filter by 50 queues, 35 agents, and 15 routing profiles for a total of
-     * 100 filter values. <code>VOICE</code>, <code>CHAT</code>, and
-     * <code>TASK</code> are valid <code>filterValue</code> for the
-     * <code>CHANNEL</code> filter key.
+     * single request. VOICE, CHAT, and TASK are valid <code>filterValue</code>
+     * for the CHANNEL filter key. They do not count towards limitation of 100
+     * filter values. For example, a GetMetricDataV2 request can filter by 50
+     * queues, 35 agents, and 15 routing profiles for a total of 100 filter
+     * values, along with 3 channel filters.
+     * </p>
+     * <p>
+     * <code>contact_lens_conversational_analytics</code> is a valid filterValue
+     * for the <code>FEATURE</code> filter key. It is available only to contacts
+     * analyzed by Contact Lens conversational analytics.
      * </p>
      * </li>
      * </ul>
@@ -1125,6 +1371,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            User hierarchy groups
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            Feature
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            At least one filter must be passed from queues, routing
@@ -1149,18 +1400,24 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            | <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Filter values</b>: A maximum of 100 filter values are
-     *            supported in a single request. For example, a
-     *            <code>GetMetricDataV2</code> request can filter by 50 queues,
-     *            35 agents, and 15 routing profiles for a total of 100 filter
-     *            values. <code>VOICE</code>, <code>CHAT</code>, and
-     *            <code>TASK</code> are valid <code>filterValue</code> for the
-     *            <code>CHANNEL</code> filter key.
+     *            supported in a single request. VOICE, CHAT, and TASK are valid
+     *            <code>filterValue</code> for the CHANNEL filter key. They do
+     *            not count towards limitation of 100 filter values. For
+     *            example, a GetMetricDataV2 request can filter by 50 queues, 35
+     *            agents, and 15 routing profiles for a total of 100 filter
+     *            values, along with 3 channel filters.
+     *            </p>
+     *            <p>
+     *            <code>contact_lens_conversational_analytics</code> is a valid
+     *            filterValue for the <code>FEATURE</code> filter key. It is
+     *            available only to contacts analyzed by Contact Lens
+     *            conversational analytics.
      *            </p>
      *            </li>
      *            </ul>
@@ -1208,6 +1465,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * User hierarchy groups
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Feature
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * At least one filter must be passed from queues, routing profiles, agents,
@@ -1232,17 +1494,22 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      * <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      * <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     * <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      * </p>
      * </li>
      * <li>
      * <p>
      * <b>Filter values</b>: A maximum of 100 filter values are supported in a
-     * single request. For example, a <code>GetMetricDataV2</code> request can
-     * filter by 50 queues, 35 agents, and 15 routing profiles for a total of
-     * 100 filter values. <code>VOICE</code>, <code>CHAT</code>, and
-     * <code>TASK</code> are valid <code>filterValue</code> for the
-     * <code>CHANNEL</code> filter key.
+     * single request. VOICE, CHAT, and TASK are valid <code>filterValue</code>
+     * for the CHANNEL filter key. They do not count towards limitation of 100
+     * filter values. For example, a GetMetricDataV2 request can filter by 50
+     * queues, 35 agents, and 15 routing profiles for a total of 100 filter
+     * values, along with 3 channel filters.
+     * </p>
+     * <p>
+     * <code>contact_lens_conversational_analytics</code> is a valid filterValue
+     * for the <code>FEATURE</code> filter key. It is available only to contacts
+     * analyzed by Contact Lens conversational analytics.
      * </p>
      * </li>
      * </ul>
@@ -1280,6 +1547,11 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            User hierarchy groups
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            Feature
+     *            </p>
+     *            </li>
      *            </ul>
      *            <p>
      *            At least one filter must be passed from queues, routing
@@ -1304,18 +1576,24 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            | <code>AGENT_HIERARCHY_LEVEL_TWO</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_THREE</code> |
      *            <code>AGENT_HIERARCHY_LEVEL_FOUR</code> |
-     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code>
+     *            <code>AGENT_HIERARCHY_LEVEL_FIVE</code> | <code>FEATURE</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <b>Filter values</b>: A maximum of 100 filter values are
-     *            supported in a single request. For example, a
-     *            <code>GetMetricDataV2</code> request can filter by 50 queues,
-     *            35 agents, and 15 routing profiles for a total of 100 filter
-     *            values. <code>VOICE</code>, <code>CHAT</code>, and
-     *            <code>TASK</code> are valid <code>filterValue</code> for the
-     *            <code>CHANNEL</code> filter key.
+     *            supported in a single request. VOICE, CHAT, and TASK are valid
+     *            <code>filterValue</code> for the CHANNEL filter key. They do
+     *            not count towards limitation of 100 filter values. For
+     *            example, a GetMetricDataV2 request can filter by 50 queues, 35
+     *            agents, and 15 routing profiles for a total of 100 filter
+     *            values, along with 3 channel filters.
+     *            </p>
+     *            <p>
+     *            <code>contact_lens_conversational_analytics</code> is a valid
+     *            filterValue for the <code>FEATURE</code> filter key. It is
+     *            available only to contacts analyzed by Contact Lens
+     *            conversational analytics.
      *            </p>
      *            </li>
      *            </ul>
@@ -1622,6 +1900,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
+     * metric only supports the following as <code>INITIATION_METHOD</code>:
+     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     * <code>API</code>
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
      * </dd>
@@ -1641,6 +1939,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>AVG_CONTACT_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_CONVERSATION_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_GREETING_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HANDLE_TIME</dt>
      * <dd>
      * <p>
@@ -1648,9 +1984,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -1658,9 +1998,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_HOLDS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -1677,7 +2035,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -1686,7 +2090,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>CONTACTS_ABANDONED</dt>
@@ -1708,9 +2158,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid metric filter key: <code>INITIATION_METHOD</code>
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HANDLED</dt>
      * <dd>
      * <p>
@@ -1722,9 +2176,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
      * <dd>
      * <p>
@@ -1752,9 +2210,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      * <dd>
      * <p>
@@ -1947,6 +2409,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy, Feature
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
+     *         <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid metric filter key: <code>INITIATION_METHOD</code>. For now,
+     *         this metric only supports the following as
+     *         <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
+     *         <code>OUTBOUND</code> | <code>CALLBACK</code> | <code>API</code>
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
      *         Agent, Agent Hierarchy
      *         </p>
      *         </dd>
@@ -1966,6 +2448,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Agent, Agent Hierarchy
      *         </p>
      *         </dd>
+     *         <dt>AVG_CONTACT_DURATION</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy, Feature
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
+     *         <dt>AVG_CONVERSATION_DURATION</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AVG_GREETING_TIME_AGENT</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
      *         <dt>AVG_HANDLE_TIME</dt>
      *         <dd>
      *         <p>
@@ -1973,9 +2493,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
-     *         Agent, Agent Hierarchy
+     *         Agent, Agent Hierarchy, Feature
      *         </p>
-     *         </dd>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
      *         <dt>AVG_HOLD_TIME</dt>
      *         <dd>
      *         <p>
@@ -1983,9 +2507,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
-     *         Agent, Agent Hierarchy
+     *         Agent, Agent Hierarchy, Feature
      *         </p>
-     *         </dd>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
+     *         <dt>AVG_HOLDS</dt>
+     *         <dd>
+     *         <p>
+     *         Unit: Count
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy, Feature
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
      *         <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      *         <dd>
      *         <p>
@@ -2002,7 +2544,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Unit: Seconds
      *         </p>
      *         <p>
-     *         Valid groupings and filters: Queue, Channel, Routing Profile
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Feature
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
+     *         <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Count
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AVG_NON_TALK_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
      *         </p>
      *         </dd>
      *         <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -2011,7 +2600,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Unit: Seconds
      *         </p>
      *         <p>
-     *         Valid groupings and filters: Queue, Channel, Routing Profile
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Feature
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
+     *         <dt>AVG_TALK_TIME</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AVG_TALK_TIME_AGENT</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
+     *         </p>
+     *         </dd>
+     *         <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     *         <dd>
+     *         <p>
+     *         This metric is available only for contacts analyzed by Contact
+     *         Lens conversational analytics.
+     *         </p>
+     *         <p>
+     *         Unit: Seconds
+     *         </p>
+     *         <p>
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Agent, Agent Hierarchy
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_ABANDONED</dt>
@@ -2033,9 +2669,14 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         Valid metric filter key: <code>INITIATION_METHOD</code>
      *         </p>
      *         <p>
-     *         Valid groupings and filters: Queue, Channel, Routing Profile
+     *         Valid groupings and filters: Queue, Channel, Routing Profile,
+     *         Feature
      *         </p>
-     *         </dd>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
      *         <dt>CONTACTS_HANDLED</dt>
      *         <dd>
      *         <p>
@@ -2047,9 +2688,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
-     *         Agent, Agent Hierarchy
+     *         Agent, Agent Hierarchy, Feature
      *         </p>
-     *         </dd>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
      *         <dt>CONTACTS_HOLD_ABANDONS</dt>
      *         <dd>
      *         <p>
@@ -2077,9 +2722,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         Valid groupings and filters: Queue, Channel, Routing Profile,
-     *         Agent, Agent Hierarchy
+     *         Agent, Agent Hierarchy, Feature
      *         </p>
-     *         </dd>
+     *         <note>
+     *         <p>
+     *         Feature is a valid filter but not a valid grouping.
+     *         </p>
+     *         </note></dd>
      *         <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      *         <dd>
      *         <p>
@@ -2279,6 +2928,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
+     * metric only supports the following as <code>INITIATION_METHOD</code>:
+     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     * <code>API</code>
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
      * </dd>
@@ -2298,6 +2967,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>AVG_CONTACT_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_CONVERSATION_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_GREETING_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HANDLE_TIME</dt>
      * <dd>
      * <p>
@@ -2305,9 +3012,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -2315,9 +3026,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_HOLDS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -2334,7 +3063,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -2343,7 +3118,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>CONTACTS_ABANDONED</dt>
@@ -2365,9 +3186,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid metric filter key: <code>INITIATION_METHOD</code>
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HANDLED</dt>
      * <dd>
      * <p>
@@ -2379,9 +3204,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
      * <dd>
      * <p>
@@ -2409,9 +3238,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      * <dd>
      * <p>
@@ -2607,6 +3440,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
+     *            now, this metric only supports the following as
+     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
+     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     *            <code>API</code>
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
@@ -2627,6 +3481,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>AVG_CONTACT_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_CONVERSATION_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_GREETING_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HANDLE_TIME</dt>
      *            <dd>
      *            <p>
@@ -2634,9 +3526,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -2644,9 +3540,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_HOLDS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -2663,7 +3577,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -2672,7 +3633,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_ABANDONED</dt>
@@ -2694,9 +3702,14 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid metric filter key: <code>INITIATION_METHOD</code>
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HANDLED</dt>
      *            <dd>
      *            <p>
@@ -2708,9 +3721,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
      *            <dd>
      *            <p>
@@ -2738,9 +3755,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      *            <dd>
      *            <p>
@@ -2945,6 +3966,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
+     * metric only supports the following as <code>INITIATION_METHOD</code>:
+     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     * <code>API</code>
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
      * </dd>
@@ -2964,6 +4005,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>AVG_CONTACT_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_CONVERSATION_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_GREETING_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HANDLE_TIME</dt>
      * <dd>
      * <p>
@@ -2971,9 +4050,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -2981,9 +4064,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_HOLDS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -3000,7 +4101,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -3009,7 +4156,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>CONTACTS_ABANDONED</dt>
@@ -3031,9 +4224,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid metric filter key: <code>INITIATION_METHOD</code>
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HANDLED</dt>
      * <dd>
      * <p>
@@ -3045,9 +4242,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
      * <dd>
      * <p>
@@ -3075,9 +4276,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      * <dd>
      * <p>
@@ -3276,6 +4481,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
+     *            now, this metric only supports the following as
+     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
+     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     *            <code>API</code>
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
@@ -3296,6 +4522,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>AVG_CONTACT_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_CONVERSATION_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_GREETING_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HANDLE_TIME</dt>
      *            <dd>
      *            <p>
@@ -3303,9 +4567,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -3313,9 +4581,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_HOLDS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -3332,7 +4618,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -3341,7 +4674,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_ABANDONED</dt>
@@ -3363,9 +4743,14 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid metric filter key: <code>INITIATION_METHOD</code>
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HANDLED</dt>
      *            <dd>
      *            <p>
@@ -3377,9 +4762,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
      *            <dd>
      *            <p>
@@ -3407,9 +4796,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      *            <dd>
      *            <p>
@@ -3617,6 +5010,26 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid metric filter key: <code>INITIATION_METHOD</code>. For now, this
+     * metric only supports the following as <code>INITIATION_METHOD</code>:
+     * <code>INBOUND</code> | <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     * <code>API</code>
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
      * Agent Hierarchy
      * </p>
      * </dd>
@@ -3636,6 +5049,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Agent Hierarchy
      * </p>
      * </dd>
+     * <dt>AVG_CONTACT_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_CONVERSATION_DURATION</dt>
+     * <dd>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_GREETING_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
      * <dt>AVG_HANDLE_TIME</dt>
      * <dd>
      * <p>
@@ -3643,9 +5094,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -3653,9 +5108,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_HOLDS</dt>
+     * <dd>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      * <dd>
      * <p>
@@ -3672,7 +5145,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Count
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_NON_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -3681,7 +5200,53 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Unit: Seconds
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
+     * </p>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
+     * <dt>AVG_TALK_TIME</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_AGENT</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
+     * </p>
+     * </dd>
+     * <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     * <dd>
+     * <p>
+     * This metric is available only for contacts analyzed by Contact Lens
+     * conversational analytics.
+     * </p>
+     * <p>
+     * Unit: Seconds
+     * </p>
+     * <p>
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
+     * Agent Hierarchy
      * </p>
      * </dd>
      * <dt>CONTACTS_ABANDONED</dt>
@@ -3703,9 +5268,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * Valid metric filter key: <code>INITIATION_METHOD</code>
      * </p>
      * <p>
-     * Valid groupings and filters: Queue, Channel, Routing Profile
+     * Valid groupings and filters: Queue, Channel, Routing Profile, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HANDLED</dt>
      * <dd>
      * <p>
@@ -3717,9 +5286,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_HOLD_ABANDONS</dt>
      * <dd>
      * <p>
@@ -3747,9 +5320,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * Valid groupings and filters: Queue, Channel, Routing Profile, Agent,
-     * Agent Hierarchy
+     * Agent Hierarchy, Feature
      * </p>
-     * </dd>
+     * <note>
+     * <p>
+     * Feature is a valid filter but not a valid grouping.
+     * </p>
+     * </note></dd>
      * <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      * <dd>
      * <p>
@@ -3948,6 +5525,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_AGENT_CONNECTING_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid metric filter key: <code>INITIATION_METHOD</code>. For
+     *            now, this metric only supports the following as
+     *            <code>INITIATION_METHOD</code>: <code>INBOUND</code> |
+     *            <code>OUTBOUND</code> | <code>CALLBACK</code> |
+     *            <code>API</code>
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
@@ -3968,6 +5566,44 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
+     *            <dt>AVG_CONTACT_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_CONVERSATION_DURATION</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_GREETING_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
      *            <dt>AVG_HANDLE_TIME</dt>
      *            <dd>
      *            <p>
@@ -3975,9 +5611,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -3985,9 +5625,27 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_HOLDS</dt>
+     *            <dd>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy, Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>AVG_INTERACTION_AND_HOLD_TIME</dt>
      *            <dd>
      *            <p>
@@ -4004,7 +5662,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_INTERRUPTIONS_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Count
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_INTERRUPTION_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_NON_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>AVG_QUEUE_ANSWER_TIME</dt>
@@ -4013,7 +5718,54 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Unit: Seconds
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
+     *            <dt>AVG_TALK_TIME</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_AGENT</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
+     *            </p>
+     *            </dd>
+     *            <dt>AVG_TALK_TIME_CUSTOMER</dt>
+     *            <dd>
+     *            <p>
+     *            This metric is available only for contacts analyzed by Contact
+     *            Lens conversational analytics.
+     *            </p>
+     *            <p>
+     *            Unit: Seconds
+     *            </p>
+     *            <p>
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Agent, Agent Hierarchy
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_ABANDONED</dt>
@@ -4035,9 +5787,14 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            Valid metric filter key: <code>INITIATION_METHOD</code>
      *            </p>
      *            <p>
-     *            Valid groupings and filters: Queue, Channel, Routing Profile
+     *            Valid groupings and filters: Queue, Channel, Routing Profile,
+     *            Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HANDLED</dt>
      *            <dd>
      *            <p>
@@ -4049,9 +5806,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_HOLD_ABANDONS</dt>
      *            <dd>
      *            <p>
@@ -4079,9 +5840,13 @@ public class GetMetricDataV2Request extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            Valid groupings and filters: Queue, Channel, Routing Profile,
-     *            Agent, Agent Hierarchy
+     *            Agent, Agent Hierarchy, Feature
      *            </p>
-     *            </dd>
+     *            <note>
+     *            <p>
+     *            Feature is a valid filter but not a valid grouping.
+     *            </p>
+     *            </note></dd>
      *            <dt>CONTACTS_TRANSFERRED_OUT_BY_AGENT</dt>
      *            <dd>
      *            <p>
