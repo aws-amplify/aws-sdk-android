@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish bounce notifications.
+     * publishes bounce notifications.
      * </p>
      */
     private String bounceTopic;
@@ -37,7 +37,7 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish complaint notifications.
+     * publishes complaint notifications.
      * </p>
      */
     private String complaintTopic;
@@ -45,19 +45,18 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish delivery notifications.
+     * publishes delivery notifications.
      * </p>
      */
     private String deliveryTopic;
 
     /**
      * <p>
-     * Describes whether Amazon SES will forward bounce and complaint
-     * notifications as email. <code>true</code> indicates that Amazon SES will
-     * forward bounce and complaint notifications as email, while
-     * <code>false</code> indicates that bounce and complaint notifications will
-     * be published only to the specified bounce and complaint Amazon SNS
-     * topics.
+     * Describes whether Amazon SES forwards bounce and complaint notifications
+     * as email. <code>true</code> indicates that Amazon SES forwards bounce and
+     * complaint notifications as email, while <code>false</code> indicates that
+     * bounce and complaint notifications are published only to the specified
+     * bounce and complaint Amazon SNS topics.
      * </p>
      */
     private Boolean forwardingEnabled;
@@ -66,9 +65,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Bounce</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * bounce notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in bounce notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in bounce
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in bounce notifications.
      * </p>
      */
     private Boolean headersInBounceNotificationsEnabled;
@@ -77,9 +76,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Complaint</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * complaint notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in complaint notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in complaint
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in complaint notifications.
      * </p>
      */
     private Boolean headersInComplaintNotificationsEnabled;
@@ -88,9 +87,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Delivery</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * delivery notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in delivery notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in delivery
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in delivery notifications.
      * </p>
      */
     private Boolean headersInDeliveryNotificationsEnabled;
@@ -98,12 +97,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish bounce notifications.
+     * publishes bounce notifications.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *         Amazon SES will publish bounce notifications.
+     *         Amazon SES publishes bounce notifications.
      *         </p>
      */
     public String getBounceTopic() {
@@ -113,12 +112,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish bounce notifications.
+     * publishes bounce notifications.
      * </p>
      *
      * @param bounceTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish bounce notifications.
+     *            Amazon SES publishes bounce notifications.
      *            </p>
      */
     public void setBounceTopic(String bounceTopic) {
@@ -128,7 +127,7 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish bounce notifications.
+     * publishes bounce notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -136,7 +135,7 @@ public class IdentityNotificationAttributes implements Serializable {
      *
      * @param bounceTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish bounce notifications.
+     *            Amazon SES publishes bounce notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -149,12 +148,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish complaint notifications.
+     * publishes complaint notifications.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *         Amazon SES will publish complaint notifications.
+     *         Amazon SES publishes complaint notifications.
      *         </p>
      */
     public String getComplaintTopic() {
@@ -164,12 +163,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish complaint notifications.
+     * publishes complaint notifications.
      * </p>
      *
      * @param complaintTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish complaint notifications.
+     *            Amazon SES publishes complaint notifications.
      *            </p>
      */
     public void setComplaintTopic(String complaintTopic) {
@@ -179,7 +178,7 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish complaint notifications.
+     * publishes complaint notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +186,7 @@ public class IdentityNotificationAttributes implements Serializable {
      *
      * @param complaintTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish complaint notifications.
+     *            Amazon SES publishes complaint notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -200,12 +199,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish delivery notifications.
+     * publishes delivery notifications.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *         Amazon SES will publish delivery notifications.
+     *         Amazon SES publishes delivery notifications.
      *         </p>
      */
     public String getDeliveryTopic() {
@@ -215,12 +214,12 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish delivery notifications.
+     * publishes delivery notifications.
      * </p>
      *
      * @param deliveryTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish delivery notifications.
+     *            Amazon SES publishes delivery notifications.
      *            </p>
      */
     public void setDeliveryTopic(String deliveryTopic) {
@@ -230,7 +229,7 @@ public class IdentityNotificationAttributes implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic where Amazon SES
-     * will publish delivery notifications.
+     * publishes delivery notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,7 +237,7 @@ public class IdentityNotificationAttributes implements Serializable {
      *
      * @param deliveryTopic <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic where
-     *            Amazon SES will publish delivery notifications.
+     *            Amazon SES publishes delivery notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -250,20 +249,19 @@ public class IdentityNotificationAttributes implements Serializable {
 
     /**
      * <p>
-     * Describes whether Amazon SES will forward bounce and complaint
-     * notifications as email. <code>true</code> indicates that Amazon SES will
-     * forward bounce and complaint notifications as email, while
-     * <code>false</code> indicates that bounce and complaint notifications will
-     * be published only to the specified bounce and complaint Amazon SNS
-     * topics.
+     * Describes whether Amazon SES forwards bounce and complaint notifications
+     * as email. <code>true</code> indicates that Amazon SES forwards bounce and
+     * complaint notifications as email, while <code>false</code> indicates that
+     * bounce and complaint notifications are published only to the specified
+     * bounce and complaint Amazon SNS topics.
      * </p>
      *
      * @return <p>
-     *         Describes whether Amazon SES will forward bounce and complaint
+     *         Describes whether Amazon SES forwards bounce and complaint
      *         notifications as email. <code>true</code> indicates that Amazon
-     *         SES will forward bounce and complaint notifications as email,
-     *         while <code>false</code> indicates that bounce and complaint
-     *         notifications will be published only to the specified bounce and
+     *         SES forwards bounce and complaint notifications as email, while
+     *         <code>false</code> indicates that bounce and complaint
+     *         notifications are published only to the specified bounce and
      *         complaint Amazon SNS topics.
      *         </p>
      */
@@ -273,20 +271,19 @@ public class IdentityNotificationAttributes implements Serializable {
 
     /**
      * <p>
-     * Describes whether Amazon SES will forward bounce and complaint
-     * notifications as email. <code>true</code> indicates that Amazon SES will
-     * forward bounce and complaint notifications as email, while
-     * <code>false</code> indicates that bounce and complaint notifications will
-     * be published only to the specified bounce and complaint Amazon SNS
-     * topics.
+     * Describes whether Amazon SES forwards bounce and complaint notifications
+     * as email. <code>true</code> indicates that Amazon SES forwards bounce and
+     * complaint notifications as email, while <code>false</code> indicates that
+     * bounce and complaint notifications are published only to the specified
+     * bounce and complaint Amazon SNS topics.
      * </p>
      *
      * @return <p>
-     *         Describes whether Amazon SES will forward bounce and complaint
+     *         Describes whether Amazon SES forwards bounce and complaint
      *         notifications as email. <code>true</code> indicates that Amazon
-     *         SES will forward bounce and complaint notifications as email,
-     *         while <code>false</code> indicates that bounce and complaint
-     *         notifications will be published only to the specified bounce and
+     *         SES forwards bounce and complaint notifications as email, while
+     *         <code>false</code> indicates that bounce and complaint
+     *         notifications are published only to the specified bounce and
      *         complaint Amazon SNS topics.
      *         </p>
      */
@@ -296,21 +293,20 @@ public class IdentityNotificationAttributes implements Serializable {
 
     /**
      * <p>
-     * Describes whether Amazon SES will forward bounce and complaint
-     * notifications as email. <code>true</code> indicates that Amazon SES will
-     * forward bounce and complaint notifications as email, while
-     * <code>false</code> indicates that bounce and complaint notifications will
-     * be published only to the specified bounce and complaint Amazon SNS
-     * topics.
+     * Describes whether Amazon SES forwards bounce and complaint notifications
+     * as email. <code>true</code> indicates that Amazon SES forwards bounce and
+     * complaint notifications as email, while <code>false</code> indicates that
+     * bounce and complaint notifications are published only to the specified
+     * bounce and complaint Amazon SNS topics.
      * </p>
      *
      * @param forwardingEnabled <p>
-     *            Describes whether Amazon SES will forward bounce and complaint
+     *            Describes whether Amazon SES forwards bounce and complaint
      *            notifications as email. <code>true</code> indicates that
-     *            Amazon SES will forward bounce and complaint notifications as
+     *            Amazon SES forwards bounce and complaint notifications as
      *            email, while <code>false</code> indicates that bounce and
-     *            complaint notifications will be published only to the
-     *            specified bounce and complaint Amazon SNS topics.
+     *            complaint notifications are published only to the specified
+     *            bounce and complaint Amazon SNS topics.
      *            </p>
      */
     public void setForwardingEnabled(Boolean forwardingEnabled) {
@@ -319,24 +315,23 @@ public class IdentityNotificationAttributes implements Serializable {
 
     /**
      * <p>
-     * Describes whether Amazon SES will forward bounce and complaint
-     * notifications as email. <code>true</code> indicates that Amazon SES will
-     * forward bounce and complaint notifications as email, while
-     * <code>false</code> indicates that bounce and complaint notifications will
-     * be published only to the specified bounce and complaint Amazon SNS
-     * topics.
+     * Describes whether Amazon SES forwards bounce and complaint notifications
+     * as email. <code>true</code> indicates that Amazon SES forwards bounce and
+     * complaint notifications as email, while <code>false</code> indicates that
+     * bounce and complaint notifications are published only to the specified
+     * bounce and complaint Amazon SNS topics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param forwardingEnabled <p>
-     *            Describes whether Amazon SES will forward bounce and complaint
+     *            Describes whether Amazon SES forwards bounce and complaint
      *            notifications as email. <code>true</code> indicates that
-     *            Amazon SES will forward bounce and complaint notifications as
+     *            Amazon SES forwards bounce and complaint notifications as
      *            email, while <code>false</code> indicates that bounce and
-     *            complaint notifications will be published only to the
-     *            specified bounce and complaint Amazon SNS topics.
+     *            complaint notifications are published only to the specified
+     *            bounce and complaint Amazon SNS topics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -350,18 +345,18 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Bounce</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * bounce notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in bounce notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in bounce
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in bounce notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Bounce</code>. A value
-     *         of <code>true</code> specifies that Amazon SES will include
-     *         headers in bounce notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
-     *         headers in bounce notifications.
+     *         of <code>true</code> specifies that Amazon SES includes headers
+     *         in bounce notifications, and a value of <code>false</code>
+     *         specifies that Amazon SES does not include headers in bounce
+     *         notifications.
      *         </p>
      */
     public Boolean isHeadersInBounceNotificationsEnabled() {
@@ -372,18 +367,18 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Bounce</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * bounce notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in bounce notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in bounce
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in bounce notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Bounce</code>. A value
-     *         of <code>true</code> specifies that Amazon SES will include
-     *         headers in bounce notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
-     *         headers in bounce notifications.
+     *         of <code>true</code> specifies that Amazon SES includes headers
+     *         in bounce notifications, and a value of <code>false</code>
+     *         specifies that Amazon SES does not include headers in bounce
+     *         notifications.
      *         </p>
      */
     public Boolean getHeadersInBounceNotificationsEnabled() {
@@ -394,18 +389,18 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Bounce</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * bounce notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in bounce notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in bounce
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in bounce notifications.
      * </p>
      *
      * @param headersInBounceNotificationsEnabled <p>
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Bounce</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in bounce notifications,
-     *            and a value of <code>false</code> specifies that Amazon SES
-     *            will not include headers in bounce notifications.
+     *            that Amazon SES includes headers in bounce notifications, and
+     *            a value of <code>false</code> specifies that Amazon SES does
+     *            not include headers in bounce notifications.
      *            </p>
      */
     public void setHeadersInBounceNotificationsEnabled(Boolean headersInBounceNotificationsEnabled) {
@@ -416,9 +411,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Bounce</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * bounce notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in bounce notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in bounce
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in bounce notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -428,9 +423,9 @@ public class IdentityNotificationAttributes implements Serializable {
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Bounce</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in bounce notifications,
-     *            and a value of <code>false</code> specifies that Amazon SES
-     *            will not include headers in bounce notifications.
+     *            that Amazon SES includes headers in bounce notifications, and
+     *            a value of <code>false</code> specifies that Amazon SES does
+     *            not include headers in bounce notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -445,17 +440,17 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Complaint</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * complaint notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in complaint notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in complaint
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in complaint notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Complaint</code>. A
-     *         value of <code>true</code> specifies that Amazon SES will include
+     *         value of <code>true</code> specifies that Amazon SES includes
      *         headers in complaint notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
+     *         <code>false</code> specifies that Amazon SES does not include
      *         headers in complaint notifications.
      *         </p>
      */
@@ -467,17 +462,17 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Complaint</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * complaint notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in complaint notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in complaint
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in complaint notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Complaint</code>. A
-     *         value of <code>true</code> specifies that Amazon SES will include
+     *         value of <code>true</code> specifies that Amazon SES includes
      *         headers in complaint notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
+     *         <code>false</code> specifies that Amazon SES does not include
      *         headers in complaint notifications.
      *         </p>
      */
@@ -489,19 +484,18 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Complaint</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * complaint notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in complaint notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in complaint
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in complaint notifications.
      * </p>
      *
      * @param headersInComplaintNotificationsEnabled <p>
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Complaint</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in complaint
-     *            notifications, and a value of <code>false</code> specifies
-     *            that Amazon SES will not include headers in complaint
-     *            notifications.
+     *            that Amazon SES includes headers in complaint notifications,
+     *            and a value of <code>false</code> specifies that Amazon SES
+     *            does not include headers in complaint notifications.
      *            </p>
      */
     public void setHeadersInComplaintNotificationsEnabled(
@@ -513,9 +507,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Complaint</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * complaint notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in complaint notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in complaint
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in complaint notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -525,10 +519,9 @@ public class IdentityNotificationAttributes implements Serializable {
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Complaint</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in complaint
-     *            notifications, and a value of <code>false</code> specifies
-     *            that Amazon SES will not include headers in complaint
-     *            notifications.
+     *            that Amazon SES includes headers in complaint notifications,
+     *            and a value of <code>false</code> specifies that Amazon SES
+     *            does not include headers in complaint notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -543,17 +536,17 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Delivery</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * delivery notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in delivery notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in delivery
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in delivery notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Delivery</code>. A
-     *         value of <code>true</code> specifies that Amazon SES will include
+     *         value of <code>true</code> specifies that Amazon SES includes
      *         headers in delivery notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
+     *         <code>false</code> specifies that Amazon SES does not include
      *         headers in delivery notifications.
      *         </p>
      */
@@ -565,17 +558,17 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Delivery</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * delivery notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in delivery notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in delivery
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in delivery notifications.
      * </p>
      *
      * @return <p>
      *         Describes whether Amazon SES includes the original email headers
      *         in Amazon SNS notifications of type <code>Delivery</code>. A
-     *         value of <code>true</code> specifies that Amazon SES will include
+     *         value of <code>true</code> specifies that Amazon SES includes
      *         headers in delivery notifications, and a value of
-     *         <code>false</code> specifies that Amazon SES will not include
+     *         <code>false</code> specifies that Amazon SES does not include
      *         headers in delivery notifications.
      *         </p>
      */
@@ -587,19 +580,18 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Delivery</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * delivery notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in delivery notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in delivery
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in delivery notifications.
      * </p>
      *
      * @param headersInDeliveryNotificationsEnabled <p>
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Delivery</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in delivery
-     *            notifications, and a value of <code>false</code> specifies
-     *            that Amazon SES will not include headers in delivery
-     *            notifications.
+     *            that Amazon SES includes headers in delivery notifications,
+     *            and a value of <code>false</code> specifies that Amazon SES
+     *            does not include headers in delivery notifications.
      *            </p>
      */
     public void setHeadersInDeliveryNotificationsEnabled(
@@ -611,9 +603,9 @@ public class IdentityNotificationAttributes implements Serializable {
      * <p>
      * Describes whether Amazon SES includes the original email headers in
      * Amazon SNS notifications of type <code>Delivery</code>. A value of
-     * <code>true</code> specifies that Amazon SES will include headers in
-     * delivery notifications, and a value of <code>false</code> specifies that
-     * Amazon SES will not include headers in delivery notifications.
+     * <code>true</code> specifies that Amazon SES includes headers in delivery
+     * notifications, and a value of <code>false</code> specifies that Amazon
+     * SES does not include headers in delivery notifications.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -623,10 +615,9 @@ public class IdentityNotificationAttributes implements Serializable {
      *            Describes whether Amazon SES includes the original email
      *            headers in Amazon SNS notifications of type
      *            <code>Delivery</code>. A value of <code>true</code> specifies
-     *            that Amazon SES will include headers in delivery
-     *            notifications, and a value of <code>false</code> specifies
-     *            that Amazon SES will not include headers in delivery
-     *            notifications.
+     *            that Amazon SES includes headers in delivery notifications,
+     *            and a value of <code>false</code> specifies that Amazon SES
+     *            does not include headers in delivery notifications.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

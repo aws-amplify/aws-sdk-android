@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Lists the existing custom verification email templates for your account in
- * the current AWS Region.
+ * the current Amazon Web Services Region.
  * </p>
  * <p>
  * For more information about custom verification email templates, see <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom"
  * >Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer
  * Guide</i>.
  * </p>
@@ -49,7 +49,7 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      * The maximum number of custom verification email templates to return. This
      * value must be at least 1 and less than or equal to 50. If you do not
      * specify a value, or if you specify a value less than 1 or greater than
-     * 50, the operation will return up to 50 results.
+     * 50, the operation returns up to 50 results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -113,7 +113,7 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      * The maximum number of custom verification email templates to return. This
      * value must be at least 1 and less than or equal to 50. If you do not
      * specify a value, or if you specify a value less than 1 or greater than
-     * 50, the operation will return up to 50 results.
+     * 50, the operation returns up to 50 results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -123,7 +123,7 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      *         The maximum number of custom verification email templates to
      *         return. This value must be at least 1 and less than or equal to
      *         50. If you do not specify a value, or if you specify a value less
-     *         than 1 or greater than 50, the operation will return up to 50
+     *         than 1 or greater than 50, the operation returns up to 50
      *         results.
      *         </p>
      */
@@ -136,7 +136,7 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      * The maximum number of custom verification email templates to return. This
      * value must be at least 1 and less than or equal to 50. If you do not
      * specify a value, or if you specify a value less than 1 or greater than
-     * 50, the operation will return up to 50 results.
+     * 50, the operation returns up to 50 results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,8 +146,8 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      *            The maximum number of custom verification email templates to
      *            return. This value must be at least 1 and less than or equal
      *            to 50. If you do not specify a value, or if you specify a
-     *            value less than 1 or greater than 50, the operation will
-     *            return up to 50 results.
+     *            value less than 1 or greater than 50, the operation returns up
+     *            to 50 results.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -159,7 +159,7 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      * The maximum number of custom verification email templates to return. This
      * value must be at least 1 and less than or equal to 50. If you do not
      * specify a value, or if you specify a value less than 1 or greater than
-     * 50, the operation will return up to 50 results.
+     * 50, the operation returns up to 50 results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -172,8 +172,8 @@ public class ListCustomVerificationEmailTemplatesRequest extends AmazonWebServic
      *            The maximum number of custom verification email templates to
      *            return. This value must be at least 1 and less than or equal
      *            to 50. If you do not specify a value, or if you specify a
-     *            value less than 1 or greater than 50, the operation will
-     *            return up to 50 results.
+     *            value less than 1 or greater than 50, the operation returns up
+     *            to 50 results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

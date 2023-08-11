@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * You can execute this operation no more than once per second.
  * </p>
  * <p>
- * For more information about Easy DKIM signing, go to the <a
- * href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html"
+ * For more information about Easy DKIM signing, go to the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

@@ -40,8 +40,12 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains additional user-defined properties stored with the geofence. An
-     * array of key-value pairs.
+     * User defined properties of the geofence. A property is a key-value pair
+     * stored with the geofence and added to any geofence event triggered with
+     * that geofence.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
      * </p>
      */
     private java.util.Map<String, String> geofenceProperties;
@@ -217,13 +221,21 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains additional user-defined properties stored with the geofence. An
-     * array of key-value pairs.
+     * User defined properties of the geofence. A property is a key-value pair
+     * stored with the geofence and added to any geofence event triggered with
+     * that geofence.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
      * </p>
      *
      * @return <p>
-     *         Contains additional user-defined properties stored with the
-     *         geofence. An array of key-value pairs.
+     *         User defined properties of the geofence. A property is a
+     *         key-value pair stored with the geofence and added to any geofence
+     *         event triggered with that geofence.
+     *         </p>
+     *         <p>
+     *         Format: <code>"key" : "value"</code>
      *         </p>
      */
     public java.util.Map<String, String> getGeofenceProperties() {
@@ -232,13 +244,21 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains additional user-defined properties stored with the geofence. An
-     * array of key-value pairs.
+     * User defined properties of the geofence. A property is a key-value pair
+     * stored with the geofence and added to any geofence event triggered with
+     * that geofence.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
      * </p>
      *
      * @param geofenceProperties <p>
-     *            Contains additional user-defined properties stored with the
-     *            geofence. An array of key-value pairs.
+     *            User defined properties of the geofence. A property is a
+     *            key-value pair stored with the geofence and added to any
+     *            geofence event triggered with that geofence.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
      *            </p>
      */
     public void setGeofenceProperties(java.util.Map<String, String> geofenceProperties) {
@@ -247,16 +267,24 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains additional user-defined properties stored with the geofence. An
-     * array of key-value pairs.
+     * User defined properties of the geofence. A property is a key-value pair
+     * stored with the geofence and added to any geofence event triggered with
+     * that geofence.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param geofenceProperties <p>
-     *            Contains additional user-defined properties stored with the
-     *            geofence. An array of key-value pairs.
+     *            User defined properties of the geofence. A property is a
+     *            key-value pair stored with the geofence and added to any
+     *            geofence event triggered with that geofence.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -268,8 +296,12 @@ public class GetGeofenceResult implements Serializable {
 
     /**
      * <p>
-     * Contains additional user-defined properties stored with the geofence. An
-     * array of key-value pairs.
+     * User defined properties of the geofence. A property is a key-value pair
+     * stored with the geofence and added to any geofence event triggered with
+     * that geofence.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
      * </p>
      * <p>
      * The method adds a new key-value pair into GeofenceProperties parameter,

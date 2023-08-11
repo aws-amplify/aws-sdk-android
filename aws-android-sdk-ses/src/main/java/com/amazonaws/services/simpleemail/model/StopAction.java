@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
  * <p>
  * For information about setting a stop action in a receipt rule, see the <a
  * href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-stop.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-action-stop.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -45,9 +45,12 @@ public class StopAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * stop action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * stop action is taken. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> Amazon SNS operation.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -164,17 +167,24 @@ public class StopAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * stop action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * stop action is taken. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> Amazon SNS operation.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon SNS topic to notify
-     *         when the stop action is taken. An example of an Amazon SNS topic
-     *         ARN is <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>.
+     *         when the stop action is taken. You can find the ARN of a topic by
+     *         using the <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *         >ListTopics</a> Amazon SNS operation.
+     *         </p>
+     *         <p>
      *         For more information about Amazon SNS topics, see the <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
@@ -187,19 +197,25 @@ public class StopAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * stop action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * stop action is taken. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> Amazon SNS operation.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @param topicArn <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic to
-     *            notify when the stop action is taken. An example of an Amazon
-     *            SNS topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            notify when the stop action is taken. You can find the ARN of
+     *            a topic by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> Amazon SNS operation.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
@@ -211,9 +227,12 @@ public class StopAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * stop action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * stop action is taken. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> Amazon SNS operation.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -223,10 +242,13 @@ public class StopAction implements Serializable {
      *
      * @param topicArn <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic to
-     *            notify when the stop action is taken. An example of an Amazon
-     *            SNS topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            notify when the stop action is taken. You can find the ARN of
+     *            a topic by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> Amazon SNS operation.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>

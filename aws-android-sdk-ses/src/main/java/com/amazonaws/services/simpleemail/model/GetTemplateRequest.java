@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,18 +31,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetTemplateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the template you want to retrieve.
+     * The name of the template to retrieve.
      * </p>
      */
     private String templateName;
 
     /**
      * <p>
-     * The name of the template you want to retrieve.
+     * The name of the template to retrieve.
      * </p>
      *
      * @return <p>
-     *         The name of the template you want to retrieve.
+     *         The name of the template to retrieve.
      *         </p>
      */
     public String getTemplateName() {
@@ -51,11 +51,11 @@ public class GetTemplateRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the template you want to retrieve.
+     * The name of the template to retrieve.
      * </p>
      *
      * @param templateName <p>
-     *            The name of the template you want to retrieve.
+     *            The name of the template to retrieve.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -64,14 +64,14 @@ public class GetTemplateRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the template you want to retrieve.
+     * The name of the template to retrieve.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templateName <p>
-     *            The name of the template you want to retrieve.
+     *            The name of the template to retrieve.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

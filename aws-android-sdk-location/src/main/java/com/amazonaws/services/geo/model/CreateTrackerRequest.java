@@ -38,6 +38,21 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
+     * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
+     */
+    private Boolean eventBridgeEnabled;
+
+    /**
+     * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
      * >Amazon Web Services KMS customer managed key</a>. Enter a key ID, key
@@ -249,6 +264,128 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      */
     public CreateTrackerRequest withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
+     * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Whether to enable position <code>UPDATE</code> events from this
+     *         tracker to be sent to EventBridge.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         You do not need enable this feature to get <code>ENTER</code> and
+     *         <code>EXIT</code> events for geofences with this tracker. Those
+     *         events are always sent to EventBridge.
+     *         </p>
+     *         </note>
+     */
+    public Boolean isEventBridgeEnabled() {
+        return eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
+     * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Whether to enable position <code>UPDATE</code> events from this
+     *         tracker to be sent to EventBridge.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         You do not need enable this feature to get <code>ENTER</code> and
+     *         <code>EXIT</code> events for geofences with this tracker. Those
+     *         events are always sent to EventBridge.
+     *         </p>
+     *         </note>
+     */
+    public Boolean getEventBridgeEnabled() {
+        return eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
+     * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
+     *
+     * @param eventBridgeEnabled <p>
+     *            Whether to enable position <code>UPDATE</code> events from
+     *            this tracker to be sent to EventBridge.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            You do not need enable this feature to get <code>ENTER</code>
+     *            and <code>EXIT</code> events for geofences with this tracker.
+     *            Those events are always sent to EventBridge.
+     *            </p>
+     *            </note>
+     */
+    public void setEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether to enable position <code>UPDATE</code> events from this tracker
+     * to be sent to EventBridge.
+     * </p>
+     * <note>
+     * <p>
+     * You do not need enable this feature to get <code>ENTER</code> and
+     * <code>EXIT</code> events for geofences with this tracker. Those events
+     * are always sent to EventBridge.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param eventBridgeEnabled <p>
+     *            Whether to enable position <code>UPDATE</code> events from
+     *            this tracker to be sent to EventBridge.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            You do not need enable this feature to get <code>ENTER</code>
+     *            and <code>EXIT</code> events for geofences with this tracker.
+     *            Those events are always sent to EventBridge.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest withEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
         return this;
     }
 
@@ -1560,6 +1697,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
         sb.append("{");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
+        if (getEventBridgeEnabled() != null)
+            sb.append("EventBridgeEnabled: " + getEventBridgeEnabled() + ",");
         if (getKmsKeyId() != null)
             sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getPositionFiltering() != null)
@@ -1583,6 +1722,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventBridgeEnabled() == null) ? 0 : getEventBridgeEnabled().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
@@ -1612,6 +1753,11 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getEventBridgeEnabled() == null ^ this.getEventBridgeEnabled() == null)
+            return false;
+        if (other.getEventBridgeEnabled() != null
+                && other.getEventBridgeEnabled().equals(this.getEventBridgeEnabled()) == false)
             return false;
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;

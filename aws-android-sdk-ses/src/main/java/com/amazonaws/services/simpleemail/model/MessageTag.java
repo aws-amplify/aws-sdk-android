@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,25 +26,25 @@ import java.io.Serializable;
  * Message tags, which you use with configuration sets, enable you to publish
  * email sending events. For information about using configuration sets, see the
  * <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
 public class MessageTag implements Serializable {
     /**
      * <p>
-     * The name of the tag. The name must:
+     * The name of the tag. The name must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -53,18 +53,18 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag. The value must:
+     * The value of the tag. The value must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -73,35 +73,36 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The name of the tag. The name must:
+     * The name of the tag. The name must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         The name of the tag. The name must:
+     *         The name of the tag. The name must meet the following
+     *         requirements:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         This value can only contain ASCII letters (a-z, A-Z), numbers
-     *         (0-9), underscores (_), or dashes (-).
+     *         Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores
+     *         (_), or dashes (-).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Contain less than 256 characters.
+     *         Contain 256 characters or fewer.
      *         </p>
      *         </li>
      *         </ul>
@@ -112,35 +113,36 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The name of the tag. The name must:
+     * The name of the tag. The name must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @param name <p>
-     *            The name of the tag. The name must:
+     *            The name of the tag. The name must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 256 characters.
+     *            Contain 256 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>
@@ -151,18 +153,18 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The name of the tag. The name must:
+     * The name of the tag. The name must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -171,18 +173,19 @@ public class MessageTag implements Serializable {
      * together.
      *
      * @param name <p>
-     *            The name of the tag. The name must:
+     *            The name of the tag. The name must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 256 characters.
+     *            Contain 256 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>
@@ -196,35 +199,36 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag. The value must:
+     * The value of the tag. The value must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         The value of the tag. The value must:
+     *         The value of the tag. The value must meet the following
+     *         requirements:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         This value can only contain ASCII letters (a-z, A-Z), numbers
-     *         (0-9), underscores (_), or dashes (-).
+     *         Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores
+     *         (_), or dashes (-).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Contain less than 256 characters.
+     *         Contain 256 characters or fewer.
      *         </p>
      *         </li>
      *         </ul>
@@ -235,35 +239,36 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag. The value must:
+     * The value of the tag. The value must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @param value <p>
-     *            The value of the tag. The value must:
+     *            The value of the tag. The value must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 256 characters.
+     *            Contain 256 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>
@@ -274,18 +279,18 @@ public class MessageTag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag. The value must:
+     * The value of the tag. The value must meet the following requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_), or
+     * dashes (-).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Contain less than 256 characters.
+     * Contain 256 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -294,18 +299,19 @@ public class MessageTag implements Serializable {
      * together.
      *
      * @param value <p>
-     *            The value of the tag. The value must:
+     *            The value of the tag. The value must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), or dashes (-).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 256 characters.
+     *            Contain 256 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>

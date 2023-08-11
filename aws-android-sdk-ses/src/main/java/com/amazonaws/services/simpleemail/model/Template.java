@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,16 +19,16 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The content of the email, composed of a subject line, an HTML part, and a
- * text-only part.
+ * The content of the email, composed of a subject line and either an HTML part
+ * or a text-only part.
  * </p>
  */
 public class Template implements Serializable {
     /**
      * <p>
-     * The name of the template. You will refer to this name when you send email
-     * using the <code>SendTemplatedEmail</code> or
-     * <code>SendBulkTemplatedEmail</code> operations.
+     * The name of the template. You use this name when you send email using the
+     * <code>SendTemplatedEmail</code> or <code>SendBulkTemplatedEmail</code>
+     * operations.
      * </p>
      */
     private String templateName;
@@ -42,8 +42,8 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The email body that will be visible to recipients whose email clients do
-     * not display HTML.
+     * The email body that is visible to recipients whose email clients do not
+     * display HTML content.
      * </p>
      */
     private String textPart;
@@ -57,14 +57,14 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The name of the template. You will refer to this name when you send email
-     * using the <code>SendTemplatedEmail</code> or
-     * <code>SendBulkTemplatedEmail</code> operations.
+     * The name of the template. You use this name when you send email using the
+     * <code>SendTemplatedEmail</code> or <code>SendBulkTemplatedEmail</code>
+     * operations.
      * </p>
      *
      * @return <p>
-     *         The name of the template. You will refer to this name when you
-     *         send email using the <code>SendTemplatedEmail</code> or
+     *         The name of the template. You use this name when you send email
+     *         using the <code>SendTemplatedEmail</code> or
      *         <code>SendBulkTemplatedEmail</code> operations.
      *         </p>
      */
@@ -74,14 +74,14 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The name of the template. You will refer to this name when you send email
-     * using the <code>SendTemplatedEmail</code> or
-     * <code>SendBulkTemplatedEmail</code> operations.
+     * The name of the template. You use this name when you send email using the
+     * <code>SendTemplatedEmail</code> or <code>SendBulkTemplatedEmail</code>
+     * operations.
      * </p>
      *
      * @param templateName <p>
-     *            The name of the template. You will refer to this name when you
-     *            send email using the <code>SendTemplatedEmail</code> or
+     *            The name of the template. You use this name when you send
+     *            email using the <code>SendTemplatedEmail</code> or
      *            <code>SendBulkTemplatedEmail</code> operations.
      *            </p>
      */
@@ -91,17 +91,17 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The name of the template. You will refer to this name when you send email
-     * using the <code>SendTemplatedEmail</code> or
-     * <code>SendBulkTemplatedEmail</code> operations.
+     * The name of the template. You use this name when you send email using the
+     * <code>SendTemplatedEmail</code> or <code>SendBulkTemplatedEmail</code>
+     * operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templateName <p>
-     *            The name of the template. You will refer to this name when you
-     *            send email using the <code>SendTemplatedEmail</code> or
+     *            The name of the template. You use this name when you send
+     *            email using the <code>SendTemplatedEmail</code> or
      *            <code>SendBulkTemplatedEmail</code> operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -159,13 +159,13 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The email body that will be visible to recipients whose email clients do
-     * not display HTML.
+     * The email body that is visible to recipients whose email clients do not
+     * display HTML content.
      * </p>
      *
      * @return <p>
-     *         The email body that will be visible to recipients whose email
-     *         clients do not display HTML.
+     *         The email body that is visible to recipients whose email clients
+     *         do not display HTML content.
      *         </p>
      */
     public String getTextPart() {
@@ -174,13 +174,13 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The email body that will be visible to recipients whose email clients do
-     * not display HTML.
+     * The email body that is visible to recipients whose email clients do not
+     * display HTML content.
      * </p>
      *
      * @param textPart <p>
-     *            The email body that will be visible to recipients whose email
-     *            clients do not display HTML.
+     *            The email body that is visible to recipients whose email
+     *            clients do not display HTML content.
      *            </p>
      */
     public void setTextPart(String textPart) {
@@ -189,16 +189,16 @@ public class Template implements Serializable {
 
     /**
      * <p>
-     * The email body that will be visible to recipients whose email clients do
-     * not display HTML.
+     * The email body that is visible to recipients whose email clients do not
+     * display HTML content.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param textPart <p>
-     *            The email body that will be visible to recipients whose email
-     *            clients do not display HTML.
+     *            The email body that is visible to recipients whose email
+     *            clients do not display HTML content.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

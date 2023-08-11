@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,21 +31,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteIdentityRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identity to be removed from the list of identities for the AWS
-     * Account.
+     * The identity to be removed from the list of identities for the Amazon Web
+     * Services account.
      * </p>
      */
     private String identity;
 
     /**
      * <p>
-     * The identity to be removed from the list of identities for the AWS
-     * Account.
+     * The identity to be removed from the list of identities for the Amazon Web
+     * Services account.
      * </p>
      *
      * @return <p>
      *         The identity to be removed from the list of identities for the
-     *         AWS Account.
+     *         Amazon Web Services account.
      *         </p>
      */
     public String getIdentity() {
@@ -54,13 +54,13 @@ public class DeleteIdentityRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The identity to be removed from the list of identities for the AWS
-     * Account.
+     * The identity to be removed from the list of identities for the Amazon Web
+     * Services account.
      * </p>
      *
      * @param identity <p>
      *            The identity to be removed from the list of identities for the
-     *            AWS Account.
+     *            Amazon Web Services account.
      *            </p>
      */
     public void setIdentity(String identity) {
@@ -69,8 +69,8 @@ public class DeleteIdentityRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The identity to be removed from the list of identities for the AWS
-     * Account.
+     * The identity to be removed from the list of identities for the Amazon Web
+     * Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -78,7 +78,7 @@ public class DeleteIdentityRequest extends AmazonWebServiceRequest implements Se
      *
      * @param identity <p>
      *            The identity to be removed from the list of identities for the
-     *            AWS Account.
+     *            Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

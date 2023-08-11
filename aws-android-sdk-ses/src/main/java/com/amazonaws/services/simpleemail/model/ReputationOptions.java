@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,8 +27,8 @@ public class ReputationOptions implements Serializable {
      * <p>
      * Describes whether email sending is enabled or disabled for the
      * configuration set. If the value is <code>true</code>, then Amazon SES
-     * will send emails that use the configuration set. If the value is
-     * <code>false</code>, Amazon SES will not send emails that use the
+     * sends emails that use the configuration set. If the value is
+     * <code>false</code>, Amazon SES does not send emails that use the
      * configuration set. The default value is <code>true</code>. You can change
      * this setting using <a>UpdateConfigurationSetSendingEnabled</a>.
      * </p>
@@ -72,8 +72,8 @@ public class ReputationOptions implements Serializable {
      * <p>
      * Describes whether email sending is enabled or disabled for the
      * configuration set. If the value is <code>true</code>, then Amazon SES
-     * will send emails that use the configuration set. If the value is
-     * <code>false</code>, Amazon SES will not send emails that use the
+     * sends emails that use the configuration set. If the value is
+     * <code>false</code>, Amazon SES does not send emails that use the
      * configuration set. The default value is <code>true</code>. You can change
      * this setting using <a>UpdateConfigurationSetSendingEnabled</a>.
      * </p>
@@ -81,10 +81,10 @@ public class ReputationOptions implements Serializable {
      * @return <p>
      *         Describes whether email sending is enabled or disabled for the
      *         configuration set. If the value is <code>true</code>, then Amazon
-     *         SES will send emails that use the configuration set. If the value
-     *         is <code>false</code>, Amazon SES will not send emails that use
-     *         the configuration set. The default value is <code>true</code>.
-     *         You can change this setting using
+     *         SES sends emails that use the configuration set. If the value is
+     *         <code>false</code>, Amazon SES does not send emails that use the
+     *         configuration set. The default value is <code>true</code>. You
+     *         can change this setting using
      *         <a>UpdateConfigurationSetSendingEnabled</a>.
      *         </p>
      */
@@ -96,8 +96,8 @@ public class ReputationOptions implements Serializable {
      * <p>
      * Describes whether email sending is enabled or disabled for the
      * configuration set. If the value is <code>true</code>, then Amazon SES
-     * will send emails that use the configuration set. If the value is
-     * <code>false</code>, Amazon SES will not send emails that use the
+     * sends emails that use the configuration set. If the value is
+     * <code>false</code>, Amazon SES does not send emails that use the
      * configuration set. The default value is <code>true</code>. You can change
      * this setting using <a>UpdateConfigurationSetSendingEnabled</a>.
      * </p>
@@ -105,10 +105,10 @@ public class ReputationOptions implements Serializable {
      * @return <p>
      *         Describes whether email sending is enabled or disabled for the
      *         configuration set. If the value is <code>true</code>, then Amazon
-     *         SES will send emails that use the configuration set. If the value
-     *         is <code>false</code>, Amazon SES will not send emails that use
-     *         the configuration set. The default value is <code>true</code>.
-     *         You can change this setting using
+     *         SES sends emails that use the configuration set. If the value is
+     *         <code>false</code>, Amazon SES does not send emails that use the
+     *         configuration set. The default value is <code>true</code>. You
+     *         can change this setting using
      *         <a>UpdateConfigurationSetSendingEnabled</a>.
      *         </p>
      */
@@ -120,8 +120,8 @@ public class ReputationOptions implements Serializable {
      * <p>
      * Describes whether email sending is enabled or disabled for the
      * configuration set. If the value is <code>true</code>, then Amazon SES
-     * will send emails that use the configuration set. If the value is
-     * <code>false</code>, Amazon SES will not send emails that use the
+     * sends emails that use the configuration set. If the value is
+     * <code>false</code>, Amazon SES does not send emails that use the
      * configuration set. The default value is <code>true</code>. You can change
      * this setting using <a>UpdateConfigurationSetSendingEnabled</a>.
      * </p>
@@ -129,9 +129,9 @@ public class ReputationOptions implements Serializable {
      * @param sendingEnabled <p>
      *            Describes whether email sending is enabled or disabled for the
      *            configuration set. If the value is <code>true</code>, then
-     *            Amazon SES will send emails that use the configuration set. If
-     *            the value is <code>false</code>, Amazon SES will not send
-     *            emails that use the configuration set. The default value is
+     *            Amazon SES sends emails that use the configuration set. If the
+     *            value is <code>false</code>, Amazon SES does not send emails
+     *            that use the configuration set. The default value is
      *            <code>true</code>. You can change this setting using
      *            <a>UpdateConfigurationSetSendingEnabled</a>.
      *            </p>
@@ -144,8 +144,8 @@ public class ReputationOptions implements Serializable {
      * <p>
      * Describes whether email sending is enabled or disabled for the
      * configuration set. If the value is <code>true</code>, then Amazon SES
-     * will send emails that use the configuration set. If the value is
-     * <code>false</code>, Amazon SES will not send emails that use the
+     * sends emails that use the configuration set. If the value is
+     * <code>false</code>, Amazon SES does not send emails that use the
      * configuration set. The default value is <code>true</code>. You can change
      * this setting using <a>UpdateConfigurationSetSendingEnabled</a>.
      * </p>
@@ -156,9 +156,9 @@ public class ReputationOptions implements Serializable {
      * @param sendingEnabled <p>
      *            Describes whether email sending is enabled or disabled for the
      *            configuration set. If the value is <code>true</code>, then
-     *            Amazon SES will send emails that use the configuration set. If
-     *            the value is <code>false</code>, Amazon SES will not send
-     *            emails that use the configuration set. The default value is
+     *            Amazon SES sends emails that use the configuration set. If the
+     *            value is <code>false</code>, Amazon SES does not send emails
+     *            that use the configuration set. The default value is
      *            <code>true</code>. You can change this setting using
      *            <a>UpdateConfigurationSetSendingEnabled</a>.
      *            </p>

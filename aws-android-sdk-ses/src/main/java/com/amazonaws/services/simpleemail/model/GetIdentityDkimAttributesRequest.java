@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information about creating DNS records using DKIM tokens, go to the
  * <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim-dns-records.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy-managing.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

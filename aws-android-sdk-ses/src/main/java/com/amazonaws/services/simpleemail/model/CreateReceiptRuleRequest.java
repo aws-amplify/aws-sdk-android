@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For information about setting up receipt rules, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-receipt-rules-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -35,16 +35,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the rule set that the receipt rule will be added to.
+     * The name of the rule set where the receipt rule is added.
      * </p>
      */
     private String ruleSetName;
 
     /**
      * <p>
-     * The name of an existing rule after which the new rule will be placed. If
-     * this parameter is null, the new rule will be inserted at the beginning of
-     * the rule list.
+     * The name of an existing rule after which the new rule is placed. If this
+     * parameter is null, the new rule is inserted at the beginning of the rule
+     * list.
      * </p>
      */
     private String after;
@@ -59,11 +59,11 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set that the receipt rule will be added to.
+     * The name of the rule set where the receipt rule is added.
      * </p>
      *
      * @return <p>
-     *         The name of the rule set that the receipt rule will be added to.
+     *         The name of the rule set where the receipt rule is added.
      *         </p>
      */
     public String getRuleSetName() {
@@ -72,12 +72,11 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set that the receipt rule will be added to.
+     * The name of the rule set where the receipt rule is added.
      * </p>
      *
      * @param ruleSetName <p>
-     *            The name of the rule set that the receipt rule will be added
-     *            to.
+     *            The name of the rule set where the receipt rule is added.
      *            </p>
      */
     public void setRuleSetName(String ruleSetName) {
@@ -86,15 +85,14 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the rule set that the receipt rule will be added to.
+     * The name of the rule set where the receipt rule is added.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ruleSetName <p>
-     *            The name of the rule set that the receipt rule will be added
-     *            to.
+     *            The name of the rule set where the receipt rule is added.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -106,15 +104,15 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of an existing rule after which the new rule will be placed. If
-     * this parameter is null, the new rule will be inserted at the beginning of
-     * the rule list.
+     * The name of an existing rule after which the new rule is placed. If this
+     * parameter is null, the new rule is inserted at the beginning of the rule
+     * list.
      * </p>
      *
      * @return <p>
-     *         The name of an existing rule after which the new rule will be
-     *         placed. If this parameter is null, the new rule will be inserted
-     *         at the beginning of the rule list.
+     *         The name of an existing rule after which the new rule is placed.
+     *         If this parameter is null, the new rule is inserted at the
+     *         beginning of the rule list.
      *         </p>
      */
     public String getAfter() {
@@ -123,15 +121,15 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of an existing rule after which the new rule will be placed. If
-     * this parameter is null, the new rule will be inserted at the beginning of
-     * the rule list.
+     * The name of an existing rule after which the new rule is placed. If this
+     * parameter is null, the new rule is inserted at the beginning of the rule
+     * list.
      * </p>
      *
      * @param after <p>
-     *            The name of an existing rule after which the new rule will be
-     *            placed. If this parameter is null, the new rule will be
-     *            inserted at the beginning of the rule list.
+     *            The name of an existing rule after which the new rule is
+     *            placed. If this parameter is null, the new rule is inserted at
+     *            the beginning of the rule list.
      *            </p>
      */
     public void setAfter(String after) {
@@ -140,18 +138,18 @@ public class CreateReceiptRuleRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of an existing rule after which the new rule will be placed. If
-     * this parameter is null, the new rule will be inserted at the beginning of
-     * the rule list.
+     * The name of an existing rule after which the new rule is placed. If this
+     * parameter is null, the new rule is inserted at the beginning of the rule
+     * list.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param after <p>
-     *            The name of an existing rule after which the new rule will be
-     *            placed. If this parameter is null, the new rule will be
-     *            inserted at the beginning of the rule list.
+     *            The name of an existing rule after which the new rule is
+     *            placed. If this parameter is null, the new rule is inserted at
+     *            the beginning of the rule list.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

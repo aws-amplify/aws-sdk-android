@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * All of the rules in the rule set must be represented in this request. That
- * is, this API will return an error if the reorder request doesn't explicitly
- * position all of the rules.
+ * is, it is error if the reorder request doesn't explicitly position all of the
+ * rules.
  * </p>
  * </note>
  * <p>
  * For information about managing receipt rule sets, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-receipt-rule-sets.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-receipt-rules-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -49,8 +49,7 @@ public class ReorderReceiptRuleSetRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A list of the specified receipt rule set's receipt rules in the order
-     * that you want to put them.
+     * The specified receipt rule set's receipt rules, in order.
      * </p>
      */
     private java.util.List<String> ruleNames = new java.util.ArrayList<String>();
@@ -102,13 +101,11 @@ public class ReorderReceiptRuleSetRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A list of the specified receipt rule set's receipt rules in the order
-     * that you want to put them.
+     * The specified receipt rule set's receipt rules, in order.
      * </p>
      *
      * @return <p>
-     *         A list of the specified receipt rule set's receipt rules in the
-     *         order that you want to put them.
+     *         The specified receipt rule set's receipt rules, in order.
      *         </p>
      */
     public java.util.List<String> getRuleNames() {
@@ -117,13 +114,11 @@ public class ReorderReceiptRuleSetRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A list of the specified receipt rule set's receipt rules in the order
-     * that you want to put them.
+     * The specified receipt rule set's receipt rules, in order.
      * </p>
      *
      * @param ruleNames <p>
-     *            A list of the specified receipt rule set's receipt rules in
-     *            the order that you want to put them.
+     *            The specified receipt rule set's receipt rules, in order.
      *            </p>
      */
     public void setRuleNames(java.util.Collection<String> ruleNames) {
@@ -137,16 +132,14 @@ public class ReorderReceiptRuleSetRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A list of the specified receipt rule set's receipt rules in the order
-     * that you want to put them.
+     * The specified receipt rule set's receipt rules, in order.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ruleNames <p>
-     *            A list of the specified receipt rule set's receipt rules in
-     *            the order that you want to put them.
+     *            The specified receipt rule set's receipt rules, in order.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -163,16 +156,14 @@ public class ReorderReceiptRuleSetRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A list of the specified receipt rule set's receipt rules in the order
-     * that you want to put them.
+     * The specified receipt rule set's receipt rules, in order.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ruleNames <p>
-     *            A list of the specified receipt rule set's receipt rules in
-     *            the order that you want to put them.
+     *            The specified receipt rule set's receipt rules, in order.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

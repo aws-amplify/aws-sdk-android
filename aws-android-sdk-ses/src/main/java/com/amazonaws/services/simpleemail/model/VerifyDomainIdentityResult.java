@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -34,8 +34,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      * status is "Pending". When Amazon SES detects the record, the domain's
      * verification status changes to "Success". If Amazon SES is unable to
      * detect the record within 72 hours, the domain's verification status
-     * changes to "Failed." In that case, if you still want to verify the
-     * domain, you must restart the verification process from the beginning.
+     * changes to "Failed." In that case, to verify the domain, you must restart
+     * the verification process from the beginning. The domain's verification
+     * status also changes to "Success" when it is DKIM verified.
      * </p>
      */
     private String verificationToken;
@@ -50,8 +51,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      * status is "Pending". When Amazon SES detects the record, the domain's
      * verification status changes to "Success". If Amazon SES is unable to
      * detect the record within 72 hours, the domain's verification status
-     * changes to "Failed." In that case, if you still want to verify the
-     * domain, you must restart the verification process from the beginning.
+     * changes to "Failed." In that case, to verify the domain, you must restart
+     * the verification process from the beginning. The domain's verification
+     * status also changes to "Success" when it is DKIM verified.
      * </p>
      *
      * @return <p>
@@ -64,8 +66,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      *         record, the domain's verification status changes to "Success". If
      *         Amazon SES is unable to detect the record within 72 hours, the
      *         domain's verification status changes to "Failed." In that case,
-     *         if you still want to verify the domain, you must restart the
-     *         verification process from the beginning.
+     *         to verify the domain, you must restart the verification process
+     *         from the beginning. The domain's verification status also changes
+     *         to "Success" when it is DKIM verified.
      *         </p>
      */
     public String getVerificationToken() {
@@ -82,8 +85,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      * status is "Pending". When Amazon SES detects the record, the domain's
      * verification status changes to "Success". If Amazon SES is unable to
      * detect the record within 72 hours, the domain's verification status
-     * changes to "Failed." In that case, if you still want to verify the
-     * domain, you must restart the verification process from the beginning.
+     * changes to "Failed." In that case, to verify the domain, you must restart
+     * the verification process from the beginning. The domain's verification
+     * status also changes to "Success" when it is DKIM verified.
      * </p>
      *
      * @param verificationToken <p>
@@ -96,8 +100,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      *            record, the domain's verification status changes to "Success".
      *            If Amazon SES is unable to detect the record within 72 hours,
      *            the domain's verification status changes to "Failed." In that
-     *            case, if you still want to verify the domain, you must restart
-     *            the verification process from the beginning.
+     *            case, to verify the domain, you must restart the verification
+     *            process from the beginning. The domain's verification status
+     *            also changes to "Success" when it is DKIM verified.
      *            </p>
      */
     public void setVerificationToken(String verificationToken) {
@@ -114,8 +119,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      * status is "Pending". When Amazon SES detects the record, the domain's
      * verification status changes to "Success". If Amazon SES is unable to
      * detect the record within 72 hours, the domain's verification status
-     * changes to "Failed." In that case, if you still want to verify the
-     * domain, you must restart the verification process from the beginning.
+     * changes to "Failed." In that case, to verify the domain, you must restart
+     * the verification process from the beginning. The domain's verification
+     * status also changes to "Success" when it is DKIM verified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -131,8 +137,9 @@ public class VerifyDomainIdentityResult implements Serializable {
      *            record, the domain's verification status changes to "Success".
      *            If Amazon SES is unable to detect the record within 72 hours,
      *            the domain's verification status changes to "Failed." In that
-     *            case, if you still want to verify the domain, you must restart
-     *            the verification process from the beginning.
+     *            case, to verify the domain, you must restart the verification
+     *            process from the beginning. The domain's verification status
+     *            also changes to "Success" when it is DKIM verified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
