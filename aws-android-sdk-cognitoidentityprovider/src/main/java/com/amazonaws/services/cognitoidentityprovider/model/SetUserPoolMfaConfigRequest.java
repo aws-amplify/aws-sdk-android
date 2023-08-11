@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>

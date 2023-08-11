@@ -107,6 +107,11 @@ public class DecryptRequestMarshaller implements
                 jsonWriter.name("Recipient");
                 RecipientInfoJsonMarshaller.getInstance().marshall(recipient, jsonWriter);
             }
+            if (decryptRequest.getDryRun() != null) {
+                Boolean dryRun = decryptRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

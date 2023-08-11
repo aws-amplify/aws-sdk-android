@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ public class AuthEventType implements Serializable {
      * <p>
      * The event ID.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String eventId;
 
@@ -43,7 +46,9 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The creation date
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was created.
      * </p>
      */
     private java.util.Date creationDate;
@@ -93,6 +98,9 @@ public class AuthEventType implements Serializable {
      * <p>
      * The event ID.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The event ID.
@@ -106,6 +114,9 @@ public class AuthEventType implements Serializable {
      * <p>
      * The event ID.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param eventId <p>
      *            The event ID.
@@ -122,6 +133,9 @@ public class AuthEventType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param eventId <p>
      *            The event ID.
@@ -238,11 +252,15 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The creation date
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was created.
      * </p>
      *
      * @return <p>
-     *         The creation date
+     *         The date and time, in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format, when the item was created.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -251,11 +269,15 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The creation date
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was created.
      * </p>
      *
      * @param creationDate <p>
-     *            The creation date
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was created.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -264,14 +286,18 @@ public class AuthEventType implements Serializable {
 
     /**
      * <p>
-     * The creation date
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was created.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param creationDate <p>
-     *            The creation date
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was created.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

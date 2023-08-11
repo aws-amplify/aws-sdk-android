@@ -441,6 +441,33 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Associates an agent with a traffic distribution group.
+     * </p>
+     * 
+     * @param associateTrafficDistributionGroupUserRequest
+     * @return associateTrafficDistributionGroupUserResult The response from the
+     *         AssociateTrafficDistributionGroupUser service method, as returned
+     *         by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    AssociateTrafficDistributionGroupUserResult associateTrafficDistributionGroupUser(
+            AssociateTrafficDistributionGroupUserRequest associateTrafficDistributionGroupUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Claims an available phone number to your Amazon Connect instance or
      * traffic distribution group. You can call this API only in the same Amazon
      * Web Services Region where the Amazon Connect instance or traffic
@@ -805,6 +832,14 @@ public interface AmazonConnect {
      * with the traffic distribution group, you must provide a full phone number
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
+     * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
      * </p>
      * </important>
      * 
@@ -1363,6 +1398,29 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Deletes a queue.
+     * </p>
+     * 
+     * @param deleteQueueRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteQueue(DeleteQueueRequest deleteQueueRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a quick connect.
      * </p>
      * 
@@ -1381,6 +1439,29 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a routing profile.
+     * </p>
+     * 
+     * @param deleteRoutingProfileRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteRoutingProfile(DeleteRoutingProfileRequest deleteRoutingProfileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2474,6 +2555,33 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Disassociates an agent from a traffic distribution group.
+     * </p>
+     * 
+     * @param disassociateTrafficDistributionGroupUserRequest
+     * @return disassociateTrafficDistributionGroupUserResult The response from
+     *         the DisassociateTrafficDistributionGroupUser service method, as
+     *         returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DisassociateTrafficDistributionGroupUserResult disassociateTrafficDistributionGroupUser(
+            DisassociateTrafficDistributionGroupUserRequest disassociateTrafficDistributionGroupUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Dismisses contacts from an agent’s CCP and returns the agent to an
      * available state, which allows the agent to receive a new routed contact.
      * Contacts can only be dismissed if they are in a <code>MISSED</code>,
@@ -3317,6 +3425,23 @@ public interface AmazonConnect {
      * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
      * Connect Administrator Guide</i>.
      * </p>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * When given an instance ARN, <code>ListPhoneNumbersV2</code> returns only
+     * the phone numbers claimed to the instance.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When given a traffic distribution group ARN
+     * <code>ListPhoneNumbersV2</code> returns only the phone numbers claimed to
+     * the traffic distribution group.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
      * 
      * @param listPhoneNumbersV2Request
      * @return listPhoneNumbersV2Result The response from the ListPhoneNumbersV2
@@ -3684,6 +3809,32 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     ListTaskTemplatesResult listTaskTemplates(ListTaskTemplatesRequest listTaskTemplatesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists traffic distribution group users.
+     * </p>
+     * 
+     * @param listTrafficDistributionGroupUsersRequest
+     * @return listTrafficDistributionGroupUsersResult The response from the
+     *         ListTrafficDistributionGroupUsers service method, as returned by
+     *         Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTrafficDistributionGroupUsersResult listTrafficDistributionGroupUsers(
+            ListTrafficDistributionGroupUsersRequest listTrafficDistributionGroupUsersRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -4062,10 +4213,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches queues in an Amazon Connect instance, with optional filtering.
      * </p>
      * 
@@ -4143,10 +4290,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Searches routing profiles in an Amazon Connect instance, with optional
      * filtering.
      * </p>
@@ -4173,10 +4316,6 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Searches security profiles in an Amazon Connect instance, with optional
      * filtering.
@@ -5480,6 +5619,14 @@ public interface AmazonConnect {
      * ARN. If a UUID is provided in this scenario, you will receive a
      * <code>ResourceNotFoundException</code>.
      * </p>
+     * <p>
+     * Only use the phone number ARN format that doesn't contain
+     * <code>instance</code> in the path, for example,
+     * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This
+     * is the same ARN format that is returned when you call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> API.
+     * </p>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -5570,6 +5717,31 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void updateQuickConnectName(UpdateQuickConnectNameRequest updateQuickConnectNameRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>time since their last inbound contact</i> or
+     * <i>longest idle time</i>.
+     * </p>
+     * 
+     * @param updateRoutingProfileAgentAvailabilityTimerRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRoutingProfileAgentAvailabilityTimer(
+            UpdateRoutingProfileAgentAvailabilityTimerRequest updateRoutingProfileAgentAvailabilityTimerRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -5753,6 +5925,16 @@ public interface AmazonConnect {
      * <p>
      * Updates the traffic distribution for a given traffic distribution group.
      * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
      * <p>
      * For more information about updating a traffic distribution group, see <a
      * href=

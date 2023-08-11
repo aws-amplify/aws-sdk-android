@@ -26,9 +26,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * existing Amazon Rekognition Custom Labels dataset.
  * </p>
  * <p>
- * To create a training dataset for a project, specify <code>train</code> for
+ * To create a training dataset for a project, specify <code>TRAIN</code> for
  * the value of <code>DatasetType</code>. To create the test dataset for a
- * project, specify <code>test</code> for the value of <code>DatasetType</code>.
+ * project, specify <code>TEST</code> for the value of <code>DatasetType</code>.
  * </p>
  * <p>
  * The response from <code>CreateDataset</code> is the Amazon Resource Name
@@ -71,8 +71,8 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,16 +168,16 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAIN, TEST
      *
      * @return <p>
-     *         The type of the dataset. Specify <code>train</code> to create a
-     *         training dataset. Specify <code>test</code> to create a test
+     *         The type of the dataset. Specify <code>TRAIN</code> to create a
+     *         training dataset. Specify <code>TEST</code> to create a test
      *         dataset.
      *         </p>
      * @see DatasetType
@@ -188,16 +188,16 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAIN, TEST
      *
      * @param datasetType <p>
-     *            The type of the dataset. Specify <code>train</code> to create
-     *            a training dataset. Specify <code>test</code> to create a test
+     *            The type of the dataset. Specify <code>TRAIN</code> to create
+     *            a training dataset. Specify <code>TEST</code> to create a test
      *            dataset.
      *            </p>
      * @see DatasetType
@@ -208,8 +208,8 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -219,8 +219,8 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
      * <b>Allowed Values: </b>TRAIN, TEST
      *
      * @param datasetType <p>
-     *            The type of the dataset. Specify <code>train</code> to create
-     *            a training dataset. Specify <code>test</code> to create a test
+     *            The type of the dataset. Specify <code>TRAIN</code> to create
+     *            a training dataset. Specify <code>TEST</code> to create a test
      *            dataset.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -234,16 +234,16 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRAIN, TEST
      *
      * @param datasetType <p>
-     *            The type of the dataset. Specify <code>train</code> to create
-     *            a training dataset. Specify <code>test</code> to create a test
+     *            The type of the dataset. Specify <code>TRAIN</code> to create
+     *            a training dataset. Specify <code>TEST</code> to create a test
      *            dataset.
      *            </p>
      * @see DatasetType
@@ -254,8 +254,8 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of the dataset. Specify <code>train</code> to create a training
-     * dataset. Specify <code>test</code> to create a test dataset.
+     * The type of the dataset. Specify <code>TRAIN</code> to create a training
+     * dataset. Specify <code>TEST</code> to create a test dataset.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,8 +265,8 @@ public class CreateDatasetRequest extends AmazonWebServiceRequest implements Ser
      * <b>Allowed Values: </b>TRAIN, TEST
      *
      * @param datasetType <p>
-     *            The type of the dataset. Specify <code>train</code> to create
-     *            a training dataset. Specify <code>test</code> to create a test
+     *            The type of the dataset. Specify <code>TRAIN</code> to create
+     *            a training dataset. Specify <code>TEST</code> to create a test
      *            dataset.
      *            </p>
      * @return A reference to this updated object so that method calls can be

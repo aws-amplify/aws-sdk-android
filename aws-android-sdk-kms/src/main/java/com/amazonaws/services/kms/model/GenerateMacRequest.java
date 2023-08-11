@@ -136,6 +136,20 @@ public class GenerateMacRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
      * The message to be hashed. Specify a message of up to 4,096 bytes.
      * </p>
      * <p>
@@ -640,6 +654,120 @@ public class GenerateMacRequest extends AmazonWebServiceRequest implements Seria
     }
 
     /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GenerateMacRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -657,7 +785,9 @@ public class GenerateMacRequest extends AmazonWebServiceRequest implements Seria
         if (getMacAlgorithm() != null)
             sb.append("MacAlgorithm: " + getMacAlgorithm() + ",");
         if (getGrantTokens() != null)
-            sb.append("GrantTokens: " + getGrantTokens());
+            sb.append("GrantTokens: " + getGrantTokens() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
@@ -673,6 +803,7 @@ public class GenerateMacRequest extends AmazonWebServiceRequest implements Seria
                 + ((getMacAlgorithm() == null) ? 0 : getMacAlgorithm().hashCode());
         hashCode = prime * hashCode
                 + ((getGrantTokens() == null) ? 0 : getGrantTokens().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
 
@@ -704,6 +835,10 @@ public class GenerateMacRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getGrantTokens() != null
                 && other.getGrantTokens().equals(this.getGrantTokens()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
             return false;
         return true;
     }
