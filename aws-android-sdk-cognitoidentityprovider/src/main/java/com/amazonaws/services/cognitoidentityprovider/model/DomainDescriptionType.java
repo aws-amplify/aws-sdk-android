@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,10 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The Amazon Web Services ID for the user pool owner.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      */
     private String aWSAccountId;
 
@@ -67,8 +71,12 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
+     * The Amazon CloudFront endpoint that you use as the target of the alias
+     * that you set up with your Domain Name Service (DNS) provider.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String cloudFrontDistribution;
 
@@ -161,6 +169,10 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The Amazon Web Services ID for the user pool owner.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Web Services ID for the user pool owner.
@@ -174,6 +186,10 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * The Amazon Web Services ID for the user pool owner.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param aWSAccountId <p>
      *            The Amazon Web Services ID for the user pool owner.
@@ -190,6 +206,10 @@ public class DomainDescriptionType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 12<br/>
+     * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param aWSAccountId <p>
      *            The Amazon Web Services ID for the user pool owner.
@@ -336,12 +356,17 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
+     * The Amazon CloudFront endpoint that you use as the target of the alias
+     * that you set up with your Domain Name Service (DNS) provider.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the Amazon CloudFront
-     *         distribution.
+     *         The Amazon CloudFront endpoint that you use as the target of the
+     *         alias that you set up with your Domain Name Service (DNS)
+     *         provider.
      *         </p>
      */
     public String getCloudFrontDistribution() {
@@ -350,12 +375,17 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
+     * The Amazon CloudFront endpoint that you use as the target of the alias
+     * that you set up with your Domain Name Service (DNS) provider.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param cloudFrontDistribution <p>
-     *            The Amazon Resource Name (ARN) of the Amazon CloudFront
-     *            distribution.
+     *            The Amazon CloudFront endpoint that you use as the target of
+     *            the alias that you set up with your Domain Name Service (DNS)
+     *            provider.
      *            </p>
      */
     public void setCloudFrontDistribution(String cloudFrontDistribution) {
@@ -364,15 +394,20 @@ public class DomainDescriptionType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Amazon CloudFront distribution.
+     * The Amazon CloudFront endpoint that you use as the target of the alias
+     * that you set up with your Domain Name Service (DNS) provider.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param cloudFrontDistribution <p>
-     *            The Amazon Resource Name (ARN) of the Amazon CloudFront
-     *            distribution.
+     *            The Amazon CloudFront endpoint that you use as the target of
+     *            the alias that you set up with your Domain Name Service (DNS)
+     *            provider.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

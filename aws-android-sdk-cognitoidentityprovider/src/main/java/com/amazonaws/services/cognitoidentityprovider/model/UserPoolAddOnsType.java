@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,13 +19,21 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The user pool add-ons type.
+ * User pool add-ons. Contains settings for activation of advanced security
+ * features. To log user security information but take no action, set to
+ * <code>AUDIT</code>. To configure automatic security responses to risky
+ * traffic to your user pool, set to <code>ENFORCED</code>.
+ * </p>
+ * <p>
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+ * >Adding advanced security to a user pool</a>.
  * </p>
  */
 public class UserPoolAddOnsType implements Serializable {
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,14 +43,15 @@ public class UserPoolAddOnsType implements Serializable {
 
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, AUDIT, ENFORCED
      *
      * @return <p>
-     *         The advanced security mode.
+     *         The operating mode of advanced security features in your user
+     *         pool.
      *         </p>
      * @see AdvancedSecurityModeType
      */
@@ -52,14 +61,15 @@ public class UserPoolAddOnsType implements Serializable {
 
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, AUDIT, ENFORCED
      *
      * @param advancedSecurityMode <p>
-     *            The advanced security mode.
+     *            The operating mode of advanced security features in your user
+     *            pool.
      *            </p>
      * @see AdvancedSecurityModeType
      */
@@ -69,7 +79,7 @@ public class UserPoolAddOnsType implements Serializable {
 
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -79,7 +89,8 @@ public class UserPoolAddOnsType implements Serializable {
      * <b>Allowed Values: </b>OFF, AUDIT, ENFORCED
      *
      * @param advancedSecurityMode <p>
-     *            The advanced security mode.
+     *            The operating mode of advanced security features in your user
+     *            pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -92,14 +103,15 @@ public class UserPoolAddOnsType implements Serializable {
 
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OFF, AUDIT, ENFORCED
      *
      * @param advancedSecurityMode <p>
-     *            The advanced security mode.
+     *            The operating mode of advanced security features in your user
+     *            pool.
      *            </p>
      * @see AdvancedSecurityModeType
      */
@@ -109,7 +121,7 @@ public class UserPoolAddOnsType implements Serializable {
 
     /**
      * <p>
-     * The advanced security mode.
+     * The operating mode of advanced security features in your user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -119,7 +131,8 @@ public class UserPoolAddOnsType implements Serializable {
      * <b>Allowed Values: </b>OFF, AUDIT, ENFORCED
      *
      * @param advancedSecurityMode <p>
-     *            The advanced security mode.
+     *            The operating mode of advanced security features in your user
+     *            pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -92,6 +92,11 @@ class RoutingProfileJsonMarshaller {
             jsonWriter.name("NumberOfAssociatedUsers");
             jsonWriter.value(numberOfAssociatedUsers);
         }
+        if (routingProfile.getAgentAvailabilityTimer() != null) {
+            String agentAvailabilityTimer = routingProfile.getAgentAvailabilityTimer();
+            jsonWriter.name("AgentAvailabilityTimer");
+            jsonWriter.value(agentAvailabilityTimer);
+        }
         jsonWriter.endObject();
     }
 

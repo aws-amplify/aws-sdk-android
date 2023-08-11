@@ -32,6 +32,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect
  * Administrator Guide</i>.
  * </p>
+ * <note>
+ * <ul>
+ * <li>
+ * <p>
+ * When given an instance ARN, <code>ListPhoneNumbersV2</code> returns only the
+ * phone numbers claimed to the instance.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * When given a traffic distribution group ARN <code>ListPhoneNumbersV2</code>
+ * returns only the phone numbers claimed to the traffic distribution group.
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class ListPhoneNumbersV2Request extends AmazonWebServiceRequest implements Serializable {
     /**

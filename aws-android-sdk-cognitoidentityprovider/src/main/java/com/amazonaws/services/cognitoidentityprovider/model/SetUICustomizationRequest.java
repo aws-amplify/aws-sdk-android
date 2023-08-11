@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -67,6 +67,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The CSS values in the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String cSS;
 
@@ -74,6 +77,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The uploaded logo image for the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private java.nio.ByteBuffer imageFile;
 
@@ -195,6 +201,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The CSS values in the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The CSS values in the UI customization.
@@ -208,6 +217,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The CSS values in the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param cSS <p>
      *            The CSS values in the UI customization.
@@ -224,6 +236,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param cSS <p>
      *            The CSS values in the UI customization.
@@ -240,6 +255,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The uploaded logo image for the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The uploaded logo image for the UI customization.
@@ -253,6 +271,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * The uploaded logo image for the UI customization.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param imageFile <p>
      *            The uploaded logo image for the UI customization.
@@ -269,6 +290,9 @@ public class SetUICustomizationRequest extends AmazonWebServiceRequest implement
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param imageFile <p>
      *            The uploaded logo image for the UI customization.

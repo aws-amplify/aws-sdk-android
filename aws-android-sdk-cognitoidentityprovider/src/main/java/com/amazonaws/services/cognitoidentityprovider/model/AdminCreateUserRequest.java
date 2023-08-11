@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>
@@ -65,9 +65,33 @@ import com.amazonaws.AmazonWebServiceRequest;
  * In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code>
  * state until they sign in and change their password.
  * </p>
+ * <note>
  * <p>
- * <code>AdminCreateUser</code> requires developer credentials.
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
  * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class AdminCreateUserRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -181,10 +205,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * The temporary password can only be used until the user account expiration
-     * limit that you specified when you created the user pool. To reset the
-     * account after that time limit, you must call <code>AdminCreateUser</code>
-     * again, specifying <code>"RESEND"</code> for the
-     * <code>MessageAction</code> parameter.
+     * limit that you set for your user pool. To reset the account after that
+     * time limit, you must call <code>AdminCreateUser</code> again and specify
+     * <code>RESEND</code> for the <code>MessageAction</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1059,10 +1082,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * The temporary password can only be used until the user account expiration
-     * limit that you specified when you created the user pool. To reset the
-     * account after that time limit, you must call <code>AdminCreateUser</code>
-     * again, specifying <code>"RESEND"</code> for the
-     * <code>MessageAction</code> parameter.
+     * limit that you set for your user pool. To reset the account after that
+     * time limit, you must call <code>AdminCreateUser</code> again and specify
+     * <code>RESEND</code> for the <code>MessageAction</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1086,11 +1108,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *         </p>
      *         <p>
      *         The temporary password can only be used until the user account
-     *         expiration limit that you specified when you created the user
-     *         pool. To reset the account after that time limit, you must call
-     *         <code>AdminCreateUser</code> again, specifying
-     *         <code>"RESEND"</code> for the <code>MessageAction</code>
-     *         parameter.
+     *         expiration limit that you set for your user pool. To reset the
+     *         account after that time limit, you must call
+     *         <code>AdminCreateUser</code> again and specify
+     *         <code>RESEND</code> for the <code>MessageAction</code> parameter.
      *         </p>
      */
     public String getTemporaryPassword() {
@@ -1113,10 +1134,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * The temporary password can only be used until the user account expiration
-     * limit that you specified when you created the user pool. To reset the
-     * account after that time limit, you must call <code>AdminCreateUser</code>
-     * again, specifying <code>"RESEND"</code> for the
-     * <code>MessageAction</code> parameter.
+     * limit that you set for your user pool. To reset the account after that
+     * time limit, you must call <code>AdminCreateUser</code> again and specify
+     * <code>RESEND</code> for the <code>MessageAction</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1140,10 +1160,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            The temporary password can only be used until the user account
-     *            expiration limit that you specified when you created the user
-     *            pool. To reset the account after that time limit, you must
-     *            call <code>AdminCreateUser</code> again, specifying
-     *            <code>"RESEND"</code> for the <code>MessageAction</code>
+     *            expiration limit that you set for your user pool. To reset the
+     *            account after that time limit, you must call
+     *            <code>AdminCreateUser</code> again and specify
+     *            <code>RESEND</code> for the <code>MessageAction</code>
      *            parameter.
      *            </p>
      */
@@ -1167,10 +1187,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * The temporary password can only be used until the user account expiration
-     * limit that you specified when you created the user pool. To reset the
-     * account after that time limit, you must call <code>AdminCreateUser</code>
-     * again, specifying <code>"RESEND"</code> for the
-     * <code>MessageAction</code> parameter.
+     * limit that you set for your user pool. To reset the account after that
+     * time limit, you must call <code>AdminCreateUser</code> again and specify
+     * <code>RESEND</code> for the <code>MessageAction</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1197,10 +1216,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            </p>
      *            <p>
      *            The temporary password can only be used until the user account
-     *            expiration limit that you specified when you created the user
-     *            pool. To reset the account after that time limit, you must
-     *            call <code>AdminCreateUser</code> again, specifying
-     *            <code>"RESEND"</code> for the <code>MessageAction</code>
+     *            expiration limit that you set for your user pool. To reset the
+     *            account after that time limit, you must call
+     *            <code>AdminCreateUser</code> again and specify
+     *            <code>RESEND</code> for the <code>MessageAction</code>
      *            parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -67,7 +67,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of user IDs to match when listing faces in a collection.
+     * An array of user IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -78,7 +79,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of face IDs to match when listing faces in a collection.
+     * An array of face IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      */
     private java.util.List<String> faceIds;
@@ -286,7 +288,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of user IDs to match when listing faces in a collection.
+     * An array of user IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -294,7 +297,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @return <p>
-     *         An array of user IDs to match when listing faces in a collection.
+     *         An array of user IDs to filter results with when listing faces in
+     *         a collection.
      *         </p>
      */
     public String getUserId() {
@@ -303,7 +307,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of user IDs to match when listing faces in a collection.
+     * An array of user IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -311,8 +316,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param userId <p>
-     *            An array of user IDs to match when listing faces in a
-     *            collection.
+     *            An array of user IDs to filter results with when listing faces
+     *            in a collection.
      *            </p>
      */
     public void setUserId(String userId) {
@@ -321,7 +326,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of user IDs to match when listing faces in a collection.
+     * An array of user IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -332,8 +338,8 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_.\-:]+<br/>
      *
      * @param userId <p>
-     *            An array of user IDs to match when listing faces in a
-     *            collection.
+     *            An array of user IDs to filter results with when listing faces
+     *            in a collection.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -345,11 +351,13 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of face IDs to match when listing faces in a collection.
+     * An array of face IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      *
      * @return <p>
-     *         An array of face IDs to match when listing faces in a collection.
+     *         An array of face IDs to filter results with when listing faces in
+     *         a collection.
      *         </p>
      */
     public java.util.List<String> getFaceIds() {
@@ -358,12 +366,13 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of face IDs to match when listing faces in a collection.
+     * An array of face IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      *
      * @param faceIds <p>
-     *            An array of face IDs to match when listing faces in a
-     *            collection.
+     *            An array of face IDs to filter results with when listing faces
+     *            in a collection.
      *            </p>
      */
     public void setFaceIds(java.util.Collection<String> faceIds) {
@@ -377,15 +386,16 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of face IDs to match when listing faces in a collection.
+     * An array of face IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceIds <p>
-     *            An array of face IDs to match when listing faces in a
-     *            collection.
+     *            An array of face IDs to filter results with when listing faces
+     *            in a collection.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -402,15 +412,16 @@ public class ListFacesRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of face IDs to match when listing faces in a collection.
+     * An array of face IDs to filter results with when listing faces in a
+     * collection.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param faceIds <p>
-     *            An array of face IDs to match when listing faces in a
-     *            collection.
+     *            An array of face IDs to filter results with when listing faces
+     *            in a collection.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

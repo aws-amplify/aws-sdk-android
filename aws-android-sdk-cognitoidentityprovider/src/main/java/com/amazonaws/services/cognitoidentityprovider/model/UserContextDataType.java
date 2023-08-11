@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ public class UserContextDataType implements Serializable {
      * <p>
      * The source IP address of your user's device.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String ipAddress;
 
@@ -40,6 +43,9 @@ public class UserContextDataType implements Serializable {
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint"
      * >Adding user device and session data to API requests</a>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String encodedData;
 
@@ -47,6 +53,9 @@ public class UserContextDataType implements Serializable {
      * <p>
      * The source IP address of your user's device.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The source IP address of your user's device.
@@ -60,6 +69,9 @@ public class UserContextDataType implements Serializable {
      * <p>
      * The source IP address of your user's device.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param ipAddress <p>
      *            The source IP address of your user's device.
@@ -76,6 +88,9 @@ public class UserContextDataType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param ipAddress <p>
      *            The source IP address of your user's device.
@@ -96,6 +111,9 @@ public class UserContextDataType implements Serializable {
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint"
      * >Adding user device and session data to API requests</a>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         Encoded device-fingerprint details that your app collected with
@@ -117,6 +135,9 @@ public class UserContextDataType implements Serializable {
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html#user-pool-settings-adaptive-authentication-device-fingerprint"
      * >Adding user device and session data to API requests</a>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param encodedData <p>
      *            Encoded device-fingerprint details that your app collected
@@ -141,6 +162,9 @@ public class UserContextDataType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param encodedData <p>
      *            Encoded device-fingerprint details that your app collected

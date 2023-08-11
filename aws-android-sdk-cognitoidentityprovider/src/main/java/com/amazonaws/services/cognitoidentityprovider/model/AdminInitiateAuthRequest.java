@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,14 +42,37 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>
- * </note>
+ * </note> <note>
  * <p>
- * Calling this action requires developer credentials.
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
  * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -162,17 +185,18 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </li>
      * <li>
      * <p>
-     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
-     * if the app client is configured with a client secret),
+     * For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     * (required), <code>PASSWORD</code> (required), <code>SECRET_HASH</code>
+     * (required if the app client is configured with a client secret),
      * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
-     * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
+     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
+     * if the app client is configured with a client secret),
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -185,6 +209,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      */
     private java.util.Map<String, String> authParameters;
 
@@ -1168,17 +1200,18 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </li>
      * <li>
      * <p>
-     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
-     * if the app client is configured with a client secret),
+     * For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     * (required), <code>PASSWORD</code> (required), <code>SECRET_HASH</code>
+     * (required if the app client is configured with a client secret),
      * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
-     * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
+     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
+     * if the app client is configured with a client secret),
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1191,6 +1224,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      *
      * @return <p>
      *         The authentication parameters. These are inputs corresponding to
@@ -1208,17 +1249,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         </li>
      *         <li>
      *         <p>
-     *         For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     *         <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code>
-     *         (required if the app client is configured with a client secret),
-     *         <code>DEVICE_KEY</code>.
+     *         For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     *         (required), <code>PASSWORD</code> (required),
+     *         <code>SECRET_HASH</code> (required if the app client is
+     *         configured with a client secret), <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
-     *         (required), <code>SECRET_HASH</code> (if app client is configured
-     *         with client secret), <code>PASSWORD</code> (required),
+     *         For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     *         <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code>
+     *         (required if the app client is configured with a client secret),
      *         <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
@@ -1233,6 +1274,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         For more information about <code>SECRET_HASH</code>, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *         >Computing secret hash values</a>. For information about
+     *         <code>DEVICE_KEY</code>, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *         >Working with user devices in your user pool</a>.
+     *         </p>
      */
     public java.util.Map<String, String> getAuthParameters() {
         return authParameters;
@@ -1254,17 +1303,18 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </li>
      * <li>
      * <p>
-     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
-     * if the app client is configured with a client secret),
+     * For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     * (required), <code>PASSWORD</code> (required), <code>SECRET_HASH</code>
+     * (required if the app client is configured with a client secret),
      * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
-     * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
+     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
+     * if the app client is configured with a client secret),
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1277,6 +1327,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      *
      * @param authParameters <p>
      *            The authentication parameters. These are inputs corresponding
@@ -1294,18 +1352,19 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            <li>
      *            <p>
-     *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     *            <code>REFRESH_TOKEN</code> (required),
-     *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>.
+     *            For <code>ADMIN_USER_PASSWORD_AUTH</code>:
+     *            <code>USERNAME</code> (required), <code>PASSWORD</code>
+     *            (required), <code>SECRET_HASH</code> (required if the app
+     *            client is configured with a client secret),
+     *            <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
-     *            (required), <code>SECRET_HASH</code> (if app client is
-     *            configured with client secret), <code>PASSWORD</code>
-     *            (required), <code>DEVICE_KEY</code>.
+     *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     *            <code>REFRESH_TOKEN</code> (required),
+     *            <code>SECRET_HASH</code> (required if the app client is
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1319,6 +1378,15 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For more information about <code>SECRET_HASH</code>, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *            >Computing secret hash values</a>. For information about
+     *            <code>DEVICE_KEY</code>, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *            >Working with user devices in your user pool</a>.
+     *            </p>
      */
     public void setAuthParameters(java.util.Map<String, String> authParameters) {
         this.authParameters = authParameters;
@@ -1340,17 +1408,18 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </li>
      * <li>
      * <p>
-     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
-     * if the app client is configured with a client secret),
+     * For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     * (required), <code>PASSWORD</code> (required), <code>SECRET_HASH</code>
+     * (required if the app client is configured with a client secret),
      * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
-     * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
+     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
+     * if the app client is configured with a client secret),
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1363,6 +1432,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1383,18 +1460,19 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            <li>
      *            <p>
-     *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     *            <code>REFRESH_TOKEN</code> (required),
-     *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>.
+     *            For <code>ADMIN_USER_PASSWORD_AUTH</code>:
+     *            <code>USERNAME</code> (required), <code>PASSWORD</code>
+     *            (required), <code>SECRET_HASH</code> (required if the app
+     *            client is configured with a client secret),
+     *            <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
-     *            (required), <code>SECRET_HASH</code> (if app client is
-     *            configured with client secret), <code>PASSWORD</code>
-     *            (required), <code>DEVICE_KEY</code>.
+     *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     *            <code>REFRESH_TOKEN</code> (required),
+     *            <code>SECRET_HASH</code> (required if the app client is
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1408,6 +1486,15 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For more information about <code>SECRET_HASH</code>, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *            >Computing secret hash values</a>. For information about
+     *            <code>DEVICE_KEY</code>, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *            >Working with user devices in your user pool</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1432,17 +1519,18 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </li>
      * <li>
      * <p>
-     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
-     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
-     * if the app client is configured with a client secret),
+     * For <code>ADMIN_USER_PASSWORD_AUTH</code>: <code>USERNAME</code>
+     * (required), <code>PASSWORD</code> (required), <code>SECRET_HASH</code>
+     * (required if the app client is configured with a client secret),
      * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
-     * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
+     * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
+     * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
+     * if the app client is configured with a client secret),
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1455,6 +1543,14 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      * <p>
      * The method adds a new key-value pair into AuthParameters parameter, and
      * returns a reference to this object so that method calls can be chained

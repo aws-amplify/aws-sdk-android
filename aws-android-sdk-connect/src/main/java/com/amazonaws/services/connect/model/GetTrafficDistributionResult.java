@@ -55,6 +55,21 @@ public class GetTrafficDistributionResult implements Serializable {
 
     /**
      * <p>
+     * The distribution of allowing signing in to the instance and its
+     * replica(s).
+     * </p>
+     */
+    private SignInConfig signInConfig;
+
+    /**
+     * <p>
+     * The distribution of agents between the instance and its replica(s).
+     * </p>
+     */
+    private AgentConfig agentConfig;
+
+    /**
+     * <p>
      * The distribution of traffic between the instance and its replicas.
      * </p>
      *
@@ -245,6 +260,105 @@ public class GetTrafficDistributionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The distribution of allowing signing in to the instance and its
+     * replica(s).
+     * </p>
+     *
+     * @return <p>
+     *         The distribution of allowing signing in to the instance and its
+     *         replica(s).
+     *         </p>
+     */
+    public SignInConfig getSignInConfig() {
+        return signInConfig;
+    }
+
+    /**
+     * <p>
+     * The distribution of allowing signing in to the instance and its
+     * replica(s).
+     * </p>
+     *
+     * @param signInConfig <p>
+     *            The distribution of allowing signing in to the instance and
+     *            its replica(s).
+     *            </p>
+     */
+    public void setSignInConfig(SignInConfig signInConfig) {
+        this.signInConfig = signInConfig;
+    }
+
+    /**
+     * <p>
+     * The distribution of allowing signing in to the instance and its
+     * replica(s).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param signInConfig <p>
+     *            The distribution of allowing signing in to the instance and
+     *            its replica(s).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetTrafficDistributionResult withSignInConfig(SignInConfig signInConfig) {
+        this.signInConfig = signInConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The distribution of agents between the instance and its replica(s).
+     * </p>
+     *
+     * @return <p>
+     *         The distribution of agents between the instance and its
+     *         replica(s).
+     *         </p>
+     */
+    public AgentConfig getAgentConfig() {
+        return agentConfig;
+    }
+
+    /**
+     * <p>
+     * The distribution of agents between the instance and its replica(s).
+     * </p>
+     *
+     * @param agentConfig <p>
+     *            The distribution of agents between the instance and its
+     *            replica(s).
+     *            </p>
+     */
+    public void setAgentConfig(AgentConfig agentConfig) {
+        this.agentConfig = agentConfig;
+    }
+
+    /**
+     * <p>
+     * The distribution of agents between the instance and its replica(s).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param agentConfig <p>
+     *            The distribution of agents between the instance and its
+     *            replica(s).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetTrafficDistributionResult withAgentConfig(AgentConfig agentConfig) {
+        this.agentConfig = agentConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -260,7 +374,11 @@ public class GetTrafficDistributionResult implements Serializable {
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getArn() != null)
-            sb.append("Arn: " + getArn());
+            sb.append("Arn: " + getArn() + ",");
+        if (getSignInConfig() != null)
+            sb.append("SignInConfig: " + getSignInConfig() + ",");
+        if (getAgentConfig() != null)
+            sb.append("AgentConfig: " + getAgentConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -274,6 +392,10 @@ public class GetTrafficDistributionResult implements Serializable {
                 + ((getTelephonyConfig() == null) ? 0 : getTelephonyConfig().hashCode());
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getSignInConfig() == null) ? 0 : getSignInConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getAgentConfig() == null) ? 0 : getAgentConfig().hashCode());
         return hashCode;
     }
 
@@ -300,6 +422,16 @@ public class GetTrafficDistributionResult implements Serializable {
         if (other.getArn() == null ^ this.getArn() == null)
             return false;
         if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
+            return false;
+        if (other.getSignInConfig() == null ^ this.getSignInConfig() == null)
+            return false;
+        if (other.getSignInConfig() != null
+                && other.getSignInConfig().equals(this.getSignInConfig()) == false)
+            return false;
+        if (other.getAgentConfig() == null ^ this.getAgentConfig() == null)
+            return false;
+        if (other.getAgentConfig() != null
+                && other.getAgentConfig().equals(this.getAgentConfig()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * successful. The request takes an access token or a session string, but not
  * both.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
+ * in requests for this API operation. For this operation, you can't use IAM
+ * credentials to authorize requests, and you can't grant IAM permissions in
+ * policies. For more information about authorization models in Amazon Cognito,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * </p>
+ * </note>
  */
 public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -68,6 +79,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <p>
      * The friendly device name.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String friendlyDeviceName;
 
@@ -270,6 +284,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <p>
      * The friendly device name.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The friendly device name.
@@ -283,6 +300,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <p>
      * The friendly device name.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param friendlyDeviceName <p>
      *            The friendly device name.
@@ -299,6 +319,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param friendlyDeviceName <p>
      *            The friendly device name.

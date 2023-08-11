@@ -70,6 +70,9 @@ class RoutingProfileJsonUnmarshaller implements
             } else if (name.equals("NumberOfAssociatedUsers")) {
                 routingProfile.setNumberOfAssociatedUsers(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AgentAvailabilityTimer")) {
+                routingProfile.setAgentAvailabilityTimer(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

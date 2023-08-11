@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
+ * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
+ * in requests for this API operation. For this operation, you can't use IAM
+ * credentials to authorize requests, and you can't grant IAM permissions in
+ * policies. For more information about authorization models in Amazon Cognito,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * </p>
+ * </note> <note>
+ * <p>
  * This action might generate an SMS text message. Starting June 1, 2021, US
  * telecom carriers require you to register an origination phone number before
  * you can send SMS messages to US phone numbers. If you use SMS text messages
@@ -42,7 +52,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>
@@ -170,6 +180,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      */
     private java.util.Map<String, String> challengeResponses;
 
@@ -626,6 +644,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      *
      * @return <p>
      *         The challenge responses. These are inputs corresponding to the
@@ -709,6 +735,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         For more information about <code>SECRET_HASH</code>, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *         >Computing secret hash values</a>. For information about
+     *         <code>DEVICE_KEY</code>, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *         >Working with user devices in your user pool</a>.
+     *         </p>
      */
     public java.util.Map<String, String> getChallengeResponses() {
         return challengeResponses;
@@ -792,6 +826,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      *
      * @param challengeResponses <p>
      *            The challenge responses. These are inputs corresponding to the
@@ -877,6 +919,15 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For more information about <code>SECRET_HASH</code>, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *            >Computing secret hash values</a>. For information about
+     *            <code>DEVICE_KEY</code>, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *            >Working with user devices in your user pool</a>.
+     *            </p>
      */
     public void setChallengeResponses(java.util.Map<String, String> challengeResponses) {
         this.challengeResponses = challengeResponses;
@@ -960,6 +1011,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1048,6 +1107,15 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            For more information about <code>SECRET_HASH</code>, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     *            >Computing secret hash values</a>. For information about
+     *            <code>DEVICE_KEY</code>, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     *            >Working with user devices in your user pool</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1135,6 +1203,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * For more information about <code>SECRET_HASH</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#cognito-user-pools-computing-secret-hash"
+     * >Computing secret hash values</a>. For information about
+     * <code>DEVICE_KEY</code>, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-device-tracking.html"
+     * >Working with user devices in your user pool</a>.
+     * </p>
      * <p>
      * The method adds a new key-value pair into ChallengeResponses parameter,
      * and returns a reference to this object so that method calls can be
