@@ -44,6 +44,14 @@ public class GetTrafficDistributionResultJsonUnmarshaller implements
             } else if (name.equals("Arn")) {
                 getTrafficDistributionResult.setArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SignInConfig")) {
+                getTrafficDistributionResult.setSignInConfig(SignInConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AgentConfig")) {
+                getTrafficDistributionResult.setAgentConfig(AgentConfigJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

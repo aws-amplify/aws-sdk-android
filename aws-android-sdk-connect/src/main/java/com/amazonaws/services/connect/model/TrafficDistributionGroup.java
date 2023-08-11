@@ -154,6 +154,27 @@ public class TrafficDistributionGroup implements Serializable {
 
     /**
      * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
+     */
+    private Boolean isDefault;
+
+    /**
+     * <p>
      * The identifier of the traffic distribution group. This can be the ID or
      * the ARN if the API is being called in the Region where the traffic
      * distribution group was created. The ARN must be provided if the call is
@@ -1139,6 +1160,180 @@ public class TrafficDistributionGroup implements Serializable {
     }
 
     /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Whether this is the default traffic distribution group created
+     *         during instance replication. The default traffic distribution
+     *         group cannot be deleted by the
+     *         <code>DeleteTrafficDistributionGroup</code> API. The default
+     *         traffic distribution group is deleted as part of the process for
+     *         deleting a replica.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         You can change the <code>SignInConfig</code> only for a default
+     *         <code>TrafficDistributionGroup</code>. If you call
+     *         <code>UpdateTrafficDistribution</code> with a modified
+     *         <code>SignInConfig</code> and a non-default
+     *         <code>TrafficDistributionGroup</code>, an
+     *         <code>InvalidRequestException</code> is returned.
+     *         </p>
+     *         </note>
+     */
+    public Boolean isIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Whether this is the default traffic distribution group created
+     *         during instance replication. The default traffic distribution
+     *         group cannot be deleted by the
+     *         <code>DeleteTrafficDistributionGroup</code> API. The default
+     *         traffic distribution group is deleted as part of the process for
+     *         deleting a replica.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         You can change the <code>SignInConfig</code> only for a default
+     *         <code>TrafficDistributionGroup</code>. If you call
+     *         <code>UpdateTrafficDistribution</code> with a modified
+     *         <code>SignInConfig</code> and a non-default
+     *         <code>TrafficDistributionGroup</code>, an
+     *         <code>InvalidRequestException</code> is returned.
+     *         </p>
+     *         </note>
+     */
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
+     *
+     * @param isDefault <p>
+     *            Whether this is the default traffic distribution group created
+     *            during instance replication. The default traffic distribution
+     *            group cannot be deleted by the
+     *            <code>DeleteTrafficDistributionGroup</code> API. The default
+     *            traffic distribution group is deleted as part of the process
+     *            for deleting a replica.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            You can change the <code>SignInConfig</code> only for a
+     *            default <code>TrafficDistributionGroup</code>. If you call
+     *            <code>UpdateTrafficDistribution</code> with a modified
+     *            <code>SignInConfig</code> and a non-default
+     *            <code>TrafficDistributionGroup</code>, an
+     *            <code>InvalidRequestException</code> is returned.
+     *            </p>
+     *            </note>
+     */
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> only for a default
+     * <code>TrafficDistributionGroup</code>. If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isDefault <p>
+     *            Whether this is the default traffic distribution group created
+     *            during instance replication. The default traffic distribution
+     *            group cannot be deleted by the
+     *            <code>DeleteTrafficDistributionGroup</code> API. The default
+     *            traffic distribution group is deleted as part of the process
+     *            for deleting a replica.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            You can change the <code>SignInConfig</code> only for a
+     *            default <code>TrafficDistributionGroup</code>. If you call
+     *            <code>UpdateTrafficDistribution</code> with a modified
+     *            <code>SignInConfig</code> and a non-default
+     *            <code>TrafficDistributionGroup</code>, an
+     *            <code>InvalidRequestException</code> is returned.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TrafficDistributionGroup withIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1162,7 +1357,9 @@ public class TrafficDistributionGroup implements Serializable {
         if (getStatus() != null)
             sb.append("Status: " + getStatus() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getIsDefault() != null)
+            sb.append("IsDefault: " + getIsDefault());
         sb.append("}");
         return sb.toString();
     }
@@ -1181,6 +1378,7 @@ public class TrafficDistributionGroup implements Serializable {
                 + ((getInstanceArn() == null) ? 0 : getInstanceArn().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode + ((getIsDefault() == null) ? 0 : getIsDefault().hashCode());
         return hashCode;
     }
 
@@ -1224,6 +1422,11 @@ public class TrafficDistributionGroup implements Serializable {
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getIsDefault() == null ^ this.getIsDefault() == null)
+            return false;
+        if (other.getIsDefault() != null
+                && other.getIsDefault().equals(this.getIsDefault()) == false)
             return false;
         return true;
     }

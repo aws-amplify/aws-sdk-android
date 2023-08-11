@@ -57,10 +57,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Detecting Labels in an Image</a>.
  * </p>
  * <p>
- * You can specify <code>MinConfidence</code> to control the confidence
- * threshold for the labels returned. The default is 55%. You can also add the
- * <code>MaxLabels</code> parameter to limit the number of labels returned. The
- * default and upper limit is 1000 labels.
+ * When getting labels, you can specify <code>MinConfidence</code> to control
+ * the confidence threshold for the labels returned. The default is 55%. You can
+ * also add the <code>MaxLabels</code> parameter to limit the number of labels
+ * returned. The default and upper limit is 1000 labels. These arguments are
+ * only valid when supplying GENERAL_LABELS as a feature type.
  * </p>
  * <p>
  * <b>Response Elements</b>
@@ -211,6 +212,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * Maximum number of labels you want the service to return in the response.
      * The service returns the specified number of highest confidence labels.
+     * Only valid when GENERAL_LABELS is specified as a feature type in the
+     * Feature input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,7 +229,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 55 percent.
+     * labels with a confidence values greater than or equal to 55 percent. Only
+     * valid when GENERAL_LABELS is specified as a feature type in the Feature
+     * input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -390,6 +395,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * Maximum number of labels you want the service to return in the response.
      * The service returns the specified number of highest confidence labels.
+     * Only valid when GENERAL_LABELS is specified as a feature type in the
+     * Feature input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -398,7 +405,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * @return <p>
      *         Maximum number of labels you want the service to return in the
      *         response. The service returns the specified number of highest
-     *         confidence labels.
+     *         confidence labels. Only valid when GENERAL_LABELS is specified as
+     *         a feature type in the Feature input parameter.
      *         </p>
      */
     public Integer getMaxLabels() {
@@ -409,6 +417,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * Maximum number of labels you want the service to return in the response.
      * The service returns the specified number of highest confidence labels.
+     * Only valid when GENERAL_LABELS is specified as a feature type in the
+     * Feature input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -417,7 +427,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * @param maxLabels <p>
      *            Maximum number of labels you want the service to return in the
      *            response. The service returns the specified number of highest
-     *            confidence labels.
+     *            confidence labels. Only valid when GENERAL_LABELS is specified
+     *            as a feature type in the Feature input parameter.
      *            </p>
      */
     public void setMaxLabels(Integer maxLabels) {
@@ -428,6 +439,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * Maximum number of labels you want the service to return in the response.
      * The service returns the specified number of highest confidence labels.
+     * Only valid when GENERAL_LABELS is specified as a feature type in the
+     * Feature input parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -439,7 +452,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * @param maxLabels <p>
      *            Maximum number of labels you want the service to return in the
      *            response. The service returns the specified number of highest
-     *            confidence labels.
+     *            confidence labels. Only valid when GENERAL_LABELS is specified
+     *            as a feature type in the Feature input parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -457,7 +471,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 55 percent.
+     * labels with a confidence values greater than or equal to 55 percent. Only
+     * valid when GENERAL_LABELS is specified as a feature type in the Feature
+     * input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -471,7 +487,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *         <p>
      *         If <code>MinConfidence</code> is not specified, the operation
      *         returns labels with a confidence values greater than or equal to
-     *         55 percent.
+     *         55 percent. Only valid when GENERAL_LABELS is specified as a
+     *         feature type in the Feature input parameter.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -486,7 +503,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 55 percent.
+     * labels with a confidence values greater than or equal to 55 percent. Only
+     * valid when GENERAL_LABELS is specified as a feature type in the Feature
+     * input parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -500,7 +519,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
-     *            to 55 percent.
+     *            to 55 percent. Only valid when GENERAL_LABELS is specified as
+     *            a feature type in the Feature input parameter.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -515,7 +535,9 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      * </p>
      * <p>
      * If <code>MinConfidence</code> is not specified, the operation returns
-     * labels with a confidence values greater than or equal to 55 percent.
+     * labels with a confidence values greater than or equal to 55 percent. Only
+     * valid when GENERAL_LABELS is specified as a feature type in the Feature
+     * input parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -532,7 +554,8 @@ public class DetectLabelsRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            If <code>MinConfidence</code> is not specified, the operation
      *            returns labels with a confidence values greater than or equal
-     *            to 55 percent.
+     *            to 55 percent. Only valid when GENERAL_LABELS is specified as
+     *            a feature type in the Feature input parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

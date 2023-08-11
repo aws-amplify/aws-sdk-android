@@ -120,6 +120,12 @@ public class CreateRoutingProfileRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createRoutingProfileRequest.getAgentAvailabilityTimer() != null) {
+                String agentAvailabilityTimer = createRoutingProfileRequest
+                        .getAgentAvailabilityTimer();
+                jsonWriter.name("AgentAvailabilityTimer");
+                jsonWriter.value(agentAvailabilityTimer);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

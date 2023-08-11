@@ -14,12 +14,12 @@ jobs:
         sudo add-apt-repository -y ppa:git-core/ppa
         sudo apt-get update
         sudo apt-get install git -y
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5 # v2
       with:
         ref: ${{ env.BASE_BRANCH }}
         fetch-depth: 0
     - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@b8d447ba7506ac7e0c8fbc50762276fb3b7df731 # v1
       with:
         ruby-version: 2.7
     - name: Install dependencies

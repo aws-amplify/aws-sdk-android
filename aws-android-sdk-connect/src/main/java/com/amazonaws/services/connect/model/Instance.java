@@ -111,7 +111,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * This URL allows contact center users to access Amazon Connect admin
+     * This URL allows contact center users to access the Amazon Connect admin
      * website.
      * </p>
      */
@@ -742,12 +742,12 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * This URL allows contact center users to access Amazon Connect admin
+     * This URL allows contact center users to access the Amazon Connect admin
      * website.
      * </p>
      *
      * @return <p>
-     *         This URL allows contact center users to access Amazon Connect
+     *         This URL allows contact center users to access the Amazon Connect
      *         admin website.
      *         </p>
      */
@@ -757,13 +757,13 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * This URL allows contact center users to access Amazon Connect admin
+     * This URL allows contact center users to access the Amazon Connect admin
      * website.
      * </p>
      *
      * @param instanceAccessUrl <p>
-     *            This URL allows contact center users to access Amazon Connect
-     *            admin website.
+     *            This URL allows contact center users to access the Amazon
+     *            Connect admin website.
      *            </p>
      */
     public void setInstanceAccessUrl(String instanceAccessUrl) {
@@ -772,7 +772,7 @@ public class Instance implements Serializable {
 
     /**
      * <p>
-     * This URL allows contact center users to access Amazon Connect admin
+     * This URL allows contact center users to access the Amazon Connect admin
      * website.
      * </p>
      * <p>
@@ -780,8 +780,8 @@ public class Instance implements Serializable {
      * together.
      *
      * @param instanceAccessUrl <p>
-     *            This URL allows contact center users to access Amazon Connect
-     *            admin website.
+     *            This URL allows contact center users to access the Amazon
+     *            Connect admin website.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
