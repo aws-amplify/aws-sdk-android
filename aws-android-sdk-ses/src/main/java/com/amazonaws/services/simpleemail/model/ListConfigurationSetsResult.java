@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A list of configuration sets associated with your AWS account. Configuration
- * sets enable you to publish email sending events. For information about using
- * configuration sets, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/monitor-sending-activity.html"
+ * A list of configuration sets associated with your Amazon Web Services
+ * account. Configuration sets enable you to publish email sending events. For
+ * information about using configuration sets, see the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */

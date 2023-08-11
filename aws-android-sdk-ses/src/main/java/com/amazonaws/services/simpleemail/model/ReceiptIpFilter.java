@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about setting up IP address filters, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-ip-filters.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-ip-filtering-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -42,11 +42,11 @@ public class ReceiptIpFilter implements Serializable {
 
     /**
      * <p>
-     * A single IP address or a range of IP addresses that you want to block or
-     * allow, specified in Classless Inter-Domain Routing (CIDR) notation. An
-     * example of a single email address is 10.0.0.1. An example of a range of
-     * IP addresses is 10.0.0.1/24. For more information about CIDR notation,
-     * see <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
+     * A single IP address or a range of IP addresses to block or allow,
+     * specified in Classless Inter-Domain Routing (CIDR) notation. An example
+     * of a single email address is 10.0.0.1. An example of a range of IP
+     * addresses is 10.0.0.1/24. For more information about CIDR notation, see
+     * <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      * </p>
      */
     private String cidr;
@@ -160,19 +160,19 @@ public class ReceiptIpFilter implements Serializable {
 
     /**
      * <p>
-     * A single IP address or a range of IP addresses that you want to block or
-     * allow, specified in Classless Inter-Domain Routing (CIDR) notation. An
-     * example of a single email address is 10.0.0.1. An example of a range of
-     * IP addresses is 10.0.0.1/24. For more information about CIDR notation,
-     * see <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
+     * A single IP address or a range of IP addresses to block or allow,
+     * specified in Classless Inter-Domain Routing (CIDR) notation. An example
+     * of a single email address is 10.0.0.1. An example of a range of IP
+     * addresses is 10.0.0.1/24. For more information about CIDR notation, see
+     * <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      * </p>
      *
      * @return <p>
-     *         A single IP address or a range of IP addresses that you want to
-     *         block or allow, specified in Classless Inter-Domain Routing
-     *         (CIDR) notation. An example of a single email address is
-     *         10.0.0.1. An example of a range of IP addresses is 10.0.0.1/24.
-     *         For more information about CIDR notation, see <a
+     *         A single IP address or a range of IP addresses to block or allow,
+     *         specified in Classless Inter-Domain Routing (CIDR) notation. An
+     *         example of a single email address is 10.0.0.1. An example of a
+     *         range of IP addresses is 10.0.0.1/24. For more information about
+     *         CIDR notation, see <a
      *         href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      *         </p>
      */
@@ -182,19 +182,19 @@ public class ReceiptIpFilter implements Serializable {
 
     /**
      * <p>
-     * A single IP address or a range of IP addresses that you want to block or
-     * allow, specified in Classless Inter-Domain Routing (CIDR) notation. An
-     * example of a single email address is 10.0.0.1. An example of a range of
-     * IP addresses is 10.0.0.1/24. For more information about CIDR notation,
-     * see <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
+     * A single IP address or a range of IP addresses to block or allow,
+     * specified in Classless Inter-Domain Routing (CIDR) notation. An example
+     * of a single email address is 10.0.0.1. An example of a range of IP
+     * addresses is 10.0.0.1/24. For more information about CIDR notation, see
+     * <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      * </p>
      *
      * @param cidr <p>
-     *            A single IP address or a range of IP addresses that you want
-     *            to block or allow, specified in Classless Inter-Domain Routing
-     *            (CIDR) notation. An example of a single email address is
-     *            10.0.0.1. An example of a range of IP addresses is
-     *            10.0.0.1/24. For more information about CIDR notation, see <a
+     *            A single IP address or a range of IP addresses to block or
+     *            allow, specified in Classless Inter-Domain Routing (CIDR)
+     *            notation. An example of a single email address is 10.0.0.1. An
+     *            example of a range of IP addresses is 10.0.0.1/24. For more
+     *            information about CIDR notation, see <a
      *            href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      *            </p>
      */
@@ -204,22 +204,22 @@ public class ReceiptIpFilter implements Serializable {
 
     /**
      * <p>
-     * A single IP address or a range of IP addresses that you want to block or
-     * allow, specified in Classless Inter-Domain Routing (CIDR) notation. An
-     * example of a single email address is 10.0.0.1. An example of a range of
-     * IP addresses is 10.0.0.1/24. For more information about CIDR notation,
-     * see <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
+     * A single IP address or a range of IP addresses to block or allow,
+     * specified in Classless Inter-Domain Routing (CIDR) notation. An example
+     * of a single email address is 10.0.0.1. An example of a range of IP
+     * addresses is 10.0.0.1/24. For more information about CIDR notation, see
+     * <a href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cidr <p>
-     *            A single IP address or a range of IP addresses that you want
-     *            to block or allow, specified in Classless Inter-Domain Routing
-     *            (CIDR) notation. An example of a single email address is
-     *            10.0.0.1. An example of a range of IP addresses is
-     *            10.0.0.1/24. For more information about CIDR notation, see <a
+     *            A single IP address or a range of IP addresses to block or
+     *            allow, specified in Classless Inter-Domain Routing (CIDR)
+     *            notation. An example of a single email address is 10.0.0.1. An
+     *            example of a range of IP addresses is 10.0.0.1/24. For more
+     *            information about CIDR notation, see <a
      *            href="https://tools.ietf.org/html/rfc2317">RFC 2317</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,8 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Adds an email address to the list of identities for your Amazon SES account
- * in the current AWS region and attempts to verify it. As a result of executing
- * this operation, a verification email is sent to the specified address.
+ * in the current Amazon Web Services Region and attempts to verify it. As a
+ * result of executing this operation, a verification email is sent to the
+ * specified address.
  * </p>
  * <p>
  * You can execute this operation no more than once per second.

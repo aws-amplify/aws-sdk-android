@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,23 +24,23 @@ import java.io.Serializable;
  * notification to Amazon Simple Notification Service (Amazon SNS).
  * </p>
  * <p>
- * To enable Amazon SES to write emails to your Amazon S3 bucket, use an AWS KMS
- * key to encrypt your emails, or publish to an Amazon SNS topic of another
- * account, Amazon SES must have permission to access those resources. For
- * information about giving permissions, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * To enable Amazon SES to write emails to your Amazon S3 bucket, use an Amazon
+ * Web Services KMS key to encrypt your emails, or publish to an Amazon SNS
+ * topic of another account, Amazon SES must have permission to access those
+ * resources. For information about granting permissions, see the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <note>
  * <p>
  * When you save your emails to an Amazon S3 bucket, the maximum email size
- * (including headers) is 30 MB. Emails larger than that will bounce.
+ * (including headers) is 40 MB. Emails larger than that bounces.
  * </p>
  * </note>
  * <p>
  * For information about specifying Amazon S3 actions in receipt rules, see the
  * <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-s3.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-action-s3.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -48,9 +48,12 @@ public class S3Action implements Serializable {
     /**
      * <p>
      * The ARN of the Amazon SNS topic to notify when the message is saved to
-     * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * the Amazon S3 bucket. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -59,7 +62,7 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket that incoming email will be saved to.
+     * The name of the Amazon S3 bucket for incoming email.
      * </p>
      */
     private String bucketName;
@@ -77,16 +80,17 @@ public class S3Action implements Serializable {
      * <p>
      * The customer master key that Amazon SES should use to encrypt your emails
      * before saving them to the Amazon S3 bucket. You can use the default
-     * master key or a custom master key you created in AWS KMS as follows:
+     * master key or a custom master key that you created in Amazon Web Services
+     * KMS as follows:
      * </p>
      * <ul>
      * <li>
      * <p>
      * To use the default master key, provide an ARN in the form of
      * <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>.
-     * For example, if your AWS account ID is 123456789012 and you want to use
-     * the default master key in the US West (Oregon) region, the ARN of the
-     * default master key would be
+     * For example, if your Amazon Web Services account ID is 123456789012 and
+     * you want to use the default master key in the US West (Oregon) Region,
+     * the ARN of the default master key would be
      * <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>. If you use
      * the default master key, you don't need to perform any extra steps to give
      * Amazon SES permission to use the key.
@@ -94,20 +98,20 @@ public class S3Action implements Serializable {
      * </li>
      * <li>
      * <p>
-     * To use a custom master key you created in AWS KMS, provide the ARN of the
-     * master key and ensure that you add a statement to your key's policy to
-     * give Amazon SES permission to use it. For more information about giving
-     * permissions, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * To use a custom master key that you created in Amazon Web Services KMS,
+     * provide the ARN of the master key and ensure that you add a statement to
+     * your key's policy to give Amazon SES permission to use it. For more
+     * information about giving permissions, see the <a href=
+     * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
-     * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
-     * will not encrypt your emails.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     * >Amazon Web Services KMS Developer Guide</a>. If you do not specify a
+     * master key, Amazon SES does not encrypt your emails.
      * </p>
      * <important>
      * <p>
@@ -116,11 +120,12 @@ public class S3Action implements Serializable {
      * encrypted using Amazon S3 server-side encryption. This means that you
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
-     * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
-     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
-     * for Ruby</a> only. For more information about client-side encryption
-     * using AWS KMS master keys, see the <a href=
+     * Amazon Web Services KMS keys for decryption. This encryption client is
+     * currently available with the <a
+     * href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services SDK for
+     * Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web
+     * Services SDK for Ruby</a> only. For more information about client-side
+     * encryption using Amazon Web Services KMS master keys, see the <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
@@ -131,17 +136,24 @@ public class S3Action implements Serializable {
     /**
      * <p>
      * The ARN of the Amazon SNS topic to notify when the message is saved to
-     * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * the Amazon S3 bucket. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @return <p>
      *         The ARN of the Amazon SNS topic to notify when the message is
-     *         saved to the Amazon S3 bucket. An example of an Amazon SNS topic
-     *         ARN is <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>.
+     *         saved to the Amazon S3 bucket. You can find the ARN of a topic by
+     *         using the <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *         >ListTopics</a> operation in Amazon SNS.
+     *         </p>
+     *         <p>
      *         For more information about Amazon SNS topics, see the <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
@@ -154,19 +166,25 @@ public class S3Action implements Serializable {
     /**
      * <p>
      * The ARN of the Amazon SNS topic to notify when the message is saved to
-     * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * the Amazon S3 bucket. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @param topicArn <p>
      *            The ARN of the Amazon SNS topic to notify when the message is
-     *            saved to the Amazon S3 bucket. An example of an Amazon SNS
-     *            topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            saved to the Amazon S3 bucket. You can find the ARN of a topic
+     *            by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> operation in Amazon SNS.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
@@ -178,9 +196,12 @@ public class S3Action implements Serializable {
     /**
      * <p>
      * The ARN of the Amazon SNS topic to notify when the message is saved to
-     * the Amazon S3 bucket. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * the Amazon S3 bucket. You can find the ARN of a topic by using the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -190,10 +211,13 @@ public class S3Action implements Serializable {
      *
      * @param topicArn <p>
      *            The ARN of the Amazon SNS topic to notify when the message is
-     *            saved to the Amazon S3 bucket. An example of an Amazon SNS
-     *            topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            saved to the Amazon S3 bucket. You can find the ARN of a topic
+     *            by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> operation in Amazon SNS.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
@@ -207,12 +231,11 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket that incoming email will be saved to.
+     * The name of the Amazon S3 bucket for incoming email.
      * </p>
      *
      * @return <p>
-     *         The name of the Amazon S3 bucket that incoming email will be
-     *         saved to.
+     *         The name of the Amazon S3 bucket for incoming email.
      *         </p>
      */
     public String getBucketName() {
@@ -221,12 +244,11 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket that incoming email will be saved to.
+     * The name of the Amazon S3 bucket for incoming email.
      * </p>
      *
      * @param bucketName <p>
-     *            The name of the Amazon S3 bucket that incoming email will be
-     *            saved to.
+     *            The name of the Amazon S3 bucket for incoming email.
      *            </p>
      */
     public void setBucketName(String bucketName) {
@@ -235,15 +257,14 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The name of the Amazon S3 bucket that incoming email will be saved to.
+     * The name of the Amazon S3 bucket for incoming email.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param bucketName <p>
-     *            The name of the Amazon S3 bucket that incoming email will be
-     *            saved to.
+     *            The name of the Amazon S3 bucket for incoming email.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -314,16 +335,17 @@ public class S3Action implements Serializable {
      * <p>
      * The customer master key that Amazon SES should use to encrypt your emails
      * before saving them to the Amazon S3 bucket. You can use the default
-     * master key or a custom master key you created in AWS KMS as follows:
+     * master key or a custom master key that you created in Amazon Web Services
+     * KMS as follows:
      * </p>
      * <ul>
      * <li>
      * <p>
      * To use the default master key, provide an ARN in the form of
      * <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>.
-     * For example, if your AWS account ID is 123456789012 and you want to use
-     * the default master key in the US West (Oregon) region, the ARN of the
-     * default master key would be
+     * For example, if your Amazon Web Services account ID is 123456789012 and
+     * you want to use the default master key in the US West (Oregon) Region,
+     * the ARN of the default master key would be
      * <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>. If you use
      * the default master key, you don't need to perform any extra steps to give
      * Amazon SES permission to use the key.
@@ -331,20 +353,20 @@ public class S3Action implements Serializable {
      * </li>
      * <li>
      * <p>
-     * To use a custom master key you created in AWS KMS, provide the ARN of the
-     * master key and ensure that you add a statement to your key's policy to
-     * give Amazon SES permission to use it. For more information about giving
-     * permissions, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * To use a custom master key that you created in Amazon Web Services KMS,
+     * provide the ARN of the master key and ensure that you add a statement to
+     * your key's policy to give Amazon SES permission to use it. For more
+     * information about giving permissions, see the <a href=
+     * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
-     * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
-     * will not encrypt your emails.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     * >Amazon Web Services KMS Developer Guide</a>. If you do not specify a
+     * master key, Amazon SES does not encrypt your emails.
      * </p>
      * <important>
      * <p>
@@ -353,11 +375,12 @@ public class S3Action implements Serializable {
      * encrypted using Amazon S3 server-side encryption. This means that you
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
-     * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
-     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
-     * for Ruby</a> only. For more information about client-side encryption
-     * using AWS KMS master keys, see the <a href=
+     * Amazon Web Services KMS keys for decryption. This encryption client is
+     * currently available with the <a
+     * href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services SDK for
+     * Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web
+     * Services SDK for Ruby</a> only. For more information about client-side
+     * encryption using Amazon Web Services KMS master keys, see the <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
@@ -366,17 +389,17 @@ public class S3Action implements Serializable {
      * @return <p>
      *         The customer master key that Amazon SES should use to encrypt
      *         your emails before saving them to the Amazon S3 bucket. You can
-     *         use the default master key or a custom master key you created in
-     *         AWS KMS as follows:
+     *         use the default master key or a custom master key that you
+     *         created in Amazon Web Services KMS as follows:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
      *         To use the default master key, provide an ARN in the form of
      *         <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>
-     *         . For example, if your AWS account ID is 123456789012 and you
-     *         want to use the default master key in the US West (Oregon)
-     *         region, the ARN of the default master key would be
+     *         . For example, if your Amazon Web Services account ID is
+     *         123456789012 and you want to use the default master key in the US
+     *         West (Oregon) Region, the ARN of the default master key would be
      *         <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>. If
      *         you use the default master key, you don't need to perform any
      *         extra steps to give Amazon SES permission to use the key.
@@ -384,11 +407,12 @@ public class S3Action implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         To use a custom master key you created in AWS KMS, provide the
-     *         ARN of the master key and ensure that you add a statement to your
-     *         key's policy to give Amazon SES permission to use it. For more
-     *         information about giving permissions, see the <a href=
-     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *         To use a custom master key that you created in Amazon Web
+     *         Services KMS, provide the ARN of the master key and ensure that
+     *         you add a statement to your key's policy to give Amazon SES
+     *         permission to use it. For more information about giving
+     *         permissions, see the <a href=
+     *         "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      *         </li>
@@ -396,8 +420,8 @@ public class S3Action implements Serializable {
      *         <p>
      *         For more information about key policies, see the <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
-     *         >AWS KMS Developer Guide</a>. If you do not specify a master key,
-     *         Amazon SES will not encrypt your emails.
+     *         >Amazon Web Services KMS Developer Guide</a>. If you do not
+     *         specify a master key, Amazon SES does not encrypt your emails.
      *         </p>
      *         <important>
      *         <p>
@@ -406,12 +430,15 @@ public class S3Action implements Serializable {
      *         storage. It is not encrypted using Amazon S3 server-side
      *         encryption. This means that you must use the Amazon S3 encryption
      *         client to decrypt the email after retrieving it from Amazon S3,
-     *         as the service has no access to use your AWS KMS keys for
-     *         decryption. This encryption client is currently available with
-     *         the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
-     *         Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *         as the service has no access to use your Amazon Web Services KMS
+     *         keys for decryption. This encryption client is currently
+     *         available with the <a
+     *         href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services
+     *         SDK for Java</a> and <a
+     *         href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web Services
      *         SDK for Ruby</a> only. For more information about client-side
-     *         encryption using AWS KMS master keys, see the <a href=
+     *         encryption using Amazon Web Services KMS master keys, see the <a
+     *         href=
      *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *         >Amazon S3 Developer Guide</a>.
      *         </p>
@@ -425,16 +452,17 @@ public class S3Action implements Serializable {
      * <p>
      * The customer master key that Amazon SES should use to encrypt your emails
      * before saving them to the Amazon S3 bucket. You can use the default
-     * master key or a custom master key you created in AWS KMS as follows:
+     * master key or a custom master key that you created in Amazon Web Services
+     * KMS as follows:
      * </p>
      * <ul>
      * <li>
      * <p>
      * To use the default master key, provide an ARN in the form of
      * <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>.
-     * For example, if your AWS account ID is 123456789012 and you want to use
-     * the default master key in the US West (Oregon) region, the ARN of the
-     * default master key would be
+     * For example, if your Amazon Web Services account ID is 123456789012 and
+     * you want to use the default master key in the US West (Oregon) Region,
+     * the ARN of the default master key would be
      * <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>. If you use
      * the default master key, you don't need to perform any extra steps to give
      * Amazon SES permission to use the key.
@@ -442,20 +470,20 @@ public class S3Action implements Serializable {
      * </li>
      * <li>
      * <p>
-     * To use a custom master key you created in AWS KMS, provide the ARN of the
-     * master key and ensure that you add a statement to your key's policy to
-     * give Amazon SES permission to use it. For more information about giving
-     * permissions, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * To use a custom master key that you created in Amazon Web Services KMS,
+     * provide the ARN of the master key and ensure that you add a statement to
+     * your key's policy to give Amazon SES permission to use it. For more
+     * information about giving permissions, see the <a href=
+     * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
-     * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
-     * will not encrypt your emails.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     * >Amazon Web Services KMS Developer Guide</a>. If you do not specify a
+     * master key, Amazon SES does not encrypt your emails.
      * </p>
      * <important>
      * <p>
@@ -464,11 +492,12 @@ public class S3Action implements Serializable {
      * encrypted using Amazon S3 server-side encryption. This means that you
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
-     * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
-     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
-     * for Ruby</a> only. For more information about client-side encryption
-     * using AWS KMS master keys, see the <a href=
+     * Amazon Web Services KMS keys for decryption. This encryption client is
+     * currently available with the <a
+     * href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services SDK for
+     * Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web
+     * Services SDK for Ruby</a> only. For more information about client-side
+     * encryption using Amazon Web Services KMS master keys, see the <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
@@ -477,17 +506,18 @@ public class S3Action implements Serializable {
      * @param kmsKeyArn <p>
      *            The customer master key that Amazon SES should use to encrypt
      *            your emails before saving them to the Amazon S3 bucket. You
-     *            can use the default master key or a custom master key you
-     *            created in AWS KMS as follows:
+     *            can use the default master key or a custom master key that you
+     *            created in Amazon Web Services KMS as follows:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
      *            To use the default master key, provide an ARN in the form of
      *            <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>
-     *            . For example, if your AWS account ID is 123456789012 and you
-     *            want to use the default master key in the US West (Oregon)
-     *            region, the ARN of the default master key would be
+     *            . For example, if your Amazon Web Services account ID is
+     *            123456789012 and you want to use the default master key in the
+     *            US West (Oregon) Region, the ARN of the default master key
+     *            would be
      *            <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>.
      *            If you use the default master key, you don't need to perform
      *            any extra steps to give Amazon SES permission to use the key.
@@ -495,11 +525,12 @@ public class S3Action implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            To use a custom master key you created in AWS KMS, provide the
-     *            ARN of the master key and ensure that you add a statement to
-     *            your key's policy to give Amazon SES permission to use it. For
-     *            more information about giving permissions, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *            To use a custom master key that you created in Amazon Web
+     *            Services KMS, provide the ARN of the master key and ensure
+     *            that you add a statement to your key's policy to give Amazon
+     *            SES permission to use it. For more information about giving
+     *            permissions, see the <a href=
+     *            "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            </li>
@@ -507,8 +538,8 @@ public class S3Action implements Serializable {
      *            <p>
      *            For more information about key policies, see the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
-     *            >AWS KMS Developer Guide</a>. If you do not specify a master
-     *            key, Amazon SES will not encrypt your emails.
+     *            >Amazon Web Services KMS Developer Guide</a>. If you do not
+     *            specify a master key, Amazon SES does not encrypt your emails.
      *            </p>
      *            <important>
      *            <p>
@@ -517,13 +548,15 @@ public class S3Action implements Serializable {
      *            for storage. It is not encrypted using Amazon S3 server-side
      *            encryption. This means that you must use the Amazon S3
      *            encryption client to decrypt the email after retrieving it
-     *            from Amazon S3, as the service has no access to use your AWS
-     *            KMS keys for decryption. This encryption client is currently
-     *            available with the <a
-     *            href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
-     *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *            from Amazon S3, as the service has no access to use your
+     *            Amazon Web Services KMS keys for decryption. This encryption
+     *            client is currently available with the <a
+     *            href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services
+     *            SDK for Java</a> and <a
+     *            href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web Services
      *            SDK for Ruby</a> only. For more information about client-side
-     *            encryption using AWS KMS master keys, see the <a href=
+     *            encryption using Amazon Web Services KMS master keys, see the
+     *            <a href=
      *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>
@@ -537,16 +570,17 @@ public class S3Action implements Serializable {
      * <p>
      * The customer master key that Amazon SES should use to encrypt your emails
      * before saving them to the Amazon S3 bucket. You can use the default
-     * master key or a custom master key you created in AWS KMS as follows:
+     * master key or a custom master key that you created in Amazon Web Services
+     * KMS as follows:
      * </p>
      * <ul>
      * <li>
      * <p>
      * To use the default master key, provide an ARN in the form of
      * <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>.
-     * For example, if your AWS account ID is 123456789012 and you want to use
-     * the default master key in the US West (Oregon) region, the ARN of the
-     * default master key would be
+     * For example, if your Amazon Web Services account ID is 123456789012 and
+     * you want to use the default master key in the US West (Oregon) Region,
+     * the ARN of the default master key would be
      * <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>. If you use
      * the default master key, you don't need to perform any extra steps to give
      * Amazon SES permission to use the key.
@@ -554,20 +588,20 @@ public class S3Action implements Serializable {
      * </li>
      * <li>
      * <p>
-     * To use a custom master key you created in AWS KMS, provide the ARN of the
-     * master key and ensure that you add a statement to your key's policy to
-     * give Amazon SES permission to use it. For more information about giving
-     * permissions, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     * To use a custom master key that you created in Amazon Web Services KMS,
+     * provide the ARN of the master key and ensure that you add a statement to
+     * your key's policy to give Amazon SES permission to use it. For more
+     * information about giving permissions, see the <a href=
+     * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * For more information about key policies, see the <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html">AWS
-     * KMS Developer Guide</a>. If you do not specify a master key, Amazon SES
-     * will not encrypt your emails.
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
+     * >Amazon Web Services KMS Developer Guide</a>. If you do not specify a
+     * master key, Amazon SES does not encrypt your emails.
      * </p>
      * <important>
      * <p>
@@ -576,11 +610,12 @@ public class S3Action implements Serializable {
      * encrypted using Amazon S3 server-side encryption. This means that you
      * must use the Amazon S3 encryption client to decrypt the email after
      * retrieving it from Amazon S3, as the service has no access to use your
-     * AWS KMS keys for decryption. This encryption client is currently
-     * available with the <a href="http://aws.amazon.com/sdk-for-java/">AWS SDK
-     * for Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS SDK
-     * for Ruby</a> only. For more information about client-side encryption
-     * using AWS KMS master keys, see the <a href=
+     * Amazon Web Services KMS keys for decryption. This encryption client is
+     * currently available with the <a
+     * href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services SDK for
+     * Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web
+     * Services SDK for Ruby</a> only. For more information about client-side
+     * encryption using Amazon Web Services KMS master keys, see the <a href=
      * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      * >Amazon S3 Developer Guide</a>.
      * </p>
@@ -592,17 +627,18 @@ public class S3Action implements Serializable {
      * @param kmsKeyArn <p>
      *            The customer master key that Amazon SES should use to encrypt
      *            your emails before saving them to the Amazon S3 bucket. You
-     *            can use the default master key or a custom master key you
-     *            created in AWS KMS as follows:
+     *            can use the default master key or a custom master key that you
+     *            created in Amazon Web Services KMS as follows:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
      *            To use the default master key, provide an ARN in the form of
      *            <code>arn:aws:kms:REGION:ACCOUNT-ID-WITHOUT-HYPHENS:alias/aws/ses</code>
-     *            . For example, if your AWS account ID is 123456789012 and you
-     *            want to use the default master key in the US West (Oregon)
-     *            region, the ARN of the default master key would be
+     *            . For example, if your Amazon Web Services account ID is
+     *            123456789012 and you want to use the default master key in the
+     *            US West (Oregon) Region, the ARN of the default master key
+     *            would be
      *            <code>arn:aws:kms:us-west-2:123456789012:alias/aws/ses</code>.
      *            If you use the default master key, you don't need to perform
      *            any extra steps to give Amazon SES permission to use the key.
@@ -610,11 +646,12 @@ public class S3Action implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            To use a custom master key you created in AWS KMS, provide the
-     *            ARN of the master key and ensure that you add a statement to
-     *            your key's policy to give Amazon SES permission to use it. For
-     *            more information about giving permissions, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+     *            To use a custom master key that you created in Amazon Web
+     *            Services KMS, provide the ARN of the master key and ensure
+     *            that you add a statement to your key's policy to give Amazon
+     *            SES permission to use it. For more information about giving
+     *            permissions, see the <a href=
+     *            "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      *            </li>
@@ -622,8 +659,8 @@ public class S3Action implements Serializable {
      *            <p>
      *            For more information about key policies, see the <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html"
-     *            >AWS KMS Developer Guide</a>. If you do not specify a master
-     *            key, Amazon SES will not encrypt your emails.
+     *            >Amazon Web Services KMS Developer Guide</a>. If you do not
+     *            specify a master key, Amazon SES does not encrypt your emails.
      *            </p>
      *            <important>
      *            <p>
@@ -632,13 +669,15 @@ public class S3Action implements Serializable {
      *            for storage. It is not encrypted using Amazon S3 server-side
      *            encryption. This means that you must use the Amazon S3
      *            encryption client to decrypt the email after retrieving it
-     *            from Amazon S3, as the service has no access to use your AWS
-     *            KMS keys for decryption. This encryption client is currently
-     *            available with the <a
-     *            href="http://aws.amazon.com/sdk-for-java/">AWS SDK for
-     *            Java</a> and <a href="http://aws.amazon.com/sdk-for-ruby/">AWS
+     *            from Amazon S3, as the service has no access to use your
+     *            Amazon Web Services KMS keys for decryption. This encryption
+     *            client is currently available with the <a
+     *            href="http://aws.amazon.com/sdk-for-java/">Amazon Web Services
+     *            SDK for Java</a> and <a
+     *            href="http://aws.amazon.com/sdk-for-ruby/">Amazon Web Services
      *            SDK for Ruby</a> only. For more information about client-side
-     *            encryption using AWS KMS master keys, see the <a href=
+     *            encryption using Amazon Web Services KMS master keys, see the
+     *            <a href=
      *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html"
      *            >Amazon S3 Developer Guide</a>.
      *            </p>

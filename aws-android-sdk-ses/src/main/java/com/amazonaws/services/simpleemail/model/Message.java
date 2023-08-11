@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class Message implements Serializable {
     /**
      * <p>
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * The subject of the message: A short summary of the content, which appears
+     * in the recipient's inbox.
      * </p>
      */
     private Content subject;
@@ -52,7 +52,7 @@ public class Message implements Serializable {
      * 
      * @param subject <p>
      *            The subject of the message: A short summary of the content,
-     *            which will appear in the recipient's inbox.
+     *            which appears in the recipient's inbox.
      *            </p>
      * @param body <p>
      *            The message body.
@@ -65,13 +65,13 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * The subject of the message: A short summary of the content, which appears
+     * in the recipient's inbox.
      * </p>
      *
      * @return <p>
      *         The subject of the message: A short summary of the content, which
-     *         will appear in the recipient's inbox.
+     *         appears in the recipient's inbox.
      *         </p>
      */
     public Content getSubject() {
@@ -80,13 +80,13 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * The subject of the message: A short summary of the content, which appears
+     * in the recipient's inbox.
      * </p>
      *
      * @param subject <p>
      *            The subject of the message: A short summary of the content,
-     *            which will appear in the recipient's inbox.
+     *            which appears in the recipient's inbox.
      *            </p>
      */
     public void setSubject(Content subject) {
@@ -95,8 +95,8 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * The subject of the message: A short summary of the content, which will
-     * appear in the recipient's inbox.
+     * The subject of the message: A short summary of the content, which appears
+     * in the recipient's inbox.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -104,7 +104,7 @@ public class Message implements Serializable {
      *
      * @param subject <p>
      *            The subject of the message: A short summary of the content,
-     *            which will appear in the recipient's inbox.
+     *            which appears in the recipient's inbox.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

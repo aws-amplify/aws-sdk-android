@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,9 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Updates an email template. Email templates enable you to send personalized
- * email to one or more destinations in a single API operation. For more
+ * email to one or more destinations in a single operation. For more
  * information, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -34,21 +34,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateTemplateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      */
     private Template template;
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      *
      * @return <p>
-     *         The content of the email, composed of a subject line, an HTML
-     *         part, and a text-only part.
+     *         The content of the email, composed of a subject line and either
+     *         an HTML part or a text-only part.
      *         </p>
      */
     public Template getTemplate() {
@@ -57,13 +57,13 @@ public class UpdateTemplateRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      *
      * @param template <p>
-     *            The content of the email, composed of a subject line, an HTML
-     *            part, and a text-only part.
+     *            The content of the email, composed of a subject line and
+     *            either an HTML part or a text-only part.
      *            </p>
      */
     public void setTemplate(Template template) {
@@ -72,16 +72,16 @@ public class UpdateTemplateRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The content of the email, composed of a subject line, an HTML part, and a
-     * text-only part.
+     * The content of the email, composed of a subject line and either an HTML
+     * part or a text-only part.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param template <p>
-     *            The content of the email, composed of a subject line, an HTML
-     *            part, and a text-only part.
+     *            The content of the email, composed of a subject line and
+     *            either an HTML part or a text-only part.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

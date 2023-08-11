@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,15 +26,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * This API is for the identity owner only. If you have not verified the
- * identity, this API will return an error.
+ * This operation is for the identity owner only. If you have not verified the
+ * identity, it returns an error.
  * </p>
  * </note>
  * <p>
  * Sending authorization is a feature that enables an identity owner to
  * authorize other senders to use its identities. For information about using
- * sending authorization, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+ * sending authorization, see the <a
+ * href="https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
@@ -44,13 +44,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identity that the policy will apply to. You can specify an identity
-     * by using its name or by using its Amazon Resource Name (ARN). Examples:
-     * <code>user@example.com</code>, <code>example.com</code>,
+     * The identity to which that the policy applies. You can specify an
+     * identity by using its name or by using its Amazon Resource Name (ARN).
+     * Examples: <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * </p>
      * <p>
-     * To successfully call this API, you must own the identity.
+     * To successfully call this operation, you must own the identity.
      * </p>
      */
     private String identity;
@@ -76,7 +76,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -87,17 +87,17 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity that the policy will apply to. You can specify an identity
-     * by using its name or by using its Amazon Resource Name (ARN). Examples:
-     * <code>user@example.com</code>, <code>example.com</code>,
+     * The identity to which that the policy applies. You can specify an
+     * identity by using its name or by using its Amazon Resource Name (ARN).
+     * Examples: <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * </p>
      * <p>
-     * To successfully call this API, you must own the identity.
+     * To successfully call this operation, you must own the identity.
      * </p>
      *
      * @return <p>
-     *         The identity that the policy will apply to. You can specify an
+     *         The identity to which that the policy applies. You can specify an
      *         identity by using its name or by using its Amazon Resource Name
      *         (ARN). Examples: <code>user@example.com</code>,
      *         <code>example.com</code>,
@@ -105,7 +105,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *         .
      *         </p>
      *         <p>
-     *         To successfully call this API, you must own the identity.
+     *         To successfully call this operation, you must own the identity.
      *         </p>
      */
     public String getIdentity() {
@@ -114,25 +114,26 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity that the policy will apply to. You can specify an identity
-     * by using its name or by using its Amazon Resource Name (ARN). Examples:
-     * <code>user@example.com</code>, <code>example.com</code>,
+     * The identity to which that the policy applies. You can specify an
+     * identity by using its name or by using its Amazon Resource Name (ARN).
+     * Examples: <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * </p>
      * <p>
-     * To successfully call this API, you must own the identity.
+     * To successfully call this operation, you must own the identity.
      * </p>
      *
      * @param identity <p>
-     *            The identity that the policy will apply to. You can specify an
-     *            identity by using its name or by using its Amazon Resource
+     *            The identity to which that the policy applies. You can specify
+     *            an identity by using its name or by using its Amazon Resource
      *            Name (ARN). Examples: <code>user@example.com</code>,
      *            <code>example.com</code>,
      *            <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>
      *            .
      *            </p>
      *            <p>
-     *            To successfully call this API, you must own the identity.
+     *            To successfully call this operation, you must own the
+     *            identity.
      *            </p>
      */
     public void setIdentity(String identity) {
@@ -141,28 +142,29 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identity that the policy will apply to. You can specify an identity
-     * by using its name or by using its Amazon Resource Name (ARN). Examples:
-     * <code>user@example.com</code>, <code>example.com</code>,
+     * The identity to which that the policy applies. You can specify an
+     * identity by using its name or by using its Amazon Resource Name (ARN).
+     * Examples: <code>user@example.com</code>, <code>example.com</code>,
      * <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>.
      * </p>
      * <p>
-     * To successfully call this API, you must own the identity.
+     * To successfully call this operation, you must own the identity.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param identity <p>
-     *            The identity that the policy will apply to. You can specify an
-     *            identity by using its name or by using its Amazon Resource
+     *            The identity to which that the policy applies. You can specify
+     *            an identity by using its name or by using its Amazon Resource
      *            Name (ARN). Examples: <code>user@example.com</code>,
      *            <code>example.com</code>,
      *            <code>arn:aws:ses:us-east-1:123456789012:identity/example.com</code>
      *            .
      *            </p>
      *            <p>
-     *            To successfully call this API, you must own the identity.
+     *            To successfully call this operation, you must own the
+     *            identity.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -257,7 +259,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -271,7 +273,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *         <p>
      *         For information about the syntax of sending authorization
      *         policies, see the <a href=
-     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *         "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -286,7 +288,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -300,7 +302,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *            <p>
      *            For information about the syntax of sending authorization
      *            policies, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -315,7 +317,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      * <p>
      * For information about the syntax of sending authorization policies, see
      * the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -332,7 +334,7 @@ public class PutIdentityPolicyRequest extends AmazonWebServiceRequest implements
      *            <p>
      *            For information about the syntax of sending authorization
      *            policies, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization-policies.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization-policies.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

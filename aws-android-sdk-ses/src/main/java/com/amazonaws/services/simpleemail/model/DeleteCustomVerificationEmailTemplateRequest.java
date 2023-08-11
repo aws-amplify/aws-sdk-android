@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For more information about custom verification email templates, see <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/custom-verification-emails.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html#send-email-verify-address-custom"
  * >Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer
  * Guide</i>.
  * </p>
@@ -37,21 +37,18 @@ public class DeleteCustomVerificationEmailTemplateRequest extends AmazonWebServi
         Serializable {
     /**
      * <p>
-     * The name of the custom verification email template that you want to
-     * delete.
+     * The name of the custom verification email template to delete.
      * </p>
      */
     private String templateName;
 
     /**
      * <p>
-     * The name of the custom verification email template that you want to
-     * delete.
+     * The name of the custom verification email template to delete.
      * </p>
      *
      * @return <p>
-     *         The name of the custom verification email template that you want
-     *         to delete.
+     *         The name of the custom verification email template to delete.
      *         </p>
      */
     public String getTemplateName() {
@@ -60,13 +57,11 @@ public class DeleteCustomVerificationEmailTemplateRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the custom verification email template that you want to
-     * delete.
+     * The name of the custom verification email template to delete.
      * </p>
      *
      * @param templateName <p>
-     *            The name of the custom verification email template that you
-     *            want to delete.
+     *            The name of the custom verification email template to delete.
      *            </p>
      */
     public void setTemplateName(String templateName) {
@@ -75,16 +70,14 @@ public class DeleteCustomVerificationEmailTemplateRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the custom verification email template that you want to
-     * delete.
+     * The name of the custom verification email template to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param templateName <p>
-     *            The name of the custom verification email template that you
-     *            want to delete.
+     *            The name of the custom verification email template to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

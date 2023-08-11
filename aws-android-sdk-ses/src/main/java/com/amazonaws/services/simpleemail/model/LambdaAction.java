@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,22 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * When included in a receipt rule, this action calls an AWS Lambda function
- * and, optionally, publishes a notification to Amazon Simple Notification
- * Service (Amazon SNS).
+ * When included in a receipt rule, this action calls an Amazon Web Services
+ * Lambda function and, optionally, publishes a notification to Amazon Simple
+ * Notification Service (Amazon SNS).
  * </p>
  * <p>
- * To enable Amazon SES to call your AWS Lambda function or to publish to an
- * Amazon SNS topic of another account, Amazon SES must have permission to
- * access those resources. For information about giving permissions, see the <a
- * href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-permissions.html"
+ * To enable Amazon SES to call your Amazon Web Services Lambda function or to
+ * publish to an Amazon SNS topic of another account, Amazon SES must have
+ * permission to access those resources. For information about giving
+ * permissions, see the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-permissions.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>
- * For information about using AWS Lambda actions in receipt rules, see the <a
- * href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-action-lambda.html"
+ * For information about using Amazon Web Services Lambda actions in receipt
+ * rules, see the <a href=
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-action-lambda.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -42,9 +42,12 @@ public class LambdaAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * Lambda action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * Lambda action is executed. You can find the ARN of a topic by using the
+     * <a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -53,34 +56,33 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Lambda function. An example of
-     * an AWS Lambda function ARN is
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Lambda
+     * function. An example of an Amazon Web Services Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
-     * more information about AWS Lambda, see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     * Lambda Developer Guide</a>.
+     * more information about Amazon Web Services Lambda, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon
+     * Web Services Lambda Developer Guide</a>.
      * </p>
      */
     private String functionArn;
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -92,19 +94,25 @@ public class LambdaAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * Lambda action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * Lambda action is executed. You can find the ARN of a topic by using the
+     * <a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon SNS topic to notify
-     *         when the Lambda action is taken. An example of an Amazon SNS
-     *         topic ARN is
-     *         <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     *         information about Amazon SNS topics, see the <a href=
+     *         when the Lambda action is executed. You can find the ARN of a
+     *         topic by using the <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *         >ListTopics</a> operation in Amazon SNS.
+     *         </p>
+     *         <p>
+     *         For more information about Amazon SNS topics, see the <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *         >Amazon SNS Developer Guide</a>.
      *         </p>
@@ -116,19 +124,25 @@ public class LambdaAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * Lambda action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * Lambda action is executed. You can find the ARN of a topic by using the
+     * <a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
      *
      * @param topicArn <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic to
-     *            notify when the Lambda action is taken. An example of an
-     *            Amazon SNS topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            notify when the Lambda action is executed. You can find the
+     *            ARN of a topic by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> operation in Amazon SNS.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
@@ -140,9 +154,12 @@ public class LambdaAction implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon SNS topic to notify when the
-     * Lambda action is taken. An example of an Amazon SNS topic ARN is
-     * <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For more
-     * information about Amazon SNS topics, see the <a
+     * Lambda action is executed. You can find the ARN of a topic by using the
+     * <a href="https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html">
+     * ListTopics</a> operation in Amazon SNS.
+     * </p>
+     * <p>
+     * For more information about Amazon SNS topics, see the <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html">Amazon
      * SNS Developer Guide</a>.
      * </p>
@@ -152,10 +169,13 @@ public class LambdaAction implements Serializable {
      *
      * @param topicArn <p>
      *            The Amazon Resource Name (ARN) of the Amazon SNS topic to
-     *            notify when the Lambda action is taken. An example of an
-     *            Amazon SNS topic ARN is
-     *            <code>arn:aws:sns:us-west-2:123456789012:MyTopic</code>. For
-     *            more information about Amazon SNS topics, see the <a href=
+     *            notify when the Lambda action is executed. You can find the
+     *            ARN of a topic by using the <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_ListTopics.html"
+     *            >ListTopics</a> operation in Amazon SNS.
+     *            </p>
+     *            <p>
+     *            For more information about Amazon SNS topics, see the <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html"
      *            >Amazon SNS Developer Guide</a>.
      *            </p>
@@ -169,21 +189,23 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Lambda function. An example of
-     * an AWS Lambda function ARN is
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Lambda
+     * function. An example of an Amazon Web Services Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
-     * more information about AWS Lambda, see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     * Lambda Developer Guide</a>.
+     * more information about Amazon Web Services Lambda, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon
+     * Web Services Lambda Developer Guide</a>.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Lambda function. An
-     *         example of an AWS Lambda function ARN is
+     *         The Amazon Resource Name (ARN) of the Amazon Web Services Lambda
+     *         function. An example of an Amazon Web Services Lambda function
+     *         ARN is
      *         <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
-     *         . For more information about AWS Lambda, see the <a href=
-     *         "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     *         Lambda Developer Guide</a>.
+     *         . For more information about Amazon Web Services Lambda, see the
+     *         <a href=
+     *         "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+     *         >Amazon Web Services Lambda Developer Guide</a>.
      *         </p>
      */
     public String getFunctionArn() {
@@ -192,21 +214,23 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Lambda function. An example of
-     * an AWS Lambda function ARN is
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Lambda
+     * function. An example of an Amazon Web Services Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
-     * more information about AWS Lambda, see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     * Lambda Developer Guide</a>.
+     * more information about Amazon Web Services Lambda, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon
+     * Web Services Lambda Developer Guide</a>.
      * </p>
      *
      * @param functionArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Lambda function. An
-     *            example of an AWS Lambda function ARN is
+     *            The Amazon Resource Name (ARN) of the Amazon Web Services
+     *            Lambda function. An example of an Amazon Web Services Lambda
+     *            function ARN is
      *            <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
-     *            . For more information about AWS Lambda, see the <a href=
+     *            . For more information about Amazon Web Services Lambda, see
+     *            the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      */
     public void setFunctionArn(String functionArn) {
@@ -215,24 +239,26 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Lambda function. An example of
-     * an AWS Lambda function ARN is
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Lambda
+     * function. An example of an Amazon Web Services Lambda function ARN is
      * <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>. For
-     * more information about AWS Lambda, see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS
-     * Lambda Developer Guide</a>.
+     * more information about Amazon Web Services Lambda, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon
+     * Web Services Lambda Developer Guide</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param functionArn <p>
-     *            The Amazon Resource Name (ARN) of the AWS Lambda function. An
-     *            example of an AWS Lambda function ARN is
+     *            The Amazon Resource Name (ARN) of the Amazon Web Services
+     *            Lambda function. An example of an Amazon Web Services Lambda
+     *            function ARN is
      *            <code>arn:aws:lambda:us-west-2:account-id:function:MyFunction</code>
-     *            . For more information about AWS Lambda, see the <a href=
+     *            . For more information about Amazon Web Services Lambda, see
+     *            the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -244,22 +270,21 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -267,22 +292,23 @@ public class LambdaAction implements Serializable {
      * <b>Allowed Values: </b>Event, RequestResponse
      *
      * @return <p>
-     *         The invocation type of the AWS Lambda function. An invocation
-     *         type of <code>RequestResponse</code> means that the execution of
-     *         the function will immediately result in a response, and a value
-     *         of <code>Event</code> means that the function will be invoked
+     *         The invocation type of the Amazon Web Services Lambda function.
+     *         An invocation type of <code>RequestResponse</code> means that the
+     *         execution of the function immediately results in a response, and
+     *         a value of <code>Event</code> means that the function is invoked
      *         asynchronously. The default value is <code>Event</code>. For
-     *         information about AWS Lambda invocation types, see the <a href=
+     *         information about Amazon Web Services Lambda invocation types,
+     *         see the <a href=
      *         "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
-     *         >AWS Lambda Developer Guide</a>.
+     *         >Amazon Web Services Lambda Developer Guide</a>.
      *         </p>
      *         <important>
      *         <p>
      *         There is a 30-second timeout on <code>RequestResponse</code>
      *         invocations. You should use <code>Event</code> invocation in most
-     *         cases. Use <code>RequestResponse</code> only when you want to
-     *         make a mail flow decision, such as whether to stop the receipt
-     *         rule or the receipt rule set.
+     *         cases. Use <code>RequestResponse</code> only to make a mail flow
+     *         decision, such as whether to stop the receipt rule or the receipt
+     *         rule set.
      *         </p>
      *         </important>
      * @see InvocationType
@@ -293,22 +319,21 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -316,23 +341,23 @@ public class LambdaAction implements Serializable {
      * <b>Allowed Values: </b>Event, RequestResponse
      *
      * @param invocationType <p>
-     *            The invocation type of the AWS Lambda function. An invocation
-     *            type of <code>RequestResponse</code> means that the execution
-     *            of the function will immediately result in a response, and a
-     *            value of <code>Event</code> means that the function will be
-     *            invoked asynchronously. The default value is
-     *            <code>Event</code>. For information about AWS Lambda
-     *            invocation types, see the <a href=
+     *            The invocation type of the Amazon Web Services Lambda
+     *            function. An invocation type of <code>RequestResponse</code>
+     *            means that the execution of the function immediately results
+     *            in a response, and a value of <code>Event</code> means that
+     *            the function is invoked asynchronously. The default value is
+     *            <code>Event</code>. For information about Amazon Web Services
+     *            Lambda invocation types, see the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      *            <important>
      *            <p>
      *            There is a 30-second timeout on <code>RequestResponse</code>
      *            invocations. You should use <code>Event</code> invocation in
-     *            most cases. Use <code>RequestResponse</code> only when you
-     *            want to make a mail flow decision, such as whether to stop the
-     *            receipt rule or the receipt rule set.
+     *            most cases. Use <code>RequestResponse</code> only to make a
+     *            mail flow decision, such as whether to stop the receipt rule
+     *            or the receipt rule set.
      *            </p>
      *            </important>
      * @see InvocationType
@@ -343,22 +368,21 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -369,23 +393,23 @@ public class LambdaAction implements Serializable {
      * <b>Allowed Values: </b>Event, RequestResponse
      *
      * @param invocationType <p>
-     *            The invocation type of the AWS Lambda function. An invocation
-     *            type of <code>RequestResponse</code> means that the execution
-     *            of the function will immediately result in a response, and a
-     *            value of <code>Event</code> means that the function will be
-     *            invoked asynchronously. The default value is
-     *            <code>Event</code>. For information about AWS Lambda
-     *            invocation types, see the <a href=
+     *            The invocation type of the Amazon Web Services Lambda
+     *            function. An invocation type of <code>RequestResponse</code>
+     *            means that the execution of the function immediately results
+     *            in a response, and a value of <code>Event</code> means that
+     *            the function is invoked asynchronously. The default value is
+     *            <code>Event</code>. For information about Amazon Web Services
+     *            Lambda invocation types, see the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      *            <important>
      *            <p>
      *            There is a 30-second timeout on <code>RequestResponse</code>
      *            invocations. You should use <code>Event</code> invocation in
-     *            most cases. Use <code>RequestResponse</code> only when you
-     *            want to make a mail flow decision, such as whether to stop the
-     *            receipt rule or the receipt rule set.
+     *            most cases. Use <code>RequestResponse</code> only to make a
+     *            mail flow decision, such as whether to stop the receipt rule
+     *            or the receipt rule set.
      *            </p>
      *            </important>
      * @return A reference to this updated object so that method calls can be
@@ -399,22 +423,21 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -422,23 +445,23 @@ public class LambdaAction implements Serializable {
      * <b>Allowed Values: </b>Event, RequestResponse
      *
      * @param invocationType <p>
-     *            The invocation type of the AWS Lambda function. An invocation
-     *            type of <code>RequestResponse</code> means that the execution
-     *            of the function will immediately result in a response, and a
-     *            value of <code>Event</code> means that the function will be
-     *            invoked asynchronously. The default value is
-     *            <code>Event</code>. For information about AWS Lambda
-     *            invocation types, see the <a href=
+     *            The invocation type of the Amazon Web Services Lambda
+     *            function. An invocation type of <code>RequestResponse</code>
+     *            means that the execution of the function immediately results
+     *            in a response, and a value of <code>Event</code> means that
+     *            the function is invoked asynchronously. The default value is
+     *            <code>Event</code>. For information about Amazon Web Services
+     *            Lambda invocation types, see the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      *            <important>
      *            <p>
      *            There is a 30-second timeout on <code>RequestResponse</code>
      *            invocations. You should use <code>Event</code> invocation in
-     *            most cases. Use <code>RequestResponse</code> only when you
-     *            want to make a mail flow decision, such as whether to stop the
-     *            receipt rule or the receipt rule set.
+     *            most cases. Use <code>RequestResponse</code> only to make a
+     *            mail flow decision, such as whether to stop the receipt rule
+     *            or the receipt rule set.
      *            </p>
      *            </important>
      * @see InvocationType
@@ -449,22 +472,21 @@ public class LambdaAction implements Serializable {
 
     /**
      * <p>
-     * The invocation type of the AWS Lambda function. An invocation type of
-     * <code>RequestResponse</code> means that the execution of the function
-     * will immediately result in a response, and a value of <code>Event</code>
-     * means that the function will be invoked asynchronously. The default value
-     * is <code>Event</code>. For information about AWS Lambda invocation types,
-     * see the <a
-     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html">AWS
-     * Lambda Developer Guide</a>.
+     * The invocation type of the Amazon Web Services Lambda function. An
+     * invocation type of <code>RequestResponse</code> means that the execution
+     * of the function immediately results in a response, and a value of
+     * <code>Event</code> means that the function is invoked asynchronously. The
+     * default value is <code>Event</code>. For information about Amazon Web
+     * Services Lambda invocation types, see the <a
+     * href="https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
+     * >Amazon Web Services Lambda Developer Guide</a>.
      * </p>
      * <important>
      * <p>
      * There is a 30-second timeout on <code>RequestResponse</code> invocations.
      * You should use <code>Event</code> invocation in most cases. Use
-     * <code>RequestResponse</code> only when you want to make a mail flow
-     * decision, such as whether to stop the receipt rule or the receipt rule
-     * set.
+     * <code>RequestResponse</code> only to make a mail flow decision, such as
+     * whether to stop the receipt rule or the receipt rule set.
      * </p>
      * </important>
      * <p>
@@ -475,23 +497,23 @@ public class LambdaAction implements Serializable {
      * <b>Allowed Values: </b>Event, RequestResponse
      *
      * @param invocationType <p>
-     *            The invocation type of the AWS Lambda function. An invocation
-     *            type of <code>RequestResponse</code> means that the execution
-     *            of the function will immediately result in a response, and a
-     *            value of <code>Event</code> means that the function will be
-     *            invoked asynchronously. The default value is
-     *            <code>Event</code>. For information about AWS Lambda
-     *            invocation types, see the <a href=
+     *            The invocation type of the Amazon Web Services Lambda
+     *            function. An invocation type of <code>RequestResponse</code>
+     *            means that the execution of the function immediately results
+     *            in a response, and a value of <code>Event</code> means that
+     *            the function is invoked asynchronously. The default value is
+     *            <code>Event</code>. For information about Amazon Web Services
+     *            Lambda invocation types, see the <a href=
      *            "https://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html"
-     *            >AWS Lambda Developer Guide</a>.
+     *            >Amazon Web Services Lambda Developer Guide</a>.
      *            </p>
      *            <important>
      *            <p>
      *            There is a 30-second timeout on <code>RequestResponse</code>
      *            invocations. You should use <code>Event</code> invocation in
-     *            most cases. Use <code>RequestResponse</code> only when you
-     *            want to make a mail flow decision, such as whether to stop the
-     *            receipt rule or the receipt rule set.
+     *            most cases. Use <code>RequestResponse</code> only to make a
+     *            mail flow decision, such as whether to stop the receipt rule
+     *            or the receipt rule set.
      *            </p>
      *            </important>
      * @return A reference to this updated object so that method calls can be

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the IP address filters associated with your AWS account in the current
- * AWS Region.
+ * Lists the IP address filters associated with your Amazon Web Services account
+ * in the current Amazon Web Services Region.
  * </p>
  * <p>
  * For information about managing IP address filters, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-managing-ip-filters.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-ip-filtering-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <p>

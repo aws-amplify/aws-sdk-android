@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * hosted on domains operated by Amazon SES. You can configure a subdomain of
  * your own to handle these events. For information about using custom domains,
  * see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
@@ -37,8 +37,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
         Serializable {
     /**
      * <p>
-     * The name of the configuration set for which you want to update the custom
-     * tracking domain.
+     * The name of the configuration set.
      * </p>
      */
     private String configurationSetName;
@@ -51,7 +50,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -60,13 +59,11 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the configuration set for which you want to update the custom
-     * tracking domain.
+     * The name of the configuration set.
      * </p>
      *
      * @return <p>
-     *         The name of the configuration set for which you want to update
-     *         the custom tracking domain.
+     *         The name of the configuration set.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -75,13 +72,11 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the configuration set for which you want to update the custom
-     * tracking domain.
+     * The name of the configuration set.
      * </p>
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set for which you want to update
-     *            the custom tracking domain.
+     *            The name of the configuration set.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -90,16 +85,14 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the configuration set for which you want to update the custom
-     * tracking domain.
+     * The name of the configuration set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set for which you want to update
-     *            the custom tracking domain.
+     *            The name of the configuration set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -118,7 +111,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -130,7 +123,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *         </p>
      *         <p>
      *         For more information, see <a href=
-     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *         "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      *         >Configuring Custom Domains to Handle Open and Click Tracking</a>
      *         in the <i>Amazon SES Developer Guide</i>.
      *         </p>
@@ -147,7 +140,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -159,7 +152,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      *            >Configuring Custom Domains to Handle Open and Click
      *            Tracking</a> in the <i>Amazon SES Developer Guide</i>.
      *            </p>
@@ -176,7 +169,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      * </p>
      * <p>
      * For more information, see <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
      * <i>Amazon SES Developer Guide</i>.
      * </p>
@@ -191,7 +184,7 @@ public class UpdateConfigurationSetTrackingOptionsRequest extends AmazonWebServi
      *            </p>
      *            <p>
      *            For more information, see <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
      *            >Configuring Custom Domains to Handle Open and Click
      *            Tracking</a> in the <i>Amazon SES Developer Guide</i>.
      *            </p>
