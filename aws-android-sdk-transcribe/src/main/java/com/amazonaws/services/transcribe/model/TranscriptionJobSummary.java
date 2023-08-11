@@ -204,6 +204,14 @@ public class TranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
+     * Indicates whether toxicity detection was enabled for the specified
+     * transcription job.
+     * </p>
+     */
+    private java.util.List<ToxicityDetectionSettings> toxicityDetection;
+
+    /**
+     * <p>
      * The name of the transcription job. Job names are case sensitive and must
      * be unique within an Amazon Web Services account.
      * </p>
@@ -1589,6 +1597,93 @@ public class TranscriptionJobSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether toxicity detection was enabled for the specified
+     * transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether toxicity detection was enabled for the
+     *         specified transcription job.
+     *         </p>
+     */
+    public java.util.List<ToxicityDetectionSettings> getToxicityDetection() {
+        return toxicityDetection;
+    }
+
+    /**
+     * <p>
+     * Indicates whether toxicity detection was enabled for the specified
+     * transcription job.
+     * </p>
+     *
+     * @param toxicityDetection <p>
+     *            Indicates whether toxicity detection was enabled for the
+     *            specified transcription job.
+     *            </p>
+     */
+    public void setToxicityDetection(
+            java.util.Collection<ToxicityDetectionSettings> toxicityDetection) {
+        if (toxicityDetection == null) {
+            this.toxicityDetection = null;
+            return;
+        }
+
+        this.toxicityDetection = new java.util.ArrayList<ToxicityDetectionSettings>(
+                toxicityDetection);
+    }
+
+    /**
+     * <p>
+     * Indicates whether toxicity detection was enabled for the specified
+     * transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param toxicityDetection <p>
+     *            Indicates whether toxicity detection was enabled for the
+     *            specified transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withToxicityDetection(
+            ToxicityDetectionSettings... toxicityDetection) {
+        if (getToxicityDetection() == null) {
+            this.toxicityDetection = new java.util.ArrayList<ToxicityDetectionSettings>(
+                    toxicityDetection.length);
+        }
+        for (ToxicityDetectionSettings value : toxicityDetection) {
+            this.toxicityDetection.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether toxicity detection was enabled for the specified
+     * transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param toxicityDetection <p>
+     *            Indicates whether toxicity detection was enabled for the
+     *            specified transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranscriptionJobSummary withToxicityDetection(
+            java.util.Collection<ToxicityDetectionSettings> toxicityDetection) {
+        setToxicityDetection(toxicityDetection);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1626,7 +1721,9 @@ public class TranscriptionJobSummary implements Serializable {
         if (getIdentifiedLanguageScore() != null)
             sb.append("IdentifiedLanguageScore: " + getIdentifiedLanguageScore() + ",");
         if (getLanguageCodes() != null)
-            sb.append("LanguageCodes: " + getLanguageCodes());
+            sb.append("LanguageCodes: " + getLanguageCodes() + ",");
+        if (getToxicityDetection() != null)
+            sb.append("ToxicityDetection: " + getToxicityDetection());
         sb.append("}");
         return sb.toString();
     }
@@ -1669,6 +1766,8 @@ public class TranscriptionJobSummary implements Serializable {
                         .hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCodes() == null) ? 0 : getLanguageCodes().hashCode());
+        hashCode = prime * hashCode
+                + ((getToxicityDetection() == null) ? 0 : getToxicityDetection().hashCode());
         return hashCode;
     }
 
@@ -1753,6 +1852,11 @@ public class TranscriptionJobSummary implements Serializable {
             return false;
         if (other.getLanguageCodes() != null
                 && other.getLanguageCodes().equals(this.getLanguageCodes()) == false)
+            return false;
+        if (other.getToxicityDetection() == null ^ this.getToxicityDetection() == null)
+            return false;
+        if (other.getToxicityDetection() != null
+                && other.getToxicityDetection().equals(this.getToxicityDetection()) == false)
             return false;
         return true;
     }
