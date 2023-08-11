@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -97,7 +97,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Don't share or store this token where an unauthorized entity can access it.
  * The token provides access to the content of the stream. Safeguard the token
- * with the same measures that you use with your AWS credentials.
+ * with the same measures that you use with your Amazon Web Services
+ * credentials.
  * </p>
  * </note>
  * <p>
@@ -185,8 +186,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html"
  * >Monitoring Kinesis Video Streams</a>. For pricing information, see <a
  * href="https://aws.amazon.com/kinesis/video-streams/pricing/">Amazon Kinesis
- * Video Streams Pricing</a> and <a href="https://aws.amazon.com/pricing/">AWS
- * Pricing</a>. Charges for both HLS sessions and outgoing AWS data apply.
+ * Video Streams Pricing</a> and <a
+ * href="https://aws.amazon.com/pricing/">Amazon Web Services Pricing</a>.
+ * Charges for both HLS sessions and outgoing Amazon Web Services data apply.
  * </p>
  * <p>
  * For more information about HLS, see <a
@@ -209,8 +211,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to
- * AWS, the support team can better diagnose the problem if given the Request
- * Id.
+ * Amazon Web Services the support team can better diagnose the problem if given
+ * the Request Id.
  * </p>
  * </li>
  * </ul>

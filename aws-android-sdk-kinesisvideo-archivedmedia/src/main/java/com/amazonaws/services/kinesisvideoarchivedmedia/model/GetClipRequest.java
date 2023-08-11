@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -82,8 +82,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/monitoring.html"
  * >Monitoring Kinesis Video Streams</a>. For pricing information, see <a
  * href="https://aws.amazon.com/kinesis/video-streams/pricing/">Amazon Kinesis
- * Video Streams Pricing</a> and <a href="https://aws.amazon.com/pricing/">AWS
- * Pricing</a>. Charges for outgoing AWS data apply.
+ * Video Streams Pricing</a> and <a href="https://aws.amazon.com/pricing/">
+ * Amazon Web Services Pricing</a>. Charges for outgoing Amazon Web Services
+ * data apply.
  * </p>
  */
 public class GetClipRequest extends AmazonWebServiceRequest implements Serializable {

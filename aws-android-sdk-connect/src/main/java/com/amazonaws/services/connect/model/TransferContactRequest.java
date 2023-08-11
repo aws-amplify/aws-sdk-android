@@ -93,7 +93,7 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier for the user.
+     * The identifier for the user. This can be the ID or the ARN of the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -303,14 +303,15 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier for the user.
+     * The identifier for the user. This can be the ID or the ARN of the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The identifier for the user.
+     *         The identifier for the user. This can be the ID or the ARN of the
+     *         user.
      *         </p>
      */
     public String getUserId() {
@@ -319,14 +320,15 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier for the user.
+     * The identifier for the user. This can be the ID or the ARN of the user.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param userId <p>
-     *            The identifier for the user.
+     *            The identifier for the user. This can be the ID or the ARN of
+     *            the user.
      *            </p>
      */
     public void setUserId(String userId) {
@@ -335,7 +337,7 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier for the user.
+     * The identifier for the user. This can be the ID or the ARN of the user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -345,7 +347,8 @@ public class TransferContactRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 256<br/>
      *
      * @param userId <p>
-     *            The identifier for the user.
+     *            The identifier for the user. This can be the ID or the ARN of
+     *            the user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
