@@ -39,6 +39,15 @@ public class DescribeTrackerResult implements Serializable {
 
     /**
      * <p>
+     * Whether <code>UPDATE</code> events from this tracker in EventBridge are
+     * enabled. If set to <code>true</code> these events will be sent to
+     * EventBridge.
+     * </p>
+     */
+    private Boolean eventBridgeEnabled;
+
+    /**
+     * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
      * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
@@ -235,6 +244,80 @@ public class DescribeTrackerResult implements Serializable {
      */
     public DescribeTrackerResult withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether <code>UPDATE</code> events from this tracker in EventBridge are
+     * enabled. If set to <code>true</code> these events will be sent to
+     * EventBridge.
+     * </p>
+     *
+     * @return <p>
+     *         Whether <code>UPDATE</code> events from this tracker in
+     *         EventBridge are enabled. If set to <code>true</code> these events
+     *         will be sent to EventBridge.
+     *         </p>
+     */
+    public Boolean isEventBridgeEnabled() {
+        return eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether <code>UPDATE</code> events from this tracker in EventBridge are
+     * enabled. If set to <code>true</code> these events will be sent to
+     * EventBridge.
+     * </p>
+     *
+     * @return <p>
+     *         Whether <code>UPDATE</code> events from this tracker in
+     *         EventBridge are enabled. If set to <code>true</code> these events
+     *         will be sent to EventBridge.
+     *         </p>
+     */
+    public Boolean getEventBridgeEnabled() {
+        return eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether <code>UPDATE</code> events from this tracker in EventBridge are
+     * enabled. If set to <code>true</code> these events will be sent to
+     * EventBridge.
+     * </p>
+     *
+     * @param eventBridgeEnabled <p>
+     *            Whether <code>UPDATE</code> events from this tracker in
+     *            EventBridge are enabled. If set to <code>true</code> these
+     *            events will be sent to EventBridge.
+     *            </p>
+     */
+    public void setEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
+    }
+
+    /**
+     * <p>
+     * Whether <code>UPDATE</code> events from this tracker in EventBridge are
+     * enabled. If set to <code>true</code> these events will be sent to
+     * EventBridge.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param eventBridgeEnabled <p>
+     *            Whether <code>UPDATE</code> events from this tracker in
+     *            EventBridge are enabled. If set to <code>true</code> these
+     *            events will be sent to EventBridge.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeTrackerResult withEventBridgeEnabled(Boolean eventBridgeEnabled) {
+        this.eventBridgeEnabled = eventBridgeEnabled;
         return this;
     }
 
@@ -885,6 +968,8 @@ public class DescribeTrackerResult implements Serializable {
             sb.append("CreateTime: " + getCreateTime() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
+        if (getEventBridgeEnabled() != null)
+            sb.append("EventBridgeEnabled: " + getEventBridgeEnabled() + ",");
         if (getKmsKeyId() != null)
             sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getPositionFiltering() != null)
@@ -913,6 +998,8 @@ public class DescribeTrackerResult implements Serializable {
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getEventBridgeEnabled() == null) ? 0 : getEventBridgeEnabled().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
@@ -949,6 +1036,11 @@ public class DescribeTrackerResult implements Serializable {
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getEventBridgeEnabled() == null ^ this.getEventBridgeEnabled() == null)
+            return false;
+        if (other.getEventBridgeEnabled() != null
+                && other.getEventBridgeEnabled().equals(this.getEventBridgeEnabled()) == false)
             return false;
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;

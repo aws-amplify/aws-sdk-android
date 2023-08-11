@@ -58,6 +58,9 @@ public class CalculateRouteRequestMarshaller implements
                 "{CalculatorName}",
                 (calculateRouteRequest.getCalculatorName() == null) ? "" : StringUtils
                         .fromString(calculateRouteRequest.getCalculatorName()));
+        if (calculateRouteRequest.getKey() != null) {
+            request.addParameter("key", StringUtils.fromString(calculateRouteRequest.getKey()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();

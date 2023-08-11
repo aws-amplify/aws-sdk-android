@@ -57,6 +57,9 @@ public class GetPlaceRequestMarshaller implements
                 "{IndexName}",
                 (getPlaceRequest.getIndexName() == null) ? "" : StringUtils
                         .fromString(getPlaceRequest.getIndexName()));
+        if (getPlaceRequest.getKey() != null) {
+            request.addParameter("key", StringUtils.fromString(getPlaceRequest.getKey()));
+        }
         if (getPlaceRequest.getLanguage() != null) {
             request.addParameter("language", StringUtils.fromString(getPlaceRequest.getLanguage()));
         }

@@ -271,7 +271,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * the identity provider. Your application must get this token by
      * authenticating the user who is using your application with a web identity
      * provider before the application makes an
-     * <code>AssumeRoleWithWebIdentity</code> call.
+     * <code>AssumeRoleWithWebIdentity</code> call. Only tokens with RSA
+     * algorithms (RS256) are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -611,7 +612,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * the identity provider. Your application must get this token by
      * authenticating the user who is using your application with a web identity
      * provider before the application makes an
-     * <code>AssumeRoleWithWebIdentity</code> call.
+     * <code>AssumeRoleWithWebIdentity</code> call. Only tokens with RSA
+     * algorithms (RS256) are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -622,7 +624,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *         provided by the identity provider. Your application must get this
      *         token by authenticating the user who is using your application
      *         with a web identity provider before the application makes an
-     *         <code>AssumeRoleWithWebIdentity</code> call.
+     *         <code>AssumeRoleWithWebIdentity</code> call. Only tokens with RSA
+     *         algorithms (RS256) are supported.
      *         </p>
      */
     public String getWebIdentityToken() {
@@ -635,7 +638,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * the identity provider. Your application must get this token by
      * authenticating the user who is using your application with a web identity
      * provider before the application makes an
-     * <code>AssumeRoleWithWebIdentity</code> call.
+     * <code>AssumeRoleWithWebIdentity</code> call. Only tokens with RSA
+     * algorithms (RS256) are supported.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -647,7 +651,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            this token by authenticating the user who is using your
      *            application with a web identity provider before the
      *            application makes an <code>AssumeRoleWithWebIdentity</code>
-     *            call.
+     *            call. Only tokens with RSA algorithms (RS256) are supported.
      *            </p>
      */
     public void setWebIdentityToken(String webIdentityToken) {
@@ -660,7 +664,8 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      * the identity provider. Your application must get this token by
      * authenticating the user who is using your application with a web identity
      * provider before the application makes an
-     * <code>AssumeRoleWithWebIdentity</code> call.
+     * <code>AssumeRoleWithWebIdentity</code> call. Only tokens with RSA
+     * algorithms (RS256) are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -675,7 +680,7 @@ public class AssumeRoleWithWebIdentityRequest extends AmazonWebServiceRequest im
      *            this token by authenticating the user who is using your
      *            application with a web identity provider before the
      *            application makes an <code>AssumeRoleWithWebIdentity</code>
-     *            call.
+     *            call. Only tokens with RSA algorithms (RS256) are supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
