@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,6 +29,9 @@ public class CodeDeliveryDetailsType implements Serializable {
      * The email address or phone number destination where Amazon Cognito sent
      * the code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String destination;
 
@@ -58,6 +61,9 @@ public class CodeDeliveryDetailsType implements Serializable {
      * The email address or phone number destination where Amazon Cognito sent
      * the code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The email address or phone number destination where Amazon
@@ -73,6 +79,9 @@ public class CodeDeliveryDetailsType implements Serializable {
      * The email address or phone number destination where Amazon Cognito sent
      * the code.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param destination <p>
      *            The email address or phone number destination where Amazon
@@ -91,6 +100,9 @@ public class CodeDeliveryDetailsType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param destination <p>
      *            The email address or phone number destination where Amazon

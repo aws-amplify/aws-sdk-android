@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,8 +21,35 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the users in the Amazon Cognito user pool.
+ * Lists users and their basic details in a user pool.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
+ * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class ListUsersRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -39,9 +66,10 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of strings, where each string is the name of a user attribute to
-     * be returned for each user in the search results. If the array is null,
-     * all attributes are returned.
+     * A JSON array of user attribute names, for example <code>given_name</code>
+     * , that you want Amazon Cognito to include in the response for each user.
+     * When you don't provide an <code>AttributesToGet</code> parameter, Amazon
+     * Cognito returns all attributes for each user.
      * </p>
      */
     private java.util.List<String> attributesToGet;
@@ -259,15 +287,18 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of strings, where each string is the name of a user attribute to
-     * be returned for each user in the search results. If the array is null,
-     * all attributes are returned.
+     * A JSON array of user attribute names, for example <code>given_name</code>
+     * , that you want Amazon Cognito to include in the response for each user.
+     * When you don't provide an <code>AttributesToGet</code> parameter, Amazon
+     * Cognito returns all attributes for each user.
      * </p>
      *
      * @return <p>
-     *         An array of strings, where each string is the name of a user
-     *         attribute to be returned for each user in the search results. If
-     *         the array is null, all attributes are returned.
+     *         A JSON array of user attribute names, for example
+     *         <code>given_name</code>, that you want Amazon Cognito to include
+     *         in the response for each user. When you don't provide an
+     *         <code>AttributesToGet</code> parameter, Amazon Cognito returns
+     *         all attributes for each user.
      *         </p>
      */
     public java.util.List<String> getAttributesToGet() {
@@ -276,15 +307,18 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of strings, where each string is the name of a user attribute to
-     * be returned for each user in the search results. If the array is null,
-     * all attributes are returned.
+     * A JSON array of user attribute names, for example <code>given_name</code>
+     * , that you want Amazon Cognito to include in the response for each user.
+     * When you don't provide an <code>AttributesToGet</code> parameter, Amazon
+     * Cognito returns all attributes for each user.
      * </p>
      *
      * @param attributesToGet <p>
-     *            An array of strings, where each string is the name of a user
-     *            attribute to be returned for each user in the search results.
-     *            If the array is null, all attributes are returned.
+     *            A JSON array of user attribute names, for example
+     *            <code>given_name</code>, that you want Amazon Cognito to
+     *            include in the response for each user. When you don't provide
+     *            an <code>AttributesToGet</code> parameter, Amazon Cognito
+     *            returns all attributes for each user.
      *            </p>
      */
     public void setAttributesToGet(java.util.Collection<String> attributesToGet) {
@@ -298,18 +332,21 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of strings, where each string is the name of a user attribute to
-     * be returned for each user in the search results. If the array is null,
-     * all attributes are returned.
+     * A JSON array of user attribute names, for example <code>given_name</code>
+     * , that you want Amazon Cognito to include in the response for each user.
+     * When you don't provide an <code>AttributesToGet</code> parameter, Amazon
+     * Cognito returns all attributes for each user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributesToGet <p>
-     *            An array of strings, where each string is the name of a user
-     *            attribute to be returned for each user in the search results.
-     *            If the array is null, all attributes are returned.
+     *            A JSON array of user attribute names, for example
+     *            <code>given_name</code>, that you want Amazon Cognito to
+     *            include in the response for each user. When you don't provide
+     *            an <code>AttributesToGet</code> parameter, Amazon Cognito
+     *            returns all attributes for each user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -326,18 +363,21 @@ public class ListUsersRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * An array of strings, where each string is the name of a user attribute to
-     * be returned for each user in the search results. If the array is null,
-     * all attributes are returned.
+     * A JSON array of user attribute names, for example <code>given_name</code>
+     * , that you want Amazon Cognito to include in the response for each user.
+     * When you don't provide an <code>AttributesToGet</code> parameter, Amazon
+     * Cognito returns all attributes for each user.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributesToGet <p>
-     *            An array of strings, where each string is the name of a user
-     *            attribute to be returned for each user in the search results.
-     *            If the array is null, all attributes are returned.
+     *            A JSON array of user attribute names, for example
+     *            <code>given_name</code>, that you want Amazon Cognito to
+     *            include in the response for each user. When you don't provide
+     *            an <code>AttributesToGet</code> parameter, Amazon Cognito
+     *            returns all attributes for each user.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

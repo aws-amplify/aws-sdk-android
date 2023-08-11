@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,6 +28,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The minimum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String minValue;
 
@@ -35,6 +38,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The maximum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String maxValue;
 
@@ -42,6 +48,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The minimum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The minimum value of an attribute that is of the number data
@@ -56,6 +65,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The minimum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param minValue <p>
      *            The minimum value of an attribute that is of the number data
@@ -73,6 +85,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param minValue <p>
      *            The minimum value of an attribute that is of the number data
@@ -90,6 +105,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The maximum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The maximum value of an attribute that is of the number data
@@ -104,6 +122,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * The maximum value of an attribute that is of the number data type.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param maxValue <p>
      *            The maximum value of an attribute that is of the number data
@@ -121,6 +142,9 @@ public class NumberAttributeConstraintsType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param maxValue <p>
      *            The maximum value of an attribute that is of the number data

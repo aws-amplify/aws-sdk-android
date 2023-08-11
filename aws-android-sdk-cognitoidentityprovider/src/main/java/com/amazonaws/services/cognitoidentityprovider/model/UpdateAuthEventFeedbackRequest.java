@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,17 @@ import com.amazonaws.AmazonWebServiceRequest;
  * valid user or not. This feedback is used for improving the risk evaluation
  * decision for the user pool as part of Amazon Cognito advanced security.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito doesn't evaluate Identity and Access Management (IAM) policies
+ * in requests for this API operation. For this operation, you can't use IAM
+ * credentials to authorize requests, and you can't grant IAM permissions in
+ * policies. For more information about authorization models in Amazon Cognito,
+ * see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * </p>
+ * </note>
  */
 public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -72,7 +83,13 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -307,14 +324,27 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Valid, Invalid
      *
      * @return <p>
-     *         The authentication event feedback value.
+     *         The authentication event feedback value. When you provide a
+     *         <code>FeedbackValue</code> value of <code>valid</code>, you tell
+     *         Amazon Cognito that you trust a user session where Amazon Cognito
+     *         has evaluated some level of risk. When you provide a
+     *         <code>FeedbackValue</code> value of <code>invalid</code>, you
+     *         tell Amazon Cognito that you don't trust a user session, or you
+     *         don't believe that Amazon Cognito evaluated a high-enough risk
+     *         level.
      *         </p>
      * @see FeedbackValueType
      */
@@ -324,14 +354,27 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Valid, Invalid
      *
      * @param feedbackValue <p>
-     *            The authentication event feedback value.
+     *            The authentication event feedback value. When you provide a
+     *            <code>FeedbackValue</code> value of <code>valid</code>, you
+     *            tell Amazon Cognito that you trust a user session where Amazon
+     *            Cognito has evaluated some level of risk. When you provide a
+     *            <code>FeedbackValue</code> value of <code>invalid</code>, you
+     *            tell Amazon Cognito that you don't trust a user session, or
+     *            you don't believe that Amazon Cognito evaluated a high-enough
+     *            risk level.
      *            </p>
      * @see FeedbackValueType
      */
@@ -341,7 +384,13 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -351,7 +400,14 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
      * <b>Allowed Values: </b>Valid, Invalid
      *
      * @param feedbackValue <p>
-     *            The authentication event feedback value.
+     *            The authentication event feedback value. When you provide a
+     *            <code>FeedbackValue</code> value of <code>valid</code>, you
+     *            tell Amazon Cognito that you trust a user session where Amazon
+     *            Cognito has evaluated some level of risk. When you provide a
+     *            <code>FeedbackValue</code> value of <code>invalid</code>, you
+     *            tell Amazon Cognito that you don't trust a user session, or
+     *            you don't believe that Amazon Cognito evaluated a high-enough
+     *            risk level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -364,14 +420,27 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Valid, Invalid
      *
      * @param feedbackValue <p>
-     *            The authentication event feedback value.
+     *            The authentication event feedback value. When you provide a
+     *            <code>FeedbackValue</code> value of <code>valid</code>, you
+     *            tell Amazon Cognito that you trust a user session where Amazon
+     *            Cognito has evaluated some level of risk. When you provide a
+     *            <code>FeedbackValue</code> value of <code>invalid</code>, you
+     *            tell Amazon Cognito that you don't trust a user session, or
+     *            you don't believe that Amazon Cognito evaluated a high-enough
+     *            risk level.
      *            </p>
      * @see FeedbackValueType
      */
@@ -381,7 +450,13 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The authentication event feedback value.
+     * The authentication event feedback value. When you provide a
+     * <code>FeedbackValue</code> value of <code>valid</code>, you tell Amazon
+     * Cognito that you trust a user session where Amazon Cognito has evaluated
+     * some level of risk. When you provide a <code>FeedbackValue</code> value
+     * of <code>invalid</code>, you tell Amazon Cognito that you don't trust a
+     * user session, or you don't believe that Amazon Cognito evaluated a
+     * high-enough risk level.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -391,7 +466,14 @@ public class UpdateAuthEventFeedbackRequest extends AmazonWebServiceRequest impl
      * <b>Allowed Values: </b>Valid, Invalid
      *
      * @param feedbackValue <p>
-     *            The authentication event feedback value.
+     *            The authentication event feedback value. When you provide a
+     *            <code>FeedbackValue</code> value of <code>valid</code>, you
+     *            tell Amazon Cognito that you trust a user session where Amazon
+     *            Cognito has evaluated some level of risk. When you provide a
+     *            <code>FeedbackValue</code> value of <code>invalid</code>, you
+     *            tell Amazon Cognito that you don't trust a user session, or
+     *            you don't believe that Amazon Cognito evaluated a high-enough
+     *            risk level.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
