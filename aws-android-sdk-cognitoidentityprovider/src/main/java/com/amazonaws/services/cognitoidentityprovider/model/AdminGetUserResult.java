@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class AdminGetUserResult implements Serializable {
     /**
      * <p>
-     * The user name of the user about whom you're receiving information.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,9 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The date the user was last modified.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      */
     private java.util.Date userLastModifiedDate;
@@ -76,11 +78,6 @@ public class AdminGetUserResult implements Serializable {
      * <li>
      * <p>
      * CONFIRMED - User has been confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * ARCHIVED - User is no longer active.
      * </p>
      * </li>
      * <li>
@@ -124,6 +121,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String preferredMfaSetting;
 
@@ -137,7 +137,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you're receiving information.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -145,8 +145,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user about whom you're receiving
-     *         information.
+     *         The username of the user that you requested.
      *         </p>
      */
     public String getUsername() {
@@ -155,7 +154,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you're receiving information.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,8 +162,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user about whom you're receiving
-     *            information.
+     *            The username of the user that you requested.
      *            </p>
      */
     public void setUsername(String username) {
@@ -173,7 +171,7 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user about whom you're receiving information.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -184,8 +182,7 @@ public class AdminGetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user about whom you're receiving
-     *            information.
+     *            The username of the user that you requested.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -316,11 +313,15 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The date the user was last modified.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      *
      * @return <p>
-     *         The date the user was last modified.
+     *         The date and time, in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *         8601</a> format, when the item was modified.
      *         </p>
      */
     public java.util.Date getUserLastModifiedDate() {
@@ -329,11 +330,15 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The date the user was last modified.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      *
      * @param userLastModifiedDate <p>
-     *            The date the user was last modified.
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was modified.
      *            </p>
      */
     public void setUserLastModifiedDate(java.util.Date userLastModifiedDate) {
@@ -342,14 +347,18 @@ public class AdminGetUserResult implements Serializable {
 
     /**
      * <p>
-     * The date the user was last modified.
+     * The date and time, in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * 8601</a> format, when the item was modified.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userLastModifiedDate <p>
-     *            The date the user was last modified.
+     *            The date and time, in <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            8601</a> format, when the item was modified.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -434,11 +443,6 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * ARCHIVED - User is no longer active.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -473,11 +477,6 @@ public class AdminGetUserResult implements Serializable {
      *         <li>
      *         <p>
      *         CONFIRMED - User has been confirmed.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         ARCHIVED - User is no longer active.
      *         </p>
      *         </li>
      *         <li>
@@ -523,11 +522,6 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * ARCHIVED - User is no longer active.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -562,11 +556,6 @@ public class AdminGetUserResult implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            ARCHIVED - User is no longer active.
      *            </p>
      *            </li>
      *            <li>
@@ -612,11 +601,6 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * ARCHIVED - User is no longer active.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -654,11 +638,6 @@ public class AdminGetUserResult implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            ARCHIVED - User is no longer active.
      *            </p>
      *            </li>
      *            <li>
@@ -707,11 +686,6 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * ARCHIVED - User is no longer active.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -746,11 +720,6 @@ public class AdminGetUserResult implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            ARCHIVED - User is no longer active.
      *            </p>
      *            </li>
      *            <li>
@@ -796,11 +765,6 @@ public class AdminGetUserResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * ARCHIVED - User is no longer active.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * UNKNOWN - User status isn't known.
      * </p>
      * </li>
@@ -838,11 +802,6 @@ public class AdminGetUserResult implements Serializable {
      *            <li>
      *            <p>
      *            CONFIRMED - User has been confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            ARCHIVED - User is no longer active.
      *            </p>
      *            </li>
      *            <li>
@@ -988,6 +947,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The user's preferred MFA setting.
@@ -1001,6 +963,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param preferredMfaSetting <p>
      *            The user's preferred MFA setting.
@@ -1017,6 +982,9 @@ public class AdminGetUserResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param preferredMfaSetting <p>
      *            The user's preferred MFA setting.

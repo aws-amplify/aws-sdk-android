@@ -92,6 +92,11 @@ public class VerifyMacRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (verifyMacRequest.getDryRun() != null) {
+                Boolean dryRun = verifyMacRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

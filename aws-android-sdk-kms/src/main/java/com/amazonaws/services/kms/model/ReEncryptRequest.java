@@ -403,6 +403,20 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
      * Ciphertext of the data to reencrypt.
      * </p>
      * <p>
@@ -2164,6 +2178,120 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ReEncryptRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2190,7 +2318,9 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
             sb.append("DestinationEncryptionAlgorithm: " + getDestinationEncryptionAlgorithm()
                     + ",");
         if (getGrantTokens() != null)
-            sb.append("GrantTokens: " + getGrantTokens());
+            sb.append("GrantTokens: " + getGrantTokens() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
@@ -2224,6 +2354,7 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
                         : getDestinationEncryptionAlgorithm().hashCode());
         hashCode = prime * hashCode
                 + ((getGrantTokens() == null) ? 0 : getGrantTokens().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
 
@@ -2282,6 +2413,10 @@ public class ReEncryptRequest extends AmazonWebServiceRequest implements Seriali
             return false;
         if (other.getGrantTokens() != null
                 && other.getGrantTokens().equals(this.getGrantTokens()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
             return false;
         return true;
     }

@@ -49,6 +49,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * parameter with the token value returned from the previous call to
  * <code>GetFaceDetection</code>.
  * </p>
+ * <p>
+ * Note that for the <code>GetFaceDetection</code> operation, the returned
+ * values for <code>FaceOccluded</code> and <code>EyeDirection</code> will
+ * always be "null".
+ * </p>
  */
 public class GetFaceDetectionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

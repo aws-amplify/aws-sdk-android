@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,6 +38,9 @@ public class NewDeviceMetadataType implements Serializable {
      * <p>
      * The device group key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String deviceGroupKey;
 
@@ -102,6 +105,9 @@ public class NewDeviceMetadataType implements Serializable {
      * <p>
      * The device group key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The device group key.
@@ -115,6 +121,9 @@ public class NewDeviceMetadataType implements Serializable {
      * <p>
      * The device group key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param deviceGroupKey <p>
      *            The device group key.
@@ -131,6 +140,9 @@ public class NewDeviceMetadataType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param deviceGroupKey <p>
      *            The device group key.

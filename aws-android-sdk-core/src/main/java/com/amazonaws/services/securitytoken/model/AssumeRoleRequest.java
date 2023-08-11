@@ -508,6 +508,13 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
+     * Reserved for future use.
+     * </p>
+     */
+    private java.util.List<ProvidedContext> providedContexts;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the role to assume.
      * </p>
      * <p>
@@ -2871,6 +2878,82 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
     }
 
     /**
+     * <p>
+     * Reserved for future use.
+     * </p>
+     *
+     * @return <p>
+     *         Reserved for future use.
+     *         </p>
+     */
+    public java.util.List<ProvidedContext> getProvidedContexts() {
+        return providedContexts;
+    }
+
+    /**
+     * <p>
+     * Reserved for future use.
+     * </p>
+     *
+     * @param providedContexts <p>
+     *            Reserved for future use.
+     *            </p>
+     */
+    public void setProvidedContexts(java.util.Collection<ProvidedContext> providedContexts) {
+        if (providedContexts == null) {
+            this.providedContexts = null;
+            return;
+        }
+
+        this.providedContexts = new java.util.ArrayList<ProvidedContext>(providedContexts);
+    }
+
+    /**
+     * <p>
+     * Reserved for future use.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param providedContexts <p>
+     *            Reserved for future use.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssumeRoleRequest withProvidedContexts(ProvidedContext... providedContexts) {
+        if (getProvidedContexts() == null) {
+            this.providedContexts = new java.util.ArrayList<ProvidedContext>(
+                    providedContexts.length);
+        }
+        for (ProvidedContext value : providedContexts) {
+            this.providedContexts.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Reserved for future use.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param providedContexts <p>
+     *            Reserved for future use.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssumeRoleRequest withProvidedContexts(
+            java.util.Collection<ProvidedContext> providedContexts) {
+        setProvidedContexts(providedContexts);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2902,7 +2985,9 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
         if (getTokenCode() != null)
             sb.append("TokenCode: " + getTokenCode() + ",");
         if (getSourceIdentity() != null)
-            sb.append("SourceIdentity: " + getSourceIdentity());
+            sb.append("SourceIdentity: " + getSourceIdentity() + ",");
+        if (getProvidedContexts() != null)
+            sb.append("ProvidedContexts: " + getProvidedContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -2928,6 +3013,8 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
         hashCode = prime * hashCode + ((getTokenCode() == null) ? 0 : getTokenCode().hashCode());
         hashCode = prime * hashCode
                 + ((getSourceIdentity() == null) ? 0 : getSourceIdentity().hashCode());
+        hashCode = prime * hashCode
+                + ((getProvidedContexts() == null) ? 0 : getProvidedContexts().hashCode());
         return hashCode;
     }
 
@@ -2993,6 +3080,11 @@ public class AssumeRoleRequest extends AmazonWebServiceRequest implements Serial
             return false;
         if (other.getSourceIdentity() != null
                 && other.getSourceIdentity().equals(this.getSourceIdentity()) == false)
+            return false;
+        if (other.getProvidedContexts() == null ^ this.getProvidedContexts() == null)
+            return false;
+        if (other.getProvidedContexts() != null
+                && other.getProvidedContexts().equals(this.getProvidedContexts()) == false)
             return false;
         return true;
     }

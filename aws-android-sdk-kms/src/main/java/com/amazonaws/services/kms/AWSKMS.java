@@ -838,6 +838,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws LimitExceededException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1305,6 +1306,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2396,6 +2398,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2587,6 +2590,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2744,6 +2748,7 @@ public interface AWSKMS {
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
      * @throws UnsupportedOperationException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2868,6 +2873,7 @@ public interface AWSKMS {
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
      * @throws UnsupportedOperationException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3007,6 +3013,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3080,6 +3087,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4417,6 +4425,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4668,6 +4677,7 @@ public interface AWSKMS {
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4749,6 +4759,7 @@ public interface AWSKMS {
      * @throws InvalidGrantIdException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -4778,10 +4789,10 @@ public interface AWSKMS {
      * When a KMS key is deleted, all data that was encrypted under the KMS key
      * is unrecoverable. (The only exception is a <a
      * href="kms/latest/developerguide/multi-region-keys-delete.html"
-     * >multi-Region replica key</a>, or an asymmetric or HMAC KMS key with
-     * imported key material[BUGBUG-link to
-     * importing-keys-managing.html#import-delete-key.) To prevent the use of a
-     * KMS key without deleting it, use <a>DisableKey</a>.
+     * >multi-Region replica key</a>, or an <a href=
+     * "kms/latest/developerguide/importing-keys-managing.html#import-delete-key"
+     * >asymmetric or HMAC KMS key with imported key material</a>.) To prevent
+     * the use of a KMS key without deleting it, use <a>DisableKey</a>.
      * </p>
      * </important>
      * <p>
@@ -4978,6 +4989,7 @@ public interface AWSKMS {
      * @throws InvalidGrantTokenException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5742,6 +5754,7 @@ public interface AWSKMS {
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
      * @throws KMSInvalidSignatureException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5808,6 +5821,7 @@ public interface AWSKMS {
      * @throws KMSInternalException
      * @throws KMSInvalidMacException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -6328,6 +6342,7 @@ public interface AWSKMS {
      * @throws DependencyTimeoutException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException
+     * @throws DryRunOperationException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

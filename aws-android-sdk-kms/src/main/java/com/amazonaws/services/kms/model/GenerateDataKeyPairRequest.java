@@ -300,6 +300,20 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
      * Specifies the encryption context that will be used when encrypting the
      * private key in the data key pair.
      * </p>
@@ -1411,6 +1425,120 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks if your request will succeed. <code>DryRun</code> is an
+     *         optional parameter.
+     *         </p>
+     *         <p>
+     *         To learn more about how to use this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *         >Testing your KMS API calls</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks if your request will succeed. <code>DryRun</code> is an optional
+     * parameter.
+     * </p>
+     * <p>
+     * To learn more about how to use this parameter, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     * >Testing your KMS API calls</a> in the <i>Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks if your request will succeed. <code>DryRun</code> is an
+     *            optional parameter.
+     *            </p>
+     *            <p>
+     *            To learn more about how to use this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/programming-dryrun.html"
+     *            >Testing your KMS API calls</a> in the <i>Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GenerateDataKeyPairRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1430,7 +1558,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
         if (getGrantTokens() != null)
             sb.append("GrantTokens: " + getGrantTokens() + ",");
         if (getRecipient() != null)
-            sb.append("Recipient: " + getRecipient());
+            sb.append("Recipient: " + getRecipient() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
@@ -1448,6 +1578,7 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
         hashCode = prime * hashCode
                 + ((getGrantTokens() == null) ? 0 : getGrantTokens().hashCode());
         hashCode = prime * hashCode + ((getRecipient() == null) ? 0 : getRecipient().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
 
@@ -1485,6 +1616,10 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getRecipient() != null
                 && other.getRecipient().equals(this.getRecipient()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
             return false;
         return true;
     }
