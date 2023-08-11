@@ -1,3 +1,35 @@
+## [Release 2.73.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.73.0)
+
+### Features
+- **aws-android-sdk-kms:** update models to latest ([#3349](https://github.com/aws-amplify/aws-sdk-android/issues/3349))
+- **misc:** support for Tel Aviv region launch ([#3372](https://github.com/aws-amplify/aws-sdk-android/issues/3372))
+
+### Miscellaneous
+- Move inline values to environment variables in workflows ([#3368](https://github.com/aws-amplify/aws-sdk-android/issues/3368))
+
+[See all changes between 2.72.0 and 2.73.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.72.0...release_v2.73.0)
+
+## [Release 2.72.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.72.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest ([#3319](https://github.com/aws-amplify/aws-sdk-android/issues/3319))
+- **aws-android-sdk-location:** update models to latest ([#3324](https://github.com/aws-amplify/aws-sdk-android/issues/3324))
+- **aws-android-sdk-rekognition:** update models to latest ([#3323](https://github.com/aws-amplify/aws-sdk-android/issues/3323))
+- **aws-android-sdk-chimesdkidentity:** update models to latest ([#3335](https://github.com/aws-amplify/aws-sdk-android/issues/3335))
+- **aws-android-sdk-chimesdkmessaging:** update models to latest ([#3334](https://github.com/aws-amplify/aws-sdk-android/issues/3334))
+- **aws-android-sdk-connect:** update models to latest ([#3337](https://github.com/aws-amplify/aws-sdk-android/issues/3337))
+- **aws-android-sdk-kinesisvideo:** update models to latest ([#3339](https://github.com/aws-amplify/aws-sdk-android/issues/3339))
+- **aws-android-sdk-lambda:** update models to latest ([#3341](https://github.com/aws-amplify/aws-sdk-android/issues/3341))
+
+### Bug Fixes
+- **iot:** Keep topicListeners if cleanSession = false ([#3352](https://github.com/aws-amplify/aws-sdk-android/issues/3352))
+
+### Miscellaneous
+- Revert "chore: fix dependabot issue ([#3344](https://github.com/aws-amplify/aws-sdk-android/issues/3344))" ([#3347](https://github.com/aws-amplify/aws-sdk-android/issues/3347))
+- Revert "fix(core): added fix for xml parser ([#3100](https://github.com/aws-amplify/aws-sdk-android/issues/3100))" ([#3353](https://github.com/aws-amplify/aws-sdk-android/issues/3353))
+
+[See all changes between 2.71.0 and 2.72.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.71.0...release_v2.72.0)
+
 ## [Release 2.71.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.71.0)
 
 ### Features

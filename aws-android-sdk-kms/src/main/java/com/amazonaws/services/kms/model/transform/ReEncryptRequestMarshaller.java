@@ -129,6 +129,11 @@ public class ReEncryptRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (reEncryptRequest.getDryRun() != null) {
+                Boolean dryRun = reEncryptRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

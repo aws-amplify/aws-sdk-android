@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -37,9 +37,13 @@ import java.io.Serializable;
 public class EmailConfigurationType implements Serializable {
     /**
      * <p>
-     * The ARN of a verified email address in Amazon SES. Amazon Cognito uses
-     * this email address in one of the following ways, depending on the value
-     * that you specify for the <code>EmailSendingAccount</code> parameter:
+     * The ARN of a verified email address or an address from a verified domain
+     * in Amazon SES. You can set a <code>SourceArn</code> email from a verified
+     * domain only with an API request. You can set a verified email address,
+     * but not an address in a verified domain, in the Amazon Cognito console.
+     * Amazon Cognito uses the email address that you provide in one of the
+     * following ways, depending on the value that you specify for the
+     * <code>EmailSendingAccount</code> parameter:
      * </p>
      * <ul>
      * <li>
@@ -155,6 +159,9 @@ public class EmailConfigurationType implements Serializable {
      * <code>Test User &lt;testuser@example.com&gt;</code>. This address appears
      * before the body of the email.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String from;
 
@@ -195,9 +202,13 @@ public class EmailConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The ARN of a verified email address in Amazon SES. Amazon Cognito uses
-     * this email address in one of the following ways, depending on the value
-     * that you specify for the <code>EmailSendingAccount</code> parameter:
+     * The ARN of a verified email address or an address from a verified domain
+     * in Amazon SES. You can set a <code>SourceArn</code> email from a verified
+     * domain only with an API request. You can set a verified email address,
+     * but not an address in a verified domain, in the Amazon Cognito console.
+     * Amazon Cognito uses the email address that you provide in one of the
+     * following ways, depending on the value that you specify for the
+     * <code>EmailSendingAccount</code> parameter:
      * </p>
      * <ul>
      * <li>
@@ -232,8 +243,12 @@ public class EmailConfigurationType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The ARN of a verified email address in Amazon SES. Amazon Cognito
-     *         uses this email address in one of the following ways, depending
+     *         The ARN of a verified email address or an address from a verified
+     *         domain in Amazon SES. You can set a <code>SourceArn</code> email
+     *         from a verified domain only with an API request. You can set a
+     *         verified email address, but not an address in a verified domain,
+     *         in the Amazon Cognito console. Amazon Cognito uses the email
+     *         address that you provide in one of the following ways, depending
      *         on the value that you specify for the
      *         <code>EmailSendingAccount</code> parameter:
      *         </p>
@@ -269,9 +284,13 @@ public class EmailConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The ARN of a verified email address in Amazon SES. Amazon Cognito uses
-     * this email address in one of the following ways, depending on the value
-     * that you specify for the <code>EmailSendingAccount</code> parameter:
+     * The ARN of a verified email address or an address from a verified domain
+     * in Amazon SES. You can set a <code>SourceArn</code> email from a verified
+     * domain only with an API request. You can set a verified email address,
+     * but not an address in a verified domain, in the Amazon Cognito console.
+     * Amazon Cognito uses the email address that you provide in one of the
+     * following ways, depending on the value that you specify for the
+     * <code>EmailSendingAccount</code> parameter:
      * </p>
      * <ul>
      * <li>
@@ -306,10 +325,15 @@ public class EmailConfigurationType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param sourceArn <p>
-     *            The ARN of a verified email address in Amazon SES. Amazon
-     *            Cognito uses this email address in one of the following ways,
-     *            depending on the value that you specify for the
-     *            <code>EmailSendingAccount</code> parameter:
+     *            The ARN of a verified email address or an address from a
+     *            verified domain in Amazon SES. You can set a
+     *            <code>SourceArn</code> email from a verified domain only with
+     *            an API request. You can set a verified email address, but not
+     *            an address in a verified domain, in the Amazon Cognito
+     *            console. Amazon Cognito uses the email address that you
+     *            provide in one of the following ways, depending on the value
+     *            that you specify for the <code>EmailSendingAccount</code>
+     *            parameter:
      *            </p>
      *            <ul>
      *            <li>
@@ -345,9 +369,13 @@ public class EmailConfigurationType implements Serializable {
 
     /**
      * <p>
-     * The ARN of a verified email address in Amazon SES. Amazon Cognito uses
-     * this email address in one of the following ways, depending on the value
-     * that you specify for the <code>EmailSendingAccount</code> parameter:
+     * The ARN of a verified email address or an address from a verified domain
+     * in Amazon SES. You can set a <code>SourceArn</code> email from a verified
+     * domain only with an API request. You can set a verified email address,
+     * but not an address in a verified domain, in the Amazon Cognito console.
+     * Amazon Cognito uses the email address that you provide in one of the
+     * following ways, depending on the value that you specify for the
+     * <code>EmailSendingAccount</code> parameter:
      * </p>
      * <ul>
      * <li>
@@ -385,10 +413,15 @@ public class EmailConfigurationType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param sourceArn <p>
-     *            The ARN of a verified email address in Amazon SES. Amazon
-     *            Cognito uses this email address in one of the following ways,
-     *            depending on the value that you specify for the
-     *            <code>EmailSendingAccount</code> parameter:
+     *            The ARN of a verified email address or an address from a
+     *            verified domain in Amazon SES. You can set a
+     *            <code>SourceArn</code> email from a verified domain only with
+     *            an API request. You can set a verified email address, but not
+     *            an address in a verified domain, in the Amazon Cognito
+     *            console. Amazon Cognito uses the email address that you
+     *            provide in one of the following ways, depending on the value
+     *            that you specify for the <code>EmailSendingAccount</code>
+     *            parameter:
      *            </p>
      *            <ul>
      *            <li>
@@ -1147,6 +1180,9 @@ public class EmailConfigurationType implements Serializable {
      * <code>Test User &lt;testuser@example.com&gt;</code>. This address appears
      * before the body of the email.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         Either the sender’s email address or the sender’s name with their
@@ -1166,6 +1202,9 @@ public class EmailConfigurationType implements Serializable {
      * <code>Test User &lt;testuser@example.com&gt;</code>. This address appears
      * before the body of the email.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param from <p>
      *            Either the sender’s email address or the sender’s name with
@@ -1189,6 +1228,9 @@ public class EmailConfigurationType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param from <p>
      *            Either the sender’s email address or the sender’s name with

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,22 @@ import java.io.Serializable;
 public class ListUsersResult implements Serializable {
     /**
      * <p>
-     * The users returned in the request to list users.
+     * A list of the user pool users, and their attributes, that match your
+     * query.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito creates a profile in your user pool for each native user
+     * in your user pool, and each unique user ID from your third-party identity
+     * providers (IdPs). When you link users with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a> API operation, the output of
+     * <code>ListUsers</code> displays both the IdP user and the native user
+     * that you linked. You can identify IdP users in the <code>Users</code>
+     * object of this API response by the IdP prefix that Amazon Cognito appends
+     * to <code>Username</code>.
+     * </p>
+     * </note>
      */
     private java.util.List<UserType> users;
 
@@ -44,12 +58,41 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * The users returned in the request to list users.
+     * A list of the user pool users, and their attributes, that match your
+     * query.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito creates a profile in your user pool for each native user
+     * in your user pool, and each unique user ID from your third-party identity
+     * providers (IdPs). When you link users with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a> API operation, the output of
+     * <code>ListUsers</code> displays both the IdP user and the native user
+     * that you linked. You can identify IdP users in the <code>Users</code>
+     * object of this API response by the IdP prefix that Amazon Cognito appends
+     * to <code>Username</code>.
+     * </p>
+     * </note>
      *
      * @return <p>
-     *         The users returned in the request to list users.
+     *         A list of the user pool users, and their attributes, that match
+     *         your query.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Amazon Cognito creates a profile in your user pool for each
+     *         native user in your user pool, and each unique user ID from your
+     *         third-party identity providers (IdPs). When you link users with
+     *         the <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     *         >AdminLinkProviderForUser</a> API operation, the output of
+     *         <code>ListUsers</code> displays both the IdP user and the native
+     *         user that you linked. You can identify IdP users in the
+     *         <code>Users</code> object of this API response by the IdP prefix
+     *         that Amazon Cognito appends to <code>Username</code>.
+     *         </p>
+     *         </note>
      */
     public java.util.List<UserType> getUsers() {
         return users;
@@ -57,12 +100,41 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * The users returned in the request to list users.
+     * A list of the user pool users, and their attributes, that match your
+     * query.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito creates a profile in your user pool for each native user
+     * in your user pool, and each unique user ID from your third-party identity
+     * providers (IdPs). When you link users with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a> API operation, the output of
+     * <code>ListUsers</code> displays both the IdP user and the native user
+     * that you linked. You can identify IdP users in the <code>Users</code>
+     * object of this API response by the IdP prefix that Amazon Cognito appends
+     * to <code>Username</code>.
+     * </p>
+     * </note>
      *
      * @param users <p>
-     *            The users returned in the request to list users.
+     *            A list of the user pool users, and their attributes, that
+     *            match your query.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon Cognito creates a profile in your user pool for each
+     *            native user in your user pool, and each unique user ID from
+     *            your third-party identity providers (IdPs). When you link
+     *            users with the <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     *            >AdminLinkProviderForUser</a> API operation, the output of
+     *            <code>ListUsers</code> displays both the IdP user and the
+     *            native user that you linked. You can identify IdP users in the
+     *            <code>Users</code> object of this API response by the IdP
+     *            prefix that Amazon Cognito appends to <code>Username</code>.
+     *            </p>
+     *            </note>
      */
     public void setUsers(java.util.Collection<UserType> users) {
         if (users == null) {
@@ -75,15 +147,44 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * The users returned in the request to list users.
+     * A list of the user pool users, and their attributes, that match your
+     * query.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito creates a profile in your user pool for each native user
+     * in your user pool, and each unique user ID from your third-party identity
+     * providers (IdPs). When you link users with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a> API operation, the output of
+     * <code>ListUsers</code> displays both the IdP user and the native user
+     * that you linked. You can identify IdP users in the <code>Users</code>
+     * object of this API response by the IdP prefix that Amazon Cognito appends
+     * to <code>Username</code>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param users <p>
-     *            The users returned in the request to list users.
+     *            A list of the user pool users, and their attributes, that
+     *            match your query.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon Cognito creates a profile in your user pool for each
+     *            native user in your user pool, and each unique user ID from
+     *            your third-party identity providers (IdPs). When you link
+     *            users with the <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     *            >AdminLinkProviderForUser</a> API operation, the output of
+     *            <code>ListUsers</code> displays both the IdP user and the
+     *            native user that you linked. You can identify IdP users in the
+     *            <code>Users</code> object of this API response by the IdP
+     *            prefix that Amazon Cognito appends to <code>Username</code>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -99,15 +200,44 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * The users returned in the request to list users.
+     * A list of the user pool users, and their attributes, that match your
+     * query.
      * </p>
+     * <note>
+     * <p>
+     * Amazon Cognito creates a profile in your user pool for each native user
+     * in your user pool, and each unique user ID from your third-party identity
+     * providers (IdPs). When you link users with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     * >AdminLinkProviderForUser</a> API operation, the output of
+     * <code>ListUsers</code> displays both the IdP user and the native user
+     * that you linked. You can identify IdP users in the <code>Users</code>
+     * object of this API response by the IdP prefix that Amazon Cognito appends
+     * to <code>Username</code>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param users <p>
-     *            The users returned in the request to list users.
+     *            A list of the user pool users, and their attributes, that
+     *            match your query.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon Cognito creates a profile in your user pool for each
+     *            native user in your user pool, and each unique user ID from
+     *            your third-party identity providers (IdPs). When you link
+     *            users with the <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+     *            >AdminLinkProviderForUser</a> API operation, the output of
+     *            <code>ListUsers</code> displays both the IdP user and the
+     *            native user that you linked. You can identify IdP users in the
+     *            <code>Users</code> object of this API response by the IdP
+     *            prefix that Amazon Cognito appends to <code>Username</code>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

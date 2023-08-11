@@ -85,6 +85,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * logical "AND" operator to determine which attributes to return (in this
      * case, all attributes).
      * </p>
+     * <p>
+     * Note that while the FaceOccluded and EyeDirection attributes are
+     * supported when using <code>DetectFaces</code>, they aren't supported when
+     * analyzing videos with <code>StartFaceDetection</code> and
+     * <code>GetFaceDetection</code>.
+     * </p>
      */
     private java.util.List<String> attributes;
 
@@ -227,6 +233,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * logical "AND" operator to determine which attributes to return (in this
      * case, all attributes).
      * </p>
+     * <p>
+     * Note that while the FaceOccluded and EyeDirection attributes are
+     * supported when using <code>DetectFaces</code>, they aren't supported when
+     * analyzing videos with <code>StartFaceDetection</code> and
+     * <code>GetFaceDetection</code>.
+     * </p>
      *
      * @return <p>
      *         An array of facial attributes you want to be returned. A
@@ -244,6 +256,13 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *         If you provide both, <code>["ALL", "DEFAULT"]</code>, the service
      *         uses a logical "AND" operator to determine which attributes to
      *         return (in this case, all attributes).
+     *         </p>
+     *         <p>
+     *         Note that while the FaceOccluded and EyeDirection attributes are
+     *         supported when using <code>DetectFaces</code>, they aren't
+     *         supported when analyzing videos with
+     *         <code>StartFaceDetection</code> and <code>GetFaceDetection</code>
+     *         .
      *         </p>
      */
     public java.util.List<String> getAttributes() {
@@ -267,6 +286,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * logical "AND" operator to determine which attributes to return (in this
      * case, all attributes).
      * </p>
+     * <p>
+     * Note that while the FaceOccluded and EyeDirection attributes are
+     * supported when using <code>DetectFaces</code>, they aren't supported when
+     * analyzing videos with <code>StartFaceDetection</code> and
+     * <code>GetFaceDetection</code>.
+     * </p>
      *
      * @param attributes <p>
      *            An array of facial attributes you want to be returned. A
@@ -285,6 +310,13 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical "AND" operator to determine which
      *            attributes to return (in this case, all attributes).
+     *            </p>
+     *            <p>
+     *            Note that while the FaceOccluded and EyeDirection attributes
+     *            are supported when using <code>DetectFaces</code>, they aren't
+     *            supported when analyzing videos with
+     *            <code>StartFaceDetection</code> and
+     *            <code>GetFaceDetection</code>.
      *            </p>
      */
     public void setAttributes(java.util.Collection<String> attributes) {
@@ -314,6 +346,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * case, all attributes).
      * </p>
      * <p>
+     * Note that while the FaceOccluded and EyeDirection attributes are
+     * supported when using <code>DetectFaces</code>, they aren't supported when
+     * analyzing videos with <code>StartFaceDetection</code> and
+     * <code>GetFaceDetection</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -334,6 +372,13 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical "AND" operator to determine which
      *            attributes to return (in this case, all attributes).
+     *            </p>
+     *            <p>
+     *            Note that while the FaceOccluded and EyeDirection attributes
+     *            are supported when using <code>DetectFaces</code>, they aren't
+     *            supported when analyzing videos with
+     *            <code>StartFaceDetection</code> and
+     *            <code>GetFaceDetection</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -366,6 +411,12 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      * case, all attributes).
      * </p>
      * <p>
+     * Note that while the FaceOccluded and EyeDirection attributes are
+     * supported when using <code>DetectFaces</code>, they aren't supported when
+     * analyzing videos with <code>StartFaceDetection</code> and
+     * <code>GetFaceDetection</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -386,6 +437,13 @@ public class DetectFacesRequest extends AmazonWebServiceRequest implements Seria
      *            If you provide both, <code>["ALL", "DEFAULT"]</code>, the
      *            service uses a logical "AND" operator to determine which
      *            attributes to return (in this case, all attributes).
+     *            </p>
+     *            <p>
+     *            Note that while the FaceOccluded and EyeDirection attributes
+     *            are supported when using <code>DetectFaces</code>, they aren't
+     *            supported when analyzing videos with
+     *            <code>StartFaceDetection</code> and
+     *            <code>GetFaceDetection</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -123,6 +123,22 @@ public class AssumeRoleRequestMarshaller implements
             String sourceIdentity = assumeRoleRequest.getSourceIdentity();
             request.addParameter(prefix, StringUtils.fromString(sourceIdentity));
         }
+        if (assumeRoleRequest.getProvidedContexts() != null) {
+            prefix = "ProvidedContexts";
+            java.util.List<ProvidedContext> providedContexts = assumeRoleRequest
+                    .getProvidedContexts();
+            int providedContextsIndex = 1;
+            String providedContextsPrefix = prefix;
+            for (ProvidedContext providedContextsItem : providedContexts) {
+                prefix = providedContextsPrefix + ".member." + providedContextsIndex;
+                if (providedContextsItem != null) {
+                    ProvidedContextStaxMarshaller.getInstance().marshall(providedContextsItem,
+                            request, prefix + ".");
+                }
+                providedContextsIndex++;
+            }
+            prefix = providedContextsPrefix;
+        }
 
         return request;
     }

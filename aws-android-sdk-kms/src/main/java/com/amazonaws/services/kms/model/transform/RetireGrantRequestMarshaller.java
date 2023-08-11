@@ -77,6 +77,11 @@ public class RetireGrantRequestMarshaller implements
                 jsonWriter.name("GrantId");
                 jsonWriter.value(grantId);
             }
+            if (retireGrantRequest.getDryRun() != null) {
+                Boolean dryRun = retireGrantRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

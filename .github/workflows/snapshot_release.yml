@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1
         with:
           role-to-assume: ${{ secrets.SNAPSHOT_PUBLISHER_ROLE }}
           aws-region: us-east-1
       - name: Start Snapshot Release
-        uses: aws-actions/aws-codebuild-run-build@v1
+        uses: aws-actions/aws-codebuild-run-build@f202c327329cbbebd13f986f74af162a8539b5fd # v1
         with:
           project-name: AndroidSDK-SnapshotRelease

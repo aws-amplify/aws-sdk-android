@@ -39,7 +39,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <code>GetTextDetection</code> returns an array of detected text (
  * <code>TextDetections</code>) sorted by the time the text was detected, up to
- * 50 words per frame of video.
+ * 100 words per frame of video.
  * </p>
  * <p>
  * Each element of the array includes the detected text, the precentage

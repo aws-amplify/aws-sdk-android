@@ -135,6 +135,17 @@ public class TrafficDistributionGroupSummary implements Serializable {
 
     /**
      * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     */
+    private Boolean isDefault;
+
+    /**
+     * <p>
      * The identifier of the traffic distribution group. This can be the ID or
      * the ARN if the API is being called in the Region where the traffic
      * distribution group was created. The ARN must be provided if the call is
@@ -975,6 +986,100 @@ public class TrafficDistributionGroupSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     *
+     * @return <p>
+     *         Whether this is the default traffic distribution group created
+     *         during instance replication. The default traffic distribution
+     *         group cannot be deleted by the
+     *         <code>DeleteTrafficDistributionGroup</code> API. The default
+     *         traffic distribution group is deleted as part of the process for
+     *         deleting a replica.
+     *         </p>
+     */
+    public Boolean isIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     *
+     * @return <p>
+     *         Whether this is the default traffic distribution group created
+     *         during instance replication. The default traffic distribution
+     *         group cannot be deleted by the
+     *         <code>DeleteTrafficDistributionGroup</code> API. The default
+     *         traffic distribution group is deleted as part of the process for
+     *         deleting a replica.
+     *         </p>
+     */
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     *
+     * @param isDefault <p>
+     *            Whether this is the default traffic distribution group created
+     *            during instance replication. The default traffic distribution
+     *            group cannot be deleted by the
+     *            <code>DeleteTrafficDistributionGroup</code> API. The default
+     *            traffic distribution group is deleted as part of the process
+     *            for deleting a replica.
+     *            </p>
+     */
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this is the default traffic distribution group created during
+     * instance replication. The default traffic distribution group cannot be
+     * deleted by the <code>DeleteTrafficDistributionGroup</code> API. The
+     * default traffic distribution group is deleted as part of the process for
+     * deleting a replica.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isDefault <p>
+     *            Whether this is the default traffic distribution group created
+     *            during instance replication. The default traffic distribution
+     *            group cannot be deleted by the
+     *            <code>DeleteTrafficDistributionGroup</code> API. The default
+     *            traffic distribution group is deleted as part of the process
+     *            for deleting a replica.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TrafficDistributionGroupSummary withIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -994,7 +1099,9 @@ public class TrafficDistributionGroupSummary implements Serializable {
         if (getInstanceArn() != null)
             sb.append("InstanceArn: " + getInstanceArn() + ",");
         if (getStatus() != null)
-            sb.append("Status: " + getStatus());
+            sb.append("Status: " + getStatus() + ",");
+        if (getIsDefault() != null)
+            sb.append("IsDefault: " + getIsDefault());
         sb.append("}");
         return sb.toString();
     }
@@ -1010,6 +1117,7 @@ public class TrafficDistributionGroupSummary implements Serializable {
         hashCode = prime * hashCode
                 + ((getInstanceArn() == null) ? 0 : getInstanceArn().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getIsDefault() == null) ? 0 : getIsDefault().hashCode());
         return hashCode;
     }
 
@@ -1044,6 +1152,11 @@ public class TrafficDistributionGroupSummary implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getIsDefault() == null ^ this.getIsDefault() == null)
+            return false;
+        if (other.getIsDefault() != null
+                && other.getIsDefault().equals(this.getIsDefault()) == false)
             return false;
         return true;
     }

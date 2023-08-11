@@ -88,6 +88,11 @@ public class GenerateMacRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (generateMacRequest.getDryRun() != null) {
+                Boolean dryRun = generateMacRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,10 +33,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >AdminLinkProviderForUser</a>.
  * </p>
  * <p>
- * This action is enabled only for admin access and requires developer
- * credentials.
- * </p>
- * <p>
  * The <code>ProviderName</code> must match the value specified when creating an
  * IdP for the pool.
  * </p>
@@ -66,6 +62,33 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>ProviderAttributeValue</code> must be the subject of the SAML
  * assertion.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
+ * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class AdminDisableProviderForUserRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -73,6 +96,9 @@ public class AdminDisableProviderForUserRequest extends AmazonWebServiceRequest 
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String userPoolId;
 
@@ -87,6 +113,9 @@ public class AdminDisableProviderForUserRequest extends AmazonWebServiceRequest 
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The user pool ID for the user pool.
@@ -100,6 +129,9 @@ public class AdminDisableProviderForUserRequest extends AmazonWebServiceRequest 
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool.
@@ -116,6 +148,9 @@ public class AdminDisableProviderForUserRequest extends AmazonWebServiceRequest 
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool.

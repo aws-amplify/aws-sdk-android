@@ -694,6 +694,34 @@ class RegionDefaults {
         updateRegion(region, "sns", "sns.ap-southeast-4.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-southeast-4.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.ap-southeast-4.amazonaws.com", false, true);
+
+        // Support for Israel (Tel Aviv) `il-central-1` region
+        region = new Region("il-central-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.il-central-1.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.il-central-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.il-central-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.il-central-1.amazonaws.com", false, true);
+
         return ret;
     }
 

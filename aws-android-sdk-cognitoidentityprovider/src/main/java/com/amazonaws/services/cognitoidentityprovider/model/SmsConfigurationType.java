@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,6 +65,9 @@ public class SmsConfigurationType implements Serializable {
      * >How to use an external ID when granting access to your Amazon Web
      * Services resources to a third party</a>
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String externalId;
 
@@ -197,6 +200,9 @@ public class SmsConfigurationType implements Serializable {
      * >How to use an external ID when granting access to your Amazon Web
      * Services resources to a third party</a>
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The external ID provides additional security for your IAM role.
@@ -243,6 +249,9 @@ public class SmsConfigurationType implements Serializable {
      * >How to use an external ID when granting access to your Amazon Web
      * Services resources to a third party</a>
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param externalId <p>
      *            The external ID provides additional security for your IAM
@@ -293,6 +302,9 @@ public class SmsConfigurationType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param externalId <p>
      *            The external ID provides additional security for your IAM

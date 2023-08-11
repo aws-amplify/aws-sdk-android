@@ -99,6 +99,18 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     */
+    private String agentAvailabilityTimer;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
@@ -658,6 +670,124 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @return <p>
+     *         Whether agents with this routing profile will have their routing
+     *         order calculated based on <i>longest idle time</i> or <i>time
+     *         since their last inbound contact</i>.
+     *         </p>
+     * @see AgentAvailabilityTimer
+     */
+    public String getAgentAvailabilityTimer() {
+        return agentAvailabilityTimer;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>longest idle time</i> or
+     *            <i>time since their last inbound contact</i>.
+     *            </p>
+     * @see AgentAvailabilityTimer
+     */
+    public void setAgentAvailabilityTimer(String agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>longest idle time</i> or
+     *            <i>time since their last inbound contact</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AgentAvailabilityTimer
+     */
+    public CreateRoutingProfileRequest withAgentAvailabilityTimer(String agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>longest idle time</i> or
+     *            <i>time since their last inbound contact</i>.
+     *            </p>
+     * @see AgentAvailabilityTimer
+     */
+    public void setAgentAvailabilityTimer(AgentAvailabilityTimer agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer.toString();
+    }
+
+    /**
+     * <p>
+     * Whether agents with this routing profile will have their routing order
+     * calculated based on <i>longest idle time</i> or <i>time since their last
+     * inbound contact</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TIME_SINCE_LAST_ACTIVITY, TIME_SINCE_LAST_INBOUND
+     *
+     * @param agentAvailabilityTimer <p>
+     *            Whether agents with this routing profile will have their
+     *            routing order calculated based on <i>longest idle time</i> or
+     *            <i>time since their last inbound contact</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see AgentAvailabilityTimer
+     */
+    public CreateRoutingProfileRequest withAgentAvailabilityTimer(
+            AgentAvailabilityTimer agentAvailabilityTimer) {
+        this.agentAvailabilityTimer = agentAvailabilityTimer.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -681,7 +811,9 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
         if (getMediaConcurrencies() != null)
             sb.append("MediaConcurrencies: " + getMediaConcurrencies() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getAgentAvailabilityTimer() != null)
+            sb.append("AgentAvailabilityTimer: " + getAgentAvailabilityTimer());
         sb.append("}");
         return sb.toString();
     }
@@ -704,6 +836,10 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode
                 + ((getMediaConcurrencies() == null) ? 0 : getMediaConcurrencies().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAgentAvailabilityTimer() == null) ? 0 : getAgentAvailabilityTimer()
+                        .hashCode());
         return hashCode;
     }
 
@@ -750,6 +886,11 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getAgentAvailabilityTimer() == null ^ this.getAgentAvailabilityTimer() == null)
+            return false;
+        if (other.getAgentAvailabilityTimer() != null
+                && other.getAgentAvailabilityTimer().equals(this.getAgentAvailabilityTimer()) == false)
             return false;
         return true;
     }
