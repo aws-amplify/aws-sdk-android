@@ -80,7 +80,7 @@ public class ListGroupsRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -203,7 +203,7 @@ public class ListGroupsRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -223,7 +223,7 @@ public class ListGroupsRequest extends AmazonWebServiceRequest implements Serial
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -246,7 +246,7 @@ public class ListGroupsRequest extends AmazonWebServiceRequest implements Serial
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

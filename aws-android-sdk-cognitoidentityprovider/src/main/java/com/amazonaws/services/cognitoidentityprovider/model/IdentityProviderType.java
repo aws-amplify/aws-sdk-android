@@ -41,7 +41,7 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      */
     private String providerName;
 
@@ -337,7 +337,7 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @return <p>
      *         The IdP name.
@@ -354,7 +354,7 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The IdP name.
@@ -374,7 +374,7 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The IdP name.
