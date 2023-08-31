@@ -287,6 +287,61 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
 
     /**
      * <p>
+     * Retrieves the view for the specified view token.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeView service method, as returned by Amazon Connect
+     *         Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<DescribeViewResult> describeViewAsync(DescribeViewRequest describeViewRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the view for the specified view token.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeView service method, as returned by Amazon Connect
+     *         Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<DescribeViewResult> describeViewAsync(DescribeViewRequest describeViewRequest,
+            AsyncHandler<DescribeViewRequest, DescribeViewResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Disconnects a participant.
      * </p>
      * <note>
