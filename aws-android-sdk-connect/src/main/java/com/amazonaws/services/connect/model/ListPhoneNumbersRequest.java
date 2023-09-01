@@ -31,6 +31,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Administrator Guide</i>.
  * </p>
  * <important>
+ * <ul>
+ * <li>
+ * <p>
+ * We recommend using <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+ * >ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers
+ * doesn't support number types <code>UIFN</code>, <code>SHARED</code>,
+ * <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it
+ * returns numbers of those types, it incorrectly lists them as
+ * <code>TOLL_FREE</code> or <code>DID</code>.
+ * </p>
+ * </li>
+ * <li>
  * <p>
  * The phone number <code>Arn</code> value that is returned from each of the
  * items in the <a href=
@@ -42,6 +55,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can be
  * used to tag phone number resources.
  * </p>
+ * </li>
+ * </ul>
  * </important>
  */
 public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements Serializable {

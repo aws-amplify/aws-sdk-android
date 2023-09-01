@@ -19,20 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The contact with the specified ID is not active or does not exist. Applies to
- * Voice calls only, not to Chat or Task contacts.
+ * Displayed when rate-related API limits are exceeded.
  * </p>
  */
-public class ContactNotFoundException extends AmazonServiceException {
+public class TooManyRequestsException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ContactNotFoundException with the specified error
+     * Constructs a new TooManyRequestsException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public ContactNotFoundException(String message) {
+    public TooManyRequestsException(String message) {
         super(message);
     }
 }
