@@ -20,6 +20,14 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <important>
+ * <p>
+ * This API is related to <a href=
+ * "https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-ingestion.html"
+ * >WebRTC Ingestion</a> and is only available in the <code>us-west-2</code>
+ * region.
+ * </p>
+ * </important>
  * <p>
  * Returns the most current information about the channel. Specify the
  * <code>ChannelName</code> or <code>ChannelARN</code> in the input.
