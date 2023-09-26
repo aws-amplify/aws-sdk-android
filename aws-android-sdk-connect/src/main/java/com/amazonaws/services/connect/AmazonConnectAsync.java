@@ -1627,20 +1627,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -1649,6 +1650,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param createQueueRequest
@@ -1681,20 +1694,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -1703,6 +1717,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param createQueueRequest
@@ -2049,6 +2075,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Creates a traffic distribution group given an Amazon Connect instance
      * that has been replicated.
      * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
      * <p>
      * For more information about creating traffic distribution groups, see <a
      * href=
@@ -2086,6 +2125,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Creates a traffic distribution group given an Amazon Connect instance
      * that has been replicated.
      * </p>
+     * <note>
+     * <p>
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
      * <p>
      * For more information about creating traffic distribution groups, see <a
      * href=
@@ -2304,6 +2356,170 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<CreateUserHierarchyGroupResult> createUserHierarchyGroupAsync(
             CreateUserHierarchyGroupRequest createUserHierarchyGroupRequest,
             AsyncHandler<CreateUserHierarchyGroupRequest, CreateUserHierarchyGroupResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new view with the possible status of <code>SAVED</code> or
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * The views will have a unique name for each connect instance.
+     * </p>
+     * <p>
+     * It performs basic content validation if the status is <code>SAVED</code>
+     * or full content validation if the status is set to <code>PUBLISHED</code>
+     * . An error is returned if validation fails. It associates either the
+     * <code>$SAVED</code> qualifier or both of the <code>$SAVED</code> and
+     * <code>$LATEST</code> qualifiers with the provided view content based on
+     * the status. The view is idempotent if ClientToken is provided.
+     * </p>
+     * 
+     * @param createViewRequest
+     * @return A Java Future object containing the response from the CreateView
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws DuplicateResourceException
+     * @throws ServiceQuotaExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateViewResult> createViewAsync(CreateViewRequest createViewRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a new view with the possible status of <code>SAVED</code> or
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * The views will have a unique name for each connect instance.
+     * </p>
+     * <p>
+     * It performs basic content validation if the status is <code>SAVED</code>
+     * or full content validation if the status is set to <code>PUBLISHED</code>
+     * . An error is returned if validation fails. It associates either the
+     * <code>$SAVED</code> qualifier or both of the <code>$SAVED</code> and
+     * <code>$LATEST</code> qualifiers with the provided view content based on
+     * the status. The view is idempotent if ClientToken is provided.
+     * </p>
+     * 
+     * @param createViewRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the CreateView
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws DuplicateResourceException
+     * @throws ServiceQuotaExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateViewResult> createViewAsync(CreateViewRequest createViewRequest,
+            AsyncHandler<CreateViewRequest, CreateViewResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Publishes a new version of the view identifier.
+     * </p>
+     * <p>
+     * Versions are immutable and monotonically increasing.
+     * </p>
+     * <p>
+     * It returns the highest version if there is no change in content compared
+     * to that version. An error is displayed if the supplied ViewContentSha256
+     * is different from the ViewContentSha256 of the <code>$LATEST</code>
+     * alias.
+     * </p>
+     * 
+     * @param createViewVersionRequest
+     * @return A Java Future object containing the response from the
+     *         CreateViewVersion service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateViewVersionResult> createViewVersionAsync(
+            CreateViewVersionRequest createViewVersionRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Publishes a new version of the view identifier.
+     * </p>
+     * <p>
+     * Versions are immutable and monotonically increasing.
+     * </p>
+     * <p>
+     * It returns the highest version if there is no change in content compared
+     * to that version. An error is displayed if the supplied ViewContentSha256
+     * is different from the ViewContentSha256 of the <code>$LATEST</code>
+     * alias.
+     * </p>
+     * 
+     * @param createViewVersionRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateViewVersion service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateViewVersionResult> createViewVersionAsync(
+            CreateViewVersionRequest createViewVersionRequest,
+            AsyncHandler<CreateViewVersionRequest, CreateViewVersionResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3526,6 +3742,126 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> deleteUserHierarchyGroupAsync(
             DeleteUserHierarchyGroupRequest deleteUserHierarchyGroupRequest,
             AsyncHandler<DeleteUserHierarchyGroupRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the view entirely. It deletes the view and all associated
+     * qualifiers (versions and aliases).
+     * </p>
+     * 
+     * @param deleteViewRequest
+     * @return A Java Future object containing the response from the DeleteView
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteViewResult> deleteViewAsync(DeleteViewRequest deleteViewRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the view entirely. It deletes the view and all associated
+     * qualifiers (versions and aliases).
+     * </p>
+     * 
+     * @param deleteViewRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the DeleteView
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteViewResult> deleteViewAsync(DeleteViewRequest deleteViewRequest,
+            AsyncHandler<DeleteViewRequest, DeleteViewResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the particular version specified in <code>ViewVersion</code>
+     * identifier.
+     * </p>
+     * 
+     * @param deleteViewVersionRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteViewVersion service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteViewVersionResult> deleteViewVersionAsync(
+            DeleteViewVersionRequest deleteViewVersionRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the particular version specified in <code>ViewVersion</code>
+     * identifier.
+     * </p>
+     * 
+     * @param deleteViewVersionRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteViewVersion service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteViewVersionResult> deleteViewVersionAsync(
+            DeleteViewVersionRequest deleteViewVersionRequest,
+            AsyncHandler<DeleteViewVersionRequest, DeleteViewVersionResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4907,6 +5243,93 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribeUserHierarchyStructureResult> describeUserHierarchyStructureAsync(
             DescribeUserHierarchyStructureRequest describeUserHierarchyStructureRequest,
             AsyncHandler<DescribeUserHierarchyStructureRequest, DescribeUserHierarchyStructureResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the view for the specified Amazon Connect instance and view
+     * identifier.
+     * </p>
+     * <p>
+     * The view identifier can be supplied as a ViewId or ARN.
+     * </p>
+     * <p>
+     * <code>$SAVED</code> needs to be supplied if a view is unpublished.
+     * </p>
+     * <p>
+     * The view identifier can contain an optional qualifier, for example,
+     * <code>&lt;view-id&gt;:$SAVED</code>, which is either an actual version
+     * number or an Amazon Connect managed qualifier
+     * <code>$SAVED | $LATEST</code>. If it is not supplied, then
+     * <code>$LATEST</code> is assumed for customer managed views and an error
+     * is returned if there is no published content available. Version 1 is
+     * assumed for Amazon Web Services managed views.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeView service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeViewResult> describeViewAsync(DescribeViewRequest describeViewRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves the view for the specified Amazon Connect instance and view
+     * identifier.
+     * </p>
+     * <p>
+     * The view identifier can be supplied as a ViewId or ARN.
+     * </p>
+     * <p>
+     * <code>$SAVED</code> needs to be supplied if a view is unpublished.
+     * </p>
+     * <p>
+     * The view identifier can contain an optional qualifier, for example,
+     * <code>&lt;view-id&gt;:$SAVED</code>, which is either an actual version
+     * number or an Amazon Connect managed qualifier
+     * <code>$SAVED | $LATEST</code>. If it is not supplied, then
+     * <code>$LATEST</code> is assumed for customer managed views and an error
+     * is returned if there is no published content available. Version 1 is
+     * assumed for Amazon Web Services managed views.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeView service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeViewResult> describeViewAsync(DescribeViewRequest describeViewRequest,
+            AsyncHandler<DescribeViewRequest, DescribeViewResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -7355,6 +7778,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Connect Administrator Guide</i>.
      * </p>
      * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers
+     * doesn't support number types <code>UIFN</code>, <code>SHARED</code>,
+     * <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it
+     * returns numbers of those types, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The phone number <code>Arn</code> value that is returned from each of the
      * items in the <a href=
@@ -7366,6 +7802,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
      * be used to tag phone number resources.
      * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param listPhoneNumbersRequest
@@ -7400,6 +7838,19 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Connect Administrator Guide</i>.
      * </p>
      * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers
+     * doesn't support number types <code>UIFN</code>, <code>SHARED</code>,
+     * <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it
+     * returns numbers of those types, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The phone number <code>Arn</code> value that is returned from each of the
      * items in the <a href=
@@ -7411,6 +7862,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
      * be used to tag phone number resources.
      * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param listPhoneNumbersRequest
@@ -8053,6 +8506,65 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Returns a list of third party applications in a specific security
+     * profile.
+     * </p>
+     * 
+     * @param listSecurityProfileApplicationsRequest
+     * @return A Java Future object containing the response from the
+     *         ListSecurityProfileApplications service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSecurityProfileApplicationsResult> listSecurityProfileApplicationsAsync(
+            ListSecurityProfileApplicationsRequest listSecurityProfileApplicationsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns a list of third party applications in a specific security
+     * profile.
+     * </p>
+     * 
+     * @param listSecurityProfileApplicationsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListSecurityProfileApplications service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSecurityProfileApplicationsResult> listSecurityProfileApplicationsAsync(
+            ListSecurityProfileApplicationsRequest listSecurityProfileApplicationsRequest,
+            AsyncHandler<ListSecurityProfileApplicationsRequest, ListSecurityProfileApplicationsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -8602,6 +9114,132 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<ListUsersResult> listUsersAsync(ListUsersRequest listUsersRequest,
             AsyncHandler<ListUsersRequest, ListUsersResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns all the available versions for the specified Amazon Connect
+     * instance and view identifier.
+     * </p>
+     * <p>
+     * Results will be sorted from highest to lowest.
+     * </p>
+     * 
+     * @param listViewVersionsRequest
+     * @return A Java Future object containing the response from the
+     *         ListViewVersions service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListViewVersionsResult> listViewVersionsAsync(
+            ListViewVersionsRequest listViewVersionsRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Returns all the available versions for the specified Amazon Connect
+     * instance and view identifier.
+     * </p>
+     * <p>
+     * Results will be sorted from highest to lowest.
+     * </p>
+     * 
+     * @param listViewVersionsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListViewVersions service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListViewVersionsResult> listViewVersionsAsync(
+            ListViewVersionsRequest listViewVersionsRequest,
+            AsyncHandler<ListViewVersionsRequest, ListViewVersionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns views in the given instance.
+     * </p>
+     * <p>
+     * Results are sorted primarily by type, and secondarily by name.
+     * </p>
+     * 
+     * @param listViewsRequest
+     * @return A Java Future object containing the response from the ListViews
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListViewsResult> listViewsAsync(ListViewsRequest listViewsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Returns views in the given instance.
+     * </p>
+     * <p>
+     * Results are sorted primarily by type, and secondarily by name.
+     * </p>
+     * 
+     * @param listViewsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the ListViews
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListViewsResult> listViewsAsync(ListViewsRequest listViewsRequest,
+            AsyncHandler<ListViewsRequest, ListViewsResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -10173,8 +10811,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Ends the specified contact. This call does not work for the following
-     * initiation methods:
+     * Ends the specified contact. This call does not work for voice contacts
+     * that use the following initiation methods:
      * </p>
      * <ul>
      * <li>
@@ -10193,6 +10831,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * Chat and task contacts, however, can be terminated in any state,
+     * regardless of initiation method.
+     * </p>
      * 
      * @param stopContactRequest
      * @return A Java Future object containing the response from the StopContact
@@ -10215,8 +10857,8 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Ends the specified contact. This call does not work for the following
-     * initiation methods:
+     * Ends the specified contact. This call does not work for voice contacts
+     * that use the following initiation methods:
      * </p>
      * <ul>
      * <li>
@@ -10235,6 +10877,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * Chat and task contacts, however, can be terminated in any state,
+     * regardless of initiation method.
+     * </p>
      * 
      * @param stopContactRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -12226,20 +12872,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * for a specified queue.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -12248,6 +12895,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -12281,20 +12940,21 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * for a specified queue.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -12303,6 +12963,18 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -13006,8 +13678,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -13050,8 +13725,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -13520,6 +14198,146 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> updateUserSecurityProfilesAsync(
             UpdateUserSecurityProfilesRequest updateUserSecurityProfilesRequest,
             AsyncHandler<UpdateUserSecurityProfilesRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the view content of the given view identifier in the specified
+     * Amazon Connect instance.
+     * </p>
+     * <p>
+     * It performs content validation if <code>Status</code> is set to
+     * <code>SAVED</code> and performs full content validation if
+     * <code>Status</code> is <code>PUBLISHED</code>. Note that the
+     * <code>$SAVED</code> alias' content will always be updated, but the
+     * <code>$LATEST</code> alias' content will only be updated if
+     * <code>Status</code> is <code>PUBLISHED</code>.
+     * </p>
+     * 
+     * @param updateViewContentRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateViewContent service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateViewContentResult> updateViewContentAsync(
+            UpdateViewContentRequest updateViewContentRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the view content of the given view identifier in the specified
+     * Amazon Connect instance.
+     * </p>
+     * <p>
+     * It performs content validation if <code>Status</code> is set to
+     * <code>SAVED</code> and performs full content validation if
+     * <code>Status</code> is <code>PUBLISHED</code>. Note that the
+     * <code>$SAVED</code> alias' content will always be updated, but the
+     * <code>$LATEST</code> alias' content will only be updated if
+     * <code>Status</code> is <code>PUBLISHED</code>.
+     * </p>
+     * 
+     * @param updateViewContentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateViewContent service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateViewContentResult> updateViewContentAsync(
+            UpdateViewContentRequest updateViewContentRequest,
+            AsyncHandler<UpdateViewContentRequest, UpdateViewContentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the view metadata. Note that either <code>Name</code> or
+     * <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateViewMetadataRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateViewMetadata service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws DuplicateResourceException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateViewMetadataResult> updateViewMetadataAsync(
+            UpdateViewMetadataRequest updateViewMetadataRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the view metadata. Note that either <code>Name</code> or
+     * <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateViewMetadataRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateViewMetadata service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws DuplicateResourceException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateViewMetadataResult> updateViewMetadataAsync(
+            UpdateViewMetadataRequest updateViewMetadataRequest,
+            AsyncHandler<UpdateViewMetadataRequest, UpdateViewMetadataResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }
