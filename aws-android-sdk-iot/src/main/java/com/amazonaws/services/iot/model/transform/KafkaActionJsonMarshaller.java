@@ -60,6 +60,17 @@ class KafkaActionJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (kafkaAction.getHeaders() != null) {
+            java.util.List<KafkaActionHeader> headers = kafkaAction.getHeaders();
+            jsonWriter.name("headers");
+            jsonWriter.beginArray();
+            for (KafkaActionHeader headersItem : headers) {
+                if (headersItem != null) {
+                    KafkaActionHeaderJsonMarshaller.getInstance().marshall(headersItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
