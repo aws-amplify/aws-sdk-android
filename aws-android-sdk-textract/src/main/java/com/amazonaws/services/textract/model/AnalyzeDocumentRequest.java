@@ -116,12 +116,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
      * document. Add FORMS to return detected form data. Add SIGNATURES to
-     * return the locations of detected signatures. To perform both forms and
-     * table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To
-     * detect signatures within form data and table data, add SIGNATURES to
-     * either TABLES or FORMS. All lines and words detected in the document are
-     * included in the response (including text that isn't related to the value
-     * of <code>FeatureTypes</code>).
+     * return the locations of detected signatures. Add LAYOUT to the list to
+     * return information about the layout of the document. To perform both
+     * forms and table analysis, add TABLES and FORMS to
+     * <code>FeatureTypes</code>. To detect signatures within the document and
+     * within form data and table data, add SIGNATURES to either TABLES or
+     * FORMS. All lines and words detected in the document are included in the
+     * response (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      */
     private java.util.List<String> featureTypes;
@@ -237,25 +239,29 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
      * document. Add FORMS to return detected form data. Add SIGNATURES to
-     * return the locations of detected signatures. To perform both forms and
-     * table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To
-     * detect signatures within form data and table data, add SIGNATURES to
-     * either TABLES or FORMS. All lines and words detected in the document are
-     * included in the response (including text that isn't related to the value
-     * of <code>FeatureTypes</code>).
+     * return the locations of detected signatures. Add LAYOUT to the list to
+     * return information about the layout of the document. To perform both
+     * forms and table analysis, add TABLES and FORMS to
+     * <code>FeatureTypes</code>. To detect signatures within the document and
+     * within form data and table data, add SIGNATURES to either TABLES or
+     * FORMS. All lines and words detected in the document are included in the
+     * response (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      *
      * @return <p>
      *         A list of the types of analysis to perform. Add TABLES to the
      *         list to return information about the tables that are detected in
      *         the input document. Add FORMS to return detected form data. Add
-     *         SIGNATURES to return the locations of detected signatures. To
-     *         perform both forms and table analysis, add TABLES and FORMS to
-     *         <code>FeatureTypes</code>. To detect signatures within form data
-     *         and table data, add SIGNATURES to either TABLES or FORMS. All
-     *         lines and words detected in the document are included in the
-     *         response (including text that isn't related to the value of
-     *         <code>FeatureTypes</code>).
+     *         SIGNATURES to return the locations of detected signatures. Add
+     *         LAYOUT to the list to return information about the layout of the
+     *         document. To perform both forms and table analysis, add TABLES
+     *         and FORMS to <code>FeatureTypes</code>. To detect signatures
+     *         within the document and within form data and table data, add
+     *         SIGNATURES to either TABLES or FORMS. All lines and words
+     *         detected in the document are included in the response (including
+     *         text that isn't related to the value of <code>FeatureTypes</code>
+     *         ).
      *         </p>
      */
     public java.util.List<String> getFeatureTypes() {
@@ -267,12 +273,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
      * document. Add FORMS to return detected form data. Add SIGNATURES to
-     * return the locations of detected signatures. To perform both forms and
-     * table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To
-     * detect signatures within form data and table data, add SIGNATURES to
-     * either TABLES or FORMS. All lines and words detected in the document are
-     * included in the response (including text that isn't related to the value
-     * of <code>FeatureTypes</code>).
+     * return the locations of detected signatures. Add LAYOUT to the list to
+     * return information about the layout of the document. To perform both
+     * forms and table analysis, add TABLES and FORMS to
+     * <code>FeatureTypes</code>. To detect signatures within the document and
+     * within form data and table data, add SIGNATURES to either TABLES or
+     * FORMS. All lines and words detected in the document are included in the
+     * response (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      *
      * @param featureTypes <p>
@@ -280,12 +288,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      *            list to return information about the tables that are detected
      *            in the input document. Add FORMS to return detected form data.
      *            Add SIGNATURES to return the locations of detected signatures.
-     *            To perform both forms and table analysis, add TABLES and FORMS
-     *            to <code>FeatureTypes</code>. To detect signatures within form
-     *            data and table data, add SIGNATURES to either TABLES or FORMS.
-     *            All lines and words detected in the document are included in
-     *            the response (including text that isn't related to the value
-     *            of <code>FeatureTypes</code>).
+     *            Add LAYOUT to the list to return information about the layout
+     *            of the document. To perform both forms and table analysis, add
+     *            TABLES and FORMS to <code>FeatureTypes</code>. To detect
+     *            signatures within the document and within form data and table
+     *            data, add SIGNATURES to either TABLES or FORMS. All lines and
+     *            words detected in the document are included in the response
+     *            (including text that isn't related to the value of
+     *            <code>FeatureTypes</code>).
      *            </p>
      */
     public void setFeatureTypes(java.util.Collection<String> featureTypes) {
@@ -302,12 +312,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
      * document. Add FORMS to return detected form data. Add SIGNATURES to
-     * return the locations of detected signatures. To perform both forms and
-     * table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To
-     * detect signatures within form data and table data, add SIGNATURES to
-     * either TABLES or FORMS. All lines and words detected in the document are
-     * included in the response (including text that isn't related to the value
-     * of <code>FeatureTypes</code>).
+     * return the locations of detected signatures. Add LAYOUT to the list to
+     * return information about the layout of the document. To perform both
+     * forms and table analysis, add TABLES and FORMS to
+     * <code>FeatureTypes</code>. To detect signatures within the document and
+     * within form data and table data, add SIGNATURES to either TABLES or
+     * FORMS. All lines and words detected in the document are included in the
+     * response (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -318,12 +330,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      *            list to return information about the tables that are detected
      *            in the input document. Add FORMS to return detected form data.
      *            Add SIGNATURES to return the locations of detected signatures.
-     *            To perform both forms and table analysis, add TABLES and FORMS
-     *            to <code>FeatureTypes</code>. To detect signatures within form
-     *            data and table data, add SIGNATURES to either TABLES or FORMS.
-     *            All lines and words detected in the document are included in
-     *            the response (including text that isn't related to the value
-     *            of <code>FeatureTypes</code>).
+     *            Add LAYOUT to the list to return information about the layout
+     *            of the document. To perform both forms and table analysis, add
+     *            TABLES and FORMS to <code>FeatureTypes</code>. To detect
+     *            signatures within the document and within form data and table
+     *            data, add SIGNATURES to either TABLES or FORMS. All lines and
+     *            words detected in the document are included in the response
+     *            (including text that isn't related to the value of
+     *            <code>FeatureTypes</code>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -343,12 +357,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      * A list of the types of analysis to perform. Add TABLES to the list to
      * return information about the tables that are detected in the input
      * document. Add FORMS to return detected form data. Add SIGNATURES to
-     * return the locations of detected signatures. To perform both forms and
-     * table analysis, add TABLES and FORMS to <code>FeatureTypes</code>. To
-     * detect signatures within form data and table data, add SIGNATURES to
-     * either TABLES or FORMS. All lines and words detected in the document are
-     * included in the response (including text that isn't related to the value
-     * of <code>FeatureTypes</code>).
+     * return the locations of detected signatures. Add LAYOUT to the list to
+     * return information about the layout of the document. To perform both
+     * forms and table analysis, add TABLES and FORMS to
+     * <code>FeatureTypes</code>. To detect signatures within the document and
+     * within form data and table data, add SIGNATURES to either TABLES or
+     * FORMS. All lines and words detected in the document are included in the
+     * response (including text that isn't related to the value of
+     * <code>FeatureTypes</code>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -359,12 +375,14 @@ public class AnalyzeDocumentRequest extends AmazonWebServiceRequest implements S
      *            list to return information about the tables that are detected
      *            in the input document. Add FORMS to return detected form data.
      *            Add SIGNATURES to return the locations of detected signatures.
-     *            To perform both forms and table analysis, add TABLES and FORMS
-     *            to <code>FeatureTypes</code>. To detect signatures within form
-     *            data and table data, add SIGNATURES to either TABLES or FORMS.
-     *            All lines and words detected in the document are included in
-     *            the response (including text that isn't related to the value
-     *            of <code>FeatureTypes</code>).
+     *            Add LAYOUT to the list to return information about the layout
+     *            of the document. To perform both forms and table analysis, add
+     *            TABLES and FORMS to <code>FeatureTypes</code>. To detect
+     *            signatures within the document and within form data and table
+     *            data, add SIGNATURES to either TABLES or FORMS. All lines and
+     *            words detected in the document are included in the response
+     *            (including text that isn't related to the value of
+     *            <code>FeatureTypes</code>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -139,7 +139,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -162,7 +162,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      */
     private String blockType;
 
@@ -367,9 +369,7 @@ public class Block implements Serializable {
      * scanned image (JPEG/PNG) provided to an asynchronous operation, even if
      * it contains multiple document pages, is considered a single-page
      * document. This means that for scanned images the value of
-     * <code>Page</code> is always 1. Synchronous operations will also return a
-     * <code>Page</code> value of 1 because every input document is considered
-     * to be a single-page document.
+     * <code>Page</code> is always 1.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -480,7 +480,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -503,7 +503,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      *
      * @return <p>
      *         The type of text item that's recognized. In operations for text
@@ -606,7 +608,7 @@ public class Block implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <i>SIGNATURE</i> - The location and confidene score of a
+     *         <i>SIGNATURE</i> - The location and confidence score of a
      *         signature detected on a document page. Can be returned as part of
      *         a Key-Value pair or a detected cell.
      *         </p>
@@ -731,7 +733,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -754,7 +756,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -858,7 +862,7 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            <i>SIGNATURE</i> - The location and confidence score of a
      *            signature detected on a document page. Can be returned as part
      *            of a Key-Value pair or a detected cell.
      *            </p>
@@ -983,7 +987,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -1009,7 +1013,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1113,7 +1119,7 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            <i>SIGNATURE</i> - The location and confidence score of a
      *            signature detected on a document page. Can be returned as part
      *            of a Key-Value pair or a detected cell.
      *            </p>
@@ -1241,7 +1247,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -1264,7 +1270,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1368,7 +1376,7 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            <i>SIGNATURE</i> - The location and confidence score of a
      *            signature detected on a document page. Can be returned as part
      *            of a Key-Value pair or a detected cell.
      *            </p>
@@ -1493,7 +1501,7 @@ public class Block implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <i>SIGNATURE</i> - The location and confidene score of a signature
+     * <i>SIGNATURE</i> - The location and confidence score of a signature
      * detected on a document page. Can be returned as part of a Key-Value pair
      * or a detected cell.
      * </p>
@@ -1519,7 +1527,9 @@ public class Block implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>KEY_VALUE_SET, PAGE, LINE, WORD, TABLE, CELL,
      * SELECTION_ELEMENT, MERGED_CELL, TITLE, QUERY, QUERY_RESULT, SIGNATURE,
-     * TABLE_TITLE, TABLE_FOOTER
+     * TABLE_TITLE, TABLE_FOOTER, LAYOUT_TEXT, LAYOUT_TITLE, LAYOUT_HEADER,
+     * LAYOUT_FOOTER, LAYOUT_SECTION_HEADER, LAYOUT_PAGE_NUMBER, LAYOUT_LIST,
+     * LAYOUT_FIGURE, LAYOUT_TABLE, LAYOUT_KEY_VALUE
      *
      * @param blockType <p>
      *            The type of text item that's recognized. In operations for
@@ -1623,7 +1633,7 @@ public class Block implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <i>SIGNATURE</i> - The location and confidene score of a
+     *            <i>SIGNATURE</i> - The location and confidence score of a
      *            signature detected on a document page. Can be returned as part
      *            of a Key-Value pair or a detected cell.
      *            </p>
@@ -3105,9 +3115,7 @@ public class Block implements Serializable {
      * scanned image (JPEG/PNG) provided to an asynchronous operation, even if
      * it contains multiple document pages, is considered a single-page
      * document. This means that for scanned images the value of
-     * <code>Page</code> is always 1. Synchronous operations will also return a
-     * <code>Page</code> value of 1 because every input document is considered
-     * to be a single-page document.
+     * <code>Page</code> is always 1.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -3121,9 +3129,6 @@ public class Block implements Serializable {
      *         asynchronous operation, even if it contains multiple document
      *         pages, is considered a single-page document. This means that for
      *         scanned images the value of <code>Page</code> is always 1.
-     *         Synchronous operations will also return a <code>Page</code> value
-     *         of 1 because every input document is considered to be a
-     *         single-page document.
      *         </p>
      */
     public Integer getPage() {
@@ -3138,9 +3143,7 @@ public class Block implements Serializable {
      * scanned image (JPEG/PNG) provided to an asynchronous operation, even if
      * it contains multiple document pages, is considered a single-page
      * document. This means that for scanned images the value of
-     * <code>Page</code> is always 1. Synchronous operations will also return a
-     * <code>Page</code> value of 1 because every input document is considered
-     * to be a single-page document.
+     * <code>Page</code> is always 1.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -3154,9 +3157,7 @@ public class Block implements Serializable {
      *            (JPEG/PNG) provided to an asynchronous operation, even if it
      *            contains multiple document pages, is considered a single-page
      *            document. This means that for scanned images the value of
-     *            <code>Page</code> is always 1. Synchronous operations will
-     *            also return a <code>Page</code> value of 1 because every input
-     *            document is considered to be a single-page document.
+     *            <code>Page</code> is always 1.
      *            </p>
      */
     public void setPage(Integer page) {
@@ -3171,9 +3172,7 @@ public class Block implements Serializable {
      * scanned image (JPEG/PNG) provided to an asynchronous operation, even if
      * it contains multiple document pages, is considered a single-page
      * document. This means that for scanned images the value of
-     * <code>Page</code> is always 1. Synchronous operations will also return a
-     * <code>Page</code> value of 1 because every input document is considered
-     * to be a single-page document.
+     * <code>Page</code> is always 1.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -3190,9 +3189,7 @@ public class Block implements Serializable {
      *            (JPEG/PNG) provided to an asynchronous operation, even if it
      *            contains multiple document pages, is considered a single-page
      *            document. This means that for scanned images the value of
-     *            <code>Page</code> is always 1. Synchronous operations will
-     *            also return a <code>Page</code> value of 1 because every input
-     *            document is considered to be a single-page document.
+     *            <code>Page</code> is always 1.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
