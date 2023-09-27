@@ -91,7 +91,7 @@ public class AdminListGroupsForUserRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -271,7 +271,7 @@ public class AdminListGroupsForUserRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -291,7 +291,7 @@ public class AdminListGroupsForUserRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -314,7 +314,7 @@ public class AdminListGroupsForUserRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

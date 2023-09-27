@@ -82,7 +82,7 @@ public class ListUserPoolClientsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -217,7 +217,7 @@ public class ListUserPoolClientsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -237,7 +237,7 @@ public class ListUserPoolClientsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -260,7 +260,7 @@ public class ListUserPoolClientsRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

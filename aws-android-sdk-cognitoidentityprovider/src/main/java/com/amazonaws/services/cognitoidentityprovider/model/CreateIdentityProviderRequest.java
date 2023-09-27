@@ -69,8 +69,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>3 - 32<br/>
-     * <b>Pattern: </b>[^_][\p{L}\p{M}\p{S}\p{N}\p{P}][^_]+<br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[^_\p{Z}][\p{L}\p{M}\p{S}\p{N}\p{P}][^_\p{Z}]+<br/>
      */
     private String providerName;
 
@@ -343,8 +343,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>3 - 32<br/>
-     * <b>Pattern: </b>[^_][\p{L}\p{M}\p{S}\p{N}\p{P}][^_]+<br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[^_\p{Z}][\p{L}\p{M}\p{S}\p{N}\p{P}][^_\p{Z}]+<br/>
      *
      * @return <p>
      *         The IdP name.
@@ -360,8 +360,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>3 - 32<br/>
-     * <b>Pattern: </b>[^_][\p{L}\p{M}\p{S}\p{N}\p{P}][^_]+<br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[^_\p{Z}][\p{L}\p{M}\p{S}\p{N}\p{P}][^_\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The IdP name.
@@ -380,8 +380,8 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>3 - 32<br/>
-     * <b>Pattern: </b>[^_][\p{L}\p{M}\p{S}\p{N}\p{P}][^_]+<br/>
+     * <b>Length: </b>1 - 32<br/>
+     * <b>Pattern: </b>[^_\p{Z}][\p{L}\p{M}\p{S}\p{N}\p{P}][^_\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The IdP name.
