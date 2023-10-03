@@ -162,8 +162,11 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1169,8 +1172,11 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1188,8 +1194,11 @@ public class TrafficDistributionGroup implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         You can change the <code>SignInConfig</code> only for a default
-     *         <code>TrafficDistributionGroup</code>. If you call
+     *         You can change the <code>SignInConfig</code> distribution only
+     *         for a default <code>TrafficDistributionGroup</code> (see the
+     *         <code>IsDefault</code> parameter in the <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     *         >TrafficDistributionGroup</a> data type). If you call
      *         <code>UpdateTrafficDistribution</code> with a modified
      *         <code>SignInConfig</code> and a non-default
      *         <code>TrafficDistributionGroup</code>, an
@@ -1211,8 +1220,11 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1230,8 +1242,11 @@ public class TrafficDistributionGroup implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         You can change the <code>SignInConfig</code> only for a default
-     *         <code>TrafficDistributionGroup</code>. If you call
+     *         You can change the <code>SignInConfig</code> distribution only
+     *         for a default <code>TrafficDistributionGroup</code> (see the
+     *         <code>IsDefault</code> parameter in the <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     *         >TrafficDistributionGroup</a> data type). If you call
      *         <code>UpdateTrafficDistribution</code> with a modified
      *         <code>SignInConfig</code> and a non-default
      *         <code>TrafficDistributionGroup</code>, an
@@ -1253,8 +1268,11 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1272,8 +1290,11 @@ public class TrafficDistributionGroup implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            You can change the <code>SignInConfig</code> only for a
-     *            default <code>TrafficDistributionGroup</code>. If you call
+     *            You can change the <code>SignInConfig</code> distribution only
+     *            for a default <code>TrafficDistributionGroup</code> (see the
+     *            <code>IsDefault</code> parameter in the <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     *            >TrafficDistributionGroup</a> data type). If you call
      *            <code>UpdateTrafficDistribution</code> with a modified
      *            <code>SignInConfig</code> and a non-default
      *            <code>TrafficDistributionGroup</code>, an
@@ -1295,8 +1316,11 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * You can change the <code>SignInConfig</code> distribution only for a
+     * default <code>TrafficDistributionGroup</code> (see the
+     * <code>IsDefault</code> parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1317,8 +1341,11 @@ public class TrafficDistributionGroup implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            You can change the <code>SignInConfig</code> only for a
-     *            default <code>TrafficDistributionGroup</code>. If you call
+     *            You can change the <code>SignInConfig</code> distribution only
+     *            for a default <code>TrafficDistributionGroup</code> (see the
+     *            <code>IsDefault</code> parameter in the <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     *            >TrafficDistributionGroup</a> data type). If you call
      *            <code>UpdateTrafficDistribution</code> with a modified
      *            <code>SignInConfig</code> and a non-default
      *            <code>TrafficDistributionGroup</code>, an

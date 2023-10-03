@@ -49,6 +49,13 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the EventBridge action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
      */
     private EventBridgeActionDefinition eventBridgeAction;
 
@@ -56,12 +63,28 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the contact category action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnZendeskTicketCreate</code> |
+     * <code>OnZendeskTicketStatusUpdate</code> |
+     * <code>OnSalesforceCaseCreate</code>
+     * </p>
      */
     private AssignContactCategoryActionDefinition assignContactCategoryAction;
 
     /**
      * <p>
      * Information about the send notification action.
+     * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
      * </p>
      */
     private SendNotificationActionDefinition sendNotificationAction;
@@ -241,9 +264,24 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the EventBridge action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
      *
      * @return <p>
      *         Information about the EventBridge action.
+     *         </p>
+     *         <p>
+     *         Supported only for <code>TriggerEventSource</code> values:
+     *         <code>OnPostCallAnalysisAvailable</code> |
+     *         <code>OnRealTimeCallAnalysisAvailable</code> |
+     *         <code>OnPostChatAnalysisAvailable</code> |
+     *         <code>OnContactEvaluationSubmit</code> |
+     *         <code>OnMetricDataUpdate</code>
      *         </p>
      */
     public EventBridgeActionDefinition getEventBridgeAction() {
@@ -254,9 +292,24 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the EventBridge action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
      *
      * @param eventBridgeAction <p>
      *            Information about the EventBridge action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnContactEvaluationSubmit</code> |
+     *            <code>OnMetricDataUpdate</code>
      *            </p>
      */
     public void setEventBridgeAction(EventBridgeActionDefinition eventBridgeAction) {
@@ -268,11 +321,26 @@ public class RuleAction implements Serializable {
      * Information about the EventBridge action.
      * </p>
      * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param eventBridgeAction <p>
      *            Information about the EventBridge action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnContactEvaluationSubmit</code> |
+     *            <code>OnMetricDataUpdate</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -286,9 +354,27 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the contact category action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnZendeskTicketCreate</code> |
+     * <code>OnZendeskTicketStatusUpdate</code> |
+     * <code>OnSalesforceCaseCreate</code>
+     * </p>
      *
      * @return <p>
      *         Information about the contact category action.
+     *         </p>
+     *         <p>
+     *         Supported only for <code>TriggerEventSource</code> values:
+     *         <code>OnPostCallAnalysisAvailable</code> |
+     *         <code>OnRealTimeCallAnalysisAvailable</code> |
+     *         <code>OnPostChatAnalysisAvailable</code> |
+     *         <code>OnZendeskTicketCreate</code> |
+     *         <code>OnZendeskTicketStatusUpdate</code> |
+     *         <code>OnSalesforceCaseCreate</code>
      *         </p>
      */
     public AssignContactCategoryActionDefinition getAssignContactCategoryAction() {
@@ -299,9 +385,27 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the contact category action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnZendeskTicketCreate</code> |
+     * <code>OnZendeskTicketStatusUpdate</code> |
+     * <code>OnSalesforceCaseCreate</code>
+     * </p>
      *
      * @param assignContactCategoryAction <p>
      *            Information about the contact category action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnZendeskTicketCreate</code> |
+     *            <code>OnZendeskTicketStatusUpdate</code> |
+     *            <code>OnSalesforceCaseCreate</code>
      *            </p>
      */
     public void setAssignContactCategoryAction(
@@ -314,11 +418,29 @@ public class RuleAction implements Serializable {
      * Information about the contact category action.
      * </p>
      * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnZendeskTicketCreate</code> |
+     * <code>OnZendeskTicketStatusUpdate</code> |
+     * <code>OnSalesforceCaseCreate</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param assignContactCategoryAction <p>
      *            Information about the contact category action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnZendeskTicketCreate</code> |
+     *            <code>OnZendeskTicketStatusUpdate</code> |
+     *            <code>OnSalesforceCaseCreate</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -333,9 +455,24 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the send notification action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
      *
      * @return <p>
      *         Information about the send notification action.
+     *         </p>
+     *         <p>
+     *         Supported only for <code>TriggerEventSource</code> values:
+     *         <code>OnPostCallAnalysisAvailable</code> |
+     *         <code>OnRealTimeCallAnalysisAvailable</code> |
+     *         <code>OnPostChatAnalysisAvailable</code> |
+     *         <code>OnContactEvaluationSubmit</code> |
+     *         <code>OnMetricDataUpdate</code>
      *         </p>
      */
     public SendNotificationActionDefinition getSendNotificationAction() {
@@ -346,9 +483,24 @@ public class RuleAction implements Serializable {
      * <p>
      * Information about the send notification action.
      * </p>
+     * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
      *
      * @param sendNotificationAction <p>
      *            Information about the send notification action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnContactEvaluationSubmit</code> |
+     *            <code>OnMetricDataUpdate</code>
      *            </p>
      */
     public void setSendNotificationAction(SendNotificationActionDefinition sendNotificationAction) {
@@ -360,11 +512,26 @@ public class RuleAction implements Serializable {
      * Information about the send notification action.
      * </p>
      * <p>
+     * Supported only for <code>TriggerEventSource</code> values:
+     * <code>OnPostCallAnalysisAvailable</code> |
+     * <code>OnRealTimeCallAnalysisAvailable</code> |
+     * <code>OnPostChatAnalysisAvailable</code> |
+     * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param sendNotificationAction <p>
      *            Information about the send notification action.
+     *            </p>
+     *            <p>
+     *            Supported only for <code>TriggerEventSource</code> values:
+     *            <code>OnPostCallAnalysisAvailable</code> |
+     *            <code>OnRealTimeCallAnalysisAvailable</code> |
+     *            <code>OnPostChatAnalysisAvailable</code> |
+     *            <code>OnContactEvaluationSubmit</code> |
+     *            <code>OnMetricDataUpdate</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
