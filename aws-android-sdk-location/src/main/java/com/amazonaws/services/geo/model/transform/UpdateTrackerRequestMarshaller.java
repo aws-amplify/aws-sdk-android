@@ -74,6 +74,12 @@ public class UpdateTrackerRequestMarshaller implements
                 jsonWriter.name("EventBridgeEnabled");
                 jsonWriter.value(eventBridgeEnabled);
             }
+            if (updateTrackerRequest.getKmsKeyEnableGeospatialQueries() != null) {
+                Boolean kmsKeyEnableGeospatialQueries = updateTrackerRequest
+                        .getKmsKeyEnableGeospatialQueries();
+                jsonWriter.name("KmsKeyEnableGeospatialQueries");
+                jsonWriter.value(kmsKeyEnableGeospatialQueries);
+            }
             if (updateTrackerRequest.getPositionFiltering() != null) {
                 String positionFiltering = updateTrackerRequest.getPositionFiltering();
                 jsonWriter.name("PositionFiltering");

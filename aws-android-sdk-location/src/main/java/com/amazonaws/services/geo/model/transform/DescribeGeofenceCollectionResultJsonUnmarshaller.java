@@ -50,6 +50,10 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
                 describeGeofenceCollectionResult.setDescription(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("GeofenceCount")) {
+                describeGeofenceCollectionResult.setGeofenceCount(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KmsKeyId")) {
                 describeGeofenceCollectionResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
