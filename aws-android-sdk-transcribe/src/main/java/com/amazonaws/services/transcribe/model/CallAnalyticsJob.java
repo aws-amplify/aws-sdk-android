@@ -111,7 +111,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      */
     private String mediaFormat;
 
@@ -830,7 +830,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @return <p>
      *         The format of the input media file.
@@ -847,7 +847,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -867,7 +867,7 @@ public class CallAnalyticsJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -887,7 +887,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -907,7 +907,7 @@ public class CallAnalyticsJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
