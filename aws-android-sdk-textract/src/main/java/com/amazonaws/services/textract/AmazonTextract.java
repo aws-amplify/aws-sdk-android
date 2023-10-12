@@ -270,6 +270,137 @@ public interface AmazonTextract {
 
     /**
      * <p>
+     * Creates an adapter, which can be fine-tuned for enhanced performance on
+     * user provided documents. Takes an AdapterName and FeatureType. Currently
+     * the only supported feature type is <code>QUERIES</code>. You can also
+     * provide a Description, Tags, and a ClientRequestToken. You can choose
+     * whether or not the adapter should be AutoUpdated with the AutoUpdate
+     * argument. By default, AutoUpdate is set to DISABLED.
+     * </p>
+     * 
+     * @param createAdapterRequest
+     * @return createAdapterResult The response from the CreateAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateAdapterResult createAdapter(CreateAdapterRequest createAdapterRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new version of an adapter. Operates on a provided AdapterId and
+     * a specified dataset provided via the DatasetConfig argument. Requires
+     * that you specify an Amazon S3 bucket with the OutputConfig argument. You
+     * can provide an optional KMSKeyId, an optional ClientRequestToken, and
+     * optional tags.
+     * </p>
+     * 
+     * @param createAdapterVersionRequest
+     * @return createAdapterVersionResult The response from the
+     *         CreateAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateAdapterVersionResult createAdapterVersion(
+            CreateAdapterVersionRequest createAdapterVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter. Takes an AdapterId and deletes the
+     * adapter specified by the ID.
+     * </p>
+     * 
+     * @param deleteAdapterRequest
+     * @return deleteAdapterResult The response from the DeleteAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteAdapterResult deleteAdapter(DeleteAdapterRequest deleteAdapterRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes an Amazon Textract adapter version. Requires that you specify
+     * both an AdapterId and a AdapterVersion. Deletes the adapter version
+     * specified by the AdapterId and the AdapterVersion.
+     * </p>
+     * 
+     * @param deleteAdapterVersionRequest
+     * @return deleteAdapterVersionResult The response from the
+     *         DeleteAdapterVersion service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteAdapterVersionResult deleteAdapterVersion(
+            DeleteAdapterVersionRequest deleteAdapterVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
      * be in one of the following image formats: JPEG, PNG, PDF, or TIFF.
@@ -315,6 +446,63 @@ public interface AmazonTextract {
      *             request, or a server side issue.
      */
     DetectDocumentTextResult detectDocumentText(DetectDocumentTextRequest detectDocumentTextRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets configuration information for an adapter specified by an AdapterId,
+     * returning information on AdapterName, Description, CreationTime,
+     * AutoUpdate status, and FeatureTypes.
+     * </p>
+     * 
+     * @param getAdapterRequest
+     * @return getAdapterResult The response from the GetAdapter service method,
+     *         as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetAdapterResult getAdapter(GetAdapterRequest getAdapterRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets configuration information for the specified adapter version,
+     * including: AdapterId, AdapterVersion, FeatureTypes, Status,
+     * StatusMessage, DatasetConfig, KMSKeyId, OutputConfig, Tags and
+     * EvaluationMetrics.
+     * </p>
+     * 
+     * @param getAdapterVersionRequest
+     * @return getAdapterVersionResult The response from the GetAdapterVersion
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetAdapterVersionResult getAdapterVersion(GetAdapterVersionRequest getAdapterVersionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -655,6 +843,88 @@ public interface AmazonTextract {
 
     /**
      * <p>
+     * List all version of an adapter that meet the specified filtration
+     * criteria.
+     * </p>
+     * 
+     * @param listAdapterVersionsRequest
+     * @return listAdapterVersionsResult The response from the
+     *         ListAdapterVersions service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListAdapterVersionsResult listAdapterVersions(
+            ListAdapterVersionsRequest listAdapterVersionsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all adapters that match the specified filtration criteria.
+     * </p>
+     * 
+     * @param listAdaptersRequest
+     * @return listAdaptersResult The response from the ListAdapters service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListAdaptersResult listAdapters(ListAdaptersRequest listAdaptersRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all tags for an Amazon Textract resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
@@ -903,6 +1173,88 @@ public interface AmazonTextract {
     StartLendingAnalysisResult startLendingAnalysis(
             StartLendingAnalysisRequest startLendingAnalysisRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Adds one or more tags to the specified resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ServiceQuotaExceededException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes any tags with the specified keys from the specified resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Textract.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Update the configuration for an adapter. FeatureTypes configurations
+     * cannot be updated. At least one new parameter must be specified as an
+     * argument.
+     * </p>
+     * 
+     * @param updateAdapterRequest
+     * @return updateAdapterResult The response from the UpdateAdapter service
+     *         method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ConflictException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateAdapterResult updateAdapter(UpdateAdapterRequest updateAdapterRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * Shuts down this client object, releasing any resources that might be held
