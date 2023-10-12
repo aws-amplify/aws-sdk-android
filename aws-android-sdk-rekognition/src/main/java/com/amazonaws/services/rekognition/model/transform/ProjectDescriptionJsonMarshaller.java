@@ -53,6 +53,16 @@ class ProjectDescriptionJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (projectDescription.getFeature() != null) {
+            String feature = projectDescription.getFeature();
+            jsonWriter.name("Feature");
+            jsonWriter.value(feature);
+        }
+        if (projectDescription.getAutoUpdate() != null) {
+            String autoUpdate = projectDescription.getAutoUpdate();
+            jsonWriter.name("AutoUpdate");
+            jsonWriter.value(autoUpdate);
+        }
         jsonWriter.endObject();
     }
 

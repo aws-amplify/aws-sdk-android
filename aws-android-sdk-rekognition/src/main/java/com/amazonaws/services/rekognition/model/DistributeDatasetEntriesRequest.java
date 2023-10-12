@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Distributes the entries (images) in a training dataset across the training
  * dataset and the test dataset for a project.

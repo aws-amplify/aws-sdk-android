@@ -49,6 +49,9 @@ public class DetectModerationLabelsResultJsonUnmarshaller implements
                         .setHumanLoopActivationOutput(HumanLoopActivationOutputJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("ProjectVersion")) {
+                detectModerationLabelsResult.setProjectVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

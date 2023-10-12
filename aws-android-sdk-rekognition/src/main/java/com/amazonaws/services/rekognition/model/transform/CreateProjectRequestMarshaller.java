@@ -67,6 +67,16 @@ public class CreateProjectRequestMarshaller implements
                 jsonWriter.name("ProjectName");
                 jsonWriter.value(projectName);
             }
+            if (createProjectRequest.getFeature() != null) {
+                String feature = createProjectRequest.getFeature();
+                jsonWriter.name("Feature");
+                jsonWriter.value(feature);
+            }
+            if (createProjectRequest.getAutoUpdate() != null) {
+                String autoUpdate = createProjectRequest.getAutoUpdate();
+                jsonWriter.name("AutoUpdate");
+                jsonWriter.value(autoUpdate);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

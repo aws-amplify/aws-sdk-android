@@ -19,41 +19,41 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Sagemaker Groundtruth format manifest files for the input, output and
- * validation datasets that are used and created during testing.
+ * The data validation manifest created for the training dataset during model
+ * training.
  * </p>
  */
 public class TrainingDataResult implements Serializable {
     /**
      * <p>
-     * The training assets that you supplied for training.
+     * The training data that you supplied.
      * </p>
      */
     private TrainingData input;
 
     /**
      * <p>
-     * The images (assets) that were actually trained by Amazon Rekognition
-     * Custom Labels.
+     * Reference to images (assets) that were actually used during training with
+     * trained model predictions.
      * </p>
      */
     private TrainingData output;
 
     /**
      * <p>
-     * The location of the data validation manifest. The data validation
-     * manifest is created for the training dataset during model training.
+     * A manifest that you supplied for training, with validation results for
+     * each line.
      * </p>
      */
     private ValidationData validation;
 
     /**
      * <p>
-     * The training assets that you supplied for training.
+     * The training data that you supplied.
      * </p>
      *
      * @return <p>
-     *         The training assets that you supplied for training.
+     *         The training data that you supplied.
      *         </p>
      */
     public TrainingData getInput() {
@@ -62,11 +62,11 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The training assets that you supplied for training.
+     * The training data that you supplied.
      * </p>
      *
      * @param input <p>
-     *            The training assets that you supplied for training.
+     *            The training data that you supplied.
      *            </p>
      */
     public void setInput(TrainingData input) {
@@ -75,14 +75,14 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The training assets that you supplied for training.
+     * The training data that you supplied.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param input <p>
-     *            The training assets that you supplied for training.
+     *            The training data that you supplied.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,13 +94,13 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The images (assets) that were actually trained by Amazon Rekognition
-     * Custom Labels.
+     * Reference to images (assets) that were actually used during training with
+     * trained model predictions.
      * </p>
      *
      * @return <p>
-     *         The images (assets) that were actually trained by Amazon
-     *         Rekognition Custom Labels.
+     *         Reference to images (assets) that were actually used during
+     *         training with trained model predictions.
      *         </p>
      */
     public TrainingData getOutput() {
@@ -109,13 +109,13 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The images (assets) that were actually trained by Amazon Rekognition
-     * Custom Labels.
+     * Reference to images (assets) that were actually used during training with
+     * trained model predictions.
      * </p>
      *
      * @param output <p>
-     *            The images (assets) that were actually trained by Amazon
-     *            Rekognition Custom Labels.
+     *            Reference to images (assets) that were actually used during
+     *            training with trained model predictions.
      *            </p>
      */
     public void setOutput(TrainingData output) {
@@ -124,16 +124,16 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The images (assets) that were actually trained by Amazon Rekognition
-     * Custom Labels.
+     * Reference to images (assets) that were actually used during training with
+     * trained model predictions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param output <p>
-     *            The images (assets) that were actually trained by Amazon
-     *            Rekognition Custom Labels.
+     *            Reference to images (assets) that were actually used during
+     *            training with trained model predictions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -145,14 +145,13 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The location of the data validation manifest. The data validation
-     * manifest is created for the training dataset during model training.
+     * A manifest that you supplied for training, with validation results for
+     * each line.
      * </p>
      *
      * @return <p>
-     *         The location of the data validation manifest. The data validation
-     *         manifest is created for the training dataset during model
-     *         training.
+     *         A manifest that you supplied for training, with validation
+     *         results for each line.
      *         </p>
      */
     public ValidationData getValidation() {
@@ -161,14 +160,13 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The location of the data validation manifest. The data validation
-     * manifest is created for the training dataset during model training.
+     * A manifest that you supplied for training, with validation results for
+     * each line.
      * </p>
      *
      * @param validation <p>
-     *            The location of the data validation manifest. The data
-     *            validation manifest is created for the training dataset during
-     *            model training.
+     *            A manifest that you supplied for training, with validation
+     *            results for each line.
      *            </p>
      */
     public void setValidation(ValidationData validation) {
@@ -177,17 +175,16 @@ public class TrainingDataResult implements Serializable {
 
     /**
      * <p>
-     * The location of the data validation manifest. The data validation
-     * manifest is created for the training dataset during model training.
+     * A manifest that you supplied for training, with validation results for
+     * each line.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param validation <p>
-     *            The location of the data validation manifest. The data
-     *            validation manifest is created for the training dataset during
-     *            model training.
+     *            A manifest that you supplied for training, with validation
+     *            results for each line.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

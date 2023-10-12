@@ -91,6 +91,20 @@ class ProjectVersionDescriptionJsonUnmarshaller implements
                 projectVersionDescription.setSourceProjectVersionArn(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VersionDescription")) {
+                projectVersionDescription.setVersionDescription(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Feature")) {
+                projectVersionDescription.setFeature(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("BaseModelVersion")) {
+                projectVersionDescription.setBaseModelVersion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("FeatureConfig")) {
+                projectVersionDescription
+                        .setFeatureConfig(CustomizationFeatureConfigJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

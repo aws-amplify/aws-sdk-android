@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Detects custom labels in a supplied image by using an Amazon Rekognition
  * Custom Labels model.
@@ -78,7 +83,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the model version that you want to use.
+     * The ARN of the model version that you want to use. Only models associated
+     * with Custom Labels projects accepted by the operation. If a provided ARN
+     * refers to a model version associated with a project for a different
+     * feature type, then an InvalidParameterException is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -159,7 +167,10 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The ARN of the model version that you want to use.
+     * The ARN of the model version that you want to use. Only models associated
+     * with Custom Labels projects accepted by the operation. If a provided ARN
+     * refers to a model version associated with a project for a different
+     * feature type, then an InvalidParameterException is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,7 +180,11 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @return <p>
-     *         The ARN of the model version that you want to use.
+     *         The ARN of the model version that you want to use. Only models
+     *         associated with Custom Labels projects accepted by the operation.
+     *         If a provided ARN refers to a model version associated with a
+     *         project for a different feature type, then an
+     *         InvalidParameterException is returned.
      *         </p>
      */
     public String getProjectVersionArn() {
@@ -178,7 +193,10 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The ARN of the model version that you want to use.
+     * The ARN of the model version that you want to use. Only models associated
+     * with Custom Labels projects accepted by the operation. If a provided ARN
+     * refers to a model version associated with a project for a different
+     * feature type, then an InvalidParameterException is returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,7 +206,11 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The ARN of the model version that you want to use.
+     *            The ARN of the model version that you want to use. Only models
+     *            associated with Custom Labels projects accepted by the
+     *            operation. If a provided ARN refers to a model version
+     *            associated with a project for a different feature type, then
+     *            an InvalidParameterException is returned.
      *            </p>
      */
     public void setProjectVersionArn(String projectVersionArn) {
@@ -197,7 +219,10 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The ARN of the model version that you want to use.
+     * The ARN of the model version that you want to use. Only models associated
+     * with Custom Labels projects accepted by the operation. If a provided ARN
+     * refers to a model version associated with a project for a different
+     * feature type, then an InvalidParameterException is returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -210,7 +235,11 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      * -Z0-9_.\-]{1,255}\/version\/[a-zA-Z0-9_.\-]{1,255}\/[0-9]+$)<br/>
      *
      * @param projectVersionArn <p>
-     *            The ARN of the model version that you want to use.
+     *            The ARN of the model version that you want to use. Only models
+     *            associated with Custom Labels projects accepted by the
+     *            operation. If a provided ARN refers to a model version
+     *            associated with a project for a different feature type, then
+     *            an InvalidParameterException is returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
