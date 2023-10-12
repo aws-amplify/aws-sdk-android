@@ -43,6 +43,10 @@ public class DescribeTrackerResultJsonUnmarshaller implements
             } else if (name.equals("EventBridgeEnabled")) {
                 describeTrackerResult.setEventBridgeEnabled(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KmsKeyEnableGeospatialQueries")) {
+                describeTrackerResult.setKmsKeyEnableGeospatialQueries(BooleanJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KmsKeyId")) {
                 describeTrackerResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

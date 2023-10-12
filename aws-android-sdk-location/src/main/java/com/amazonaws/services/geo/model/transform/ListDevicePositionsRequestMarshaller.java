@@ -65,6 +65,13 @@ public class ListDevicePositionsRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (listDevicePositionsRequest.getFilterGeometry() != null) {
+                TrackingFilterGeometry filterGeometry = listDevicePositionsRequest
+                        .getFilterGeometry();
+                jsonWriter.name("FilterGeometry");
+                TrackingFilterGeometryJsonMarshaller.getInstance().marshall(filterGeometry,
+                        jsonWriter);
+            }
             if (listDevicePositionsRequest.getMaxResults() != null) {
                 Integer maxResults = listDevicePositionsRequest.getMaxResults();
                 jsonWriter.name("MaxResults");
