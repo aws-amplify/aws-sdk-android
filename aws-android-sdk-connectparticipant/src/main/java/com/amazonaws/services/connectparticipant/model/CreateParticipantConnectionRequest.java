@@ -80,8 +80,9 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
         Serializable {
     /**
      * <p>
-     * Type of connection information required. This can be omitted if
-     * <code>ConnectParticipant</code> is <code>true</code>.
+     * Type of connection information required. If you need
+     * <code>CONNECTION_CREDENTIALS</code> along with marking participant as
+     * connected, pass <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      * </p>
      */
     private java.util.List<String> type;
@@ -112,13 +113,16 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required. This can be omitted if
-     * <code>ConnectParticipant</code> is <code>true</code>.
+     * Type of connection information required. If you need
+     * <code>CONNECTION_CREDENTIALS</code> along with marking participant as
+     * connected, pass <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      * </p>
      *
      * @return <p>
-     *         Type of connection information required. This can be omitted if
-     *         <code>ConnectParticipant</code> is <code>true</code>.
+     *         Type of connection information required. If you need
+     *         <code>CONNECTION_CREDENTIALS</code> along with marking
+     *         participant as connected, pass
+     *         <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      *         </p>
      */
     public java.util.List<String> getType() {
@@ -127,13 +131,16 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required. This can be omitted if
-     * <code>ConnectParticipant</code> is <code>true</code>.
+     * Type of connection information required. If you need
+     * <code>CONNECTION_CREDENTIALS</code> along with marking participant as
+     * connected, pass <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      * </p>
      *
      * @param type <p>
-     *            Type of connection information required. This can be omitted
-     *            if <code>ConnectParticipant</code> is <code>true</code>.
+     *            Type of connection information required. If you need
+     *            <code>CONNECTION_CREDENTIALS</code> along with marking
+     *            participant as connected, pass
+     *            <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      *            </p>
      */
     public void setType(java.util.Collection<String> type) {
@@ -147,16 +154,19 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required. This can be omitted if
-     * <code>ConnectParticipant</code> is <code>true</code>.
+     * Type of connection information required. If you need
+     * <code>CONNECTION_CREDENTIALS</code> along with marking participant as
+     * connected, pass <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param type <p>
-     *            Type of connection information required. This can be omitted
-     *            if <code>ConnectParticipant</code> is <code>true</code>.
+     *            Type of connection information required. If you need
+     *            <code>CONNECTION_CREDENTIALS</code> along with marking
+     *            participant as connected, pass
+     *            <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -173,16 +183,19 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Type of connection information required. This can be omitted if
-     * <code>ConnectParticipant</code> is <code>true</code>.
+     * Type of connection information required. If you need
+     * <code>CONNECTION_CREDENTIALS</code> along with marking participant as
+     * connected, pass <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param type <p>
-     *            Type of connection information required. This can be omitted
-     *            if <code>ConnectParticipant</code> is <code>true</code>.
+     *            Type of connection information required. If you need
+     *            <code>CONNECTION_CREDENTIALS</code> along with marking
+     *            participant as connected, pass
+     *            <code>CONNECTION_CREDENTIALS</code> in <code>Type</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

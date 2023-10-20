@@ -129,6 +129,7 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
         jsonErrorUnmarshallers.add(new AccessDeniedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ValidationExceptionUnmarshaller());
@@ -312,6 +313,56 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
             }
             Unmarshaller<CreateParticipantConnectionResult, JsonUnmarshallerContext> unmarshaller = new CreateParticipantConnectionResultJsonUnmarshaller();
             JsonResponseHandler<CreateParticipantConnectionResult> responseHandler = new JsonResponseHandler<CreateParticipantConnectionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the view for the specified view token.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @return describeViewResult The response from the DescribeView service
+     *         method, as returned by Amazon Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ResourceNotFoundException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public DescribeViewResult describeView(DescribeViewRequest describeViewRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeViewRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeViewRequest> request = null;
+        Response<DescribeViewResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeViewRequestMarshaller().marshall(describeViewRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeViewResult, JsonUnmarshallerContext> unmarshaller = new DescribeViewResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeViewResult> responseHandler = new JsonResponseHandler<DescribeViewResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

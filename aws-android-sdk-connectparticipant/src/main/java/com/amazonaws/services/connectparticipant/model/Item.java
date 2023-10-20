@@ -105,7 +105,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      */
     private String participantRole;
 
@@ -611,7 +611,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      *
      * @return <p>
      *         The role of the sender. For example, is it a customer, agent, or
@@ -629,7 +629,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      *
      * @param participantRole <p>
      *            The role of the sender. For example, is it a customer, agent,
@@ -650,7 +650,7 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      *
      * @param participantRole <p>
      *            The role of the sender. For example, is it a customer, agent,
@@ -671,7 +671,7 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      *
      * @param participantRole <p>
      *            The role of the sender. For example, is it a customer, agent,
@@ -692,7 +692,7 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
+     * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM, CUSTOM_BOT
      *
      * @param participantRole <p>
      *            The role of the sender. For example, is it a customer, agent,
