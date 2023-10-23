@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Gets a list of the project policies attached to a project.
  * </p>

@@ -50,6 +50,12 @@ class ProjectDescriptionJsonUnmarshaller implements
                         DatasetMetadataJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Feature")) {
+                projectDescription.setFeature(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("AutoUpdate")) {
+                projectDescription.setAutoUpdate(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -25,21 +25,21 @@ import java.io.Serializable;
 public class TrainingData implements Serializable {
     /**
      * <p>
-     * A Sagemaker GroundTruth manifest file that contains the training images
-     * (assets).
+     * A manifest file that contains references to the training images and
+     * ground-truth annotations.
      * </p>
      */
     private java.util.List<Asset> assets;
 
     /**
      * <p>
-     * A Sagemaker GroundTruth manifest file that contains the training images
-     * (assets).
+     * A manifest file that contains references to the training images and
+     * ground-truth annotations.
      * </p>
      *
      * @return <p>
-     *         A Sagemaker GroundTruth manifest file that contains the training
-     *         images (assets).
+     *         A manifest file that contains references to the training images
+     *         and ground-truth annotations.
      *         </p>
      */
     public java.util.List<Asset> getAssets() {
@@ -48,13 +48,13 @@ public class TrainingData implements Serializable {
 
     /**
      * <p>
-     * A Sagemaker GroundTruth manifest file that contains the training images
-     * (assets).
+     * A manifest file that contains references to the training images and
+     * ground-truth annotations.
      * </p>
      *
      * @param assets <p>
-     *            A Sagemaker GroundTruth manifest file that contains the
-     *            training images (assets).
+     *            A manifest file that contains references to the training
+     *            images and ground-truth annotations.
      *            </p>
      */
     public void setAssets(java.util.Collection<Asset> assets) {
@@ -68,16 +68,16 @@ public class TrainingData implements Serializable {
 
     /**
      * <p>
-     * A Sagemaker GroundTruth manifest file that contains the training images
-     * (assets).
+     * A manifest file that contains references to the training images and
+     * ground-truth annotations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param assets <p>
-     *            A Sagemaker GroundTruth manifest file that contains the
-     *            training images (assets).
+     *            A manifest file that contains references to the training
+     *            images and ground-truth annotations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,16 +94,16 @@ public class TrainingData implements Serializable {
 
     /**
      * <p>
-     * A Sagemaker GroundTruth manifest file that contains the training images
-     * (assets).
+     * A manifest file that contains references to the training images and
+     * ground-truth annotations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param assets <p>
-     *            A Sagemaker GroundTruth manifest file that contains the
-     *            training images (assets).
+     *            A manifest file that contains references to the training
+     *            images and ground-truth annotations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

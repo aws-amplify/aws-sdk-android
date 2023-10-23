@@ -83,6 +83,17 @@ public class DescribeProjectsRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (describeProjectsRequest.getFeatures() != null) {
+                java.util.List<String> features = describeProjectsRequest.getFeatures();
+                jsonWriter.name("Features");
+                jsonWriter.beginArray();
+                for (String featuresItem : features) {
+                    if (featuresItem != null) {
+                        jsonWriter.value(featuresItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

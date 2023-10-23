@@ -20,6 +20,11 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * This operation applies only to Amazon Rekognition Custom Labels.
+ * </p>
+ * </note>
  * <p>
  * Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a
  * dataset might take while. Use <a>DescribeDataset</a> to check the current

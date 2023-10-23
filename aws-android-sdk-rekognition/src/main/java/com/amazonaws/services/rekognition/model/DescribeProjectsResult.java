@@ -29,9 +29,8 @@ public class DescribeProjectsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -126,9 +125,8 @@ public class DescribeProjectsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,9 +134,9 @@ public class DescribeProjectsResult implements Serializable {
      *
      * @return <p>
      *         If the previous response was incomplete (because there is more
-     *         results to retrieve), Amazon Rekognition Custom Labels returns a
-     *         pagination token in the response. You can use this pagination
-     *         token to retrieve the next set of results.
+     *         results to retrieve), Amazon Rekognition returns a pagination
+     *         token in the response. You can use this pagination token to
+     *         retrieve the next set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -148,9 +146,8 @@ public class DescribeProjectsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,9 +155,9 @@ public class DescribeProjectsResult implements Serializable {
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Amazon Rekognition returns a pagination
+     *            token in the response. You can use this pagination token to
+     *            retrieve the next set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -170,9 +167,8 @@ public class DescribeProjectsResult implements Serializable {
     /**
      * <p>
      * If the previous response was incomplete (because there is more results to
-     * retrieve), Amazon Rekognition Custom Labels returns a pagination token in
-     * the response. You can use this pagination token to retrieve the next set
-     * of results.
+     * retrieve), Amazon Rekognition returns a pagination token in the response.
+     * You can use this pagination token to retrieve the next set of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -183,9 +179,9 @@ public class DescribeProjectsResult implements Serializable {
      *
      * @param nextToken <p>
      *            If the previous response was incomplete (because there is more
-     *            results to retrieve), Amazon Rekognition Custom Labels returns
-     *            a pagination token in the response. You can use this
-     *            pagination token to retrieve the next set of results.
+     *            results to retrieve), Amazon Rekognition returns a pagination
+     *            token in the response. You can use this pagination token to
+     *            retrieve the next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

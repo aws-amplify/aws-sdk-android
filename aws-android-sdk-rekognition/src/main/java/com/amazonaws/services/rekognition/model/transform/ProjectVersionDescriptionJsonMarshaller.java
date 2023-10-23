@@ -105,6 +105,27 @@ class ProjectVersionDescriptionJsonMarshaller {
             jsonWriter.name("SourceProjectVersionArn");
             jsonWriter.value(sourceProjectVersionArn);
         }
+        if (projectVersionDescription.getVersionDescription() != null) {
+            String versionDescription = projectVersionDescription.getVersionDescription();
+            jsonWriter.name("VersionDescription");
+            jsonWriter.value(versionDescription);
+        }
+        if (projectVersionDescription.getFeature() != null) {
+            String feature = projectVersionDescription.getFeature();
+            jsonWriter.name("Feature");
+            jsonWriter.value(feature);
+        }
+        if (projectVersionDescription.getBaseModelVersion() != null) {
+            String baseModelVersion = projectVersionDescription.getBaseModelVersion();
+            jsonWriter.name("BaseModelVersion");
+            jsonWriter.value(baseModelVersion);
+        }
+        if (projectVersionDescription.getFeatureConfig() != null) {
+            CustomizationFeatureConfig featureConfig = projectVersionDescription.getFeatureConfig();
+            jsonWriter.name("FeatureConfig");
+            CustomizationFeatureConfigJsonMarshaller.getInstance().marshall(featureConfig,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
