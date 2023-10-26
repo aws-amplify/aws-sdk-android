@@ -193,6 +193,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -524,6 +525,7 @@ public interface AmazonSNS {
      * 
      * @param deleteTopicRequest
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -1400,6 +1402,7 @@ public interface AmazonSNS {
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -1455,7 +1458,7 @@ public interface AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -1468,6 +1471,7 @@ public interface AmazonSNS {
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -1767,6 +1771,7 @@ public interface AmazonSNS {
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -1816,7 +1821,7 @@ public interface AmazonSNS {
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -1947,6 +1952,7 @@ public interface AmazonSNS {
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -2167,6 +2173,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2204,6 +2211,7 @@ public interface AmazonSNS {
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -2592,6 +2600,7 @@ public interface AmazonSNS {
      *            The ARN of the topic you want to delete.
      *            </p>
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException

@@ -360,6 +360,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidSecurityExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidStateExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSAccessDeniedExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSDisabledExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
@@ -369,6 +370,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new NotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new OptedOutExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PlatformApplicationDisabledExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new ReplayLimitExceededExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new StaleTagExceptionUnmarshaller());
         exceptionUnmarshallers.add(new SubscriptionLimitExceededExceptionUnmarshaller());
@@ -517,6 +519,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -986,6 +989,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * 
      * @param deleteTopicRequest
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -2293,6 +2297,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -2380,7 +2385,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -2393,6 +2398,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -2773,6 +2779,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -2833,7 +2840,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -2964,6 +2971,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -3214,6 +3222,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3258,6 +3267,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3662,6 +3672,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            The ARN of the topic you want to delete.
      *            </p>
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException

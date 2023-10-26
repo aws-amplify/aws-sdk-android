@@ -19,23 +19,20 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the state of the specified resource isn't
- * valid for this request. For more information, see <a
- * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key states of Amazon Web Services KMS keys</a> in the <i>Key Management
- * Service Developer Guide</i>.
+ * Indicates that the request parameter has exceeded the maximum number of
+ * concurrent message replays.
  * </p>
  */
-public class KMSInvalidStateException extends AmazonServiceException {
+public class ReplayLimitExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new KMSInvalidStateException with the specified error
+     * Constructs a new ReplayLimitExceededException with the specified error
      * message.
      *
      * @param message Describes the error encountered.
      */
-    public KMSInvalidStateException(String message) {
+    public ReplayLimitExceededException(String message) {
         super(message);
     }
 }
