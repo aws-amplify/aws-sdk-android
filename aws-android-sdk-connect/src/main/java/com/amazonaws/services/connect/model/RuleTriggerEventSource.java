@@ -22,7 +22,8 @@ import java.io.Serializable;
  * The name of the event source. This field is required if
  * <code>TriggerEventSource</code> is one of the following values:
  * <code>OnZendeskTicketCreate</code> | <code>OnZendeskTicketStatusUpdate</code>
- * | <code>OnSalesforceCaseCreate</code>
+ * | <code>OnSalesforceCaseCreate</code> |
+ * <code>OnContactEvaluationSubmit</code> | <code>OnMetricDataUpdate</code>.
  * </p>
  */
 public class RuleTriggerEventSource implements Serializable {
@@ -35,7 +36,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      */
     private String eventSourceName;
 
@@ -58,7 +59,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @return <p>
      *         The name of the event source.
@@ -78,7 +79,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -101,7 +102,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -124,7 +125,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -147,7 +148,7 @@ public class RuleTriggerEventSource implements Serializable {
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
      * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
      * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnSalesforceCaseCreate, OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.

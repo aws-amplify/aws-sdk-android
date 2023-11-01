@@ -121,6 +121,30 @@ public class RoutingProfile implements Serializable {
 
     /**
      * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedTime;
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     */
+    private String lastModifiedRegion;
+
+    /**
+     * <p>
+     * Whether this a default routing profile.
+     * </p>
+     */
+    private Boolean isDefault;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
@@ -821,6 +845,166 @@ public class RoutingProfile implements Serializable {
     }
 
     /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when this resource was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     */
+    public void setLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RoutingProfile withLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @return <p>
+     *         The Amazon Web Services Region where this resource was last
+     *         modified.
+     *         </p>
+     */
+    public String getLastModifiedRegion() {
+        return lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     */
+    public void setLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RoutingProfile withLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Whether this a default routing profile.
+     * </p>
+     *
+     * @return <p>
+     *         Whether this a default routing profile.
+     *         </p>
+     */
+    public Boolean isIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this a default routing profile.
+     * </p>
+     *
+     * @return <p>
+     *         Whether this a default routing profile.
+     *         </p>
+     */
+    public Boolean getIsDefault() {
+        return isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this a default routing profile.
+     * </p>
+     *
+     * @param isDefault <p>
+     *            Whether this a default routing profile.
+     *            </p>
+     */
+    public void setIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    /**
+     * <p>
+     * Whether this a default routing profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isDefault <p>
+     *            Whether this a default routing profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public RoutingProfile withIsDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -852,7 +1036,13 @@ public class RoutingProfile implements Serializable {
         if (getNumberOfAssociatedUsers() != null)
             sb.append("NumberOfAssociatedUsers: " + getNumberOfAssociatedUsers() + ",");
         if (getAgentAvailabilityTimer() != null)
-            sb.append("AgentAvailabilityTimer: " + getAgentAvailabilityTimer());
+            sb.append("AgentAvailabilityTimer: " + getAgentAvailabilityTimer() + ",");
+        if (getLastModifiedTime() != null)
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getLastModifiedRegion() != null)
+            sb.append("LastModifiedRegion: " + getLastModifiedRegion() + ",");
+        if (getIsDefault() != null)
+            sb.append("IsDefault: " + getIsDefault());
         sb.append("}");
         return sb.toString();
     }
@@ -889,6 +1079,11 @@ public class RoutingProfile implements Serializable {
                 * hashCode
                 + ((getAgentAvailabilityTimer() == null) ? 0 : getAgentAvailabilityTimer()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedRegion() == null) ? 0 : getLastModifiedRegion().hashCode());
+        hashCode = prime * hashCode + ((getIsDefault() == null) ? 0 : getIsDefault().hashCode());
         return hashCode;
     }
 
@@ -956,6 +1151,21 @@ public class RoutingProfile implements Serializable {
             return false;
         if (other.getAgentAvailabilityTimer() != null
                 && other.getAgentAvailabilityTimer().equals(this.getAgentAvailabilityTimer()) == false)
+            return false;
+        if (other.getLastModifiedTime() == null ^ this.getLastModifiedTime() == null)
+            return false;
+        if (other.getLastModifiedTime() != null
+                && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getLastModifiedRegion() == null ^ this.getLastModifiedRegion() == null)
+            return false;
+        if (other.getLastModifiedRegion() != null
+                && other.getLastModifiedRegion().equals(this.getLastModifiedRegion()) == false)
+            return false;
+        if (other.getIsDefault() == null ^ this.getIsDefault() == null)
+            return false;
+        if (other.getIsDefault() != null
+                && other.getIsDefault().equals(this.getIsDefault()) == false)
             return false;
         return true;
     }

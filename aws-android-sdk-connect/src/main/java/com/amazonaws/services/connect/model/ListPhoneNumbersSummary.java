@@ -86,10 +86,24 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
 
     /**
      * <p>
@@ -512,12 +526,13 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to.
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through.
      *         </p>
      */
     public String getTargetArn() {
@@ -527,12 +542,13 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -542,7 +558,7 @@ public class ListPhoneNumbersSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -550,13 +566,92 @@ public class ListPhoneNumbersSummary implements Serializable {
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListPhoneNumbersSummary withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListPhoneNumbersSummary withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
@@ -582,7 +677,9 @@ public class ListPhoneNumbersSummary implements Serializable {
         if (getPhoneNumberType() != null)
             sb.append("PhoneNumberType: " + getPhoneNumberType() + ",");
         if (getTargetArn() != null)
-            sb.append("TargetArn: " + getTargetArn());
+            sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId());
         sb.append("}");
         return sb.toString();
     }
@@ -605,6 +702,7 @@ public class ListPhoneNumbersSummary implements Serializable {
         hashCode = prime * hashCode
                 + ((getPhoneNumberType() == null) ? 0 : getPhoneNumberType().hashCode());
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         return hashCode;
     }
 
@@ -648,6 +746,11 @@ public class ListPhoneNumbersSummary implements Serializable {
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         return true;
     }

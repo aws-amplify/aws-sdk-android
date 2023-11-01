@@ -84,7 +84,13 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      */
     private String content;
@@ -536,11 +542,24 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @return <p>
-     *         The content of the flow.
+     *         The JSON string that represents the content of the flow. For an
+     *         example, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *         >Example flow in Amazon Connect Flow language</a>.
+     *         </p>
+     *         <p>
+     *         Length Constraints: Minimum length of 1. Maximum length of
+     *         256000.
      *         </p>
      */
     public String getContent() {
@@ -549,11 +568,24 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      */
     public void setContent(String content) {
@@ -562,14 +594,27 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

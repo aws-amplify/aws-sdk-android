@@ -41,6 +41,9 @@ class MetricResultV2JsonUnmarshaller implements
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("MetricInterval")) {
+                metricResultV2.setMetricInterval(MetricIntervalJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Collections")) {
                 metricResultV2.setCollections(new ListUnmarshaller<MetricDataV2>(
                         MetricDataV2JsonUnmarshaller.getInstance()
