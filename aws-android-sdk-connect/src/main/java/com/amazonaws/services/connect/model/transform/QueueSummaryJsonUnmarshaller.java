@@ -47,6 +47,12 @@ class QueueSummaryJsonUnmarshaller implements Unmarshaller<QueueSummary, JsonUnm
             } else if (name.equals("QueueType")) {
                 queueSummary.setQueueType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                queueSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                queueSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
