@@ -43,6 +43,14 @@ public class ListRoutingProfileQueuesResultJsonUnmarshaller implements
                                 RoutingProfileQueueConfigSummaryJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                listRoutingProfileQueuesResult.setLastModifiedTime(DateJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                listRoutingProfileQueuesResult.setLastModifiedRegion(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

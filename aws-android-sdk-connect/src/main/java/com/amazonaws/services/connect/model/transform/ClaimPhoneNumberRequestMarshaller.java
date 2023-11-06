@@ -65,6 +65,11 @@ public class ClaimPhoneNumberRequestMarshaller implements
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
             }
+            if (claimPhoneNumberRequest.getInstanceId() != null) {
+                String instanceId = claimPhoneNumberRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
             if (claimPhoneNumberRequest.getPhoneNumber() != null) {
                 String phoneNumber = claimPhoneNumberRequest.getPhoneNumber();
                 jsonWriter.name("PhoneNumber");
