@@ -57,6 +57,11 @@ class ListPhoneNumbersSummaryJsonMarshaller {
             jsonWriter.name("TargetArn");
             jsonWriter.value(targetArn);
         }
+        if (listPhoneNumbersSummary.getInstanceId() != null) {
+            String instanceId = listPhoneNumbersSummary.getInstanceId();
+            jsonWriter.name("InstanceId");
+            jsonWriter.value(instanceId);
+        }
         jsonWriter.endObject();
     }
 

@@ -112,6 +112,19 @@ public class UpdateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (updateSecurityProfileRequest.getApplications() != null) {
+                java.util.List<Application> applications = updateSecurityProfileRequest
+                        .getApplications();
+                jsonWriter.name("Applications");
+                jsonWriter.beginArray();
+                for (Application applicationsItem : applications) {
+                    if (applicationsItem != null) {
+                        ApplicationJsonMarshaller.getInstance().marshall(applicationsItem,
+                                jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
