@@ -25,6 +25,11 @@ public class ClassifyDocumentResult implements Serializable {
      * each document is expected to have only a single class assigned to it. For
      * example, an animal can be a dog or a cat, but not both at the same time.
      * </p>
+     * <p>
+     * For prompt classification, the response includes a single class (
+     * <code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher
+     * confidence score indicates that the input prompt is undesired in nature.
+     * </p>
      */
     private java.util.List<DocumentClass> classes;
 
@@ -86,6 +91,11 @@ public class ClassifyDocumentResult implements Serializable {
      * each document is expected to have only a single class assigned to it. For
      * example, an animal can be a dog or a cat, but not both at the same time.
      * </p>
+     * <p>
+     * For prompt classification, the response includes a single class (
+     * <code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher
+     * confidence score indicates that the input prompt is undesired in nature.
+     * </p>
      *
      * @return <p>
      *         The classes used by the document being analyzed. These are used
@@ -93,6 +103,12 @@ public class ClassifyDocumentResult implements Serializable {
      *         exclusive and each document is expected to have only a single
      *         class assigned to it. For example, an animal can be a dog or a
      *         cat, but not both at the same time.
+     *         </p>
+     *         <p>
+     *         For prompt classification, the response includes a single class (
+     *         <code>UNDESIRED_PROMPT</code>), along with a confidence score. A
+     *         higher confidence score indicates that the input prompt is
+     *         undesired in nature.
      *         </p>
      */
     public java.util.List<DocumentClass> getClasses() {
@@ -106,6 +122,11 @@ public class ClassifyDocumentResult implements Serializable {
      * each document is expected to have only a single class assigned to it. For
      * example, an animal can be a dog or a cat, but not both at the same time.
      * </p>
+     * <p>
+     * For prompt classification, the response includes a single class (
+     * <code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher
+     * confidence score indicates that the input prompt is undesired in nature.
+     * </p>
      *
      * @param classes <p>
      *            The classes used by the document being analyzed. These are
@@ -113,6 +134,12 @@ public class ClassifyDocumentResult implements Serializable {
      *            mutually exclusive and each document is expected to have only
      *            a single class assigned to it. For example, an animal can be a
      *            dog or a cat, but not both at the same time.
+     *            </p>
+     *            <p>
+     *            For prompt classification, the response includes a single
+     *            class (<code>UNDESIRED_PROMPT</code>), along with a confidence
+     *            score. A higher confidence score indicates that the input
+     *            prompt is undesired in nature.
      *            </p>
      */
     public void setClasses(java.util.Collection<DocumentClass> classes) {
@@ -132,6 +159,11 @@ public class ClassifyDocumentResult implements Serializable {
      * example, an animal can be a dog or a cat, but not both at the same time.
      * </p>
      * <p>
+     * For prompt classification, the response includes a single class (
+     * <code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher
+     * confidence score indicates that the input prompt is undesired in nature.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -141,6 +173,12 @@ public class ClassifyDocumentResult implements Serializable {
      *            mutually exclusive and each document is expected to have only
      *            a single class assigned to it. For example, an animal can be a
      *            dog or a cat, but not both at the same time.
+     *            </p>
+     *            <p>
+     *            For prompt classification, the response includes a single
+     *            class (<code>UNDESIRED_PROMPT</code>), along with a confidence
+     *            score. A higher confidence score indicates that the input
+     *            prompt is undesired in nature.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -163,6 +201,11 @@ public class ClassifyDocumentResult implements Serializable {
      * example, an animal can be a dog or a cat, but not both at the same time.
      * </p>
      * <p>
+     * For prompt classification, the response includes a single class (
+     * <code>UNDESIRED_PROMPT</code>), along with a confidence score. A higher
+     * confidence score indicates that the input prompt is undesired in nature.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -172,6 +215,12 @@ public class ClassifyDocumentResult implements Serializable {
      *            mutually exclusive and each document is expected to have only
      *            a single class assigned to it. For example, an animal can be a
      *            dog or a cat, but not both at the same time.
+     *            </p>
+     *            <p>
+     *            For prompt classification, the response includes a single
+     *            class (<code>UNDESIRED_PROMPT</code>), along with a confidence
+     *            score. A higher confidence score indicates that the input
+     *            prompt is undesired in nature.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
