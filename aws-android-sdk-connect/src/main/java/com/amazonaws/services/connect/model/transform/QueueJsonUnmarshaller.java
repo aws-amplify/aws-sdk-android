@@ -63,6 +63,12 @@ class QueueJsonUnmarshaller implements Unmarshaller<Queue, JsonUnmarshallerConte
                 queue.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                queue.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                queue.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

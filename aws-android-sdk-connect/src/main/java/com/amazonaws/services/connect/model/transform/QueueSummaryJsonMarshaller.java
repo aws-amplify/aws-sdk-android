@@ -46,6 +46,16 @@ class QueueSummaryJsonMarshaller {
             jsonWriter.name("QueueType");
             jsonWriter.value(queueType);
         }
+        if (queueSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = queueSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (queueSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = queueSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 
