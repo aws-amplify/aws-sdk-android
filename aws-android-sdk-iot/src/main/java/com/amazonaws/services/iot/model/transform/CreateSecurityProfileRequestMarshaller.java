@@ -134,6 +134,13 @@ public class CreateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createSecurityProfileRequest.getMetricsExportConfig() != null) {
+                MetricsExportConfig metricsExportConfig = createSecurityProfileRequest
+                        .getMetricsExportConfig();
+                jsonWriter.name("metricsExportConfig");
+                MetricsExportConfigJsonMarshaller.getInstance().marshall(metricsExportConfig,
+                        jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

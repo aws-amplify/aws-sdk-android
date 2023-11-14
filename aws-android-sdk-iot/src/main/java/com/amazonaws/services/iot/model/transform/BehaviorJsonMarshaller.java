@@ -51,6 +51,11 @@ class BehaviorJsonMarshaller {
             jsonWriter.name("suppressAlerts");
             jsonWriter.value(suppressAlerts);
         }
+        if (behavior.getExportMetric() != null) {
+            Boolean exportMetric = behavior.getExportMetric();
+            jsonWriter.name("exportMetric");
+            jsonWriter.value(exportMetric);
+        }
         jsonWriter.endObject();
     }
 

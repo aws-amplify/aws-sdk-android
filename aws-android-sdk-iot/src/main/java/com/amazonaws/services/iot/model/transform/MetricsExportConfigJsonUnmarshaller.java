@@ -21,43 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO MetricToRetain
+ * JSON unmarshaller for POJO MetricsExportConfig
  */
-class MetricToRetainJsonUnmarshaller implements
-        Unmarshaller<MetricToRetain, JsonUnmarshallerContext> {
+class MetricsExportConfigJsonUnmarshaller implements
+        Unmarshaller<MetricsExportConfig, JsonUnmarshallerContext> {
 
-    public MetricToRetain unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public MetricsExportConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        MetricToRetain metricToRetain = new MetricToRetain();
+        MetricsExportConfig metricsExportConfig = new MetricsExportConfig();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("metric")) {
-                metricToRetain.setMetric(StringJsonUnmarshaller.getInstance()
+            if (name.equals("mqttTopic")) {
+                metricsExportConfig.setMqttTopic(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("metricDimension")) {
-                metricToRetain.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("exportMetric")) {
-                metricToRetain.setExportMetric(BooleanJsonUnmarshaller.getInstance()
+            } else if (name.equals("roleArn")) {
+                metricsExportConfig.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return metricToRetain;
+        return metricsExportConfig;
     }
 
-    private static MetricToRetainJsonUnmarshaller instance;
+    private static MetricsExportConfigJsonUnmarshaller instance;
 
-    public static MetricToRetainJsonUnmarshaller getInstance() {
+    public static MetricsExportConfigJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new MetricToRetainJsonUnmarshaller();
+            instance = new MetricsExportConfigJsonUnmarshaller();
         return instance;
     }
 }
