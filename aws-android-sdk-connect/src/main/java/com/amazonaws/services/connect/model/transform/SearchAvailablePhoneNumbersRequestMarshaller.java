@@ -66,6 +66,11 @@ public class SearchAvailablePhoneNumbersRequestMarshaller implements
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
             }
+            if (searchAvailablePhoneNumbersRequest.getInstanceId() != null) {
+                String instanceId = searchAvailablePhoneNumbersRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
             if (searchAvailablePhoneNumbersRequest.getPhoneNumberCountryCode() != null) {
                 String phoneNumberCountryCode = searchAvailablePhoneNumbersRequest
                         .getPhoneNumberCountryCode();

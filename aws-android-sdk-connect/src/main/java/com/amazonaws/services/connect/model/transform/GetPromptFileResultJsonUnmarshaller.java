@@ -36,6 +36,12 @@ public class GetPromptFileResultJsonUnmarshaller implements
             if (name.equals("PromptPresignedUrl")) {
                 getPromptFileResult.setPromptPresignedUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                getPromptFileResult.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                getPromptFileResult.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

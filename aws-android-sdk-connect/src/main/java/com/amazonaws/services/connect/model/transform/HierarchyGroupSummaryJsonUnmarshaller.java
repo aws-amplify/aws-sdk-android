@@ -45,6 +45,12 @@ class HierarchyGroupSummaryJsonUnmarshaller implements
             } else if (name.equals("Name")) {
                 hierarchyGroupSummary.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                hierarchyGroupSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                hierarchyGroupSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

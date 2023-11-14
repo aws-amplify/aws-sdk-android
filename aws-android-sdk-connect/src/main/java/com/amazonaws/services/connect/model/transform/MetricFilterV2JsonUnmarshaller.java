@@ -44,6 +44,9 @@ class MetricFilterV2JsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Negate")) {
+                metricFilterV2.setNegate(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
