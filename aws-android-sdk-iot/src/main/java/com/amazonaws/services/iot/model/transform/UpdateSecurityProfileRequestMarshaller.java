@@ -143,6 +143,19 @@ public class UpdateSecurityProfileRequestMarshaller implements
                 jsonWriter.name("deleteAdditionalMetricsToRetain");
                 jsonWriter.value(deleteAdditionalMetricsToRetain);
             }
+            if (updateSecurityProfileRequest.getMetricsExportConfig() != null) {
+                MetricsExportConfig metricsExportConfig = updateSecurityProfileRequest
+                        .getMetricsExportConfig();
+                jsonWriter.name("metricsExportConfig");
+                MetricsExportConfigJsonMarshaller.getInstance().marshall(metricsExportConfig,
+                        jsonWriter);
+            }
+            if (updateSecurityProfileRequest.getDeleteMetricsExportConfig() != null) {
+                Boolean deleteMetricsExportConfig = updateSecurityProfileRequest
+                        .getDeleteMetricsExportConfig();
+                jsonWriter.name("deleteMetricsExportConfig");
+                jsonWriter.value(deleteMetricsExportConfig);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

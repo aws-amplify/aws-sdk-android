@@ -19,21 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Log Target Type
+ * Target Field Order
  */
-public enum LogTargetType {
+public enum TargetFieldOrder {
 
-    DEFAULT("DEFAULT"),
-    THING_GROUP("THING_GROUP"),
-    CLIENT_ID("CLIENT_ID"),
-    SOURCE_IP("SOURCE_IP"),
-    PRINCIPAL_ID("PRINCIPAL_ID"),
-    EVENT_TYPE("EVENT_TYPE"),
-    DEVICE_DEFENDER("DEVICE_DEFENDER");
+    LatLon("LatLon"),
+    LonLat("LonLat");
 
     private String value;
 
-    private LogTargetType(String value) {
+    private TargetFieldOrder(String value) {
         this.value = value;
     }
 
@@ -42,25 +37,20 @@ public enum LogTargetType {
         return value;
     }
 
-    private static final Map<String, LogTargetType> enumMap;
+    private static final Map<String, TargetFieldOrder> enumMap;
     static {
-        enumMap = new HashMap<String, LogTargetType>();
-        enumMap.put("DEFAULT", DEFAULT);
-        enumMap.put("THING_GROUP", THING_GROUP);
-        enumMap.put("CLIENT_ID", CLIENT_ID);
-        enumMap.put("SOURCE_IP", SOURCE_IP);
-        enumMap.put("PRINCIPAL_ID", PRINCIPAL_ID);
-        enumMap.put("EVENT_TYPE", EVENT_TYPE);
-        enumMap.put("DEVICE_DEFENDER", DEVICE_DEFENDER);
+        enumMap = new HashMap<String, TargetFieldOrder>();
+        enumMap.put("LatLon", LatLon);
+        enumMap.put("LonLat", LonLat);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return LogTargetType corresponding to the value
+     * @return TargetFieldOrder corresponding to the value
      */
-    public static LogTargetType fromValue(String value) {
+    public static TargetFieldOrder fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

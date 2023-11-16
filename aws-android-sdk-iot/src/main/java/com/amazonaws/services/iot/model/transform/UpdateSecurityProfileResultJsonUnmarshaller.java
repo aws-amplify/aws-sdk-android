@@ -76,6 +76,10 @@ public class UpdateSecurityProfileResultJsonUnmarshaller implements
             } else if (name.equals("lastModifiedDate")) {
                 updateSecurityProfileResult.setLastModifiedDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("metricsExportConfig")) {
+                updateSecurityProfileResult
+                        .setMetricsExportConfig(MetricsExportConfigJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

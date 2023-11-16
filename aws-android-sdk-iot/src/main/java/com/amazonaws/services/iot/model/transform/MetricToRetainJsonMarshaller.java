@@ -36,6 +36,11 @@ class MetricToRetainJsonMarshaller {
             jsonWriter.name("metricDimension");
             MetricDimensionJsonMarshaller.getInstance().marshall(metricDimension, jsonWriter);
         }
+        if (metricToRetain.getExportMetric() != null) {
+            Boolean exportMetric = metricToRetain.getExportMetric();
+            jsonWriter.name("exportMetric");
+            jsonWriter.value(exportMetric);
+        }
         jsonWriter.endObject();
     }
 

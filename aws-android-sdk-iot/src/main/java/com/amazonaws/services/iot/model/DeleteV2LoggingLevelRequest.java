@@ -38,7 +38,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      */
     private String targetType;
 
@@ -57,7 +57,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @return <p>
      *         The type of resource for which you are configuring logging. Must
@@ -77,7 +77,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The type of resource for which you are configuring logging.
@@ -100,7 +100,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The type of resource for which you are configuring logging.
@@ -123,7 +123,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The type of resource for which you are configuring logging.
@@ -146,7 +146,7 @@ public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest impleme
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEFAULT, THING_GROUP, CLIENT_ID, SOURCE_IP,
-     * PRINCIPAL_ID
+     * PRINCIPAL_ID, EVENT_TYPE, DEVICE_DEFENDER
      *
      * @param targetType <p>
      *            The type of resource for which you are configuring logging.

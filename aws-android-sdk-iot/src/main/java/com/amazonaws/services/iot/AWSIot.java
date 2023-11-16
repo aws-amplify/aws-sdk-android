@@ -751,8 +751,8 @@ public interface AWSIot {
      * <note>
      * <p>
      * The CSR must include a public key that is either an RSA key with a length
-     * of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
-     * For supported certificates, consult <a href=
+     * of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST
+     * P-521 curves. For supported certificates, consult <a href=
      * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
      * > Certificate signing algorithms supported by IoT</a>.
      * </p>
@@ -1585,6 +1585,11 @@ public interface AWSIot {
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
+     * <p>
+     * If the <code>ThingGroup</code> that you create has the exact same
+     * attributes as an existing <code>ThingGroup</code>, you will get a 200
+     * success response.
+     * </p>
      * </note>
      * <p>
      * Requires permission to access the <a href=
@@ -2236,8 +2241,8 @@ public interface AWSIot {
      * </p>
      * <p>
      * <b>Note:</b> If a package version is designated as default, you must
-     * remove the designation from the package using the <a>UpdatePackage</a>
-     * action.
+     * remove the designation from the software package using the
+     * <a>UpdatePackage</a> action.
      * </p>
      * 
      * @param deletePackageVersionRequest
@@ -7687,7 +7692,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Updates the supported fields for a specific package.
+     * Updates the supported fields for a specific software package.
      * </p>
      * <p>
      * Requires permission to access the <a href=
@@ -7717,7 +7722,7 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Updates the package configuration.
+     * Updates the software package configuration.
      * </p>
      * <p>
      * Requires permission to access the <a href=
