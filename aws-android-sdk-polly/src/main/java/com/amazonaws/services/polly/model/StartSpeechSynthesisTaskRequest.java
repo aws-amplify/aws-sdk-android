@@ -37,14 +37,14 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
         Serializable {
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      */
     private String engine;
 
@@ -121,7 +121,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -182,26 +183,27 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      */
     private String voiceId;
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      *
      * @return <p>
-     *         Specifies the engine (<code>standard</code> or
-     *         <code>neural</code>) for Amazon Polly to use when processing
-     *         input text for speech synthesis. Using a voice that is not
-     *         supported for the engine selected will result in an error.
+     *         Specifies the engine (<code>standard</code>, <code>neural</code>
+     *         or <code>long-form</code>) for Amazon Polly to use when
+     *         processing input text for speech synthesis. Using a voice that is
+     *         not supported for the engine selected will result in an error.
      *         </p>
      * @see Engine
      */
@@ -211,20 +213,21 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. Using a voice that is not
-     *            supported for the engine selected will result in an error.
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code> or <code>long-form</code>) for Amazon
+     *            Polly to use when processing input text for speech synthesis.
+     *            Using a voice that is not supported for the engine selected
+     *            will result in an error.
      *            </p>
      * @see Engine
      */
@@ -234,23 +237,24 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. Using a voice that is not
-     *            supported for the engine selected will result in an error.
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code> or <code>long-form</code>) for Amazon
+     *            Polly to use when processing input text for speech synthesis.
+     *            Using a voice that is not supported for the engine selected
+     *            will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -263,20 +267,21 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. Using a voice that is not
-     *            supported for the engine selected will result in an error.
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code> or <code>long-form</code>) for Amazon
+     *            Polly to use when processing input text for speech synthesis.
+     *            Using a voice that is not supported for the engine selected
+     *            will result in an error.
      *            </p>
      * @see Engine
      */
@@ -286,23 +291,24 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * Specifies the engine (<code>standard</code> or <code>neural</code>) for
-     * Amazon Polly to use when processing input text for speech synthesis.
-     * Using a voice that is not supported for the engine selected will result
-     * in an error.
+     * Specifies the engine (<code>standard</code>, <code>neural</code> or
+     * <code>long-form</code>) for Amazon Polly to use when processing input
+     * text for speech synthesis. Using a voice that is not supported for the
+     * engine selected will result in an error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>standard, neural
+     * <b>Allowed Values: </b>standard, neural, long-form
      *
      * @param engine <p>
-     *            Specifies the engine (<code>standard</code> or
-     *            <code>neural</code>) for Amazon Polly to use when processing
-     *            input text for speech synthesis. Using a voice that is not
-     *            supported for the engine selected will result in an error.
+     *            Specifies the engine (<code>standard</code>,
+     *            <code>neural</code> or <code>long-form</code>) for Amazon
+     *            Polly to use when processing input text for speech synthesis.
+     *            Using a voice that is not supported for the engine selected
+     *            will result in an error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -880,7 +886,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -892,7 +899,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *         <p>
      *         The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *         "22050", and "24000". The default value for standard voices is
-     *         "22050". The default value for neural voices is "24000".
+     *         "22050". The default value for neural voices is "24000". The
+     *         default value for long-form voices is "24000".
      *         </p>
      *         <p>
      *         Valid values for pcm are "8000" and "16000" The default value is
@@ -910,7 +918,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -922,7 +931,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            <p>
      *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *            "22050", and "24000". The default value for standard voices is
-     *            "22050". The default value for neural voices is "24000".
+     *            "22050". The default value for neural voices is "24000". The
+     *            default value for long-form voices is "24000".
      *            </p>
      *            <p>
      *            Valid values for pcm are "8000" and "16000" The default value
@@ -940,7 +950,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <p>
      * The valid values for mp3 and ogg_vorbis are "8000", "16000", "22050", and
      * "24000". The default value for standard voices is "22050". The default
-     * value for neural voices is "24000".
+     * value for neural voices is "24000". The default value for long-form
+     * voices is "24000".
      * </p>
      * <p>
      * Valid values for pcm are "8000" and "16000" The default value is "16000".
@@ -955,7 +966,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            <p>
      *            The valid values for mp3 and ogg_vorbis are "8000", "16000",
      *            "22050", and "24000". The default value for standard voices is
-     *            "22050". The default value for neural voices is "24000".
+     *            "22050". The default value for neural voices is "24000". The
+     *            default value for long-form voices is "24000".
      *            </p>
      *            <p>
      *            Valid values for pcm are "8000" and "16000" The default value
@@ -1280,7 +1292,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1306,7 +1319,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1335,7 +1349,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1364,7 +1379,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1393,7 +1409,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
      * Ayanda, Arlet, Hannah, Arthur, Daniel, Liam, Pedro, Kajal, Hiujin, Laura,
      * Elin, Ida, Suvi, Ola, Hala, Andres, Sergio, Remi, Adriano, Thiago, Ruth,
-     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd
+     * Stephen, Kazuha, Tomoko, Niamh, Sofie, Lisa, Isabelle, Zayd, Danielle,
+     * Gregory
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
