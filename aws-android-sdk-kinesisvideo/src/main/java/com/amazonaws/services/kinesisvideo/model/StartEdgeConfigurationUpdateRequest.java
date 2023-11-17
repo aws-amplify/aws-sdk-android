@@ -39,6 +39,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * retried for 15 minutes. After 15 minutes, the status will transition into the
  * <code>SYNC_FAILED</code> state.
  * </p>
+ * <p>
+ * To move an edge configuration from one device to another, use
+ * <a>DeleteEdgeConfiguration</a> to delete the current edge configuration. You
+ * can then invoke StartEdgeConfigurationUpdate with an updated Hub Device ARN.
+ * </p>
  */
 public class StartEdgeConfigurationUpdateRequest extends AmazonWebServiceRequest implements
         Serializable {
