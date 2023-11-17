@@ -73,6 +73,15 @@ class RoutingProfileJsonUnmarshaller implements
             } else if (name.equals("AgentAvailabilityTimer")) {
                 routingProfile.setAgentAvailabilityTimer(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                routingProfile.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                routingProfile.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("IsDefault")) {
+                routingProfile.setIsDefault(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

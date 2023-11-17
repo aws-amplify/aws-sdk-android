@@ -45,6 +45,12 @@ class HoursOfOperationSummaryJsonUnmarshaller implements
             } else if (name.equals("Name")) {
                 hoursOfOperationSummary.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                hoursOfOperationSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                hoursOfOperationSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

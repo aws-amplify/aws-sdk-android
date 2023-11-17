@@ -21,7 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves a token for federation.
+ * Supports SAML sign-in for Amazon Connect. Retrieves a token for federation.
+ * The token is for the Amazon Connect user which corresponds to the IAM
+ * credentials that were used to invoke this action.
+ * </p>
+ * <p>
+ * For more information about how SAML sign-in works in Amazon Connect, see <a
+ * href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/configure-saml.html "
+ * >Configure SAML with IAM for Amazon Connect in the <i>Amazon Connect
+ * Administrator Guide</i>.</a>
  * </p>
  * <note>
  * <p>
