@@ -84,8 +84,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,8 +99,9 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Makes it possible to redact or flag specified personally identifiable
      * information (PII) in your transcript. If you use
      * <code>ContentRedaction</code>, you must also include the sub-parameters:
-     * <code>PiiEntityTypes</code>, <code>RedactionOutput</code>, and
-     * <code>RedactionType</code>.
+     * <code>RedactionOutput</code> and <code>RedactionType</code>. You can
+     * optionally include <code>PiiEntityTypes</code> to choose which types of
+     * PII you want to redact.
      * </p>
      */
     private ContentRedaction contentRedaction;
@@ -170,6 +171,15 @@ public class CallAnalyticsJobSettings implements Serializable {
      * </p>
      */
     private java.util.Map<String, LanguageIdSettings> languageIdSettings;
+
+    /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     */
+    private Summarization summarization;
 
     /**
      * <p>
@@ -547,8 +557,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -563,7 +573,7 @@ public class CallAnalyticsJobSettings implements Serializable {
      *         <p>
      *         The language of the specified custom language model must match
      *         the language code that you specify in your transcription request.
-     *         If the languages don't match, the custom language model isn't
+     *         If the languages do not match, the custom language model isn't
      *         applied. There are no errors or warnings associated with a
      *         language mismatch.
      *         </p>
@@ -581,8 +591,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -597,7 +607,7 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            <p>
      *            The language of the specified custom language model must match
      *            the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom language
+     *            request. If the languages do not match, the custom language
      *            model isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
@@ -615,8 +625,8 @@ public class CallAnalyticsJobSettings implements Serializable {
      * <p>
      * The language of the specified custom language model must match the
      * language code that you specify in your transcription request. If the
-     * languages don't match, the custom language model isn't applied. There are
-     * no errors or warnings associated with a language mismatch.
+     * languages do not match, the custom language model isn't applied. There
+     * are no errors or warnings associated with a language mismatch.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -634,7 +644,7 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            <p>
      *            The language of the specified custom language model must match
      *            the language code that you specify in your transcription
-     *            request. If the languages don't match, the custom language
+     *            request. If the languages do not match, the custom language
      *            model isn't applied. There are no errors or warnings
      *            associated with a language mismatch.
      *            </p>
@@ -651,16 +661,19 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Makes it possible to redact or flag specified personally identifiable
      * information (PII) in your transcript. If you use
      * <code>ContentRedaction</code>, you must also include the sub-parameters:
-     * <code>PiiEntityTypes</code>, <code>RedactionOutput</code>, and
-     * <code>RedactionType</code>.
+     * <code>RedactionOutput</code> and <code>RedactionType</code>. You can
+     * optionally include <code>PiiEntityTypes</code> to choose which types of
+     * PII you want to redact.
      * </p>
      *
      * @return <p>
      *         Makes it possible to redact or flag specified personally
      *         identifiable information (PII) in your transcript. If you use
      *         <code>ContentRedaction</code>, you must also include the
-     *         sub-parameters: <code>PiiEntityTypes</code>,
-     *         <code>RedactionOutput</code>, and <code>RedactionType</code>.
+     *         sub-parameters: <code>RedactionOutput</code> and
+     *         <code>RedactionType</code>. You can optionally include
+     *         <code>PiiEntityTypes</code> to choose which types of PII you want
+     *         to redact.
      *         </p>
      */
     public ContentRedaction getContentRedaction() {
@@ -672,16 +685,19 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Makes it possible to redact or flag specified personally identifiable
      * information (PII) in your transcript. If you use
      * <code>ContentRedaction</code>, you must also include the sub-parameters:
-     * <code>PiiEntityTypes</code>, <code>RedactionOutput</code>, and
-     * <code>RedactionType</code>.
+     * <code>RedactionOutput</code> and <code>RedactionType</code>. You can
+     * optionally include <code>PiiEntityTypes</code> to choose which types of
+     * PII you want to redact.
      * </p>
      *
      * @param contentRedaction <p>
      *            Makes it possible to redact or flag specified personally
      *            identifiable information (PII) in your transcript. If you use
      *            <code>ContentRedaction</code>, you must also include the
-     *            sub-parameters: <code>PiiEntityTypes</code>,
-     *            <code>RedactionOutput</code>, and <code>RedactionType</code>.
+     *            sub-parameters: <code>RedactionOutput</code> and
+     *            <code>RedactionType</code>. You can optionally include
+     *            <code>PiiEntityTypes</code> to choose which types of PII you
+     *            want to redact.
      *            </p>
      */
     public void setContentRedaction(ContentRedaction contentRedaction) {
@@ -693,8 +709,9 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Makes it possible to redact or flag specified personally identifiable
      * information (PII) in your transcript. If you use
      * <code>ContentRedaction</code>, you must also include the sub-parameters:
-     * <code>PiiEntityTypes</code>, <code>RedactionOutput</code>, and
-     * <code>RedactionType</code>.
+     * <code>RedactionOutput</code> and <code>RedactionType</code>. You can
+     * optionally include <code>PiiEntityTypes</code> to choose which types of
+     * PII you want to redact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -704,8 +721,10 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            Makes it possible to redact or flag specified personally
      *            identifiable information (PII) in your transcript. If you use
      *            <code>ContentRedaction</code>, you must also include the
-     *            sub-parameters: <code>PiiEntityTypes</code>,
-     *            <code>RedactionOutput</code>, and <code>RedactionType</code>.
+     *            sub-parameters: <code>RedactionOutput</code> and
+     *            <code>RedactionType</code>. You can optionally include
+     *            <code>PiiEntityTypes</code> to choose which types of PII you
+     *            want to redact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1275,6 +1294,63 @@ public class CallAnalyticsJobSettings implements Serializable {
     }
 
     /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     *
+     * @return <p>
+     *         Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *         required parameter if you want to enable Generative call
+     *         summarization in your Call Analytics request.
+     *         </p>
+     */
+    public Summarization getSummarization() {
+        return summarization;
+    }
+
+    /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     *
+     * @param summarization <p>
+     *            Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *            required parameter if you want to enable Generative call
+     *            summarization in your Call Analytics request.
+     *            </p>
+     */
+    public void setSummarization(Summarization summarization) {
+        this.summarization = summarization;
+    }
+
+    /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param summarization <p>
+     *            Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *            required parameter if you want to enable Generative call
+     *            summarization in your Call Analytics request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CallAnalyticsJobSettings withSummarization(Summarization summarization) {
+        this.summarization = summarization;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1298,7 +1374,9 @@ public class CallAnalyticsJobSettings implements Serializable {
         if (getLanguageOptions() != null)
             sb.append("LanguageOptions: " + getLanguageOptions() + ",");
         if (getLanguageIdSettings() != null)
-            sb.append("LanguageIdSettings: " + getLanguageIdSettings());
+            sb.append("LanguageIdSettings: " + getLanguageIdSettings() + ",");
+        if (getSummarization() != null)
+            sb.append("Summarization: " + getSummarization());
         sb.append("}");
         return sb.toString();
     }
@@ -1324,6 +1402,8 @@ public class CallAnalyticsJobSettings implements Serializable {
                 + ((getLanguageOptions() == null) ? 0 : getLanguageOptions().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageIdSettings() == null) ? 0 : getLanguageIdSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getSummarization() == null) ? 0 : getSummarization().hashCode());
         return hashCode;
     }
 
@@ -1372,6 +1452,11 @@ public class CallAnalyticsJobSettings implements Serializable {
             return false;
         if (other.getLanguageIdSettings() != null
                 && other.getLanguageIdSettings().equals(this.getLanguageIdSettings()) == false)
+            return false;
+        if (other.getSummarization() == null ^ this.getSummarization() == null)
+            return false;
+        if (other.getSummarization() != null
+                && other.getSummarization().equals(this.getSummarization()) == false)
             return false;
         return true;
     }

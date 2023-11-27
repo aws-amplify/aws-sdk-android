@@ -42,7 +42,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      */
     private String languageCode;
 
@@ -85,8 +91,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the specified custom medical vocabulary is stored;
-     * use this URI to view or download the custom vocabulary.
+     * The Amazon S3 location where the specified custom medical vocabulary is
+     * stored; use this URI to view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +176,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @return <p>
      *         The language code you selected for your custom medical
@@ -195,7 +207,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code you selected for your custom medical
@@ -223,7 +241,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code you selected for your custom medical
@@ -251,7 +275,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code you selected for your custom medical
@@ -279,7 +309,13 @@ public class GetMedicalVocabularyResult implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code you selected for your custom medical
@@ -570,8 +606,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the specified custom medical vocabulary is stored;
-     * use this URI to view or download the custom vocabulary.
+     * The Amazon S3 location where the specified custom medical vocabulary is
+     * stored; use this URI to view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -579,8 +615,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 location where the specified custom medical vocabulary is
-     *         stored; use this URI to view or download the custom vocabulary.
+     *         The Amazon S3 location where the specified custom medical
+     *         vocabulary is stored; use this URI to view or download the custom
+     *         vocabulary.
      *         </p>
      */
     public String getDownloadUri() {
@@ -589,8 +626,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the specified custom medical vocabulary is stored;
-     * use this URI to view or download the custom vocabulary.
+     * The Amazon S3 location where the specified custom medical vocabulary is
+     * stored; use this URI to view or download the custom vocabulary.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -598,9 +635,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the specified custom medical vocabulary
-     *            is stored; use this URI to view or download the custom
-     *            vocabulary.
+     *            The Amazon S3 location where the specified custom medical
+     *            vocabulary is stored; use this URI to view or download the
+     *            custom vocabulary.
      *            </p>
      */
     public void setDownloadUri(String downloadUri) {
@@ -609,8 +646,8 @@ public class GetMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The S3 location where the specified custom medical vocabulary is stored;
-     * use this URI to view or download the custom vocabulary.
+     * The Amazon S3 location where the specified custom medical vocabulary is
+     * stored; use this URI to view or download the custom vocabulary.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -621,9 +658,9 @@ public class GetMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param downloadUri <p>
-     *            The S3 location where the specified custom medical vocabulary
-     *            is stored; use this URI to view or download the custom
-     *            vocabulary.
+     *            The Amazon S3 location where the specified custom medical
+     *            vocabulary is stored; use this URI to view or download the
+     *            custom vocabulary.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

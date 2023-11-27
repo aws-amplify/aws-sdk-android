@@ -51,7 +51,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <p>
      * The maximum number of Call Analytics categories to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -153,7 +153,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <p>
      * The maximum number of Call Analytics categories to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -163,7 +163,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * @return <p>
      *         The maximum number of Call Analytics categories to return in each
      *         page of results. If there are fewer results than the value that
-     *         you specify, only the actual results are returned. If you don't
+     *         you specify, only the actual results are returned. If you do not
      *         specify a value, a default of 5 is used.
      *         </p>
      */
@@ -175,7 +175,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <p>
      * The maximum number of Call Analytics categories to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -186,7 +186,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      *            The maximum number of Call Analytics categories to return in
      *            each page of results. If there are fewer results than the
      *            value that you specify, only the actual results are returned.
-     *            If you don't specify a value, a default of 5 is used.
+     *            If you do not specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -197,7 +197,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      * <p>
      * The maximum number of Call Analytics categories to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -211,7 +211,7 @@ public class ListCallAnalyticsCategoriesRequest extends AmazonWebServiceRequest 
      *            The maximum number of Call Analytics categories to return in
      *            each page of results. If there are fewer results than the
      *            value that you specify, only the actual results are returned.
-     *            If you don't specify a value, a default of 5 is used.
+     *            If you do not specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
