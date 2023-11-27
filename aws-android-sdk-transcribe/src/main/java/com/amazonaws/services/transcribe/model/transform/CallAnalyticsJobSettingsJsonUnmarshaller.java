@@ -65,6 +65,10 @@ class CallAnalyticsJobSettingsJsonUnmarshaller implements
                                 LanguageIdSettingsJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Summarization")) {
+                callAnalyticsJobSettings.setSummarization(SummarizationJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

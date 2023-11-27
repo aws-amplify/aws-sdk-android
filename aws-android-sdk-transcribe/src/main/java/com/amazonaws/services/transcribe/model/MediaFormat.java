@@ -29,7 +29,8 @@ public enum MediaFormat {
     Flac("flac"),
     Ogg("ogg"),
     Amr("amr"),
-    Webm("webm");
+    Webm("webm"),
+    M4a("m4a");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum MediaFormat {
         enumMap.put("ogg", Ogg);
         enumMap.put("amr", Amr);
         enumMap.put("webm", Webm);
+        enumMap.put("m4a", M4a);
     }
 
     /**

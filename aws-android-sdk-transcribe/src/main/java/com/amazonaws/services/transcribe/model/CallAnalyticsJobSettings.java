@@ -173,6 +173,15 @@ public class CallAnalyticsJobSettings implements Serializable {
 
     /**
      * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     */
+    private Summarization summarization;
+
+    /**
+     * <p>
      * The name of the custom vocabulary you want to include in your Call
      * Analytics transcription request. Custom vocabulary names are case
      * sensitive.
@@ -1275,6 +1284,63 @@ public class CallAnalyticsJobSettings implements Serializable {
     }
 
     /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     *
+     * @return <p>
+     *         Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *         required parameter if you want to enable Generative call
+     *         summarization in your Call Analytics request.
+     *         </p>
+     */
+    public Summarization getSummarization() {
+        return summarization;
+    }
+
+    /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     *
+     * @param summarization <p>
+     *            Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *            required parameter if you want to enable Generative call
+     *            summarization in your Call Analytics request.
+     *            </p>
+     */
+    public void setSummarization(Summarization summarization) {
+        this.summarization = summarization;
+    }
+
+    /**
+     * <p>
+     * Contains <code>GenerateAbstractiveSummary</code>, which is a required
+     * parameter if you want to enable Generative call summarization in your
+     * Call Analytics request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param summarization <p>
+     *            Contains <code>GenerateAbstractiveSummary</code>, which is a
+     *            required parameter if you want to enable Generative call
+     *            summarization in your Call Analytics request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CallAnalyticsJobSettings withSummarization(Summarization summarization) {
+        this.summarization = summarization;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1298,7 +1364,9 @@ public class CallAnalyticsJobSettings implements Serializable {
         if (getLanguageOptions() != null)
             sb.append("LanguageOptions: " + getLanguageOptions() + ",");
         if (getLanguageIdSettings() != null)
-            sb.append("LanguageIdSettings: " + getLanguageIdSettings());
+            sb.append("LanguageIdSettings: " + getLanguageIdSettings() + ",");
+        if (getSummarization() != null)
+            sb.append("Summarization: " + getSummarization());
         sb.append("}");
         return sb.toString();
     }
@@ -1324,6 +1392,8 @@ public class CallAnalyticsJobSettings implements Serializable {
                 + ((getLanguageOptions() == null) ? 0 : getLanguageOptions().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageIdSettings() == null) ? 0 : getLanguageIdSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getSummarization() == null) ? 0 : getSummarization().hashCode());
         return hashCode;
     }
 
@@ -1372,6 +1442,11 @@ public class CallAnalyticsJobSettings implements Serializable {
             return false;
         if (other.getLanguageIdSettings() != null
                 && other.getLanguageIdSettings().equals(this.getLanguageIdSettings()) == false)
+            return false;
+        if (other.getSummarization() == null ^ this.getSummarization() == null)
+            return false;
+        if (other.getSummarization() != null
+                && other.getSummarization().equals(this.getSummarization()) == false)
             return false;
         return true;
     }
