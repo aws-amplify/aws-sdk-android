@@ -57,6 +57,21 @@ class ListPhoneNumbersSummaryJsonMarshaller {
             jsonWriter.name("TargetArn");
             jsonWriter.value(targetArn);
         }
+        if (listPhoneNumbersSummary.getInstanceId() != null) {
+            String instanceId = listPhoneNumbersSummary.getInstanceId();
+            jsonWriter.name("InstanceId");
+            jsonWriter.value(instanceId);
+        }
+        if (listPhoneNumbersSummary.getPhoneNumberDescription() != null) {
+            String phoneNumberDescription = listPhoneNumbersSummary.getPhoneNumberDescription();
+            jsonWriter.name("PhoneNumberDescription");
+            jsonWriter.value(phoneNumberDescription);
+        }
+        if (listPhoneNumbersSummary.getSourcePhoneNumberArn() != null) {
+            String sourcePhoneNumberArn = listPhoneNumbersSummary.getSourcePhoneNumberArn();
+            jsonWriter.name("SourcePhoneNumberArn");
+            jsonWriter.value(sourcePhoneNumberArn);
+        }
         jsonWriter.endObject();
     }
 

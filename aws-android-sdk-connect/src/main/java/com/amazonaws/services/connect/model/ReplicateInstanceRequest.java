@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Replicates an Amazon Connect instance in the specified Amazon Web Services
- * Region.
+ * Region and copies configuration information for Amazon Connect resources
+ * across Amazon Web Services Regions.
  * </p>
  * <p>
  * For more information about replicating an Amazon Connect instance, see <a

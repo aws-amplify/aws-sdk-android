@@ -64,6 +64,16 @@ class HierarchyGroupJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (hierarchyGroup.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = hierarchyGroup.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (hierarchyGroup.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = hierarchyGroup.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 
