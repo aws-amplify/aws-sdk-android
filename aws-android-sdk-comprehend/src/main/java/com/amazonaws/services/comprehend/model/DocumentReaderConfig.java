@@ -118,13 +118,13 @@ public class DocumentReaderConfig implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>TABLES</code> - Returns information about any tables that are
-     * detected in the input document.
+     * <code>TABLES</code> - Returns additional information about any tables
+     * that are detected in the input document.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORMS</code> - Returns information and the data from any forms that
+     * <code>FORMS</code> - Returns additional information about any forms that
      * are detected in the input document.
      * </p>
      * </li>
@@ -665,13 +665,13 @@ public class DocumentReaderConfig implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>TABLES</code> - Returns information about any tables that are
-     * detected in the input document.
+     * <code>TABLES</code> - Returns additional information about any tables
+     * that are detected in the input document.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORMS</code> - Returns information and the data from any forms that
+     * <code>FORMS</code> - Returns additional information about any forms that
      * are detected in the input document.
      * </p>
      * </li>
@@ -685,13 +685,13 @@ public class DocumentReaderConfig implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>TABLES</code> - Returns information about any tables that
-     *         are detected in the input document.
+     *         <code>TABLES</code> - Returns additional information about any
+     *         tables that are detected in the input document.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>FORMS</code> - Returns information and the data from any
+     *         <code>FORMS</code> - Returns additional information about any
      *         forms that are detected in the input document.
      *         </p>
      *         </li>
@@ -710,13 +710,13 @@ public class DocumentReaderConfig implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>TABLES</code> - Returns information about any tables that are
-     * detected in the input document.
+     * <code>TABLES</code> - Returns additional information about any tables
+     * that are detected in the input document.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORMS</code> - Returns information and the data from any forms that
+     * <code>FORMS</code> - Returns additional information about any forms that
      * are detected in the input document.
      * </p>
      * </li>
@@ -730,13 +730,13 @@ public class DocumentReaderConfig implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TABLES</code> - Returns information about any tables
-     *            that are detected in the input document.
+     *            <code>TABLES</code> - Returns additional information about any
+     *            tables that are detected in the input document.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORMS</code> - Returns information and the data from any
+     *            <code>FORMS</code> - Returns additional information about any
      *            forms that are detected in the input document.
      *            </p>
      *            </li>
@@ -760,13 +760,13 @@ public class DocumentReaderConfig implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>TABLES</code> - Returns information about any tables that are
-     * detected in the input document.
+     * <code>TABLES</code> - Returns additional information about any tables
+     * that are detected in the input document.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORMS</code> - Returns information and the data from any forms that
+     * <code>FORMS</code> - Returns additional information about any forms that
      * are detected in the input document.
      * </p>
      * </li>
@@ -783,13 +783,13 @@ public class DocumentReaderConfig implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TABLES</code> - Returns information about any tables
-     *            that are detected in the input document.
+     *            <code>TABLES</code> - Returns additional information about any
+     *            tables that are detected in the input document.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORMS</code> - Returns information and the data from any
+     *            <code>FORMS</code> - Returns additional information about any
      *            forms that are detected in the input document.
      *            </p>
      *            </li>
@@ -816,13 +816,13 @@ public class DocumentReaderConfig implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * <code>TABLES</code> - Returns information about any tables that are
-     * detected in the input document.
+     * <code>TABLES</code> - Returns additional information about any tables
+     * that are detected in the input document.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>FORMS</code> - Returns information and the data from any forms that
+     * <code>FORMS</code> - Returns additional information about any forms that
      * are detected in the input document.
      * </p>
      * </li>
@@ -839,13 +839,13 @@ public class DocumentReaderConfig implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>TABLES</code> - Returns information about any tables
-     *            that are detected in the input document.
+     *            <code>TABLES</code> - Returns additional information about any
+     *            tables that are detected in the input document.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>FORMS</code> - Returns information and the data from any
+     *            <code>FORMS</code> - Returns additional information about any
      *            forms that are detected in the input document.
      *            </p>
      *            </li>

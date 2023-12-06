@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Configuration required for a custom classification model.
+ * Configuration required for a document classification model.
  * </p>
  */
 public class DocumentClassificationConfig implements Serializable {

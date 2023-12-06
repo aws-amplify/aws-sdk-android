@@ -177,7 +177,7 @@ public class DocumentClassifierProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your custom classifier. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      */
@@ -1278,7 +1278,7 @@ public class DocumentClassifierProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your custom classifier. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
@@ -1286,7 +1286,7 @@ public class DocumentClassifierProperties implements Serializable {
      *         Configuration parameters for a private Virtual Private Cloud
      *         (VPC) containing the resources you are using for your custom
      *         classifier. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *         "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *         >Amazon VPC</a>.
      *         </p>
      */
@@ -1299,7 +1299,7 @@ public class DocumentClassifierProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your custom classifier. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      *
@@ -1307,7 +1307,7 @@ public class DocumentClassifierProperties implements Serializable {
      *            Configuration parameters for a private Virtual Private Cloud
      *            (VPC) containing the resources you are using for your custom
      *            classifier. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      */
@@ -1320,7 +1320,7 @@ public class DocumentClassifierProperties implements Serializable {
      * Configuration parameters for a private Virtual Private Cloud (VPC)
      * containing the resources you are using for your custom classifier. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     * "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      * >Amazon VPC</a>.
      * </p>
      * <p>
@@ -1331,7 +1331,7 @@ public class DocumentClassifierProperties implements Serializable {
      *            Configuration parameters for a private Virtual Private Cloud
      *            (VPC) containing the resources you are using for your custom
      *            classifier. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/vppc/latest/userguide/what-is-amazon-vpc.html"
+     *            "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html"
      *            >Amazon VPC</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

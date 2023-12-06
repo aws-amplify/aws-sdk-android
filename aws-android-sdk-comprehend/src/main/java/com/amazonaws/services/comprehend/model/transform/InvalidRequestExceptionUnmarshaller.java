@@ -18,7 +18,6 @@ package com.amazonaws.services.comprehend.model.transform;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.http.JsonErrorResponseHandler.JsonErrorResponse;
 import com.amazonaws.transform.JsonErrorUnmarshaller;
-import com.amazonaws.services.comprehend.model.InvalidRequestDetail;
 import com.amazonaws.services.comprehend.model.InvalidRequestException;
 
 public class InvalidRequestExceptionUnmarshaller extends JsonErrorUnmarshaller {

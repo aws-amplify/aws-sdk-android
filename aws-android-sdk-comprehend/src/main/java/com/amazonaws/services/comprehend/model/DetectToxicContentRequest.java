@@ -21,30 +21,26 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Inspects a batch of documents and returns a sentiment analysis for each
- * entity identified in the documents.
- * </p>
- * <p>
- * For more information about targeted sentiment, see <a href=
- * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
- * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
+ * Performs toxicity analysis on the list of text strings that you provide as
+ * input. The API response contains a results list that matches the size of the
+ * input list. For more information about toxicity detection, see <a href=
+ * "https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html"
+ * >Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i>.
  * </p>
  */
-public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class DetectToxicContentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A list containing the UTF-8 encoded text of the input documents. The list
-     * can contain a maximum of 25 documents. The maximum size of each document
-     * is 5 KB.
+     * A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+     * and the maximum size of the list is 10 KB.
      * </p>
      */
-    private java.util.List<String> textList;
+    private java.util.List<TextSegment> textSegments;
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,106 +50,98 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * A list containing the UTF-8 encoded text of the input documents. The list
-     * can contain a maximum of 25 documents. The maximum size of each document
-     * is 5 KB.
+     * A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+     * and the maximum size of the list is 10 KB.
      * </p>
      *
      * @return <p>
-     *         A list containing the UTF-8 encoded text of the input documents.
-     *         The list can contain a maximum of 25 documents. The maximum size
-     *         of each document is 5 KB.
+     *         A list of up to 10 text strings. Each string has a maximum size
+     *         of 1 KB, and the maximum size of the list is 10 KB.
      *         </p>
      */
-    public java.util.List<String> getTextList() {
-        return textList;
+    public java.util.List<TextSegment> getTextSegments() {
+        return textSegments;
     }
 
     /**
      * <p>
-     * A list containing the UTF-8 encoded text of the input documents. The list
-     * can contain a maximum of 25 documents. The maximum size of each document
-     * is 5 KB.
+     * A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+     * and the maximum size of the list is 10 KB.
      * </p>
      *
-     * @param textList <p>
-     *            A list containing the UTF-8 encoded text of the input
-     *            documents. The list can contain a maximum of 25 documents. The
-     *            maximum size of each document is 5 KB.
+     * @param textSegments <p>
+     *            A list of up to 10 text strings. Each string has a maximum
+     *            size of 1 KB, and the maximum size of the list is 10 KB.
      *            </p>
      */
-    public void setTextList(java.util.Collection<String> textList) {
-        if (textList == null) {
-            this.textList = null;
+    public void setTextSegments(java.util.Collection<TextSegment> textSegments) {
+        if (textSegments == null) {
+            this.textSegments = null;
             return;
         }
 
-        this.textList = new java.util.ArrayList<String>(textList);
+        this.textSegments = new java.util.ArrayList<TextSegment>(textSegments);
     }
 
     /**
      * <p>
-     * A list containing the UTF-8 encoded text of the input documents. The list
-     * can contain a maximum of 25 documents. The maximum size of each document
-     * is 5 KB.
+     * A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+     * and the maximum size of the list is 10 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param textList <p>
-     *            A list containing the UTF-8 encoded text of the input
-     *            documents. The list can contain a maximum of 25 documents. The
-     *            maximum size of each document is 5 KB.
+     * @param textSegments <p>
+     *            A list of up to 10 text strings. Each string has a maximum
+     *            size of 1 KB, and the maximum size of the list is 10 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public BatchDetectTargetedSentimentRequest withTextList(String... textList) {
-        if (getTextList() == null) {
-            this.textList = new java.util.ArrayList<String>(textList.length);
+    public DetectToxicContentRequest withTextSegments(TextSegment... textSegments) {
+        if (getTextSegments() == null) {
+            this.textSegments = new java.util.ArrayList<TextSegment>(textSegments.length);
         }
-        for (String value : textList) {
-            this.textList.add(value);
+        for (TextSegment value : textSegments) {
+            this.textSegments.add(value);
         }
         return this;
     }
 
     /**
      * <p>
-     * A list containing the UTF-8 encoded text of the input documents. The list
-     * can contain a maximum of 25 documents. The maximum size of each document
-     * is 5 KB.
+     * A list of up to 10 text strings. Each string has a maximum size of 1 KB,
+     * and the maximum size of the list is 10 KB.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param textList <p>
-     *            A list containing the UTF-8 encoded text of the input
-     *            documents. The list can contain a maximum of 25 documents. The
-     *            maximum size of each document is 5 KB.
+     * @param textSegments <p>
+     *            A list of up to 10 text strings. Each string has a maximum
+     *            size of 1 KB, and the maximum size of the list is 10 KB.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public BatchDetectTargetedSentimentRequest withTextList(java.util.Collection<String> textList) {
-        setTextList(textList);
+    public DetectToxicContentRequest withTextSegments(java.util.Collection<TextSegment> textSegments) {
+        setTextSegments(textSegments);
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @return <p>
-     *         The language of the input documents. Currently, English is the
-     *         only supported language.
+     *         The language of the input text. Currently, English is the only
+     *         supported language.
      *         </p>
      * @see LanguageCode
      */
@@ -163,16 +151,16 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only supported language.
+     *            The language of the input text. Currently, English is the only
+     *            supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -182,8 +170,8 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,30 +181,30 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only supported language.
+     *            The language of the input text. Currently, English is the only
+     *            supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public BatchDetectTargetedSentimentRequest withLanguageCode(String languageCode) {
+    public DetectToxicContentRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only supported language.
+     *            The language of the input text. Currently, English is the only
+     *            supported language.
      *            </p>
      * @see LanguageCode
      */
@@ -226,8 +214,8 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The language of the input documents. Currently, English is the only
-     * supported language.
+     * The language of the input text. Currently, English is the only supported
+     * language.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -237,14 +225,14 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
      * @param languageCode <p>
-     *            The language of the input documents. Currently, English is the
-     *            only supported language.
+     *            The language of the input text. Currently, English is the only
+     *            supported language.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public BatchDetectTargetedSentimentRequest withLanguageCode(LanguageCode languageCode) {
+    public DetectToxicContentRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
@@ -260,8 +248,8 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getTextList() != null)
-            sb.append("TextList: " + getTextList() + ",");
+        if (getTextSegments() != null)
+            sb.append("TextSegments: " + getTextSegments() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode());
         sb.append("}");
@@ -273,7 +261,8 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getTextList() == null) ? 0 : getTextList().hashCode());
+        hashCode = prime * hashCode
+                + ((getTextSegments() == null) ? 0 : getTextSegments().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
         return hashCode;
@@ -286,13 +275,14 @@ public class BatchDetectTargetedSentimentRequest extends AmazonWebServiceRequest
         if (obj == null)
             return false;
 
-        if (obj instanceof BatchDetectTargetedSentimentRequest == false)
+        if (obj instanceof DetectToxicContentRequest == false)
             return false;
-        BatchDetectTargetedSentimentRequest other = (BatchDetectTargetedSentimentRequest) obj;
+        DetectToxicContentRequest other = (DetectToxicContentRequest) obj;
 
-        if (other.getTextList() == null ^ this.getTextList() == null)
+        if (other.getTextSegments() == null ^ this.getTextSegments() == null)
             return false;
-        if (other.getTextList() != null && other.getTextList().equals(this.getTextList()) == false)
+        if (other.getTextSegments() != null
+                && other.getTextSegments().equals(this.getTextSegments()) == false)
             return false;
         if (other.getLanguageCode() == null ^ this.getLanguageCode() == null)
             return false;

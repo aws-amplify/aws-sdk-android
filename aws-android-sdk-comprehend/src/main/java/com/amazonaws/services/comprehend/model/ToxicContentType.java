@@ -19,18 +19,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>
- * TABLES or FORMS
- * </p>
+ * Toxic Content Type
  */
-public enum DocumentReadFeatureTypes {
+public enum ToxicContentType {
 
-    TABLES("TABLES"),
-    FORMS("FORMS");
+    GRAPHIC("GRAPHIC"),
+    HARASSMENT_OR_ABUSE("HARASSMENT_OR_ABUSE"),
+    HATE_SPEECH("HATE_SPEECH"),
+    INSULT("INSULT"),
+    PROFANITY("PROFANITY"),
+    SEXUAL("SEXUAL"),
+    VIOLENCE_OR_THREAT("VIOLENCE_OR_THREAT");
 
     private String value;
 
-    private DocumentReadFeatureTypes(String value) {
+    private ToxicContentType(String value) {
         this.value = value;
     }
 
@@ -39,20 +42,25 @@ public enum DocumentReadFeatureTypes {
         return value;
     }
 
-    private static final Map<String, DocumentReadFeatureTypes> enumMap;
+    private static final Map<String, ToxicContentType> enumMap;
     static {
-        enumMap = new HashMap<String, DocumentReadFeatureTypes>();
-        enumMap.put("TABLES", TABLES);
-        enumMap.put("FORMS", FORMS);
+        enumMap = new HashMap<String, ToxicContentType>();
+        enumMap.put("GRAPHIC", GRAPHIC);
+        enumMap.put("HARASSMENT_OR_ABUSE", HARASSMENT_OR_ABUSE);
+        enumMap.put("HATE_SPEECH", HATE_SPEECH);
+        enumMap.put("INSULT", INSULT);
+        enumMap.put("PROFANITY", PROFANITY);
+        enumMap.put("SEXUAL", SEXUAL);
+        enumMap.put("VIOLENCE_OR_THREAT", VIOLENCE_OR_THREAT);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return DocumentReadFeatureTypes corresponding to the value
+     * @return ToxicContentType corresponding to the value
      */
-    public static DocumentReadFeatureTypes fromValue(String value) {
+    public static ToxicContentType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

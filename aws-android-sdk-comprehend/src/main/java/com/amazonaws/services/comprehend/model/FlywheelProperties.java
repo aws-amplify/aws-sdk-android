@@ -65,7 +65,7 @@ public class FlywheelProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with a flywheel.
      * </p>
      */
     private TaskConfig taskConfig;
@@ -337,12 +337,11 @@ public class FlywheelProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with a flywheel.
      * </p>
      *
      * @return <p>
-     *         Configuration about the custom classifier associated with the
-     *         flywheel.
+     *         Configuration about the model associated with a flywheel.
      *         </p>
      */
     public TaskConfig getTaskConfig() {
@@ -351,12 +350,11 @@ public class FlywheelProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with a flywheel.
      * </p>
      *
      * @param taskConfig <p>
-     *            Configuration about the custom classifier associated with the
-     *            flywheel.
+     *            Configuration about the model associated with a flywheel.
      *            </p>
      */
     public void setTaskConfig(TaskConfig taskConfig) {
@@ -365,15 +363,14 @@ public class FlywheelProperties implements Serializable {
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with a flywheel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param taskConfig <p>
-     *            Configuration about the custom classifier associated with the
-     *            flywheel.
+     *            Configuration about the model associated with a flywheel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
