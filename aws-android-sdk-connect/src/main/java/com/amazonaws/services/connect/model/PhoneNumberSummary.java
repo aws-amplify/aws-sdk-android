@@ -54,7 +54,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      */
     private String phoneNumberType;
 
@@ -232,7 +232,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @return <p>
      *         The type of phone number.
@@ -250,7 +250,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -271,7 +271,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -292,7 +292,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -313,7 +313,7 @@ public class PhoneNumberSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
-     * THIRD_PARTY_DID
+     * THIRD_PARTY_DID, SHORT_CODE
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
