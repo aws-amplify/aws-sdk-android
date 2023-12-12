@@ -134,6 +134,21 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * An area that's part of a larger municipality. For example,
+     * <code>Blissville </code> is a submunicipality in the Queen County in New
+     * York.
+     * </p>
+     * <note>
+     * <p>
+     * This property supported by Esri and OpenData. The Esri property is
+     * <code>district</code>, and the OpenData property is <code>borough</code>.
+     * </p>
+     * </note>
+     */
+    private String subMunicipality;
+
+    /**
+     * <p>
      * A county, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
@@ -944,6 +959,102 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * An area that's part of a larger municipality. For example,
+     * <code>Blissville </code> is a submunicipality in the Queen County in New
+     * York.
+     * </p>
+     * <note>
+     * <p>
+     * This property supported by Esri and OpenData. The Esri property is
+     * <code>district</code>, and the OpenData property is <code>borough</code>.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         An area that's part of a larger municipality. For example,
+     *         <code>Blissville </code> is a submunicipality in the Queen County
+     *         in New York.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         This property supported by Esri and OpenData. The Esri property
+     *         is <code>district</code>, and the OpenData property is
+     *         <code>borough</code>.
+     *         </p>
+     *         </note>
+     */
+    public String getSubMunicipality() {
+        return subMunicipality;
+    }
+
+    /**
+     * <p>
+     * An area that's part of a larger municipality. For example,
+     * <code>Blissville </code> is a submunicipality in the Queen County in New
+     * York.
+     * </p>
+     * <note>
+     * <p>
+     * This property supported by Esri and OpenData. The Esri property is
+     * <code>district</code>, and the OpenData property is <code>borough</code>.
+     * </p>
+     * </note>
+     *
+     * @param subMunicipality <p>
+     *            An area that's part of a larger municipality. For example,
+     *            <code>Blissville </code> is a submunicipality in the Queen
+     *            County in New York.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            This property supported by Esri and OpenData. The Esri
+     *            property is <code>district</code>, and the OpenData property
+     *            is <code>borough</code>.
+     *            </p>
+     *            </note>
+     */
+    public void setSubMunicipality(String subMunicipality) {
+        this.subMunicipality = subMunicipality;
+    }
+
+    /**
+     * <p>
+     * An area that's part of a larger municipality. For example,
+     * <code>Blissville </code> is a submunicipality in the Queen County in New
+     * York.
+     * </p>
+     * <note>
+     * <p>
+     * This property supported by Esri and OpenData. The Esri property is
+     * <code>district</code>, and the OpenData property is <code>borough</code>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param subMunicipality <p>
+     *            An area that's part of a larger municipality. For example,
+     *            <code>Blissville </code> is a submunicipality in the Queen
+     *            County in New York.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            This property supported by Esri and OpenData. The Esri
+     *            property is <code>district</code>, and the OpenData property
+     *            is <code>borough</code>.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withSubMunicipality(String subMunicipality) {
+        this.subMunicipality = subMunicipality;
+        return this;
+    }
+
+    /**
+     * <p>
      * A county, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
@@ -1340,6 +1451,8 @@ public class Place implements Serializable {
             sb.append("Region: " + getRegion() + ",");
         if (getStreet() != null)
             sb.append("Street: " + getStreet() + ",");
+        if (getSubMunicipality() != null)
+            sb.append("SubMunicipality: " + getSubMunicipality() + ",");
         if (getSubRegion() != null)
             sb.append("SubRegion: " + getSubRegion() + ",");
         if (getSupplementalCategories() != null)
@@ -1374,6 +1487,8 @@ public class Place implements Serializable {
         hashCode = prime * hashCode + ((getPostalCode() == null) ? 0 : getPostalCode().hashCode());
         hashCode = prime * hashCode + ((getRegion() == null) ? 0 : getRegion().hashCode());
         hashCode = prime * hashCode + ((getStreet() == null) ? 0 : getStreet().hashCode());
+        hashCode = prime * hashCode
+                + ((getSubMunicipality() == null) ? 0 : getSubMunicipality().hashCode());
         hashCode = prime * hashCode + ((getSubRegion() == null) ? 0 : getSubRegion().hashCode());
         hashCode = prime
                 * hashCode
@@ -1445,6 +1560,11 @@ public class Place implements Serializable {
         if (other.getStreet() == null ^ this.getStreet() == null)
             return false;
         if (other.getStreet() != null && other.getStreet().equals(this.getStreet()) == false)
+            return false;
+        if (other.getSubMunicipality() == null ^ this.getSubMunicipality() == null)
+            return false;
+        if (other.getSubMunicipality() != null
+                && other.getSubMunicipality().equals(this.getSubMunicipality()) == false)
             return false;
         if (other.getSubRegion() == null ^ this.getSubRegion() == null)
             return false;

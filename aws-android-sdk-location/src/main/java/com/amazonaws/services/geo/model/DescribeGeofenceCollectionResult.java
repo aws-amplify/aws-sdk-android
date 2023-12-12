@@ -72,6 +72,16 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
+     * The number of geofences in the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer geofenceCount;
+
+    /**
+     * <p>
      * A key identifier for an <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
      * >Amazon Web Services KMS customer managed key</a> assigned to the Amazon
@@ -404,6 +414,60 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      */
     public DescribeGeofenceCollectionResult withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The number of geofences in the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The number of geofences in the geofence collection.
+     *         </p>
+     */
+    public Integer getGeofenceCount() {
+        return geofenceCount;
+    }
+
+    /**
+     * <p>
+     * The number of geofences in the geofence collection.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param geofenceCount <p>
+     *            The number of geofences in the geofence collection.
+     *            </p>
+     */
+    public void setGeofenceCount(Integer geofenceCount) {
+        this.geofenceCount = geofenceCount;
+    }
+
+    /**
+     * <p>
+     * The number of geofences in the geofence collection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param geofenceCount <p>
+     *            The number of geofences in the geofence collection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeGeofenceCollectionResult withGeofenceCount(Integer geofenceCount) {
+        this.geofenceCount = geofenceCount;
         return this;
     }
 
@@ -788,6 +852,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
             sb.append("CreateTime: " + getCreateTime() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
+        if (getGeofenceCount() != null)
+            sb.append("GeofenceCount: " + getGeofenceCount() + ",");
         if (getKmsKeyId() != null)
             sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getPricingPlan() != null)
@@ -814,6 +880,8 @@ public class DescribeGeofenceCollectionResult implements Serializable {
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getGeofenceCount() == null) ? 0 : getGeofenceCount().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
@@ -855,6 +923,11 @@ public class DescribeGeofenceCollectionResult implements Serializable {
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getGeofenceCount() == null ^ this.getGeofenceCount() == null)
+            return false;
+        if (other.getGeofenceCount() != null
+                && other.getGeofenceCount().equals(this.getGeofenceCount()) == false)
             return false;
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;
