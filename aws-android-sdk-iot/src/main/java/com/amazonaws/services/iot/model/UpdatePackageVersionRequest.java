@@ -68,8 +68,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Metadata that can be used to define a package version’s configuration.
-     * For example, the S3 file location, configuration options that are being
-     * sent to the device or fleet.
+     * For example, the Amazon S3 file location, configuration options that are
+     * being sent to the device or fleet.
      * </p>
      * <p>
      * <b>Note:</b> Attributes can be updated only when the package version is
@@ -282,8 +282,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Metadata that can be used to define a package version’s configuration.
-     * For example, the S3 file location, configuration options that are being
-     * sent to the device or fleet.
+     * For example, the Amazon S3 file location, configuration options that are
+     * being sent to the device or fleet.
      * </p>
      * <p>
      * <b>Note:</b> Attributes can be updated only when the package version is
@@ -296,8 +296,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         Metadata that can be used to define a package version’s
-     *         configuration. For example, the S3 file location, configuration
-     *         options that are being sent to the device or fleet.
+     *         configuration. For example, the Amazon S3 file location,
+     *         configuration options that are being sent to the device or fleet.
      *         </p>
      *         <p>
      *         <b>Note:</b> Attributes can be updated only when the package
@@ -315,8 +315,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Metadata that can be used to define a package version’s configuration.
-     * For example, the S3 file location, configuration options that are being
-     * sent to the device or fleet.
+     * For example, the Amazon S3 file location, configuration options that are
+     * being sent to the device or fleet.
      * </p>
      * <p>
      * <b>Note:</b> Attributes can be updated only when the package version is
@@ -329,7 +329,7 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param attributes <p>
      *            Metadata that can be used to define a package version’s
-     *            configuration. For example, the S3 file location,
+     *            configuration. For example, the Amazon S3 file location,
      *            configuration options that are being sent to the device or
      *            fleet.
      *            </p>
@@ -349,8 +349,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Metadata that can be used to define a package version’s configuration.
-     * For example, the S3 file location, configuration options that are being
-     * sent to the device or fleet.
+     * For example, the Amazon S3 file location, configuration options that are
+     * being sent to the device or fleet.
      * </p>
      * <p>
      * <b>Note:</b> Attributes can be updated only when the package version is
@@ -366,7 +366,7 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
      *
      * @param attributes <p>
      *            Metadata that can be used to define a package version’s
-     *            configuration. For example, the S3 file location,
+     *            configuration. For example, the Amazon S3 file location,
      *            configuration options that are being sent to the device or
      *            fleet.
      *            </p>
@@ -389,8 +389,8 @@ public class UpdatePackageVersionRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * Metadata that can be used to define a package version’s configuration.
-     * For example, the S3 file location, configuration options that are being
-     * sent to the device or fleet.
+     * For example, the Amazon S3 file location, configuration options that are
+     * being sent to the device or fleet.
      * </p>
      * <p>
      * <b>Note:</b> Attributes can be updated only when the package version is
