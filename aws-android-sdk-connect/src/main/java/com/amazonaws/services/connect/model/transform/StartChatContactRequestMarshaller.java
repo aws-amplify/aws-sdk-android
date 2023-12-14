@@ -127,6 +127,23 @@ public class StartChatContactRequestMarshaller implements
                 jsonWriter.name("RelatedContactId");
                 jsonWriter.value(relatedContactId);
             }
+            if (startChatContactRequest.getSegmentAttributes() != null) {
+                java.util.Map<String, SegmentAttributeValue> segmentAttributes = startChatContactRequest
+                        .getSegmentAttributes();
+                jsonWriter.name("SegmentAttributes");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, SegmentAttributeValue> segmentAttributesEntry : segmentAttributes
+                        .entrySet()) {
+                    SegmentAttributeValue segmentAttributesValue = segmentAttributesEntry
+                            .getValue();
+                    if (segmentAttributesValue != null) {
+                        jsonWriter.name(segmentAttributesEntry.getKey());
+                        SegmentAttributeValueJsonMarshaller.getInstance().marshall(
+                                segmentAttributesValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

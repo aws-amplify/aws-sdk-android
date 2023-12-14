@@ -42,6 +42,11 @@ class MetricFilterV2JsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (metricFilterV2.getNegate() != null) {
+            Boolean negate = metricFilterV2.getNegate();
+            jsonWriter.name("Negate");
+            jsonWriter.value(negate);
+        }
         jsonWriter.endObject();
     }
 

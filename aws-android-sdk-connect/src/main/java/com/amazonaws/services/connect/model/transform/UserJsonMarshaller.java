@@ -90,6 +90,16 @@ class UserJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (user.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = user.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (user.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = user.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

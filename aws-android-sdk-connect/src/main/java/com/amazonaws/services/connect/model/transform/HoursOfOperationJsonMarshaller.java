@@ -77,6 +77,16 @@ class HoursOfOperationJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (hoursOfOperation.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = hoursOfOperation.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (hoursOfOperation.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = hoursOfOperation.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

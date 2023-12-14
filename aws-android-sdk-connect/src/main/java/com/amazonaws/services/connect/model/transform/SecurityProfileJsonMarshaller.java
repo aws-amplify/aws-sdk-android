@@ -92,6 +92,16 @@ class SecurityProfileJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (securityProfile.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = securityProfile.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (securityProfile.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = securityProfile.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

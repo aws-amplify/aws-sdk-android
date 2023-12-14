@@ -41,6 +41,16 @@ class PromptSummaryJsonMarshaller {
             jsonWriter.name("Name");
             jsonWriter.value(name);
         }
+        if (promptSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = promptSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (promptSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = promptSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 
