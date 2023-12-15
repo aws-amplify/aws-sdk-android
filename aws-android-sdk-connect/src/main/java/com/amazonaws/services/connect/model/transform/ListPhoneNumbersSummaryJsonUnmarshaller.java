@@ -55,6 +55,17 @@ class ListPhoneNumbersSummaryJsonUnmarshaller implements
             } else if (name.equals("TargetArn")) {
                 listPhoneNumbersSummary.setTargetArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InstanceId")) {
+                listPhoneNumbersSummary.setInstanceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PhoneNumberDescription")) {
+                listPhoneNumbersSummary.setPhoneNumberDescription(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SourcePhoneNumberArn")) {
+                listPhoneNumbersSummary.setSourcePhoneNumberArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -91,6 +91,26 @@ class ContactJsonMarshaller {
             jsonWriter.name("LastUpdateTimestamp");
             jsonWriter.value(lastUpdateTimestamp);
         }
+        if (contact.getLastPausedTimestamp() != null) {
+            java.util.Date lastPausedTimestamp = contact.getLastPausedTimestamp();
+            jsonWriter.name("LastPausedTimestamp");
+            jsonWriter.value(lastPausedTimestamp);
+        }
+        if (contact.getLastResumedTimestamp() != null) {
+            java.util.Date lastResumedTimestamp = contact.getLastResumedTimestamp();
+            jsonWriter.name("LastResumedTimestamp");
+            jsonWriter.value(lastResumedTimestamp);
+        }
+        if (contact.getTotalPauseCount() != null) {
+            Integer totalPauseCount = contact.getTotalPauseCount();
+            jsonWriter.name("TotalPauseCount");
+            jsonWriter.value(totalPauseCount);
+        }
+        if (contact.getTotalPauseDurationInSeconds() != null) {
+            Integer totalPauseDurationInSeconds = contact.getTotalPauseDurationInSeconds();
+            jsonWriter.name("TotalPauseDurationInSeconds");
+            jsonWriter.value(totalPauseDurationInSeconds);
+        }
         if (contact.getScheduledTimestamp() != null) {
             java.util.Date scheduledTimestamp = contact.getScheduledTimestamp();
             jsonWriter.name("ScheduledTimestamp");
@@ -105,6 +125,19 @@ class ContactJsonMarshaller {
             WisdomInfo wisdomInfo = contact.getWisdomInfo();
             jsonWriter.name("WisdomInfo");
             WisdomInfoJsonMarshaller.getInstance().marshall(wisdomInfo, jsonWriter);
+        }
+        if (contact.getTags() != null) {
+            java.util.Map<String, String> tags = contact.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                String tagsValue = tagsEntry.getValue();
+                if (tagsValue != null) {
+                    jsonWriter.name(tagsEntry.getKey());
+                    jsonWriter.value(tagsValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         jsonWriter.endObject();
     }

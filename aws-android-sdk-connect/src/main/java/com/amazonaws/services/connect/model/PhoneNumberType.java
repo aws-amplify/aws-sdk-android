@@ -28,7 +28,8 @@ public enum PhoneNumberType {
     UIFN("UIFN"),
     SHARED("SHARED"),
     THIRD_PARTY_TF("THIRD_PARTY_TF"),
-    THIRD_PARTY_DID("THIRD_PARTY_DID");
+    THIRD_PARTY_DID("THIRD_PARTY_DID"),
+    SHORT_CODE("SHORT_CODE");
 
     private String value;
 
@@ -50,6 +51,7 @@ public enum PhoneNumberType {
         enumMap.put("SHARED", SHARED);
         enumMap.put("THIRD_PARTY_TF", THIRD_PARTY_TF);
         enumMap.put("THIRD_PARTY_DID", THIRD_PARTY_DID);
+        enumMap.put("SHORT_CODE", SHORT_CODE);
     }
 
     /**

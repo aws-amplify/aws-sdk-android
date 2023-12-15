@@ -41,6 +41,9 @@ class AgentInfoJsonUnmarshaller implements Unmarshaller<AgentInfo, JsonUnmarshal
             } else if (name.equals("ConnectedToAgentTimestamp")) {
                 agentInfo.setConnectedToAgentTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AgentPauseDurationInSeconds")) {
+                agentInfo.setAgentPauseDurationInSeconds(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
