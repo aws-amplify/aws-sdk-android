@@ -52,7 +52,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * different Amazon Web Services account.
  * </p>
  * <p>
- * <b>Required permissions:</b>:Permission to retire a grant is determined
+ * <b>Required permissions</b>: Permission to retire a grant is determined
  * primarily by the grant. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
  * >Retiring and revoking grants</a> in the <i>Key Management Service Developer
@@ -83,6 +83,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class RetireGrantRequest extends AmazonWebServiceRequest implements Serializable {
     /**

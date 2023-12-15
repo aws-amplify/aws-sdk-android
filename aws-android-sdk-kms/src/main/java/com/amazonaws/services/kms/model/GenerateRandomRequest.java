@@ -63,6 +63,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
  * >kms:GenerateRandom</a> (IAM policy)
  * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class GenerateRandomRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -48,6 +48,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <b>Related operations</b>: <a>GetKeyPolicy</a>
  * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -186,8 +192,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </important>
      * <p>
      * Use this parameter only when you intend to prevent the principal that is
-     * making the request from making a subsequent <a>PutKeyPolicy</a> request
-     * on the KMS key.
+     * making the request from making a subsequent <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a> request on the KMS key.
      * </p>
      */
     private Boolean bypassPolicyLockoutSafetyCheck;
@@ -907,8 +914,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </important>
      * <p>
      * Use this parameter only when you intend to prevent the principal that is
-     * making the request from making a subsequent <a>PutKeyPolicy</a> request
-     * on the KMS key.
+     * making the request from making a subsequent <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a> request on the KMS key.
      * </p>
      *
      * @return <p>
@@ -930,8 +938,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *         </important>
      *         <p>
      *         Use this parameter only when you intend to prevent the principal
-     *         that is making the request from making a subsequent
-     *         <a>PutKeyPolicy</a> request on the KMS key.
+     *         that is making the request from making a subsequent <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     *         >PutKeyPolicy</a> request on the KMS key.
      *         </p>
      */
     public Boolean isBypassPolicyLockoutSafetyCheck() {
@@ -957,8 +966,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </important>
      * <p>
      * Use this parameter only when you intend to prevent the principal that is
-     * making the request from making a subsequent <a>PutKeyPolicy</a> request
-     * on the KMS key.
+     * making the request from making a subsequent <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a> request on the KMS key.
      * </p>
      *
      * @return <p>
@@ -980,8 +990,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *         </important>
      *         <p>
      *         Use this parameter only when you intend to prevent the principal
-     *         that is making the request from making a subsequent
-     *         <a>PutKeyPolicy</a> request on the KMS key.
+     *         that is making the request from making a subsequent <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     *         >PutKeyPolicy</a> request on the KMS key.
      *         </p>
      */
     public Boolean getBypassPolicyLockoutSafetyCheck() {
@@ -1007,8 +1018,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </important>
      * <p>
      * Use this parameter only when you intend to prevent the principal that is
-     * making the request from making a subsequent <a>PutKeyPolicy</a> request
-     * on the KMS key.
+     * making the request from making a subsequent <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a> request on the KMS key.
      * </p>
      *
      * @param bypassPolicyLockoutSafetyCheck <p>
@@ -1031,7 +1043,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            Use this parameter only when you intend to prevent the
      *            principal that is making the request from making a subsequent
-     *            <a>PutKeyPolicy</a> request on the KMS key.
+     *            <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     *            >PutKeyPolicy</a> request on the KMS key.
      *            </p>
      */
     public void setBypassPolicyLockoutSafetyCheck(Boolean bypassPolicyLockoutSafetyCheck) {
@@ -1057,8 +1071,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * </important>
      * <p>
      * Use this parameter only when you intend to prevent the principal that is
-     * making the request from making a subsequent <a>PutKeyPolicy</a> request
-     * on the KMS key.
+     * making the request from making a subsequent <a href=
+     * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     * >PutKeyPolicy</a> request on the KMS key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1084,7 +1099,9 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      *            <p>
      *            Use this parameter only when you intend to prevent the
      *            principal that is making the request from making a subsequent
-     *            <a>PutKeyPolicy</a> request on the KMS key.
+     *            <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+     *            >PutKeyPolicy</a> request on the KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
