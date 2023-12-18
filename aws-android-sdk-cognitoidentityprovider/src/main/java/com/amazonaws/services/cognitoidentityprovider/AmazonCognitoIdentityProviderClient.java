@@ -36,32 +36,61 @@ import com.amazonaws.services.cognitoidentityprovider.model.transform.*;
  * completes.
  * <p>
  * <p>
- * With the Amazon Cognito user pools API, you can set up user pools and app
- * clients, and authenticate users. To authenticate users from third-party
- * identity providers (IdPs) in this API, you can <a href=
+ * With the Amazon Cognito user pools API, you can configure user pools and
+ * authenticate users. To authenticate users from third-party identity providers
+ * (IdPs) in this API, you can <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html"
  * >link IdP users to native user profiles</a>. Learn more about the
- * authentication and authorization of federated users in the <a href=
+ * authentication and authorization of federated users at <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html"
+ * >Adding user pool sign-in through a third party</a> and in the <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html"
- * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
+ * >User pool federation endpoints and hosted UI reference</a>.
  * </p>
  * <p>
  * This API reference provides detailed information about API operations and
- * object types in Amazon Cognito. At the bottom of the page for each API
- * operation and object, under <i>See Also</i>, you can learn how to use it in
- * an Amazon Web Services SDK in the language of your choice.
+ * object types in Amazon Cognito.
  * </p>
  * <p>
  * Along with resource management operations, the Amazon Cognito user pools API
  * includes classes of operations and authorization models for client-side and
- * server-side user operations. For more information, see <a href=
+ * server-side authentication of users. You can interact with operations in the
+ * Amazon Cognito user pools API as any of the following subjects.
+ * </p>
+ * <ol>
+ * <li>
+ * <p>
+ * An administrator who wants to configure user pools, app clients, users,
+ * groups, or other user pool functions.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A server-side app, like a web application, that wants to use its Amazon Web
+ * Services privileges to manage, authenticate, or authorize a user.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * A client-side app, like a mobile app, that wants to make unauthenticated
+ * requests to manage, authenticate, or authorize a user.
+ * </p>
+ * </li>
+ * </ol>
+ * <p>
+ * For more information, see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
- * >Using the Amazon Cognito native and OIDC APIs</a> in the <i>Amazon Cognito
- * Developer Guide</i>.
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a> in the
+ * <i>Amazon Cognito Developer Guide</i>.
  * </p>
  * <p>
- * You can also start reading about the <code>CognitoIdentityProvider</code>
- * client in the following SDK guides.
+ * With your Amazon Web Services SDK, you can build the logic to support
+ * operational flows in every use case for this API. You can also make direct
+ * REST API requests to <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/cognito_identity.html#cognito_identity_your_user_pools_region"
+ * >Amazon Cognito user pools service endpoints</a>. The following links can get
+ * you started with the <code>CognitoIdentityProvider</code> client in other
+ * supported Amazon Web Services SDKs.
  * </p>
  * <ul>
  * <li>
@@ -577,7 +606,9 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Adds the specified user to the specified group.
+     * Adds a user to a group. A user who is in a group can present a
+     * preferred-role claim to an identity pool, and populates a
+     * <code>cognito:groups</code> claim to their access and identity tokens.
      * </p>
      * <note>
      * <p>
@@ -649,8 +680,19 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Confirms user registration as an admin without using a confirmation code.
-     * Works on any user.
+     * This IAM-authenticated API operation provides a code that Amazon Cognito
+     * sent to your user when they signed up in your user pool. After your user
+     * enters their code, they confirm ownership of the email address or phone
+     * number that they provided, and their user account becomes active.
+     * Depending on your user pool configuration, your users will receive their
+     * confirmation code in an email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who
+     * can confirm sign-up with a code. Users who federate through an external
+     * identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users confirm their accounts when they respond to
+     * their invitation email message and choose a password.
      * </p>
      * <note>
      * <p>
@@ -1853,7 +1895,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Lists the groups that the user belongs to.
+     * Lists the groups that a user belongs to.
      * </p>
      * <note>
      * <p>
@@ -2218,7 +2260,18 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Responds to an authentication challenge, as an administrator.
+     * Some API operations in a user pool generate a challenge, like a prompt
+     * for an MFA code, for device authentication that bypasses MFA, or for a
+     * custom authentication challenge. An
+     * <code>AdminRespondToAuthChallenge</code> API request provides the answer
+     * to that challenge, like a code or a secure remote password (SRP). The
+     * parameters of a response to an authentication challenge vary with the
+     * type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html"
+     * >Custom authentication challenge Lambda triggers</a>.
      * </p>
      * <note>
      * <p>
@@ -2818,7 +2871,8 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * </note>
      * <p>
      * Updates the specified user's attributes, including developer attributes,
-     * as an administrator. Works on any user.
+     * as an administrator. Works on any user. To delete an attribute from your
+     * user, submit the attribute in your API request with a blank value.
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -2917,16 +2971,48 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Signs out a user from all devices. <code>AdminUserGlobalSignOut</code>
-     * invalidates all identity, access and refresh tokens that Amazon Cognito
-     * has issued to a user. A user can still use a hosted UI cookie to retrieve
-     * new tokens for the duration of the 1-hour cookie validity period.
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito
+     * issued to a user. Call this operation with your administrative
+     * credentials when your user signs out of your app. This results in the
+     * following behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations
+     * that you authorize with a signed-out user's access tokens. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+     * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
      * </p>
      * <p>
-     * Your app isn't aware that a user's access token is revoked unless it
-     * attempts to authorize a user pools API request with an access token that
-     * contains the scope <code>aws.cognito.signin.user.admin</code>. Your app
-     * might otherwise accept access tokens until they expire.
+     * Amazon Cognito returns an <code>Access Token has been revoked</code>
+     * error when your app attempts to authorize a user pools API request with a
+     * revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html"
+     * >GetId </a> request to an identity pool with
+     * <code>ServerSideTokenCheck</code> enabled for its user pool IdP
+     * configuration in <a href=
+     * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in
+     * refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
      * </p>
      * <note>
      * <p>
@@ -3317,7 +3403,25 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Confirms registration of a new user.
+     * This public API operation provides a code that Amazon Cognito sent to
+     * your user when they signed up in your user pool via the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html"
+     * >SignUp</a> API operation. After your user enters their code, they
+     * confirm ownership of the email address or phone number that they
+     * provided, and their user account becomes active. Depending on your user
+     * pool configuration, your users will receive their confirmation code in an
+     * email or SMS message.
+     * </p>
+     * <p>
+     * Local users who signed up in your user pool are the only type of user who
+     * can confirm sign-up with a code. Users who federate through an external
+     * identity provider (IdP) have already been confirmed by their IdP.
+     * Administrator-created users, users created with the <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html"
+     * >AdminCreateUser</a> API operation, confirm their accounts when they
+     * respond to their invitation email message and choose a password. They do
+     * not receive a confirmation code. Instead, they receive a temporary
+     * password.
      * </p>
      * <note>
      * <p>
@@ -5645,16 +5749,47 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Signs out a user from all devices. <code>GlobalSignOut</code> invalidates
-     * all identity, access and refresh tokens that Amazon Cognito has issued to
-     * a user. A user can still use a hosted UI cookie to retrieve new tokens
-     * for the duration of the 1-hour cookie validity period.
+     * Invalidates the identity, access, and refresh tokens that Amazon Cognito
+     * issued to a user. Call this operation when your user signs out of your
+     * app. This results in the following behavior.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts <i>token-authorized</i> user operations
+     * that you authorize with a signed-out user's access tokens. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+     * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
      * </p>
      * <p>
-     * Your app isn't aware that a user's access token is revoked unless it
-     * attempts to authorize a user pools API request with an access token that
-     * contains the scope <code>aws.cognito.signin.user.admin</code>. Your app
-     * might otherwise accept access tokens until they expire.
+     * Amazon Cognito returns an <code>Access Token has been revoked</code>
+     * error when your app attempts to authorize a user pools API request with a
+     * revoked access token that contains the scope
+     * <code>aws.cognito.signin.user.admin</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's ID token in a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetId.html"
+     * >GetId </a> request to an identity pool with
+     * <code>ServerSideTokenCheck</code> enabled for its user pool IdP
+     * configuration in <a href=
+     * "https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html"
+     * >CognitoIdentityProvider</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Cognito no longer accepts a signed-out user's refresh tokens in
+     * refresh requests.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Other requests might be valid until your user's token expires.
      * </p>
      * <note>
      * <p>
@@ -6686,7 +6821,17 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Responds to the authentication challenge.
+     * Some API operations in a user pool generate a challenge, like a prompt
+     * for an MFA code, for device authentication that bypasses MFA, or for a
+     * custom authentication challenge. A <code>RespondToAuthChallenge</code>
+     * API request provides the answer to that challenge, like a code or a
+     * secure remote password (SRP). The parameters of a response to an
+     * authentication challenge vary with the type of challenge.
+     * </p>
+     * <p>
+     * For more information about custom authentication challenges, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge.html"
+     * >Custom authentication challenge Lambda triggers</a>.
      * </p>
      * <note>
      * <p>
@@ -7985,7 +8130,12 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Allows a user to update a specific attribute (one at a time).
+     * With this operation, your users can update one or more of their
+     * attributes with their own credentials. You authorize this API request
+     * with the user's access token. To delete an attribute from your user,
+     * submit the attribute in your API request with a blank value. Custom
+     * attribute values in this request must include the <code>custom:</code>
+     * prefix.
      * </p>
      * <note>
      * <p>

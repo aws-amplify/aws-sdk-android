@@ -112,7 +112,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -272,7 +272,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -386,7 +386,7 @@ public class AdminInitiateAuthResult implements Serializable {
      *         <code>MFA_SETUP</code>: For users who are required to set up an
      *         MFA factor before they can sign in. The MFA types activated for
      *         the user pool will be listed in the challenge parameters
-     *         <code>MFA_CAN_SETUP</code> value.
+     *         <code>MFAS_CAN_SETUP</code> value.
      *         </p>
      *         <p>
      *         To set up software token MFA, use the session returned here from
@@ -496,7 +496,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -611,7 +611,7 @@ public class AdminInitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to set up
      *            an MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -721,7 +721,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -839,7 +839,7 @@ public class AdminInitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to set up
      *            an MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -952,7 +952,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -1067,7 +1067,7 @@ public class AdminInitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to set up
      *            an MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -1177,7 +1177,7 @@ public class AdminInitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to set up an MFA
      * factor before they can sign in. The MFA types activated for the user pool
-     * will be listed in the challenge parameters <code>MFA_CAN_SETUP</code>
+     * will be listed in the challenge parameters <code>MFAS_CAN_SETUP</code>
      * value.
      * </p>
      * <p>
@@ -1295,7 +1295,7 @@ public class AdminInitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to set up
      *            an MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here

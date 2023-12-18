@@ -30,7 +30,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      */
     private String providerName;
 
@@ -63,7 +63,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @return <p>
      *         The name of the provider, such as Facebook, Google, or Login with
@@ -81,7 +81,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The name of the provider, such as Facebook, Google, or Login
@@ -102,7 +102,7 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 32<br/>
-     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
+     * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\p{Z}]+<br/>
      *
      * @param providerName <p>
      *            The name of the provider, such as Facebook, Google, or Login

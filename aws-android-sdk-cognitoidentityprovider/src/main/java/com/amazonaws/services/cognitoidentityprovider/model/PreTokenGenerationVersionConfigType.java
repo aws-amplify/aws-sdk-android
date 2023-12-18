@@ -19,10 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The properties of a custom SMS sender Lambda trigger.
+ * The properties of a pre token generation Lambda trigger.
  * </p>
  */
-public class CustomSMSLambdaVersionConfigType implements Serializable {
+public class PreTokenGenerationVersionConfigType implements Serializable {
     /**
      * <p>
      * The user pool trigger version of the request that Amazon Cognito sends to
@@ -30,12 +30,8 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      */
     private String lambdaVersion;
 
@@ -43,6 +39,11 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the function that you want to assign to
      * your Lambda trigger.
+     * </p>
+     * <p>
+     * This parameter and the <code>PreTokenGeneration</code> property of
+     * <code>LambdaConfig</code> have the same value. For new instances of pre
+     * token generation triggers, set <code>LambdaArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,23 +61,15 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      *
      * @return <p>
      *         The user pool trigger version of the request that Amazon Cognito
      *         sends to your Lambda function. Higher-numbered versions add
      *         fields that support new features.
      *         </p>
-     *         <p>
-     *         You must use a <code>LambdaVersion</code> of <code>V1_0</code>
-     *         with a custom sender function.
-     *         </p>
-     * @see CustomSMSSenderLambdaVersionType
+     * @see PreTokenGenerationLambdaVersionType
      */
     public String getLambdaVersion() {
         return lambdaVersion;
@@ -89,23 +82,15 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      *
      * @param lambdaVersion <p>
      *            The user pool trigger version of the request that Amazon
      *            Cognito sends to your Lambda function. Higher-numbered
      *            versions add fields that support new features.
      *            </p>
-     *            <p>
-     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
-     *            with a custom sender function.
-     *            </p>
-     * @see CustomSMSSenderLambdaVersionType
+     * @see PreTokenGenerationLambdaVersionType
      */
     public void setLambdaVersion(String lambdaVersion) {
         this.lambdaVersion = lambdaVersion;
@@ -118,30 +103,22 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      *
      * @param lambdaVersion <p>
      *            The user pool trigger version of the request that Amazon
      *            Cognito sends to your Lambda function. Higher-numbered
      *            versions add fields that support new features.
      *            </p>
-     *            <p>
-     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
-     *            with a custom sender function.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see CustomSMSSenderLambdaVersionType
+     * @see PreTokenGenerationLambdaVersionType
      */
-    public CustomSMSLambdaVersionConfigType withLambdaVersion(String lambdaVersion) {
+    public PreTokenGenerationVersionConfigType withLambdaVersion(String lambdaVersion) {
         this.lambdaVersion = lambdaVersion;
         return this;
     }
@@ -153,25 +130,17 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      *
      * @param lambdaVersion <p>
      *            The user pool trigger version of the request that Amazon
      *            Cognito sends to your Lambda function. Higher-numbered
      *            versions add fields that support new features.
      *            </p>
-     *            <p>
-     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
-     *            with a custom sender function.
-     *            </p>
-     * @see CustomSMSSenderLambdaVersionType
+     * @see PreTokenGenerationLambdaVersionType
      */
-    public void setLambdaVersion(CustomSMSSenderLambdaVersionType lambdaVersion) {
+    public void setLambdaVersion(PreTokenGenerationLambdaVersionType lambdaVersion) {
         this.lambdaVersion = lambdaVersion.toString();
     }
 
@@ -182,31 +151,23 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * new features.
      * </p>
      * <p>
-     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
-     * custom sender function.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>V1_0
+     * <b>Allowed Values: </b>V1_0, V2_0
      *
      * @param lambdaVersion <p>
      *            The user pool trigger version of the request that Amazon
      *            Cognito sends to your Lambda function. Higher-numbered
      *            versions add fields that support new features.
      *            </p>
-     *            <p>
-     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
-     *            with a custom sender function.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see CustomSMSSenderLambdaVersionType
+     * @see PreTokenGenerationLambdaVersionType
      */
-    public CustomSMSLambdaVersionConfigType withLambdaVersion(
-            CustomSMSSenderLambdaVersionType lambdaVersion) {
+    public PreTokenGenerationVersionConfigType withLambdaVersion(
+            PreTokenGenerationLambdaVersionType lambdaVersion) {
         this.lambdaVersion = lambdaVersion.toString();
         return this;
     }
@@ -215,6 +176,11 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the function that you want to assign to
      * your Lambda trigger.
+     * </p>
+     * <p>
+     * This parameter and the <code>PreTokenGeneration</code> property of
+     * <code>LambdaConfig</code> have the same value. For new instances of pre
+     * token generation triggers, set <code>LambdaArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -227,6 +193,12 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      *         The Amazon Resource Name (ARN) of the function that you want to
      *         assign to your Lambda trigger.
      *         </p>
+     *         <p>
+     *         This parameter and the <code>PreTokenGeneration</code> property
+     *         of <code>LambdaConfig</code> have the same value. For new
+     *         instances of pre token generation triggers, set
+     *         <code>LambdaArn</code>.
+     *         </p>
      */
     public String getLambdaArn() {
         return lambdaArn;
@@ -236,6 +208,11 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the function that you want to assign to
      * your Lambda trigger.
+     * </p>
+     * <p>
+     * This parameter and the <code>PreTokenGeneration</code> property of
+     * <code>LambdaConfig</code> have the same value. For new instances of pre
+     * token generation triggers, set <code>LambdaArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,6 +225,12 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      *            The Amazon Resource Name (ARN) of the function that you want
      *            to assign to your Lambda trigger.
      *            </p>
+     *            <p>
+     *            This parameter and the <code>PreTokenGeneration</code>
+     *            property of <code>LambdaConfig</code> have the same value. For
+     *            new instances of pre token generation triggers, set
+     *            <code>LambdaArn</code>.
+     *            </p>
      */
     public void setLambdaArn(String lambdaArn) {
         this.lambdaArn = lambdaArn;
@@ -257,6 +240,11 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the function that you want to assign to
      * your Lambda trigger.
+     * </p>
+     * <p>
+     * This parameter and the <code>PreTokenGeneration</code> property of
+     * <code>LambdaConfig</code> have the same value. For new instances of pre
+     * token generation triggers, set <code>LambdaArn</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -272,10 +260,16 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
      *            The Amazon Resource Name (ARN) of the function that you want
      *            to assign to your Lambda trigger.
      *            </p>
+     *            <p>
+     *            This parameter and the <code>PreTokenGeneration</code>
+     *            property of <code>LambdaConfig</code> have the same value. For
+     *            new instances of pre token generation triggers, set
+     *            <code>LambdaArn</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CustomSMSLambdaVersionConfigType withLambdaArn(String lambdaArn) {
+    public PreTokenGenerationVersionConfigType withLambdaArn(String lambdaArn) {
         this.lambdaArn = lambdaArn;
         return this;
     }
@@ -317,9 +311,9 @@ public class CustomSMSLambdaVersionConfigType implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof CustomSMSLambdaVersionConfigType == false)
+        if (obj instanceof PreTokenGenerationVersionConfigType == false)
             return false;
-        CustomSMSLambdaVersionConfigType other = (CustomSMSLambdaVersionConfigType) obj;
+        PreTokenGenerationVersionConfigType other = (PreTokenGenerationVersionConfigType) obj;
 
         if (other.getLambdaVersion() == null ^ this.getLambdaVersion() == null)
             return false;

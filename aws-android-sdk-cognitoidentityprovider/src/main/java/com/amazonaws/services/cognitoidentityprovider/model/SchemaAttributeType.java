@@ -36,8 +36,16 @@ import java.io.Serializable;
 public class SchemaAttributeType implements Serializable {
     /**
      * <p>
-     * The name of your user pool attribute, for example <code>username</code>
-     * or <code>custom:costcenter</code>.
+     * The name of your user pool attribute. When you create or update a user
+     * pool, adding a schema attribute creates a custom or developer-only
+     * attribute. When you add an attribute with a <code>Name</code> value of
+     * <code>MyAttribute</code>, Amazon Cognito creates the custom attribute
+     * <code>custom:MyAttribute</code>. When <code>DeveloperOnlyAttribute</code>
+     * is <code>true</code>, Amazon Cognito creates your attribute as
+     * <code>dev:MyAttribute</code>. In an operation that describes a user pool,
+     * Amazon Cognito returns this value as <code>value</code> for standard
+     * attributes, <code>custom:value</code> for custom attributes, and
+     * <code>dev:value</code> for developer-only attributes..
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,7 +56,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,8 +130,16 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The name of your user pool attribute, for example <code>username</code>
-     * or <code>custom:costcenter</code>.
+     * The name of your user pool attribute. When you create or update a user
+     * pool, adding a schema attribute creates a custom or developer-only
+     * attribute. When you add an attribute with a <code>Name</code> value of
+     * <code>MyAttribute</code>, Amazon Cognito creates the custom attribute
+     * <code>custom:MyAttribute</code>. When <code>DeveloperOnlyAttribute</code>
+     * is <code>true</code>, Amazon Cognito creates your attribute as
+     * <code>dev:MyAttribute</code>. In an operation that describes a user pool,
+     * Amazon Cognito returns this value as <code>value</code> for standard
+     * attributes, <code>custom:value</code> for custom attributes, and
+     * <code>dev:value</code> for developer-only attributes..
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,8 +147,18 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The name of your user pool attribute, for example
-     *         <code>username</code> or <code>custom:costcenter</code>.
+     *         The name of your user pool attribute. When you create or update a
+     *         user pool, adding a schema attribute creates a custom or
+     *         developer-only attribute. When you add an attribute with a
+     *         <code>Name</code> value of <code>MyAttribute</code>, Amazon
+     *         Cognito creates the custom attribute
+     *         <code>custom:MyAttribute</code>. When
+     *         <code>DeveloperOnlyAttribute</code> is <code>true</code>, Amazon
+     *         Cognito creates your attribute as <code>dev:MyAttribute</code>.
+     *         In an operation that describes a user pool, Amazon Cognito
+     *         returns this value as <code>value</code> for standard attributes,
+     *         <code>custom:value</code> for custom attributes, and
+     *         <code>dev:value</code> for developer-only attributes..
      *         </p>
      */
     public String getName() {
@@ -137,8 +167,16 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The name of your user pool attribute, for example <code>username</code>
-     * or <code>custom:costcenter</code>.
+     * The name of your user pool attribute. When you create or update a user
+     * pool, adding a schema attribute creates a custom or developer-only
+     * attribute. When you add an attribute with a <code>Name</code> value of
+     * <code>MyAttribute</code>, Amazon Cognito creates the custom attribute
+     * <code>custom:MyAttribute</code>. When <code>DeveloperOnlyAttribute</code>
+     * is <code>true</code>, Amazon Cognito creates your attribute as
+     * <code>dev:MyAttribute</code>. In an operation that describes a user pool,
+     * Amazon Cognito returns this value as <code>value</code> for standard
+     * attributes, <code>custom:value</code> for custom attributes, and
+     * <code>dev:value</code> for developer-only attributes..
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,8 +184,19 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param name <p>
-     *            The name of your user pool attribute, for example
-     *            <code>username</code> or <code>custom:costcenter</code>.
+     *            The name of your user pool attribute. When you create or
+     *            update a user pool, adding a schema attribute creates a custom
+     *            or developer-only attribute. When you add an attribute with a
+     *            <code>Name</code> value of <code>MyAttribute</code>, Amazon
+     *            Cognito creates the custom attribute
+     *            <code>custom:MyAttribute</code>. When
+     *            <code>DeveloperOnlyAttribute</code> is <code>true</code>,
+     *            Amazon Cognito creates your attribute as
+     *            <code>dev:MyAttribute</code>. In an operation that describes a
+     *            user pool, Amazon Cognito returns this value as
+     *            <code>value</code> for standard attributes,
+     *            <code>custom:value</code> for custom attributes, and
+     *            <code>dev:value</code> for developer-only attributes..
      *            </p>
      */
     public void setName(String name) {
@@ -156,8 +205,16 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The name of your user pool attribute, for example <code>username</code>
-     * or <code>custom:costcenter</code>.
+     * The name of your user pool attribute. When you create or update a user
+     * pool, adding a schema attribute creates a custom or developer-only
+     * attribute. When you add an attribute with a <code>Name</code> value of
+     * <code>MyAttribute</code>, Amazon Cognito creates the custom attribute
+     * <code>custom:MyAttribute</code>. When <code>DeveloperOnlyAttribute</code>
+     * is <code>true</code>, Amazon Cognito creates your attribute as
+     * <code>dev:MyAttribute</code>. In an operation that describes a user pool,
+     * Amazon Cognito returns this value as <code>value</code> for standard
+     * attributes, <code>custom:value</code> for custom attributes, and
+     * <code>dev:value</code> for developer-only attributes..
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -168,8 +225,19 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param name <p>
-     *            The name of your user pool attribute, for example
-     *            <code>username</code> or <code>custom:costcenter</code>.
+     *            The name of your user pool attribute. When you create or
+     *            update a user pool, adding a schema attribute creates a custom
+     *            or developer-only attribute. When you add an attribute with a
+     *            <code>Name</code> value of <code>MyAttribute</code>, Amazon
+     *            Cognito creates the custom attribute
+     *            <code>custom:MyAttribute</code>. When
+     *            <code>DeveloperOnlyAttribute</code> is <code>true</code>,
+     *            Amazon Cognito creates your attribute as
+     *            <code>dev:MyAttribute</code>. In an operation that describes a
+     *            user pool, Amazon Cognito returns this value as
+     *            <code>value</code> for standard attributes,
+     *            <code>custom:value</code> for custom attributes, and
+     *            <code>dev:value</code> for developer-only attributes..
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -181,14 +249,23 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @return <p>
-     *         The data format of the values for your attribute.
+     *         The data format of the values for your attribute. When you choose
+     *         an <code>AttributeDataType</code>, Amazon Cognito validates the
+     *         input against the data type. A custom attribute value in your
+     *         user's ID token is always a string, for example
+     *         <code>"custom:isMember" : "true"</code> or
+     *         <code>"custom:YearsAsMember" : "12"</code>.
      *         </p>
      * @see AttributeDataType
      */
@@ -198,14 +275,23 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The data format of the values for your attribute.
+     *            The data format of the values for your attribute. When you
+     *            choose an <code>AttributeDataType</code>, Amazon Cognito
+     *            validates the input against the data type. A custom attribute
+     *            value in your user's ID token is always a string, for example
+     *            <code>"custom:isMember" : "true"</code> or
+     *            <code>"custom:YearsAsMember" : "12"</code>.
      *            </p>
      * @see AttributeDataType
      */
@@ -215,7 +301,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -225,7 +315,12 @@ public class SchemaAttributeType implements Serializable {
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The data format of the values for your attribute.
+     *            The data format of the values for your attribute. When you
+     *            choose an <code>AttributeDataType</code>, Amazon Cognito
+     *            validates the input against the data type. A custom attribute
+     *            value in your user's ID token is always a string, for example
+     *            <code>"custom:isMember" : "true"</code> or
+     *            <code>"custom:YearsAsMember" : "12"</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -238,14 +333,23 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The data format of the values for your attribute.
+     *            The data format of the values for your attribute. When you
+     *            choose an <code>AttributeDataType</code>, Amazon Cognito
+     *            validates the input against the data type. A custom attribute
+     *            value in your user's ID token is always a string, for example
+     *            <code>"custom:isMember" : "true"</code> or
+     *            <code>"custom:YearsAsMember" : "12"</code>.
      *            </p>
      * @see AttributeDataType
      */
@@ -255,7 +359,11 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The data format of the values for your attribute.
+     * The data format of the values for your attribute. When you choose an
+     * <code>AttributeDataType</code>, Amazon Cognito validates the input
+     * against the data type. A custom attribute value in your user's ID token
+     * is always a string, for example <code>"custom:isMember" : "true"</code>
+     * or <code>"custom:YearsAsMember" : "12"</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,7 +373,12 @@ public class SchemaAttributeType implements Serializable {
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The data format of the values for your attribute.
+     *            The data format of the values for your attribute. When you
+     *            choose an <code>AttributeDataType</code>, Amazon Cognito
+     *            validates the input against the data type. A custom attribute
+     *            value in your user's ID token is always a string, for example
+     *            <code>"custom:isMember" : "true"</code> or
+     *            <code>"custom:YearsAsMember" : "12"</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

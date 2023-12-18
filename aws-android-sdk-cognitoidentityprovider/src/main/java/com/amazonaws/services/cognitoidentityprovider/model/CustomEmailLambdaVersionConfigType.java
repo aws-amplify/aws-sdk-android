@@ -19,15 +19,19 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A custom email sender Lambda configuration type.
+ * The properties of a custom email sender Lambda trigger.
  * </p>
  */
 public class CustomEmailLambdaVersionConfigType implements Serializable {
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,8 +41,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-     * activates to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the function that you want to assign to
+     * your Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,18 +55,26 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @return <p>
-     *         Signature of the "request" attribute in the "event" information
-     *         Amazon Cognito passes to your custom email Lambda function. The
-     *         only supported value is <code>V1_0</code>.
+     *         The user pool trigger version of the request that Amazon Cognito
+     *         sends to your Lambda function. Higher-numbered versions add
+     *         fields that support new features.
+     *         </p>
+     *         <p>
+     *         You must use a <code>LambdaVersion</code> of <code>V1_0</code>
+     *         with a custom sender function.
      *         </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -72,18 +84,26 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            Signature of the "request" attribute in the "event"
-     *            information Amazon Cognito passes to your custom email Lambda
-     *            function. The only supported value is <code>V1_0</code>.
+     *            The user pool trigger version of the request that Amazon
+     *            Cognito sends to your Lambda function. Higher-numbered
+     *            versions add fields that support new features.
+     *            </p>
+     *            <p>
+     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
+     *            with a custom sender function.
      *            </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -93,9 +113,13 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -105,9 +129,13 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            Signature of the "request" attribute in the "event"
-     *            information Amazon Cognito passes to your custom email Lambda
-     *            function. The only supported value is <code>V1_0</code>.
+     *            The user pool trigger version of the request that Amazon
+     *            Cognito sends to your Lambda function. Higher-numbered
+     *            versions add fields that support new features.
+     *            </p>
+     *            <p>
+     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
+     *            with a custom sender function.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -120,18 +148,26 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            Signature of the "request" attribute in the "event"
-     *            information Amazon Cognito passes to your custom email Lambda
-     *            function. The only supported value is <code>V1_0</code>.
+     *            The user pool trigger version of the request that Amazon
+     *            Cognito sends to your Lambda function. Higher-numbered
+     *            versions add fields that support new features.
+     *            </p>
+     *            <p>
+     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
+     *            with a custom sender function.
      *            </p>
      * @see CustomEmailSenderLambdaVersionType
      */
@@ -141,9 +177,13 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * Signature of the "request" attribute in the "event" information Amazon
-     * Cognito passes to your custom email Lambda function. The only supported
-     * value is <code>V1_0</code>.
+     * The user pool trigger version of the request that Amazon Cognito sends to
+     * your Lambda function. Higher-numbered versions add fields that support
+     * new features.
+     * </p>
+     * <p>
+     * You must use a <code>LambdaVersion</code> of <code>V1_0</code> with a
+     * custom sender function.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -153,9 +193,13 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * <b>Allowed Values: </b>V1_0
      *
      * @param lambdaVersion <p>
-     *            Signature of the "request" attribute in the "event"
-     *            information Amazon Cognito passes to your custom email Lambda
-     *            function. The only supported value is <code>V1_0</code>.
+     *            The user pool trigger version of the request that Amazon
+     *            Cognito sends to your Lambda function. Higher-numbered
+     *            versions add fields that support new features.
+     *            </p>
+     *            <p>
+     *            You must use a <code>LambdaVersion</code> of <code>V1_0</code>
+     *            with a custom sender function.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,8 +213,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-     * activates to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the function that you want to assign to
+     * your Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,8 +224,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the Lambda function that Amazon
-     *         Cognito activates to send email notifications to users.
+     *         The Amazon Resource Name (ARN) of the function that you want to
+     *         assign to your Lambda trigger.
      *         </p>
      */
     public String getLambdaArn() {
@@ -190,8 +234,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-     * activates to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the function that you want to assign to
+     * your Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -201,8 +245,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param lambdaArn <p>
-     *            The Amazon Resource Name (ARN) of the Lambda function that
-     *            Amazon Cognito activates to send email notifications to users.
+     *            The Amazon Resource Name (ARN) of the function that you want
+     *            to assign to your Lambda trigger.
      *            </p>
      */
     public void setLambdaArn(String lambdaArn) {
@@ -211,8 +255,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the Lambda function that Amazon Cognito
-     * activates to send email notifications to users.
+     * The Amazon Resource Name (ARN) of the function that you want to assign to
+     * your Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -225,8 +269,8 @@ public class CustomEmailLambdaVersionConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param lambdaArn <p>
-     *            The Amazon Resource Name (ARN) of the Lambda function that
-     *            Amazon Cognito activates to send email notifications to users.
+     *            The Amazon Resource Name (ARN) of the function that you want
+     *            to assign to your Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -72,6 +72,13 @@ class LambdaConfigTypeJsonMarshaller {
             jsonWriter.name("PreTokenGeneration");
             jsonWriter.value(preTokenGeneration);
         }
+        if (lambdaConfigType.getPreTokenGenerationConfig() != null) {
+            PreTokenGenerationVersionConfigType preTokenGenerationConfig = lambdaConfigType
+                    .getPreTokenGenerationConfig();
+            jsonWriter.name("PreTokenGenerationConfig");
+            PreTokenGenerationVersionConfigTypeJsonMarshaller.getInstance().marshall(
+                    preTokenGenerationConfig, jsonWriter);
+        }
         if (lambdaConfigType.getUserMigration() != null) {
             String userMigration = lambdaConfigType.getUserMigration();
             jsonWriter.name("UserMigration");

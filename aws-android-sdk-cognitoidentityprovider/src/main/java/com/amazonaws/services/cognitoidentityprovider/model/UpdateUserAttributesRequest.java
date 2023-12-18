@@ -21,7 +21,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Allows a user to update a specific attribute (one at a time).
+ * With this operation, your users can update one or more of their attributes
+ * with their own credentials. You authorize this API request with the user's
+ * access token. To delete an attribute from your user, submit the attribute in
+ * your API request with a blank value. Custom attribute values in this request
+ * must include the <code>custom:</code> prefix.
  * </p>
  * <note>
  * <p>

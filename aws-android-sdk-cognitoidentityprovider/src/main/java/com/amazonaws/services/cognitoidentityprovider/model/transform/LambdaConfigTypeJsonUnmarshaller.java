@@ -64,6 +64,11 @@ class LambdaConfigTypeJsonUnmarshaller implements
             } else if (name.equals("PreTokenGeneration")) {
                 lambdaConfigType.setPreTokenGeneration(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PreTokenGenerationConfig")) {
+                lambdaConfigType
+                        .setPreTokenGenerationConfig(PreTokenGenerationVersionConfigTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("UserMigration")) {
                 lambdaConfigType.setUserMigration(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

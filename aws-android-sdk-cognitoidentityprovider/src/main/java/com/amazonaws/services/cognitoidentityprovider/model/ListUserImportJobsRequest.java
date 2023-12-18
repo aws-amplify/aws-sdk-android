@@ -76,9 +76,12 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to
-     * <code>ListUserImportJobs</code>, which can be used to return the next set
-     * of import jobs in the list.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -208,9 +211,12 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to
-     * <code>ListUserImportJobs</code>, which can be used to return the next set
-     * of import jobs in the list.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -218,9 +224,13 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         An identifier that was returned from the previous call to
-     *         <code>ListUserImportJobs</code>, which can be used to return the
-     *         next set of import jobs in the list.
+     *         This API operation returns a limited number of results. The
+     *         pagination token is an identifier that you can present in an
+     *         additional API request with the same parameters. When you include
+     *         the pagination token, Amazon Cognito returns the next set of
+     *         items after the current list. Subsequent requests return a new
+     *         pagination token. By use of this token, you can paginate through
+     *         the full list of items.
      *         </p>
      */
     public String getPaginationToken() {
@@ -229,9 +239,12 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to
-     * <code>ListUserImportJobs</code>, which can be used to return the next set
-     * of import jobs in the list.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,9 +252,13 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            An identifier that was returned from the previous call to
-     *            <code>ListUserImportJobs</code>, which can be used to return
-     *            the next set of import jobs in the list.
+     *            This API operation returns a limited number of results. The
+     *            pagination token is an identifier that you can present in an
+     *            additional API request with the same parameters. When you
+     *            include the pagination token, Amazon Cognito returns the next
+     *            set of items after the current list. Subsequent requests
+     *            return a new pagination token. By use of this token, you can
+     *            paginate through the full list of items.
      *            </p>
      */
     public void setPaginationToken(String paginationToken) {
@@ -250,9 +267,12 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to
-     * <code>ListUserImportJobs</code>, which can be used to return the next set
-     * of import jobs in the list.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -263,9 +283,13 @@ public class ListUserImportJobsRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            An identifier that was returned from the previous call to
-     *            <code>ListUserImportJobs</code>, which can be used to return
-     *            the next set of import jobs in the list.
+     *            This API operation returns a limited number of results. The
+     *            pagination token is an identifier that you can present in an
+     *            additional API request with the same parameters. When you
+     *            include the pagination token, Amazon Cognito returns the next
+     *            set of items after the current list. Subsequent requests
+     *            return a new pagination token. By use of this token, you can
+     *            paginate through the full list of items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
