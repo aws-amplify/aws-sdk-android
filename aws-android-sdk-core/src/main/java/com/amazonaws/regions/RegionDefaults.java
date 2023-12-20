@@ -722,6 +722,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.il-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.il-central-1.amazonaws.com", false, true);
 
+
+        // Support for Canada West (Calgary) `ca-west-1` region
+        region = new Region("ca-west-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ca-west-1.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ca-west-1.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ca-west-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ca-west-1.amazonaws.com", false, true);
         return ret;
     }
 
