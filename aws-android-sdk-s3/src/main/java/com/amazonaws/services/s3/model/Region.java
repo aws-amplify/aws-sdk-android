@@ -398,7 +398,7 @@ public enum Region {
      * bucket in this region.
      * </p>
      */
-    AP_TelAviv("il-central-1");
+    AP_TelAviv("il-central-1"),
 
     /**
      * The Canada West (Calgary) Region. This region uses Amazon S3 servers
