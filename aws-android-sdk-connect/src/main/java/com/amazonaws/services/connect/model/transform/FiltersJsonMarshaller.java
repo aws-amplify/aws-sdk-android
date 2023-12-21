@@ -59,6 +59,17 @@ class FiltersJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (filters.getRoutingStepExpressions() != null) {
+            java.util.List<String> routingStepExpressions = filters.getRoutingStepExpressions();
+            jsonWriter.name("RoutingStepExpressions");
+            jsonWriter.beginArray();
+            for (String routingStepExpressionsItem : routingStepExpressions) {
+                if (routingStepExpressionsItem != null) {
+                    jsonWriter.value(routingStepExpressionsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

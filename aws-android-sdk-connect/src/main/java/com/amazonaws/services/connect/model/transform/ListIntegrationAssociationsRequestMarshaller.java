@@ -71,6 +71,10 @@ public class ListIntegrationAssociationsRequestMarshaller implements
             request.addParameter("maxResults",
                     StringUtils.fromInteger(listIntegrationAssociationsRequest.getMaxResults()));
         }
+        if (listIntegrationAssociationsRequest.getIntegrationArn() != null) {
+            request.addParameter("integrationArn",
+                    StringUtils.fromString(listIntegrationAssociationsRequest.getIntegrationArn()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
