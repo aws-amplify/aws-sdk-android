@@ -24,7 +24,11 @@ import java.util.Map;
 public enum PhoneNumberType {
 
     TOLL_FREE("TOLL_FREE"),
-    DID("DID");
+    DID("DID"),
+    UIFN("UIFN"),
+    SHARED("SHARED"),
+    THIRD_PARTY_TF("THIRD_PARTY_TF"),
+    THIRD_PARTY_DID("THIRD_PARTY_DID");
 
     private String value;
 
@@ -42,6 +46,10 @@ public enum PhoneNumberType {
         enumMap = new HashMap<String, PhoneNumberType>();
         enumMap.put("TOLL_FREE", TOLL_FREE);
         enumMap.put("DID", DID);
+        enumMap.put("UIFN", UIFN);
+        enumMap.put("SHARED", SHARED);
+        enumMap.put("THIRD_PARTY_TF", THIRD_PARTY_TF);
+        enumMap.put("THIRD_PARTY_DID", THIRD_PARTY_DID);
     }
 
     /**

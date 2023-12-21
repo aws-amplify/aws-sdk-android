@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,10 +44,33 @@ import com.amazonaws.AmazonWebServiceRequest;
  * with external IdPs and provider attributes that have been trusted by the
  * application owner.
  * </p>
- * </important>
+ * </important> <note>
  * <p>
- * This action is administrative and requires developer credentials.
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
  * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -55,17 +78,20 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String userPoolId;
 
     /**
      * <p>
      * The existing user in the user pool that you want to assign to the
-     * external IdP user account. This user can be a native (Username +
-     * Password) Amazon Cognito user pools user or a federated user (for
-     * example, a SAML or Facebook user). If the user doesn't exist, Amazon
-     * Cognito generates an exception. Amazon Cognito returns this user when the
-     * new user (with the linked IdP attribute) signs in.
+     * external IdP user account. This user can be a local (Username + Password)
+     * Amazon Cognito user pools user or a federated user (for example, a SAML
+     * or Facebook user). If the user doesn't exist, Amazon Cognito generates an
+     * exception. Amazon Cognito returns this user when the new user (with the
+     * linked IdP attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -111,14 +137,26 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p/>
      * <p>
+     * For OIDC, the <code>ProviderAttributeName</code> can be any value that
+     * matches a claim in the ID token, or that your app retrieves from the
+     * <code>userInfo</code> endpoint. You must map the claim to a user pool
+     * attribute in your IdP configuration, and set the user pool attribute name
+     * as the value of <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
      * For SAML, the <code>ProviderAttributeName</code> can be any value that
-     * matches a claim in the SAML assertion. If you want to link SAML users
-     * based on the subject of the SAML assertion, you should map the subject to
-     * a claim through the SAML IdP and submit that claim name as the
-     * <code>ProviderAttributeName</code>. If you set
+     * matches a claim in the SAML assertion. To link SAML users based on the
+     * subject of the SAML assertion, map the subject to a claim through the
+     * SAML IdP and set that claim name as the value of
+     * <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
+     * For both OIDC and SAML users, when you set
      * <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>,
      * Amazon Cognito will automatically parse the default unique identifier
-     * found in the subject from the SAML token.
+     * found in the subject from the IdP token.
      * </p>
      */
     private ProviderUserIdentifierType sourceUser;
@@ -127,6 +165,9 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The user pool ID for the user pool.
@@ -140,6 +181,9 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * <p>
      * The user pool ID for the user pool.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool.
@@ -156,6 +200,9 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userPoolId <p>
      *            The user pool ID for the user pool.
@@ -171,11 +218,11 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The existing user in the user pool that you want to assign to the
-     * external IdP user account. This user can be a native (Username +
-     * Password) Amazon Cognito user pools user or a federated user (for
-     * example, a SAML or Facebook user). If the user doesn't exist, Amazon
-     * Cognito generates an exception. Amazon Cognito returns this user when the
-     * new user (with the linked IdP attribute) signs in.
+     * external IdP user account. This user can be a local (Username + Password)
+     * Amazon Cognito user pools user or a federated user (for example, a SAML
+     * or Facebook user). If the user doesn't exist, Amazon Cognito generates an
+     * exception. Amazon Cognito returns this user when the new user (with the
+     * linked IdP attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -201,7 +248,7 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *
      * @return <p>
      *         The existing user in the user pool that you want to assign to the
-     *         external IdP user account. This user can be a native (Username +
+     *         external IdP user account. This user can be a local (Username +
      *         Password) Amazon Cognito user pools user or a federated user (for
      *         example, a SAML or Facebook user). If the user doesn't exist,
      *         Amazon Cognito generates an exception. Amazon Cognito returns
@@ -238,11 +285,11 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The existing user in the user pool that you want to assign to the
-     * external IdP user account. This user can be a native (Username +
-     * Password) Amazon Cognito user pools user or a federated user (for
-     * example, a SAML or Facebook user). If the user doesn't exist, Amazon
-     * Cognito generates an exception. Amazon Cognito returns this user when the
-     * new user (with the linked IdP attribute) signs in.
+     * external IdP user account. This user can be a local (Username + Password)
+     * Amazon Cognito user pools user or a federated user (for example, a SAML
+     * or Facebook user). If the user doesn't exist, Amazon Cognito generates an
+     * exception. Amazon Cognito returns this user when the new user (with the
+     * linked IdP attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -268,7 +315,7 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *
      * @param destinationUser <p>
      *            The existing user in the user pool that you want to assign to
-     *            the external IdP user account. This user can be a native
+     *            the external IdP user account. This user can be a local
      *            (Username + Password) Amazon Cognito user pools user or a
      *            federated user (for example, a SAML or Facebook user). If the
      *            user doesn't exist, Amazon Cognito generates an exception.
@@ -305,11 +352,11 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
     /**
      * <p>
      * The existing user in the user pool that you want to assign to the
-     * external IdP user account. This user can be a native (Username +
-     * Password) Amazon Cognito user pools user or a federated user (for
-     * example, a SAML or Facebook user). If the user doesn't exist, Amazon
-     * Cognito generates an exception. Amazon Cognito returns this user when the
-     * new user (with the linked IdP attribute) signs in.
+     * external IdP user account. This user can be a local (Username + Password)
+     * Amazon Cognito user pools user or a federated user (for example, a SAML
+     * or Facebook user). If the user doesn't exist, Amazon Cognito generates an
+     * exception. Amazon Cognito returns this user when the new user (with the
+     * linked IdP attribute) signs in.
      * </p>
      * <p>
      * For a native username + password user, the
@@ -338,7 +385,7 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *
      * @param destinationUser <p>
      *            The existing user in the user pool that you want to assign to
-     *            the external IdP user account. This user can be a native
+     *            the external IdP user account. This user can be a local
      *            (Username + Password) Amazon Cognito user pools user or a
      *            federated user (for example, a SAML or Facebook user). If the
      *            user doesn't exist, Amazon Cognito generates an exception.
@@ -396,14 +443,26 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p/>
      * <p>
+     * For OIDC, the <code>ProviderAttributeName</code> can be any value that
+     * matches a claim in the ID token, or that your app retrieves from the
+     * <code>userInfo</code> endpoint. You must map the claim to a user pool
+     * attribute in your IdP configuration, and set the user pool attribute name
+     * as the value of <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
      * For SAML, the <code>ProviderAttributeName</code> can be any value that
-     * matches a claim in the SAML assertion. If you want to link SAML users
-     * based on the subject of the SAML assertion, you should map the subject to
-     * a claim through the SAML IdP and submit that claim name as the
-     * <code>ProviderAttributeName</code>. If you set
+     * matches a claim in the SAML assertion. To link SAML users based on the
+     * subject of the SAML assertion, map the subject to a claim through the
+     * SAML IdP and set that claim name as the value of
+     * <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
+     * For both OIDC and SAML users, when you set
      * <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>,
      * Amazon Cognito will automatically parse the default unique identifier
-     * found in the subject from the SAML token.
+     * found in the subject from the IdP token.
      * </p>
      *
      * @return <p>
@@ -427,15 +486,28 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *         </p>
      *         <p/>
      *         <p>
+     *         For OIDC, the <code>ProviderAttributeName</code> can be any value
+     *         that matches a claim in the ID token, or that your app retrieves
+     *         from the <code>userInfo</code> endpoint. You must map the claim
+     *         to a user pool attribute in your IdP configuration, and set the
+     *         user pool attribute name as the value of
+     *         <code>ProviderAttributeName</code> in your
+     *         <code>AdminLinkProviderForUser</code> request.
+     *         </p>
+     *         <p>
      *         For SAML, the <code>ProviderAttributeName</code> can be any value
-     *         that matches a claim in the SAML assertion. If you want to link
-     *         SAML users based on the subject of the SAML assertion, you should
-     *         map the subject to a claim through the SAML IdP and submit that
-     *         claim name as the <code>ProviderAttributeName</code>. If you set
+     *         that matches a claim in the SAML assertion. To link SAML users
+     *         based on the subject of the SAML assertion, map the subject to a
+     *         claim through the SAML IdP and set that claim name as the value
+     *         of <code>ProviderAttributeName</code> in your
+     *         <code>AdminLinkProviderForUser</code> request.
+     *         </p>
+     *         <p>
+     *         For both OIDC and SAML users, when you set
      *         <code>ProviderAttributeName</code> to
      *         <code>Cognito_Subject</code>, Amazon Cognito will automatically
      *         parse the default unique identifier found in the subject from the
-     *         SAML token.
+     *         IdP token.
      *         </p>
      */
     public ProviderUserIdentifierType getSourceUser() {
@@ -462,14 +534,26 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p/>
      * <p>
+     * For OIDC, the <code>ProviderAttributeName</code> can be any value that
+     * matches a claim in the ID token, or that your app retrieves from the
+     * <code>userInfo</code> endpoint. You must map the claim to a user pool
+     * attribute in your IdP configuration, and set the user pool attribute name
+     * as the value of <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
      * For SAML, the <code>ProviderAttributeName</code> can be any value that
-     * matches a claim in the SAML assertion. If you want to link SAML users
-     * based on the subject of the SAML assertion, you should map the subject to
-     * a claim through the SAML IdP and submit that claim name as the
-     * <code>ProviderAttributeName</code>. If you set
+     * matches a claim in the SAML assertion. To link SAML users based on the
+     * subject of the SAML assertion, map the subject to a claim through the
+     * SAML IdP and set that claim name as the value of
+     * <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
+     * For both OIDC and SAML users, when you set
      * <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>,
      * Amazon Cognito will automatically parse the default unique identifier
-     * found in the subject from the SAML token.
+     * found in the subject from the IdP token.
      * </p>
      *
      * @param sourceUser <p>
@@ -493,16 +577,28 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p/>
      *            <p>
+     *            For OIDC, the <code>ProviderAttributeName</code> can be any
+     *            value that matches a claim in the ID token, or that your app
+     *            retrieves from the <code>userInfo</code> endpoint. You must
+     *            map the claim to a user pool attribute in your IdP
+     *            configuration, and set the user pool attribute name as the
+     *            value of <code>ProviderAttributeName</code> in your
+     *            <code>AdminLinkProviderForUser</code> request.
+     *            </p>
+     *            <p>
      *            For SAML, the <code>ProviderAttributeName</code> can be any
-     *            value that matches a claim in the SAML assertion. If you want
-     *            to link SAML users based on the subject of the SAML assertion,
-     *            you should map the subject to a claim through the SAML IdP and
-     *            submit that claim name as the
-     *            <code>ProviderAttributeName</code>. If you set
+     *            value that matches a claim in the SAML assertion. To link SAML
+     *            users based on the subject of the SAML assertion, map the
+     *            subject to a claim through the SAML IdP and set that claim
+     *            name as the value of <code>ProviderAttributeName</code> in
+     *            your <code>AdminLinkProviderForUser</code> request.
+     *            </p>
+     *            <p>
+     *            For both OIDC and SAML users, when you set
      *            <code>ProviderAttributeName</code> to
      *            <code>Cognito_Subject</code>, Amazon Cognito will
      *            automatically parse the default unique identifier found in the
-     *            subject from the SAML token.
+     *            subject from the IdP token.
      *            </p>
      */
     public void setSourceUser(ProviderUserIdentifierType sourceUser) {
@@ -529,14 +625,26 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p/>
      * <p>
+     * For OIDC, the <code>ProviderAttributeName</code> can be any value that
+     * matches a claim in the ID token, or that your app retrieves from the
+     * <code>userInfo</code> endpoint. You must map the claim to a user pool
+     * attribute in your IdP configuration, and set the user pool attribute name
+     * as the value of <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
      * For SAML, the <code>ProviderAttributeName</code> can be any value that
-     * matches a claim in the SAML assertion. If you want to link SAML users
-     * based on the subject of the SAML assertion, you should map the subject to
-     * a claim through the SAML IdP and submit that claim name as the
-     * <code>ProviderAttributeName</code>. If you set
+     * matches a claim in the SAML assertion. To link SAML users based on the
+     * subject of the SAML assertion, map the subject to a claim through the
+     * SAML IdP and set that claim name as the value of
+     * <code>ProviderAttributeName</code> in your
+     * <code>AdminLinkProviderForUser</code> request.
+     * </p>
+     * <p>
+     * For both OIDC and SAML users, when you set
      * <code>ProviderAttributeName</code> to <code>Cognito_Subject</code>,
      * Amazon Cognito will automatically parse the default unique identifier
-     * found in the subject from the SAML token.
+     * found in the subject from the IdP token.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -563,16 +671,28 @@ public class AdminLinkProviderForUserRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p/>
      *            <p>
+     *            For OIDC, the <code>ProviderAttributeName</code> can be any
+     *            value that matches a claim in the ID token, or that your app
+     *            retrieves from the <code>userInfo</code> endpoint. You must
+     *            map the claim to a user pool attribute in your IdP
+     *            configuration, and set the user pool attribute name as the
+     *            value of <code>ProviderAttributeName</code> in your
+     *            <code>AdminLinkProviderForUser</code> request.
+     *            </p>
+     *            <p>
      *            For SAML, the <code>ProviderAttributeName</code> can be any
-     *            value that matches a claim in the SAML assertion. If you want
-     *            to link SAML users based on the subject of the SAML assertion,
-     *            you should map the subject to a claim through the SAML IdP and
-     *            submit that claim name as the
-     *            <code>ProviderAttributeName</code>. If you set
+     *            value that matches a claim in the SAML assertion. To link SAML
+     *            users based on the subject of the SAML assertion, map the
+     *            subject to a claim through the SAML IdP and set that claim
+     *            name as the value of <code>ProviderAttributeName</code> in
+     *            your <code>AdminLinkProviderForUser</code> request.
+     *            </p>
+     *            <p>
+     *            For both OIDC and SAML users, when you set
      *            <code>ProviderAttributeName</code> to
      *            <code>Cognito_Subject</code>, Amazon Cognito will
      *            automatically parse the default unique identifier found in the
-     *            subject from the SAML token.
+     *            subject from the IdP token.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

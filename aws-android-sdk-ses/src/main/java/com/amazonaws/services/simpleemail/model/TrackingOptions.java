@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For more information, see <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
  * >Configuring Custom Domains to Handle Open and Click Tracking</a> in the
  * <i>Amazon SES Developer Guide</i>.
  * </p>
@@ -33,21 +33,21 @@ import java.io.Serializable;
 public class TrackingOptions implements Serializable {
     /**
      * <p>
-     * The custom subdomain that will be used to redirect email recipients to
-     * the Amazon SES event tracking domain.
+     * The custom subdomain that is used to redirect email recipients to the
+     * Amazon SES event tracking domain.
      * </p>
      */
     private String customRedirectDomain;
 
     /**
      * <p>
-     * The custom subdomain that will be used to redirect email recipients to
-     * the Amazon SES event tracking domain.
+     * The custom subdomain that is used to redirect email recipients to the
+     * Amazon SES event tracking domain.
      * </p>
      *
      * @return <p>
-     *         The custom subdomain that will be used to redirect email
-     *         recipients to the Amazon SES event tracking domain.
+     *         The custom subdomain that is used to redirect email recipients to
+     *         the Amazon SES event tracking domain.
      *         </p>
      */
     public String getCustomRedirectDomain() {
@@ -56,13 +56,13 @@ public class TrackingOptions implements Serializable {
 
     /**
      * <p>
-     * The custom subdomain that will be used to redirect email recipients to
-     * the Amazon SES event tracking domain.
+     * The custom subdomain that is used to redirect email recipients to the
+     * Amazon SES event tracking domain.
      * </p>
      *
      * @param customRedirectDomain <p>
-     *            The custom subdomain that will be used to redirect email
-     *            recipients to the Amazon SES event tracking domain.
+     *            The custom subdomain that is used to redirect email recipients
+     *            to the Amazon SES event tracking domain.
      *            </p>
      */
     public void setCustomRedirectDomain(String customRedirectDomain) {
@@ -71,16 +71,16 @@ public class TrackingOptions implements Serializable {
 
     /**
      * <p>
-     * The custom subdomain that will be used to redirect email recipients to
-     * the Amazon SES event tracking domain.
+     * The custom subdomain that is used to redirect email recipients to the
+     * Amazon SES event tracking domain.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param customRedirectDomain <p>
-     *            The custom subdomain that will be used to redirect email
-     *            recipients to the Amazon SES event tracking domain.
+     *            The custom subdomain that is used to redirect email recipients
+     *            to the Amazon SES event tracking domain.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

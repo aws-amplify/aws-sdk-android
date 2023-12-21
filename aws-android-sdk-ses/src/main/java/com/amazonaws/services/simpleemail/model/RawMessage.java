@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@ public class RawMessage implements Serializable {
      * <p>
      * The raw data of the message. This data needs to base64-encoded if you are
      * accessing Amazon SES directly through the HTTPS interface. If you are
-     * accessing Amazon SES using an AWS SDK, the SDK takes care of the base
-     * 64-encoding for you. In all cases, the client must ensure that the
-     * message format complies with Internet email standards regarding email
-     * header fields, MIME types, and MIME encoding.
+     * accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care
+     * of the base 64-encoding for you. In all cases, the client must ensure
+     * that the message format complies with Internet email standards regarding
+     * email header fields, MIME types, and MIME encoding.
      * </p>
      * <p>
      * The To:, CC:, and BCC: headers in the raw message can contain a group
@@ -49,8 +49,8 @@ public class RawMessage implements Serializable {
      * </p>
      * </important>
      * <p>
-     * For more information, go to the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * For more information, go to the <a
+     * href="https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -72,11 +72,11 @@ public class RawMessage implements Serializable {
      * @param data <p>
      *            The raw data of the message. This data needs to base64-encoded
      *            if you are accessing Amazon SES directly through the HTTPS
-     *            interface. If you are accessing Amazon SES using an AWS SDK,
-     *            the SDK takes care of the base 64-encoding for you. In all
-     *            cases, the client must ensure that the message format complies
-     *            with Internet email standards regarding email header fields,
-     *            MIME types, and MIME encoding.
+     *            interface. If you are accessing Amazon SES using an Amazon Web
+     *            Services SDK, the SDK takes care of the base 64-encoding for
+     *            you. In all cases, the client must ensure that the message
+     *            format complies with Internet email standards regarding email
+     *            header fields, MIME types, and MIME encoding.
      *            </p>
      *            <p>
      *            The To:, CC:, and BCC: headers in the raw message can contain
@@ -97,7 +97,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -109,10 +109,10 @@ public class RawMessage implements Serializable {
      * <p>
      * The raw data of the message. This data needs to base64-encoded if you are
      * accessing Amazon SES directly through the HTTPS interface. If you are
-     * accessing Amazon SES using an AWS SDK, the SDK takes care of the base
-     * 64-encoding for you. In all cases, the client must ensure that the
-     * message format complies with Internet email standards regarding email
-     * header fields, MIME types, and MIME encoding.
+     * accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care
+     * of the base 64-encoding for you. In all cases, the client must ensure
+     * that the message format complies with Internet email standards regarding
+     * email header fields, MIME types, and MIME encoding.
      * </p>
      * <p>
      * The To:, CC:, and BCC: headers in the raw message can contain a group
@@ -131,19 +131,19 @@ public class RawMessage implements Serializable {
      * </p>
      * </important>
      * <p>
-     * For more information, go to the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * For more information, go to the <a
+     * href="https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
      * @return <p>
      *         The raw data of the message. This data needs to base64-encoded if
      *         you are accessing Amazon SES directly through the HTTPS
-     *         interface. If you are accessing Amazon SES using an AWS SDK, the
-     *         SDK takes care of the base 64-encoding for you. In all cases, the
-     *         client must ensure that the message format complies with Internet
-     *         email standards regarding email header fields, MIME types, and
-     *         MIME encoding.
+     *         interface. If you are accessing Amazon SES using an Amazon Web
+     *         Services SDK, the SDK takes care of the base 64-encoding for you.
+     *         In all cases, the client must ensure that the message format
+     *         complies with Internet email standards regarding email header
+     *         fields, MIME types, and MIME encoding.
      *         </p>
      *         <p>
      *         The To:, CC:, and BCC: headers in the raw message can contain a
@@ -164,7 +164,7 @@ public class RawMessage implements Serializable {
      *         </important>
      *         <p>
      *         For more information, go to the <a href=
-     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *         "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -176,10 +176,10 @@ public class RawMessage implements Serializable {
      * <p>
      * The raw data of the message. This data needs to base64-encoded if you are
      * accessing Amazon SES directly through the HTTPS interface. If you are
-     * accessing Amazon SES using an AWS SDK, the SDK takes care of the base
-     * 64-encoding for you. In all cases, the client must ensure that the
-     * message format complies with Internet email standards regarding email
-     * header fields, MIME types, and MIME encoding.
+     * accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care
+     * of the base 64-encoding for you. In all cases, the client must ensure
+     * that the message format complies with Internet email standards regarding
+     * email header fields, MIME types, and MIME encoding.
      * </p>
      * <p>
      * The To:, CC:, and BCC: headers in the raw message can contain a group
@@ -198,19 +198,19 @@ public class RawMessage implements Serializable {
      * </p>
      * </important>
      * <p>
-     * For more information, go to the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * For more information, go to the <a
+     * href="https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
      * @param data <p>
      *            The raw data of the message. This data needs to base64-encoded
      *            if you are accessing Amazon SES directly through the HTTPS
-     *            interface. If you are accessing Amazon SES using an AWS SDK,
-     *            the SDK takes care of the base 64-encoding for you. In all
-     *            cases, the client must ensure that the message format complies
-     *            with Internet email standards regarding email header fields,
-     *            MIME types, and MIME encoding.
+     *            interface. If you are accessing Amazon SES using an Amazon Web
+     *            Services SDK, the SDK takes care of the base 64-encoding for
+     *            you. In all cases, the client must ensure that the message
+     *            format complies with Internet email standards regarding email
+     *            header fields, MIME types, and MIME encoding.
      *            </p>
      *            <p>
      *            The To:, CC:, and BCC: headers in the raw message can contain
@@ -231,7 +231,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -243,10 +243,10 @@ public class RawMessage implements Serializable {
      * <p>
      * The raw data of the message. This data needs to base64-encoded if you are
      * accessing Amazon SES directly through the HTTPS interface. If you are
-     * accessing Amazon SES using an AWS SDK, the SDK takes care of the base
-     * 64-encoding for you. In all cases, the client must ensure that the
-     * message format complies with Internet email standards regarding email
-     * header fields, MIME types, and MIME encoding.
+     * accessing Amazon SES using an Amazon Web Services SDK, the SDK takes care
+     * of the base 64-encoding for you. In all cases, the client must ensure
+     * that the message format complies with Internet email standards regarding
+     * email header fields, MIME types, and MIME encoding.
      * </p>
      * <p>
      * The To:, CC:, and BCC: headers in the raw message can contain a group
@@ -265,8 +265,8 @@ public class RawMessage implements Serializable {
      * </p>
      * </important>
      * <p>
-     * For more information, go to the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     * For more information, go to the <a
+     * href="https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -276,11 +276,11 @@ public class RawMessage implements Serializable {
      * @param data <p>
      *            The raw data of the message. This data needs to base64-encoded
      *            if you are accessing Amazon SES directly through the HTTPS
-     *            interface. If you are accessing Amazon SES using an AWS SDK,
-     *            the SDK takes care of the base 64-encoding for you. In all
-     *            cases, the client must ensure that the message format complies
-     *            with Internet email standards regarding email header fields,
-     *            MIME types, and MIME encoding.
+     *            interface. If you are accessing Amazon SES using an Amazon Web
+     *            Services SDK, the SDK takes care of the base 64-encoding for
+     *            you. In all cases, the client must ensure that the message
+     *            format complies with Internet email standards regarding email
+     *            header fields, MIME types, and MIME encoding.
      *            </p>
      *            <p>
      *            The To:, CC:, and BCC: headers in the raw message can contain
@@ -301,7 +301,7 @@ public class RawMessage implements Serializable {
      *            </important>
      *            <p>
      *            For more information, go to the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-raw.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

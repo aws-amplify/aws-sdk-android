@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -29,14 +29,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * hosted on domains operated by Amazon SES. You can configure a subdomain of
  * your own to handle these events. For information about using custom domains,
  * see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-custom-open-click-domains.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/configure-custom-open-click-domains.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  * <note>
  * <p>
- * Deleting this kind of association will result in emails sent using the
- * specified configuration set to capture open and click events using the
- * standard, Amazon SES-operated domains.
+ * Deleting this kind of association results in emails sent using the specified
+ * configuration set to capture open and click events using the standard, Amazon
+ * SES-operated domains.
  * </p>
  * </note>
  */
@@ -44,21 +44,18 @@ public class DeleteConfigurationSetTrackingOptionsRequest extends AmazonWebServi
         Serializable {
     /**
      * <p>
-     * The name of the configuration set from which you want to delete the
-     * tracking options.
+     * The name of the configuration set.
      * </p>
      */
     private String configurationSetName;
 
     /**
      * <p>
-     * The name of the configuration set from which you want to delete the
-     * tracking options.
+     * The name of the configuration set.
      * </p>
      *
      * @return <p>
-     *         The name of the configuration set from which you want to delete
-     *         the tracking options.
+     *         The name of the configuration set.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -67,13 +64,11 @@ public class DeleteConfigurationSetTrackingOptionsRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the configuration set from which you want to delete the
-     * tracking options.
+     * The name of the configuration set.
      * </p>
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set from which you want to
-     *            delete the tracking options.
+     *            The name of the configuration set.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -82,16 +77,14 @@ public class DeleteConfigurationSetTrackingOptionsRequest extends AmazonWebServi
 
     /**
      * <p>
-     * The name of the configuration set from which you want to delete the
-     * tracking options.
+     * The name of the configuration set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set from which you want to
-     *            delete the tracking options.
+     *            The name of the configuration set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

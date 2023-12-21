@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,20 +31,21 @@ import java.io.Serializable;
  * </p>
  * <p>
  * For information about setting up receipt rules, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-receipt-rules.html"
+ * "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-receipt-rules-console-walkthrough.html"
  * >Amazon SES Developer Guide</a>.
  * </p>
  */
 public class ReceiptRule implements Serializable {
     /**
      * <p>
-     * The name of the receipt rule. The name must:
+     * The name of the receipt rule. The name must meet the following
+     * requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * dashes (-), or periods (.).
      * </p>
      * </li>
      * <li>
@@ -54,7 +55,7 @@ public class ReceiptRule implements Serializable {
      * </li>
      * <li>
      * <p>
-     * Contain less than 64 characters.
+     * Contain 64 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -73,8 +74,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -86,8 +87,8 @@ public class ReceiptRule implements Serializable {
     /**
      * <p>
      * The recipient domains and email addresses that the receipt rule applies
-     * to. If this field is not specified, this rule will match all recipients
-     * under all verified domains.
+     * to. If this field is not specified, this rule matches all recipients on
+     * all verified domains.
      * </p>
      */
     private java.util.List<String> recipients = new java.util.ArrayList<String>();
@@ -111,13 +112,14 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The name of the receipt rule. The name must:
+     * The name of the receipt rule. The name must meet the following
+     * requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * dashes (-), or periods (.).
      * </p>
      * </li>
      * <li>
@@ -127,19 +129,20 @@ public class ReceiptRule implements Serializable {
      * </li>
      * <li>
      * <p>
-     * Contain less than 64 characters.
+     * Contain 64 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         The name of the receipt rule. The name must:
+     *         The name of the receipt rule. The name must meet the following
+     *         requirements:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         This value can only contain ASCII letters (a-z, A-Z), numbers
-     *         (0-9), underscores (_), or dashes (-).
+     *         Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores
+     *         (_), dashes (-), or periods (.).
      *         </p>
      *         </li>
      *         <li>
@@ -149,7 +152,7 @@ public class ReceiptRule implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         Contain less than 64 characters.
+     *         Contain 64 characters or fewer.
      *         </p>
      *         </li>
      *         </ul>
@@ -160,13 +163,14 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The name of the receipt rule. The name must:
+     * The name of the receipt rule. The name must meet the following
+     * requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * dashes (-), or periods (.).
      * </p>
      * </li>
      * <li>
@@ -176,19 +180,20 @@ public class ReceiptRule implements Serializable {
      * </li>
      * <li>
      * <p>
-     * Contain less than 64 characters.
+     * Contain 64 characters or fewer.
      * </p>
      * </li>
      * </ul>
      *
      * @param name <p>
-     *            The name of the receipt rule. The name must:
+     *            The name of the receipt rule. The name must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), dashes (-), or periods (.).
      *            </p>
      *            </li>
      *            <li>
@@ -198,7 +203,7 @@ public class ReceiptRule implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 64 characters.
+     *            Contain 64 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>
@@ -209,13 +214,14 @@ public class ReceiptRule implements Serializable {
 
     /**
      * <p>
-     * The name of the receipt rule. The name must:
+     * The name of the receipt rule. The name must meet the following
+     * requirements:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * This value can only contain ASCII letters (a-z, A-Z), numbers (0-9),
-     * underscores (_), or dashes (-).
+     * Contain only ASCII letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * dashes (-), or periods (.).
      * </p>
      * </li>
      * <li>
@@ -225,7 +231,7 @@ public class ReceiptRule implements Serializable {
      * </li>
      * <li>
      * <p>
-     * Contain less than 64 characters.
+     * Contain 64 characters or fewer.
      * </p>
      * </li>
      * </ul>
@@ -234,13 +240,14 @@ public class ReceiptRule implements Serializable {
      * together.
      *
      * @param name <p>
-     *            The name of the receipt rule. The name must:
+     *            The name of the receipt rule. The name must meet the following
+     *            requirements:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            This value can only contain ASCII letters (a-z, A-Z), numbers
-     *            (0-9), underscores (_), or dashes (-).
+     *            Contain only ASCII letters (a-z, A-Z), numbers (0-9),
+     *            underscores (_), dashes (-), or periods (.).
      *            </p>
      *            </li>
      *            <li>
@@ -250,7 +257,7 @@ public class ReceiptRule implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            Contain less than 64 characters.
+     *            Contain 64 characters or fewer.
      *            </p>
      *            </li>
      *            </ul>
@@ -332,8 +339,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -344,7 +351,7 @@ public class ReceiptRule implements Serializable {
      *         Specifies whether Amazon SES should require that incoming email
      *         is delivered over a connection encrypted with Transport Layer
      *         Security (TLS). If this parameter is set to <code>Require</code>,
-     *         Amazon SES will bounce emails that are not received over TLS. The
+     *         Amazon SES bounces emails that are not received over TLS. The
      *         default is <code>Optional</code>.
      *         </p>
      * @see TlsPolicy
@@ -357,8 +364,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -369,8 +376,8 @@ public class ReceiptRule implements Serializable {
      *            Specifies whether Amazon SES should require that incoming
      *            email is delivered over a connection encrypted with Transport
      *            Layer Security (TLS). If this parameter is set to
-     *            <code>Require</code>, Amazon SES will bounce emails that are
-     *            not received over TLS. The default is <code>Optional</code>.
+     *            <code>Require</code>, Amazon SES bounces emails that are not
+     *            received over TLS. The default is <code>Optional</code>.
      *            </p>
      * @see TlsPolicy
      */
@@ -382,8 +389,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -397,8 +404,8 @@ public class ReceiptRule implements Serializable {
      *            Specifies whether Amazon SES should require that incoming
      *            email is delivered over a connection encrypted with Transport
      *            Layer Security (TLS). If this parameter is set to
-     *            <code>Require</code>, Amazon SES will bounce emails that are
-     *            not received over TLS. The default is <code>Optional</code>.
+     *            <code>Require</code>, Amazon SES bounces emails that are not
+     *            received over TLS. The default is <code>Optional</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -413,8 +420,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -425,8 +432,8 @@ public class ReceiptRule implements Serializable {
      *            Specifies whether Amazon SES should require that incoming
      *            email is delivered over a connection encrypted with Transport
      *            Layer Security (TLS). If this parameter is set to
-     *            <code>Require</code>, Amazon SES will bounce emails that are
-     *            not received over TLS. The default is <code>Optional</code>.
+     *            <code>Require</code>, Amazon SES bounces emails that are not
+     *            received over TLS. The default is <code>Optional</code>.
      *            </p>
      * @see TlsPolicy
      */
@@ -438,8 +445,8 @@ public class ReceiptRule implements Serializable {
      * <p>
      * Specifies whether Amazon SES should require that incoming email is
      * delivered over a connection encrypted with Transport Layer Security
-     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES will
-     * bounce emails that are not received over TLS. The default is
+     * (TLS). If this parameter is set to <code>Require</code>, Amazon SES
+     * bounces emails that are not received over TLS. The default is
      * <code>Optional</code>.
      * </p>
      * <p>
@@ -453,8 +460,8 @@ public class ReceiptRule implements Serializable {
      *            Specifies whether Amazon SES should require that incoming
      *            email is delivered over a connection encrypted with Transport
      *            Layer Security (TLS). If this parameter is set to
-     *            <code>Require</code>, Amazon SES will bounce emails that are
-     *            not received over TLS. The default is <code>Optional</code>.
+     *            <code>Require</code>, Amazon SES bounces emails that are not
+     *            received over TLS. The default is <code>Optional</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -468,14 +475,14 @@ public class ReceiptRule implements Serializable {
     /**
      * <p>
      * The recipient domains and email addresses that the receipt rule applies
-     * to. If this field is not specified, this rule will match all recipients
-     * under all verified domains.
+     * to. If this field is not specified, this rule matches all recipients on
+     * all verified domains.
      * </p>
      *
      * @return <p>
      *         The recipient domains and email addresses that the receipt rule
-     *         applies to. If this field is not specified, this rule will match
-     *         all recipients under all verified domains.
+     *         applies to. If this field is not specified, this rule matches all
+     *         recipients on all verified domains.
      *         </p>
      */
     public java.util.List<String> getRecipients() {
@@ -485,14 +492,14 @@ public class ReceiptRule implements Serializable {
     /**
      * <p>
      * The recipient domains and email addresses that the receipt rule applies
-     * to. If this field is not specified, this rule will match all recipients
-     * under all verified domains.
+     * to. If this field is not specified, this rule matches all recipients on
+     * all verified domains.
      * </p>
      *
      * @param recipients <p>
      *            The recipient domains and email addresses that the receipt
      *            rule applies to. If this field is not specified, this rule
-     *            will match all recipients under all verified domains.
+     *            matches all recipients on all verified domains.
      *            </p>
      */
     public void setRecipients(java.util.Collection<String> recipients) {
@@ -507,8 +514,8 @@ public class ReceiptRule implements Serializable {
     /**
      * <p>
      * The recipient domains and email addresses that the receipt rule applies
-     * to. If this field is not specified, this rule will match all recipients
-     * under all verified domains.
+     * to. If this field is not specified, this rule matches all recipients on
+     * all verified domains.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -517,7 +524,7 @@ public class ReceiptRule implements Serializable {
      * @param recipients <p>
      *            The recipient domains and email addresses that the receipt
      *            rule applies to. If this field is not specified, this rule
-     *            will match all recipients under all verified domains.
+     *            matches all recipients on all verified domains.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -535,8 +542,8 @@ public class ReceiptRule implements Serializable {
     /**
      * <p>
      * The recipient domains and email addresses that the receipt rule applies
-     * to. If this field is not specified, this rule will match all recipients
-     * under all verified domains.
+     * to. If this field is not specified, this rule matches all recipients on
+     * all verified domains.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -545,7 +552,7 @@ public class ReceiptRule implements Serializable {
      * @param recipients <p>
      *            The recipient domains and email addresses that the receipt
      *            rule applies to. If this field is not specified, this rule
-     *            will match all recipients under all verified domains.
+     *            matches all recipients on all verified domains.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

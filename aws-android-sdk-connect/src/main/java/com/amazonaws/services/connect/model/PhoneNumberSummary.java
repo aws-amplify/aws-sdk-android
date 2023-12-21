@@ -53,7 +53,8 @@ public class PhoneNumberSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      */
     private String phoneNumberType;
 
@@ -230,7 +231,8 @@ public class PhoneNumberSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      *
      * @return <p>
      *         The type of phone number.
@@ -247,7 +249,8 @@ public class PhoneNumberSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -267,7 +270,8 @@ public class PhoneNumberSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -287,7 +291,8 @@ public class PhoneNumberSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      *
      * @param phoneNumberType <p>
      *            The type of phone number.
@@ -307,7 +312,8 @@ public class PhoneNumberSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TOLL_FREE, DID
+     * <b>Allowed Values: </b>TOLL_FREE, DID, UIFN, SHARED, THIRD_PARTY_TF,
+     * THIRD_PARTY_DID
      *
      * @param phoneNumberType <p>
      *            The type of phone number.

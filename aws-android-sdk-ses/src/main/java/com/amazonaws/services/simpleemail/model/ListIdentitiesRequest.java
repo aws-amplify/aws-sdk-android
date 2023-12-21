@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,18 +22,31 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns a list containing all of the identities (email addresses and domains)
- * for your AWS account in the current AWS Region, regardless of verification
- * status.
+ * for your Amazon Web Services account in the current Amazon Web Services
+ * Region, regardless of verification status.
  * </p>
  * <p>
  * You can execute this operation no more than once per second.
  * </p>
+ * <note>
+ * <p>
+ * It's recommended that for successive pagination calls of this API, you
+ * continue to the use the same parameter/value pairs as used in the original
+ * call, e.g., if you used <code>IdentityType=Domain</code> in the the original
+ * call and received a <code>NextToken</code> in the response, you should
+ * continue providing the <code>IdentityType=Domain</code> parameter for further
+ * <code>NextToken</code> calls; however, if you didn't provide the
+ * <code>IdentityType</code> parameter in the original call, then continue to
+ * not provide it for successive pagination calls. Using this protocol will
+ * ensure consistent results.
+ * </p>
+ * </note>
  */
 public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -60,7 +73,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -70,7 +83,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
      * @return <p>
      *         The type of the identities to list. Possible values are
      *         "EmailAddress" and "Domain". If this parameter is omitted, then
-     *         all identities will be listed.
+     *         all identities are listed.
      *         </p>
      * @see IdentityType
      */
@@ -81,7 +94,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -91,7 +104,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
      * @param identityType <p>
      *            The type of the identities to list. Possible values are
      *            "EmailAddress" and "Domain". If this parameter is omitted,
-     *            then all identities will be listed.
+     *            then all identities are listed.
      *            </p>
      * @see IdentityType
      */
@@ -102,7 +115,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -115,7 +128,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
      * @param identityType <p>
      *            The type of the identities to list. Possible values are
      *            "EmailAddress" and "Domain". If this parameter is omitted,
-     *            then all identities will be listed.
+     *            then all identities are listed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -129,7 +142,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -139,7 +152,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
      * @param identityType <p>
      *            The type of the identities to list. Possible values are
      *            "EmailAddress" and "Domain". If this parameter is omitted,
-     *            then all identities will be listed.
+     *            then all identities are listed.
      *            </p>
      * @see IdentityType
      */
@@ -150,7 +163,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The type of the identities to list. Possible values are "EmailAddress"
-     * and "Domain". If this parameter is omitted, then all identities will be
+     * and "Domain". If this parameter is omitted, then all identities are
      * listed.
      * </p>
      * <p>
@@ -163,7 +176,7 @@ public class ListIdentitiesRequest extends AmazonWebServiceRequest implements Se
      * @param identityType <p>
      *            The type of the identities to list. Possible values are
      *            "EmailAddress" and "Domain". If this parameter is omitted,
-     *            then all identities will be listed.
+     *            then all identities are listed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

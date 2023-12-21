@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ public class PutConfigurationSetDeliveryOptionsRequest extends AmazonWebServiceR
         Serializable {
     /**
      * <p>
-     * The name of the configuration set that you want to specify the delivery
-     * options for.
+     * The name of the configuration set.
      * </p>
      */
     private String configurationSetName;
@@ -44,13 +43,11 @@ public class PutConfigurationSetDeliveryOptionsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the configuration set that you want to specify the delivery
-     * options for.
+     * The name of the configuration set.
      * </p>
      *
      * @return <p>
-     *         The name of the configuration set that you want to specify the
-     *         delivery options for.
+     *         The name of the configuration set.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -59,13 +56,11 @@ public class PutConfigurationSetDeliveryOptionsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the configuration set that you want to specify the delivery
-     * options for.
+     * The name of the configuration set.
      * </p>
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set that you want to specify the
-     *            delivery options for.
+     *            The name of the configuration set.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -74,16 +69,14 @@ public class PutConfigurationSetDeliveryOptionsRequest extends AmazonWebServiceR
 
     /**
      * <p>
-     * The name of the configuration set that you want to specify the delivery
-     * options for.
+     * The name of the configuration set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set that you want to specify the
-     *            delivery options for.
+     *            The name of the configuration set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -15,6 +15,7 @@
 
 package com.amazonaws.util;
 
+import com.amazonaws.BuildConfig;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -24,7 +25,7 @@ public class VersionInfoUtilsTest {
 
     @Test
     public void getVersion() {
-        assertEquals("2.22.6", VersionInfoUtils.getVersion());
+        assertEquals(BuildConfig.VERSION_NAME, VersionInfoUtils.getVersion());
     }
 
     @Test

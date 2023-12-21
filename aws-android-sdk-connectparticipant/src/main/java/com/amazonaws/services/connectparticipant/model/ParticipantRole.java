@@ -25,7 +25,8 @@ public enum ParticipantRole {
 
     AGENT("AGENT"),
     CUSTOMER("CUSTOMER"),
-    SYSTEM("SYSTEM");
+    SYSTEM("SYSTEM"),
+    CUSTOM_BOT("CUSTOM_BOT");
 
     private String value;
 
@@ -44,6 +45,7 @@ public enum ParticipantRole {
         enumMap.put("AGENT", AGENT);
         enumMap.put("CUSTOMER", CUSTOMER);
         enumMap.put("SYSTEM", SYSTEM);
+        enumMap.put("CUSTOM_BOT", CUSTOM_BOT);
     }
 
     /**

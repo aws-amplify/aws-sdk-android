@@ -106,6 +106,19 @@ class TranscriptionJobSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (transcriptionJobSummary.getToxicityDetection() != null) {
+            java.util.List<ToxicityDetectionSettings> toxicityDetection = transcriptionJobSummary
+                    .getToxicityDetection();
+            jsonWriter.name("ToxicityDetection");
+            jsonWriter.beginArray();
+            for (ToxicityDetectionSettings toxicityDetectionItem : toxicityDetection) {
+                if (toxicityDetectionItem != null) {
+                    ToxicityDetectionSettingsJsonMarshaller.getInstance().marshall(
+                            toxicityDetectionItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

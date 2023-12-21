@@ -199,6 +199,19 @@ public class StartTranscriptionJobRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (startTranscriptionJobRequest.getToxicityDetection() != null) {
+                java.util.List<ToxicityDetectionSettings> toxicityDetection = startTranscriptionJobRequest
+                        .getToxicityDetection();
+                jsonWriter.name("ToxicityDetection");
+                jsonWriter.beginArray();
+                for (ToxicityDetectionSettings toxicityDetectionItem : toxicityDetection) {
+                    if (toxicityDetectionItem != null) {
+                        ToxicityDetectionSettingsJsonMarshaller.getInstance().marshall(
+                                toxicityDetectionItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

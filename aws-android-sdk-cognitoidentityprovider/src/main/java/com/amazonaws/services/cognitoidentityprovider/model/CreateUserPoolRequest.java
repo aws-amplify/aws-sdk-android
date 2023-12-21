@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,10 +20,6 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * Creates a new Amazon Cognito user pool and sets the password policy for the
- * pool.
- * </p>
  * <note>
  * <p>
  * This action might generate an SMS text message. Starting June 1, 2021, US
@@ -43,10 +39,46 @@ import com.amazonaws.AmazonWebServiceRequest;
  * mode</a> </i>, you can send messages only to verified phone numbers. After
  * you test your app while in the sandbox environment, you can move out of the
  * sandbox and into production. For more information, see <a href=
- * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html"
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-sms-settings.html"
  * > SMS message settings for Amazon Cognito user pools</a> in the <i>Amazon
  * Cognito Developer Guide</i>.
  * </p>
+ * </note>
+ * <p>
+ * Creates a new Amazon Cognito user pool and sets the password policy for the
+ * pool.
+ * </p>
+ * <important>
+ * <p>
+ * If you don't provide a value for an attribute, Amazon Cognito sets it to its
+ * default value.
+ * </p>
+ * </important> <note>
+ * <p>
+ * Amazon Cognito evaluates Identity and Access Management (IAM) policies in
+ * requests for this API operation. For this operation, you must use IAM
+ * credentials to authorize requests, and you must grant yourself the
+ * corresponding IAM permission in a policy.
+ * </p>
+ * <p class="title">
+ * <b>Learn more</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-signing.html"
+ * >Signing Amazon Web Services API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
  * </note>
  */
 public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Serializable {
@@ -282,8 +314,15 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Enables advanced security risk detection. Set the key
-     * <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     * User pool add-ons. Contains settings for activation of advanced security
+     * features. To log user security information but take no action, set to
+     * <code>AUDIT</code>. To configure automatic security responses to risky
+     * traffic to your user pool, set to <code>ENFORCED</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     * >Adding advanced security to a user pool</a>.
      * </p>
      */
     private UserPoolAddOnsType userPoolAddOns;
@@ -291,9 +330,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Case sensitivity on the username input for the selected sign-in option.
-     * For example, when case sensitivity is set to <code>False</code>, users
-     * can sign in using either "username" or "Username". This configuration is
-     * immutable once it has been set. For more information, see <a href=
+     * When case sensitivity is set to <code>False</code> (case insensitive),
+     * users can sign in with any combination of capital and lowercase letters.
+     * For example, <code>username</code>, <code>USERNAME</code>, or
+     * <code>UserName</code>, or for email, <code>email@example.com</code> or
+     * <code>EMaiL@eXamplE.Com</code>. For most use cases, set case sensitivity
+     * to <code>False</code> (case insensitive) as a best practice. When
+     * usernames and email addresses are case insensitive, Amazon Cognito treats
+     * any variation in case as the same user, and prevents a case variation
+     * from being assigned to the same attribute for a different user.
+     * </p>
+     * <p>
+     * This configuration is immutable after you set it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
@@ -2005,13 +2054,28 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Enables advanced security risk detection. Set the key
-     * <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     * User pool add-ons. Contains settings for activation of advanced security
+     * features. To log user security information but take no action, set to
+     * <code>AUDIT</code>. To configure automatic security responses to risky
+     * traffic to your user pool, set to <code>ENFORCED</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     * >Adding advanced security to a user pool</a>.
      * </p>
      *
      * @return <p>
-     *         Enables advanced security risk detection. Set the key
-     *         <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     *         User pool add-ons. Contains settings for activation of advanced
+     *         security features. To log user security information but take no
+     *         action, set to <code>AUDIT</code>. To configure automatic
+     *         security responses to risky traffic to your user pool, set to
+     *         <code>ENFORCED</code>.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     *         >Adding advanced security to a user pool</a>.
      *         </p>
      */
     public UserPoolAddOnsType getUserPoolAddOns() {
@@ -2020,13 +2084,28 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Enables advanced security risk detection. Set the key
-     * <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     * User pool add-ons. Contains settings for activation of advanced security
+     * features. To log user security information but take no action, set to
+     * <code>AUDIT</code>. To configure automatic security responses to risky
+     * traffic to your user pool, set to <code>ENFORCED</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     * >Adding advanced security to a user pool</a>.
      * </p>
      *
      * @param userPoolAddOns <p>
-     *            Enables advanced security risk detection. Set the key
-     *            <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     *            User pool add-ons. Contains settings for activation of
+     *            advanced security features. To log user security information
+     *            but take no action, set to <code>AUDIT</code>. To configure
+     *            automatic security responses to risky traffic to your user
+     *            pool, set to <code>ENFORCED</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     *            >Adding advanced security to a user pool</a>.
      *            </p>
      */
     public void setUserPoolAddOns(UserPoolAddOnsType userPoolAddOns) {
@@ -2035,16 +2114,31 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Enables advanced security risk detection. Set the key
-     * <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     * User pool add-ons. Contains settings for activation of advanced security
+     * features. To log user security information but take no action, set to
+     * <code>AUDIT</code>. To configure automatic security responses to risky
+     * traffic to your user pool, set to <code>ENFORCED</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     * >Adding advanced security to a user pool</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param userPoolAddOns <p>
-     *            Enables advanced security risk detection. Set the key
-     *            <code>AdvancedSecurityMode</code> to the value "AUDIT".
+     *            User pool add-ons. Contains settings for activation of
+     *            advanced security features. To log user security information
+     *            but take no action, set to <code>AUDIT</code>. To configure
+     *            automatic security responses to risky traffic to your user
+     *            pool, set to <code>ENFORCED</code>.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"
+     *            >Adding advanced security to a user pool</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2057,19 +2151,39 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Case sensitivity on the username input for the selected sign-in option.
-     * For example, when case sensitivity is set to <code>False</code>, users
-     * can sign in using either "username" or "Username". This configuration is
-     * immutable once it has been set. For more information, see <a href=
+     * When case sensitivity is set to <code>False</code> (case insensitive),
+     * users can sign in with any combination of capital and lowercase letters.
+     * For example, <code>username</code>, <code>USERNAME</code>, or
+     * <code>UserName</code>, or for email, <code>email@example.com</code> or
+     * <code>EMaiL@eXamplE.Com</code>. For most use cases, set case sensitivity
+     * to <code>False</code> (case insensitive) as a best practice. When
+     * usernames and email addresses are case insensitive, Amazon Cognito treats
+     * any variation in case as the same user, and prevents a case variation
+     * from being assigned to the same attribute for a different user.
+     * </p>
+     * <p>
+     * This configuration is immutable after you set it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
      *
      * @return <p>
      *         Case sensitivity on the username input for the selected sign-in
-     *         option. For example, when case sensitivity is set to
-     *         <code>False</code>, users can sign in using either "username" or
-     *         "Username". This configuration is immutable once it has been set.
-     *         For more information, see <a href=
+     *         option. When case sensitivity is set to <code>False</code> (case
+     *         insensitive), users can sign in with any combination of capital
+     *         and lowercase letters. For example, <code>username</code>,
+     *         <code>USERNAME</code>, or <code>UserName</code>, or for email,
+     *         <code>email@example.com</code> or <code>EMaiL@eXamplE.Com</code>.
+     *         For most use cases, set case sensitivity to <code>False</code>
+     *         (case insensitive) as a best practice. When usernames and email
+     *         addresses are case insensitive, Amazon Cognito treats any
+     *         variation in case as the same user, and prevents a case variation
+     *         from being assigned to the same attribute for a different user.
+     *         </p>
+     *         <p>
+     *         This configuration is immutable after you set it. For more
+     *         information, see <a href=
      *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *         >UsernameConfigurationType</a>.
      *         </p>
@@ -2081,19 +2195,41 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Case sensitivity on the username input for the selected sign-in option.
-     * For example, when case sensitivity is set to <code>False</code>, users
-     * can sign in using either "username" or "Username". This configuration is
-     * immutable once it has been set. For more information, see <a href=
+     * When case sensitivity is set to <code>False</code> (case insensitive),
+     * users can sign in with any combination of capital and lowercase letters.
+     * For example, <code>username</code>, <code>USERNAME</code>, or
+     * <code>UserName</code>, or for email, <code>email@example.com</code> or
+     * <code>EMaiL@eXamplE.Com</code>. For most use cases, set case sensitivity
+     * to <code>False</code> (case insensitive) as a best practice. When
+     * usernames and email addresses are case insensitive, Amazon Cognito treats
+     * any variation in case as the same user, and prevents a case variation
+     * from being assigned to the same attribute for a different user.
+     * </p>
+     * <p>
+     * This configuration is immutable after you set it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
      *
      * @param usernameConfiguration <p>
      *            Case sensitivity on the username input for the selected
-     *            sign-in option. For example, when case sensitivity is set to
-     *            <code>False</code>, users can sign in using either "username"
-     *            or "Username". This configuration is immutable once it has
-     *            been set. For more information, see <a href=
+     *            sign-in option. When case sensitivity is set to
+     *            <code>False</code> (case insensitive), users can sign in with
+     *            any combination of capital and lowercase letters. For example,
+     *            <code>username</code>, <code>USERNAME</code>, or
+     *            <code>UserName</code>, or for email,
+     *            <code>email@example.com</code> or
+     *            <code>EMaiL@eXamplE.Com</code>. For most use cases, set case
+     *            sensitivity to <code>False</code> (case insensitive) as a best
+     *            practice. When usernames and email addresses are case
+     *            insensitive, Amazon Cognito treats any variation in case as
+     *            the same user, and prevents a case variation from being
+     *            assigned to the same attribute for a different user.
+     *            </p>
+     *            <p>
+     *            This configuration is immutable after you set it. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *            >UsernameConfigurationType</a>.
      *            </p>
@@ -2105,9 +2241,19 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Case sensitivity on the username input for the selected sign-in option.
-     * For example, when case sensitivity is set to <code>False</code>, users
-     * can sign in using either "username" or "Username". This configuration is
-     * immutable once it has been set. For more information, see <a href=
+     * When case sensitivity is set to <code>False</code> (case insensitive),
+     * users can sign in with any combination of capital and lowercase letters.
+     * For example, <code>username</code>, <code>USERNAME</code>, or
+     * <code>UserName</code>, or for email, <code>email@example.com</code> or
+     * <code>EMaiL@eXamplE.Com</code>. For most use cases, set case sensitivity
+     * to <code>False</code> (case insensitive) as a best practice. When
+     * usernames and email addresses are case insensitive, Amazon Cognito treats
+     * any variation in case as the same user, and prevents a case variation
+     * from being assigned to the same attribute for a different user.
+     * </p>
+     * <p>
+     * This configuration is immutable after you set it. For more information,
+     * see <a href=
      * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      * >UsernameConfigurationType</a>.
      * </p>
@@ -2117,10 +2263,22 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *
      * @param usernameConfiguration <p>
      *            Case sensitivity on the username input for the selected
-     *            sign-in option. For example, when case sensitivity is set to
-     *            <code>False</code>, users can sign in using either "username"
-     *            or "Username". This configuration is immutable once it has
-     *            been set. For more information, see <a href=
+     *            sign-in option. When case sensitivity is set to
+     *            <code>False</code> (case insensitive), users can sign in with
+     *            any combination of capital and lowercase letters. For example,
+     *            <code>username</code>, <code>USERNAME</code>, or
+     *            <code>UserName</code>, or for email,
+     *            <code>email@example.com</code> or
+     *            <code>EMaiL@eXamplE.Com</code>. For most use cases, set case
+     *            sensitivity to <code>False</code> (case insensitive) as a best
+     *            practice. When usernames and email addresses are case
+     *            insensitive, Amazon Cognito treats any variation in case as
+     *            the same user, and prevents a case variation from being
+     *            assigned to the same attribute for a different user.
+     *            </p>
+     *            <p>
+     *            This configuration is immutable after you set it. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
      *            >UsernameConfigurationType</a>.
      *            </p>

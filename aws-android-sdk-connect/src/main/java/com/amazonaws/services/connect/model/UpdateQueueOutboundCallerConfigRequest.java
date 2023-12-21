@@ -42,6 +42,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * UUID is provided in this scenario, you will receive a
  * <code>ResourceNotFoundException</code>.
  * </p>
+ * <p>
+ * Only use the phone number ARN format that doesn't contain
+ * <code>instance</code> in the path, for example,
+ * <code>arn:aws:connect:us-east-1:1234567890:phone-number/uuid</code>. This is
+ * the same ARN format that is returned when you call the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+ * >ListPhoneNumbersV2</a> API.
+ * </p>
  * </important>
  */
 public class UpdateQueueOutboundCallerConfigRequest extends AmazonWebServiceRequest implements

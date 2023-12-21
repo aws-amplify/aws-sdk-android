@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,6 +44,9 @@ public class SignUpResult implements Serializable {
      * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String userSub;
 
@@ -169,6 +172,9 @@ public class SignUpResult implements Serializable {
      * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The UUID of the authenticated user. This isn't the same as
@@ -184,6 +190,9 @@ public class SignUpResult implements Serializable {
      * The UUID of the authenticated user. This isn't the same as
      * <code>username</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userSub <p>
      *            The UUID of the authenticated user. This isn't the same as
@@ -202,6 +211,9 @@ public class SignUpResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param userSub <p>
      *            The UUID of the authenticated user. This isn't the same as

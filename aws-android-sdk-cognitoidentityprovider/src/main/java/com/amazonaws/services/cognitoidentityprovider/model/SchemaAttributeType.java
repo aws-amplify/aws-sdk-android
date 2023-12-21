@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,13 +19,25 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about the schema attribute.
+ * A list of the user attributes and their properties in your user pool. The
+ * attribute schema contains standard attributes, custom attributes with a
+ * <code>custom:</code> prefix, and developer attributes with a
+ * <code>dev:</code> prefix. For more information, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"
+ * >User pool attributes</a>.
+ * </p>
+ * <p>
+ * Developer-only attributes are a legacy feature of user pools, are read-only
+ * to all app clients. You can create and update developer-only attributes only
+ * with IAM-authenticated API operations. Use app client read/write permissions
+ * instead.
  * </p>
  */
 public class SchemaAttributeType implements Serializable {
     /**
      * <p>
-     * A schema attribute of the name type.
+     * The name of your user pool attribute, for example <code>username</code>
+     * or <code>custom:costcenter</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +48,7 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -70,11 +82,11 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that is mapped to an IdP attribute, you must
-     * set this parameter to <code>true</code>. Amazon Cognito updates mapped
-     * attributes when users sign in to your application through an IdP. If an
-     * attribute is immutable, Amazon Cognito throws an error when it attempts
-     * to update the attribute. For more information, see <a href=
+     * Any user pool attribute whose value you map from an IdP attribute must be
+     * mutable, with a parameter value of <code>true</code>. Amazon Cognito
+     * updates mapped attributes when users sign in to your application through
+     * an IdP. If an attribute is immutable, Amazon Cognito throws an error when
+     * it attempts to update the attribute. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
@@ -106,7 +118,8 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * A schema attribute of the name type.
+     * The name of your user pool attribute, for example <code>username</code>
+     * or <code>custom:costcenter</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -114,7 +127,8 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         A schema attribute of the name type.
+     *         The name of your user pool attribute, for example
+     *         <code>username</code> or <code>custom:costcenter</code>.
      *         </p>
      */
     public String getName() {
@@ -123,7 +137,8 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * A schema attribute of the name type.
+     * The name of your user pool attribute, for example <code>username</code>
+     * or <code>custom:costcenter</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -131,7 +146,8 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param name <p>
-     *            A schema attribute of the name type.
+     *            The name of your user pool attribute, for example
+     *            <code>username</code> or <code>custom:costcenter</code>.
      *            </p>
      */
     public void setName(String name) {
@@ -140,7 +156,8 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * A schema attribute of the name type.
+     * The name of your user pool attribute, for example <code>username</code>
+     * or <code>custom:costcenter</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +168,8 @@ public class SchemaAttributeType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param name <p>
-     *            A schema attribute of the name type.
+     *            The name of your user pool attribute, for example
+     *            <code>username</code> or <code>custom:costcenter</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -163,14 +181,14 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @return <p>
-     *         The attribute data type.
+     *         The data format of the values for your attribute.
      *         </p>
      * @see AttributeDataType
      */
@@ -180,14 +198,14 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The attribute data type.
+     *            The data format of the values for your attribute.
      *            </p>
      * @see AttributeDataType
      */
@@ -197,7 +215,7 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -207,7 +225,7 @@ public class SchemaAttributeType implements Serializable {
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The attribute data type.
+     *            The data format of the values for your attribute.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -220,14 +238,14 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The attribute data type.
+     *            The data format of the values for your attribute.
      *            </p>
      * @see AttributeDataType
      */
@@ -237,7 +255,7 @@ public class SchemaAttributeType implements Serializable {
 
     /**
      * <p>
-     * The attribute data type.
+     * The data format of the values for your attribute.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -247,7 +265,7 @@ public class SchemaAttributeType implements Serializable {
      * <b>Allowed Values: </b>String, Number, DateTime, Boolean
      *
      * @param attributeDataType <p>
-     *            The attribute data type.
+     *            The data format of the values for your attribute.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -433,11 +451,11 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that is mapped to an IdP attribute, you must
-     * set this parameter to <code>true</code>. Amazon Cognito updates mapped
-     * attributes when users sign in to your application through an IdP. If an
-     * attribute is immutable, Amazon Cognito throws an error when it attempts
-     * to update the attribute. For more information, see <a href=
+     * Any user pool attribute whose value you map from an IdP attribute must be
+     * mutable, with a parameter value of <code>true</code>. Amazon Cognito
+     * updates mapped attributes when users sign in to your application through
+     * an IdP. If an attribute is immutable, Amazon Cognito throws an error when
+     * it attempts to update the attribute. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
@@ -446,12 +464,12 @@ public class SchemaAttributeType implements Serializable {
      *         Specifies whether the value of the attribute can be changed.
      *         </p>
      *         <p>
-     *         For any user pool attribute that is mapped to an IdP attribute,
-     *         you must set this parameter to <code>true</code>. Amazon Cognito
-     *         updates mapped attributes when users sign in to your application
-     *         through an IdP. If an attribute is immutable, Amazon Cognito
-     *         throws an error when it attempts to update the attribute. For
-     *         more information, see <a href=
+     *         Any user pool attribute whose value you map from an IdP attribute
+     *         must be mutable, with a parameter value of <code>true</code>.
+     *         Amazon Cognito updates mapped attributes when users sign in to
+     *         your application through an IdP. If an attribute is immutable,
+     *         Amazon Cognito throws an error when it attempts to update the
+     *         attribute. For more information, see <a href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
@@ -466,11 +484,11 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that is mapped to an IdP attribute, you must
-     * set this parameter to <code>true</code>. Amazon Cognito updates mapped
-     * attributes when users sign in to your application through an IdP. If an
-     * attribute is immutable, Amazon Cognito throws an error when it attempts
-     * to update the attribute. For more information, see <a href=
+     * Any user pool attribute whose value you map from an IdP attribute must be
+     * mutable, with a parameter value of <code>true</code>. Amazon Cognito
+     * updates mapped attributes when users sign in to your application through
+     * an IdP. If an attribute is immutable, Amazon Cognito throws an error when
+     * it attempts to update the attribute. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
@@ -479,12 +497,12 @@ public class SchemaAttributeType implements Serializable {
      *         Specifies whether the value of the attribute can be changed.
      *         </p>
      *         <p>
-     *         For any user pool attribute that is mapped to an IdP attribute,
-     *         you must set this parameter to <code>true</code>. Amazon Cognito
-     *         updates mapped attributes when users sign in to your application
-     *         through an IdP. If an attribute is immutable, Amazon Cognito
-     *         throws an error when it attempts to update the attribute. For
-     *         more information, see <a href=
+     *         Any user pool attribute whose value you map from an IdP attribute
+     *         must be mutable, with a parameter value of <code>true</code>.
+     *         Amazon Cognito updates mapped attributes when users sign in to
+     *         your application through an IdP. If an attribute is immutable,
+     *         Amazon Cognito throws an error when it attempts to update the
+     *         attribute. For more information, see <a href=
      *         "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *         >Specifying Identity Provider Attribute Mappings for Your User
      *         Pool</a>.
@@ -499,11 +517,11 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that is mapped to an IdP attribute, you must
-     * set this parameter to <code>true</code>. Amazon Cognito updates mapped
-     * attributes when users sign in to your application through an IdP. If an
-     * attribute is immutable, Amazon Cognito throws an error when it attempts
-     * to update the attribute. For more information, see <a href=
+     * Any user pool attribute whose value you map from an IdP attribute must be
+     * mutable, with a parameter value of <code>true</code>. Amazon Cognito
+     * updates mapped attributes when users sign in to your application through
+     * an IdP. If an attribute is immutable, Amazon Cognito throws an error when
+     * it attempts to update the attribute. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
@@ -512,12 +530,13 @@ public class SchemaAttributeType implements Serializable {
      *            Specifies whether the value of the attribute can be changed.
      *            </p>
      *            <p>
-     *            For any user pool attribute that is mapped to an IdP
-     *            attribute, you must set this parameter to <code>true</code>.
-     *            Amazon Cognito updates mapped attributes when users sign in to
-     *            your application through an IdP. If an attribute is immutable,
-     *            Amazon Cognito throws an error when it attempts to update the
-     *            attribute. For more information, see <a href=
+     *            Any user pool attribute whose value you map from an IdP
+     *            attribute must be mutable, with a parameter value of
+     *            <code>true</code>. Amazon Cognito updates mapped attributes
+     *            when users sign in to your application through an IdP. If an
+     *            attribute is immutable, Amazon Cognito throws an error when it
+     *            attempts to update the attribute. For more information, see <a
+     *            href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *            >Specifying Identity Provider Attribute Mappings for Your User
      *            Pool</a>.
@@ -532,11 +551,11 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the value of the attribute can be changed.
      * </p>
      * <p>
-     * For any user pool attribute that is mapped to an IdP attribute, you must
-     * set this parameter to <code>true</code>. Amazon Cognito updates mapped
-     * attributes when users sign in to your application through an IdP. If an
-     * attribute is immutable, Amazon Cognito throws an error when it attempts
-     * to update the attribute. For more information, see <a href=
+     * Any user pool attribute whose value you map from an IdP attribute must be
+     * mutable, with a parameter value of <code>true</code>. Amazon Cognito
+     * updates mapped attributes when users sign in to your application through
+     * an IdP. If an attribute is immutable, Amazon Cognito throws an error when
+     * it attempts to update the attribute. For more information, see <a href=
      * "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      * >Specifying Identity Provider Attribute Mappings for Your User Pool</a>.
      * </p>
@@ -548,12 +567,13 @@ public class SchemaAttributeType implements Serializable {
      *            Specifies whether the value of the attribute can be changed.
      *            </p>
      *            <p>
-     *            For any user pool attribute that is mapped to an IdP
-     *            attribute, you must set this parameter to <code>true</code>.
-     *            Amazon Cognito updates mapped attributes when users sign in to
-     *            your application through an IdP. If an attribute is immutable,
-     *            Amazon Cognito throws an error when it attempts to update the
-     *            attribute. For more information, see <a href=
+     *            Any user pool attribute whose value you map from an IdP
+     *            attribute must be mutable, with a parameter value of
+     *            <code>true</code>. Amazon Cognito updates mapped attributes
+     *            when users sign in to your application through an IdP. If an
+     *            attribute is immutable, Amazon Cognito throws an error when it
+     *            attempts to update the attribute. For more information, see <a
+     *            href=
      *            "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-specifying-attribute-mapping.html"
      *            >Specifying Identity Provider Attribute Mappings for Your User
      *            Pool</a>.

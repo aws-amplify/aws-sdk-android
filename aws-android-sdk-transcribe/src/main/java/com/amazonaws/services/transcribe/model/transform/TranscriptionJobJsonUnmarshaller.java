@@ -114,6 +114,12 @@ class TranscriptionJobJsonUnmarshaller implements
                         LanguageIdSettingsJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("ToxicityDetection")) {
+                transcriptionJob
+                        .setToxicityDetection(new ListUnmarshaller<ToxicityDetectionSettings>(
+                                ToxicityDetectionSettingsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

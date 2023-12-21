@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,19 +22,19 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Generates and sends a bounce message to the sender of an email you received
- * through Amazon SES. You can only use this API on an email up to 24 hours
- * after you receive it.
+ * through Amazon SES. You can only use this operation on an email up to 24
+ * hours after you receive it.
  * </p>
  * <note>
  * <p>
- * You cannot use this API to send generic bounces for mail that was not
+ * You cannot use this operation to send generic bounces for mail that was not
  * received by Amazon SES.
  * </p>
  * </note>
  * <p>
- * For information about receiving email through Amazon SES, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
- * >Amazon SES Developer Guide</a>.
+ * For information about receiving email through Amazon SES, see the <a
+ * href="https://docs.aws.amazon.com/ses/latest/dg/receiving-email.html">Amazon
+ * SES Developer Guide</a>.
  * </p>
  * <p>
  * You can execute this operation no more than once per second.
@@ -59,7 +59,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * Human-readable text for the bounce message to explain the failure. If not
-     * specified, the text will be auto-generated based on the bounced recipient
+     * specified, the text is auto-generated based on the bounced recipient
      * information.
      * </p>
      */
@@ -67,7 +67,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * Message-related DSN fields. If not specified, Amazon SES will choose the
+     * Message-related DSN fields. If not specified, Amazon SES chooses the
      * values.
      * </p>
      */
@@ -89,7 +89,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      * the identity that is associated with the sending authorization policy
      * that permits you to use the address in the "From" header of the bounce.
      * For more information about sending authorization, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      */
@@ -196,14 +196,14 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * Human-readable text for the bounce message to explain the failure. If not
-     * specified, the text will be auto-generated based on the bounced recipient
+     * specified, the text is auto-generated based on the bounced recipient
      * information.
      * </p>
      *
      * @return <p>
      *         Human-readable text for the bounce message to explain the
-     *         failure. If not specified, the text will be auto-generated based
-     *         on the bounced recipient information.
+     *         failure. If not specified, the text is auto-generated based on
+     *         the bounced recipient information.
      *         </p>
      */
     public String getExplanation() {
@@ -213,14 +213,14 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * Human-readable text for the bounce message to explain the failure. If not
-     * specified, the text will be auto-generated based on the bounced recipient
+     * specified, the text is auto-generated based on the bounced recipient
      * information.
      * </p>
      *
      * @param explanation <p>
      *            Human-readable text for the bounce message to explain the
-     *            failure. If not specified, the text will be auto-generated
-     *            based on the bounced recipient information.
+     *            failure. If not specified, the text is auto-generated based on
+     *            the bounced recipient information.
      *            </p>
      */
     public void setExplanation(String explanation) {
@@ -230,7 +230,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * Human-readable text for the bounce message to explain the failure. If not
-     * specified, the text will be auto-generated based on the bounced recipient
+     * specified, the text is auto-generated based on the bounced recipient
      * information.
      * </p>
      * <p>
@@ -239,8 +239,8 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      *
      * @param explanation <p>
      *            Human-readable text for the bounce message to explain the
-     *            failure. If not specified, the text will be auto-generated
-     *            based on the bounced recipient information.
+     *            failure. If not specified, the text is auto-generated based on
+     *            the bounced recipient information.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -252,13 +252,13 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * Message-related DSN fields. If not specified, Amazon SES will choose the
+     * Message-related DSN fields. If not specified, Amazon SES chooses the
      * values.
      * </p>
      *
      * @return <p>
-     *         Message-related DSN fields. If not specified, Amazon SES will
-     *         choose the values.
+     *         Message-related DSN fields. If not specified, Amazon SES chooses
+     *         the values.
      *         </p>
      */
     public MessageDsn getMessageDsn() {
@@ -267,13 +267,13 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * Message-related DSN fields. If not specified, Amazon SES will choose the
+     * Message-related DSN fields. If not specified, Amazon SES chooses the
      * values.
      * </p>
      *
      * @param messageDsn <p>
-     *            Message-related DSN fields. If not specified, Amazon SES will
-     *            choose the values.
+     *            Message-related DSN fields. If not specified, Amazon SES
+     *            chooses the values.
      *            </p>
      */
     public void setMessageDsn(MessageDsn messageDsn) {
@@ -282,7 +282,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * Message-related DSN fields. If not specified, Amazon SES will choose the
+     * Message-related DSN fields. If not specified, Amazon SES chooses the
      * values.
      * </p>
      * <p>
@@ -290,8 +290,8 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      * together.
      *
      * @param messageDsn <p>
-     *            Message-related DSN fields. If not specified, Amazon SES will
-     *            choose the values.
+     *            Message-related DSN fields. If not specified, Amazon SES
+     *            chooses the values.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -410,7 +410,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      * the identity that is associated with the sending authorization policy
      * that permits you to use the address in the "From" header of the bounce.
      * For more information about sending authorization, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -420,7 +420,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      *         authorization policy that permits you to use the address in the
      *         "From" header of the bounce. For more information about sending
      *         authorization, see the <a href=
-     *         "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *         "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      *         >Amazon SES Developer Guide</a>.
      *         </p>
      */
@@ -434,7 +434,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      * the identity that is associated with the sending authorization policy
      * that permits you to use the address in the "From" header of the bounce.
      * For more information about sending authorization, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      *
@@ -444,7 +444,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      *            authorization policy that permits you to use the address in
      *            the "From" header of the bounce. For more information about
      *            sending authorization, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      */
@@ -458,7 +458,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      * the identity that is associated with the sending authorization policy
      * that permits you to use the address in the "From" header of the bounce.
      * For more information about sending authorization, see the <a href=
-     * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     * "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      * >Amazon SES Developer Guide</a>.
      * </p>
      * <p>
@@ -471,7 +471,7 @@ public class SendBounceRequest extends AmazonWebServiceRequest implements Serial
      *            authorization policy that permits you to use the address in
      *            the "From" header of the bounce. For more information about
      *            sending authorization, see the <a href=
-     *            "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html"
+     *            "https://docs.aws.amazon.com/ses/latest/dg/sending-authorization.html"
      *            >Amazon SES Developer Guide</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

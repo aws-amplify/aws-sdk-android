@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class GetUserResult implements Serializable {
     /**
      * <p>
-     * The user name of the user you want to retrieve from the get user request.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,6 +61,9 @@ public class GetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String preferredMfaSetting;
 
@@ -74,7 +77,7 @@ public class GetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user you want to retrieve from the get user request.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,8 +85,7 @@ public class GetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user you want to retrieve from the get user
-     *         request.
+     *         The username of the user that you requested.
      *         </p>
      */
     public String getUsername() {
@@ -92,7 +94,7 @@ public class GetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user you want to retrieve from the get user request.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -100,8 +102,7 @@ public class GetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to retrieve from the get
-     *            user request.
+     *            The username of the user that you requested.
      *            </p>
      */
     public void setUsername(String username) {
@@ -110,7 +111,7 @@ public class GetUserResult implements Serializable {
 
     /**
      * <p>
-     * The user name of the user you want to retrieve from the get user request.
+     * The username of the user that you requested.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -121,8 +122,7 @@ public class GetUserResult implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to retrieve from the get
-     *            user request.
+     *            The username of the user that you requested.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -352,6 +352,9 @@ public class GetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The user's preferred MFA setting.
@@ -365,6 +368,9 @@ public class GetUserResult implements Serializable {
      * <p>
      * The user's preferred MFA setting.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param preferredMfaSetting <p>
      *            The user's preferred MFA setting.
@@ -381,6 +387,9 @@ public class GetUserResult implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param preferredMfaSetting <p>
      *            The user's preferred MFA setting.

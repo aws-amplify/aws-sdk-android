@@ -15,6 +15,7 @@
 
 package com.amazonaws.util;
 
+import com.amazonaws.BuildConfig;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
@@ -26,7 +27,7 @@ public class VersionInfoUtils {
     private static final int DEFAULT_STRING_LENGTH = 128;
 
     /** SDK version info */
-    private static volatile String version = "2.22.6";
+    private static volatile String version = BuildConfig.VERSION_NAME;
                                                                 // changed build
                                                                 // logic
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,10 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Enables or disables email sending for messages sent using a specific
- * configuration set in a given AWS Region. You can use this operation in
- * conjunction with Amazon CloudWatch alarms to temporarily pause email sending
- * for a configuration set when the reputation metrics for that configuration
- * set (such as your bounce on complaint rate) exceed certain thresholds.
+ * configuration set in a given Amazon Web Services Region. You can use this
+ * operation in conjunction with Amazon CloudWatch alarms to temporarily pause
+ * email sending for a configuration set when the reputation metrics for that
+ * configuration set (such as your bounce on complaint rate) exceed certain
+ * thresholds.
  * </p>
  * <p>
  * You can execute this operation no more than once per second.
@@ -35,7 +36,7 @@ public class UpdateConfigurationSetSendingEnabledRequest extends AmazonWebServic
         Serializable {
     /**
      * <p>
-     * The name of the configuration set that you want to update.
+     * The name of the configuration set to update.
      * </p>
      */
     private String configurationSetName;
@@ -50,11 +51,11 @@ public class UpdateConfigurationSetSendingEnabledRequest extends AmazonWebServic
 
     /**
      * <p>
-     * The name of the configuration set that you want to update.
+     * The name of the configuration set to update.
      * </p>
      *
      * @return <p>
-     *         The name of the configuration set that you want to update.
+     *         The name of the configuration set to update.
      *         </p>
      */
     public String getConfigurationSetName() {
@@ -63,11 +64,11 @@ public class UpdateConfigurationSetSendingEnabledRequest extends AmazonWebServic
 
     /**
      * <p>
-     * The name of the configuration set that you want to update.
+     * The name of the configuration set to update.
      * </p>
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set that you want to update.
+     *            The name of the configuration set to update.
      *            </p>
      */
     public void setConfigurationSetName(String configurationSetName) {
@@ -76,14 +77,14 @@ public class UpdateConfigurationSetSendingEnabledRequest extends AmazonWebServic
 
     /**
      * <p>
-     * The name of the configuration set that you want to update.
+     * The name of the configuration set to update.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param configurationSetName <p>
-     *            The name of the configuration set that you want to update.
+     *            The name of the configuration set to update.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

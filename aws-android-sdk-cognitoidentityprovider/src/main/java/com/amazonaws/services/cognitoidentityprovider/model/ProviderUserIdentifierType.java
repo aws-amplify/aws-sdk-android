@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The name of the provider attribute to link to, such as
      * <code>NameID</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String providerAttributeName;
 
@@ -47,6 +50,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The value of the provider attribute to link to, such as
      * <code>xxxxx_account</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      */
     private String providerAttributeValue;
 
@@ -115,6 +121,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The name of the provider attribute to link to, such as
      * <code>NameID</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The name of the provider attribute to link to, such as
@@ -130,6 +139,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The name of the provider attribute to link to, such as
      * <code>NameID</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param providerAttributeName <p>
      *            The name of the provider attribute to link to, such as
@@ -148,6 +160,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param providerAttributeName <p>
      *            The name of the provider attribute to link to, such as
@@ -166,6 +181,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The value of the provider attribute to link to, such as
      * <code>xxxxx_account</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @return <p>
      *         The value of the provider attribute to link to, such as
@@ -181,6 +199,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * The value of the provider attribute to link to, such as
      * <code>xxxxx_account</code>.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param providerAttributeValue <p>
      *            The value of the provider attribute to link to, such as
@@ -199,6 +220,9 @@ public class ProviderUserIdentifierType implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 131072<br/>
      *
      * @param providerAttributeValue <p>
      *            The value of the provider attribute to link to, such as

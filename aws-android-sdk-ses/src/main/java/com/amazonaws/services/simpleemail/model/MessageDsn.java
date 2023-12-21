@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,9 +23,9 @@ import java.io.Serializable;
  * (DSN) when an email that Amazon SES receives on your behalf bounces.
  * </p>
  * <p>
- * For information about receiving email through Amazon SES, see the <a href=
- * "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email.html"
- * >Amazon SES Developer Guide</a>.
+ * For information about receiving email through Amazon SES, see the <a
+ * href="https://docs.aws.amazon.com/ses/latest/dg/receiving-email.html">Amazon
+ * SES Developer Guide</a>.
  * </p>
  */
 public class MessageDsn implements Serializable {
