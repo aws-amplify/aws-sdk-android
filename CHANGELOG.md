@@ -1,3 +1,10 @@
+## [Release 2.74.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.74.0)
+
+### Features
+- **misc:** support for Calgary region launch ([#3508](https://github.com/aws-amplify/aws-sdk-android/issues/3508))
+
+[See all changes between 2.73.0 and 2.74.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.73.0...release_v2.74.0)
+
 ## [Release 2.73.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.73.0)
 
 ### Features
