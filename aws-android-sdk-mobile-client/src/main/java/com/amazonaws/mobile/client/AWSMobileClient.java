@@ -91,6 +91,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.Cogn
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ForgotPasswordContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.CognitoNotAuthorizedException;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
@@ -2045,7 +2046,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
-                                signalTokensNotAvailable(null);
+                                signalTokensNotAvailable(new CognitoNotAuthorizedException("No valid tokens on device."));
                             }
 
                             @Override
