@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the specified user account. You can <a href=
+ * Describes the specified user. You can <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
  * >find the instance ID in the Amazon Connect console</a> (it’s the final part
  * of the ARN). The console does not display the user IDs. Instead, list the

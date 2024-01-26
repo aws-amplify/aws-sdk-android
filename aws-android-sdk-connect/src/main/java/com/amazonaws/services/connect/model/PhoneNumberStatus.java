@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.io.Serializable;
  * <li>
  * <p>
  * <code>CLAIMED</code> means the previous <a href=
- * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
- * >ClaimedPhoneNumber</a> or <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+ * >ClaimPhoneNumber</a> or <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
  * >UpdatePhoneNumber</a> operation succeeded.
  * </p>
@@ -34,10 +34,12 @@ import java.io.Serializable;
  * <li>
  * <p>
  * <code>IN_PROGRESS</code> means a <a href=
- * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
- * >ClaimedPhoneNumber</a> or <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+ * >ClaimPhoneNumber</a>, <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
- * >UpdatePhoneNumber</a> operation is still in progress and has not yet
+ * >UpdatePhoneNumber</a>, or <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+ * >UpdatePhoneNumberMetadata</a> operation is still in progress and has not yet
  * completed. You can call <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
  * >DescribePhoneNumber</a> at a later time to verify if the previous operation
@@ -47,8 +49,8 @@ import java.io.Serializable;
  * <li>
  * <p>
  * <code>FAILED</code> indicates that the previous <a href=
- * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
- * >ClaimedPhoneNumber</a> or <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+ * >ClaimPhoneNumber</a> or <a href=
  * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
  * >UpdatePhoneNumber</a> operation has failed. It will include a message
  * indicating the failure reason. A common reason for a failure may be that the

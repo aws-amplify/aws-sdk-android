@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <important>
  * <p>
  * To release phone numbers from a traffic distribution group, use the
- * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+ * <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin website.
  * </p>
  * <p>
  * After releasing a phone number, the phone number enters into a cooldown

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -345,6 +345,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new AccessDeniedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ContactFlowNotPublishedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ContactNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new DestinationNotAllowedExceptionUnmarshaller());
@@ -358,6 +359,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
         jsonErrorUnmarshallers.add(new LimitExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new MaximumResultReturnedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new OutboundContactNotPermittedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new OutputTypeNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new PropertyValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceInUseExceptionUnmarshaller());
@@ -365,6 +367,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
         jsonErrorUnmarshallers.add(new ResourceNotReadyExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
@@ -430,6 +433,64 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ActivateEvaluationFormResult, JsonUnmarshallerContext> unmarshaller = new ActivateEvaluationFormResultJsonUnmarshaller();
             JsonResponseHandler<ActivateEvaluationFormResult> responseHandler = new JsonResponseHandler<ActivateEvaluationFormResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Associates the specified dataset for a Amazon Connect instance with the
+     * target account. You can associate only one dataset in a single call.
+     * </p>
+     * 
+     * @param associateAnalyticsDataSetRequest
+     * @return associateAnalyticsDataSetResult The response from the
+     *         AssociateAnalyticsDataSet service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public AssociateAnalyticsDataSetResult associateAnalyticsDataSet(
+            AssociateAnalyticsDataSetRequest associateAnalyticsDataSetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateAnalyticsDataSetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateAnalyticsDataSetRequest> request = null;
+        Response<AssociateAnalyticsDataSetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateAnalyticsDataSetRequestMarshaller()
+                        .marshall(associateAnalyticsDataSetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AssociateAnalyticsDataSetResult, JsonUnmarshallerContext> unmarshaller = new AssociateAnalyticsDataSetResultJsonUnmarshaller();
+            JsonResponseHandler<AssociateAnalyticsDataSetResult> responseHandler = new JsonResponseHandler<AssociateAnalyticsDataSetResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -586,6 +647,57 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<AssociateDefaultVocabularyResult, JsonUnmarshallerContext> unmarshaller = new AssociateDefaultVocabularyResultJsonUnmarshaller();
             JsonResponseHandler<AssociateDefaultVocabularyResult> responseHandler = new JsonResponseHandler<AssociateDefaultVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Associates a connect resource to a flow.
+     * </p>
+     * 
+     * @param associateFlowRequest
+     * @return associateFlowResult The response from the AssociateFlow service
+     *         method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public AssociateFlowResult associateFlow(AssociateFlowRequest associateFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateFlowRequest> request = null;
+        Response<AssociateFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateFlowRequestMarshaller().marshall(associateFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AssociateFlowResult, JsonUnmarshallerContext> unmarshaller = new AssociateFlowResultJsonUnmarshaller();
+            JsonResponseHandler<AssociateFlowResult> responseHandler = new JsonResponseHandler<AssociateFlowResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1024,6 +1136,287 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<AssociateTrafficDistributionGroupUserResult, JsonUnmarshallerContext> unmarshaller = new AssociateTrafficDistributionGroupUserResultJsonUnmarshaller();
             JsonResponseHandler<AssociateTrafficDistributionGroupUserResult> responseHandler = new JsonResponseHandler<AssociateTrafficDistributionGroupUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * &gt;Associates a set of proficiencies with a user.
+     * </p>
+     * 
+     * @param associateUserProficienciesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void associateUserProficiencies(
+            AssociateUserProficienciesRequest associateUserProficienciesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateUserProficienciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateUserProficienciesRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateUserProficienciesRequestMarshaller()
+                        .marshall(associateUserProficienciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Associates a list of analytics datasets for a given Amazon Connect
+     * instance to a target account. You can associate multiple datasets in a
+     * single call.
+     * </p>
+     * 
+     * @param batchAssociateAnalyticsDataSetRequest
+     * @return batchAssociateAnalyticsDataSetResult The response from the
+     *         BatchAssociateAnalyticsDataSet service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public BatchAssociateAnalyticsDataSetResult batchAssociateAnalyticsDataSet(
+            BatchAssociateAnalyticsDataSetRequest batchAssociateAnalyticsDataSetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchAssociateAnalyticsDataSetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchAssociateAnalyticsDataSetRequest> request = null;
+        Response<BatchAssociateAnalyticsDataSetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchAssociateAnalyticsDataSetRequestMarshaller()
+                        .marshall(batchAssociateAnalyticsDataSetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchAssociateAnalyticsDataSetResult, JsonUnmarshallerContext> unmarshaller = new BatchAssociateAnalyticsDataSetResultJsonUnmarshaller();
+            JsonResponseHandler<BatchAssociateAnalyticsDataSetResult> responseHandler = new JsonResponseHandler<BatchAssociateAnalyticsDataSetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Removes a list of analytics datasets associated with a given Amazon
+     * Connect instance. You can disassociate multiple datasets in a single
+     * call.
+     * </p>
+     * 
+     * @param batchDisassociateAnalyticsDataSetRequest
+     * @return batchDisassociateAnalyticsDataSetResult The response from the
+     *         BatchDisassociateAnalyticsDataSet service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public BatchDisassociateAnalyticsDataSetResult batchDisassociateAnalyticsDataSet(
+            BatchDisassociateAnalyticsDataSetRequest batchDisassociateAnalyticsDataSetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchDisassociateAnalyticsDataSetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchDisassociateAnalyticsDataSetRequest> request = null;
+        Response<BatchDisassociateAnalyticsDataSetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchDisassociateAnalyticsDataSetRequestMarshaller()
+                        .marshall(batchDisassociateAnalyticsDataSetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchDisassociateAnalyticsDataSetResult, JsonUnmarshallerContext> unmarshaller = new BatchDisassociateAnalyticsDataSetResultJsonUnmarshaller();
+            JsonResponseHandler<BatchDisassociateAnalyticsDataSetResult> responseHandler = new JsonResponseHandler<BatchDisassociateAnalyticsDataSetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieve the flow associations for the given resources.
+     * </p>
+     * 
+     * @param batchGetFlowAssociationRequest
+     * @return batchGetFlowAssociationResult The response from the
+     *         BatchGetFlowAssociation service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public BatchGetFlowAssociationResult batchGetFlowAssociation(
+            BatchGetFlowAssociationRequest batchGetFlowAssociationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchGetFlowAssociationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchGetFlowAssociationRequest> request = null;
+        Response<BatchGetFlowAssociationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchGetFlowAssociationRequestMarshaller()
+                        .marshall(batchGetFlowAssociationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchGetFlowAssociationResult, JsonUnmarshallerContext> unmarshaller = new BatchGetFlowAssociationResultJsonUnmarshaller();
+            JsonResponseHandler<BatchGetFlowAssociationResult> responseHandler = new JsonResponseHandler<BatchGetFlowAssociationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <note>
+     * <p>
+     * Only the Amazon Connect outbound campaigns service principal is allowed
+     * to assume a role in your account and call this API.
+     * </p>
+     * </note>
+     * <p>
+     * Allows you to create a batch of contacts in Amazon Connect. The outbound
+     * campaigns capability ingests dial requests via the <a href=
+     * "https://docs.aws.amazon.com/connect-outbound/latest/APIReference/API_PutDialRequestBatch.html"
+     * >PutDialRequestBatch</a> API. It then uses BatchPutContact to create
+     * contacts corresponding to those dial requests. If agents are available,
+     * the dial requests are dialed out, which results in a voice call. The
+     * resulting voice call uses the same contactId that was created by
+     * BatchPutContact.
+     * </p>
+     * 
+     * @param batchPutContactRequest
+     * @return batchPutContactResult The response from the BatchPutContact
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws IdempotencyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public BatchPutContactResult batchPutContact(BatchPutContactRequest batchPutContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchPutContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchPutContactRequest> request = null;
+        Response<BatchPutContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchPutContactRequestMarshaller().marshall(batchPutContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchPutContactResult, JsonUnmarshallerContext> unmarshaller = new BatchPutContactResultJsonUnmarshaller();
+            JsonResponseHandler<BatchPutContactResult> responseHandler = new JsonResponseHandler<BatchPutContactResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1597,6 +1990,112 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Enables rehydration of chats for the lifespan of a contact. For more
+     * information about chat rehydration, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-persistence.html"
+     * >Enable persistent chat</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
+     * 
+     * @param createPersistentContactAssociationRequest
+     * @return createPersistentContactAssociationResult The response from the
+     *         CreatePersistentContactAssociation service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreatePersistentContactAssociationResult createPersistentContactAssociation(
+            CreatePersistentContactAssociationRequest createPersistentContactAssociationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createPersistentContactAssociationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreatePersistentContactAssociationRequest> request = null;
+        Response<CreatePersistentContactAssociationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreatePersistentContactAssociationRequestMarshaller()
+                        .marshall(createPersistentContactAssociationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreatePersistentContactAssociationResult, JsonUnmarshallerContext> unmarshaller = new CreatePersistentContactAssociationResultJsonUnmarshaller();
+            JsonResponseHandler<CreatePersistentContactAssociationResult> responseHandler = new JsonResponseHandler<CreatePersistentContactAssociationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new predefined attribute for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param createPredefinedAttributeRequest
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void createPredefinedAttribute(
+            CreatePredefinedAttributeRequest createPredefinedAttributeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createPredefinedAttributeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreatePredefinedAttributeRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreatePredefinedAttributeRequestMarshaller()
+                        .marshall(createPredefinedAttributeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a prompt. For more information about prompts, such as supported
      * file types and maximum length, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/prompts.html"
@@ -1658,20 +2157,21 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Creates a new queue for the specified Amazon Connect instance.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -1680,6 +2180,18 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param createQueueRequest
@@ -1897,10 +2409,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Creates a security profile.
      * </p>
      * 
@@ -2012,6 +2520,19 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Creates a traffic distribution group given an Amazon Connect instance
      * that has been replicated.
      * </p>
+     * <note>
+     * <p>
+     * The <code>SignInConfig</code> distribution is available only on a default
+     * <code>TrafficDistributionGroup</code> (see the <code>IsDefault</code>
+     * parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
+     * <code>UpdateTrafficDistribution</code> with a modified
+     * <code>SignInConfig</code> and a non-default
+     * <code>TrafficDistributionGroup</code>, an
+     * <code>InvalidRequestException</code> is returned.
+     * </p>
+     * </note>
      * <p>
      * For more information about creating traffic distribution groups, see <a
      * href=
@@ -2125,9 +2646,19 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * <p>
      * Creates a user account for the specified Amazon Connect instance.
      * </p>
+     * <important>
      * <p>
-     * For information about how to create user accounts using the Amazon
-     * Connect console, see <a href=
+     * Certain <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UserIdentityInfo.html"
+     * >UserIdentityInfo</a> parameters are required in some situations. For
+     * example, <code>Email</code> is required if you are using SAML for
+     * identity management. <code>FirstName</code> and <code>LastName</code> are
+     * required if you are using Amazon Connect or SAML for identity management.
+     * </p>
+     * </important>
+     * <p>
+     * For information about how to create users using the Amazon Connect admin
+     * website, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
      * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
@@ -2223,6 +2754,136 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<CreateUserHierarchyGroupResult, JsonUnmarshallerContext> unmarshaller = new CreateUserHierarchyGroupResultJsonUnmarshaller();
             JsonResponseHandler<CreateUserHierarchyGroupResult> responseHandler = new JsonResponseHandler<CreateUserHierarchyGroupResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new view with the possible status of <code>SAVED</code> or
+     * <code>PUBLISHED</code>.
+     * </p>
+     * <p>
+     * The views will have a unique name for each connect instance.
+     * </p>
+     * <p>
+     * It performs basic content validation if the status is <code>SAVED</code>
+     * or full content validation if the status is set to <code>PUBLISHED</code>
+     * . An error is returned if validation fails. It associates either the
+     * <code>$SAVED</code> qualifier or both of the <code>$SAVED</code> and
+     * <code>$LATEST</code> qualifiers with the provided view content based on
+     * the status. The view is idempotent if ClientToken is provided.
+     * </p>
+     * 
+     * @param createViewRequest
+     * @return createViewResult The response from the CreateView service method,
+     *         as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws DuplicateResourceException
+     * @throws ServiceQuotaExceededException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateViewResult createView(CreateViewRequest createViewRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createViewRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateViewRequest> request = null;
+        Response<CreateViewResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateViewRequestMarshaller().marshall(createViewRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateViewResult, JsonUnmarshallerContext> unmarshaller = new CreateViewResultJsonUnmarshaller();
+            JsonResponseHandler<CreateViewResult> responseHandler = new JsonResponseHandler<CreateViewResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Publishes a new version of the view identifier.
+     * </p>
+     * <p>
+     * Versions are immutable and monotonically increasing.
+     * </p>
+     * <p>
+     * It returns the highest version if there is no change in content compared
+     * to that version. An error is displayed if the supplied ViewContentSha256
+     * is different from the ViewContentSha256 of the <code>$LATEST</code>
+     * alias.
+     * </p>
+     * 
+     * @param createViewVersionRequest
+     * @return createViewVersionResult The response from the CreateViewVersion
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ServiceQuotaExceededException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateViewVersionResult createViewVersion(
+            CreateViewVersionRequest createViewVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createViewVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateViewVersionRequest> request = null;
+        Response<CreateViewVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateViewVersionRequestMarshaller()
+                        .marshall(createViewVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateViewVersionResult, JsonUnmarshallerContext> unmarshaller = new CreateViewVersionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateViewVersionResult> responseHandler = new JsonResponseHandler<CreateViewVersionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2701,6 +3362,53 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Deletes a predefined attribute from the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param deletePredefinedAttributeRequest
+     * @throws ResourceInUseException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deletePredefinedAttribute(
+            DeletePredefinedAttributeRequest deletePredefinedAttributeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deletePredefinedAttributeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeletePredefinedAttributeRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeletePredefinedAttributeRequestMarshaller()
+                        .marshall(deletePredefinedAttributeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a prompt.
      * </p>
      * 
@@ -2919,10 +3627,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes a security profile.
      * </p>
@@ -3214,6 +3918,114 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the view entirely. It deletes the view and all associated
+     * qualifiers (versions and aliases).
+     * </p>
+     * 
+     * @param deleteViewRequest
+     * @return deleteViewResult The response from the DeleteView service method,
+     *         as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteViewResult deleteView(DeleteViewRequest deleteViewRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteViewRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteViewRequest> request = null;
+        Response<DeleteViewResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteViewRequestMarshaller().marshall(deleteViewRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteViewResult, JsonUnmarshallerContext> unmarshaller = new DeleteViewResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteViewResult> responseHandler = new JsonResponseHandler<DeleteViewResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the particular version specified in <code>ViewVersion</code>
+     * identifier.
+     * </p>
+     * 
+     * @param deleteViewVersionRequest
+     * @return deleteViewVersionResult The response from the DeleteViewVersion
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteViewVersionResult deleteViewVersion(
+            DeleteViewVersionRequest deleteViewVersionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteViewVersionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteViewVersionRequest> request = null;
+        Response<DeleteViewVersionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteViewVersionRequestMarshaller()
+                        .marshall(deleteViewVersionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteViewVersionResult, JsonUnmarshallerContext> unmarshaller = new DeleteViewVersionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteViewVersionResult> responseHandler = new JsonResponseHandler<DeleteViewVersionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -3911,6 +4723,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Describes a predefined attribute for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param describePredefinedAttributeRequest
+     * @return describePredefinedAttributeResult The response from the
+     *         DescribePredefinedAttribute service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribePredefinedAttributeResult describePredefinedAttribute(
+            DescribePredefinedAttributeRequest describePredefinedAttributeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describePredefinedAttributeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribePredefinedAttributeRequest> request = null;
+        Response<DescribePredefinedAttributeResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribePredefinedAttributeRequestMarshaller()
+                        .marshall(describePredefinedAttributeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribePredefinedAttributeResult, JsonUnmarshallerContext> unmarshaller = new DescribePredefinedAttributeResultJsonUnmarshaller();
+            JsonResponseHandler<DescribePredefinedAttributeResult> responseHandler = new JsonResponseHandler<DescribePredefinedAttributeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Describes the prompt.
      * </p>
      * 
@@ -4171,10 +5037,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Gets basic information about the security profle.
      * </p>
      * 
@@ -4281,7 +5143,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Describes the specified user account. You can <a href=
+     * Describes the specified user. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID in the Amazon Connect console</a> (it’s the final
      * part of the ARN). The console does not display the user IDs. Instead,
@@ -4442,6 +5304,73 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Retrieves the view for the specified Amazon Connect instance and view
+     * identifier.
+     * </p>
+     * <p>
+     * The view identifier can be supplied as a ViewId or ARN.
+     * </p>
+     * <p>
+     * <code>$SAVED</code> needs to be supplied if a view is unpublished.
+     * </p>
+     * <p>
+     * The view identifier can contain an optional qualifier, for example,
+     * <code>&lt;view-id&gt;:$SAVED</code>, which is either an actual version
+     * number or an Amazon Connect managed qualifier
+     * <code>$SAVED | $LATEST</code>. If it is not supplied, then
+     * <code>$LATEST</code> is assumed for customer managed views and an error
+     * is returned if there is no published content available. Version 1 is
+     * assumed for Amazon Web Services managed views.
+     * </p>
+     * 
+     * @param describeViewRequest
+     * @return describeViewResult The response from the DescribeView service
+     *         method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeViewResult describeView(DescribeViewRequest describeViewRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeViewRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeViewRequest> request = null;
+        Response<DescribeViewResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeViewRequestMarshaller().marshall(describeViewRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeViewResult, JsonUnmarshallerContext> unmarshaller = new DescribeViewResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeViewResult> responseHandler = new JsonResponseHandler<DescribeViewResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Describes the specified vocabulary.
      * </p>
      * 
@@ -4486,6 +5415,55 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             response = invoke(request, responseHandler, executionContext);
 
             return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Removes the dataset ID associated with a given Amazon Connect instance.
+     * </p>
+     * 
+     * @param disassociateAnalyticsDataSetRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void disassociateAnalyticsDataSet(
+            DisassociateAnalyticsDataSetRequest disassociateAnalyticsDataSetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(disassociateAnalyticsDataSetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociateAnalyticsDataSetRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociateAnalyticsDataSetRequestMarshaller()
+                        .marshall(disassociateAnalyticsDataSetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4582,6 +5560,57 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Disassociates a connect resource from a flow.
+     * </p>
+     * 
+     * @param disassociateFlowRequest
+     * @return disassociateFlowResult The response from the DisassociateFlow
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DisassociateFlowResult disassociateFlow(DisassociateFlowRequest disassociateFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(disassociateFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociateFlowRequest> request = null;
+        Response<DisassociateFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociateFlowRequestMarshaller().marshall(disassociateFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DisassociateFlowResult, JsonUnmarshallerContext> unmarshaller = new DisassociateFlowResultJsonUnmarshaller();
+            JsonResponseHandler<DisassociateFlowResult> responseHandler = new JsonResponseHandler<DisassociateFlowResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4996,6 +6025,51 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Disassociates a set of proficiencies from a user.
+     * </p>
+     * 
+     * @param disassociateUserProficienciesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void disassociateUserProficiencies(
+            DisassociateUserProficienciesRequest disassociateUserProficienciesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(disassociateUserProficienciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociateUserProficienciesRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociateUserProficienciesRequestMarshaller()
+                        .marshall(disassociateUserProficienciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Dismisses contacts from an agent’s CCP and returns the agent to an
      * available state, which allows the agent to receive a new routed contact.
      * Contacts can only be dismissed if they are in a <code>MISSED</code>,
@@ -5219,7 +6293,16 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Retrieves a token for federation.
+     * Supports SAML sign-in for Amazon Connect. Retrieves a token for
+     * federation. The token is for the Amazon Connect user which corresponds to
+     * the IAM credentials that were used to invoke this action.
+     * </p>
+     * <p>
+     * For more information about how SAML sign-in works in Amazon Connect, see
+     * <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/configure-saml.html "
+     * >Configure SAML with IAM for Amazon Connect in the <i>Amazon Connect
+     * Administrator Guide</i>.</a>
      * </p>
      * <note>
      * <p>
@@ -5282,6 +6365,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Retrieves the flow associated for a given resource.
+     * </p>
+     * 
+     * @param getFlowAssociationRequest
+     * @return getFlowAssociationResult The response from the GetFlowAssociation
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetFlowAssociationResult getFlowAssociation(
+            GetFlowAssociationRequest getFlowAssociationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getFlowAssociationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetFlowAssociationRequest> request = null;
+        Response<GetFlowAssociationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetFlowAssociationRequestMarshaller()
+                        .marshall(getFlowAssociationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetFlowAssociationResult, JsonUnmarshallerContext> unmarshaller = new GetFlowAssociationResultJsonUnmarshaller();
+            JsonResponseHandler<GetFlowAssociationResult> responseHandler = new JsonResponseHandler<GetFlowAssociationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets historical metric data from the specified Amazon Connect instance.
      * </p>
      * <p>
@@ -5290,6 +6426,20 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * We recommend using the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_GetMetricDataV2.html"
+     * >GetMetricDataV2</a> API. It provides more flexibility, features, and the
+     * ability to query longer time ranges than <code>GetMetricData</code>. Use
+     * it to retrieve historical agent and contact metrics for the last 3
+     * months, at varying intervals. You can also use it to build custom
+     * dashboards to measure historical queue and agent performance. For
+     * example, you can track the number of incoming contacts for the last 7
+     * days, with data split by day, to see how contact volume changed per day
+     * of the week.
+     * </p>
+     * </note>
      * 
      * @param getMetricDataRequest
      * @return getMetricDataResult The response from the GetMetricData service
@@ -5346,8 +6496,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >GetMetricData</a>, the previous version of this API. It has new metrics,
      * offers filtering at a metric level, and offers the ability to filter and
      * group data by channels, queues, routing profiles, agents, and agent
-     * hierarchy levels. It can retrieve historical data for the last 35 days,
-     * in 24-hour intervals.
+     * hierarchy levels. It can retrieve historical data for the last 3 months,
+     * at varying intervals.
      * </p>
      * <p>
      * For a description of the historical metrics that are supported by
@@ -5559,6 +6709,62 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Imports a claimed phone number from an external service, such as Amazon
+     * Pinpoint, into an Amazon Connect instance. You can call this API only in
+     * the same Amazon Web Services Region where the Amazon Connect instance was
+     * created.
+     * </p>
+     * 
+     * @param importPhoneNumberRequest
+     * @return importPhoneNumberResult The response from the ImportPhoneNumber
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws IdempotencyException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ImportPhoneNumberResult importPhoneNumber(
+            ImportPhoneNumberRequest importPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(importPhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ImportPhoneNumberRequest> request = null;
+        Response<ImportPhoneNumberResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ImportPhoneNumberRequestMarshaller()
+                        .marshall(importPhoneNumberRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ImportPhoneNumberResult, JsonUnmarshallerContext> unmarshaller = new ImportPhoneNumberResultJsonUnmarshaller();
+            JsonResponseHandler<ImportPhoneNumberResult> responseHandler = new JsonResponseHandler<ImportPhoneNumberResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * This API is in preview release for Amazon Connect and is subject to
      * change.
      * </p>
@@ -5602,6 +6808,64 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListAgentStatusesResult, JsonUnmarshallerContext> unmarshaller = new ListAgentStatusesResultJsonUnmarshaller();
             JsonResponseHandler<ListAgentStatusesResult> responseHandler = new JsonResponseHandler<ListAgentStatusesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the association status of requested dataset ID for a given Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listAnalyticsDataAssociationsRequest
+     * @return listAnalyticsDataAssociationsResult The response from the
+     *         ListAnalyticsDataAssociations service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListAnalyticsDataAssociationsResult listAnalyticsDataAssociations(
+            ListAnalyticsDataAssociationsRequest listAnalyticsDataAssociationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAnalyticsDataAssociationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAnalyticsDataAssociationsRequest> request = null;
+        Response<ListAnalyticsDataAssociationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAnalyticsDataAssociationsRequestMarshaller()
+                        .marshall(listAnalyticsDataAssociationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAnalyticsDataAssociationsResult, JsonUnmarshallerContext> unmarshaller = new ListAnalyticsDataAssociationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListAnalyticsDataAssociationsResult> responseHandler = new JsonResponseHandler<ListAnalyticsDataAssociationsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6111,6 +7375,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * List the flow association based on the filters.
+     * </p>
+     * 
+     * @param listFlowAssociationsRequest
+     * @return listFlowAssociationsResult The response from the
+     *         ListFlowAssociations service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListFlowAssociationsResult listFlowAssociations(
+            ListFlowAssociationsRequest listFlowAssociationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listFlowAssociationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListFlowAssociationsRequest> request = null;
+        Response<ListFlowAssociationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListFlowAssociationsRequestMarshaller()
+                        .marshall(listFlowAssociationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListFlowAssociationsResult, JsonUnmarshallerContext> unmarshaller = new ListFlowAssociationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListFlowAssociationsResult> responseHandler = new JsonResponseHandler<ListFlowAssociationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provides information about the hours of operation for the specified
      * Amazon Connect instance.
      * </p>
@@ -6519,6 +7837,19 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Connect Administrator Guide</i>.
      * </p>
      * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * We recommend using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
+     * >ListPhoneNumbersV2</a> to return phone number types. ListPhoneNumbers
+     * doesn't support number types <code>UIFN</code>, <code>SHARED</code>,
+     * <code>THIRD_PARTY_TF</code>, and <code>THIRD_PARTY_DID</code>. While it
+     * returns numbers of those types, it incorrectly lists them as
+     * <code>TOLL_FREE</code> or <code>DID</code>.
+     * </p>
+     * </li>
+     * <li>
      * <p>
      * The phone number <code>Arn</code> value that is returned from each of the
      * items in the <a href=
@@ -6530,6 +7861,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * >ListPhoneNumbersV2</a> API. It returns the new phone number ARN that can
      * be used to tag phone number resources.
      * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param listPhoneNumbersRequest
@@ -6644,6 +7977,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListPhoneNumbersV2Result, JsonUnmarshallerContext> unmarshaller = new ListPhoneNumbersV2ResultJsonUnmarshaller();
             JsonResponseHandler<ListPhoneNumbersV2Result> responseHandler = new JsonResponseHandler<ListPhoneNumbersV2Result>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists predefined attributes for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param listPredefinedAttributesRequest
+     * @return listPredefinedAttributesResult The response from the
+     *         ListPredefinedAttributes service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListPredefinedAttributesResult listPredefinedAttributes(
+            ListPredefinedAttributesRequest listPredefinedAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listPredefinedAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListPredefinedAttributesRequest> request = null;
+        Response<ListPredefinedAttributesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListPredefinedAttributesRequestMarshaller()
+                        .marshall(listPredefinedAttributesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListPredefinedAttributesResult, JsonUnmarshallerContext> unmarshaller = new ListPredefinedAttributesResultJsonUnmarshaller();
+            JsonResponseHandler<ListPredefinedAttributesResult> responseHandler = new JsonResponseHandler<ListPredefinedAttributesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6881,6 +8267,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Provides a list of analysis segments for a real-time analysis session.
+     * </p>
+     * 
+     * @param listRealtimeContactAnalysisSegmentsV2Request
+     * @return listRealtimeContactAnalysisSegmentsV2Result The response from the
+     *         ListRealtimeContactAnalysisSegmentsV2 service method, as returned
+     *         by Amazon Connect.
+     * @throws OutputTypeNotFoundException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListRealtimeContactAnalysisSegmentsV2Result listRealtimeContactAnalysisSegmentsV2(
+            ListRealtimeContactAnalysisSegmentsV2Request listRealtimeContactAnalysisSegmentsV2Request)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listRealtimeContactAnalysisSegmentsV2Request);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListRealtimeContactAnalysisSegmentsV2Request> request = null;
+        Response<ListRealtimeContactAnalysisSegmentsV2Result> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListRealtimeContactAnalysisSegmentsV2RequestMarshaller()
+                        .marshall(listRealtimeContactAnalysisSegmentsV2Request);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListRealtimeContactAnalysisSegmentsV2Result, JsonUnmarshallerContext> unmarshaller = new ListRealtimeContactAnalysisSegmentsV2ResultJsonUnmarshaller();
+            JsonResponseHandler<ListRealtimeContactAnalysisSegmentsV2Result> responseHandler = new JsonResponseHandler<ListRealtimeContactAnalysisSegmentsV2Result>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the queues associated with a routing profile.
      * </p>
      * 
@@ -7101,9 +8541,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
+     * Returns a list of third-party applications in a specific security
+     * profile.
      * </p>
+     * 
+     * @param listSecurityProfileApplicationsRequest
+     * @return listSecurityProfileApplicationsResult The response from the
+     *         ListSecurityProfileApplications service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListSecurityProfileApplicationsResult listSecurityProfileApplications(
+            ListSecurityProfileApplicationsRequest listSecurityProfileApplicationsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSecurityProfileApplicationsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSecurityProfileApplicationsRequest> request = null;
+        Response<ListSecurityProfileApplicationsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListSecurityProfileApplicationsRequestMarshaller()
+                        .marshall(listSecurityProfileApplicationsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListSecurityProfileApplicationsResult, JsonUnmarshallerContext> unmarshaller = new ListSecurityProfileApplicationsResultJsonUnmarshaller();
+            JsonResponseHandler<ListSecurityProfileApplicationsResult> responseHandler = new JsonResponseHandler<ListSecurityProfileApplicationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
      * <p>
      * Lists the permissions granted to a security profile.
      * </p>
@@ -7545,6 +9035,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Lists proficiencies associated with a user.
+     * </p>
+     * 
+     * @param listUserProficienciesRequest
+     * @return listUserProficienciesResult The response from the
+     *         ListUserProficiencies service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListUserProficienciesResult listUserProficiencies(
+            ListUserProficienciesRequest listUserProficienciesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listUserProficienciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListUserProficienciesRequest> request = null;
+        Response<ListUserProficienciesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListUserProficienciesRequestMarshaller()
+                        .marshall(listUserProficienciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListUserProficienciesResult, JsonUnmarshallerContext> unmarshaller = new ListUserProficienciesResultJsonUnmarshaller();
+            JsonResponseHandler<ListUserProficienciesResult> responseHandler = new JsonResponseHandler<ListUserProficienciesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provides summary information about the users for the specified Amazon
      * Connect instance.
      * </p>
@@ -7583,6 +9126,115 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<ListUsersResult, JsonUnmarshallerContext> unmarshaller = new ListUsersResultJsonUnmarshaller();
             JsonResponseHandler<ListUsersResult> responseHandler = new JsonResponseHandler<ListUsersResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns all the available versions for the specified Amazon Connect
+     * instance and view identifier.
+     * </p>
+     * <p>
+     * Results will be sorted from highest to lowest.
+     * </p>
+     * 
+     * @param listViewVersionsRequest
+     * @return listViewVersionsResult The response from the ListViewVersions
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListViewVersionsResult listViewVersions(ListViewVersionsRequest listViewVersionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listViewVersionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListViewVersionsRequest> request = null;
+        Response<ListViewVersionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListViewVersionsRequestMarshaller().marshall(listViewVersionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListViewVersionsResult, JsonUnmarshallerContext> unmarshaller = new ListViewVersionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListViewVersionsResult> responseHandler = new JsonResponseHandler<ListViewVersionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns views in the given instance.
+     * </p>
+     * <p>
+     * Results are sorted primarily by type, and secondarily by name.
+     * </p>
+     * 
+     * @param listViewsRequest
+     * @return listViewsResult The response from the ListViews service method,
+     *         as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListViewsResult listViews(ListViewsRequest listViewsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listViewsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListViewsRequest> request = null;
+        Response<ListViewsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListViewsRequestMarshaller().marshall(listViewsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListViewsResult, JsonUnmarshallerContext> unmarshaller = new ListViewsResultJsonUnmarshaller();
+            JsonResponseHandler<ListViewsResult> responseHandler = new JsonResponseHandler<ListViewsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7637,6 +9289,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<MonitorContactResult, JsonUnmarshallerContext> unmarshaller = new MonitorContactResultJsonUnmarshaller();
             JsonResponseHandler<MonitorContactResult> responseHandler = new JsonResponseHandler<MonitorContactResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Allows pausing an ongoing task contact.
+     * </p>
+     * 
+     * @param pauseContactRequest
+     * @return pauseContactResult The response from the PauseContact service
+     *         method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public PauseContactResult pauseContact(PauseContactRequest pauseContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(pauseContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PauseContactRequest> request = null;
+        Response<PauseContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PauseContactRequestMarshaller().marshall(pauseContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PauseContactResult, JsonUnmarshallerContext> unmarshaller = new PauseContactResultJsonUnmarshaller();
+            JsonResponseHandler<PauseContactResult> responseHandler = new JsonResponseHandler<PauseContactResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7717,7 +9422,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * <important>
      * <p>
      * To release phone numbers from a traffic distribution group, use the
-     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+     * <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin
+     * website.
      * </p>
      * <p>
      * After releasing a phone number, the phone number enters into a cooldown
@@ -7792,7 +9498,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     /**
      * <p>
      * Replicates an Amazon Connect instance in the specified Amazon Web
-     * Services Region.
+     * Services Region and copies configuration information for Amazon Connect
+     * resources across Amazon Web Services Regions.
      * </p>
      * <p>
      * For more information about replicating an Amazon Connect instance, see <a
@@ -7854,9 +9561,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Allows resuming a task contact in a paused state.
+     * </p>
+     * 
+     * @param resumeContactRequest
+     * @return resumeContactResult The response from the ResumeContact service
+     *         method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ResumeContactResult resumeContact(ResumeContactRequest resumeContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(resumeContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ResumeContactRequest> request = null;
+        Response<ResumeContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ResumeContactRequestMarshaller().marshall(resumeContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ResumeContactResult, JsonUnmarshallerContext> unmarshaller = new ResumeContactResultJsonUnmarshaller();
+            JsonResponseHandler<ResumeContactResult> responseHandler = new JsonResponseHandler<ResumeContactResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * When a contact is being recorded, and the recording has been suspended
-     * using SuspendContactRecording, this API resumes recording the call or
-     * screen.
+     * using SuspendContactRecording, this API resumes recording whatever
+     * recording is selected in the flow configuration: call, screen, or both.
+     * If only call recording or only screen recording is enabled, then it would
+     * resume.
      * </p>
      * <p>
      * Voice and screen recordings are supported.
@@ -7966,6 +9727,56 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Searches contacts in an Amazon Connect instance.
+     * </p>
+     * 
+     * @param searchContactsRequest
+     * @return searchContactsResult The response from the SearchContacts service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchContactsResult searchContacts(SearchContactsRequest searchContactsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchContactsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchContactsRequest> request = null;
+        Response<SearchContactsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchContactsRequestMarshaller().marshall(searchContactsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchContactsResult, JsonUnmarshallerContext> unmarshaller = new SearchContactsResultJsonUnmarshaller();
+            JsonResponseHandler<SearchContactsResult> responseHandler = new JsonResponseHandler<SearchContactsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Searches the hours of operation in an Amazon Connect instance, with
      * optional filtering.
      * </p>
@@ -8007,6 +9818,59 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<SearchHoursOfOperationsResult, JsonUnmarshallerContext> unmarshaller = new SearchHoursOfOperationsResultJsonUnmarshaller();
             JsonResponseHandler<SearchHoursOfOperationsResult> responseHandler = new JsonResponseHandler<SearchHoursOfOperationsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Predefined attributes that meet certain criteria.
+     * </p>
+     * 
+     * @param searchPredefinedAttributesRequest
+     * @return searchPredefinedAttributesResult The response from the
+     *         SearchPredefinedAttributes service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SearchPredefinedAttributesResult searchPredefinedAttributes(
+            SearchPredefinedAttributesRequest searchPredefinedAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(searchPredefinedAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SearchPredefinedAttributesRequest> request = null;
+        Response<SearchPredefinedAttributesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SearchPredefinedAttributesRequestMarshaller()
+                        .marshall(searchPredefinedAttributesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SearchPredefinedAttributesResult, JsonUnmarshallerContext> unmarshaller = new SearchPredefinedAttributesResultJsonUnmarshaller();
+            JsonResponseHandler<SearchPredefinedAttributesResult> responseHandler = new JsonResponseHandler<SearchPredefinedAttributesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -8444,6 +10308,83 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Processes chat integration events from Amazon Web Services or external
+     * integrations to Amazon Connect. A chat integration event includes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * SourceId, DestinationId, and Subtype: a set of identifiers, uniquely
+     * representing a chat
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ChatEvent: details of the chat action to perform such as sending a
+     * message, event, or disconnecting from a chat
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * When a chat integration event is sent with chat identifiers that do not
+     * map to an active chat contact, a new chat contact is also created before
+     * handling chat action.
+     * </p>
+     * <p>
+     * Access to this API is currently restricted to Amazon Pinpoint for
+     * supporting SMS integration.
+     * </p>
+     * 
+     * @param sendChatIntegrationEventRequest
+     * @return sendChatIntegrationEventResult The response from the
+     *         SendChatIntegrationEvent service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public SendChatIntegrationEventResult sendChatIntegrationEvent(
+            SendChatIntegrationEventRequest sendChatIntegrationEventRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(sendChatIntegrationEventRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SendChatIntegrationEventRequest> request = null;
+        Response<SendChatIntegrationEventResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SendChatIntegrationEventRequestMarshaller()
+                        .marshall(sendChatIntegrationEventRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SendChatIntegrationEventResult, JsonUnmarshallerContext> unmarshaller = new SendChatIntegrationEventResultJsonUnmarshaller();
+            JsonResponseHandler<SendChatIntegrationEventResult> responseHandler = new JsonResponseHandler<SendChatIntegrationEventResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Initiates a flow to start a new chat for the customer. Response of this
      * API provides a token required to obtain credentials from the <a href=
      * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
@@ -8827,7 +10768,82 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Initiates a flow to start a new task.
+     * Initiates a flow to start a new task contact. For more information about
+     * task contacts, see <a
+     * href="https://docs.aws.amazon.com/connect/latest/adminguide/tasks.html"
+     * >Concepts: Tasks in Amazon Connect</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * <p>
+     * When using <code>PreviousContactId</code> and
+     * <code>RelatedContactId</code> input parameters, note the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>PreviousContactId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Any updates to user-defined task contact attributes on any contact linked
+     * through the same <code>PreviousContactId</code> will affect every contact
+     * in the chain.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * There can be a maximum of 12 linked task contacts in a chain. That is, 12
+     * task contacts can be created that share the same
+     * <code>PreviousContactId</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>RelatedContactId</code>
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Copies contact attributes from the related task contact to the new
+     * contact.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Any update on attributes in a new task contact does not update attributes
+     * on previous contact.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * There’s no limit on the number of task contacts that can be created that
+     * use the same <code>RelatedContactId</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * </ul>
+     * <p>
+     * In addition, when calling StartTaskContact include only one of these
+     * parameters: <code>ContactFlowID</code>, <code>QuickConnectID</code>, or
+     * <code>TaskTemplateID</code>. Only one parameter is required as long as
+     * the task template has a flow configured to run it. If more than one
+     * parameter is specified, or only the <code>TaskTemplateID</code> is
+     * specified but it does not have a flow configured, the request returns an
+     * error because Amazon Connect cannot identify the unique flow to run when
+     * the task is created.
+     * </p>
+     * <p>
+     * A <code>ServiceQuotaExceededException</code> occurs when the number of
+     * open tasks exceeds the active tasks quota or there are already 12 tasks
+     * referencing the same <code>PreviousContactId</code>. For more information
+     * about service quotas for task contacts, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >Amazon Connect service quotas</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param startTaskContactRequest
@@ -8878,8 +10894,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Ends the specified contact. This call does not work for the following
-     * initiation methods:
+     * Places an inbound in-app, web, or video call to a contact, and then
+     * initiates the flow. It performs the actions in the flow that are
+     * specified (in ContactFlowId) and present in the Amazon Connect instance
+     * (specified as InstanceId).
+     * </p>
+     * 
+     * @param startWebRTCContactRequest
+     * @return startWebRTCContactResult The response from the StartWebRTCContact
+     *         service method, as returned by Amazon Connect.
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartWebRTCContactResult startWebRTCContact(
+            StartWebRTCContactRequest startWebRTCContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startWebRTCContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartWebRTCContactRequest> request = null;
+        Response<StartWebRTCContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartWebRTCContactRequestMarshaller()
+                        .marshall(startWebRTCContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartWebRTCContactResult, JsonUnmarshallerContext> unmarshaller = new StartWebRTCContactResultJsonUnmarshaller();
+            JsonResponseHandler<StartWebRTCContactResult> responseHandler = new JsonResponseHandler<StartWebRTCContactResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Ends the specified contact. This call does not work for voice contacts
+     * that use the following initiation methods:
      * </p>
      * <ul>
      * <li>
@@ -8898,6 +10969,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * Chat and task contacts, however, can be terminated in any state,
+     * regardless of initiation method.
+     * </p>
      * 
      * @param stopContactRequest
      * @return stopContactResult The response from the StopContact service
@@ -9123,10 +11198,12 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * When a contact is being recorded, this API suspends recording the call or
-     * screen. For example, you might suspend the call or screen recording while
+     * When a contact is being recorded, this API suspends recording whatever is
+     * selected in the flow configuration: call, screen, or both. If only call
+     * recording or only screen recording is enabled, then it would be
+     * suspended. For example, you might suspend the screen recording while
      * collecting sensitive information, such as a credit card number. Then use
-     * ResumeContactRecording to restart recording.
+     * ResumeContactRecording to restart recording the screen.
      * </p>
      * <p>
      * The period of time that the recording is suspended is filled with silence
@@ -9171,6 +11248,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<SuspendContactRecordingResult, JsonUnmarshallerContext> unmarshaller = new SuspendContactRecordingResultJsonUnmarshaller();
             JsonResponseHandler<SuspendContactRecordingResult> responseHandler = new JsonResponseHandler<SuspendContactRecordingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds the specified tags to the contact resource. For more information
+     * about this API is used, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/granular-billing.html"
+     * >Set up granular billing for a detailed view of your Amazon Connect
+     * usage</a>.
+     * </p>
+     * 
+     * @param tagContactRequest
+     * @return tagContactResult The response from the TagContact service method,
+     *         as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public TagContactResult tagContact(TagContactRequest tagContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagContactRequest> request = null;
+        Response<TagContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagContactRequestMarshaller().marshall(tagContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagContactResult, JsonUnmarshallerContext> unmarshaller = new TagContactResultJsonUnmarshaller();
+            JsonResponseHandler<TagContactResult> responseHandler = new JsonResponseHandler<TagContactResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -9318,6 +11449,60 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<TransferContactResult, JsonUnmarshallerContext> unmarshaller = new TransferContactResultJsonUnmarshaller();
             JsonResponseHandler<TransferContactResult> responseHandler = new JsonResponseHandler<TransferContactResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified tags from the contact resource. For more
+     * information about this API is used, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/granular-billing.html"
+     * >Set up granular billing for a detailed view of your Amazon Connect
+     * usage</a>.
+     * </p>
+     * 
+     * @param untagContactRequest
+     * @return untagContactResult The response from the UntagContact service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidParameterException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UntagContactResult untagContact(UntagContactRequest untagContactRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagContactRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagContactRequest> request = null;
+        Response<UntagContactResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagContactRequestMarshaller().marshall(untagContactRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagContactResult, JsonUnmarshallerContext> unmarshaller = new UntagContactResultJsonUnmarshaller();
+            JsonResponseHandler<UntagContactResult> responseHandler = new JsonResponseHandler<UntagContactResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -9895,6 +12080,76 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates routing priority and age on the contact (<b>QueuePriority</b> and
+     * <b>QueueTimeAdjustmentInSeconds</b>). These properties can be used to
+     * change a customer's position in the queue. For example, you can move a
+     * contact to the back of the queue by setting a lower routing priority
+     * relative to other contacts in queue; or you can move a contact to the
+     * front of the queue by increasing the routing age which will make the
+     * contact look artificially older and therefore higher up in the
+     * first-in-first-out routing order. Note that adjusting the routing age of
+     * a contact affects only its position in queue, and not its actual queue
+     * wait time as reported through metrics. These properties can also be
+     * updated by using <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/change-routing-priority.html"
+     * >the Set routing priority / age flow block</a>.
+     * </p>
+     * 
+     * @param updateContactRoutingDataRequest
+     * @return updateContactRoutingDataResult The response from the
+     *         UpdateContactRoutingData service method, as returned by Amazon
+     *         Connect.
+     * @throws ResourceConflictException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AccessDeniedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateContactRoutingDataResult updateContactRoutingData(
+            UpdateContactRoutingDataRequest updateContactRoutingDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateContactRoutingDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateContactRoutingDataRequest> request = null;
+        Response<UpdateContactRoutingDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateContactRoutingDataRequestMarshaller()
+                        .marshall(updateContactRoutingDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateContactRoutingDataResult, JsonUnmarshallerContext> unmarshaller = new UpdateContactRoutingDataResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateContactRoutingDataResult> responseHandler = new JsonResponseHandler<UpdateContactRoutingDataResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates the scheduled time of a task contact that is already scheduled.
      * </p>
      * 
@@ -10312,6 +12567,107 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Updates a phone number’s metadata.
+     * </p>
+     * <important>
+     * <p>
+     * To verify the status of a previous UpdatePhoneNumberMetadata operation,
+     * call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
+     * >DescribePhoneNumber</a> API.
+     * </p>
+     * </important>
+     * 
+     * @param updatePhoneNumberMetadataRequest
+     * @throws InvalidParameterException
+     * @throws InvalidRequestException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws IdempotencyException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updatePhoneNumberMetadata(
+            UpdatePhoneNumberMetadataRequest updatePhoneNumberMetadataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updatePhoneNumberMetadataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdatePhoneNumberMetadataRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdatePhoneNumberMetadataRequestMarshaller()
+                        .marshall(updatePhoneNumberMetadataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a predefined attribute for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param updatePredefinedAttributeRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updatePredefinedAttribute(
+            UpdatePredefinedAttributeRequest updatePredefinedAttributeRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updatePredefinedAttributeRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdatePredefinedAttributeRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdatePredefinedAttributeRequestMarshaller()
+                        .marshall(updatePredefinedAttributeRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates a prompt.
      * </p>
      * 
@@ -10517,20 +12873,21 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * for a specified queue.
      * </p>
      * <important>
+     * <ul>
+     * <li>
      * <p>
-     * If the number being used in the input is claimed to a traffic
-     * distribution group, and you are calling this API using an instance in the
-     * Amazon Web Services Region where the traffic distribution group was
-     * created, you can use either a full phone number ARN or UUID value for the
-     * <code>OutboundCallerIdNumberId</code> value of the <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_OutboundCallerConfig"
-     * >OutboundCallerConfig</a> request body parameter. However, if the number
-     * is claimed to a traffic distribution group and you are calling this API
-     * using an instance in the alternate Amazon Web Services Region associated
-     * with the traffic distribution group, you must provide a full phone number
-     * ARN. If a UUID is provided in this scenario, you will receive a
-     * <code>ResourceNotFoundException</code>.
+     * If the phone number is claimed to a traffic distribution group that was
+     * created in the same Region as the Amazon Connect instance where you are
+     * calling this API, then you can use a full phone number ARN or a UUID for
+     * <code>OutboundCallerIdNumberId</code>. However, if the phone number is
+     * claimed to a traffic distribution group that is in one Region, and you
+     * are calling this API from an instance in another Amazon Web Services
+     * Region that is associated with the traffic distribution group, you must
+     * provide a full phone number ARN. If a UUID is provided in this scenario,
+     * you will receive a <code>ResourceNotFoundException</code>.
      * </p>
+     * </li>
+     * <li>
      * <p>
      * Only use the phone number ARN format that doesn't contain
      * <code>instance</code> in the path, for example,
@@ -10539,6 +12896,18 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ListPhoneNumbersV2.html"
      * >ListPhoneNumbersV2</a> API.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you plan to use IAM policies to allow/deny access to this API for
+     * phone number resources claimed to a traffic distribution group, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_resource-level-policy-examples.html#allow-deny-queue-actions-replica-region"
+     * >Allow or Deny queue API actions for phone numbers in a replica
+     * Region</a>.
+     * </p>
+     * </li>
+     * </ul>
      * </important>
      * 
      * @param updateQueueOutboundCallerConfigRequest
@@ -11003,10 +13372,6 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Updates a security profile.
      * </p>
      * 
@@ -11110,8 +13475,11 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on a default
+     * <code>TrafficDistributionGroup</code> (see the <code>IsDefault</code>
+     * parameter in the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_TrafficDistributionGroup.html"
+     * >TrafficDistributionGroup</a> data type). If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -11415,6 +13783,51 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * Updates the properties associated with the proficiencies of a user.
+     * </p>
+     * 
+     * @param updateUserProficienciesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updateUserProficiencies(
+            UpdateUserProficienciesRequest updateUserProficienciesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateUserProficienciesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateUserProficienciesRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateUserProficienciesRequestMarshaller()
+                        .marshall(updateUserProficienciesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Assigns the specified routing profile to the specified user.
      * </p>
      * 
@@ -11497,6 +13910,125 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the view content of the given view identifier in the specified
+     * Amazon Connect instance.
+     * </p>
+     * <p>
+     * It performs content validation if <code>Status</code> is set to
+     * <code>SAVED</code> and performs full content validation if
+     * <code>Status</code> is <code>PUBLISHED</code>. Note that the
+     * <code>$SAVED</code> alias' content will always be updated, but the
+     * <code>$LATEST</code> alias' content will only be updated if
+     * <code>Status</code> is <code>PUBLISHED</code>.
+     * </p>
+     * 
+     * @param updateViewContentRequest
+     * @return updateViewContentResult The response from the UpdateViewContent
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateViewContentResult updateViewContent(
+            UpdateViewContentRequest updateViewContentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateViewContentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateViewContentRequest> request = null;
+        Response<UpdateViewContentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateViewContentRequestMarshaller()
+                        .marshall(updateViewContentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateViewContentResult, JsonUnmarshallerContext> unmarshaller = new UpdateViewContentResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateViewContentResult> responseHandler = new JsonResponseHandler<UpdateViewContentResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the view metadata. Note that either <code>Name</code> or
+     * <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateViewMetadataRequest
+     * @return updateViewMetadataResult The response from the UpdateViewMetadata
+     *         service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws TooManyRequestsException
+     * @throws DuplicateResourceException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateViewMetadataResult updateViewMetadata(
+            UpdateViewMetadataRequest updateViewMetadataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateViewMetadataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateViewMetadataRequest> request = null;
+        Response<UpdateViewMetadataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateViewMetadataRequestMarshaller()
+                        .marshall(updateViewMetadataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateViewMetadataResult, JsonUnmarshallerContext> unmarshaller = new UpdateViewMetadataResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateViewMetadataResult> responseHandler = new JsonResponseHandler<UpdateViewMetadataResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);

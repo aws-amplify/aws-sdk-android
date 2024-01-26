@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,6 +55,25 @@ class RuleActionJsonMarshaller {
             jsonWriter.name("SendNotificationAction");
             SendNotificationActionDefinitionJsonMarshaller.getInstance().marshall(
                     sendNotificationAction, jsonWriter);
+        }
+        if (ruleAction.getCreateCaseAction() != null) {
+            CreateCaseActionDefinition createCaseAction = ruleAction.getCreateCaseAction();
+            jsonWriter.name("CreateCaseAction");
+            CreateCaseActionDefinitionJsonMarshaller.getInstance().marshall(createCaseAction,
+                    jsonWriter);
+        }
+        if (ruleAction.getUpdateCaseAction() != null) {
+            UpdateCaseActionDefinition updateCaseAction = ruleAction.getUpdateCaseAction();
+            jsonWriter.name("UpdateCaseAction");
+            UpdateCaseActionDefinitionJsonMarshaller.getInstance().marshall(updateCaseAction,
+                    jsonWriter);
+        }
+        if (ruleAction.getEndAssociatedTasksAction() != null) {
+            EndAssociatedTasksActionDefinition endAssociatedTasksAction = ruleAction
+                    .getEndAssociatedTasksAction();
+            jsonWriter.name("EndAssociatedTasksAction");
+            EndAssociatedTasksActionDefinitionJsonMarshaller.getInstance().marshall(
+                    endAssociatedTasksAction, jsonWriter);
         }
         jsonWriter.endObject();
     }
