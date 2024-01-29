@@ -30,7 +30,9 @@ subprojects { project ->
 private void configureAndroidLibrary(Project project) {
     project.android {
         defaultConfig {
-            versionName rootProject.findProperty('VERSION_NAME')
+            def sdkVersionName = rootProject.findProperty('VERSION_NAME')
+            buildConfigField("String", "VERSION_NAME", "\"$sdkVersionName\"")
+
             if (project.hasProperty('signingKeyId')) {
                 System.out.println("Getting signing info from protected source.")
                 project.ext.'signing.keyId' = findProperty('signingKeyId')
