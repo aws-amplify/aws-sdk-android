@@ -18,7 +18,7 @@
 
 ### Miscellaneous
 - chore: fix commit hash for setup-ruby in release pr workflow ([#3524](https://github.com/aws-amplify/aws-sdk-android/issues/3524))
-- Upgrade Ruby version to 3.0 for release-pr worrkflow ([#3526](https://github.com/aws-amplify/aws-sdk-android/issues/3526))
+- Upgrade Ruby version to 3.0 for release-pr workflow ([#3526](https://github.com/aws-amplify/aws-sdk-android/issues/3526))
 
 [See all changes between 2.74.0 and 2.75.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.74.0...release_v2.75.0)
 
