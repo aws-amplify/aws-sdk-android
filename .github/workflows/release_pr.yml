@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         cd build-support
-        gem install bundler
+        gem install bundler -v 2.4.22 # Compatible with Ruby version 2.7
         bundle install
     - name: Configure git options
       run: |
