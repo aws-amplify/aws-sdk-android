@@ -14,7 +14,7 @@
 - **aws-android-sdk-polly:** update models to latest ([#3392](https://github.com/aws-amplify/aws-sdk-android/issues/3392))
 - **core:** Read version number from build instead of hardcoding it ([#3412](https://github.com/aws-amplify/aws-sdk-android/issues/3412))
 - **aws-android-sdk-connectparticipant** update models to latest ([#3397](https://github.com/aws-amplify/aws-sdk-android/issues/3397))
-- **auth:** Provide a clear message during getTokens that there are n… ([#3518] (https://github.com/aws-amplify/aws-sdk-android/issues/3518))
+- **auth:** Provide a clear message during getTokens that there are n… ([#3518](https://github.com/aws-amplify/aws-sdk-android/issues/3518))
 
 ### Miscellaneous
 - chore: fix commit hash for setup-ruby in release pr workflow ([#3524](https://github.com/aws-amplify/aws-sdk-android/issues/3524))
