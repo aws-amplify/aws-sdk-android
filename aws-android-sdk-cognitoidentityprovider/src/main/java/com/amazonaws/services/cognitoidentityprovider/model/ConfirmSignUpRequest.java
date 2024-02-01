@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,23 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Confirms registration of a new user.
+ * This public API operation provides a code that Amazon Cognito sent to your
+ * user when they signed up in your user pool via the <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html"
+ * >SignUp</a> API operation. After your user enters their code, they confirm
+ * ownership of the email address or phone number that they provided, and their
+ * user account becomes active. Depending on your user pool configuration, your
+ * users will receive their confirmation code in an email or SMS message.
+ * </p>
+ * <p>
+ * Local users who signed up in your user pool are the only type of user who can
+ * confirm sign-up with a code. Users who federate through an external identity
+ * provider (IdP) have already been confirmed by their IdP.
+ * Administrator-created users, users created with the <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html"
+ * >AdminCreateUser</a> API operation, confirm their accounts when they respond
+ * to their invitation email message and choose a password. They do not receive
+ * a confirmation code. Instead, they receive a temporary password.
  * </p>
  * <note>
  * <p>
@@ -31,7 +47,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * policies. For more information about authorization models in Amazon Cognito,
  * see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
- * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * </note>
  */
@@ -62,7 +78,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The user name of the user whose registration you want to confirm.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -294,7 +314,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The user name of the user whose registration you want to confirm.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -302,7 +326,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user whose registration you want to confirm.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, you can also use
+     *         their <code>sub</code> in this request.
      *         </p>
      */
     public String getUsername() {
@@ -311,7 +339,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The user name of the user whose registration you want to confirm.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -319,8 +351,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose registration you want to
-     *            confirm.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      */
     public void setUsername(String username) {
@@ -329,7 +364,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The user name of the user whose registration you want to confirm.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,8 +379,11 @@ public class ConfirmSignUpRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user whose registration you want to
-     *            confirm.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

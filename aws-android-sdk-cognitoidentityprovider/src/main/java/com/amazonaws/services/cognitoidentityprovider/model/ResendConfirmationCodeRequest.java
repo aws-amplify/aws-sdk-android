@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * policies. For more information about authorization models in Amazon Cognito,
  * see <a href=
  * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-API-operations.html"
- * >Using the Amazon Cognito native and OIDC APIs</a>.
+ * >Using the Amazon Cognito user pools API and user pool endpoints</a>.
  * </p>
  * </note> <note>
  * <p>
@@ -96,8 +96,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The <code>username</code> attribute of the user to whom you want to
-     * resend a confirmation code.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -361,8 +364,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The <code>username</code> attribute of the user to whom you want to
-     * resend a confirmation code.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -370,8 +376,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The <code>username</code> attribute of the user to whom you want
-     *         to resend a confirmation code.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, you can also use
+     *         their <code>sub</code> in this request.
      *         </p>
      */
     public String getUsername() {
@@ -380,8 +389,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The <code>username</code> attribute of the user to whom you want to
-     * resend a confirmation code.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -389,8 +401,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The <code>username</code> attribute of the user to whom you
-     *            want to resend a confirmation code.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      */
     public void setUsername(String username) {
@@ -399,8 +414,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The <code>username</code> attribute of the user to whom you want to
-     * resend a confirmation code.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -411,8 +429,11 @@ public class ResendConfirmationCodeRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The <code>username</code> attribute of the user to whom you
-     *            want to resend a confirmation code.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
