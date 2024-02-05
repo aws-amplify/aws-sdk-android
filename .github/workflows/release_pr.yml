@@ -19,9 +19,9 @@ jobs:
         ref: ${{ env.BASE_BRANCH }}
         fetch-depth: 0
     - name: Set up Ruby
-      uses: ruby/setup-ruby@b8d447ba7506ac7e0c8fbc50762276fb3b7df731 # v1
+      uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
       with:
-        ruby-version: 2.7
+        ruby-version: "3.0"
     - name: Install dependencies
       run: |
         cd build-support

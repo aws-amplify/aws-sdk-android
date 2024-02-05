@@ -1,3 +1,28 @@
+## [Release 2.75.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest ([#3387](https://github.com/aws-amplify/aws-sdk-android/issues/3387))
+- **aws-android-sdk-kinesisvideo-archivedmedia:** update models to latest ([#3383](https://github.com/aws-amplify/aws-sdk-android/issues/3383))
+- **aws-android-sdk-kinesisvideo:** update models to latest ([#3382](https://github.com/aws-amplify/aws-sdk-android/issues/3382))
+- **aws-android-sdk-rekognition:** update models to latest ([#3381](https://github.com/aws-amplify/aws-sdk-android/issues/3381))
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest ([#3376](https://github.com/aws-amplify/aws-sdk-android/issues/3376))
+- **aws-android-sdk-polly:** update models to latest ([#3374](https://github.com/aws-amplify/aws-sdk-android/issues/3374))
+- **aws-android-sdk-core:** update models to latest ([#3366](https://github.com/aws-amplify/aws-sdk-android/issues/3366))
+- **aws-android-sdk-location:** update models to latest ([#3350](https://github.com/aws-amplify/aws-sdk-android/issues/3350))
+- **aws-android-sdk-ses:** update models to latest ([#3389](https://github.com/aws-amplify/aws-sdk-android/issues/3389))
+- **aws-android-sdk-transcribe:** update models to latest ([#3364](https://github.com/aws-amplify/aws-sdk-android/issues/3364))
+- **aws-android-sdk-polly:** update models to latest ([#3392](https://github.com/aws-amplify/aws-sdk-android/issues/3392))
+- **core:** Read version number from build instead of hardcoding it ([#3412](https://github.com/aws-amplify/aws-sdk-android/issues/3412))
+- **aws-android-sdk-connectparticipant** update models to latest ([#3397](https://github.com/aws-amplify/aws-sdk-android/issues/3397))
+- **auth:** Provide a clear message during getTokens that there are n… ([#3518](https://github.com/aws-amplify/aws-sdk-android/issues/3518))
+
+### Miscellaneous
+- chore: fix commit hash for setup-ruby in release pr workflow ([#3524](https://github.com/aws-amplify/aws-sdk-android/issues/3524))
+- Upgrade Ruby version to 3.0 for release-pr workflow ([#3526](https://github.com/aws-amplify/aws-sdk-android/issues/3526))
+- chore: pin github actions by commit hash ([#3385](https://github.com/aws-amplify/aws-sdk-android/issues/3385))
+
+[See all changes between 2.74.0 and 2.75.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.74.0...release_v2.75.0)
+
 ## [Release 2.74.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.74.0)
 
 ### Features
