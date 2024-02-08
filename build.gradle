@@ -6,7 +6,7 @@ buildscript {
 
     dependencies {
         classpath 'com.amazonaws:aws-devicefarm-gradle-plugin:1.3'
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:7.1.0'
     }
 }
 
@@ -30,7 +30,9 @@ subprojects { project ->
 private void configureAndroidLibrary(Project project) {
     project.android {
         defaultConfig {
-            versionName rootProject.findProperty('VERSION_NAME')
+            def sdkVersionName = rootProject.findProperty('VERSION_NAME')
+            buildConfigField("String", "VERSION_NAME", "\"$sdkVersionName\"")
+
             if (project.hasProperty('signingKeyId')) {
                 System.out.println("Getting signing info from protected source.")
                 project.ext.'signing.keyId' = findProperty('signingKeyId')

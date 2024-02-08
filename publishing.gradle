@@ -13,7 +13,6 @@
  * permissions and limitations under the License.
  */
 
-apply plugin: 'maven'
 apply plugin: 'signing'
 apply plugin: 'maven-publish'
 
@@ -46,62 +45,71 @@ def getRepositoryPassword() {
     return hasProperty('SONATYPE_NEXUS_PASSWORD') ? SONATYPE_NEXUS_PASSWORD : ""
 }
 
-archivesBaseName = POM_ARTIFACT_ID
-
 afterEvaluate { project ->
-    uploadArchives {
-        repositories {
-            if (project.hasProperty('SONATYPE_NEXUS_USERNAME')) {
-                mavenDeployer {
-                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+    task androidSourcesJar(type: Jar) {
+        archiveClassifier = 'sources'
+        from android.sourceSets.main.java.source
+    }
 
-                    pom.groupId = GROUP
-                    pom.artifactId = POM_ARTIFACT_ID
-                    pom.version = getVersionName()
+    publishing {
+        publications {
+            library(MavenPublication) {
+                groupId GROUP
+                artifactId POM_ARTIFACT_ID
+                version getVersionName()
 
-                    repository(url: getReleaseRepositoryUrl()) {
-                        authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                artifact("${buildDir}/outputs/aar/${artifactId}-release.aar")
+                artifact(androidSourcesJar)
+
+                pom {
+                    name = POM_NAME
+                    packaging = POM_PACKAGING
+                    description = POM_DESCRIPTION
+                    url = POM_URL
+
+                    scm {
+                        url = POM_SCM_URL
+                        connection = POM_SCM_CONNECTION
+                        developerConnection = POM_SCM_DEV_CONNECTION
                     }
-                    snapshotRepository(url: getSnapshotRepositoryUrl()) {
-                        authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+
+                    licenses {
+                        license {
+                            name = POM_LICENCE_NAME
+                            url = POM_LICENCE_URL
+                            distribution = POM_LICENCE_DIST
+                        }
                     }
 
-                    pom.project {
-                        name POM_NAME
-                        packaging POM_PACKAGING
-                        description POM_DESCRIPTION
-                        url POM_URL
-
-                        scm {
-                            url POM_SCM_URL
-                            connection POM_SCM_CONNECTION
-                            developerConnection POM_SCM_DEV_CONNECTION
+                    developers {
+                        developer {
+                            id = POM_DEVELOPER_ID
+                            organization = POM_DEVELOPER_ORGANIZATION
+                            organizationUrl = POM_DEVELOPER_ORGANIZATION_URL
                         }
+                    }
 
-                        licenses {
-                            license {
-                                name POM_LICENCE_NAME
-                                url POM_LICENCE_URL
-                                distribution POM_LICENCE_DIST
-                            }
-                        }
-
-                        developers {
-                            developer {
-                                id POM_DEVELOPER_ID
-                                organizationUrl POM_DEVELOPER_ORGANIZATION_URL
-                                roles {
-                                    role "developer"
-                                }
-                            }
+                    withXml {
+                        def dependenciesNode = asNode().appendNode('dependencies')
+                        // Note that this only handles implementation
+                        // dependencies. In the future, may need to add api,
+                        // etc.
+                        configurations.implementation.allDependencies.each {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
                         }
                     }
                 }
-            } else {
-                mavenInstaller {
-                    pom.groupId = GROUP
-                    pom.artifactId = POM_ARTIFACT_ID
-                    pom.version = getVersionName()
+            }
+        }
+        repositories {
+            maven {
+                url = !isSnapshotBuild() ? getReleaseRepositoryUrl() : getSnapshotRepositoryUrl()
+                credentials {
+                    username = getRepositoryUsername()
+                    password = getRepositoryPassword()
                 }
             }
         }
@@ -117,144 +125,4 @@ afterEvaluate { project ->
         }
         sign configurations.archives
     }
-
-    if (project.getPlugins().hasPlugin('com.android.application') ||
-        project.getPlugins().hasPlugin('com.android.library')) {
-        task install(type: Upload, dependsOn: assemble) {
-            repositories.mavenInstaller {
-                configuration = configurations.archives
-
-                pom.groupId = GROUP
-                pom.artifactId = POM_ARTIFACT_ID
-                pom.version = getVersionName()
-
-                pom.project {
-                    name POM_NAME
-                    packaging POM_PACKAGING
-                    description POM_DESCRIPTION
-                    url POM_URL
-
-                    scm {
-                        url POM_SCM_URL
-                        connection POM_SCM_CONNECTION
-                        developerConnection POM_SCM_DEV_CONNECTION
-                    }
-
-                    licenses {
-                        license {
-                            name POM_LICENCE_NAME
-                            url POM_LICENCE_URL
-                            distribution POM_LICENCE_DIST
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id POM_DEVELOPER_ID
-                            organization POM_DEVELOPER_ORGANIZATION
-                            organizationUrl POM_DEVELOPER_ORGANIZATION_URL
-                        }
-                    }
-                }
-            }
-        }
-
-        task androidJavadocs(type: Javadoc) {
-            failOnError false
-            source = android.sourceSets.main.java.source
-            classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-        }
-
-        afterEvaluate {
-            androidJavadocs.classpath += files(android.libraryVariants.collect { variant ->
-                variant.javaCompileProvider.get().classpath.files
-            })
-        }
-
-        task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
-            classifier = 'javadoc'
-            from androidJavadocs.destinationDir
-        }
-
-        task androidSourcesJar(type: Jar) {
-            classifier = 'sources'
-            from android.sourceSets.main.java.source
-        }
-    } else {
-        install {
-            repositories.mavenInstaller {
-                pom.groupId = GROUP
-                pom.artifactId = POM_ARTIFACT_ID
-                pom.version = getVersionName()
-
-                pom.project {
-                    name POM_NAME
-                    packaging POM_PACKAGING
-                    description POM_DESCRIPTION
-                    url POM_URL
-
-                    scm {
-                        url POM_SCM_URL
-                        connection POM_SCM_CONNECTION
-                        developerConnection POM_SCM_DEV_CONNECTION
-                    }
-
-                    licenses {
-                        license {
-                            name POM_LICENCE_NAME
-                            url POM_LICENCE_URL
-                            distribution POM_LICENCE_DIST
-                        }
-                    }
-
-                    developers {
-                        developer {
-                            id POM_DEVELOPER_ID
-                            organization POM_DEVELOPER_ORGANIZATION
-                            organizationUrl POM_DEVELOPER_ORGANIZATION_URL
-                        }
-                    }
-                }
-            }
-        }
-
-        task sourcesJar(type: Jar, dependsOn: classes) {
-            classifier = 'sources'
-            from sourceSets.main.allSource
-        }
-    }
-
-    artifacts {
-        if (project.getPlugins().hasPlugin('com.android.application') ||
-            project.getPlugins().hasPlugin('com.android.library')) {
-            archives androidSourcesJar
-            archives androidJavadocsJar
-        } else {
-            archives sourcesJar
-        }
-    }
-
-    publishing {
-        publications {
-            library(MavenPublication) {
-                groupId GROUP
-                artifactId POM_ARTIFACT_ID
-                version getVersionName()
-                artifact("${buildDir}/outputs/aar/${artifactId}-release.aar")
-                pom.withXml {
-                    def dependenciesNode = asNode().appendNode('dependencies')
-                    // Note that this only handles implementation
-                    // dependencies. In the future, may need to add api,
-                    // etc.
-                    configurations.implementation.allDependencies.each {
-                        def dependencyNode = dependenciesNode.appendNode('dependency')
-                        dependencyNode.appendNode('groupId', it.group)
-                        dependencyNode.appendNode('artifactId', it.name)
-                        dependencyNode.appendNode('version', it.version)
-                    }
-                }
-            }
-        }
-    }
 }
-
