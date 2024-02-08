@@ -6,7 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 21 // for kinesisvideo, which uses camera2 APIs.
-        targetSdkVersion 29
     }
 
     packagingOptions {

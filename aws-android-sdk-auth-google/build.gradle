@@ -6,7 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // gms auth brought by google sdk
-        targetSdkVersion 29
     }
 }
 

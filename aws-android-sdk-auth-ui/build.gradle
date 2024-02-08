@@ -6,7 +6,6 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // appcompat
-        targetSdkVersion 29
     }
 }
 
