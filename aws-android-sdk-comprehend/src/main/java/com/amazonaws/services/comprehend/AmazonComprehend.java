@@ -237,7 +237,7 @@ public interface AmazonComprehend {
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param batchDetectTargetedSentimentRequest
@@ -263,17 +263,37 @@ public interface AmazonComprehend {
 
     /**
      * <p>
-     * Creates a new document classification request to analyze a single
-     * document in real-time, using a previously created and trained custom
-     * model and an endpoint.
+     * Creates a classification request to analyze a single document in
+     * real-time. <code>ClassifyDocument</code> supports the following model
+     * types:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * You can input plain text or you can upload a single-page input document
-     * (text, PDF, Word, or image).
+     * Custom classifier - a custom model that you have created and trained. For
+     * input, you can provide plain text, a single-page document (PDF, Word, or
+     * image), or Amazon Textract API output. For more information, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/how-document-classification.html"
+     * >Custom classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
      * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Prompt safety classifier - Amazon Comprehend provides a pre-trained model
+     * for classifying input prompts for generative AI applications. For input,
+     * you provide English plain text input. For prompt safety classification,
+     * the response includes only the <code>Classes</code> field. For more
+     * information about prompt safety classifiers, see <a href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/trust-safety.html#prompt-classification"
+     * >Prompt safety classification</a> in the <i>Amazon Comprehend Developer
+     * Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If the system detects errors while processing a page in the input
-     * document, the API response includes an entry in <code>Errors</code> that
+     * document, the API response includes an <code>Errors</code> field that
      * describes the errors.
      * </p>
      * <p>
@@ -1263,7 +1283,7 @@ public interface AmazonComprehend {
      * <p>
      * For more information about targeted sentiment, see <a href=
      * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
-     * >Targeted sentiment</a>.
+     * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
      * </p>
      * 
      * @param detectTargetedSentimentRequest
@@ -1284,6 +1304,34 @@ public interface AmazonComprehend {
      */
     DetectTargetedSentimentResult detectTargetedSentiment(
             DetectTargetedSentimentRequest detectTargetedSentimentRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Performs toxicity analysis on the list of text strings that you provide
+     * as input. The API response contains a results list that matches the size
+     * of the input list. For more information about toxicity detection, see <a
+     * href=
+     * "https://docs.aws.amazon.com/comprehend/latest/dg/toxicity-detection.html"
+     * >Toxicity detection</a> in the <i>Amazon Comprehend Developer Guide</i>.
+     * </p>
+     * 
+     * @param detectToxicContentRequest
+     * @return detectToxicContentResult The response from the DetectToxicContent
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DetectToxicContentResult detectToxicContent(DetectToxicContentRequest detectToxicContentRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1815,7 +1863,8 @@ public interface AmazonComprehend {
 
     /**
      * <p>
-     * Starts an asynchronous document classification job. Use the
+     * Starts an asynchronous document classification job using a custom
+     * classification model. Use the
      * <code>DescribeDocumentClassificationJob</code> operation to track the
      * progress of the job.
      * </p>

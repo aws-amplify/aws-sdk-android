@@ -90,8 +90,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same Amazon Web
+     * This specifies the Amazon S3 location that contains the test annotations
+     * for the document classifier. The URI must be in the same Amazon Web
      * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
@@ -135,7 +135,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +146,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The S3 location of the training documents. This parameter is required in
-     * a request to create a native classifier model.
+     * a request to create a native document model.
      * </p>
      */
     private DocumentClassifierDocuments documents;
@@ -688,8 +688,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same Amazon Web
+     * This specifies the Amazon S3 location that contains the test annotations
+     * for the document classifier. The URI must be in the same Amazon Web
      * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
@@ -698,9 +698,9 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @return <p>
-     *         This specifies the Amazon S3 location where the test annotations
-     *         for an entity recognizer are located. The URI must be in the same
-     *         Amazon Web Services Region as the API endpoint that you are
+     *         This specifies the Amazon S3 location that contains the test
+     *         annotations for the document classifier. The URI must be in the
+     *         same Amazon Web Services Region as the API endpoint that you are
      *         calling.
      *         </p>
      */
@@ -710,8 +710,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same Amazon Web
+     * This specifies the Amazon S3 location that contains the test annotations
+     * for the document classifier. The URI must be in the same Amazon Web
      * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
@@ -720,10 +720,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param testS3Uri <p>
-     *            This specifies the Amazon S3 location where the test
-     *            annotations for an entity recognizer are located. The URI must
-     *            be in the same Amazon Web Services Region as the API endpoint
-     *            that you are calling.
+     *            This specifies the Amazon S3 location that contains the test
+     *            annotations for the document classifier. The URI must be in
+     *            the same Amazon Web Services Region as the API endpoint that
+     *            you are calling.
      *            </p>
      */
     public void setTestS3Uri(String testS3Uri) {
@@ -732,8 +732,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
-     * This specifies the Amazon S3 location where the test annotations for an
-     * entity recognizer are located. The URI must be in the same Amazon Web
+     * This specifies the Amazon S3 location that contains the test annotations
+     * for the document classifier. The URI must be in the same Amazon Web
      * Services Region as the API endpoint that you are calling.
      * </p>
      * <p>
@@ -745,10 +745,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      *
      * @param testS3Uri <p>
-     *            This specifies the Amazon S3 location where the test
-     *            annotations for an entity recognizer are located. The URI must
-     *            be in the same Amazon Web Services Region as the API endpoint
-     *            that you are calling.
+     *            This specifies the Amazon S3 location that contains the test
+     *            annotations for the document classifier. The URI must be in
+     *            the same Amazon Web Services Region as the API endpoint that
+     *            you are calling.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -987,7 +987,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -996,7 +996,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @return <p>
      *         The type of input documents for training the model. Provide
      *         plain-text documents to create a plain-text model, and provide
-     *         semi-structured documents to create a native model.
+     *         semi-structured documents to create a native document model.
      *         </p>
      * @see DocumentClassifierDocumentTypeFormat
      */
@@ -1008,7 +1008,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1017,7 +1017,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param documentType <p>
      *            The type of input documents for training the model. Provide
      *            plain-text documents to create a plain-text model, and provide
-     *            semi-structured documents to create a native model.
+     *            semi-structured documents to create a native document model.
      *            </p>
      * @see DocumentClassifierDocumentTypeFormat
      */
@@ -1029,7 +1029,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1041,7 +1041,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param documentType <p>
      *            The type of input documents for training the model. Provide
      *            plain-text documents to create a plain-text model, and provide
-     *            semi-structured documents to create a native model.
+     *            semi-structured documents to create a native document model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1056,7 +1056,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1065,7 +1065,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param documentType <p>
      *            The type of input documents for training the model. Provide
      *            plain-text documents to create a plain-text model, and provide
-     *            semi-structured documents to create a native model.
+     *            semi-structured documents to create a native document model.
      *            </p>
      * @see DocumentClassifierDocumentTypeFormat
      */
@@ -1077,7 +1077,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * <p>
      * The type of input documents for training the model. Provide plain-text
      * documents to create a plain-text model, and provide semi-structured
-     * documents to create a native model.
+     * documents to create a native document model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1089,7 +1089,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * @param documentType <p>
      *            The type of input documents for training the model. Provide
      *            plain-text documents to create a plain-text model, and provide
-     *            semi-structured documents to create a native model.
+     *            semi-structured documents to create a native document model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1104,12 +1104,12 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The S3 location of the training documents. This parameter is required in
-     * a request to create a native classifier model.
+     * a request to create a native document model.
      * </p>
      *
      * @return <p>
      *         The S3 location of the training documents. This parameter is
-     *         required in a request to create a native classifier model.
+     *         required in a request to create a native document model.
      *         </p>
      */
     public DocumentClassifierDocuments getDocuments() {
@@ -1119,12 +1119,12 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The S3 location of the training documents. This parameter is required in
-     * a request to create a native classifier model.
+     * a request to create a native document model.
      * </p>
      *
      * @param documents <p>
      *            The S3 location of the training documents. This parameter is
-     *            required in a request to create a native classifier model.
+     *            required in a request to create a native document model.
      *            </p>
      */
     public void setDocuments(DocumentClassifierDocuments documents) {
@@ -1134,7 +1134,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
      * The S3 location of the training documents. This parameter is required in
-     * a request to create a native classifier model.
+     * a request to create a native document model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1142,7 +1142,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *
      * @param documents <p>
      *            The S3 location of the training documents. This parameter is
-     *            required in a request to create a native classifier model.
+     *            required in a request to create a native document model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

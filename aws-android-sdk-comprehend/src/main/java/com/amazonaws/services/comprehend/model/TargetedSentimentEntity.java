@@ -24,7 +24,7 @@ import java.io.Serializable;
  * <p>
  * For more information about targeted sentiment, see <a href=
  * "https://docs.aws.amazon.com/comprehend/latest/dg/how-targeted-sentiment.html"
- * >Targeted sentiment</a>.
+ * >Targeted sentiment</a> in the <i>Amazon Comprehend Developer Guide</i>.
  * </p>
  */
 public class TargetedSentimentEntity implements Serializable {

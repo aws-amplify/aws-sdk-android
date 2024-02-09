@@ -61,7 +61,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * To associate an existing model with the flywheel, specify the Amazon
-     * Resource Number (ARN) of the model version.
+     * Resource Number (ARN) of the model version. Do not set
+     * <code>TaskConfig</code> or <code>ModelType</code> if you specify an
+     * <code>ActiveModelArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,14 +91,17 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with the flywheel. You need to
+     * set <code>TaskConfig</code> if you are creating a flywheel for a new
+     * model.
      * </p>
      */
     private TaskConfig taskConfig;
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -203,7 +208,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * To associate an existing model with the flywheel, specify the Amazon
-     * Resource Number (ARN) of the model version.
+     * Resource Number (ARN) of the model version. Do not set
+     * <code>TaskConfig</code> or <code>ModelType</code> if you specify an
+     * <code>ActiveModelArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,7 +223,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         To associate an existing model with the flywheel, specify the
-     *         Amazon Resource Number (ARN) of the model version.
+     *         Amazon Resource Number (ARN) of the model version. Do not set
+     *         <code>TaskConfig</code> or <code>ModelType</code> if you specify
+     *         an <code>ActiveModelArn</code>.
      *         </p>
      */
     public String getActiveModelArn() {
@@ -226,7 +235,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * To associate an existing model with the flywheel, specify the Amazon
-     * Resource Number (ARN) of the model version.
+     * Resource Number (ARN) of the model version. Do not set
+     * <code>TaskConfig</code> or <code>ModelType</code> if you specify an
+     * <code>ActiveModelArn</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -239,7 +250,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
      *
      * @param activeModelArn <p>
      *            To associate an existing model with the flywheel, specify the
-     *            Amazon Resource Number (ARN) of the model version.
+     *            Amazon Resource Number (ARN) of the model version. Do not set
+     *            <code>TaskConfig</code> or <code>ModelType</code> if you
+     *            specify an <code>ActiveModelArn</code>.
      *            </p>
      */
     public void setActiveModelArn(String activeModelArn) {
@@ -249,7 +262,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * To associate an existing model with the flywheel, specify the Amazon
-     * Resource Number (ARN) of the model version.
+     * Resource Number (ARN) of the model version. Do not set
+     * <code>TaskConfig</code> or <code>ModelType</code> if you specify an
+     * <code>ActiveModelArn</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -265,7 +280,9 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
      *
      * @param activeModelArn <p>
      *            To associate an existing model with the flywheel, specify the
-     *            Amazon Resource Number (ARN) of the model version.
+     *            Amazon Resource Number (ARN) of the model version. Do not set
+     *            <code>TaskConfig</code> or <code>ModelType</code> if you
+     *            specify an <code>ActiveModelArn</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -346,12 +363,15 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with the flywheel. You need to
+     * set <code>TaskConfig</code> if you are creating a flywheel for a new
+     * model.
      * </p>
      *
      * @return <p>
-     *         Configuration about the custom classifier associated with the
-     *         flywheel.
+     *         Configuration about the model associated with the flywheel. You
+     *         need to set <code>TaskConfig</code> if you are creating a
+     *         flywheel for a new model.
      *         </p>
      */
     public TaskConfig getTaskConfig() {
@@ -360,12 +380,15 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with the flywheel. You need to
+     * set <code>TaskConfig</code> if you are creating a flywheel for a new
+     * model.
      * </p>
      *
      * @param taskConfig <p>
-     *            Configuration about the custom classifier associated with the
-     *            flywheel.
+     *            Configuration about the model associated with the flywheel.
+     *            You need to set <code>TaskConfig</code> if you are creating a
+     *            flywheel for a new model.
      *            </p>
      */
     public void setTaskConfig(TaskConfig taskConfig) {
@@ -374,15 +397,18 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Configuration about the custom classifier associated with the flywheel.
+     * Configuration about the model associated with the flywheel. You need to
+     * set <code>TaskConfig</code> if you are creating a flywheel for a new
+     * model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param taskConfig <p>
-     *            Configuration about the custom classifier associated with the
-     *            flywheel.
+     *            Configuration about the model associated with the flywheel.
+     *            You need to set <code>TaskConfig</code> if you are creating a
+     *            flywheel for a new model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -394,14 +420,16 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_CLASSIFIER, ENTITY_RECOGNIZER
      *
      * @return <p>
-     *         The model type.
+     *         The model type. You need to set <code>ModelType</code> if you are
+     *         creating a flywheel for a new model.
      *         </p>
      * @see ModelType
      */
@@ -411,14 +439,16 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_CLASSIFIER, ENTITY_RECOGNIZER
      *
      * @param modelType <p>
-     *            The model type.
+     *            The model type. You need to set <code>ModelType</code> if you
+     *            are creating a flywheel for a new model.
      *            </p>
      * @see ModelType
      */
@@ -428,7 +458,8 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -438,7 +469,8 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>DOCUMENT_CLASSIFIER, ENTITY_RECOGNIZER
      *
      * @param modelType <p>
-     *            The model type.
+     *            The model type. You need to set <code>ModelType</code> if you
+     *            are creating a flywheel for a new model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -451,14 +483,16 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DOCUMENT_CLASSIFIER, ENTITY_RECOGNIZER
      *
      * @param modelType <p>
-     *            The model type.
+     *            The model type. You need to set <code>ModelType</code> if you
+     *            are creating a flywheel for a new model.
      *            </p>
      * @see ModelType
      */
@@ -468,7 +502,8 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The model type.
+     * The model type. You need to set <code>ModelType</code> if you are
+     * creating a flywheel for a new model.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -478,7 +513,8 @@ public class CreateFlywheelRequest extends AmazonWebServiceRequest implements Se
      * <b>Allowed Values: </b>DOCUMENT_CLASSIFIER, ENTITY_RECOGNIZER
      *
      * @param modelType <p>
-     *            The model type.
+     *            The model type. You need to set <code>ModelType</code> if you
+     *            are creating a flywheel for a new model.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
