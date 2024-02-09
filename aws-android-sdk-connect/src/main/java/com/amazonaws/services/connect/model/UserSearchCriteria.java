@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,12 +51,13 @@ public class UserSearchCriteria implements Serializable {
      * <p>
      * A leaf node condition which can be used to specify a string condition.
      * </p>
-     * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>username</code>, <code>firstname</code>, <code>lastname</code>,
+     * <code>resourceId</code>, <code>routingProfileId</code>,
+     * <code>securityProfileId</code>, <code>agentGroupId</code>, and
+     * <code>agentGroupPathIds</code>.
      * </p>
-     * </note>
      */
     private StringCondition stringCondition;
 
@@ -237,24 +238,25 @@ public class UserSearchCriteria implements Serializable {
      * <p>
      * A leaf node condition which can be used to specify a string condition.
      * </p>
-     * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>username</code>, <code>firstname</code>, <code>lastname</code>,
+     * <code>resourceId</code>, <code>routingProfileId</code>,
+     * <code>securityProfileId</code>, <code>agentGroupId</code>, and
+     * <code>agentGroupPathIds</code>.
      * </p>
-     * </note>
      *
      * @return <p>
      *         A leaf node condition which can be used to specify a string
      *         condition.
      *         </p>
-     *         <note>
      *         <p>
      *         The currently supported values for <code>FieldName</code> are
-     *         <code>name</code>, <code>description</code>, and
-     *         <code>resourceID</code>.
+     *         <code>username</code>, <code>firstname</code>,
+     *         <code>lastname</code>, <code>resourceId</code>,
+     *         <code>routingProfileId</code>, <code>securityProfileId</code>,
+     *         <code>agentGroupId</code>, and <code>agentGroupPathIds</code>.
      *         </p>
-     *         </note>
      */
     public StringCondition getStringCondition() {
         return stringCondition;
@@ -264,24 +266,25 @@ public class UserSearchCriteria implements Serializable {
      * <p>
      * A leaf node condition which can be used to specify a string condition.
      * </p>
-     * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>username</code>, <code>firstname</code>, <code>lastname</code>,
+     * <code>resourceId</code>, <code>routingProfileId</code>,
+     * <code>securityProfileId</code>, <code>agentGroupId</code>, and
+     * <code>agentGroupPathIds</code>.
      * </p>
-     * </note>
      *
      * @param stringCondition <p>
      *            A leaf node condition which can be used to specify a string
      *            condition.
      *            </p>
-     *            <note>
      *            <p>
      *            The currently supported values for <code>FieldName</code> are
-     *            <code>name</code>, <code>description</code>, and
-     *            <code>resourceID</code>.
+     *            <code>username</code>, <code>firstname</code>,
+     *            <code>lastname</code>, <code>resourceId</code>,
+     *            <code>routingProfileId</code>, <code>securityProfileId</code>,
+     *            <code>agentGroupId</code>, and <code>agentGroupPathIds</code>.
      *            </p>
-     *            </note>
      */
     public void setStringCondition(StringCondition stringCondition) {
         this.stringCondition = stringCondition;
@@ -291,12 +294,13 @@ public class UserSearchCriteria implements Serializable {
      * <p>
      * A leaf node condition which can be used to specify a string condition.
      * </p>
-     * <note>
      * <p>
      * The currently supported values for <code>FieldName</code> are
-     * <code>name</code>, <code>description</code>, and <code>resourceID</code>.
+     * <code>username</code>, <code>firstname</code>, <code>lastname</code>,
+     * <code>resourceId</code>, <code>routingProfileId</code>,
+     * <code>securityProfileId</code>, <code>agentGroupId</code>, and
+     * <code>agentGroupPathIds</code>.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -305,13 +309,13 @@ public class UserSearchCriteria implements Serializable {
      *            A leaf node condition which can be used to specify a string
      *            condition.
      *            </p>
-     *            <note>
      *            <p>
      *            The currently supported values for <code>FieldName</code> are
-     *            <code>name</code>, <code>description</code>, and
-     *            <code>resourceID</code>.
+     *            <code>username</code>, <code>firstname</code>,
+     *            <code>lastname</code>, <code>resourceId</code>,
+     *            <code>routingProfileId</code>, <code>securityProfileId</code>,
+     *            <code>agentGroupId</code>, and <code>agentGroupPathIds</code>.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

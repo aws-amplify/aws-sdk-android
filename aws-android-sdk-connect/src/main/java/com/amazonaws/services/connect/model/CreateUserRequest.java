@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,9 +23,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a user account for the specified Amazon Connect instance.
  * </p>
+ * <important>
  * <p>
- * For information about how to create user accounts using the Amazon Connect
- * console, see <a href=
+ * Certain <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UserIdentityInfo.html"
+ * >UserIdentityInfo</a> parameters are required in some situations. For
+ * example, <code>Email</code> is required if you are using SAML for identity
+ * management. <code>FirstName</code> and <code>LastName</code> are required if
+ * you are using Amazon Connect or SAML for identity management.
+ * </p>
+ * </important>
+ * <p>
+ * For information about how to create users using the Amazon Connect admin
+ * website, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
  * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
  * </p>
@@ -125,7 +135,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -715,12 +725,12 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -731,12 +741,12 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -747,7 +757,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -755,7 +765,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -769,7 +779,7 @@ public class CreateUserRequest extends AmazonWebServiceRequest implements Serial
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

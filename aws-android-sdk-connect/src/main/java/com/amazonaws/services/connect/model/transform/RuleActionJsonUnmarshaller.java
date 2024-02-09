@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -53,6 +53,19 @@ class RuleActionJsonUnmarshaller implements Unmarshaller<RuleAction, JsonUnmarsh
             } else if (name.equals("SendNotificationAction")) {
                 ruleAction
                         .setSendNotificationAction(SendNotificationActionDefinitionJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("CreateCaseAction")) {
+                ruleAction.setCreateCaseAction(CreateCaseActionDefinitionJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UpdateCaseAction")) {
+                ruleAction.setUpdateCaseAction(UpdateCaseActionDefinitionJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EndAssociatedTasksAction")) {
+                ruleAction
+                        .setEndAssociatedTasksAction(EndAssociatedTasksActionDefinitionJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
             } else {

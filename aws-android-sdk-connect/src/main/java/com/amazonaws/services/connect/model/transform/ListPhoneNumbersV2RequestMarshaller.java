@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,6 +65,11 @@ public class ListPhoneNumbersV2RequestMarshaller implements
                 String targetArn = listPhoneNumbersV2Request.getTargetArn();
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
+            }
+            if (listPhoneNumbersV2Request.getInstanceId() != null) {
+                String instanceId = listPhoneNumbersV2Request.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
             }
             if (listPhoneNumbersV2Request.getMaxResults() != null) {
                 Integer maxResults = listPhoneNumbersV2Request.getMaxResults();

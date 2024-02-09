@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,6 +74,18 @@ class ContactJsonUnmarshaller implements Unmarshaller<Contact, JsonUnmarshallerC
             } else if (name.equals("LastUpdateTimestamp")) {
                 contact.setLastUpdateTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastPausedTimestamp")) {
+                contact.setLastPausedTimestamp(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastResumedTimestamp")) {
+                contact.setLastResumedTimestamp(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TotalPauseCount")) {
+                contact.setTotalPauseCount(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TotalPauseDurationInSeconds")) {
+                contact.setTotalPauseDurationInSeconds(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ScheduledTimestamp")) {
                 contact.setScheduledTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -83,6 +95,16 @@ class ContactJsonUnmarshaller implements Unmarshaller<Contact, JsonUnmarshallerC
             } else if (name.equals("WisdomInfo")) {
                 contact.setWisdomInfo(WisdomInfoJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("QueueTimeAdjustmentSeconds")) {
+                contact.setQueueTimeAdjustmentSeconds(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("QueuePriority")) {
+                contact.setQueuePriority(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                contact.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

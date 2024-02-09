@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,7 +74,13 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      */
     private String content;
@@ -82,7 +88,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -384,11 +390,24 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @return <p>
-     *         The content of the flow.
+     *         The JSON string that represents the content of the flow. For an
+     *         example, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *         >Example flow in Amazon Connect Flow language</a>.
+     *         </p>
+     *         <p>
+     *         Length Constraints: Minimum length of 1. Maximum length of
+     *         256000.
      *         </p>
      */
     public String getContent() {
@@ -397,11 +416,24 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      */
     public void setContent(String content) {
@@ -410,14 +442,27 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The content of the flow.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
+     * </p>
+     * <p>
+     * Length Constraints: Minimum length of 1. Maximum length of 256000.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param content <p>
-     *            The content of the flow.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
+     *            </p>
+     *            <p>
+     *            Length Constraints: Minimum length of 1. Maximum length of
+     *            256000.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -430,12 +475,12 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -446,12 +491,12 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -462,7 +507,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -470,7 +515,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -484,7 +529,7 @@ public class CreateContactFlowRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

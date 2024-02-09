@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -81,11 +81,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identifier of the flow for initiating the chat. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -212,6 +212,32 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes. They can be accessed in flows.
+     * </p>
+     * <p>
+     * Attribute keys can include only alphanumeric, -, and _.
+     * </p>
+     * <p>
+     * This field can be used to show channel subtype, such as
+     * <code>connect:Guide</code>.
+     * </p>
+     * <note>
+     * <p>
+     * The types
+     * <code>application/vnd.amazonaws.connect.message.interactive</code> and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * must be present in the SupportedMessagingContentTypes field of this API
+     * in order to set <code>SegmentAttributes</code> as {
+     * <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>.
+     * </p>
+     * </note>
+     */
+    private java.util.Map<String, SegmentAttributeValue> segmentAttributes;
+
+    /**
+     * <p>
      * The identifier of the Amazon Connect instance. You can <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
      * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
@@ -287,11 +313,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identifier of the flow for initiating the chat. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -303,8 +329,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The identifier of the flow for initiating the chat. To see the
-     *         ContactFlowId in the Amazon Connect console user interface, on
-     *         the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *         ContactFlowId in the Amazon Connect admin website, on the
+     *         navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
      *         Choose the flow. On the flow page, under the name of the flow,
      *         choose <b>Show additional flow information</b>. The ContactFlowId
      *         is the last part of the ARN, shown here in bold:
@@ -322,11 +348,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identifier of the flow for initiating the chat. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -338,12 +364,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for initiating the chat. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -358,11 +383,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identifier of the flow for initiating the chat. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -377,12 +402,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for initiating the chat. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -1208,6 +1232,231 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes. They can be accessed in flows.
+     * </p>
+     * <p>
+     * Attribute keys can include only alphanumeric, -, and _.
+     * </p>
+     * <p>
+     * This field can be used to show channel subtype, such as
+     * <code>connect:Guide</code>.
+     * </p>
+     * <note>
+     * <p>
+     * The types
+     * <code>application/vnd.amazonaws.connect.message.interactive</code> and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * must be present in the SupportedMessagingContentTypes field of this API
+     * in order to set <code>SegmentAttributes</code> as {
+     * <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         A set of system defined key-value pairs stored on individual
+     *         contact segments using an attribute map. The attributes are
+     *         standard Amazon Connect attributes. They can be accessed in
+     *         flows.
+     *         </p>
+     *         <p>
+     *         Attribute keys can include only alphanumeric, -, and _.
+     *         </p>
+     *         <p>
+     *         This field can be used to show channel subtype, such as
+     *         <code>connect:Guide</code>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The types
+     *         <code>application/vnd.amazonaws.connect.message.interactive</code>
+     *         and
+     *         <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *         must be present in the SupportedMessagingContentTypes field of
+     *         this API in order to set <code>SegmentAttributes</code> as {
+     *         <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>
+     *         .
+     *         </p>
+     *         </note>
+     */
+    public java.util.Map<String, SegmentAttributeValue> getSegmentAttributes() {
+        return segmentAttributes;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes. They can be accessed in flows.
+     * </p>
+     * <p>
+     * Attribute keys can include only alphanumeric, -, and _.
+     * </p>
+     * <p>
+     * This field can be used to show channel subtype, such as
+     * <code>connect:Guide</code>.
+     * </p>
+     * <note>
+     * <p>
+     * The types
+     * <code>application/vnd.amazonaws.connect.message.interactive</code> and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * must be present in the SupportedMessagingContentTypes field of this API
+     * in order to set <code>SegmentAttributes</code> as {
+     * <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>.
+     * </p>
+     * </note>
+     *
+     * @param segmentAttributes <p>
+     *            A set of system defined key-value pairs stored on individual
+     *            contact segments using an attribute map. The attributes are
+     *            standard Amazon Connect attributes. They can be accessed in
+     *            flows.
+     *            </p>
+     *            <p>
+     *            Attribute keys can include only alphanumeric, -, and _.
+     *            </p>
+     *            <p>
+     *            This field can be used to show channel subtype, such as
+     *            <code>connect:Guide</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The types
+     *            <code>application/vnd.amazonaws.connect.message.interactive</code>
+     *            and
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            must be present in the SupportedMessagingContentTypes field of
+     *            this API in order to set <code>SegmentAttributes</code> as {
+     *            <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>
+     *            .
+     *            </p>
+     *            </note>
+     */
+    public void setSegmentAttributes(java.util.Map<String, SegmentAttributeValue> segmentAttributes) {
+        this.segmentAttributes = segmentAttributes;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes. They can be accessed in flows.
+     * </p>
+     * <p>
+     * Attribute keys can include only alphanumeric, -, and _.
+     * </p>
+     * <p>
+     * This field can be used to show channel subtype, such as
+     * <code>connect:Guide</code>.
+     * </p>
+     * <note>
+     * <p>
+     * The types
+     * <code>application/vnd.amazonaws.connect.message.interactive</code> and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * must be present in the SupportedMessagingContentTypes field of this API
+     * in order to set <code>SegmentAttributes</code> as {
+     * <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param segmentAttributes <p>
+     *            A set of system defined key-value pairs stored on individual
+     *            contact segments using an attribute map. The attributes are
+     *            standard Amazon Connect attributes. They can be accessed in
+     *            flows.
+     *            </p>
+     *            <p>
+     *            Attribute keys can include only alphanumeric, -, and _.
+     *            </p>
+     *            <p>
+     *            This field can be used to show channel subtype, such as
+     *            <code>connect:Guide</code>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The types
+     *            <code>application/vnd.amazonaws.connect.message.interactive</code>
+     *            and
+     *            <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     *            must be present in the SupportedMessagingContentTypes field of
+     *            this API in order to set <code>SegmentAttributes</code> as {
+     *            <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>
+     *            .
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactRequest withSegmentAttributes(
+            java.util.Map<String, SegmentAttributeValue> segmentAttributes) {
+        this.segmentAttributes = segmentAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A set of system defined key-value pairs stored on individual contact
+     * segments using an attribute map. The attributes are standard Amazon
+     * Connect attributes. They can be accessed in flows.
+     * </p>
+     * <p>
+     * Attribute keys can include only alphanumeric, -, and _.
+     * </p>
+     * <p>
+     * This field can be used to show channel subtype, such as
+     * <code>connect:Guide</code>.
+     * </p>
+     * <note>
+     * <p>
+     * The types
+     * <code>application/vnd.amazonaws.connect.message.interactive</code> and
+     * <code>application/vnd.amazonaws.connect.message.interactive.response</code>
+     * must be present in the SupportedMessagingContentTypes field of this API
+     * in order to set <code>SegmentAttributes</code> as {
+     * <code> "connect:Subtype": {"valueString" : "connect:Guide" }}</code>.
+     * </p>
+     * </note>
+     * <p>
+     * The method adds a new key-value pair into SegmentAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into SegmentAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            SegmentAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartChatContactRequest addSegmentAttributesEntry(String key, SegmentAttributeValue value) {
+        if (null == this.segmentAttributes) {
+            this.segmentAttributes = new java.util.HashMap<String, SegmentAttributeValue>();
+        }
+        if (this.segmentAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.segmentAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into SegmentAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public StartChatContactRequest clearSegmentAttributesEntries() {
+        this.segmentAttributes = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1238,7 +1487,9 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
         if (getPersistentChat() != null)
             sb.append("PersistentChat: " + getPersistentChat() + ",");
         if (getRelatedContactId() != null)
-            sb.append("RelatedContactId: " + getRelatedContactId());
+            sb.append("RelatedContactId: " + getRelatedContactId() + ",");
+        if (getSegmentAttributes() != null)
+            sb.append("SegmentAttributes: " + getSegmentAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -1269,6 +1520,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
                 + ((getPersistentChat() == null) ? 0 : getPersistentChat().hashCode());
         hashCode = prime * hashCode
                 + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSegmentAttributes() == null) ? 0 : getSegmentAttributes().hashCode());
         return hashCode;
     }
 
@@ -1334,6 +1587,11 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getRelatedContactId() != null
                 && other.getRelatedContactId().equals(this.getRelatedContactId()) == false)
+            return false;
+        if (other.getSegmentAttributes() == null ^ this.getSegmentAttributes() == null)
+            return false;
+        if (other.getSegmentAttributes() != null
+                && other.getSegmentAttributes().equals(this.getSegmentAttributes()) == false)
             return false;
         return true;
     }

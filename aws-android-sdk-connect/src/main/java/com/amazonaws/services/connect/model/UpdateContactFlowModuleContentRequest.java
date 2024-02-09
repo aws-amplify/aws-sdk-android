@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -51,7 +51,10 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the flow module.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -189,14 +192,20 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the flow module.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @return <p>
-     *         The content of the flow module.
+     *         The JSON string that represents the content of the flow. For an
+     *         example, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *         >Example flow in Amazon Connect Flow language</a>.
      *         </p>
      */
     public String getContent() {
@@ -205,14 +214,20 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the flow module.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the flow module.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
      *            </p>
      */
     public void setContent(String content) {
@@ -221,7 +236,10 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * The content of the flow module.
+     * The JSON string that represents the content of the flow. For an example,
+     * see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     * >Example flow in Amazon Connect Flow language</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +249,10 @@ public class UpdateContactFlowModuleContentRequest extends AmazonWebServiceReque
      * <b>Length: </b>1 - 256000<br/>
      *
      * @param content <p>
-     *            The content of the flow module.
+     *            The JSON string that represents the content of the flow. For
+     *            an example, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/flow-language-example.html"
+     *            >Example flow in Amazon Connect Flow language</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
