@@ -80,6 +80,16 @@ class QueueJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (queue.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = queue.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (queue.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = queue.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

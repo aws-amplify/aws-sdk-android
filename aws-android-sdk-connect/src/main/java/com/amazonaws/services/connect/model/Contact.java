@@ -149,6 +149,40 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     */
+    private java.util.Date lastPausedTimestamp;
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     */
+    private java.util.Date lastResumedTimestamp;
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     */
+    private Integer totalPauseCount;
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer totalPauseDurationInSeconds;
+
+    /**
+     * <p>
      * The timestamp, in Unix epoch time format, at which to start running the
      * inbound flow.
      * </p>
@@ -173,6 +207,14 @@ public class Contact implements Serializable {
      * </p>
      */
     private WisdomInfo wisdomInfo;
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -990,6 +1032,204 @@ public class Contact implements Serializable {
 
     /**
      * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when the contact was last paused.
+     *         </p>
+     */
+    public java.util.Date getLastPausedTimestamp() {
+        return lastPausedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     *
+     * @param lastPausedTimestamp <p>
+     *            The timestamp when the contact was last paused.
+     *            </p>
+     */
+    public void setLastPausedTimestamp(java.util.Date lastPausedTimestamp) {
+        this.lastPausedTimestamp = lastPausedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last paused.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastPausedTimestamp <p>
+     *            The timestamp when the contact was last paused.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withLastPausedTimestamp(java.util.Date lastPausedTimestamp) {
+        this.lastPausedTimestamp = lastPausedTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when the contact was last resumed.
+     *         </p>
+     */
+    public java.util.Date getLastResumedTimestamp() {
+        return lastResumedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     *
+     * @param lastResumedTimestamp <p>
+     *            The timestamp when the contact was last resumed.
+     *            </p>
+     */
+    public void setLastResumedTimestamp(java.util.Date lastResumedTimestamp) {
+        this.lastResumedTimestamp = lastResumedTimestamp;
+    }
+
+    /**
+     * <p>
+     * The timestamp when the contact was last resumed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastResumedTimestamp <p>
+     *            The timestamp when the contact was last resumed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withLastResumedTimestamp(java.util.Date lastResumedTimestamp) {
+        this.lastResumedTimestamp = lastResumedTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @return <p>
+     *         Total pause count for a contact.
+     *         </p>
+     */
+    public Integer getTotalPauseCount() {
+        return totalPauseCount;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @param totalPauseCount <p>
+     *            Total pause count for a contact.
+     *            </p>
+     */
+    public void setTotalPauseCount(Integer totalPauseCount) {
+        this.totalPauseCount = totalPauseCount;
+    }
+
+    /**
+     * <p>
+     * Total pause count for a contact.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 10<br/>
+     *
+     * @param totalPauseCount <p>
+     *            Total pause count for a contact.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTotalPauseCount(Integer totalPauseCount) {
+        this.totalPauseCount = totalPauseCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         Total pause duration for a contact in seconds.
+     *         </p>
+     */
+    public Integer getTotalPauseDurationInSeconds() {
+        return totalPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param totalPauseDurationInSeconds <p>
+     *            Total pause duration for a contact in seconds.
+     *            </p>
+     */
+    public void setTotalPauseDurationInSeconds(Integer totalPauseDurationInSeconds) {
+        this.totalPauseDurationInSeconds = totalPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Total pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param totalPauseDurationInSeconds <p>
+     *            Total pause duration for a contact in seconds.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTotalPauseDurationInSeconds(Integer totalPauseDurationInSeconds) {
+        this.totalPauseDurationInSeconds = totalPauseDurationInSeconds;
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp, in Unix epoch time format, at which to start running the
      * inbound flow.
      * </p>
@@ -1151,6 +1391,93 @@ public class Contact implements Serializable {
     }
 
     /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     *
+     * @return <p>
+     *         Tags associated with the contact. This contains both Amazon Web
+     *         Services generated and user-defined tags.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     *
+     * @param tags <p>
+     *            Tags associated with the contact. This contains both Amazon
+     *            Web Services generated and user-defined tags.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags associated with the contact. This contains both Amazon
+     *            Web Services generated and user-defined tags.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags associated with the contact. This contains both Amazon Web Services
+     * generated and user-defined tags.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Contact addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public Contact clearTagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1187,12 +1514,22 @@ public class Contact implements Serializable {
             sb.append("DisconnectTimestamp: " + getDisconnectTimestamp() + ",");
         if (getLastUpdateTimestamp() != null)
             sb.append("LastUpdateTimestamp: " + getLastUpdateTimestamp() + ",");
+        if (getLastPausedTimestamp() != null)
+            sb.append("LastPausedTimestamp: " + getLastPausedTimestamp() + ",");
+        if (getLastResumedTimestamp() != null)
+            sb.append("LastResumedTimestamp: " + getLastResumedTimestamp() + ",");
+        if (getTotalPauseCount() != null)
+            sb.append("TotalPauseCount: " + getTotalPauseCount() + ",");
+        if (getTotalPauseDurationInSeconds() != null)
+            sb.append("TotalPauseDurationInSeconds: " + getTotalPauseDurationInSeconds() + ",");
         if (getScheduledTimestamp() != null)
             sb.append("ScheduledTimestamp: " + getScheduledTimestamp() + ",");
         if (getRelatedContactId() != null)
             sb.append("RelatedContactId: " + getRelatedContactId() + ",");
         if (getWisdomInfo() != null)
-            sb.append("WisdomInfo: " + getWisdomInfo());
+            sb.append("WisdomInfo: " + getWisdomInfo() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -1223,10 +1560,21 @@ public class Contact implements Serializable {
         hashCode = prime * hashCode
                 + ((getLastUpdateTimestamp() == null) ? 0 : getLastUpdateTimestamp().hashCode());
         hashCode = prime * hashCode
+                + ((getLastPausedTimestamp() == null) ? 0 : getLastPausedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastResumedTimestamp() == null) ? 0 : getLastResumedTimestamp().hashCode());
+        hashCode = prime * hashCode
+                + ((getTotalPauseCount() == null) ? 0 : getTotalPauseCount().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTotalPauseDurationInSeconds() == null) ? 0
+                        : getTotalPauseDurationInSeconds().hashCode());
+        hashCode = prime * hashCode
                 + ((getScheduledTimestamp() == null) ? 0 : getScheduledTimestamp().hashCode());
         hashCode = prime * hashCode
                 + ((getRelatedContactId() == null) ? 0 : getRelatedContactId().hashCode());
         hashCode = prime * hashCode + ((getWisdomInfo() == null) ? 0 : getWisdomInfo().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -1302,6 +1650,28 @@ public class Contact implements Serializable {
         if (other.getLastUpdateTimestamp() != null
                 && other.getLastUpdateTimestamp().equals(this.getLastUpdateTimestamp()) == false)
             return false;
+        if (other.getLastPausedTimestamp() == null ^ this.getLastPausedTimestamp() == null)
+            return false;
+        if (other.getLastPausedTimestamp() != null
+                && other.getLastPausedTimestamp().equals(this.getLastPausedTimestamp()) == false)
+            return false;
+        if (other.getLastResumedTimestamp() == null ^ this.getLastResumedTimestamp() == null)
+            return false;
+        if (other.getLastResumedTimestamp() != null
+                && other.getLastResumedTimestamp().equals(this.getLastResumedTimestamp()) == false)
+            return false;
+        if (other.getTotalPauseCount() == null ^ this.getTotalPauseCount() == null)
+            return false;
+        if (other.getTotalPauseCount() != null
+                && other.getTotalPauseCount().equals(this.getTotalPauseCount()) == false)
+            return false;
+        if (other.getTotalPauseDurationInSeconds() == null
+                ^ this.getTotalPauseDurationInSeconds() == null)
+            return false;
+        if (other.getTotalPauseDurationInSeconds() != null
+                && other.getTotalPauseDurationInSeconds().equals(
+                        this.getTotalPauseDurationInSeconds()) == false)
+            return false;
         if (other.getScheduledTimestamp() == null ^ this.getScheduledTimestamp() == null)
             return false;
         if (other.getScheduledTimestamp() != null
@@ -1316,6 +1686,10 @@ public class Contact implements Serializable {
             return false;
         if (other.getWisdomInfo() != null
                 && other.getWisdomInfo().equals(this.getWisdomInfo()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

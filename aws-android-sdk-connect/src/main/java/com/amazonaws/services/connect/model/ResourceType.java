@@ -29,7 +29,8 @@ public enum ResourceType {
     PARTICIPANT("PARTICIPANT"),
     HIERARCHY_LEVEL("HIERARCHY_LEVEL"),
     HIERARCHY_GROUP("HIERARCHY_GROUP"),
-    USER("USER");
+    USER("USER"),
+    PHONE_NUMBER("PHONE_NUMBER");
 
     private String value;
 
@@ -52,6 +53,7 @@ public enum ResourceType {
         enumMap.put("HIERARCHY_LEVEL", HIERARCHY_LEVEL);
         enumMap.put("HIERARCHY_GROUP", HIERARCHY_GROUP);
         enumMap.put("USER", USER);
+        enumMap.put("PHONE_NUMBER", PHONE_NUMBER);
     }
 
     /**

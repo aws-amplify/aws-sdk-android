@@ -47,6 +47,16 @@ class AgentStatusSummaryJsonMarshaller {
             jsonWriter.name("Type");
             jsonWriter.value(type);
         }
+        if (agentStatusSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = agentStatusSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (agentStatusSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = agentStatusSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

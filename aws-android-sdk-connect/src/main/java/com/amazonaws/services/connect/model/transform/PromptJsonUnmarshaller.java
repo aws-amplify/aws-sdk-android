@@ -51,6 +51,12 @@ class PromptJsonUnmarshaller implements Unmarshaller<Prompt, JsonUnmarshallerCon
                 prompt.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                prompt.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                prompt.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

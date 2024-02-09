@@ -42,6 +42,16 @@ class RoutingProfileSummaryJsonMarshaller {
             jsonWriter.name("Name");
             jsonWriter.value(name);
         }
+        if (routingProfileSummary.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = routingProfileSummary.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (routingProfileSummary.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = routingProfileSummary.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

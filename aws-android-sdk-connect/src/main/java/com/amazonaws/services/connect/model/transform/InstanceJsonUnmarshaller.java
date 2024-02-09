@@ -68,6 +68,10 @@ class InstanceJsonUnmarshaller implements Unmarshaller<Instance, JsonUnmarshalle
             } else if (name.equals("InstanceAccessUrl")) {
                 instance.setInstanceAccessUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                instance.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

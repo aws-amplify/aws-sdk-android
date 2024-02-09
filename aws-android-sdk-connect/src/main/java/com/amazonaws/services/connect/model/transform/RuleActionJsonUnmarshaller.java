@@ -55,6 +55,19 @@ class RuleActionJsonUnmarshaller implements Unmarshaller<RuleAction, JsonUnmarsh
                         .setSendNotificationAction(SendNotificationActionDefinitionJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("CreateCaseAction")) {
+                ruleAction.setCreateCaseAction(CreateCaseActionDefinitionJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("UpdateCaseAction")) {
+                ruleAction.setUpdateCaseAction(UpdateCaseActionDefinitionJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EndAssociatedTasksAction")) {
+                ruleAction
+                        .setEndAssociatedTasksAction(EndAssociatedTasksActionDefinitionJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

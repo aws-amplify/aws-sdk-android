@@ -64,6 +64,16 @@ class QuickConnectJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (quickConnect.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = quickConnect.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (quickConnect.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = quickConnect.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
         jsonWriter.endObject();
     }
 

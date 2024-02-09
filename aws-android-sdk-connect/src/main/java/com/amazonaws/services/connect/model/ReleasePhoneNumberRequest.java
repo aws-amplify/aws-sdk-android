@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <important>
  * <p>
  * To release phone numbers from a traffic distribution group, use the
- * <code>ReleasePhoneNumber</code> API, not the Amazon Connect console.
+ * <code>ReleasePhoneNumber</code> API, not the Amazon Connect admin website.
  * </p>
  * <p>
  * After releasing a phone number, the phone number enters into a cooldown
