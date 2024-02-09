@@ -60,7 +60,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      */
     private String integrationType;
 
@@ -287,7 +288,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @return <p>
      *         The integration type.
@@ -305,7 +307,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -326,7 +329,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -347,7 +351,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -368,7 +373,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
