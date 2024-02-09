@@ -79,7 +79,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -91,7 +91,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      */
     private String languageCode;
 
@@ -111,7 +117,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      */
     private String mediaFormat;
 
@@ -187,7 +193,8 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The media format specified in <code>MediaFormat</code> isn't valid. Refer
-     * to <b>MediaFormat</b> for a list of supported formats.
+     * to refer to the <code>MediaFormat</code> parameter for a list of
+     * supported formats.
      * </p>
      * </li>
      * <li>
@@ -228,8 +235,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * The size of your media file is larger than what Amazon Transcribe can
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * <li>
@@ -239,8 +246,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * Your audio contains more channels than Amazon Transcribe is able to
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -545,7 +552,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -557,7 +564,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @return <p>
      *         The language code used to create your Call Analytics job. For a
@@ -567,11 +580,12 @@ public class CallAnalyticsJob implements Serializable {
      *         >Supported languages</a> table.
      *         </p>
      *         <p>
-     *         If you don't know the language spoken in your media file, you can
-     *         omit this field and let Amazon Transcribe automatically identify
-     *         the language of your media. To improve the accuracy of language
-     *         identification, you can include several language codes and Amazon
-     *         Transcribe chooses the closest match for your transcription.
+     *         If you do not know the language spoken in your media file, you
+     *         can omit this field and let Amazon Transcribe automatically
+     *         identify the language of your media. To improve the accuracy of
+     *         language identification, you can include several language codes
+     *         and Amazon Transcribe chooses the closest match for your
+     *         transcription.
      *         </p>
      * @see LanguageCode
      */
@@ -588,7 +602,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -600,7 +614,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code used to create your Call Analytics job. For
@@ -610,7 +630,7 @@ public class CallAnalyticsJob implements Serializable {
      *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language spoken in your media file, you
+     *            If you do not know the language spoken in your media file, you
      *            can omit this field and let Amazon Transcribe automatically
      *            identify the language of your media. To improve the accuracy
      *            of language identification, you can include several language
@@ -632,7 +652,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -647,7 +667,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code used to create your Call Analytics job. For
@@ -657,7 +683,7 @@ public class CallAnalyticsJob implements Serializable {
      *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language spoken in your media file, you
+     *            If you do not know the language spoken in your media file, you
      *            can omit this field and let Amazon Transcribe automatically
      *            identify the language of your media. To improve the accuracy
      *            of language identification, you can include several language
@@ -682,7 +708,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -694,7 +720,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code used to create your Call Analytics job. For
@@ -704,7 +736,7 @@ public class CallAnalyticsJob implements Serializable {
      *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language spoken in your media file, you
+     *            If you do not know the language spoken in your media file, you
      *            can omit this field and let Amazon Transcribe automatically
      *            identify the language of your media. To improve the accuracy
      *            of language identification, you can include several language
@@ -726,7 +758,7 @@ public class CallAnalyticsJob implements Serializable {
      * >Supported languages</a> table.
      * </p>
      * <p>
-     * If you don't know the language spoken in your media file, you can omit
+     * If you do not know the language spoken in your media file, you can omit
      * this field and let Amazon Transcribe automatically identify the language
      * of your media. To improve the accuracy of language identification, you
      * can include several language codes and Amazon Transcribe chooses the
@@ -741,7 +773,13 @@ public class CallAnalyticsJob implements Serializable {
      * en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR, fr-CA,
      * fr-FR, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR, ms-MY, nl-NL, pt-BR,
      * pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW, th-TH, en-ZA, en-NZ,
-     * vi-VN, sv-SE
+     * vi-VN, sv-SE, ab-GE, ast-ES, az-AZ, ba-RU, be-BY, bg-BG, bn-IN, bs-BA,
+     * ca-ES, ckb-IQ, ckb-IR, cs-CZ, cy-WL, el-GR, et-ET, eu-ES, fi-FI, gl-ES,
+     * gu-IN, ha-NG, hr-HR, hu-HU, hy-AM, is-IS, ka-GE, kab-DZ, kk-KZ, kn-IN,
+     * ky-KG, lg-IN, lt-LT, lv-LV, mhr-RU, mi-NZ, mk-MK, ml-IN, mn-MN, mr-IN,
+     * mt-MT, no-NO, or-IN, pa-IN, pl-PL, ps-AF, ro-RO, rw-RW, si-LK, sk-SK,
+     * sl-SI, so-SO, sr-RS, su-ID, sw-BI, sw-KE, sw-RW, sw-TZ, sw-UG, tl-PH,
+     * tt-RU, ug-CN, uk-UA, uz-UZ, wo-SN, zu-ZA
      *
      * @param languageCode <p>
      *            The language code used to create your Call Analytics job. For
@@ -751,7 +789,7 @@ public class CallAnalyticsJob implements Serializable {
      *            >Supported languages</a> table.
      *            </p>
      *            <p>
-     *            If you don't know the language spoken in your media file, you
+     *            If you do not know the language spoken in your media file, you
      *            can omit this field and let Amazon Transcribe automatically
      *            identify the language of your media. To improve the accuracy
      *            of language identification, you can include several language
@@ -830,7 +868,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @return <p>
      *         The format of the input media file.
@@ -847,7 +885,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -867,7 +905,7 @@ public class CallAnalyticsJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -887,7 +925,7 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -907,7 +945,7 @@ public class CallAnalyticsJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -1301,7 +1339,8 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The media format specified in <code>MediaFormat</code> isn't valid. Refer
-     * to <b>MediaFormat</b> for a list of supported formats.
+     * to refer to the <code>MediaFormat</code> parameter for a list of
+     * supported formats.
      * </p>
      * </li>
      * <li>
@@ -1342,8 +1381,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * The size of your media file is larger than what Amazon Transcribe can
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * <li>
@@ -1353,8 +1392,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * Your audio contains more channels than Amazon Transcribe is able to
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -1375,8 +1414,8 @@ public class CallAnalyticsJob implements Serializable {
      *         </p>
      *         <p>
      *         The media format specified in <code>MediaFormat</code> isn't
-     *         valid. Refer to <b>MediaFormat</b> for a list of supported
-     *         formats.
+     *         valid. Refer to refer to the <code>MediaFormat</code> parameter
+     *         for a list of supported formats.
      *         </p>
      *         </li>
      *         <li>
@@ -1419,8 +1458,8 @@ public class CallAnalyticsJob implements Serializable {
      *         <p>
      *         The size of your media file is larger than what Amazon Transcribe
      *         can process. For more information, refer to <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *         >Guidelines and quotas</a>.
+     *         "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *         >Service quotas</a>.
      *         </p>
      *         </li>
      *         <li>
@@ -1431,8 +1470,8 @@ public class CallAnalyticsJob implements Serializable {
      *         <p>
      *         Your audio contains more channels than Amazon Transcribe is able
      *         to process. For more information, refer to <a href=
-     *         "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *         >Guidelines and quotas</a>.
+     *         "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *         >Service quotas</a>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1458,7 +1497,8 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The media format specified in <code>MediaFormat</code> isn't valid. Refer
-     * to <b>MediaFormat</b> for a list of supported formats.
+     * to refer to the <code>MediaFormat</code> parameter for a list of
+     * supported formats.
      * </p>
      * </li>
      * <li>
@@ -1499,8 +1539,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * The size of your media file is larger than what Amazon Transcribe can
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * <li>
@@ -1510,8 +1550,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * Your audio contains more channels than Amazon Transcribe is able to
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -1532,8 +1572,8 @@ public class CallAnalyticsJob implements Serializable {
      *            </p>
      *            <p>
      *            The media format specified in <code>MediaFormat</code> isn't
-     *            valid. Refer to <b>MediaFormat</b> for a list of supported
-     *            formats.
+     *            valid. Refer to refer to the <code>MediaFormat</code>
+     *            parameter for a list of supported formats.
      *            </p>
      *            </li>
      *            <li>
@@ -1577,8 +1617,8 @@ public class CallAnalyticsJob implements Serializable {
      *            The size of your media file is larger than what Amazon
      *            Transcribe can process. For more information, refer to <a
      *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and quotas</a>.
+     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *            >Service quotas</a>.
      *            </p>
      *            </li>
      *            <li>
@@ -1589,8 +1629,8 @@ public class CallAnalyticsJob implements Serializable {
      *            <p>
      *            Your audio contains more channels than Amazon Transcribe is
      *            able to process. For more information, refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and quotas</a>.
+     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *            >Service quotas</a>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1616,7 +1656,8 @@ public class CallAnalyticsJob implements Serializable {
      * </p>
      * <p>
      * The media format specified in <code>MediaFormat</code> isn't valid. Refer
-     * to <b>MediaFormat</b> for a list of supported formats.
+     * to refer to the <code>MediaFormat</code> parameter for a list of
+     * supported formats.
      * </p>
      * </li>
      * <li>
@@ -1657,8 +1698,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * The size of your media file is larger than what Amazon Transcribe can
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * <li>
@@ -1668,8 +1709,8 @@ public class CallAnalyticsJob implements Serializable {
      * <p>
      * Your audio contains more channels than Amazon Transcribe is able to
      * process. For more information, refer to <a href=
-     * "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     * >Guidelines and quotas</a>.
+     * "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     * >Service quotas</a>.
      * </p>
      * </li>
      * </ul>
@@ -1693,8 +1734,8 @@ public class CallAnalyticsJob implements Serializable {
      *            </p>
      *            <p>
      *            The media format specified in <code>MediaFormat</code> isn't
-     *            valid. Refer to <b>MediaFormat</b> for a list of supported
-     *            formats.
+     *            valid. Refer to refer to the <code>MediaFormat</code>
+     *            parameter for a list of supported formats.
      *            </p>
      *            </li>
      *            <li>
@@ -1738,8 +1779,8 @@ public class CallAnalyticsJob implements Serializable {
      *            The size of your media file is larger than what Amazon
      *            Transcribe can process. For more information, refer to <a
      *            href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and quotas</a>.
+     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *            >Service quotas</a>.
      *            </p>
      *            </li>
      *            <li>
@@ -1750,8 +1791,8 @@ public class CallAnalyticsJob implements Serializable {
      *            <p>
      *            Your audio contains more channels than Amazon Transcribe is
      *            able to process. For more information, refer to <a href=
-     *            "https://docs.aws.amazon.com/transcribe/latest/dg/limits-guidelines.html#limits"
-     *            >Guidelines and quotas</a>.
+     *            "https://docs.aws.amazon.com/general/latest/gr/transcribe.html#limits-amazon-transcribe"
+     *            >Service quotas</a>.
      *            </p>
      *            </li>
      *            </ul>

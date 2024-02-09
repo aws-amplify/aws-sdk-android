@@ -49,11 +49,6 @@ public class Settings implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -88,11 +83,6 @@ public class Settings implements Serializable {
      * Channel identification transcribes the audio on each channel
      * independently, then appends the output for each channel into one
      * transcript.
-     * </p>
-     * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
      * </p>
      * <p>
      * For more information, see <a
@@ -271,11 +261,6 @@ public class Settings implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -289,11 +274,6 @@ public class Settings implements Serializable {
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
      *         must also include <code>MaxSpeakerLabels</code>.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -316,11 +296,6 @@ public class Settings implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -334,11 +309,6 @@ public class Settings implements Serializable {
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
      *         must also include <code>MaxSpeakerLabels</code>.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -361,11 +331,6 @@ public class Settings implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -379,12 +344,6 @@ public class Settings implements Serializable {
      *            <p>
      *            If you enable <code>ShowSpeakerLabels</code> in your request,
      *            you must also include <code>MaxSpeakerLabels</code>.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -407,11 +366,6 @@ public class Settings implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -428,12 +382,6 @@ public class Settings implements Serializable {
      *            <p>
      *            If you enable <code>ShowSpeakerLabels</code> in your request,
      *            you must also include <code>MaxSpeakerLabels</code>.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -568,11 +516,6 @@ public class Settings implements Serializable {
      * transcript.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -585,11 +528,6 @@ public class Settings implements Serializable {
      *         Channel identification transcribes the audio on each channel
      *         independently, then appends the output for each channel into one
      *         transcript.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -611,11 +549,6 @@ public class Settings implements Serializable {
      * transcript.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -628,11 +561,6 @@ public class Settings implements Serializable {
      *         Channel identification transcribes the audio on each channel
      *         independently, then appends the output for each channel into one
      *         transcript.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -654,11 +582,6 @@ public class Settings implements Serializable {
      * transcript.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -671,12 +594,6 @@ public class Settings implements Serializable {
      *            Channel identification transcribes the audio on each channel
      *            independently, then appends the output for each channel into
      *            one transcript.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -698,11 +615,6 @@ public class Settings implements Serializable {
      * transcript.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -718,12 +630,6 @@ public class Settings implements Serializable {
      *            Channel identification transcribes the audio on each channel
      *            independently, then appends the output for each channel into
      *            one transcript.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=

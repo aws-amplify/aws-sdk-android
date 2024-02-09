@@ -730,6 +730,63 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
 
     /**
      * <p>
+     * Deletes a Medical Scribe job. To use this operation, specify the name of
+     * the job you want to delete using <code>MedicalScribeJobName</code>. Job
+     * names are case sensitive.
+     * </p>
+     * 
+     * @param deleteMedicalScribeJobRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteMedicalScribeJobAsync(
+            DeleteMedicalScribeJobRequest deleteMedicalScribeJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a Medical Scribe job. To use this operation, specify the name of
+     * the job you want to delete using <code>MedicalScribeJobName</code>. Job
+     * names are case sensitive.
+     * </p>
+     * 
+     * @param deleteMedicalScribeJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteMedicalScribeJobAsync(
+            DeleteMedicalScribeJobRequest deleteMedicalScribeJobRequest,
+            AsyncHandler<DeleteMedicalScribeJobRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Deletes a medical transcription job. To use this operation, specify the
      * name of the job you want to delete using
      * <code>MedicalTranscriptionJobName</code>. Job names are case sensitive.
@@ -1252,6 +1309,83 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
     Future<GetCallAnalyticsJobResult> getCallAnalyticsJobAsync(
             GetCallAnalyticsJobRequest getCallAnalyticsJobRequest,
             AsyncHandler<GetCallAnalyticsJobRequest, GetCallAnalyticsJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides information about the specified Medical Scribe job.
+     * </p>
+     * <p>
+     * To view the status of the specified medical transcription job, check the
+     * <code>MedicalScribeJobStatus</code> field. If the status is
+     * <code>COMPLETED</code>, the job is finished. You can find the results at
+     * the location specified in <code>MedicalScribeOutput</code>. If the status
+     * is <code>FAILED</code>, <code>FailureReason</code> provides details on
+     * why your Medical Scribe job failed.
+     * </p>
+     * <p>
+     * To get a list of your Medical Scribe jobs, use the operation.
+     * </p>
+     * 
+     * @param getMedicalScribeJobRequest
+     * @return A Java Future object containing the response from the
+     *         GetMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetMedicalScribeJobResult> getMedicalScribeJobAsync(
+            GetMedicalScribeJobRequest getMedicalScribeJobRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Provides information about the specified Medical Scribe job.
+     * </p>
+     * <p>
+     * To view the status of the specified medical transcription job, check the
+     * <code>MedicalScribeJobStatus</code> field. If the status is
+     * <code>COMPLETED</code>, the job is finished. You can find the results at
+     * the location specified in <code>MedicalScribeOutput</code>. If the status
+     * is <code>FAILED</code>, <code>FailureReason</code> provides details on
+     * why your Medical Scribe job failed.
+     * </p>
+     * <p>
+     * To get a list of your Medical Scribe jobs, use the operation.
+     * </p>
+     * 
+     * @param getMedicalScribeJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<GetMedicalScribeJobResult> getMedicalScribeJobAsync(
+            GetMedicalScribeJobRequest getMedicalScribeJobRequest,
+            AsyncHandler<GetMedicalScribeJobRequest, GetMedicalScribeJobResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1812,6 +1946,69 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
     Future<ListLanguageModelsResult> listLanguageModelsAsync(
             ListLanguageModelsRequest listLanguageModelsRequest,
             AsyncHandler<ListLanguageModelsRequest, ListLanguageModelsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a list of Medical Scribe jobs that match the specified criteria.
+     * If no criteria are specified, all Medical Scribe jobs are returned.
+     * </p>
+     * <p>
+     * To get detailed information about a specific Medical Scribe job, use the
+     * operation.
+     * </p>
+     * 
+     * @param listMedicalScribeJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListMedicalScribeJobs service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListMedicalScribeJobsResult> listMedicalScribeJobsAsync(
+            ListMedicalScribeJobsRequest listMedicalScribeJobsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a list of Medical Scribe jobs that match the specified criteria.
+     * If no criteria are specified, all Medical Scribe jobs are returned.
+     * </p>
+     * <p>
+     * To get detailed information about a specific Medical Scribe job, use the
+     * operation.
+     * </p>
+     * 
+     * @param listMedicalScribeJobsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListMedicalScribeJobs service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListMedicalScribeJobsResult> listMedicalScribeJobsAsync(
+            ListMedicalScribeJobsRequest listMedicalScribeJobsRequest,
+            AsyncHandler<ListMedicalScribeJobsRequest, ListMedicalScribeJobsResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -2405,6 +2602,191 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
 
     /**
      * <p>
+     * Transcribes patient-clinician conversations and generates clinical notes.
+     * </p>
+     * <p>
+     * Amazon Web Services HealthScribe automatically provides rich conversation
+     * transcripts, identifies speaker roles, classifies dialogues, extracts
+     * medical terms, and generates preliminary clinical notes. To learn more
+     * about these features, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/health-scribe.html"
+     * >Amazon Web Services HealthScribe</a>.
+     * </p>
+     * <p>
+     * To make a <code>StartMedicalScribeJob</code> request, you must first
+     * upload your media file into an Amazon S3 bucket; you can then specify the
+     * Amazon S3 location of the file using the <code>Media</code> parameter.
+     * </p>
+     * <p>
+     * You must include the following parameters in your
+     * <code>StartMedicalTranscriptionJob</code> request:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DataAccessRoleArn</code>: The ARN of an IAM role with the these
+     * minimum permissions: read permission on input file Amazon S3 bucket
+     * specified in <code>Media</code>, write permission on the Amazon S3 bucket
+     * specified in <code>OutputBucketName</code>, and full permissions on the
+     * KMS key specified in <code>OutputEncryptionKMSKeyId</code> (if set). The
+     * role should also allow <code>transcribe.amazonaws.com</code> to assume
+     * it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of
+     * your media file.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MedicalScribeJobName</code>: A custom name you create for your
+     * MedicalScribe job that is unique within your Amazon Web Services account.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutputBucketName</code>: The Amazon S3 bucket where you want your
+     * output files stored.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Settings</code>: A <code>MedicalScribeSettings</code> obect that
+     * must set exactly one of <code>ShowSpeakerLabels</code> or
+     * <code>ChannelIdentification</code> to true. If
+     * <code>ShowSpeakerLabels</code> is true, <code>MaxSpeakerLabels</code>
+     * must also be set.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ChannelDefinitions</code>: A
+     * <code>MedicalScribeChannelDefinitions</code> array should be set if and
+     * only if the <code>ChannelIdentification</code> value of
+     * <code>Settings</code> is set to true.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param startMedicalScribeJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartMedicalScribeJobResult> startMedicalScribeJobAsync(
+            StartMedicalScribeJobRequest startMedicalScribeJobRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Transcribes patient-clinician conversations and generates clinical notes.
+     * </p>
+     * <p>
+     * Amazon Web Services HealthScribe automatically provides rich conversation
+     * transcripts, identifies speaker roles, classifies dialogues, extracts
+     * medical terms, and generates preliminary clinical notes. To learn more
+     * about these features, refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/health-scribe.html"
+     * >Amazon Web Services HealthScribe</a>.
+     * </p>
+     * <p>
+     * To make a <code>StartMedicalScribeJob</code> request, you must first
+     * upload your media file into an Amazon S3 bucket; you can then specify the
+     * Amazon S3 location of the file using the <code>Media</code> parameter.
+     * </p>
+     * <p>
+     * You must include the following parameters in your
+     * <code>StartMedicalTranscriptionJob</code> request:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>DataAccessRoleArn</code>: The ARN of an IAM role with the these
+     * minimum permissions: read permission on input file Amazon S3 bucket
+     * specified in <code>Media</code>, write permission on the Amazon S3 bucket
+     * specified in <code>OutputBucketName</code>, and full permissions on the
+     * KMS key specified in <code>OutputEncryptionKMSKeyId</code> (if set). The
+     * role should also allow <code>transcribe.amazonaws.com</code> to assume
+     * it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Media</code> (<code>MediaFileUri</code>): The Amazon S3 location of
+     * your media file.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MedicalScribeJobName</code>: A custom name you create for your
+     * MedicalScribe job that is unique within your Amazon Web Services account.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>OutputBucketName</code>: The Amazon S3 bucket where you want your
+     * output files stored.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Settings</code>: A <code>MedicalScribeSettings</code> obect that
+     * must set exactly one of <code>ShowSpeakerLabels</code> or
+     * <code>ChannelIdentification</code> to true. If
+     * <code>ShowSpeakerLabels</code> is true, <code>MaxSpeakerLabels</code>
+     * must also be set.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ChannelDefinitions</code>: A
+     * <code>MedicalScribeChannelDefinitions</code> array should be set if and
+     * only if the <code>ChannelIdentification</code> value of
+     * <code>Settings</code> is set to true.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param startMedicalScribeJobRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartMedicalScribeJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartMedicalScribeJobResult> startMedicalScribeJobAsync(
+            StartMedicalScribeJobRequest startMedicalScribeJobRequest,
+            AsyncHandler<StartMedicalScribeJobRequest, StartMedicalScribeJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Transcribes the audio from a medical dictation or conversation and
      * applies any additional Request Parameters you choose to include in your
      * request.
@@ -2420,7 +2802,7 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
      * <p>
      * To make a <code>StartMedicalTranscriptionJob</code> request, you must
      * first upload your media file into an Amazon S3 bucket; you can then
-     * specify the S3 location of the file using the <code>Media</code>
+     * specify the Amazon S3 location of the file using the <code>Media</code>
      * parameter.
      * </p>
      * <p>
@@ -2512,7 +2894,7 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
      * <p>
      * To make a <code>StartMedicalTranscriptionJob</code> request, you must
      * first upload your media file into an Amazon S3 bucket; you can then
-     * specify the S3 location of the file using the <code>Media</code>
+     * specify the Amazon S3 location of the file using the <code>Media</code>
      * parameter.
      * </p>
      * <p>
@@ -2635,8 +3017,8 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
      * media file, specify it using the <code>LanguageCode</code> parameter; you
      * can find all valid language codes in the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. If you don't know the languages spoken in
-     * your media, use either <code>IdentifyLanguage</code> or
+     * >Supported languages</a> table. If you do not know the languages spoken
+     * in your media, use either <code>IdentifyLanguage</code> or
      * <code>IdentifyMultipleLanguages</code> and let Amazon Transcribe identify
      * the languages for you.
      * </p>
@@ -2706,8 +3088,8 @@ public interface AmazonTranscribeAsync extends AmazonTranscribe {
      * media file, specify it using the <code>LanguageCode</code> parameter; you
      * can find all valid language codes in the <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
-     * >Supported languages</a> table. If you don't know the languages spoken in
-     * your media, use either <code>IdentifyLanguage</code> or
+     * >Supported languages</a> table. If you do not know the languages spoken
+     * in your media, use either <code>IdentifyLanguage</code> or
      * <code>IdentifyMultipleLanguages</code> and let Amazon Transcribe identify
      * the languages for you.
      * </p>

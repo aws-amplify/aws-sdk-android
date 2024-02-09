@@ -79,6 +79,11 @@ class CallAnalyticsJobSettingsJsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (callAnalyticsJobSettings.getSummarization() != null) {
+            Summarization summarization = callAnalyticsJobSettings.getSummarization();
+            jsonWriter.name("Summarization");
+            SummarizationJsonMarshaller.getInstance().marshall(summarization, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

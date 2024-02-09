@@ -36,11 +36,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -80,11 +75,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * If you have multi-channel audio and do not enable channel identification,
      * your audio is transcribed in a continuous manner and your transcript does
      * not separate the speech by channel.
-     * </p>
-     * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
      * </p>
      * <p>
      * For more information, see <a
@@ -145,8 +135,8 @@ public class MedicalTranscriptionSetting implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch. US English (
      * <code>en-US</code>) is the only valid language for Amazon Transcribe
      * Medical.
@@ -169,11 +159,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -187,11 +172,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
      *         must also include <code>MaxSpeakerLabels</code>.
-     *         </p>
-     *         <p>
-     *         You can't include <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -214,11 +194,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -232,11 +207,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         <p>
      *         If you enable <code>ShowSpeakerLabels</code> in your request, you
      *         must also include <code>MaxSpeakerLabels</code>.
-     *         </p>
-     *         <p>
-     *         You can't include <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -259,11 +229,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -277,12 +242,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            <p>
      *            If you enable <code>ShowSpeakerLabels</code> in your request,
      *            you must also include <code>MaxSpeakerLabels</code>.
-     *            </p>
-     *            <p>
-     *            You can't include <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -305,11 +264,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * also include <code>MaxSpeakerLabels</code>.
      * </p>
      * <p>
-     * You can't include <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
      * >Partitioning speakers (diarization)</a>.
@@ -326,12 +280,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            <p>
      *            If you enable <code>ShowSpeakerLabels</code> in your request,
      *            you must also include <code>MaxSpeakerLabels</code>.
-     *            </p>
-     *            <p>
-     *            You can't include <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -471,11 +419,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * not separate the speech by channel.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -493,11 +436,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         If you have multi-channel audio and do not enable channel
      *         identification, your audio is transcribed in a continuous manner
      *         and your transcript does not separate the speech by channel.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -524,11 +462,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * not separate the speech by channel.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -546,11 +479,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         If you have multi-channel audio and do not enable channel
      *         identification, your audio is transcribed in a continuous manner
      *         and your transcript does not separate the speech by channel.
-     *         </p>
-     *         <p>
-     *         You can't include both <code>ShowSpeakerLabels</code> and
-     *         <code>ChannelIdentification</code> in the same request. Including
-     *         both parameters returns a <code>BadRequestException</code>.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -577,11 +505,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * not separate the speech by channel.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -600,12 +523,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            identification, your audio is transcribed in a continuous
      *            manner and your transcript does not separate the speech by
      *            channel.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -632,11 +549,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      * not separate the speech by channel.
      * </p>
      * <p>
-     * You can't include both <code>ShowSpeakerLabels</code> and
-     * <code>ChannelIdentification</code> in the same request. Including both
-     * parameters returns a <code>BadRequestException</code>.
-     * </p>
-     * <p>
      * For more information, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/channel-id.html"
      * >Transcribing multi-channel audio</a>.
@@ -658,12 +570,6 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            identification, your audio is transcribed in a continuous
      *            manner and your transcript does not separate the speech by
      *            channel.
-     *            </p>
-     *            <p>
-     *            You can't include both <code>ShowSpeakerLabels</code> and
-     *            <code>ChannelIdentification</code> in the same request.
-     *            Including both parameters returns a
-     *            <code>BadRequestException</code>.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -989,8 +895,8 @@ public class MedicalTranscriptionSetting implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch. US English (
      * <code>en-US</code>) is the only valid language for Amazon Transcribe
      * Medical.
@@ -1008,7 +914,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *         <p>
      *         The language of the specified custom vocabulary must match the
      *         language code that you specify in your transcription request. If
-     *         the languages don't match, the custom vocabulary isn't applied.
+     *         the languages do not match, the custom vocabulary isn't applied.
      *         There are no errors or warnings associated with a language
      *         mismatch. US English (<code>en-US</code>) is the only valid
      *         language for Amazon Transcribe Medical.
@@ -1025,8 +931,8 @@ public class MedicalTranscriptionSetting implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch. US English (
      * <code>en-US</code>) is the only valid language for Amazon Transcribe
      * Medical.
@@ -1044,7 +950,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary must match the
      *            language code that you specify in your transcription request.
-     *            If the languages don't match, the custom vocabulary isn't
+     *            If the languages do not match, the custom vocabulary isn't
      *            applied. There are no errors or warnings associated with a
      *            language mismatch. US English (<code>en-US</code>) is the only
      *            valid language for Amazon Transcribe Medical.
@@ -1061,8 +967,8 @@ public class MedicalTranscriptionSetting implements Serializable {
      * </p>
      * <p>
      * The language of the specified custom vocabulary must match the language
-     * code that you specify in your transcription request. If the languages
-     * don't match, the custom vocabulary isn't applied. There are no errors or
+     * code that you specify in your transcription request. If the languages do
+     * not match, the custom vocabulary isn't applied. There are no errors or
      * warnings associated with a language mismatch. US English (
      * <code>en-US</code>) is the only valid language for Amazon Transcribe
      * Medical.
@@ -1083,7 +989,7 @@ public class MedicalTranscriptionSetting implements Serializable {
      *            <p>
      *            The language of the specified custom vocabulary must match the
      *            language code that you specify in your transcription request.
-     *            If the languages don't match, the custom vocabulary isn't
+     *            If the languages do not match, the custom vocabulary isn't
      *            applied. There are no errors or warnings associated with a
      *            language mismatch. US English (<code>en-US</code>) is the only
      *            valid language for Amazon Transcribe Medical.

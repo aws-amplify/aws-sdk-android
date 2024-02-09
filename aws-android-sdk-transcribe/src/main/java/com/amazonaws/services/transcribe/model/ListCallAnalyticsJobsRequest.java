@@ -33,8 +33,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,7 +74,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * <p>
      * The maximum number of Call Analytics jobs to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -86,8 +86,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,7 +96,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @return <p>
      *         Returns only Call Analytics jobs with the specified status. Jobs
      *         are ordered by creation date, with the newest job first. If you
-     *         don't include <code>Status</code>, all Call Analytics jobs are
+     *         do not include <code>Status</code>, all Call Analytics jobs are
      *         returned.
      *         </p>
      * @see CallAnalyticsJobStatus
@@ -108,8 +108,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,7 +118,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @param status <p>
      *            Returns only Call Analytics jobs with the specified status.
      *            Jobs are ordered by creation date, with the newest job first.
-     *            If you don't include <code>Status</code>, all Call Analytics
+     *            If you do not include <code>Status</code>, all Call Analytics
      *            jobs are returned.
      *            </p>
      * @see CallAnalyticsJobStatus
@@ -130,8 +130,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -143,7 +143,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @param status <p>
      *            Returns only Call Analytics jobs with the specified status.
      *            Jobs are ordered by creation date, with the newest job first.
-     *            If you don't include <code>Status</code>, all Call Analytics
+     *            If you do not include <code>Status</code>, all Call Analytics
      *            jobs are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -158,8 +158,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,7 +168,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @param status <p>
      *            Returns only Call Analytics jobs with the specified status.
      *            Jobs are ordered by creation date, with the newest job first.
-     *            If you don't include <code>Status</code>, all Call Analytics
+     *            If you do not include <code>Status</code>, all Call Analytics
      *            jobs are returned.
      *            </p>
      * @see CallAnalyticsJobStatus
@@ -180,8 +180,8 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * Returns only Call Analytics jobs with the specified status. Jobs are
-     * ordered by creation date, with the newest job first. If you don't include
-     * <code>Status</code>, all Call Analytics jobs are returned.
+     * ordered by creation date, with the newest job first. If you do not
+     * include <code>Status</code>, all Call Analytics jobs are returned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +193,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @param status <p>
      *            Returns only Call Analytics jobs with the specified status.
      *            Jobs are ordered by creation date, with the newest job first.
-     *            If you don't include <code>Status</code>, all Call Analytics
+     *            If you do not include <code>Status</code>, all Call Analytics
      *            jobs are returned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -359,7 +359,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * <p>
      * The maximum number of Call Analytics jobs to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -369,7 +369,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * @return <p>
      *         The maximum number of Call Analytics jobs to return in each page
      *         of results. If there are fewer results than the value that you
-     *         specify, only the actual results are returned. If you don't
+     *         specify, only the actual results are returned. If you do not
      *         specify a value, a default of 5 is used.
      *         </p>
      */
@@ -381,7 +381,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * <p>
      * The maximum number of Call Analytics jobs to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -392,7 +392,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      *            The maximum number of Call Analytics jobs to return in each
      *            page of results. If there are fewer results than the value
      *            that you specify, only the actual results are returned. If you
-     *            don't specify a value, a default of 5 is used.
+     *            do not specify a value, a default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -403,7 +403,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      * <p>
      * The maximum number of Call Analytics jobs to return in each page of
      * results. If there are fewer results than the value that you specify, only
-     * the actual results are returned. If you don't specify a value, a default
+     * the actual results are returned. If you do not specify a value, a default
      * of 5 is used.
      * </p>
      * <p>
@@ -417,7 +417,7 @@ public class ListCallAnalyticsJobsRequest extends AmazonWebServiceRequest implem
      *            The maximum number of Call Analytics jobs to return in each
      *            page of results. If there are fewer results than the value
      *            that you specify, only the actual results are returned. If you
-     *            don't specify a value, a default of 5 is used.
+     *            do not specify a value, a default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
