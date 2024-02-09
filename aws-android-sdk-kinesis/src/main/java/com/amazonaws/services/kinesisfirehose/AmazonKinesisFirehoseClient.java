@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -339,6 +339,7 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new InvalidArgumentExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidKMSResourceExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new InvalidSourceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ServiceUnavailableExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -367,6 +368,13 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
      * records. To write single data records into a delivery stream, use
      * <a>PutRecord</a>. Applications using these operations are referred to as
      * producers.
+     * </p>
+     * <p>
+     * Kinesis Data Firehose accumulates and publishes a particular metric for a
+     * customer account in one minute intervals. It is possible that the bursts
+     * of incoming bytes/records ingested to a delivery stream last only for a
+     * few seconds. Due to this, the actual spikes in the traffic might not be
+     * fully visible in the customer's 1 minute CloudWatch metrics.
      * </p>
      * <p>
      * For information about service quota, see <a
@@ -428,8 +436,14 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
      * </p>
      * <p>
      * If <a>PutRecordBatch</a> throws <code>ServiceUnavailableException</code>,
-     * back off and retry. If the exception persists, it is possible that the
-     * throughput limits have been exceeded for the delivery stream.
+     * the API is automatically reinvoked (retried) 3 times. If the exception
+     * persists, it is possible that the throughput limits have been exceeded
+     * for the delivery stream.
+     * </p>
+     * <p>
+     * Re-invoking the Put API operations (for example, PutRecord and
+     * PutRecordBatch) can result in data duplicates. For larger data assets,
+     * allow for a longer time out before retrying Put API operations.
      * </p>
      * <p>
      * Data records sent to Kinesis Data Firehose are stored for 24 hours from
@@ -451,6 +465,7 @@ public class AmazonKinesisFirehoseClient extends AmazonWebServiceClient implemen
      * @throws ResourceNotFoundException
      * @throws InvalidArgumentException
      * @throws InvalidKMSResourceException
+     * @throws InvalidSourceException
      * @throws ServiceUnavailableException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

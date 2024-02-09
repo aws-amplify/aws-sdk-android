@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * can achieve higher throughput per producer than when writing single records.
  * To write single data records into a delivery stream, use <a>PutRecord</a>.
  * Applications using these operations are referred to as producers.
+ * </p>
+ * <p>
+ * Kinesis Data Firehose accumulates and publishes a particular metric for a
+ * customer account in one minute intervals. It is possible that the bursts of
+ * incoming bytes/records ingested to a delivery stream last only for a few
+ * seconds. Due to this, the actual spikes in the traffic might not be fully
+ * visible in the customer's 1 minute CloudWatch metrics.
  * </p>
  * <p>
  * For information about service quota, see <a
@@ -84,9 +91,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * you handle any duplicates at the destination.
  * </p>
  * <p>
- * If <a>PutRecordBatch</a> throws <code>ServiceUnavailableException</code>,
- * back off and retry. If the exception persists, it is possible that the
- * throughput limits have been exceeded for the delivery stream.
+ * If <a>PutRecordBatch</a> throws <code>ServiceUnavailableException</code>, the
+ * API is automatically reinvoked (retried) 3 times. If the exception persists,
+ * it is possible that the throughput limits have been exceeded for the delivery
+ * stream.
+ * </p>
+ * <p>
+ * Re-invoking the Put API operations (for example, PutRecord and
+ * PutRecordBatch) can result in data duplicates. For larger data assets, allow
+ * for a longer time out before retrying Put API operations.
  * </p>
  * <p>
  * Data records sent to Kinesis Data Firehose are stored for 24 hours from the
