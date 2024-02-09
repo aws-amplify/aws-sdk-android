@@ -36,6 +36,11 @@ class AgentInfoJsonMarshaller {
             jsonWriter.name("ConnectedToAgentTimestamp");
             jsonWriter.value(connectedToAgentTimestamp);
         }
+        if (agentInfo.getAgentPauseDurationInSeconds() != null) {
+            Integer agentPauseDurationInSeconds = agentInfo.getAgentPauseDurationInSeconds();
+            jsonWriter.name("AgentPauseDurationInSeconds");
+            jsonWriter.value(agentPauseDurationInSeconds);
+        }
         jsonWriter.endObject();
     }
 

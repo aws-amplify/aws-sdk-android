@@ -21,6 +21,12 @@ import java.io.Serializable;
  * <p>
  * A leaf node condition which can be used to specify a string condition.
  * </p>
+ * <note>
+ * <p>
+ * The currently supported values for <code>FieldName</code> are
+ * <code>name</code> and <code>description</code>.
+ * </p>
+ * </note>
  */
 public class StringCondition implements Serializable {
     /**

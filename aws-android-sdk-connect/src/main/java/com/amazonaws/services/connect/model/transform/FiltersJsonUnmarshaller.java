@@ -49,6 +49,11 @@ class FiltersJsonUnmarshaller implements Unmarshaller<Filters, JsonUnmarshallerC
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("RoutingStepExpressions")) {
+                filters.setRoutingStepExpressions(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -25,7 +25,8 @@ public enum Grouping {
 
     QUEUE("QUEUE"),
     CHANNEL("CHANNEL"),
-    ROUTING_PROFILE("ROUTING_PROFILE");
+    ROUTING_PROFILE("ROUTING_PROFILE"),
+    ROUTING_STEP_EXPRESSION("ROUTING_STEP_EXPRESSION");
 
     private String value;
 
@@ -44,6 +45,7 @@ public enum Grouping {
         enumMap.put("QUEUE", QUEUE);
         enumMap.put("CHANNEL", CHANNEL);
         enumMap.put("ROUTING_PROFILE", ROUTING_PROFILE);
+        enumMap.put("ROUTING_STEP_EXPRESSION", ROUTING_STEP_EXPRESSION);
     }
 
     /**

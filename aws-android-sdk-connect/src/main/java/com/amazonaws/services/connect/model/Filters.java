@@ -49,6 +49,14 @@ public class Filters implements Serializable {
 
     /**
      * <p>
+     * A list of expressions as a filter, in which an expression is an object of
+     * a step in a routing criteria.
+     * </p>
+     */
+    private java.util.List<String> routingStepExpressions;
+
+    /**
+     * <p>
      * The queues to use to filter the metrics. You should specify at least one
      * queue, and can specify up to 100 queues per request. The
      * <code>GetCurrentMetricsData</code> API in particular requires a queue
@@ -297,6 +305,89 @@ public class Filters implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of expressions as a filter, in which an expression is an object of
+     * a step in a routing criteria.
+     * </p>
+     *
+     * @return <p>
+     *         A list of expressions as a filter, in which an expression is an
+     *         object of a step in a routing criteria.
+     *         </p>
+     */
+    public java.util.List<String> getRoutingStepExpressions() {
+        return routingStepExpressions;
+    }
+
+    /**
+     * <p>
+     * A list of expressions as a filter, in which an expression is an object of
+     * a step in a routing criteria.
+     * </p>
+     *
+     * @param routingStepExpressions <p>
+     *            A list of expressions as a filter, in which an expression is
+     *            an object of a step in a routing criteria.
+     *            </p>
+     */
+    public void setRoutingStepExpressions(java.util.Collection<String> routingStepExpressions) {
+        if (routingStepExpressions == null) {
+            this.routingStepExpressions = null;
+            return;
+        }
+
+        this.routingStepExpressions = new java.util.ArrayList<String>(routingStepExpressions);
+    }
+
+    /**
+     * <p>
+     * A list of expressions as a filter, in which an expression is an object of
+     * a step in a routing criteria.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingStepExpressions <p>
+     *            A list of expressions as a filter, in which an expression is
+     *            an object of a step in a routing criteria.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingStepExpressions(String... routingStepExpressions) {
+        if (getRoutingStepExpressions() == null) {
+            this.routingStepExpressions = new java.util.ArrayList<String>(
+                    routingStepExpressions.length);
+        }
+        for (String value : routingStepExpressions) {
+            this.routingStepExpressions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of expressions as a filter, in which an expression is an object of
+     * a step in a routing criteria.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingStepExpressions <p>
+     *            A list of expressions as a filter, in which an expression is
+     *            an object of a step in a routing criteria.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingStepExpressions(java.util.Collection<String> routingStepExpressions) {
+        setRoutingStepExpressions(routingStepExpressions);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -312,7 +403,9 @@ public class Filters implements Serializable {
         if (getChannels() != null)
             sb.append("Channels: " + getChannels() + ",");
         if (getRoutingProfiles() != null)
-            sb.append("RoutingProfiles: " + getRoutingProfiles());
+            sb.append("RoutingProfiles: " + getRoutingProfiles() + ",");
+        if (getRoutingStepExpressions() != null)
+            sb.append("RoutingStepExpressions: " + getRoutingStepExpressions());
         sb.append("}");
         return sb.toString();
     }
@@ -326,6 +419,10 @@ public class Filters implements Serializable {
         hashCode = prime * hashCode + ((getChannels() == null) ? 0 : getChannels().hashCode());
         hashCode = prime * hashCode
                 + ((getRoutingProfiles() == null) ? 0 : getRoutingProfiles().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getRoutingStepExpressions() == null) ? 0 : getRoutingStepExpressions()
+                        .hashCode());
         return hashCode;
     }
 
@@ -352,6 +449,11 @@ public class Filters implements Serializable {
             return false;
         if (other.getRoutingProfiles() != null
                 && other.getRoutingProfiles().equals(this.getRoutingProfiles()) == false)
+            return false;
+        if (other.getRoutingStepExpressions() == null ^ this.getRoutingStepExpressions() == null)
+            return false;
+        if (other.getRoutingStepExpressions() != null
+                && other.getRoutingStepExpressions().equals(this.getRoutingStepExpressions()) == false)
             return false;
         return true;
     }

@@ -56,6 +56,25 @@ class RuleActionJsonMarshaller {
             SendNotificationActionDefinitionJsonMarshaller.getInstance().marshall(
                     sendNotificationAction, jsonWriter);
         }
+        if (ruleAction.getCreateCaseAction() != null) {
+            CreateCaseActionDefinition createCaseAction = ruleAction.getCreateCaseAction();
+            jsonWriter.name("CreateCaseAction");
+            CreateCaseActionDefinitionJsonMarshaller.getInstance().marshall(createCaseAction,
+                    jsonWriter);
+        }
+        if (ruleAction.getUpdateCaseAction() != null) {
+            UpdateCaseActionDefinition updateCaseAction = ruleAction.getUpdateCaseAction();
+            jsonWriter.name("UpdateCaseAction");
+            UpdateCaseActionDefinitionJsonMarshaller.getInstance().marshall(updateCaseAction,
+                    jsonWriter);
+        }
+        if (ruleAction.getEndAssociatedTasksAction() != null) {
+            EndAssociatedTasksActionDefinition endAssociatedTasksAction = ruleAction
+                    .getEndAssociatedTasksAction();
+            jsonWriter.name("EndAssociatedTasksAction");
+            EndAssociatedTasksActionDefinitionJsonMarshaller.getInstance().marshall(
+                    endAssociatedTasksAction, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

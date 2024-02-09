@@ -44,6 +44,12 @@ class UserSummaryJsonUnmarshaller implements Unmarshaller<UserSummary, JsonUnmar
             } else if (name.equals("Username")) {
                 userSummary.setUsername(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                userSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                userSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

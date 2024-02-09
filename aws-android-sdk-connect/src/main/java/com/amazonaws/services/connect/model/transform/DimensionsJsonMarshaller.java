@@ -42,6 +42,11 @@ class DimensionsJsonMarshaller {
             RoutingProfileReferenceJsonMarshaller.getInstance()
                     .marshall(routingProfile, jsonWriter);
         }
+        if (dimensions.getRoutingStepExpression() != null) {
+            String routingStepExpression = dimensions.getRoutingStepExpression();
+            jsonWriter.name("RoutingStepExpression");
+            jsonWriter.value(routingStepExpression);
+        }
         jsonWriter.endObject();
     }
 

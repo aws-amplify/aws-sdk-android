@@ -24,7 +24,8 @@ import java.util.Map;
 public enum SourceType {
 
     SALESFORCE("SALESFORCE"),
-    ZENDESK("ZENDESK");
+    ZENDESK("ZENDESK"),
+    CASES("CASES");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum SourceType {
         enumMap = new HashMap<String, SourceType>();
         enumMap.put("SALESFORCE", SALESFORCE);
         enumMap.put("ZENDESK", ZENDESK);
+        enumMap.put("CASES", CASES);
     }
 
     /**

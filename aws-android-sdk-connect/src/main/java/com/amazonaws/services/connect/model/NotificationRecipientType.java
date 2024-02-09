@@ -26,7 +26,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      */
@@ -42,13 +42,13 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }. Amazon Connect users with the specified tags
      *         will be notified.
      *         </p>
@@ -60,13 +60,13 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      *
      * @param userTags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }. Amazon Connect users with the specified
      *            tags will be notified.
      *            </p>
@@ -78,7 +78,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      * <p>
@@ -87,7 +87,7 @@ public class NotificationRecipientType implements Serializable {
      *
      * @param userTags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }. Amazon Connect users with the specified
      *            tags will be notified.
      *            </p>
@@ -102,7 +102,7 @@ public class NotificationRecipientType implements Serializable {
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }. Amazon
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon
      * Connect users with the specified tags will be notified.
      * </p>
      * <p>
