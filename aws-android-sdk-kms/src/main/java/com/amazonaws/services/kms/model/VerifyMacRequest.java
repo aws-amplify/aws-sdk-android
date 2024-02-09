@@ -60,6 +60,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <b>Related operations</b>: <a>GenerateMac</a>
  * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class VerifyMacRequest extends AmazonWebServiceRequest implements Serializable {
     /**

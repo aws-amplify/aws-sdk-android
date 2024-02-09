@@ -33,7 +33,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >kms:GetKeyPolicy</a> (key policy)
  * </p>
  * <p>
- * <b>Related operations</b>: <a>PutKeyPolicy</a>
+ * <b>Related operations</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+ * >PutKeyPolicy</a>
+ * </p>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
  * </p>
  */
 public class GetKeyPolicyRequest extends AmazonWebServiceRequest implements Serializable {

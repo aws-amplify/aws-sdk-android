@@ -46,10 +46,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * <a>PutKeyPolicy</a>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/APIReference/API_PutKeyPolicy.html"
+ * >PutKeyPolicy</a>
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
