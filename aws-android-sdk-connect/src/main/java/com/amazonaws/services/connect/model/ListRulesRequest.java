@@ -55,9 +55,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      */
     private String eventSourceName;
 
@@ -258,9 +259,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @return <p>
      *         The name of the event source.
@@ -278,9 +280,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -301,9 +304,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -324,9 +328,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -347,9 +352,10 @@ public class ListRulesRequest extends AmazonWebServiceRequest implements Seriali
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.

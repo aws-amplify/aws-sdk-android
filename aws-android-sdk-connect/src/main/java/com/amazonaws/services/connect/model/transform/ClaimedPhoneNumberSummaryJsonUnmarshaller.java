@@ -59,6 +59,9 @@ class ClaimedPhoneNumberSummaryJsonUnmarshaller implements
             } else if (name.equals("TargetArn")) {
                 claimedPhoneNumberSummary.setTargetArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("InstanceId")) {
+                claimedPhoneNumberSummary.setInstanceId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Tags")) {
                 claimedPhoneNumberSummary.setTags(new MapUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
@@ -66,6 +69,10 @@ class ClaimedPhoneNumberSummaryJsonUnmarshaller implements
                                 .unmarshall(context));
             } else if (name.equals("PhoneNumberStatus")) {
                 claimedPhoneNumberSummary.setPhoneNumberStatus(PhoneNumberStatusJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SourcePhoneNumberArn")) {
+                claimedPhoneNumberSummary.setSourcePhoneNumberArn(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
             } else {

@@ -69,11 +69,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -239,11 +239,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -255,8 +255,8 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @return <p>
      *         The identifier of the flow for the outbound call. To see the
-     *         ContactFlowId in the Amazon Connect console user interface, on
-     *         the navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *         ContactFlowId in the Amazon Connect admin website, on the
+     *         navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
      *         Choose the flow. On the flow page, under the name of the flow,
      *         choose <b>Show additional flow information</b>. The ContactFlowId
      *         is the last part of the ARN, shown here in bold:
@@ -274,11 +274,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -290,12 +290,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for the outbound call. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-
@@ -310,11 +309,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     /**
      * <p>
      * The identifier of the flow for the outbound call. To see the
-     * ContactFlowId in the Amazon Connect console user interface, on the
-     * navigation menu go to <b>Routing</b>, <b>Contact Flows</b>. Choose the
-     * flow. On the flow page, under the name of the flow, choose <b>Show
-     * additional flow information</b>. The ContactFlowId is the last part of
-     * the ARN, shown here in bold:
+     * ContactFlowId in the Amazon Connect admin website, on the navigation menu
+     * go to <b>Routing</b>, <b>Contact Flows</b>. Choose the flow. On the flow
+     * page, under the name of the flow, choose <b>Show additional flow
+     * information</b>. The ContactFlowId is the last part of the ARN, shown
+     * here in bold:
      * </p>
      * <p>
      * arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-
@@ -329,12 +328,11 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      *
      * @param contactFlowId <p>
      *            The identifier of the flow for the outbound call. To see the
-     *            ContactFlowId in the Amazon Connect console user interface, on
-     *            the navigation menu go to <b>Routing</b>, <b>Contact
-     *            Flows</b>. Choose the flow. On the flow page, under the name
-     *            of the flow, choose <b>Show additional flow information</b>.
-     *            The ContactFlowId is the last part of the ARN, shown here in
-     *            bold:
+     *            ContactFlowId in the Amazon Connect admin website, on the
+     *            navigation menu go to <b>Routing</b>, <b>Contact Flows</b>.
+     *            Choose the flow. On the flow page, under the name of the flow,
+     *            choose <b>Show additional flow information</b>. The
+     *            ContactFlowId is the last part of the ARN, shown here in bold:
      *            </p>
      *            <p>
      *            arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-

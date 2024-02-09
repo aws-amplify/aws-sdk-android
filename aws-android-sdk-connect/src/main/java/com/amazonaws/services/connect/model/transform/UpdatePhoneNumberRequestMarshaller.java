@@ -70,6 +70,11 @@ public class UpdatePhoneNumberRequestMarshaller implements
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
             }
+            if (updatePhoneNumberRequest.getInstanceId() != null) {
+                String instanceId = updatePhoneNumberRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
             if (updatePhoneNumberRequest.getClientToken() != null) {
                 String clientToken = updatePhoneNumberRequest.getClientToken();
                 jsonWriter.name("ClientToken");
