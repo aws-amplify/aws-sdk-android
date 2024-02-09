@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -59,6 +59,17 @@ class KafkaActionJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (kafkaAction.getHeaders() != null) {
+            java.util.List<KafkaActionHeader> headers = kafkaAction.getHeaders();
+            jsonWriter.name("headers");
+            jsonWriter.beginArray();
+            for (KafkaActionHeader headersItem : headers) {
+                if (headersItem != null) {
+                    KafkaActionHeaderJsonMarshaller.getInstance().marshall(headersItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

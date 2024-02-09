@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -221,11 +221,15 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      */
     private java.util.List<String> destinationPackageVersions;
@@ -1558,20 +1562,28 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      *
      * @return <p>
      *         The package version Amazon Resource Names (ARNs) that are
-     *         installed on the device when the job successfully completes.
+     *         installed on the device when the job successfully completes. The
+     *         package version must be in either the Published or Deprecated
+     *         state when the job deploys. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *         >Package version lifecycle</a>.
      *         </p>
      *         <p>
      *         <b>Note:</b>The following Length Constraints relates to a single
-     *         string. Up to five strings are allowed.
+     *         ARN. Up to 25 package version ARNs are allowed.
      *         </p>
      */
     public java.util.List<String> getDestinationPackageVersions() {
@@ -1581,20 +1593,29 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      *
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      */
     public void setDestinationPackageVersions(
@@ -1611,11 +1632,15 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1624,10 +1649,15 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1646,11 +1676,15 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     /**
      * <p>
      * The package version Amazon Resource Names (ARNs) that are installed on
-     * the device when the job successfully completes.
+     * the device when the job successfully completes. The package version must
+     * be in either the Published or Deprecated state when the job deploys. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     * >Package version lifecycle</a>.
      * </p>
      * <p>
-     * <b>Note:</b>The following Length Constraints relates to a single string.
-     * Up to five strings are allowed.
+     * <b>Note:</b>The following Length Constraints relates to a single ARN. Up
+     * to 25 package version ARNs are allowed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1659,10 +1693,15 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * @param destinationPackageVersions <p>
      *            The package version Amazon Resource Names (ARNs) that are
      *            installed on the device when the job successfully completes.
+     *            The package version must be in either the Published or
+     *            Deprecated state when the job deploys. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/developerguide/preparing-to-use-software-package-catalog.html#package-version-lifecycle"
+     *            >Package version lifecycle</a>.
      *            </p>
      *            <p>
      *            <b>Note:</b>The following Length Constraints relates to a
-     *            single string. Up to five strings are allowed.
+     *            single ARN. Up to 25 package version ARNs are allowed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

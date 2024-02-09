@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class PackageSummary implements Serializable {
     /**
      * <p>
-     * The name for the target package.
+     * The name for the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class PackageSummary implements Serializable {
 
     /**
      * <p>
-     * The name for the target package.
+     * The name for the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +69,7 @@ public class PackageSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @return <p>
-     *         The name for the target package.
+     *         The name for the target software package.
      *         </p>
      */
     public String getPackageName() {
@@ -78,7 +78,7 @@ public class PackageSummary implements Serializable {
 
     /**
      * <p>
-     * The name for the target package.
+     * The name for the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,7 @@ public class PackageSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name for the target package.
+     *            The name for the target software package.
      *            </p>
      */
     public void setPackageName(String packageName) {
@@ -95,7 +95,7 @@ public class PackageSummary implements Serializable {
 
     /**
      * <p>
-     * The name for the target package.
+     * The name for the target software package.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +106,7 @@ public class PackageSummary implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name for the target package.
+     *            The name for the target software package.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

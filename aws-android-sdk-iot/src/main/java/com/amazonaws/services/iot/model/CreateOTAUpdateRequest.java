@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -137,7 +137,8 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A list of additional OTA update parameters which are name-value pairs.
+     * A list of additional OTA update parameters, which are name-value pairs.
+     * They won't be sent to devices as a part of the Job document.
      * </p>
      */
     private java.util.Map<String, String> additionalParameters;
@@ -942,12 +943,14 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A list of additional OTA update parameters which are name-value pairs.
+     * A list of additional OTA update parameters, which are name-value pairs.
+     * They won't be sent to devices as a part of the Job document.
      * </p>
      *
      * @return <p>
-     *         A list of additional OTA update parameters which are name-value
-     *         pairs.
+     *         A list of additional OTA update parameters, which are name-value
+     *         pairs. They won't be sent to devices as a part of the Job
+     *         document.
      *         </p>
      */
     public java.util.Map<String, String> getAdditionalParameters() {
@@ -956,12 +959,14 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A list of additional OTA update parameters which are name-value pairs.
+     * A list of additional OTA update parameters, which are name-value pairs.
+     * They won't be sent to devices as a part of the Job document.
      * </p>
      *
      * @param additionalParameters <p>
-     *            A list of additional OTA update parameters which are
-     *            name-value pairs.
+     *            A list of additional OTA update parameters, which are
+     *            name-value pairs. They won't be sent to devices as a part of
+     *            the Job document.
      *            </p>
      */
     public void setAdditionalParameters(java.util.Map<String, String> additionalParameters) {
@@ -970,15 +975,17 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A list of additional OTA update parameters which are name-value pairs.
+     * A list of additional OTA update parameters, which are name-value pairs.
+     * They won't be sent to devices as a part of the Job document.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param additionalParameters <p>
-     *            A list of additional OTA update parameters which are
-     *            name-value pairs.
+     *            A list of additional OTA update parameters, which are
+     *            name-value pairs. They won't be sent to devices as a part of
+     *            the Job document.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -991,7 +998,8 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * A list of additional OTA update parameters which are name-value pairs.
+     * A list of additional OTA update parameters, which are name-value pairs.
+     * They won't be sent to devices as a part of the Job document.
      * </p>
      * <p>
      * The method adds a new key-value pair into additionalParameters parameter,
