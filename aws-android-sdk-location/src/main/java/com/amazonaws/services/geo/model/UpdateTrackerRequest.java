@@ -52,6 +52,18 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
+     * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     */
+    private Boolean kmsKeyEnableGeospatialQueries;
+
+    /**
+     * <p>
      * Updates the position filtering for the tracker resource.
      * </p>
      * <p>
@@ -299,6 +311,113 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      */
     public UpdateTrackerRequest withEventBridgeEnabled(Boolean eventBridgeEnabled) {
         this.eventBridgeEnabled = eventBridgeEnabled;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
+     * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     *
+     * @return <p>
+     *         Enables <code>GeospatialQueries</code> for a tracker that uses a
+     *         <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *         >Amazon Web Services KMS customer managed key</a>.
+     *         </p>
+     *         <p>
+     *         This parameter is only used if you are using a KMS customer
+     *         managed key.
+     *         </p>
+     */
+    public Boolean isKmsKeyEnableGeospatialQueries() {
+        return kmsKeyEnableGeospatialQueries;
+    }
+
+    /**
+     * <p>
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
+     * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     *
+     * @return <p>
+     *         Enables <code>GeospatialQueries</code> for a tracker that uses a
+     *         <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *         >Amazon Web Services KMS customer managed key</a>.
+     *         </p>
+     *         <p>
+     *         This parameter is only used if you are using a KMS customer
+     *         managed key.
+     *         </p>
+     */
+    public Boolean getKmsKeyEnableGeospatialQueries() {
+        return kmsKeyEnableGeospatialQueries;
+    }
+
+    /**
+     * <p>
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
+     * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     *
+     * @param kmsKeyEnableGeospatialQueries <p>
+     *            Enables <code>GeospatialQueries</code> for a tracker that uses
+     *            a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >Amazon Web Services KMS customer managed key</a>.
+     *            </p>
+     *            <p>
+     *            This parameter is only used if you are using a KMS customer
+     *            managed key.
+     *            </p>
+     */
+    public void setKmsKeyEnableGeospatialQueries(Boolean kmsKeyEnableGeospatialQueries) {
+        this.kmsKeyEnableGeospatialQueries = kmsKeyEnableGeospatialQueries;
+    }
+
+    /**
+     * <p>
+     * Enables <code>GeospatialQueries</code> for a tracker that uses a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >Amazon Web Services KMS customer managed key</a>.
+     * </p>
+     * <p>
+     * This parameter is only used if you are using a KMS customer managed key.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kmsKeyEnableGeospatialQueries <p>
+     *            Enables <code>GeospatialQueries</code> for a tracker that uses
+     *            a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >Amazon Web Services KMS customer managed key</a>.
+     *            </p>
+     *            <p>
+     *            This parameter is only used if you are using a KMS customer
+     *            managed key.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateTrackerRequest withKmsKeyEnableGeospatialQueries(
+            Boolean kmsKeyEnableGeospatialQueries) {
+        this.kmsKeyEnableGeospatialQueries = kmsKeyEnableGeospatialQueries;
         return this;
     }
 
@@ -1007,6 +1126,8 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
             sb.append("Description: " + getDescription() + ",");
         if (getEventBridgeEnabled() != null)
             sb.append("EventBridgeEnabled: " + getEventBridgeEnabled() + ",");
+        if (getKmsKeyEnableGeospatialQueries() != null)
+            sb.append("KmsKeyEnableGeospatialQueries: " + getKmsKeyEnableGeospatialQueries() + ",");
         if (getPositionFiltering() != null)
             sb.append("PositionFiltering: " + getPositionFiltering() + ",");
         if (getPricingPlan() != null)
@@ -1028,6 +1149,10 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode
                 + ((getEventBridgeEnabled() == null) ? 0 : getEventBridgeEnabled().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getKmsKeyEnableGeospatialQueries() == null) ? 0
+                        : getKmsKeyEnableGeospatialQueries().hashCode());
         hashCode = prime * hashCode
                 + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
         hashCode = prime * hashCode
@@ -1060,6 +1185,13 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getEventBridgeEnabled() != null
                 && other.getEventBridgeEnabled().equals(this.getEventBridgeEnabled()) == false)
+            return false;
+        if (other.getKmsKeyEnableGeospatialQueries() == null
+                ^ this.getKmsKeyEnableGeospatialQueries() == null)
+            return false;
+        if (other.getKmsKeyEnableGeospatialQueries() != null
+                && other.getKmsKeyEnableGeospatialQueries().equals(
+                        this.getKmsKeyEnableGeospatialQueries()) == false)
             return false;
         if (other.getPositionFiltering() == null ^ this.getPositionFiltering() == null)
             return false;

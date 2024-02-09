@@ -70,6 +70,9 @@ class PlaceJsonUnmarshaller implements Unmarshaller<Place, JsonUnmarshallerConte
             } else if (name.equals("Street")) {
                 place.setStreet(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("SubMunicipality")) {
+                place.setSubMunicipality(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubRegion")) {
                 place.setSubRegion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

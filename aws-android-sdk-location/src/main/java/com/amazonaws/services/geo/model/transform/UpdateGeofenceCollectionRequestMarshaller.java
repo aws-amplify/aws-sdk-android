@@ -95,7 +95,7 @@ public class UpdateGeofenceCollectionRequestMarshaller implements
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
         }
-        request.setHostPrefix("geofencing.");
+        request.setHostPrefix("cp.geofencing.");
 
         return request;
     }

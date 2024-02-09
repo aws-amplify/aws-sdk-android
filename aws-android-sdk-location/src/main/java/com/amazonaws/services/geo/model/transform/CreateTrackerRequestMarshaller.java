@@ -70,6 +70,12 @@ public class CreateTrackerRequestMarshaller implements
                 jsonWriter.name("EventBridgeEnabled");
                 jsonWriter.value(eventBridgeEnabled);
             }
+            if (createTrackerRequest.getKmsKeyEnableGeospatialQueries() != null) {
+                Boolean kmsKeyEnableGeospatialQueries = createTrackerRequest
+                        .getKmsKeyEnableGeospatialQueries();
+                jsonWriter.name("KmsKeyEnableGeospatialQueries");
+                jsonWriter.value(kmsKeyEnableGeospatialQueries);
+            }
             if (createTrackerRequest.getKmsKeyId() != null) {
                 String kmsKeyId = createTrackerRequest.getKmsKeyId();
                 jsonWriter.name("KmsKeyId");
@@ -122,7 +128,7 @@ public class CreateTrackerRequestMarshaller implements
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.1");
         }
-        request.setHostPrefix("tracking.");
+        request.setHostPrefix("cp.tracking.");
 
         return request;
     }
