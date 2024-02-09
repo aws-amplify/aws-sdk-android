@@ -1529,8 +1529,8 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <note>
      * <p>
      * The CSR must include a public key that is either an RSA key with a length
-     * of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves.
-     * For supported certificates, consult <a href=
+     * of at least 2048 bits or an ECC key from NIST P-256, NIST P-384, or NIST
+     * P-521 curves. For supported certificates, consult <a href=
      * "https://docs.aws.amazon.com/iot/latest/developerguide/x509-client-certs.html#x509-cert-algorithms"
      * > Certificate signing algorithms supported by IoT</a>.
      * </p>
@@ -1621,6 +1621,83 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<CreateCertificateFromCsrResult, JsonUnmarshallerContext> unmarshaller = new CreateCertificateFromCsrResultJsonUnmarshaller();
             JsonResponseHandler<CreateCertificateFromCsrResult> responseHandler = new JsonResponseHandler<CreateCertificateFromCsrResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates an Amazon Web Services IoT Core certificate provider. You can use
+     * Amazon Web Services IoT Core certificate provider to customize how to
+     * sign a certificate signing request (CSR) in IoT fleet provisioning. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/provisioning-cert-provider.html"
+     * >Customizing certificate signing using Amazon Web Services IoT Core
+     * certificate provider</a> from <i>Amazon Web Services IoT Core Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateCertificateProvider</a> action.
+     * </p>
+     * <important>
+     * <p>
+     * After you create a certificate provider, the behavior of <a href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/fleet-provision-api.html#create-cert-csr"
+     * > <code>CreateCertificateFromCsr</code> API for fleet provisioning</a>
+     * will change and all API calls to <code>CreateCertificateFromCsr</code>
+     * will invoke the certificate provider to create the certificates. It can
+     * take up to a few minutes for this behavior to change after a certificate
+     * provider is created.
+     * </p>
+     * </important>
+     * 
+     * @param createCertificateProviderRequest
+     * @return createCertificateProviderResult The response from the
+     *         CreateCertificateProvider service method, as returned by AWS IoT.
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateCertificateProviderResult createCertificateProvider(
+            CreateCertificateProviderRequest createCertificateProviderRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createCertificateProviderRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateCertificateProviderRequest> request = null;
+        Response<CreateCertificateProviderResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateCertificateProviderRequestMarshaller()
+                        .marshall(createCertificateProviderRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateCertificateProviderResult, JsonUnmarshallerContext> unmarshaller = new CreateCertificateProviderResultJsonUnmarshaller();
+            JsonResponseHandler<CreateCertificateProviderResult> responseHandler = new JsonResponseHandler<CreateCertificateProviderResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2979,6 +3056,11 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * >Authorization</a> for information about authorizing control plane
      * actions.
      * </p>
+     * <p>
+     * If the <code>ThingGroup</code> that you create has the exact same
+     * attributes as an existing <code>ThingGroup</code>, you will get a 200
+     * success response.
+     * </p>
      * </note>
      * <p>
      * Requires permission to access the <a href=
@@ -3543,6 +3625,70 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteCertificateProvider</a> action.
+     * </p>
+     * <p>
+     * If you delete the certificate provider resource, the behavior of
+     * <code>CreateCertificateFromCsr</code> will resume, and IoT will create
+     * certificates signed by IoT from a certificate signing request (CSR).
+     * </p>
+     * 
+     * @param deleteCertificateProviderRequest
+     * @return deleteCertificateProviderResult The response from the
+     *         DeleteCertificateProvider service method, as returned by AWS IoT.
+     * @throws DeleteConflictException
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteCertificateProviderResult deleteCertificateProvider(
+            DeleteCertificateProviderRequest deleteCertificateProviderRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteCertificateProviderRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteCertificateProviderRequest> request = null;
+        Response<DeleteCertificateProviderResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteCertificateProviderRequestMarshaller()
+                        .marshall(deleteCertificateProviderRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteCertificateProviderResult, JsonUnmarshallerContext> unmarshaller = new DeleteCertificateProviderResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteCertificateProviderResult> responseHandler = new JsonResponseHandler<DeleteCertificateProviderResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4161,8 +4307,8 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * </p>
      * <p>
      * <b>Note:</b> If a package version is designated as default, you must
-     * remove the designation from the package using the <a>UpdatePackage</a>
-     * action.
+     * remove the designation from the software package using the
+     * <a>UpdatePackage</a> action.
      * </p>
      * 
      * @param deletePackageVersionRequest
@@ -5637,6 +5783,65 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DescribeCertificateResult, JsonUnmarshallerContext> unmarshaller = new DescribeCertificateResultJsonUnmarshaller();
             JsonResponseHandler<DescribeCertificateResult> responseHandler = new JsonResponseHandler<DescribeCertificateResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Describes a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeCertificateProvider</a> action.
+     * </p>
+     * 
+     * @param describeCertificateProviderRequest
+     * @return describeCertificateProviderResult The response from the
+     *         DescribeCertificateProvider service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeCertificateProviderResult describeCertificateProvider(
+            DescribeCertificateProviderRequest describeCertificateProviderRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeCertificateProviderRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeCertificateProviderRequest> request = null;
+        Response<DescribeCertificateProviderResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeCertificateProviderRequestMarshaller()
+                        .marshall(describeCertificateProviderRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeCertificateProviderResult, JsonUnmarshallerContext> unmarshaller = new DescribeCertificateProviderResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeCertificateProviderResult> responseHandler = new JsonResponseHandler<DescribeCertificateProviderResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -9007,6 +9212,63 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListCACertificatesResult, JsonUnmarshallerContext> unmarshaller = new ListCACertificatesResultJsonUnmarshaller();
             JsonResponseHandler<ListCACertificatesResult> responseHandler = new JsonResponseHandler<ListCACertificatesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all your certificate providers in your Amazon Web Services account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCertificateProviders</a> action.
+     * </p>
+     * 
+     * @param listCertificateProvidersRequest
+     * @return listCertificateProvidersResult The response from the
+     *         ListCertificateProviders service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListCertificateProvidersResult listCertificateProviders(
+            ListCertificateProvidersRequest listCertificateProvidersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listCertificateProvidersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListCertificateProvidersRequest> request = null;
+        Response<ListCertificateProvidersResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListCertificateProvidersRequestMarshaller()
+                        .marshall(listCertificateProvidersRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListCertificateProvidersResult, JsonUnmarshallerContext> unmarshaller = new ListCertificateProvidersResultJsonUnmarshaller();
+            JsonResponseHandler<ListCertificateProvidersResult> responseHandler = new JsonResponseHandler<ListCertificateProvidersResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -13690,6 +13952,64 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Updates a certificate provider.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateCertificateProvider</a> action.
+     * </p>
+     * 
+     * @param updateCertificateProviderRequest
+     * @return updateCertificateProviderResult The response from the
+     *         UpdateCertificateProvider service method, as returned by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateCertificateProviderResult updateCertificateProvider(
+            UpdateCertificateProviderRequest updateCertificateProviderRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateCertificateProviderRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateCertificateProviderRequest> request = null;
+        Response<UpdateCertificateProviderResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateCertificateProviderRequestMarshaller()
+                        .marshall(updateCertificateProviderRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateCertificateProviderResult, JsonUnmarshallerContext> unmarshaller = new UpdateCertificateProviderResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateCertificateProviderResult> responseHandler = new JsonResponseHandler<UpdateCertificateProviderResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates a Device Defender detect custom metric.
      * </p>
      * <p>
@@ -14189,7 +14509,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Updates the supported fields for a specific package.
+     * Updates the supported fields for a specific software package.
      * </p>
      * <p>
      * Requires permission to access the <a href=
@@ -14245,7 +14565,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
-     * Updates the package configuration.
+     * Updates the software package configuration.
      * </p>
      * <p>
      * Requires permission to access the <a href=

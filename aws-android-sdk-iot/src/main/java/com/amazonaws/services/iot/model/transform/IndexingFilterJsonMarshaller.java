@@ -37,6 +37,18 @@ class IndexingFilterJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (indexingFilter.getGeoLocations() != null) {
+            java.util.List<GeoLocationTarget> geoLocations = indexingFilter.getGeoLocations();
+            jsonWriter.name("geoLocations");
+            jsonWriter.beginArray();
+            for (GeoLocationTarget geoLocationsItem : geoLocations) {
+                if (geoLocationsItem != null) {
+                    GeoLocationTargetJsonMarshaller.getInstance().marshall(geoLocationsItem,
+                            jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

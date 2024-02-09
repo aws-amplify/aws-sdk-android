@@ -42,6 +42,9 @@ class MetricToRetainJsonUnmarshaller implements
             } else if (name.equals("metricDimension")) {
                 metricToRetain.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("exportMetric")) {
+                metricToRetain.setExportMetric(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

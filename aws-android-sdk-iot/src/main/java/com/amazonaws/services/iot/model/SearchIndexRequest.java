@@ -64,7 +64,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. The
+     * response might contain fewer results but will never contain more.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -261,14 +262,16 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. The
+     * response might contain fewer results but will never contain more.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 500<br/>
      *
      * @return <p>
-     *         The maximum number of results to return at one time.
+     *         The maximum number of results to return per page at one time. The
+     *         response might contain fewer results but will never contain more.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -277,14 +280,17 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. The
+     * response might contain fewer results but will never contain more.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to return per page at one time.
+     *            The response might contain fewer results but will never
+     *            contain more.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -293,7 +299,8 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to return per page at one time. The
+     * response might contain fewer results but will never contain more.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -303,7 +310,9 @@ public class SearchIndexRequest extends AmazonWebServiceRequest implements Seria
      * <b>Range: </b>1 - 500<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to return per page at one time.
+     *            The response might contain fewer results but will never
+     *            contain more.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

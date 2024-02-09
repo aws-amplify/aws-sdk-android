@@ -32,7 +32,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListPackageVersionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,7 +72,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,7 +80,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @return <p>
-     *         The name of the target package.
+     *         The name of the target software package.
      *         </p>
      */
     public String getPackageName() {
@@ -89,7 +89,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -97,7 +97,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the target package.
+     *            The name of the target software package.
      *            </p>
      */
     public void setPackageName(String packageName) {
@@ -106,7 +106,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The name of the target package.
+     * The name of the target software package.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -117,7 +117,7 @@ public class ListPackageVersionsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9-_.]+<br/>
      *
      * @param packageName <p>
-     *            The name of the target package.
+     *            The name of the target software package.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
