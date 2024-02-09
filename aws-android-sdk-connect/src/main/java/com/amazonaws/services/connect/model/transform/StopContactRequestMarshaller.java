@@ -70,6 +70,11 @@ public class StopContactRequestMarshaller implements
                 jsonWriter.name("InstanceId");
                 jsonWriter.value(instanceId);
             }
+            if (stopContactRequest.getDisconnectReason() != null) {
+                DisconnectReason disconnectReason = stopContactRequest.getDisconnectReason();
+                jsonWriter.name("DisconnectReason");
+                DisconnectReasonJsonMarshaller.getInstance().marshall(disconnectReason, jsonWriter);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

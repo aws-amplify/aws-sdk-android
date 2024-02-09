@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the specified user account. You can <a href=
+ * Describes the specified user. You can <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
  * >find the instance ID in the Amazon Connect console</a> (it’s the final part
  * of the ARN). The console does not display the user IDs. Instead, list the

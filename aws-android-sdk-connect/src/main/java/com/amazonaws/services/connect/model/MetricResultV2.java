@@ -32,6 +32,13 @@ public class MetricResultV2 implements Serializable {
 
     /**
      * <p>
+     * The interval period with the start and end time for the metrics.
+     * </p>
+     */
+    private MetricInterval metricInterval;
+
+    /**
+     * <p>
      * The set of metrics.
      * </p>
      */
@@ -116,6 +123,53 @@ public class MetricResultV2 implements Serializable {
      */
     public MetricResultV2 clearDimensionsEntries() {
         this.dimensions = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The interval period with the start and end time for the metrics.
+     * </p>
+     *
+     * @return <p>
+     *         The interval period with the start and end time for the metrics.
+     *         </p>
+     */
+    public MetricInterval getMetricInterval() {
+        return metricInterval;
+    }
+
+    /**
+     * <p>
+     * The interval period with the start and end time for the metrics.
+     * </p>
+     *
+     * @param metricInterval <p>
+     *            The interval period with the start and end time for the
+     *            metrics.
+     *            </p>
+     */
+    public void setMetricInterval(MetricInterval metricInterval) {
+        this.metricInterval = metricInterval;
+    }
+
+    /**
+     * <p>
+     * The interval period with the start and end time for the metrics.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param metricInterval <p>
+     *            The interval period with the start and end time for the
+     *            metrics.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MetricResultV2 withMetricInterval(MetricInterval metricInterval) {
+        this.metricInterval = metricInterval;
         return this;
     }
 
@@ -206,6 +260,8 @@ public class MetricResultV2 implements Serializable {
         sb.append("{");
         if (getDimensions() != null)
             sb.append("Dimensions: " + getDimensions() + ",");
+        if (getMetricInterval() != null)
+            sb.append("MetricInterval: " + getMetricInterval() + ",");
         if (getCollections() != null)
             sb.append("Collections: " + getCollections());
         sb.append("}");
@@ -218,6 +274,8 @@ public class MetricResultV2 implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDimensions() == null) ? 0 : getDimensions().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricInterval() == null) ? 0 : getMetricInterval().hashCode());
         hashCode = prime * hashCode
                 + ((getCollections() == null) ? 0 : getCollections().hashCode());
         return hashCode;
@@ -238,6 +296,11 @@ public class MetricResultV2 implements Serializable {
             return false;
         if (other.getDimensions() != null
                 && other.getDimensions().equals(this.getDimensions()) == false)
+            return false;
+        if (other.getMetricInterval() == null ^ this.getMetricInterval() == null)
+            return false;
+        if (other.getMetricInterval() != null
+                && other.getMetricInterval().equals(this.getMetricInterval()) == false)
             return false;
         if (other.getCollections() == null ^ this.getCollections() == null)
             return false;
