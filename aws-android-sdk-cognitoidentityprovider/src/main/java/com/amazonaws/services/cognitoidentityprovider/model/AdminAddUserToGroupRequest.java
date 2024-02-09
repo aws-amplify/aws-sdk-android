@@ -21,7 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Adds the specified user to the specified group.
+ * Adds a user to a group. A user who is in a group can present a preferred-role
+ * claim to an identity pool, and populates a <code>cognito:groups</code> claim
+ * to their access and identity tokens.
  * </p>
  * <note>
  * <p>
@@ -65,7 +67,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The username for the user.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +82,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The group name.
+     * The name of the group that you want to add your user to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +150,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The username for the user.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -152,7 +162,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The username for the user.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, you can also use
+     *         their <code>sub</code> in this request.
      *         </p>
      */
     public String getUsername() {
@@ -161,7 +175,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The username for the user.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,7 +187,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      */
     public void setUsername(String username) {
@@ -178,7 +200,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The username for the user.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,7 +215,11 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -201,7 +231,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The group name.
+     * The name of the group that you want to add your user to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -209,7 +239,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The group name.
+     *         The name of the group that you want to add your user to.
      *         </p>
      */
     public String getGroupName() {
@@ -218,7 +248,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The group name.
+     * The name of the group that you want to add your user to.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,7 +256,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param groupName <p>
-     *            The group name.
+     *            The name of the group that you want to add your user to.
      *            </p>
      */
     public void setGroupName(String groupName) {
@@ -235,7 +265,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The group name.
+     * The name of the group that you want to add your user to.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -246,7 +276,7 @@ public class AdminAddUserToGroupRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param groupName <p>
-     *            The group name.
+     *            The name of the group that you want to add your user to.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

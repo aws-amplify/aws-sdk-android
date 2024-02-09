@@ -26,8 +26,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -101,7 +101,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -165,8 +165,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -240,7 +240,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -263,7 +263,7 @@ public class InitiateAuthResult implements Serializable {
      *
      * @return <p>
      *         The name of the challenge that you're responding to with this
-     *         call. This name is returned in the <code>AdminInitiateAuth</code>
+     *         call. This name is returned in the <code>InitiateAuth</code>
      *         response if you must pass another challenge.
      *         </p>
      *         <p>
@@ -342,7 +342,7 @@ public class InitiateAuthResult implements Serializable {
      *         <code>MFA_SETUP</code>: For users who are required to setup an
      *         MFA factor before they can sign in. The MFA types activated for
      *         the user pool will be listed in the challenge parameters
-     *         <code>MFA_CAN_SETUP</code> value.
+     *         <code>MFAS_CAN_SETUP</code> value.
      *         </p>
      *         <p>
      *         To set up software token MFA, use the session returned here from
@@ -366,8 +366,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -441,7 +441,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -464,9 +464,8 @@ public class InitiateAuthResult implements Serializable {
      *
      * @param challengeName <p>
      *            The name of the challenge that you're responding to with this
-     *            call. This name is returned in the
-     *            <code>AdminInitiateAuth</code> response if you must pass
-     *            another challenge.
+     *            call. This name is returned in the <code>InitiateAuth</code>
+     *            response if you must pass another challenge.
      *            </p>
      *            <p>
      *            Valid values include the following:
@@ -545,7 +544,7 @@ public class InitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to setup an
      *            MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -569,8 +568,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -644,7 +643,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -670,9 +669,8 @@ public class InitiateAuthResult implements Serializable {
      *
      * @param challengeName <p>
      *            The name of the challenge that you're responding to with this
-     *            call. This name is returned in the
-     *            <code>AdminInitiateAuth</code> response if you must pass
-     *            another challenge.
+     *            call. This name is returned in the <code>InitiateAuth</code>
+     *            response if you must pass another challenge.
      *            </p>
      *            <p>
      *            Valid values include the following:
@@ -751,7 +749,7 @@ public class InitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to setup an
      *            MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -778,8 +776,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -853,7 +851,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -876,9 +874,8 @@ public class InitiateAuthResult implements Serializable {
      *
      * @param challengeName <p>
      *            The name of the challenge that you're responding to with this
-     *            call. This name is returned in the
-     *            <code>AdminInitiateAuth</code> response if you must pass
-     *            another challenge.
+     *            call. This name is returned in the <code>InitiateAuth</code>
+     *            response if you must pass another challenge.
      *            </p>
      *            <p>
      *            Valid values include the following:
@@ -957,7 +954,7 @@ public class InitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to setup an
      *            MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here
@@ -981,8 +978,8 @@ public class InitiateAuthResult implements Serializable {
     /**
      * <p>
      * The name of the challenge that you're responding to with this call. This
-     * name is returned in the <code>AdminInitiateAuth</code> response if you
-     * must pass another challenge.
+     * name is returned in the <code>InitiateAuth</code> response if you must
+     * pass another challenge.
      * </p>
      * <p>
      * Valid values include the following:
@@ -1056,7 +1053,7 @@ public class InitiateAuthResult implements Serializable {
      * <p>
      * <code>MFA_SETUP</code>: For users who are required to setup an MFA factor
      * before they can sign in. The MFA types activated for the user pool will
-     * be listed in the challenge parameters <code>MFA_CAN_SETUP</code> value.
+     * be listed in the challenge parameters <code>MFAS_CAN_SETUP</code> value.
      * </p>
      * <p>
      * To set up software token MFA, use the session returned here from
@@ -1082,9 +1079,8 @@ public class InitiateAuthResult implements Serializable {
      *
      * @param challengeName <p>
      *            The name of the challenge that you're responding to with this
-     *            call. This name is returned in the
-     *            <code>AdminInitiateAuth</code> response if you must pass
-     *            another challenge.
+     *            call. This name is returned in the <code>InitiateAuth</code>
+     *            response if you must pass another challenge.
      *            </p>
      *            <p>
      *            Valid values include the following:
@@ -1163,7 +1159,7 @@ public class InitiateAuthResult implements Serializable {
      *            <code>MFA_SETUP</code>: For users who are required to setup an
      *            MFA factor before they can sign in. The MFA types activated
      *            for the user pool will be listed in the challenge parameters
-     *            <code>MFA_CAN_SETUP</code> value.
+     *            <code>MFAS_CAN_SETUP</code> value.
      *            </p>
      *            <p>
      *            To set up software token MFA, use the session returned here

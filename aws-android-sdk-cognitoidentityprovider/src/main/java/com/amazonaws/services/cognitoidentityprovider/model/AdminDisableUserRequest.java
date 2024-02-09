@@ -67,7 +67,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,7 +142,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +154,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user you want to disable.
+     *         The username of the user that you want to query or modify. The
+     *         value of this parameter is typically your user's username, but it
+     *         can be any of their alias attributes. If <code>username</code>
+     *         isn't an alias attribute in your user pool, you can also use
+     *         their <code>sub</code> in this request.
      *         </p>
      */
     public String getUsername() {
@@ -155,7 +167,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +179,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to disable.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      */
     public void setUsername(String username) {
@@ -172,7 +192,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The user name of the user you want to disable.
+     * The username of the user that you want to query or modify. The value of
+     * this parameter is typically your user's username, but it can be any of
+     * their alias attributes. If <code>username</code> isn't an alias attribute
+     * in your user pool, you can also use their <code>sub</code> in this
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -183,7 +207,11 @@ public class AdminDisableUserRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to disable.
+     *            The username of the user that you want to query or modify. The
+     *            value of this parameter is typically your user's username, but
+     *            it can be any of their alias attributes. If
+     *            <code>username</code> isn't an alias attribute in your user
+     *            pool, you can also use their <code>sub</code> in this request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

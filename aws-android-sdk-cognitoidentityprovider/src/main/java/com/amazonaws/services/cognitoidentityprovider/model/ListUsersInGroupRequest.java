@@ -76,7 +76,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The limit of the request to list users.
+     * The maximum number of users that you want to retrieve before pagination.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +91,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -212,14 +212,15 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The limit of the request to list users.
+     * The maximum number of users that you want to retrieve before pagination.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @return <p>
-     *         The limit of the request to list users.
+     *         The maximum number of users that you want to retrieve before
+     *         pagination.
      *         </p>
      */
     public Integer getLimit() {
@@ -228,14 +229,15 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The limit of the request to list users.
+     * The maximum number of users that you want to retrieve before pagination.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - 60<br/>
      *
      * @param limit <p>
-     *            The limit of the request to list users.
+     *            The maximum number of users that you want to retrieve before
+     *            pagination.
      *            </p>
      */
     public void setLimit(Integer limit) {
@@ -244,7 +246,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The limit of the request to list users.
+     * The maximum number of users that you want to retrieve before pagination.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -254,7 +256,8 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
      * <b>Range: </b>0 - 60<br/>
      *
      * @param limit <p>
-     *            The limit of the request to list users.
+     *            The maximum number of users that you want to retrieve before
+     *            pagination.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -271,7 +274,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -291,7 +294,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -314,7 +317,7 @@ public class ListUsersInGroupRequest extends AmazonWebServiceRequest implements 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

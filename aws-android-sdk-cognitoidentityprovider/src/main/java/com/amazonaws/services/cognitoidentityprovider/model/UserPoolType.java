@@ -80,7 +80,7 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -849,14 +849,14 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Enabled, Disabled
      *
      * @return <p>
-     *         The status of a user pool.
+     *         This parameter is no longer used.
      *         </p>
      * @see StatusType
      */
@@ -866,14 +866,14 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Enabled, Disabled
      *
      * @param status <p>
-     *            The status of a user pool.
+     *            This parameter is no longer used.
      *            </p>
      * @see StatusType
      */
@@ -883,7 +883,7 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -893,7 +893,7 @@ public class UserPoolType implements Serializable {
      * <b>Allowed Values: </b>Enabled, Disabled
      *
      * @param status <p>
-     *            The status of a user pool.
+     *            This parameter is no longer used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -906,14 +906,14 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Enabled, Disabled
      *
      * @param status <p>
-     *            The status of a user pool.
+     *            This parameter is no longer used.
      *            </p>
      * @see StatusType
      */
@@ -923,7 +923,7 @@ public class UserPoolType implements Serializable {
 
     /**
      * <p>
-     * The status of a user pool.
+     * This parameter is no longer used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -933,7 +933,7 @@ public class UserPoolType implements Serializable {
      * <b>Allowed Values: </b>Enabled, Disabled
      *
      * @param status <p>
-     *            The status of a user pool.
+     *            This parameter is no longer used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

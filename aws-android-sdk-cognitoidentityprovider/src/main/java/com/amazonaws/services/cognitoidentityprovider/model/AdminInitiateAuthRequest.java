@@ -289,11 +289,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * Define auth challenge
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * Verify auth challenge
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
@@ -1653,11 +1648,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * Define auth challenge
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * Verify auth challenge
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
@@ -1759,11 +1749,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         <li>
      *         <p>
      *         Define auth challenge
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Verify auth challenge
      *         </p>
      *         </li>
      *         </ul>
@@ -1874,11 +1859,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * Define auth challenge
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * Verify auth challenge
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
@@ -1982,11 +1962,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            <li>
      *            <p>
      *            Define auth challenge
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Verify auth challenge
      *            </p>
      *            </li>
      *            </ul>
@@ -2098,11 +2073,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * Define auth challenge
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * Verify auth challenge
-     * </p>
-     * </li>
      * </ul>
      * <p>
      * For more information, see <a href=
@@ -2209,11 +2179,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            <li>
      *            <p>
      *            Define auth challenge
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Verify auth challenge
      *            </p>
      *            </li>
      *            </ul>
@@ -2326,11 +2291,6 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <li>
      * <p>
      * Define auth challenge
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Verify auth challenge
      * </p>
      * </li>
      * </ul>

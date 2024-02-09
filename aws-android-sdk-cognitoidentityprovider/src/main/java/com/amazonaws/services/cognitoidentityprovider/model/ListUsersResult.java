@@ -46,8 +46,10 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * The identifier that Amazon Cognito returned with the previous request to
+     * this operation. When you include a pagination token in your request,
+     * Amazon Cognito returns the next set of items in the list. By use of this
+     * token, you can paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -248,8 +250,10 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * The identifier that Amazon Cognito returned with the previous request to
+     * this operation. When you include a pagination token in your request,
+     * Amazon Cognito returns the next set of items in the list. By use of this
+     * token, you can paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -257,9 +261,11 @@ public class ListUsersResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         An identifier that was returned from the previous call to this
-     *         operation, which can be used to return the next set of items in
-     *         the list.
+     *         The identifier that Amazon Cognito returned with the previous
+     *         request to this operation. When you include a pagination token in
+     *         your request, Amazon Cognito returns the next set of items in the
+     *         list. By use of this token, you can paginate through the full
+     *         list of items.
      *         </p>
      */
     public String getPaginationToken() {
@@ -268,8 +274,10 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * The identifier that Amazon Cognito returned with the previous request to
+     * this operation. When you include a pagination token in your request,
+     * Amazon Cognito returns the next set of items in the list. By use of this
+     * token, you can paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -277,9 +285,11 @@ public class ListUsersResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            An identifier that was returned from the previous call to this
-     *            operation, which can be used to return the next set of items
-     *            in the list.
+     *            The identifier that Amazon Cognito returned with the previous
+     *            request to this operation. When you include a pagination token
+     *            in your request, Amazon Cognito returns the next set of items
+     *            in the list. By use of this token, you can paginate through
+     *            the full list of items.
      *            </p>
      */
     public void setPaginationToken(String paginationToken) {
@@ -288,8 +298,10 @@ public class ListUsersResult implements Serializable {
 
     /**
      * <p>
-     * An identifier that was returned from the previous call to this operation,
-     * which can be used to return the next set of items in the list.
+     * The identifier that Amazon Cognito returned with the previous request to
+     * this operation. When you include a pagination token in your request,
+     * Amazon Cognito returns the next set of items in the list. By use of this
+     * token, you can paginate through the full list of items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -300,9 +312,11 @@ public class ListUsersResult implements Serializable {
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            An identifier that was returned from the previous call to this
-     *            operation, which can be used to return the next set of items
-     *            in the list.
+     *            The identifier that Amazon Cognito returned with the previous
+     *            request to this operation. When you include a pagination token
+     *            in your request, Amazon Cognito returns the next set of items
+     *            in the list. By use of this token, you can paginate through
+     *            the full list of items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

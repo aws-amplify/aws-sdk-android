@@ -60,7 +60,12 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The pagination token for the list request.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -185,7 +190,12 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The pagination token for the list request.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -193,7 +203,13 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
-     *         The pagination token for the list request.
+     *         This API operation returns a limited number of results. The
+     *         pagination token is an identifier that you can present in an
+     *         additional API request with the same parameters. When you include
+     *         the pagination token, Amazon Cognito returns the next set of
+     *         items after the current list. Subsequent requests return a new
+     *         pagination token. By use of this token, you can paginate through
+     *         the full list of items.
      *         </p>
      */
     public String getPaginationToken() {
@@ -202,7 +218,12 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The pagination token for the list request.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,7 +231,13 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            The pagination token for the list request.
+     *            This API operation returns a limited number of results. The
+     *            pagination token is an identifier that you can present in an
+     *            additional API request with the same parameters. When you
+     *            include the pagination token, Amazon Cognito returns the next
+     *            set of items after the current list. Subsequent requests
+     *            return a new pagination token. By use of this token, you can
+     *            paginate through the full list of items.
      *            </p>
      */
     public void setPaginationToken(String paginationToken) {
@@ -219,7 +246,12 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The pagination token for the list request.
+     * This API operation returns a limited number of results. The pagination
+     * token is an identifier that you can present in an additional API request
+     * with the same parameters. When you include the pagination token, Amazon
+     * Cognito returns the next set of items after the current list. Subsequent
+     * requests return a new pagination token. By use of this token, you can
+     * paginate through the full list of items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -230,7 +262,13 @@ public class ListDevicesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param paginationToken <p>
-     *            The pagination token for the list request.
+     *            This API operation returns a limited number of results. The
+     *            pagination token is an identifier that you can present in an
+     *            additional API request with the same parameters. When you
+     *            include the pagination token, Amazon Cognito returns the next
+     *            set of items after the current list. Subsequent requests
+     *            return a new pagination token. By use of this token, you can
+     *            paginate through the full list of items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

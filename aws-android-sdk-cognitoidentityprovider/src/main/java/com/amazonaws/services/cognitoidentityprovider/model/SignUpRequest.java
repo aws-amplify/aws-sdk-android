@@ -86,7 +86,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The user name of the user you want to register.
+     * The username of the user that you want to sign up. The value of this
+     * parameter is typically a username, but can be any alias attribute in your
+     * user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,7 +121,23 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The validation data in the request to register a user.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
+     * </p>
+     * <p>
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
+     * </p>
+     * <p>
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      */
     private java.util.List<AttributeType> validationData;
@@ -323,7 +341,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The user name of the user you want to register.
+     * The username of the user that you want to sign up. The value of this
+     * parameter is typically a username, but can be any alias attribute in your
+     * user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -331,7 +351,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The user name of the user you want to register.
+     *         The username of the user that you want to sign up. The value of
+     *         this parameter is typically a username, but can be any alias
+     *         attribute in your user pool.
      *         </p>
      */
     public String getUsername() {
@@ -340,7 +362,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The user name of the user you want to register.
+     * The username of the user that you want to sign up. The value of this
+     * parameter is typically a username, but can be any alias attribute in your
+     * user pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -348,7 +372,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to register.
+     *            The username of the user that you want to sign up. The value
+     *            of this parameter is typically a username, but can be any
+     *            alias attribute in your user pool.
      *            </p>
      */
     public void setUsername(String username) {
@@ -357,7 +383,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The user name of the user you want to register.
+     * The username of the user that you want to sign up. The value of this
+     * parameter is typically a username, but can be any alias attribute in your
+     * user pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -368,7 +396,9 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The user name of the user you want to register.
+     *            The username of the user that you want to sign up. The value
+     *            of this parameter is typically a username, but can be any
+     *            alias attribute in your user pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -543,11 +573,44 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The validation data in the request to register a user.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
+     * </p>
+     * <p>
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
+     * </p>
+     * <p>
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      *
      * @return <p>
-     *         The validation data in the request to register a user.
+     *         Temporary user attributes that contribute to the outcomes of your
+     *         pre sign-up Lambda trigger. This set of key-value pairs are for
+     *         custom validation of information that you collect from your users
+     *         but don't need to retain.
+     *         </p>
+     *         <p>
+     *         Your Lambda function can analyze this additional data and act on
+     *         it. Your function might perform external API operations like
+     *         logging user attributes and validation data to Amazon CloudWatch
+     *         Logs. Validation data might also affect the response that your
+     *         function returns to Amazon Cognito, like automatically confirming
+     *         the user if they sign up from within your network.
+     *         </p>
+     *         <p>
+     *         For more information about the pre sign-up Lambda trigger, see <a
+     *         href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *         >Pre sign-up Lambda trigger</a>.
      *         </p>
      */
     public java.util.List<AttributeType> getValidationData() {
@@ -556,11 +619,45 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The validation data in the request to register a user.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
+     * </p>
+     * <p>
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
+     * </p>
+     * <p>
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      *
      * @param validationData <p>
-     *            The validation data in the request to register a user.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
+     *            </p>
+     *            <p>
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
+     *            </p>
+     *            <p>
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      */
     public void setValidationData(java.util.Collection<AttributeType> validationData) {
@@ -574,14 +671,48 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The validation data in the request to register a user.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
+     * </p>
+     * <p>
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
+     * </p>
+     * <p>
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param validationData <p>
-     *            The validation data in the request to register a user.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
+     *            </p>
+     *            <p>
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
+     *            </p>
+     *            <p>
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -598,14 +729,48 @@ public class SignUpRequest extends AmazonWebServiceRequest implements Serializab
 
     /**
      * <p>
-     * The validation data in the request to register a user.
+     * Temporary user attributes that contribute to the outcomes of your pre
+     * sign-up Lambda trigger. This set of key-value pairs are for custom
+     * validation of information that you collect from your users but don't need
+     * to retain.
+     * </p>
+     * <p>
+     * Your Lambda function can analyze this additional data and act on it. Your
+     * function might perform external API operations like logging user
+     * attributes and validation data to Amazon CloudWatch Logs. Validation data
+     * might also affect the response that your function returns to Amazon
+     * Cognito, like automatically confirming the user if they sign up from
+     * within your network.
+     * </p>
+     * <p>
+     * For more information about the pre sign-up Lambda trigger, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     * >Pre sign-up Lambda trigger</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param validationData <p>
-     *            The validation data in the request to register a user.
+     *            Temporary user attributes that contribute to the outcomes of
+     *            your pre sign-up Lambda trigger. This set of key-value pairs
+     *            are for custom validation of information that you collect from
+     *            your users but don't need to retain.
+     *            </p>
+     *            <p>
+     *            Your Lambda function can analyze this additional data and act
+     *            on it. Your function might perform external API operations
+     *            like logging user attributes and validation data to Amazon
+     *            CloudWatch Logs. Validation data might also affect the
+     *            response that your function returns to Amazon Cognito, like
+     *            automatically confirming the user if they sign up from within
+     *            your network.
+     *            </p>
+     *            <p>
+     *            For more information about the pre sign-up Lambda trigger, see
+     *            <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-sign-up.html"
+     *            >Pre sign-up Lambda trigger</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
