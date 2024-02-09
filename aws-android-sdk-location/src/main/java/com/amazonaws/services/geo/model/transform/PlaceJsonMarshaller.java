@@ -87,6 +87,11 @@ class PlaceJsonMarshaller {
             jsonWriter.name("Street");
             jsonWriter.value(street);
         }
+        if (place.getSubMunicipality() != null) {
+            String subMunicipality = place.getSubMunicipality();
+            jsonWriter.name("SubMunicipality");
+            jsonWriter.value(subMunicipality);
+        }
         if (place.getSubRegion() != null) {
             String subRegion = place.getSubRegion();
             jsonWriter.name("SubRegion");
