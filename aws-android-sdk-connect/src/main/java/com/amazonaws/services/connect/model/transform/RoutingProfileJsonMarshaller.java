@@ -97,6 +97,21 @@ class RoutingProfileJsonMarshaller {
             jsonWriter.name("AgentAvailabilityTimer");
             jsonWriter.value(agentAvailabilityTimer);
         }
+        if (routingProfile.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = routingProfile.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (routingProfile.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = routingProfile.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
+        }
+        if (routingProfile.getIsDefault() != null) {
+            Boolean isDefault = routingProfile.getIsDefault();
+            jsonWriter.name("IsDefault");
+            jsonWriter.value(isDefault);
+        }
         jsonWriter.endObject();
     }
 

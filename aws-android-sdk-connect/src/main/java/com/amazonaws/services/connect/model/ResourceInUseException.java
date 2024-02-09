@@ -32,7 +32,7 @@ public class ResourceInUseException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      */
     private String resourceType;
 
@@ -59,7 +59,7 @@ public class ResourceInUseException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      *
      * @return <p>
      *         The type of resource.
@@ -77,7 +77,7 @@ public class ResourceInUseException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      *
      * @param resourceType <p>
      *            The type of resource.

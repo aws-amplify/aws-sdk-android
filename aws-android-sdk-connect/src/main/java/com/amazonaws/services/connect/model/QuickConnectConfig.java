@@ -25,9 +25,9 @@ import java.io.Serializable;
 public class QuickConnectConfig implements Serializable {
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,19 +61,19 @@ public class QuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @return <p>
-     *         The type of quick connect. In the Amazon Connect console, when
-     *         you create a quick connect, you are prompted to assign one of the
-     *         following types: Agent (USER), External (PHONE_NUMBER), or Queue
-     *         (QUEUE).
+     *         The type of quick connect. In the Amazon Connect admin website,
+     *         when you create a quick connect, you are prompted to assign one
+     *         of the following types: Agent (USER), External (PHONE_NUMBER), or
+     *         Queue (QUEUE).
      *         </p>
      * @see QuickConnectType
      */
@@ -83,19 +83,19 @@ public class QuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @see QuickConnectType
      */
@@ -105,9 +105,9 @@ public class QuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -117,10 +117,10 @@ public class QuickConnectConfig implements Serializable {
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -133,19 +133,19 @@ public class QuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @see QuickConnectType
      */
@@ -155,9 +155,9 @@ public class QuickConnectConfig implements Serializable {
 
     /**
      * <p>
-     * The type of quick connect. In the Amazon Connect console, when you create
-     * a quick connect, you are prompted to assign one of the following types:
-     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * The type of quick connect. In the Amazon Connect admin website, when you
+     * create a quick connect, you are prompted to assign one of the following
+     * types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -167,10 +167,10 @@ public class QuickConnectConfig implements Serializable {
      * <b>Allowed Values: </b>USER, QUEUE, PHONE_NUMBER
      *
      * @param quickConnectType <p>
-     *            The type of quick connect. In the Amazon Connect console, when
-     *            you create a quick connect, you are prompted to assign one of
-     *            the following types: Agent (USER), External (PHONE_NUMBER), or
-     *            Queue (QUEUE).
+     *            The type of quick connect. In the Amazon Connect admin
+     *            website, when you create a quick connect, you are prompted to
+     *            assign one of the following types: Agent (USER), External
+     *            (PHONE_NUMBER), or Queue (QUEUE).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
