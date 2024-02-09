@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,6 +33,18 @@ class IndexingFilterJsonMarshaller {
             for (String namedShadowNamesItem : namedShadowNames) {
                 if (namedShadowNamesItem != null) {
                     jsonWriter.value(namedShadowNamesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (indexingFilter.getGeoLocations() != null) {
+            java.util.List<GeoLocationTarget> geoLocations = indexingFilter.getGeoLocations();
+            jsonWriter.name("geoLocations");
+            jsonWriter.beginArray();
+            for (GeoLocationTarget geoLocationsItem : geoLocations) {
+                if (geoLocationsItem != null) {
+                    GeoLocationTargetJsonMarshaller.getInstance().marshall(geoLocationsItem,
+                            jsonWriter);
                 }
             }
             jsonWriter.endArray();
