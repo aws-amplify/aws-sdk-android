@@ -1,3 +1,14 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---kinesisfirehose
+---connectparticipant
+---lambda
+---sns
 ## [Release 2.75.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.75.0)
 
 ### Features
