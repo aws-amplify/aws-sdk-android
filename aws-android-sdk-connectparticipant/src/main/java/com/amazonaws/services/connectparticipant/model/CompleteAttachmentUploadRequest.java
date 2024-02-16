@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Allows you to confirm that the attachment has been uploaded using the
- * pre-signed URL provided in StartAttachmentUpload API.
+ * pre-signed URL provided in StartAttachmentUpload API. A conflict exception is
+ * thrown when an attachment with that identifier is already being uploaded.
  * </p>
  * <note>
  * <p>

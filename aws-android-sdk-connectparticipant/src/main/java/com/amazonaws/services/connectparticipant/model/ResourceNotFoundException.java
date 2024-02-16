@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ public class ResourceNotFoundException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      */
     private String resourceType;
 
@@ -86,7 +86,7 @@ public class ResourceNotFoundException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      *
      * @return <p>
      *         The type of Amazon Connect resource.
@@ -104,7 +104,7 @@ public class ResourceNotFoundException extends AmazonServiceException {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONTACT, CONTACT_FLOW, INSTANCE, PARTICIPANT,
-     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER
+     * HIERARCHY_LEVEL, HIERARCHY_GROUP, USER, PHONE_NUMBER
      *
      * @param resourceType <p>
      *            The type of Amazon Connect resource.
