@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,9 +62,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * For <code>GCM</code> (Firebase Cloud Messaging), there is no
- * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+ * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+ * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
  * <code>API key</code>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+ * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a JSON
+ * formatted private key file. When using the Amazon Web Services CLI, the file
+ * must be in string format and special characters must be ignored. To format
+ * the file correctly, Amazon SNS recommends using the following command:
+ * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
  * </p>
  * </li>
  * <li>
@@ -111,7 +121,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>.
+     * > <code>SetPlatformApplicationAttributes</code> </a>.
      * </p>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
@@ -234,13 +244,13 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>.
+     * > <code>SetPlatformApplicationAttributes</code> </a>.
      * </p>
      *
      * @return <p>
      *         For a list of attributes, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *         >SetPlatformApplicationAttributes</a>.
+     *         > <code>SetPlatformApplicationAttributes</code> </a>.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -251,13 +261,13 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>.
+     * > <code>SetPlatformApplicationAttributes</code> </a>.
      * </p>
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *            >SetPlatformApplicationAttributes</a>.
+     *            > <code>SetPlatformApplicationAttributes</code> </a>.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -268,7 +278,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>.
+     * > <code>SetPlatformApplicationAttributes</code> </a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -277,7 +287,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *            >SetPlatformApplicationAttributes</a>.
+     *            > <code>SetPlatformApplicationAttributes</code> </a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -291,7 +301,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>.
+     * > <code>SetPlatformApplicationAttributes</code> </a>.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,18 +32,21 @@ public class GetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
         Serializable {
     /**
      * <p>
-     * PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+     * <code>PlatformApplicationArn</code> for
+     * GetPlatformApplicationAttributesInput.
      * </p>
      */
     private String platformApplicationArn;
 
     /**
      * <p>
-     * PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+     * <code>PlatformApplicationArn</code> for
+     * GetPlatformApplicationAttributesInput.
      * </p>
      *
      * @return <p>
-     *         PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+     *         <code>PlatformApplicationArn</code> for
+     *         GetPlatformApplicationAttributesInput.
      *         </p>
      */
     public String getPlatformApplicationArn() {
@@ -52,11 +55,12 @@ public class GetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+     * <code>PlatformApplicationArn</code> for
+     * GetPlatformApplicationAttributesInput.
      * </p>
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for
+     *            <code>PlatformApplicationArn</code> for
      *            GetPlatformApplicationAttributesInput.
      *            </p>
      */
@@ -66,14 +70,15 @@ public class GetPlatformApplicationAttributesRequest extends AmazonWebServiceReq
 
     /**
      * <p>
-     * PlatformApplicationArn for GetPlatformApplicationAttributesInput.
+     * <code>PlatformApplicationArn</code> for
+     * GetPlatformApplicationAttributesInput.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param platformApplicationArn <p>
-     *            PlatformApplicationArn for
+     *            <code>PlatformApplicationArn</code> for
      *            GetPlatformApplicationAttributesInput.
      *            </p>
      * @return A reference to this updated object so that method calls can be

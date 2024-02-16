@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -476,6 +476,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -515,6 +516,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -587,9 +589,20 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
@@ -684,9 +697,20 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
@@ -1069,7 +1093,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteEndpoint service method, as returned by Amazon Simple
@@ -1108,7 +1132,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeleteEndpoint service method, as returned by Amazon Simple
@@ -1152,7 +1176,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeletePlatformApplication service method, as returned by Amazon
@@ -1189,7 +1213,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         DeletePlatformApplication service method, as returned by Amazon
@@ -1338,6 +1362,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         service method, as returned by Amazon Simple Notification
      *         Service.
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -1375,6 +1400,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         service method, as returned by Amazon Simple Notification
      *         Service.
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -1492,7 +1518,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetEndpointAttributes service method, as returned by Amazon
@@ -1529,7 +1555,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetEndpointAttributes service method, as returned by Amazon
@@ -1575,7 +1601,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetPlatformApplicationAttributes service method, as returned by
@@ -1612,7 +1639,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         GetPlatformApplicationAttributes service method, as returned by
@@ -1999,7 +2027,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListEndpointsByPlatformApplication service method, as returned by
@@ -2045,7 +2074,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListEndpointsByPlatformApplication service method, as returned by
@@ -2278,7 +2308,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListPlatformApplications service method, as returned by Amazon
@@ -2323,7 +2353,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         ListPlatformApplications service method, as returned by Amazon
@@ -3385,7 +3415,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetEndpointAttributes service method, as returned by Amazon
@@ -3423,7 +3453,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetEndpointAttributes service method, as returned by Amazon
@@ -3472,7 +3502,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetPlatformApplicationAttributes service method, as returned by
@@ -3513,7 +3544,8 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return A Java Future object containing the response from the
      *         SetPlatformApplicationAttributes service method, as returned by
@@ -3672,6 +3704,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         Simple Notification Service.
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -3708,6 +3741,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         Simple Notification Service.
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -3841,7 +3875,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -3855,6 +3889,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -3886,7 +3921,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -3900,6 +3935,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      *         Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException

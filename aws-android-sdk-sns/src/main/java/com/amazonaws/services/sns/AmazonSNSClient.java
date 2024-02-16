@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -360,6 +360,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidSecurityExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidStateExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSAccessDeniedExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSDisabledExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSInvalidStateExceptionUnmarshaller());
@@ -369,6 +370,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new NotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new OptedOutExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PlatformApplicationDisabledExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new ReplayLimitExceededExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new StaleTagExceptionUnmarshaller());
         exceptionUnmarshallers.add(new SubscriptionLimitExceededExceptionUnmarshaller());
@@ -517,6 +519,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -592,9 +595,20 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </li>
      * <li>
      * <p>
-     * For <code>GCM</code> (Firebase Cloud Messaging), there is no
-     * <code>PlatformPrincipal</code> and the <code>PlatformCredential</code> is
+     * For GCM (Firebase Cloud Messaging) using key credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is
      * <code>API key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For GCM (Firebase Cloud Messaging) using token credentials, there is no
+     * <code>PlatformPrincipal</code>. The <code>PlatformCredential</code> is a
+     * JSON formatted private key file. When using the Amazon Web Services CLI,
+     * the file must be in string format and special characters must be ignored.
+     * To format the file correctly, Amazon SNS recommends using the following
+     * command:
+     * <code>SERVICE_JSON=`jq @json &lt;&lt;&lt; cat service.json`</code>.
      * </p>
      * </li>
      * <li>
@@ -844,7 +858,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param deleteEndpointRequest <p>
-     *            Input for DeleteEndpoint action.
+     *            Input for <code>DeleteEndpoint</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -885,7 +899,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param deletePlatformApplicationRequest <p>
-     *            Input for DeletePlatformApplication action.
+     *            Input for <code>DeletePlatformApplication</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -986,6 +1000,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * 
      * @param deleteTopicRequest
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
@@ -1073,7 +1088,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param getEndpointAttributesRequest <p>
-     *            Input for GetEndpointAttributes action.
+     *            Input for <code>GetEndpointAttributes</code> action.
      *            </p>
      * @return getEndpointAttributesResult The response from the
      *         GetEndpointAttributes service method, as returned by Amazon
@@ -1122,7 +1137,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param getPlatformApplicationAttributesRequest <p>
-     *            Input for GetPlatformApplicationAttributes action.
+     *            Input for <code>GetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @return getPlatformApplicationAttributesResult The response from the
      *         GetPlatformApplicationAttributes service method, as returned by
@@ -1373,7 +1389,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param listEndpointsByPlatformApplicationRequest <p>
-     *            Input for ListEndpointsByPlatformApplication action.
+     *            Input for <code>ListEndpointsByPlatformApplication</code>
+     *            action.
      *            </p>
      * @return listEndpointsByPlatformApplicationResult The response from the
      *         ListEndpointsByPlatformApplication service method, as returned by
@@ -1536,7 +1553,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param listPlatformApplicationsRequest <p>
-     *            Input for ListPlatformApplications action.
+     *            Input for <code>ListPlatformApplications</code> action.
      *            </p>
      * @return listPlatformApplicationsResult The response from the
      *         ListPlatformApplications service method, as returned by Amazon
@@ -2142,7 +2159,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param setEndpointAttributesRequest <p>
-     *            Input for SetEndpointAttributes action.
+     *            Input for <code>SetEndpointAttributes</code> action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -2188,7 +2205,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * 
      * @param setPlatformApplicationAttributesRequest <p>
-     *            Input for SetPlatformApplicationAttributes action.
+     *            Input for <code>SetPlatformApplicationAttributes</code>
+     *            action.
      *            </p>
      * @throws InvalidParameterException
      * @throws InternalErrorException
@@ -2293,6 +2311,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -2380,7 +2399,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -2393,6 +2412,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -2773,6 +2793,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </p>
      * @throws InvalidParameterException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InternalErrorException
      * @throws NotFoundException
      * @throws AuthorizationErrorException
@@ -2833,7 +2854,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
-     * the subscription response. Confirmation tokens are valid for three days.
+     * the subscription response. Confirmation tokens are valid for two days.
      * </p>
      * <p>
      * This action is throttled at 100 transactions per second (TPS).
@@ -2964,6 +2985,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *         as returned by Amazon Simple Notification Service.
      * @throws SubscriptionLimitExceededException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws InvalidParameterException
      * @throws InternalErrorException
      * @throws NotFoundException
@@ -3214,6 +3236,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3258,6 +3281,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws FilterPolicyLimitExceededException
+     * @throws ReplayLimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -3662,6 +3686,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            The ARN of the topic you want to delete.
      *            </p>
      * @throws InvalidParameterException
+     * @throws InvalidStateException
      * @throws InternalErrorException
      * @throws AuthorizationErrorException
      * @throws NotFoundException
