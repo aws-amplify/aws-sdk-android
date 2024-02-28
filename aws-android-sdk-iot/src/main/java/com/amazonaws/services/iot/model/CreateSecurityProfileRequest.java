@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -100,6 +100,13 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     */
+    private MetricsExportConfig metricsExportConfig;
 
     /**
      * <p>
@@ -722,6 +729,54 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the MQTT topic and role ARN required for metric export.
+     *         </p>
+     */
+    public MetricsExportConfig getMetricsExportConfig() {
+        return metricsExportConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     *
+     * @param metricsExportConfig <p>
+     *            Specifies the MQTT topic and role ARN required for metric
+     *            export.
+     *            </p>
+     */
+    public void setMetricsExportConfig(MetricsExportConfig metricsExportConfig) {
+        this.metricsExportConfig = metricsExportConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the MQTT topic and role ARN required for metric export.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param metricsExportConfig <p>
+     *            Specifies the MQTT topic and role ARN required for metric
+     *            export.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withMetricsExportConfig(
+            MetricsExportConfig metricsExportConfig) {
+        this.metricsExportConfig = metricsExportConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -745,7 +800,9 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
         if (getAdditionalMetricsToRetainV2() != null)
             sb.append("additionalMetricsToRetainV2: " + getAdditionalMetricsToRetainV2() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getMetricsExportConfig() != null)
+            sb.append("metricsExportConfig: " + getMetricsExportConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -773,6 +830,8 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
                 + ((getAdditionalMetricsToRetainV2() == null) ? 0
                         : getAdditionalMetricsToRetainV2().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricsExportConfig() == null) ? 0 : getMetricsExportConfig().hashCode());
         return hashCode;
     }
 
@@ -825,6 +884,11 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getMetricsExportConfig() == null ^ this.getMetricsExportConfig() == null)
+            return false;
+        if (other.getMetricsExportConfig() != null
+                && other.getMetricsExportConfig().equals(this.getMetricsExportConfig()) == false)
             return false;
         return true;
     }
