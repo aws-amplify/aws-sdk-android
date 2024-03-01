@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // androidx core, for NotificationCompat
+        targetSdkVersion 29
     }
 }
 

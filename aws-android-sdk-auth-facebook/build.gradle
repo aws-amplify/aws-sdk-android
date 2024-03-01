@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // v4 support, brought from facebook sdk
+        targetSdkVersion 29
     }
 }
 

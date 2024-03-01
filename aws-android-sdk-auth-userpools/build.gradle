@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // setAllCaps(), 11 otherwise
+        targetSdkVersion 29
     }
 }
 

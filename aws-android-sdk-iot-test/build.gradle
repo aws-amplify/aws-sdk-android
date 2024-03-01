@@ -5,6 +5,7 @@ android {
 
     defaultConfig {
         minSdkVersion 14 // junit ext
+        targetSdkVersion 29
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         testInstrumentationRunnerArguments(['notClass': 'org.conscrypt.KitKatPlatformOpenSSLSocketImplAdapter'])
     }
