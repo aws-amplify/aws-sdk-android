@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -483,8 +483,12 @@ public class AWSLambdaClient extends AmazonWebServiceClient implements AWSLambda
     /**
      * <p>
      * Invokes a Lambda function. You can invoke a function synchronously (and
-     * wait for the response), or asynchronously. To invoke a function
-     * asynchronously, set <code>InvocationType</code> to <code>Event</code>.
+     * wait for the response), or asynchronously. By default, Lambda invokes
+     * your function synchronously (i.e. the<code>InvocationType</code> is
+     * <code>RequestResponse</code>). To invoke a function asynchronously, set
+     * <code>InvocationType</code> to <code>Event</code>. Lambda passes the
+     * <code>ClientContext</code> object to your function for synchronous
+     * invocations only.
      * </p>
      * <p>
      * For <a href=
