@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,6 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
  * <p>
  * Updates a security profile.
  * </p>
@@ -83,6 +80,17 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private java.util.List<String> tagRestrictedResources;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of the third-party application's metadata.
+     * </p>
+     */
+    private java.util.List<Application> applications;
 
     /**
      * <p>
@@ -531,6 +539,113 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of the third-party application's metadata.
+     * </p>
+     *
+     * @return <p>
+     *         This API is in preview release for Amazon Connect and is subject
+     *         to change.
+     *         </p>
+     *         <p>
+     *         A list of the third-party application's metadata.
+     *         </p>
+     */
+    public java.util.List<Application> getApplications() {
+        return applications;
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of the third-party application's metadata.
+     * </p>
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of the third-party application's metadata.
+     *            </p>
+     */
+    public void setApplications(java.util.Collection<Application> applications) {
+        if (applications == null) {
+            this.applications = null;
+            return;
+        }
+
+        this.applications = new java.util.ArrayList<Application>(applications);
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of the third-party application's metadata.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of the third-party application's metadata.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateSecurityProfileRequest withApplications(Application... applications) {
+        if (getApplications() == null) {
+            this.applications = new java.util.ArrayList<Application>(applications.length);
+        }
+        for (Application value : applications) {
+            this.applications.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of the third-party application's metadata.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of the third-party application's metadata.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateSecurityProfileRequest withApplications(
+            java.util.Collection<Application> applications) {
+        setApplications(applications);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -552,7 +667,9 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
         if (getAllowedAccessControlTags() != null)
             sb.append("AllowedAccessControlTags: " + getAllowedAccessControlTags() + ",");
         if (getTagRestrictedResources() != null)
-            sb.append("TagRestrictedResources: " + getTagRestrictedResources());
+            sb.append("TagRestrictedResources: " + getTagRestrictedResources() + ",");
+        if (getApplications() != null)
+            sb.append("Applications: " + getApplications());
         sb.append("}");
         return sb.toString();
     }
@@ -577,6 +694,8 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
                 * hashCode
                 + ((getTagRestrictedResources() == null) ? 0 : getTagRestrictedResources()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getApplications() == null) ? 0 : getApplications().hashCode());
         return hashCode;
     }
 
@@ -621,6 +740,11 @@ public class UpdateSecurityProfileRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getTagRestrictedResources() != null
                 && other.getTagRestrictedResources().equals(this.getTagRestrictedResources()) == false)
+            return false;
+        if (other.getApplications() == null ^ this.getApplications() == null)
+            return false;
+        if (other.getApplications() != null
+                && other.getApplications().equals(this.getApplications()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * For the specified <code>referenceTypes</code>, returns a list of references
- * associated with the contact.
+ * associated with the contact. <i>References</i> are links to documents that
+ * are related to a contact, such as emails, attachments, or URLs.
  * </p>
  */
 public class ListContactReferencesRequest extends AmazonWebServiceRequest implements Serializable {

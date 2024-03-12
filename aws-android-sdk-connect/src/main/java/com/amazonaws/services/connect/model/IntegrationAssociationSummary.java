@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,7 +60,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      */
     private String integrationType;
 
@@ -98,7 +99,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      */
     private String sourceType;
 
@@ -287,7 +288,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @return <p>
      *         The integration type.
@@ -305,7 +307,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -326,7 +329,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -347,7 +351,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -368,7 +373,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
-     * WISDOM_KNOWLEDGE_BASE, CASES_DOMAIN
+     * WISDOM_KNOWLEDGE_BASE, WISDOM_QUICK_RESPONSES, CASES_DOMAIN, APPLICATION,
+     * FILE_SCANNER
      *
      * @param integrationType <p>
      *            The integration type.
@@ -544,7 +550,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @return <p>
      *         The name of the source.
@@ -561,7 +567,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The name of the source.
@@ -581,7 +587,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The name of the source.
@@ -601,7 +607,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The name of the source.
@@ -621,7 +627,7 @@ public class IntegrationAssociationSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SALESFORCE, ZENDESK
+     * <b>Allowed Values: </b>SALESFORCE, ZENDESK, CASES
      *
      * @param sourceType <p>
      *            The name of the source.

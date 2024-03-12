@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,9 +58,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      */
     private String eventSourceName;
 
@@ -258,9 +259,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      *
      * @return <p>
      *         The name of the event source.
@@ -278,9 +280,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -301,9 +304,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -324,9 +328,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
@@ -347,9 +352,10 @@ public class RuleSummary implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>OnPostCallAnalysisAvailable,
-     * OnRealTimeCallAnalysisAvailable, OnPostChatAnalysisAvailable,
-     * OnZendeskTicketCreate, OnZendeskTicketStatusUpdate,
-     * OnSalesforceCaseCreate, OnContactEvaluationSubmit
+     * OnRealTimeCallAnalysisAvailable, OnRealTimeChatAnalysisAvailable,
+     * OnPostChatAnalysisAvailable, OnZendeskTicketCreate,
+     * OnZendeskTicketStatusUpdate, OnSalesforceCaseCreate,
+     * OnContactEvaluationSubmit, OnMetricDataUpdate, OnCaseCreate, OnCaseUpdate
      *
      * @param eventSourceName <p>
      *            The name of the event source.
