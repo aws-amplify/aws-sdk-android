@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,9 +20,6 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
  * <p>
  * Creates a security profile.
  * </p>
@@ -75,7 +72,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -97,6 +94,18 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
      * </p>
      */
     private java.util.List<String> tagRestrictedResources;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of third-party applications that the security profile will give
+     * access to.
+     * </p>
+     */
+    private java.util.List<Application> applications;
 
     /**
      * <p>
@@ -384,12 +393,12 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @return <p>
      *         The tags used to organize, track, or control access for this
-     *         resource. For example, { "tags": {"key1":"value1",
+     *         resource. For example, { "Tags": {"key1":"value1",
      *         "key2":"value2"} }.
      *         </p>
      */
@@ -400,12 +409,12 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      */
@@ -416,7 +425,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -424,7 +433,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
      *
      * @param tags <p>
      *            The tags used to organize, track, or control access for this
-     *            resource. For example, { "tags": {"key1":"value1",
+     *            resource. For example, { "Tags": {"key1":"value1",
      *            "key2":"value2"} }.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -438,7 +447,7 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The tags used to organize, track, or control access for this resource.
-     * For example, { "tags": {"key1":"value1", "key2":"value2"} }.
+     * For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
@@ -666,6 +675,121 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of third-party applications that the security profile will give
+     * access to.
+     * </p>
+     *
+     * @return <p>
+     *         This API is in preview release for Amazon Connect and is subject
+     *         to change.
+     *         </p>
+     *         <p>
+     *         A list of third-party applications that the security profile will
+     *         give access to.
+     *         </p>
+     */
+    public java.util.List<Application> getApplications() {
+        return applications;
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of third-party applications that the security profile will give
+     * access to.
+     * </p>
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of third-party applications that the security profile
+     *            will give access to.
+     *            </p>
+     */
+    public void setApplications(java.util.Collection<Application> applications) {
+        if (applications == null) {
+            this.applications = null;
+            return;
+        }
+
+        this.applications = new java.util.ArrayList<Application>(applications);
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of third-party applications that the security profile will give
+     * access to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of third-party applications that the security profile
+     *            will give access to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withApplications(Application... applications) {
+        if (getApplications() == null) {
+            this.applications = new java.util.ArrayList<Application>(applications.length);
+        }
+        for (Application value : applications) {
+            this.applications.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * A list of third-party applications that the security profile will give
+     * access to.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param applications <p>
+     *            This API is in preview release for Amazon Connect and is
+     *            subject to change.
+     *            </p>
+     *            <p>
+     *            A list of third-party applications that the security profile
+     *            will give access to.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withApplications(
+            java.util.Collection<Application> applications) {
+        setApplications(applications);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -689,7 +813,9 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
         if (getAllowedAccessControlTags() != null)
             sb.append("AllowedAccessControlTags: " + getAllowedAccessControlTags() + ",");
         if (getTagRestrictedResources() != null)
-            sb.append("TagRestrictedResources: " + getTagRestrictedResources());
+            sb.append("TagRestrictedResources: " + getTagRestrictedResources() + ",");
+        if (getApplications() != null)
+            sb.append("Applications: " + getApplications());
         sb.append("}");
         return sb.toString();
     }
@@ -715,6 +841,8 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
                 * hashCode
                 + ((getTagRestrictedResources() == null) ? 0 : getTagRestrictedResources()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getApplications() == null) ? 0 : getApplications().hashCode());
         return hashCode;
     }
 
@@ -763,6 +891,11 @@ public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getTagRestrictedResources() != null
                 && other.getTagRestrictedResources().equals(this.getTagRestrictedResources()) == false)
+            return false;
+        if (other.getApplications() == null ^ this.getApplications() == null)
+            return false;
+        if (other.getApplications() != null
+                && other.getApplications().equals(this.getApplications()) == false)
             return false;
         return true;
     }

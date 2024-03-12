@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,8 +55,8 @@ public class GetTrafficDistributionResult implements Serializable {
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      */
     private SignInConfig signInConfig;
@@ -261,13 +261,14 @@ public class GetTrafficDistributionResult implements Serializable {
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      *
      * @return <p>
-     *         The distribution of allowing signing in to the instance and its
-     *         replica(s).
+     *         The distribution that determines which Amazon Web Services
+     *         Regions should be used to sign in agents in to both the instance
+     *         and its replica(s).
      *         </p>
      */
     public SignInConfig getSignInConfig() {
@@ -276,13 +277,14 @@ public class GetTrafficDistributionResult implements Serializable {
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      *
      * @param signInConfig <p>
-     *            The distribution of allowing signing in to the instance and
-     *            its replica(s).
+     *            The distribution that determines which Amazon Web Services
+     *            Regions should be used to sign in agents in to both the
+     *            instance and its replica(s).
      *            </p>
      */
     public void setSignInConfig(SignInConfig signInConfig) {
@@ -291,16 +293,17 @@ public class GetTrafficDistributionResult implements Serializable {
 
     /**
      * <p>
-     * The distribution of allowing signing in to the instance and its
-     * replica(s).
+     * The distribution that determines which Amazon Web Services Regions should
+     * be used to sign in agents in to both the instance and its replica(s).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param signInConfig <p>
-     *            The distribution of allowing signing in to the instance and
-     *            its replica(s).
+     *            The distribution that determines which Amazon Web Services
+     *            Regions should be used to sign in agents in to both the
+     *            instance and its replica(s).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

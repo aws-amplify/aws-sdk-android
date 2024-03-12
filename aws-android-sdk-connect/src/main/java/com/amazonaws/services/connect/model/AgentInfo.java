@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,16 @@ public class AgentInfo implements Serializable {
      * </p>
      */
     private java.util.Date connectedToAgentTimestamp;
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Integer agentPauseDurationInSeconds;
 
     /**
      * <p>
@@ -140,6 +150,60 @@ public class AgentInfo implements Serializable {
     }
 
     /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         Agent pause duration for a contact in seconds.
+     *         </p>
+     */
+    public Integer getAgentPauseDurationInSeconds() {
+        return agentPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param agentPauseDurationInSeconds <p>
+     *            Agent pause duration for a contact in seconds.
+     *            </p>
+     */
+    public void setAgentPauseDurationInSeconds(Integer agentPauseDurationInSeconds) {
+        this.agentPauseDurationInSeconds = agentPauseDurationInSeconds;
+    }
+
+    /**
+     * <p>
+     * Agent pause duration for a contact in seconds.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param agentPauseDurationInSeconds <p>
+     *            Agent pause duration for a contact in seconds.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentInfo withAgentPauseDurationInSeconds(Integer agentPauseDurationInSeconds) {
+        this.agentPauseDurationInSeconds = agentPauseDurationInSeconds;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -153,7 +217,9 @@ public class AgentInfo implements Serializable {
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getConnectedToAgentTimestamp() != null)
-            sb.append("ConnectedToAgentTimestamp: " + getConnectedToAgentTimestamp());
+            sb.append("ConnectedToAgentTimestamp: " + getConnectedToAgentTimestamp() + ",");
+        if (getAgentPauseDurationInSeconds() != null)
+            sb.append("AgentPauseDurationInSeconds: " + getAgentPauseDurationInSeconds());
         sb.append("}");
         return sb.toString();
     }
@@ -168,6 +234,10 @@ public class AgentInfo implements Serializable {
                 * hashCode
                 + ((getConnectedToAgentTimestamp() == null) ? 0 : getConnectedToAgentTimestamp()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAgentPauseDurationInSeconds() == null) ? 0
+                        : getAgentPauseDurationInSeconds().hashCode());
         return hashCode;
     }
 
@@ -191,6 +261,13 @@ public class AgentInfo implements Serializable {
             return false;
         if (other.getConnectedToAgentTimestamp() != null
                 && other.getConnectedToAgentTimestamp().equals(this.getConnectedToAgentTimestamp()) == false)
+            return false;
+        if (other.getAgentPauseDurationInSeconds() == null
+                ^ this.getAgentPauseDurationInSeconds() == null)
+            return false;
+        if (other.getAgentPauseDurationInSeconds() != null
+                && other.getAgentPauseDurationInSeconds().equals(
+                        this.getAgentPauseDurationInSeconds()) == false)
             return false;
         return true;
     }

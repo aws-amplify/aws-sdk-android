@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -122,6 +122,19 @@ public class CreateSecurityProfileRequestMarshaller implements
                 for (String tagRestrictedResourcesItem : tagRestrictedResources) {
                     if (tagRestrictedResourcesItem != null) {
                         jsonWriter.value(tagRestrictedResourcesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (createSecurityProfileRequest.getApplications() != null) {
+                java.util.List<Application> applications = createSecurityProfileRequest
+                        .getApplications();
+                jsonWriter.name("Applications");
+                jsonWriter.beginArray();
+                for (Application applicationsItem : applications) {
+                    if (applicationsItem != null) {
+                        ApplicationJsonMarshaller.getInstance().marshall(applicationsItem,
+                                jsonWriter);
                     }
                 }
                 jsonWriter.endArray();
