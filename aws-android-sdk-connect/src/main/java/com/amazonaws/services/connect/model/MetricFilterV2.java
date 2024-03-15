@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -60,6 +60,16 @@ public class MetricFilterV2 implements Serializable {
      * </p>
      */
     private java.util.List<String> metricFilterValues;
+
+    /**
+     * <p>
+     * The flag to use to filter on requested metric filter values or to not
+     * filter on requested metric filter values. By default the negate is
+     * <code>false</code>, which indicates to filter on the requested metric
+     * filter.
+     * </p>
+     */
+    private Boolean negate;
 
     /**
      * <p>
@@ -344,6 +354,88 @@ public class MetricFilterV2 implements Serializable {
     }
 
     /**
+     * <p>
+     * The flag to use to filter on requested metric filter values or to not
+     * filter on requested metric filter values. By default the negate is
+     * <code>false</code>, which indicates to filter on the requested metric
+     * filter.
+     * </p>
+     *
+     * @return <p>
+     *         The flag to use to filter on requested metric filter values or to
+     *         not filter on requested metric filter values. By default the
+     *         negate is <code>false</code>, which indicates to filter on the
+     *         requested metric filter.
+     *         </p>
+     */
+    public Boolean isNegate() {
+        return negate;
+    }
+
+    /**
+     * <p>
+     * The flag to use to filter on requested metric filter values or to not
+     * filter on requested metric filter values. By default the negate is
+     * <code>false</code>, which indicates to filter on the requested metric
+     * filter.
+     * </p>
+     *
+     * @return <p>
+     *         The flag to use to filter on requested metric filter values or to
+     *         not filter on requested metric filter values. By default the
+     *         negate is <code>false</code>, which indicates to filter on the
+     *         requested metric filter.
+     *         </p>
+     */
+    public Boolean getNegate() {
+        return negate;
+    }
+
+    /**
+     * <p>
+     * The flag to use to filter on requested metric filter values or to not
+     * filter on requested metric filter values. By default the negate is
+     * <code>false</code>, which indicates to filter on the requested metric
+     * filter.
+     * </p>
+     *
+     * @param negate <p>
+     *            The flag to use to filter on requested metric filter values or
+     *            to not filter on requested metric filter values. By default
+     *            the negate is <code>false</code>, which indicates to filter on
+     *            the requested metric filter.
+     *            </p>
+     */
+    public void setNegate(Boolean negate) {
+        this.negate = negate;
+    }
+
+    /**
+     * <p>
+     * The flag to use to filter on requested metric filter values or to not
+     * filter on requested metric filter values. By default the negate is
+     * <code>false</code>, which indicates to filter on the requested metric
+     * filter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param negate <p>
+     *            The flag to use to filter on requested metric filter values or
+     *            to not filter on requested metric filter values. By default
+     *            the negate is <code>false</code>, which indicates to filter on
+     *            the requested metric filter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MetricFilterV2 withNegate(Boolean negate) {
+        this.negate = negate;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -357,7 +449,9 @@ public class MetricFilterV2 implements Serializable {
         if (getMetricFilterKey() != null)
             sb.append("MetricFilterKey: " + getMetricFilterKey() + ",");
         if (getMetricFilterValues() != null)
-            sb.append("MetricFilterValues: " + getMetricFilterValues());
+            sb.append("MetricFilterValues: " + getMetricFilterValues() + ",");
+        if (getNegate() != null)
+            sb.append("Negate: " + getNegate());
         sb.append("}");
         return sb.toString();
     }
@@ -371,6 +465,7 @@ public class MetricFilterV2 implements Serializable {
                 + ((getMetricFilterKey() == null) ? 0 : getMetricFilterKey().hashCode());
         hashCode = prime * hashCode
                 + ((getMetricFilterValues() == null) ? 0 : getMetricFilterValues().hashCode());
+        hashCode = prime * hashCode + ((getNegate() == null) ? 0 : getNegate().hashCode());
         return hashCode;
     }
 
@@ -394,6 +489,10 @@ public class MetricFilterV2 implements Serializable {
             return false;
         if (other.getMetricFilterValues() != null
                 && other.getMetricFilterValues().equals(this.getMetricFilterValues()) == false)
+            return false;
+        if (other.getNegate() == null ^ this.getNegate() == null)
+            return false;
+        if (other.getNegate() != null && other.getNegate().equals(this.getNegate()) == false)
             return false;
         return true;
     }
