@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -58,6 +58,16 @@ class PromptJsonMarshaller {
                 }
             }
             jsonWriter.endObject();
+        }
+        if (prompt.getLastModifiedTime() != null) {
+            java.util.Date lastModifiedTime = prompt.getLastModifiedTime();
+            jsonWriter.name("LastModifiedTime");
+            jsonWriter.value(lastModifiedTime);
+        }
+        if (prompt.getLastModifiedRegion() != null) {
+            String lastModifiedRegion = prompt.getLastModifiedRegion();
+            jsonWriter.name("LastModifiedRegion");
+            jsonWriter.value(lastModifiedRegion);
         }
         jsonWriter.endObject();
     }
