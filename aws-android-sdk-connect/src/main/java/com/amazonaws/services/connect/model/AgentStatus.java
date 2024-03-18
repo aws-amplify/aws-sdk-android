@@ -97,6 +97,23 @@ public class AgentStatus implements Serializable {
 
     /**
      * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     */
+    private java.util.Date lastModifiedTime;
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     */
+    private String lastModifiedRegion;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the agent status.
      * </p>
      *
@@ -632,6 +649,108 @@ public class AgentStatus implements Serializable {
     }
 
     /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp when this resource was last modified.
+     *         </p>
+     */
+    public java.util.Date getLastModifiedTime() {
+        return lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     */
+    public void setLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp when this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastModifiedTime <p>
+     *            The timestamp when this resource was last modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentStatus withLastModifiedTime(java.util.Date lastModifiedTime) {
+        this.lastModifiedTime = lastModifiedTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @return <p>
+     *         The Amazon Web Services Region where this resource was last
+     *         modified.
+     *         </p>
+     */
+    public String getLastModifiedRegion() {
+        return lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     */
+    public void setLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+    }
+
+    /**
+     * <p>
+     * The Amazon Web Services Region where this resource was last modified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Pattern: </b>[a-z]{2}(-[a-z]+){1,2}(-[0-9])?<br/>
+     *
+     * @param lastModifiedRegion <p>
+     *            The Amazon Web Services Region where this resource was last
+     *            modified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AgentStatus withLastModifiedRegion(String lastModifiedRegion) {
+        this.lastModifiedRegion = lastModifiedRegion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -657,7 +776,11 @@ public class AgentStatus implements Serializable {
         if (getState() != null)
             sb.append("State: " + getState() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getLastModifiedTime() != null)
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getLastModifiedRegion() != null)
+            sb.append("LastModifiedRegion: " + getLastModifiedRegion());
         sb.append("}");
         return sb.toString();
     }
@@ -679,6 +802,10 @@ public class AgentStatus implements Serializable {
                 + ((getDisplayOrder() == null) ? 0 : getDisplayOrder().hashCode());
         hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModifiedRegion() == null) ? 0 : getLastModifiedRegion().hashCode());
         return hashCode;
     }
 
@@ -728,6 +855,16 @@ public class AgentStatus implements Serializable {
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getLastModifiedTime() == null ^ this.getLastModifiedTime() == null)
+            return false;
+        if (other.getLastModifiedTime() != null
+                && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getLastModifiedRegion() == null ^ this.getLastModifiedRegion() == null)
+            return false;
+        if (other.getLastModifiedRegion() != null
+                && other.getLastModifiedRegion().equals(this.getLastModifiedRegion()) == false)
             return false;
         return true;
     }

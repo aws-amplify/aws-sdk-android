@@ -75,6 +75,11 @@ public class GetMetricDataV2RequestMarshaller implements
                 jsonWriter.name("EndTime");
                 jsonWriter.value(endTime);
             }
+            if (getMetricDataV2Request.getInterval() != null) {
+                IntervalDetails interval = getMetricDataV2Request.getInterval();
+                jsonWriter.name("Interval");
+                IntervalDetailsJsonMarshaller.getInstance().marshall(interval, jsonWriter);
+            }
             if (getMetricDataV2Request.getFilters() != null) {
                 java.util.List<FilterV2> filters = getMetricDataV2Request.getFilters();
                 jsonWriter.name("Filters");

@@ -28,7 +28,9 @@ public enum IntegrationType {
     PINPOINT_APP("PINPOINT_APP"),
     WISDOM_ASSISTANT("WISDOM_ASSISTANT"),
     WISDOM_KNOWLEDGE_BASE("WISDOM_KNOWLEDGE_BASE"),
-    CASES_DOMAIN("CASES_DOMAIN");
+    CASES_DOMAIN("CASES_DOMAIN"),
+    APPLICATION("APPLICATION"),
+    FILE_SCANNER("FILE_SCANNER");
 
     private String value;
 
@@ -50,6 +52,8 @@ public enum IntegrationType {
         enumMap.put("WISDOM_ASSISTANT", WISDOM_ASSISTANT);
         enumMap.put("WISDOM_KNOWLEDGE_BASE", WISDOM_KNOWLEDGE_BASE);
         enumMap.put("CASES_DOMAIN", CASES_DOMAIN);
+        enumMap.put("APPLICATION", APPLICATION);
+        enumMap.put("FILE_SCANNER", FILE_SCANNER);
     }
 
     /**
