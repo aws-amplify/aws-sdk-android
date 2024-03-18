@@ -152,7 +152,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      */
     private String mediaFormat;
 
@@ -801,7 +801,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @return <p>
      *         Specify the format of your input media file.
@@ -818,7 +818,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -838,7 +838,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -858,7 +858,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
@@ -878,7 +878,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm, m4a
      *
      * @param mediaFormat <p>
      *            Specify the format of your input media file.
