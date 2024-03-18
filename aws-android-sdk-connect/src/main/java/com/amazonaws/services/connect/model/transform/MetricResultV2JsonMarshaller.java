@@ -39,6 +39,11 @@ class MetricResultV2JsonMarshaller {
             }
             jsonWriter.endObject();
         }
+        if (metricResultV2.getMetricInterval() != null) {
+            MetricInterval metricInterval = metricResultV2.getMetricInterval();
+            jsonWriter.name("MetricInterval");
+            MetricIntervalJsonMarshaller.getInstance().marshall(metricInterval, jsonWriter);
+        }
         if (metricResultV2.getCollections() != null) {
             java.util.List<MetricDataV2> collections = metricResultV2.getCollections();
             jsonWriter.name("Collections");

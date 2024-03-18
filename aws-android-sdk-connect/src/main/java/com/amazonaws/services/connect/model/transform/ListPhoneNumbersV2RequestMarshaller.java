@@ -66,6 +66,11 @@ public class ListPhoneNumbersV2RequestMarshaller implements
                 jsonWriter.name("TargetArn");
                 jsonWriter.value(targetArn);
             }
+            if (listPhoneNumbersV2Request.getInstanceId() != null) {
+                String instanceId = listPhoneNumbersV2Request.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
             if (listPhoneNumbersV2Request.getMaxResults() != null) {
                 Integer maxResults = listPhoneNumbersV2Request.getMaxResults();
                 jsonWriter.name("MaxResults");

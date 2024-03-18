@@ -97,10 +97,24 @@ public class ClaimedPhoneNumberSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      */
     private String targetArn;
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String instanceId;
 
     /**
      * <p>
@@ -118,8 +132,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>CLAIMED</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation succeeded.
      * </p>
@@ -127,11 +141,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>IN_PROGRESS</code> means a <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a>, <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
-     * completed. You can call <a href=
+     * >UpdatePhoneNumber</a>, or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     * >UpdatePhoneNumberMetadata</a> operation is still in progress and has not
+     * yet completed. You can call <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> at a later time to verify if the previous
      * operation has completed.
@@ -140,8 +156,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>FAILED</code> indicates that the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation has failed. It will include a message
      * indicating the failure reason. A common reason for a failure may be that
@@ -640,12 +656,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *         traffic distribution groups that phone numbers are claimed to.
+     *         traffic distribution groups that phone number inbound traffic is
+     *         routed through.
      *         </p>
      */
     public String getTargetArn() {
@@ -655,12 +672,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      */
     public void setTargetArn(String targetArn) {
@@ -670,7 +688,7 @@ public class ClaimedPhoneNumberSummary implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for Amazon Connect instances or traffic
-     * distribution groups that phone numbers are claimed to.
+     * distribution groups that phone number inbound traffic is routed through.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -678,13 +696,92 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *
      * @param targetArn <p>
      *            The Amazon Resource Name (ARN) for Amazon Connect instances or
-     *            traffic distribution groups that phone numbers are claimed to.
+     *            traffic distribution groups that phone number inbound traffic
+     *            is routed through.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ClaimedPhoneNumberSummary withTargetArn(String targetArn) {
         this.targetArn = targetArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The identifier of the Amazon Connect instance that phone numbers
+     *         are claimed to. You can <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *         >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *         the instance.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The identifier of the Amazon Connect instance that phone numbers are
+     * claimed to. You can <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     * >find the instance ID</a> in the Amazon Resource Name (ARN) of the
+     * instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance that phone
+     *            numbers are claimed to. You can <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/find-instance-arn.html"
+     *            >find the instance ID</a> in the Amazon Resource Name (ARN) of
+     *            the instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ClaimedPhoneNumberSummary withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
@@ -786,8 +883,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>CLAIMED</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation succeeded.
      * </p>
@@ -795,11 +892,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>IN_PROGRESS</code> means a <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a>, <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
-     * completed. You can call <a href=
+     * >UpdatePhoneNumber</a>, or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     * >UpdatePhoneNumberMetadata</a> operation is still in progress and has not
+     * yet completed. You can call <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> at a later time to verify if the previous
      * operation has completed.
@@ -808,8 +907,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>FAILED</code> indicates that the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation has failed. It will include a message
      * indicating the failure reason. A common reason for a failure may be that
@@ -835,8 +934,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *         <li>
      *         <p>
      *         <code>CLAIMED</code> means the previous <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *         >ClaimPhoneNumber</a> or <a href=
      *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *         >UpdatePhoneNumber</a> operation succeeded.
      *         </p>
@@ -844,11 +943,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *         <li>
      *         <p>
      *         <code>IN_PROGRESS</code> means a <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *         >ClaimPhoneNumber</a>, <a href=
      *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     *         >UpdatePhoneNumber</a> operation is still in progress and has not
-     *         yet completed. You can call <a href=
+     *         >UpdatePhoneNumber</a>, or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     *         >UpdatePhoneNumberMetadata</a> operation is still in progress and
+     *         has not yet completed. You can call <a href=
      *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      *         >DescribePhoneNumber</a> at a later time to verify if the
      *         previous operation has completed.
@@ -857,8 +958,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *         <li>
      *         <p>
      *         <code>FAILED</code> indicates that the previous <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *         >ClaimedPhoneNumber</a> or <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *         >ClaimPhoneNumber</a> or <a href=
      *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *         >UpdatePhoneNumber</a> operation has failed. It will include a
      *         message indicating the failure reason. A common reason for a
@@ -890,8 +991,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>CLAIMED</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation succeeded.
      * </p>
@@ -899,11 +1000,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>IN_PROGRESS</code> means a <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a>, <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
-     * completed. You can call <a href=
+     * >UpdatePhoneNumber</a>, or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     * >UpdatePhoneNumberMetadata</a> operation is still in progress and has not
+     * yet completed. You can call <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> at a later time to verify if the previous
      * operation has completed.
@@ -912,8 +1015,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>FAILED</code> indicates that the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation has failed. It will include a message
      * indicating the failure reason. A common reason for a failure may be that
@@ -939,8 +1042,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>CLAIMED</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a> or <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *            >UpdatePhoneNumber</a> operation succeeded.
      *            </p>
@@ -948,11 +1051,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>IN_PROGRESS</code> means a <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a>, <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     *            >UpdatePhoneNumber</a> operation is still in progress and has
-     *            not yet completed. You can call <a href=
+     *            >UpdatePhoneNumber</a>, or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     *            >UpdatePhoneNumberMetadata</a> operation is still in progress
+     *            and has not yet completed. You can call <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      *            >DescribePhoneNumber</a> at a later time to verify if the
      *            previous operation has completed.
@@ -961,8 +1066,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>FAILED</code> indicates that the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a> or <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *            >UpdatePhoneNumber</a> operation has failed. It will include a
      *            message indicating the failure reason. A common reason for a
@@ -995,8 +1100,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>CLAIMED</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation succeeded.
      * </p>
@@ -1004,11 +1109,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>IN_PROGRESS</code> means a <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a>, <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     * >UpdatePhoneNumber</a> operation is still in progress and has not yet
-     * completed. You can call <a href=
+     * >UpdatePhoneNumber</a>, or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     * >UpdatePhoneNumberMetadata</a> operation is still in progress and has not
+     * yet completed. You can call <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      * >DescribePhoneNumber</a> at a later time to verify if the previous
      * operation has completed.
@@ -1017,8 +1124,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      * <li>
      * <p>
      * <code>FAILED</code> indicates that the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     * >ClaimedPhoneNumber</a> or <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     * >ClaimPhoneNumber</a> or <a href=
      * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      * >UpdatePhoneNumber</a> operation has failed. It will include a message
      * indicating the failure reason. A common reason for a failure may be that
@@ -1047,8 +1154,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>CLAIMED</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a> or <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *            >UpdatePhoneNumber</a> operation succeeded.
      *            </p>
@@ -1056,11 +1163,13 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>IN_PROGRESS</code> means a <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a>, <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
-     *            >UpdatePhoneNumber</a> operation is still in progress and has
-     *            not yet completed. You can call <a href=
+     *            >UpdatePhoneNumber</a>, or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumberMetadata.html"
+     *            >UpdatePhoneNumberMetadata</a> operation is still in progress
+     *            and has not yet completed. You can call <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_DescribePhoneNumber.html"
      *            >DescribePhoneNumber</a> at a later time to verify if the
      *            previous operation has completed.
@@ -1069,8 +1178,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
      *            <li>
      *            <p>
      *            <code>FAILED</code> indicates that the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimedPhoneNumber.html"
-     *            >ClaimedPhoneNumber</a> or <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_ClaimPhoneNumber.html"
+     *            >ClaimPhoneNumber</a> or <a href=
      *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdatePhoneNumber.html"
      *            >UpdatePhoneNumber</a> operation has failed. It will include a
      *            message indicating the failure reason. A common reason for a
@@ -1123,6 +1232,8 @@ public class ClaimedPhoneNumberSummary implements Serializable {
             sb.append("PhoneNumberDescription: " + getPhoneNumberDescription() + ",");
         if (getTargetArn() != null)
             sb.append("TargetArn: " + getTargetArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags() + ",");
         if (getPhoneNumberStatus() != null)
@@ -1153,6 +1264,7 @@ public class ClaimedPhoneNumberSummary implements Serializable {
                 + ((getPhoneNumberDescription() == null) ? 0 : getPhoneNumberDescription()
                         .hashCode());
         hashCode = prime * hashCode + ((getTargetArn() == null) ? 0 : getTargetArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getPhoneNumberStatus() == null) ? 0 : getPhoneNumberStatus().hashCode());
@@ -1204,6 +1316,11 @@ public class ClaimedPhoneNumberSummary implements Serializable {
             return false;
         if (other.getTargetArn() != null
                 && other.getTargetArn().equals(this.getTargetArn()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
