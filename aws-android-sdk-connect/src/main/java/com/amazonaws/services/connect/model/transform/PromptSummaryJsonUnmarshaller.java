@@ -44,6 +44,12 @@ class PromptSummaryJsonUnmarshaller implements Unmarshaller<PromptSummary, JsonU
             } else if (name.equals("Name")) {
                 promptSummary.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                promptSummary.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                promptSummary.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

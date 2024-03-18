@@ -68,6 +68,12 @@ class UserJsonUnmarshaller implements Unmarshaller<User, JsonUnmarshallerContext
                 user.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LastModifiedTime")) {
+                user.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastModifiedRegion")) {
+                user.setLastModifiedRegion(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
