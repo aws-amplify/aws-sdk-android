@@ -93,7 +93,7 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -284,7 +284,7 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -301,7 +301,7 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -321,7 +321,7 @@ public class AdminListUserAuthEventsRequest extends AmazonWebServiceRequest impl
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

@@ -107,10 +107,32 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -374,20 +396,65 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @return <p>
-     *         The username for the user. Must be unique within the user pool.
-     *         Must be a UTF-8 string between 1 and 128 characters. After the
-     *         user is created, the username can't be changed.
+     *         The value that you want to set as the username sign-in attribute.
+     *         The following conditions apply to the username parameter.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         The username can't be a duplicate of another username in the same
+     *         user pool.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         You can't change the value of a username after you create it.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         You can only provide a value if usernames are a valid sign-in
+     *         attribute for your user pool. If your user pool only supports
+     *         phone numbers or email addresses as sign-in attributes, Amazon
+     *         Cognito automatically generates a username value. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *         >Customizing sign-in attributes</a>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getUsername() {
         return username;
@@ -395,20 +462,66 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user. Must be unique within the user
-     *            pool. Must be a UTF-8 string between 1 and 128 characters.
-     *            After the user is created, the username can't be changed.
+     *            The value that you want to set as the username sign-in
+     *            attribute. The following conditions apply to the username
+     *            parameter.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The username can't be a duplicate of another username in the
+     *            same user pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can't change the value of a username after you create it.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can only provide a value if usernames are a valid sign-in
+     *            attribute for your user pool. If your user pool only supports
+     *            phone numbers or email addresses as sign-in attributes, Amazon
+     *            Cognito automatically generates a username value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *            >Customizing sign-in attributes</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setUsername(String username) {
         this.username = username;
@@ -416,10 +529,32 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The username for the user. Must be unique within the user pool. Must be a
-     * UTF-8 string between 1 and 128 characters. After the user is created, the
-     * username can't be changed.
+     * The value that you want to set as the username sign-in attribute. The
+     * following conditions apply to the username parameter.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The username can't be a duplicate of another username in the same user
+     * pool.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can't change the value of a username after you create it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * You can only provide a value if usernames are a valid sign-in attribute
+     * for your user pool. If your user pool only supports phone numbers or
+     * email addresses as sign-in attributes, Amazon Cognito automatically
+     * generates a username value. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     * >Customizing sign-in attributes</a>.
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -429,10 +564,34 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}]+<br/>
      *
      * @param username <p>
-     *            The username for the user. Must be unique within the user
-     *            pool. Must be a UTF-8 string between 1 and 128 characters.
-     *            After the user is created, the username can't be changed.
+     *            The value that you want to set as the username sign-in
+     *            attribute. The following conditions apply to the username
+     *            parameter.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            The username can't be a duplicate of another username in the
+     *            same user pool.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can't change the value of a username after you create it.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            You can only provide a value if usernames are a valid sign-in
+     *            attribute for your user pool. If your user pool only supports
+     *            phone numbers or email addresses as sign-in attributes, Amazon
+     *            Cognito automatically generates a username value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-aliases"
+     *            >Customizing sign-in attributes</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
