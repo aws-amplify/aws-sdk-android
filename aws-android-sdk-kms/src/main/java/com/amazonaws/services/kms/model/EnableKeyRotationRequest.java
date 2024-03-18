@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2024 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption KMS key.
  * </p>
  * <p>
- * When you enable automatic rotation of a<a href=
+ * When you enable automatic rotation of a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
  * >customer managed KMS key</a>, KMS rotates the key material of the KMS key
  * one year (approximately 365 days) from the enable date and every year
@@ -106,6 +106,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </li>
  * </ul>
+ * <p>
+ * <b>Eventual consistency</b>: The KMS API follows an eventual consistency
+ * model. For more information, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-eventual-consistency.html"
+ * >KMS eventual consistency</a>.
+ * </p>
  */
 public class EnableKeyRotationRequest extends AmazonWebServiceRequest implements Serializable {
     /**
