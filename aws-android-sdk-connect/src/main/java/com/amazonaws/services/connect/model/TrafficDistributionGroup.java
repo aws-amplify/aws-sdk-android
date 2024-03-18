@@ -131,9 +131,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -162,8 +162,8 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on the
+     * default <code>TrafficDistributionGroup</code>. If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -538,9 +538,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -593,9 +593,9 @@ public class TrafficDistributionGroup implements Serializable {
      *         <li>
      *         <p>
      *         <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     *         >UpdateTrafficDistributionGroup</a> operation is still in
-     *         progress and has not yet completed.
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     *         >UpdateTrafficDistribution</a> operation is still in progress and
+     *         has not yet completed.
      *         </p>
      *         </li>
      *         </ul>
@@ -650,9 +650,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -706,9 +706,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            <li>
      *            <p>
      *            <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     *            >UpdateTrafficDistributionGroup</a> operation is still in
-     *            progress and has not yet completed.
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     *            >UpdateTrafficDistribution</a> operation is still in progress
+     *            and has not yet completed.
      *            </p>
      *            </li>
      *            </ul>
@@ -763,9 +763,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -822,9 +822,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            <li>
      *            <p>
      *            <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     *            >UpdateTrafficDistributionGroup</a> operation is still in
-     *            progress and has not yet completed.
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     *            >UpdateTrafficDistribution</a> operation is still in progress
+     *            and has not yet completed.
      *            </p>
      *            </li>
      *            </ul>
@@ -882,9 +882,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -938,9 +938,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            <li>
      *            <p>
      *            <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     *            >UpdateTrafficDistributionGroup</a> operation is still in
-     *            progress and has not yet completed.
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     *            >UpdateTrafficDistribution</a> operation is still in progress
+     *            and has not yet completed.
      *            </p>
      *            </li>
      *            </ul>
@@ -995,9 +995,9 @@ public class TrafficDistributionGroup implements Serializable {
      * <li>
      * <p>
      * <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     * >UpdateTrafficDistributionGroup</a> operation is still in progress and
-     * has not yet completed.
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     * >UpdateTrafficDistribution</a> operation is still in progress and has not
+     * yet completed.
      * </p>
      * </li>
      * </ul>
@@ -1054,9 +1054,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            <li>
      *            <p>
      *            <code>UPDATE_IN_PROGRESS</code> means the previous <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistributionGroup.html"
-     *            >UpdateTrafficDistributionGroup</a> operation is still in
-     *            progress and has not yet completed.
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_UpdateTrafficDistribution.html"
+     *            >UpdateTrafficDistribution</a> operation is still in progress
+     *            and has not yet completed.
      *            </p>
      *            </li>
      *            </ul>
@@ -1169,8 +1169,8 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on the
+     * default <code>TrafficDistributionGroup</code>. If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1188,8 +1188,8 @@ public class TrafficDistributionGroup implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         You can change the <code>SignInConfig</code> only for a default
-     *         <code>TrafficDistributionGroup</code>. If you call
+     *         The <code>SignInConfig</code> distribution is available only on
+     *         the default <code>TrafficDistributionGroup</code>. If you call
      *         <code>UpdateTrafficDistribution</code> with a modified
      *         <code>SignInConfig</code> and a non-default
      *         <code>TrafficDistributionGroup</code>, an
@@ -1211,8 +1211,8 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on the
+     * default <code>TrafficDistributionGroup</code>. If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1230,8 +1230,8 @@ public class TrafficDistributionGroup implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         You can change the <code>SignInConfig</code> only for a default
-     *         <code>TrafficDistributionGroup</code>. If you call
+     *         The <code>SignInConfig</code> distribution is available only on
+     *         the default <code>TrafficDistributionGroup</code>. If you call
      *         <code>UpdateTrafficDistribution</code> with a modified
      *         <code>SignInConfig</code> and a non-default
      *         <code>TrafficDistributionGroup</code>, an
@@ -1253,8 +1253,8 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on the
+     * default <code>TrafficDistributionGroup</code>. If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1272,9 +1272,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            You can change the <code>SignInConfig</code> only for a
-     *            default <code>TrafficDistributionGroup</code>. If you call
-     *            <code>UpdateTrafficDistribution</code> with a modified
+     *            The <code>SignInConfig</code> distribution is available only
+     *            on the default <code>TrafficDistributionGroup</code>. If you
+     *            call <code>UpdateTrafficDistribution</code> with a modified
      *            <code>SignInConfig</code> and a non-default
      *            <code>TrafficDistributionGroup</code>, an
      *            <code>InvalidRequestException</code> is returned.
@@ -1295,8 +1295,8 @@ public class TrafficDistributionGroup implements Serializable {
      * </p>
      * <note>
      * <p>
-     * You can change the <code>SignInConfig</code> only for a default
-     * <code>TrafficDistributionGroup</code>. If you call
+     * The <code>SignInConfig</code> distribution is available only on the
+     * default <code>TrafficDistributionGroup</code>. If you call
      * <code>UpdateTrafficDistribution</code> with a modified
      * <code>SignInConfig</code> and a non-default
      * <code>TrafficDistributionGroup</code>, an
@@ -1317,9 +1317,9 @@ public class TrafficDistributionGroup implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            You can change the <code>SignInConfig</code> only for a
-     *            default <code>TrafficDistributionGroup</code>. If you call
-     *            <code>UpdateTrafficDistribution</code> with a modified
+     *            The <code>SignInConfig</code> distribution is available only
+     *            on the default <code>TrafficDistributionGroup</code>. If you
+     *            call <code>UpdateTrafficDistribution</code> with a modified
      *            <code>SignInConfig</code> and a non-default
      *            <code>TrafficDistributionGroup</code>, an
      *            <code>InvalidRequestException</code> is returned.
